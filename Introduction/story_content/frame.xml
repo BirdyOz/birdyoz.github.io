@@ -558,7 +558,7 @@
             <fill type="linear" rotation="90">
               <colors>
                 <color rgb="0xF5F5F5" alpha="100" stop="0" />
-                <color rgb="0xC7C7C7" alpha="100" stop="255" />
+                <color rgb="0xF2F2F2" alpha="100" stop="255" />
               </colors>
             </fill>
           </color>
@@ -609,7 +609,7 @@
           <color name="btn_glow">
             <fill type="linear" rotation="90">
               <colors>
-                <color rgb="0xCFCFCF" alpha="100" stop="0" />
+                <color rgb="0xFFFF00" alpha="100" stop="0" />
               </colors>
             </fill>
           </color>
@@ -1178,7 +1178,7 @@
         <slidelink slideid="_player.6ffXYgYkKdm" displaytext="En route and arrival" expand="true" type="slide">
           <links>
             <slidelink slideid="_player.6ffXYgYkKdm.6NgrlqYhJGY" displaytext="Key information to look for at all incidents" expand="false" type="slide" />
-            <slidelink slideid="_player.6ffXYgYkKdm.5qZ5qrV1H9b" displaytext="En route and arrival" expand="false" type="slide" />
+            <slidelink slideid="_player.6ffXYgYkKdm.5qZ5qrV1H9b" displaytext="En route and arrival" expand="true" type="slide" />
             <slidelink slideid="_player.6ffXYgYkKdm.6P4x8QbIUVA" displaytext="Weather and natural hazards" expand="false" type="slide" />
             <slidelink slideid="_player.6ffXYgYkKdm.5xJDdXFfJDR" displaytext="Owners and occupiers" expand="false" type="slide" />
           </links>
@@ -1191,7 +1191,14 @@
         </slidelink>
         <slidelink slideid="_player.6PKxvYwEVts" displaytext=" Impact of operations" expand="true" type="slide">
           <links>
-            <slidelink slideid="_player.6PKxvYwEVts.63qUP6JkaNb" displaytext="Impact of operations" expand="false" type="slide" />
+            <slidelink slideid="_player.6PKxvYwEVts.63qUP6JkaNb" displaytext="Impact of operations" expand="true" type="slide">
+              <links>
+                <slidelink slideid="_player.6PKxvYwEVts.5uw8etnV2zx" displaytext="Gaining access" expand="false" type="slide" />
+                <slidelink slideid="_player.6PKxvYwEVts.62jSjFtQMkJ" displaytext="Extinguishing methods" expand="false" type="slide" />
+                <slidelink slideid="_player.6PKxvYwEVts.6QaikWYzsPd" displaytext="Changing the scene" expand="false" type="slide" />
+                <slidelink slideid="_player.6PKxvYwEVts.6fkXPUUGYqA" displaytext="Scene Contamination" expand="false" type="slide" />
+              </links>
+            </slidelink>
           </links>
         </slidelink>
         <slidelink slideid="_player.6hHziuXViBS" displaytext="Securing the scene" expand="true" type="slide">
