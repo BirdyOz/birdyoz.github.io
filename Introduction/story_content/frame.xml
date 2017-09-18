@@ -1173,6 +1173,7 @@
             <slidelink slideid="_player.5Y6bsAR9HPC.5tsWcgEWcym" displaytext="Protection of life and property" expand="false" type="slide" />
             <slidelink slideid="_player.5Y6bsAR9HPC.65ffdPUG6PS" displaytext="Calling in the investigators" expand="false" type="slide" />
             <slidelink slideid="_player.5Y6bsAR9HPC.69VefMUgHP8" displaytext="Your role in the investigation process" expand="false" type="slide" />
+            <slidelink slideid="_player.5Y6bsAR9HPC.6UJcUhpx940" displaytext="Test your knowledge" expand="false" type="slide" />
           </links>
         </slidelink>
         <slidelink slideid="_player.6ffXYgYkKdm" displaytext="En route and arrival" expand="true" type="slide">
@@ -1181,12 +1182,14 @@
             <slidelink slideid="_player.6ffXYgYkKdm.5qZ5qrV1H9b" displaytext="En route and arrival" expand="false" type="slide" />
             <slidelink slideid="_player.6ffXYgYkKdm.6P4x8QbIUVA" displaytext="Weather and natural hazards" expand="false" type="slide" />
             <slidelink slideid="_player.6ffXYgYkKdm.5xJDdXFfJDR" displaytext="Owners and occupiers" expand="false" type="slide" />
+            <slidelink slideid="_player.6ffXYgYkKdm.6QlyCt2kkgz" displaytext="Test your knowledge" expand="false" type="slide" />
           </links>
         </slidelink>
         <slidelink slideid="_player.6AT37fMCR1U" displaytext="Assessing the scene" expand="true" type="slide">
           <links>
             <slidelink slideid="_player.6AT37fMCR1U.6UKc1OSx1jw" displaytext="Assessing the scene" expand="false" type="slide" />
             <slidelink slideid="_player.6AT37fMCR1U.5pWhoMMOgRr" displaytext="Fatalities" expand="false" type="slide" />
+            <slidelink slideid="_player.6AT37fMCR1U.6g7gynSfr1T" displaytext="Test your knowledge" expand="false" type="slide" />
           </links>
         </slidelink>
         <slidelink slideid="_player.6PKxvYwEVts" displaytext=" Impact of operations" expand="true" type="slide">
@@ -1197,6 +1200,7 @@
                 <slidelink slideid="_player.6PKxvYwEVts.62jSjFtQMkJ" displaytext="Extinguishing methods" expand="false" type="slide" />
                 <slidelink slideid="_player.6PKxvYwEVts.6QaikWYzsPd" displaytext="Changing the scene" expand="false" type="slide" />
                 <slidelink slideid="_player.6PKxvYwEVts.6fkXPUUGYqA" displaytext="Scene Contamination" expand="false" type="slide" />
+                <slidelink slideid="_player.6PKxvYwEVts.6r9aBbOqgqF" displaytext="Test your knowledge" expand="false" type="slide" />
               </links>
             </slidelink>
           </links>
@@ -1207,6 +1211,7 @@
             <slidelink slideid="_player.6hHziuXViBS.6636MKN503a" displaytext="Establishing a scene boundary" expand="false" type="slide" />
             <slidelink slideid="_player.6hHziuXViBS.6re7GFLozjH" displaytext="Scene access" expand="false" type="slide" />
             <slidelink slideid="_player.6hHziuXViBS.607jt1EcDgN" displaytext="Scene preservation" expand="false" type="slide" />
+            <slidelink slideid="_player.6hHziuXViBS.6nD5T7rzlQ7" displaytext="Test your knowledge" expand="false" type="slide" />
           </links>
         </slidelink>
         <slidelink slideid="_player.5yxgWvS51H0" displaytext="Records" expand="true" type="slide">
@@ -1214,6 +1219,12 @@
             <slidelink slideid="_player.5yxgWvS51H0.6CVWkQ2JjZn" displaytext="Recording the scene" expand="false" type="slide" />
             <slidelink slideid="_player.5yxgWvS51H0.5xwonh5fdXG" displaytext="Fire investigators" expand="false" type="slide" />
             <slidelink slideid="_player.5yxgWvS51H0.5zwf1KIYsTa" displaytext="Witnesses" expand="false" type="slide" />
+            <slidelink slideid="_player.5yxgWvS51H0.6gJGUUI2K92" displaytext="Test your knowldege." expand="false" type="slide" />
+          </links>
+        </slidelink>
+        <slidelink slideid="_player.6pRnb4SSawL" displaytext="Conclusion" expand="true" type="slide">
+          <links>
+            <slidelink slideid="_player.6pRnb4SSawL.5V7s1nDY0bI" displaytext="Congratulations" expand="false" type="slide" />
           </links>
         </slidelink>
       </links>
