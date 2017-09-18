@@ -1178,7 +1178,7 @@
         <slidelink slideid="_player.6ffXYgYkKdm" displaytext="En route and arrival" expand="true" type="slide">
           <links>
             <slidelink slideid="_player.6ffXYgYkKdm.6NgrlqYhJGY" displaytext="Key information to look for at all incidents" expand="false" type="slide" />
-            <slidelink slideid="_player.6ffXYgYkKdm.5qZ5qrV1H9b" displaytext="En route and arrival" expand="true" type="slide" />
+            <slidelink slideid="_player.6ffXYgYkKdm.5qZ5qrV1H9b" displaytext="En route and arrival" expand="false" type="slide" />
             <slidelink slideid="_player.6ffXYgYkKdm.6P4x8QbIUVA" displaytext="Weather and natural hazards" expand="false" type="slide" />
             <slidelink slideid="_player.6ffXYgYkKdm.5xJDdXFfJDR" displaytext="Owners and occupiers" expand="false" type="slide" />
           </links>
@@ -1191,7 +1191,7 @@
         </slidelink>
         <slidelink slideid="_player.6PKxvYwEVts" displaytext=" Impact of operations" expand="true" type="slide">
           <links>
-            <slidelink slideid="_player.6PKxvYwEVts.63qUP6JkaNb" displaytext="Impact of operations" expand="true" type="slide">
+            <slidelink slideid="_player.6PKxvYwEVts.63qUP6JkaNb" displaytext="Impact of operations" expand="false" type="slide">
               <links>
                 <slidelink slideid="_player.6PKxvYwEVts.5uw8etnV2zx" displaytext="Gaining access" expand="false" type="slide" />
                 <slidelink slideid="_player.6PKxvYwEVts.62jSjFtQMkJ" displaytext="Extinguishing methods" expand="false" type="slide" />
@@ -1204,12 +1204,15 @@
         <slidelink slideid="_player.6hHziuXViBS" displaytext="Securing the scene" expand="true" type="slide">
           <links>
             <slidelink slideid="_player.6hHziuXViBS.6d612VeCfmY" displaytext="Securing the scene" expand="false" type="slide" />
-            <slidelink slideid="_player.6hHziuXViBS.61SELVfwsWO" displaytext="Methods for securing the scene" expand="false" type="slide" />
+            <slidelink slideid="_player.6hHziuXViBS.6636MKN503a" displaytext="Establishing a scene boundary" expand="false" type="slide" />
+            <slidelink slideid="_player.6hHziuXViBS.6re7GFLozjH" displaytext="Scene access" expand="false" type="slide" />
+            <slidelink slideid="_player.6hHziuXViBS.607jt1EcDgN" displaytext="Scene preservation" expand="false" type="slide" />
           </links>
         </slidelink>
         <slidelink slideid="_player.5yxgWvS51H0" displaytext="Records" expand="true" type="slide">
           <links>
-            <slidelink slideid="_player.5yxgWvS51H0.6CVWkQ2JjZn" displaytext="Records" expand="false" type="slide" />
+            <slidelink slideid="_player.5yxgWvS51H0.6CVWkQ2JjZn" displaytext="Recording the scene" expand="false" type="slide" />
+            <slidelink slideid="_player.5yxgWvS51H0.5xwonh5fdXG" displaytext="Fire investigators" expand="false" type="slide" />
             <slidelink slideid="_player.5yxgWvS51H0.5zwf1KIYsTa" displaytext="Witnesses" expand="false" type="slide" />
           </links>
         </slidelink>
