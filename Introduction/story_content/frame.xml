@@ -6,6 +6,7 @@
     <layout name="npxnabnsnfns10111000101" font="Open Sans" controllayout="npxnabnsnfns10111000101" colorscheme="pxabnsnfns10111000101" string_table="pxabnsnfns10111000101" />
     <layout name="npnxnanbnsnfns10111000101" font="Open Sans" controllayout="npnxnanbnsnfns10111000101" colorscheme="pxabnsnfns10111000101" string_table="pxabnsnfns10111000101" />
     <layout name="pxabnsnfns10111000100" font="Open Sans" controllayout="pxabnsnfns10111000100" colorscheme="pxabnsnfns10111000101" string_table="pxabnsnfns10111000101" />
+    <layout name="pnxanbnsnfns10111000101" font="Open Sans" controllayout="pnxanbnsnfns10111000101" colorscheme="pxabnsnfns10111000101" string_table="pxabnsnfns10111000101" />
   </layouts>
   <control_options>
     <optiongroups>
@@ -194,6 +195,29 @@
         </controls>
       </control>
       <control name="close_btn" enabled="false" />
+    </control_layout>
+    <control_layout name="pnxanbnsnfns10111000101">
+      <control name="volume" enabled="true" />
+      <control name="seekbar" enabled="true" />
+      <control name="replay" enabled="true" />
+      <control name="pauseplay" enabled="true" />
+      <control name="logo" enabled="false" />
+      <control name="previous" enabled="true" />
+      <control name="next" enabled="false" />
+      <control name="swipeleft" enabled="true" />
+      <control name="swiperight" enabled="false" />
+      <control name="submit" enabled="false" />
+      <control name="finish" enabled="false" />
+      <control name="submitall" enabled="false" />
+      <control name="resources" enabled="false" />
+      <control name="glossary" enabled="false" />
+      <control name="transcript" enabled="false" />
+      <control name="outline" enabled="true">
+        <controls>
+          <control name="search" enabled="false" />
+        </controls>
+      </control>
+      <control name="close_btn" enabled="true" />
     </control_layout>
   </control_layouts>
   <colorschemes>
@@ -1194,15 +1218,12 @@
         </slidelink>
         <slidelink slideid="_player.6PKxvYwEVts" displaytext=" Impact of operations" expand="true" type="slide">
           <links>
-            <slidelink slideid="_player.6PKxvYwEVts.63qUP6JkaNb" displaytext="Impact of operations" expand="false" type="slide">
-              <links>
-                <slidelink slideid="_player.6PKxvYwEVts.5uw8etnV2zx" displaytext="Gaining access" expand="false" type="slide" />
-                <slidelink slideid="_player.6PKxvYwEVts.62jSjFtQMkJ" displaytext="Extinguishing methods" expand="false" type="slide" />
-                <slidelink slideid="_player.6PKxvYwEVts.6QaikWYzsPd" displaytext="Changing the scene" expand="false" type="slide" />
-                <slidelink slideid="_player.6PKxvYwEVts.6fkXPUUGYqA" displaytext="Scene Contamination" expand="false" type="slide" />
-                <slidelink slideid="_player.6PKxvYwEVts.6r9aBbOqgqF" displaytext="Test your knowledge" expand="false" type="slide" />
-              </links>
-            </slidelink>
+            <slidelink slideid="_player.6PKxvYwEVts.63qUP6JkaNb" displaytext="Impact of operations" expand="false" type="slide" />
+            <slidelink slideid="_player.6PKxvYwEVts.5uw8etnV2zx" displaytext="Gaining access" expand="false" type="slide" />
+            <slidelink slideid="_player.6PKxvYwEVts.62jSjFtQMkJ" displaytext="Extinguishing methods" expand="false" type="slide" />
+            <slidelink slideid="_player.6PKxvYwEVts.6QaikWYzsPd" displaytext="Changing the scene" expand="false" type="slide" />
+            <slidelink slideid="_player.6PKxvYwEVts.6fkXPUUGYqA" displaytext="Scene Contamination" expand="false" type="slide" />
+            <slidelink slideid="_player.6PKxvYwEVts.6r9aBbOqgqF" displaytext="Test your knowledge" expand="false" type="slide" />
           </links>
         </slidelink>
         <slidelink slideid="_player.6hHziuXViBS" displaytext="Securing the scene" expand="true" type="slide">
