@@ -6,6 +6,7 @@
     <layout name="npxnabnsnfns00001000101" font="Open Sans" controllayout="npxnabnsnfns00001000101" colorscheme="pxabnsnfns00001000101" string_table="pxabnsnfns00001000101" />
     <layout name="npnxnanbnsnfns00001000101" font="Open Sans" controllayout="npnxnanbnsnfns00001000101" colorscheme="pxabnsnfns00001000101" string_table="pxabnsnfns00001000101" />
     <layout name="pxabnsnfns00001000100" font="Open Sans" controllayout="pxabnsnfns00001000100" colorscheme="pxabnsnfns00001000101" string_table="pxabnsnfns00001000101" />
+    <layout name="pnxanbnsnfns00001000101" font="Open Sans" controllayout="pnxanbnsnfns00001000101" colorscheme="pxabnsnfns00001000101" string_table="pxabnsnfns00001000101" />
   </layouts>
   <control_options>
     <optiongroups>
@@ -194,6 +195,29 @@
         </controls>
       </control>
       <control name="close_btn" enabled="false" />
+    </control_layout>
+    <control_layout name="pnxanbnsnfns00001000101">
+      <control name="volume" enabled="true" />
+      <control name="seekbar" enabled="false" />
+      <control name="replay" enabled="false" />
+      <control name="pauseplay" enabled="false" />
+      <control name="logo" enabled="false" />
+      <control name="previous" enabled="true" />
+      <control name="next" enabled="false" />
+      <control name="swipeleft" enabled="true" />
+      <control name="swiperight" enabled="false" />
+      <control name="submit" enabled="false" />
+      <control name="finish" enabled="false" />
+      <control name="submitall" enabled="false" />
+      <control name="resources" enabled="false" />
+      <control name="glossary" enabled="false" />
+      <control name="transcript" enabled="false" />
+      <control name="outline" enabled="true">
+        <controls>
+          <control name="search" enabled="false" />
+        </controls>
+      </control>
+      <control name="close_btn" enabled="true" />
     </control_layout>
   </control_layouts>
   <colorschemes>
