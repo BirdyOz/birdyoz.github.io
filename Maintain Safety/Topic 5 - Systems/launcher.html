@@ -1,0 +1,99 @@
+<html>
+	<head>
+		<!-- Created using Storyline 3 - http://www.articulate.com  --> 
+		<!-- version: 3.0.10762.0 --> 
+
+		<title>Maintain Safety - Topic 5: Systems</title>
+		
+		<script>
+			
+			/******************************************************************************/
+			//
+			// NOTE TO DEVELOPERS:
+			// The following code should be integrated with your web page in order to open
+			// the presentation in a new window.  To launch the presentation immediately, 
+			// simply copy the code below into your web page.  To launch the presentation
+			// when a button or link is clicked, call LaunchPresentation when the onClick
+			// event is triggered.
+			//
+			/******************************************************************************/		
+		
+		
+			var Safari =  (navigator.appVersion.indexOf("Safari") >= 0);
+			
+			var g_bChromeless = false;
+			var g_bResizeable = true;
+			var g_nContentWidth = 980;
+			var g_nContentHeight = 658;
+			var g_strStartPage = "story.html" + document.location.search;
+			var g_strBrowserSize = "fullscreen";
+		
+			function LaunchContent()
+			{
+				var nWidth = screen.availWidth;
+				var nHeight = screen.availHeight;
+
+				if (nWidth > g_nContentWidth && nHeight > g_nContentHeight && g_strBrowserSize != "fullscreen")
+				{
+					nWidth = g_nContentWidth;
+					nHeight = g_nContentHeight;
+					
+					if (!Safari && !g_bChromeless)
+					{
+						nWidth += 17;
+					}
+				}
+
+				// Build the options string
+				var strOptions = "width=" + nWidth +",height=" + nHeight;
+				if (g_bResizeable)
+				{
+					strOptions += ",resizable=yes"
+				}
+				else
+				{
+					strOptions += ",resizable=no"
+				}
+
+				if (g_bChromeless)
+				{
+					strOptions += ", status=0, toolbar=0, location=0, menubar=0, scrollbars=0";
+				}
+				else
+				{
+					strOptions += ", status=1, toolbar=1, location=1, menubar=1, scrollbars=1";
+				}
+
+				// Launch the URL
+				if (Safari)
+				{
+					var oWnd = window.open("", "_blank", strOptions);
+					oWnd.location = g_strStartPage;
+				}
+				else
+				{
+					window.open(g_strStartPage , "_blank", strOptions);
+				}
+			}
+
+			
+			
+		</script>
+		
+	</head>
+	
+	<body onload="setTimeout('LaunchContent()', 100);">
+		<center>
+			<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<center>
+							<a href="#" onClick="javascript:void(LaunchContent())"><img src="story_content/orange_launch_normal.gif" style="border-style: none"/></a>
+						</center>
+					</td>
+				</tr>
+			</table>
+		</center>
+	</body>
+</html>
+
