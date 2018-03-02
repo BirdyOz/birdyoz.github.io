@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<bwFrame xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" default_layout="pxabnsnfns00001100111" textdirection="ltr" device="false" fontscale="100" kbshortcuts="false" skip_nav_enabled="true" outputtype="undefined">
+<bwFrame xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" default_layout="pxabnsnfns00001100111" textdirection="ltr" device="false" fontscale="100" kbshortcuts="false" skip_nav_enabled="true" outputtype="undefined" theme="classic">
   <layouts>
     <layout name="npnxnanbsnfns00001100111" font="Open Sans" controllayout="npnxnanbsnfns00001100111" colorscheme="pxabnsnfns00001100111" string_table="pxabnsnfns00001100111" />
     <layout name="pxabnsnfns00001100111" font="Open Sans" controllayout="pxabnsnfns00001100111" colorscheme="pxabnsnfns00001100111" string_table="pxabnsnfns00001100111" />
@@ -1250,9 +1250,9 @@
   </nav_data>
   <resource_data description="&lt;p align='left'&gt;&lt;font face='Open Sans' style='font-size: 11px;' size='11' color='#444444'&gt;Here are some useful links and documents:&lt;/font&gt;&lt;/p&gt;">
     <resources>
-      <resource url="story_content/external_files/CFA Effects of Heat Brochure.pdf" image="story_content/6AkITxQ5jdN.png" title="CFA Effects of Heat Brochure" />
-      <resource url="story_content/external_files/SOP-J03.11.pdf" image="story_content/5zhZ5zzFk2n.png" title="SOP-J03.11" />
-      <resource url="story_content/external_files/AAR.pdf" image="story_content/6muoYYfwr1z.png" title="After Action Review" />
+      <resource url="story_content/external_files/CFA Effects of Heat Brochure.pdf" image="story_content/6GuR0OmL9Sf.png" title="CFA Effects of Heat Brochure" />
+      <resource url="story_content/external_files/SOP-J03.11.pdf" image="story_content/6WjiJlOAVPm.png" title="SOP-J03.11" />
+      <resource url="story_content/external_files/AAR.pdf" image="story_content/6q8hyikNq8o.png" title="After Action Review" />
     </resources>
   </resource_data>
   <transcript_data>

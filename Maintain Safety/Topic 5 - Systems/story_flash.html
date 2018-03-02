@@ -1,14 +1,17 @@
 <!DOCTYPE HTML>
 <html style="height: 100%;" lang="en-US">
 <head>
-<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
-<!-- Created using Storyline 3 - http://www.articulate.com  -->
-<!-- version: 3.0.10762.0 -->
-
+<!-- Created using Storyline 360 - http://www.articulate.com  -->
+<!-- version: 3.13.15006.0 -->
 <title>Maintain Safety - Topic 5: Systems</title>
+<meta http-equiv="x-ua-compatible" content="IE=edge" />
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
 <style>
-	body { margin: 0px; }
+	body, div, swf  { margin: 0px; }
+	.no-scroll { overflow: hidden; }
 	object {outline: none;}
+	table { border: 0; width: 100%; height: 100%; align: center; border-spacing: 0; padding: 0; }
 </style>
 
 <script type="text/javascript">
@@ -22,13 +25,24 @@ var g_strSwfFile = "story.swf";
 var g_nWidth = 980;
 var g_nHeight = 658;
 var g_strScale = "show all";	// noscale | show all
+var g_strResizeType = "fit" // static | fit
 var g_strBrowserSize = "fullscreen";	// default, fullscreen, optimal
 var g_strBgColor = "#FFFFFF";
 var g_bCaptureRC = false;
 var g_strFlashVars = "";
 var g_strWMode = "window"; // transparent | window (use "window" for optimal performance, transparent for webobject support)
+var g_strThemeName = "classic"; // unified | classic
+var g_strPreloaderColor = "#FFFFFF";
 
-var g_bScrollbars = g_strScale !== "show all";
+if (g_strResizeType === ["__RESIZE", "_TYPE__"].join("")) {
+	g_strResizeType = g_strScale === "noscale" ? "static" : "fit";
+}
+
+if (g_strThemeName === ["__THEME", "_NAME__"].join("")) {
+	g_strThemeName = "classic";
+}
+
+var g_bScrollbars = g_strResizeType === "static";
 var g_bWarnOnCommitFail = false;
 var g_strAlign = "middle";
 var g_strQuality = "best";
@@ -46,12 +60,14 @@ var g_strQuality = "best";
 <script type="text/javascript">
 
 document.bgColor = g_strBgColor;
+var target = document.body;
 
 if (g_bScrollbars)
 {
-	document.write("<table border=0 cellpadding=0 cellspacing=0 width='100%' height='100%' align='center'>");
-	document.write("<tr>");
-	document.write("<td align='center'>");
+	var table = document.createElement('table');
+	target = table.insertRow(0).insertCell(0);
+	target.setAttribute('align', 'center');
+	document.body.appendChild(table);
 }
 
 WriteSwfObject(
@@ -64,15 +80,10 @@ WriteSwfObject(
 	g_strBgColor,
 	g_bCaptureRC,
 	g_strWMode,
-	g_strFlashVars
+	g_strFlashVars,
+	target,
+	true
 );
-
-if (g_bScrollbars)
-{
-	document.write("</td>");
-	document.write("</tr>");
-	document.write("</table>");
-}
 
 ResizeBrowser(g_strBrowserSize);
 </script>
