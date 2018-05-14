@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2018-05-14 17:13:14
+ * @Last Modified time: 2018-05-14 17:19:49
  */
 
 $(function() {
@@ -49,7 +49,7 @@ $(function() {
     } else {
         $('img').each(function(index, el) {
             console.log("No URL parameters");
-            el.src = 'http://dummyimage.com//b094b0/e3b1e3&text=First+Time+User?++Follow+instructions+above';
+            // el.src = 'http://dummyimage.com//b094b0/e3b1e3&text=First+Time+User?++Follow+instructions+above';
         });
     }
 
