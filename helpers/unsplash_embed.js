@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2018-05-14 19:15:09
+ * @Last Modified time: 2018-05-15 08:08:56
  */
 
 $(function() {
@@ -49,13 +49,13 @@ $(function() {
             });
         } else {
             $('img').each(function(index, el) {
-                el.src = "https://dummyimage.com//b094b0/e3b1e3&text=Seeing+this?++Follow+instructions+above";
+                el.src = "https://dummyimage.com//b094b0/e3b1e3&text=Seeing+this?++instructions+above";
             });
         }
     } else {
         console.log("@GB: No parameters");
         $('img').each(function(index, el) {
-            el.src = "https://dummyimage.com//b094b0/e3b1e3&text=First+time?++Follow+instructions+above";
+            el.src = "https://dummyimage.com//b094b0/e3b1e3&text=First+time?++instructions+above";
         });
 
     }
