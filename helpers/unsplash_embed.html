@@ -19,14 +19,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="#right">Float Right</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="#left">Float Left</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#large">Large and responsive</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="#center">Centered</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#large">Full-screen</a>
                 </li>
             </ul>
         </div>
@@ -40,7 +43,7 @@
         <p class="lead">A Bookmarklet to create HTML snippets to embed unsplah images with proper attribution. These can be pasted into any HTML editor.</p>
         <p>
             <button class="btn btn-lg btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                First Time User? Click here for setup instructions.
+                First time? Click here for setup instructions.
             </button>
         </p>
         <div class="collapse" id="collapseExample">
@@ -61,10 +64,10 @@
         <!-- /.row -->
         <!-- START THE FEATURETTES -->
         <div id="embedder">
-            <div id="right" class="clearfix">
-                <hr class="featurette-divider clearfix">
+            <hr class="featurette-divider clearfix"  id="right">
+            <div class="clearfix">
 <div class="unsplash-copy unsplash-fr">
-<!-- Start of Unsplash Embed Code /via @BirdyOz -->
+<!-- Start of Unsplash Embed Code - Float Right  (Embed code by @BirdyOz)-->
 <div class="float-right" style="float: right; width: 30%; max-width: 320px; min-width: 200px; margin:0 0 10px 20px !important">
     <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+UnSplash" class="img-responsive img-fluid">
     <div class="text-muted" style="opacity: 0.5">
@@ -77,10 +80,10 @@
                 <p class="lead">Image will occupy 30% of the available space, beteen the minimum width of 200px and maximum width of 320px</p>
                 <button id="unsplash-fr" class="btn btn-outline-primary">Copy Embed Code</button>
             </div>
-            <div id="left" class="clearfix">
-                <hr class="featurette-divider clearfix">
+            <hr class="featurette-divider clearfix"  id="left">
+            <div class="clearfix">
 <div class="unsplash-copy unsplash-fl">
-<!-- Start of Unsplash Embed Code /via @BirdyOz -->
+<!-- Start of Unsplash Embed Code - Float Left (Embed code by @BirdyOz)-->
 <div class="float-left" style="float: left; width: 30%; max-width: 320px; min-width: 200px; margin:0 20px 10px 0 !important">
     <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+Unsplash" class="img-responsive img-fluid">
     <div class="text-muted" style="opacity: 0.5">
@@ -93,13 +96,13 @@
                 <p class="lead">Image will occupy 30% of the available space, beteen the minimum width of 200px and maximum width of 320px</p>
                 <button id="unsplash-fl" class="btn btn-outline-primary">Copy Embed Code</button>
             </div>
-            <div class="clearfix" id="large">
-                <hr class="featurette-divider clearfix">
+            <hr class="featurette-divider clearfix" id="center">
+            <div class="clearfix">
                 <h2 class="featurette-heading">Centered <span class="text-muted">(Image above or below text)</span></h2>
                 <p class="lead">Image will occupy 60% of the available space, aligned to the center of the container.</p>
                 <button id="unsplash-lg" class="btn btn-outline-primary">Copy Embed Code</button>
 <div class="unsplash-copy unsplash-lg">
-<!-- Start of Unsplash Embed Code /via @BirdyOz -->
+<!-- Start of Unsplash Embed Code - Centered (Embed code by @BirdyOz)-->
 <div style="width:60%; margin: 20px auto;">
     <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+UnSplash" class="img-responsive img-fluid">
     <div class="text-muted" style="opacity: 0.5">
@@ -109,13 +112,13 @@
 <!-- End of Unsplash Embed code -->
 </div>
             </div>
-                <div class="clearfix" id="large">
-                <hr class="featurette-divider clearfix">
-                <h2 class="featurette-heading">Large and Responsive <span class="text-muted">(Image above or below text)</span></h2>
-                <p class="lead">Image will occupy 100% of the available space, up to a maximum width of 920px</p>
+                <hr class="featurette-divider clearfix"  id="large">
+                <div class="clearfix">
+                <h2 class="featurette-heading">Full width <span class="text-muted">(Image above or below text)</span></h2>
+                <p class="lead">Image will occupy 100% of the available space</p>
                 <button id="unsplash-lg" class="btn btn-outline-primary">Copy Embed Code</button>
 <div class="unsplash-copy unsplash-lg">
-<!-- Start of Unsplash Embed Code /via @BirdyOz -->
+<!-- Start of Unsplash Embed Code - Full-width (Embed code by @BirdyOz)-->
 <div style="width:100%; margin: 20px auto;">
     <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+UnSplash" class="img-responsive img-fluid">
     <div class="text-muted" style="opacity: 0.5">
