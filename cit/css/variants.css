@@ -2,20 +2,20 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-06-22 14:47:49
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2018-06-22 15:41:45
+* @Last Modified time: 2018-06-22 15:46:44
 */
 
 
 
 /* Banner variants */
 
- .cit-blue-green #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-blue-green.jpg"); }
- .cit-blue-purple #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-blue-purple.jpg"); }
- .cit-green-blue #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-green-blue.jpg"); }
- .cit-green-yellow #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-green-yellow.jpg"); }
- .cit-orange-pink #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-orange-pink.jpg"); }
- .cit-pink-blue #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-pink-blue.jpg"); }
- .cit-pink-orange #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-pink-orange.jpg"); }
+ .cit-blue-green #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-blue-green.jpg") !important; }
+ .cit-blue-purple #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-blue-purple.jpg") !important; }
+ .cit-green-blue #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-green-blue.jpg") !important; }
+ .cit-green-yellow #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-green-yellow.jpg") !important; }
+ .cit-orange-pink #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-orange-pink.jpg") !important; }
+ .cit-pink-blue #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-pink-blue.jpg") !important; }
+ .cit-pink-orange #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-pink-orange.jpg") !important; }
 
 
 /* Button variants*/
