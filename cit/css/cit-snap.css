@@ -1,0 +1,142 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @Date:   2018-06-19 13:16:32
+* @Last Modified by:   BirdyOz
+* @Last Modified time: 2018-06-20 14:25:06
+*/
+
+
+
+/*
+* HEADER
+*/
+
+#mr-nav {
+    border-bottom: 1px solid white
+}
+
+
+
+/*
+* BANNER (With and without custom cover image)
+*/
+
+
+/* Set default background image for courses when no cover image is defined */
+
+.pagelayout-course #page-header:not(.mast-image),
+.pagelayout-incourse #page-header:not(.mast-image) {
+    background: #7c4399;
+    background-image: url("https://cit.edu.au/__data/assets/image/0017/152225/180049_Cyber_Homepage_Banner_FA.jpg");
+}
+
+
+
+
+
+/* Set masthead heading style for courses */
+
+.pagelayout-course #page-mast>h1,
+.pagelayout-course #page-mast>h1 a,
+.pagelayout-course #page-mast>h1 a:hover,
+.pagelayout-incourse #page-mast>h1,
+.pagelayout-incourse #page-mast>h1 a,
+.pagelayout-incourse #page-mast>h1 a:hover {
+    color: white !important;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, .5);
+}
+
+
+
+
+
+
+/* Breadcrumbs navigation */
+
+.breadcrumb,
+.breadcrumb-item,
+.breadcrumb-item a {
+    color: #fff !important;
+}
+
+.breadcrumb {
+    background: rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    padding: 6px 10px;
+}
+
+.breadcrumb:hover {
+    background: rgba(0, 0, 0, 1);
+}
+
+
+
+
+
+
+
+/*
+* FONT AWESOME ICON SETS
+*/
+
+.fa-stack>.fa-square {
+    color: #ff8300 !important;
+}
+
+.cit-icon-bg {
+    text-align: center;
+    padding: 0.5em 0.1em;
+    border-radius: 10px;
+    display: inline-block;
+    background-color: #ff8300;
+}
+
+.cit-icon-bg .fa {
+    color: #FFF;
+}
+
+
+
+
+/* colour variants*/
+
+.cit-color-blue .cit-icon-bg {
+    background-color: #008eb8;
+}
+
+.cit-color-green .cit-icon-bg {
+    background-color: #81c441;
+}
+
+.cit-color-orange .cit-icon-bg {
+    background-color: #ff8300;
+}
+
+.cit-color-purple .cit-icon-bg {
+    background-color: #7c4399;
+}
+
+
+
+
+/*
+* FOOTER
+*/
+
+#moodle-footer {
+    background-color: #0e1b34
+}
+
+
+
+
+
+/*
+* LEGACY: Un-comment to turn back on
+*/
+
+
+/*
+#mr-nav {background-color: #333; }
+#mr-nav a, .theme-snap #mr-nav #snap-pm-trigger, #page-header .breadcrumb-item a, .theme-snap #mr-nav .popover-region-notifications>div>.icon {color: #FF743F !important; }
+#page-header, #page-login-index #page {background-color: #870046; }
