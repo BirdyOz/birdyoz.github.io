@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2018-06-22 15:51:33
+ * @Last Modified time: 2018-06-22 16:10:04
  */
 
 $(function() {
@@ -20,6 +20,7 @@ $(function() {
         lastClass = btn.attr('class').split(' ').pop();
         console.log("@GB: lastClass = ", lastClass);
         var btntxt = btn.text();
+        $('#page-mast>h1>a').text(btntxt);
         $('body').alterClass('cit-banner-*', lastClass);
         event.preventDefault();
     });
