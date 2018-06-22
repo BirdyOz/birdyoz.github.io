@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-06-22 14:47:49
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2018-06-22 15:54:38
+* @Last Modified time: 2018-06-22 16:06:24
 */
 
 
@@ -18,29 +18,15 @@
  .cit-banner-pink-orange #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-pink-orange.jpg") !important; }
 
 
-/* Button variants*/
+/* Icon variants*/
 
+.cit-banner-blue-green .cit-icon-bg {background-color: #009DC6}
+.cit-banner-blue-purple .cit-icon-bg {background-color: #834392}
+.cit-banner-green-blue .cit-icon-bg {background-color: #00719F}
+.cit-banner-green-yellow .cit-icon-bg {background-color: #43AC39}
+.cit-banner-orange-pink .cit-icon-bg {background-color: #CC4417}
+.cit-banner-pink-blue .cit-icon-bg {background-color: #C6387D}
+.cit-banner-pink-orange .cit-icon-bg {background-color: #C6387D}
 
-
-
-
-
-
-
-.cit-color-blue .cit-icon-bg {
-    background-color: #008eb8;
-}
-
-.cit-color-green .cit-icon-bg {
-    background-color: #81c441;
-}
-
-.cit-color-orange .cit-icon-bg {
-    background-color: #ff8300;
-}
-
-.cit-color-purple .cit-icon-bg {
-    background-color: #7c4399;
-}
 
 
