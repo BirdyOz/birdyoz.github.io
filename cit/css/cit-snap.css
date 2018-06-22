@@ -2,9 +2,8 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-06-19 13:16:32
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2018-06-20 14:25:06
+* @Last Modified time: 2018-06-22 14:47:15
 */
-
 
 
 /*
@@ -14,7 +13,6 @@
 #mr-nav {
     border-bottom: 1px solid white
 }
-
 
 
 /*
@@ -70,11 +68,6 @@
 }
 
 
-
-
-
-
-
 /*
 * FONT AWESOME ICON SETS
 */
@@ -96,29 +89,6 @@
 }
 
 
-
-
-/* colour variants*/
-
-.cit-color-blue .cit-icon-bg {
-    background-color: #008eb8;
-}
-
-.cit-color-green .cit-icon-bg {
-    background-color: #81c441;
-}
-
-.cit-color-orange .cit-icon-bg {
-    background-color: #ff8300;
-}
-
-.cit-color-purple .cit-icon-bg {
-    background-color: #7c4399;
-}
-
-
-
-
 /*
 * FOOTER
 */
@@ -126,9 +96,6 @@
 #moodle-footer {
     background-color: #0e1b34
 }
-
-
-
 
 
 /*
