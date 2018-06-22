@@ -2,46 +2,46 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-06-22 14:47:49
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2018-06-22 16:26:58
+* @Last Modified time: 2018-06-22 16:29:29
 */
 
 
 /* Banner variants */
 
 .cit-banner-blue-green #page-header {
-    background: url("https://birdyoz.github.io/cit/banners/cit-banner-blue-green.jpg") no-repeat center center fixed !important;
+    background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-blue-green.jpg") !important;
 }
 
 .cit-banner-blue-purple #page-header {
-    background: url("https://birdyoz.github.io/cit/banners/cit-banner-blue-purple.jpg") no-repeat center center fixed !important;
+    background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-blue-purple.jpg") !important;
 }
 
 .cit-banner-green-blue #page-header {
-    background: url("https://birdyoz.github.io/cit/banners/cit-banner-green-blue.jpg") no-repeat center center fixed !important;
+    background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-green-blue.jpg") !important;
 }
 
 .cit-banner-green-yellow #page-header {
-    background: url("https://birdyoz.github.io/cit/banners/cit-banner-green-yellow.jpg") no-repeat center center fixed !important;
+    background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-green-yellow.jpg") !important;
 }
 
 .cit-banner-orange-pink #page-header {
-    background: url("https://birdyoz.github.io/cit/banners/cit-banner-orange-pink.jpg") no-repeat center center fixed !important;
+    background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-orange-pink.jpg") !important;
 }
 
 .cit-banner-pink-blue #page-header {
-    background: url("https://birdyoz.github.io/cit/banners/cit-banner-pink-blue.jpg") no-repeat center center fixed !important;
+    background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-pink-blue.jpg") !important;
 }
 
 .cit-banner-pink-orange #page-header {
-    background: url("https://birdyoz.github.io/cit/banners/cit-banner-pink-orange.jpg") no-repeat center center fixed !important;
+    background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-pink-orange.jpg") !important;
 }
 
-#page-header {
+/*#page-header {
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
+}*/
 
 
 
