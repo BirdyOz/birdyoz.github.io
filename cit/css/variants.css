@@ -2,31 +2,76 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-06-22 14:47:49
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2018-06-22 16:06:24
+* @Last Modified time: 2018-06-22 16:19:14
 */
-
 
 
 /* Banner variants */
 
- .cit-banner-blue-green #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-blue-green.jpg") !important; }
- .cit-banner-blue-purple #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-blue-purple.jpg") !important; }
- .cit-banner-green-blue #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-green-blue.jpg") !important; }
- .cit-banner-green-yellow #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-green-yellow.jpg") !important; }
- .cit-banner-orange-pink #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-orange-pink.jpg") !important; }
- .cit-banner-pink-blue #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-pink-blue.jpg") !important; }
- .cit-banner-pink-orange #page-header {background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-pink-orange.jpg") !important; }
+.cit-banner-blue-green #page-header {
+    background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-blue-green.jpg") !important;
+}
+
+.cit-banner-blue-purple #page-header {
+    background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-blue-purple.jpg") !important;
+}
+
+.cit-banner-green-blue #page-header {
+    background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-green-blue.jpg") !important;
+}
+
+.cit-banner-green-yellow #page-header {
+    background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-green-yellow.jpg") !important;
+}
+
+.cit-banner-orange-pink #page-header {
+    background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-orange-pink.jpg") !important;
+}
+
+.cit-banner-pink-blue #page-header {
+    background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-pink-blue.jpg") !important;
+}
+
+.cit-banner-pink-orange #page-header {
+    background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-pink-orange.jpg") !important;
+}
+
+#page-header {
+    background: no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 
 
 /* Icon variants*/
 
-.cit-banner-blue-green .cit-icon-bg {background-color: #009DC6}
-.cit-banner-blue-purple .cit-icon-bg {background-color: #834392}
-.cit-banner-green-blue .cit-icon-bg {background-color: #00719F}
-.cit-banner-green-yellow .cit-icon-bg {background-color: #43AC39}
-.cit-banner-orange-pink .cit-icon-bg {background-color: #CC4417}
-.cit-banner-pink-blue .cit-icon-bg {background-color: #C6387D}
-.cit-banner-pink-orange .cit-icon-bg {background-color: #C6387D}
+.cit-banner-blue-green .cit-icon-bg {
+    background-color: #009DC6
+}
 
+.cit-banner-blue-purple .cit-icon-bg {
+    background-color: #834392
+}
 
+.cit-banner-green-blue .cit-icon-bg {
+    background-color: #00719F
+}
 
+.cit-banner-green-yellow .cit-icon-bg {
+    background-color: #43AC39
+}
+
+.cit-banner-orange-pink .cit-icon-bg {
+    background-color: #CC4417
+}
+
+.cit-banner-pink-blue .cit-icon-bg {
+    background-color: #C6387D
+}
+
+.cit-banner-pink-orange .cit-icon-bg {
+    background-color: #C6387D
+}
