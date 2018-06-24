@@ -2,11 +2,26 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-06-22 14:47:49
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2018-06-22 16:29:29
+* @Last Modified time: 2018-06-25 08:25:06
 */
 
 
 /* Banner variants */
+
+
+/* Background image scales with browser */
+
+#page-header {
+    background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-blue-green.jpg");
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-position-x: center;
+    background-position-y: top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
 
 .cit-banner-blue-green #page-header {
     background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-blue-green.jpg") !important;
@@ -36,12 +51,8 @@
     background-image: url("https://birdyoz.github.io/cit/banners/cit-banner-pink-orange.jpg") !important;
 }
 
-/*#page-header {
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}*/
+
+
 
 
 
