@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-06-19 13:16:32
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2018-06-22 14:47:15
+* @Last Modified time: 2018-06-25 10:16:48
 */
 
 
@@ -78,8 +78,8 @@
 
 .cit-icon-bg {
     text-align: center;
-    padding: 0.5em 0.1em;
-    border-radius: 10px;
+    padding: 0.4em 0.2em;
+    border-radius: 6px;
     display: inline-block;
     background-color: #ff8300;
 }
