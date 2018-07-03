@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-06-19 13:16:32
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2018-06-25 10:16:48
+* @Last Modified time: 2018-07-03 16:20:20
 */
 
 
@@ -96,6 +96,38 @@
 #moodle-footer {
     background-color: #0e1b34
 }
+
+
+
+/*
+* LAYOUT
+ */
+
+/* Change resource cards to be fullscreen */
+
+body.snap-resource-card li.snap-resource.snap-resource {
+  width: 98%;
+  height: auto;
+  background-image: none !important;
+}
+
+/* To reduce the number of chapter items to five */
+.snap-mime-book .bookmod-chapters li:nth-child(n+6) {
+    display: none !important;
+}
+.snap-mime-book .bookmod-chapters li:nth-child(n+6) li {
+    display: none !important;
+}
+.snap-mime-book .bookmod-chapters li:nth-child(5):after {
+   content: ' .... (More)';
+}
+
+/* Hide summary image from pages */
+
+/*.summary-figure {display: none;}*/
+
+/* TBD - Add borders to books and pages.  Top stripe = dark grey */
+
 
 
 /*
