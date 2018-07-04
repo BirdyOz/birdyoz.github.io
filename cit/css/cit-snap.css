@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-06-19 13:16:32
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2018-07-03 16:20:20
+* @Last Modified time: 2018-07-04 12:24:20
 */
 
 
@@ -13,6 +13,7 @@
 #mr-nav {
     border-bottom: 1px solid white
 }
+
 
 
 /*
@@ -32,6 +33,7 @@
 
 
 
+
 /* Set masthead heading style for courses */
 
 .pagelayout-course #page-mast>h1,
@@ -43,6 +45,7 @@
     color: white !important;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, .5);
 }
+
 
 
 
@@ -68,6 +71,7 @@
 }
 
 
+
 /*
 * FONT AWESOME ICON SETS
 */
@@ -89,6 +93,7 @@
 }
 
 
+
 /*
 * FOOTER
 */
@@ -99,35 +104,81 @@
 
 
 
+
 /*
 * LAYOUT
  */
 
+
 /* Change resource cards to be fullscreen */
 
 body.snap-resource-card li.snap-resource.snap-resource {
-  width: 98%;
-  height: auto;
-  background-image: none !important;
+    width: 98%;
+    height: auto;
+    background-position-x: 1% !important;
+    background-position-y: 0% !important;
+}
+
+body.snap-resource-card li.snap-resource.snap-resource .activityinstance {
+    background-color: rgba(255,255,255,0) !important;
+}
+
+body.snap-resource-card li.snap-resource.snap-resource .snap-assettype {
+    margin-left: 2.6em;
+}
+
+
+/*
+* CHANGES TO "PREVIEW" DISPLAY OF BOOK CHAPTERS ON HOMESCREEN (SECTIONS)
+ */
+
+
+/* Add border */
+
+li.snap-mime-book,
+li.snap-mime-page {
+    border: 1px solid rgb(236, 238, 239) !important;
+    width: 98% !important;
+    padding: 2% !important;
+    border-top-width: 0.3em !important;
+}
+
+li.snap-mime-book {
+    border-top-color: #7c4399 !important;
+}
+
+li.snap-mime-page {
+    border-top-color: #008eb8 !important;
 }
 
 /* To reduce the number of chapter items to five */
+
 .snap-mime-book .bookmod-chapters li:nth-child(n+6) {
     display: none !important;
 }
-.snap-mime-book .bookmod-chapters li:nth-child(n+6) li {
+
+.snap-mime-book .bookmod-chapters ul>li {
+    display: none;
+}
+
+.snap-mime-book .bookmod-chapters li:nth-child(n+6) ol>li {
     display: none !important;
 }
+
 .snap-mime-book .bookmod-chapters li:nth-child(5):after {
-   content: ' .... (More)';
+    content: ' \A ... (more)';
+    font-style: italic;
+    white-space: pre;
 }
+
 
 /* Hide summary image from pages */
 
+
 /*.summary-figure {display: none;}*/
 
-/* TBD - Add borders to books and pages.  Top stripe = dark grey */
 
+/* TBD - Add borders to books and pages.  Top stripe = dark grey */
 
 
 /*
