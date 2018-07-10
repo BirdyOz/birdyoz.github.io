@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-06-19 13:16:32
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2018-07-10 10:34:53
+* @Last Modified time: 2018-07-04 12:24:20
 */
 
 
@@ -172,55 +172,13 @@ li.snap-mime-page {
 }
 
 
-
-/*
-* BOOKS
- */
-
-#page-mod-book-view #region-main {
-    max-width: none;
-}
-
-#page-mod-book-view #region-main h2 {
-    font-size: 1.8em
-    line-height: 1.8em;
-}
-
-#page-mod-book-view #region-main h3 {
-    line-height: 1.6em;
-}
-
-#page-mod-book-view #region-main h3 {
-    line-height: 1.6em;
-}
-
-/*
-* FULLSCREEN ATTO EDITOR
- */
-
-.editor_atto {
-    z-index: 100
-}
-
-/*
-* PROFILE
- */
-
-/* Add borders to profile boxes */
-
-#page-user-profile .profile_tree .node_category {
-    border: 1px solid #ccc !important;
-    margin: 0.5em;
-
-}
-
-
-
 /* Hide summary image from pages */
 
 
 /*.summary-figure {display: none;}*/
 
+
+/* TBD - Add borders to books and pages.  Top stripe = dark grey */
 
 
 /*
