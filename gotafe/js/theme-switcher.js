@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2018-07-13 16:08:39
+ * @Last Modified time: 2018-07-13 16:13:38
  */
 
 $(function() {
@@ -16,7 +16,6 @@ $(function() {
         $('body').alterClass('gotafe-*', lastClass);
         event.preventDefault();
     });
-
 
     // Swap out classes
     $.fn.alterClass = function(removals, additions) {
