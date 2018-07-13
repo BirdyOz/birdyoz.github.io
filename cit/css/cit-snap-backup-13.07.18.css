@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-06-19 13:16:32
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2018-07-13 12:52:42
+* @Last Modified time: 2018-07-13 11:48:58
 */
 
 
@@ -214,21 +214,7 @@ li.snap-mime-page {
 
 }
 
-/*
-* Draw attention to the Course dashboard
- */
 
-#course-toc a[href="#coursetools"]{
-font-size: 1.4em;
-margin-top: 1em;
-border-top: 1px solid;
-}
-
-#course-toc a[href="#coursetools"]:after {
-    content: '\A  ... Click here to see your grades, calendar and more';
-    font-size: 0.6em;
-    white-space: pre;
-}
 
 /* Hide summary image from pages */
 

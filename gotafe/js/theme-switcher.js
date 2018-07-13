@@ -2,21 +2,8 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2018-07-13 08:49:07
+ * @Last Modified time: 2018-07-13 16:04:30
  */
-
-$(function() {
-    // Switcher buttons - Trap click actions
-    $('#switcher a').click(function(event) {
-        var btn = $(this);
-        lastClass = btn.attr('class').split(' ').pop();
-        console.log("@GB: lastClass = ", lastClass);
-        var btntxt = btn.text();
-        $('#page-mast>h1>a').text(btntxt);
-        $('body').alterClass('gotafe-*', lastClass);
-        event.preventDefault();
-    });
-});
 
 // Swap out classes
 $.fn.alterClass = function(removals, additions) {
@@ -38,3 +25,17 @@ $.fn.alterClass = function(removals, additions) {
     });
     return !additions ? self : self.addClass(additions);
 };
+
+$(function() {
+    // Switcher buttons - Trap click actions
+    $('#switcher a').click(function(event) {
+        var btn = $(this);
+        lastClass = btn.attr('class').split(' ').pop();
+        console.log("@GB: lastClass = ", lastClass);
+        var btntxt = btn.text();
+        $('#page-mast>h1>a').text(btntxt);
+        $('body').alterClass('gotafe-*', lastClass);
+        event.preventDefault();
+    });
+});
+
