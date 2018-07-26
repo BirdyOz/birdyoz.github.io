@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-07-27 08:57:17
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2018-07-27 09:24:39
+* @Last Modified time: 2018-07-27 09:44:25
 */
 
 body[class*="gotafe-banner-"] #page-header {
@@ -18,3 +18,7 @@ body.gotafe-banner-education-and-training #page-header {background-color: #34216
 body.gotafe-banner-creative-services #page-header {background-color: #95092f;}
 body.gotafe-banner-health-community-and-fitness #page-header {background-color: #a4050b;}
 body.gotafe-banner-hospitality-baking-events-and-tourism #page-header {background-color: #a72600;}
+
+body.gotafe-narrow-banner .mast-image {
+    min-height: 200px !important;
+}
