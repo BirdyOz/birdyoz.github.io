@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-07-06 13:54:29
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2018-07-25 09:27:38
+* @Last Modified time: 2018-07-26 08:58:55
 */
 
 
@@ -17,7 +17,7 @@ body {
 /* COURSE CONTENT PAGES */
 
 
-/* Change colour for hidden/conditional/unpublished content */
+/* Increased contrast for hidden/conditional/unpublished content.  */
 
 #snap-course-wrapper #chapters li.draft .chapter-title:before {
     background-color: #993366;
@@ -33,7 +33,7 @@ body {
     font-weight: 400 !important;
 }
 
-/* MY COURSES */
+/* SNAP 'MY COURSES' INTERFACE*/
 
 /* Make the coloured stripe narrower, on large format displays*/
 @media (min-width:768px){
