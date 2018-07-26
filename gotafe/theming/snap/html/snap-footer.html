@@ -33,53 +33,10 @@
 
 
 
-
-
-
-
-
-<!-- OLD 2 column alternative -->
-
-<!-- <div class="row-fluid">
-    <div class="col-md-6 span6">
-        <h5>Learner Support</h5>
-        <ul>
-            <li>Support documents</li>
-            <ul>
-                <li><a title="Student Handbook" href="http://s3-ap-southeast-2.amazonaws.com/gotafepublicweb/documents/Operating%20Documents/Student%20Handbook.pdf?d=1519165634">Student Handbook</a></li>
-                <li><a title="Study Guide" href="http://s3-ap-southeast-2.amazonaws.com/gotafepublicweb/documents/Operating%20Documents/Study%20Guide.pdf">Study Guide</a></li>
-                <li><a title="Application for Extension" href="http://s3-ap-southeast-2.amazonaws.com/gotafepublicweb/documents/Form/Template/Application%20for%20extension%20of%20time%20form.doc?d=1498016922">Application for Extension</a></li>
-                <li><a title="Assessment Cover Sheet" href="http://s3-ap-southeast-2.amazonaws.com/gotafepublicweb/documents/Form/Template/Assessment%20cover%20sheet.docx?d=1498006139">Assessment Cover Sheet</a></li>
-            </ul>
-            <li>Support resources</li>
-            <ul>
-                <li><a title="Student eSupport" href="https://gotafe.trainingvc.com.au/course/view.php?id=6577&amp;section=1">Student eSupport</a></li>
-                <li><a title="Your Tutor" href="https://gotafe.trainingvc.com.au/course/view.php?id=4744">Your Tutor</a></li>
-                <li><a title="Library" href="http://swft.gtlu.ent.sirsidynix.net.au/client/en_AU/gtlu/">Library</a></li>
-                <li><a title="Safety and Wellbeing of Young People" href="https://gotafe.trainingvc.com.au/course/view.php?id=6439">Safety and Wellbeing of Young People</a></li>
-                <li><a title="Student Welfare" href="https://gotafe-lcms.trainingvc.com.au/share/s/vJVoc8BBS0iCdpXoP_f4BQ">Student Welfare</a></li>
-            </ul>
-        </ul>
-    </div>
-    <div class="col-md-6 span6">
-        <h5>Teacher Resources</h5>
-        <ul>
-            <li>Moodle Guides</li>
-            <ul>
-                <li><a title="Moodle Induction for Students – Tips for Trainers" href="https://gotafe.trainingvc.com.au/mod/resource/view.php?id=255082">Moodle Induction for Students – Tips for Trainers</a></li>
-                <li><a title="Student Moodle Login Help" href="https://gotafe.trainingvc.com.au/mod/resource/view.php?id=273880">Student Moodle Login Help</a></li>
-                <li><a title="Trainer eSupport" href="https://gotafe.trainingvc.com.au/course/view.php?id=4591">Trainer eSupport</a></li>
-                <li><a title="Teaching &amp; Learning Portal" href="http://goinet.gotafe.vic.edu.au/departments/teachinglearning/Pages/Welcome.aspx">Teaching &amp; Learning Portal</a></li>
-            </ul>
-            <li>Staff Learning &amp; Development Portal</li>
-            <ul>
-                <li><a title="Staff Access Guide" href="http://goinet.gotafe.vic.edu.au/sites/PnPCentre/PoliciesProcedures/Learning%20and%20Development%20Online%20Access%20Instructions.pdf">Staff Access Guide</a></li>
-                <li><a title="Staff Learning &amp; Development Portal" href="https://gotafe.trainingvc.com.au/course/view.php?id=6356">Staff Learning &amp; Development Portal</a></li>
-            </ul>
-        </ul>
-    </div>
-</div>
-<div class="clearfix">
-</div>
- -->
-
+<!-- JS injection   Insert search box into snap 'My Courses' interface-->
+<script type="text/javascript">
+    $(document).ready(function() {
+        var snip = '<div class="clearfix"></div> <div class="card-block snap-mycourses-search"> <div class="card-text content"> <div class="no-overflow"> <form id="coursesearch" action="https://gotafetest34.trainingvc.com.au/course/search.php" method="get" abp="848"> <fieldset class="coursesearchbox invisiblefieldset" abp="849"> <label for="shortsearchbox" abp="850">Search all courses </label> <input name="search" id="shortsearchbox" type="text" value="" abp="851"> <input type="submit" value="Go" abp="852"> </fieldset> </form> </div> <div class="footer"></div> </div>';
+        $('#snap-pm-courses-current-cards').prepend(snip);
+    });
+</script>
