@@ -2,10 +2,11 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2018-07-13 16:13:38
+ * @Last Modified time: 2018-07-26 16:28:49
  */
 
-$(function() {
+
+jQuery(document).ready(function($) {
     // Switcher buttons - Trap click actions
     $('#switcher a').click(function(event) {
         var btn = $(this);
@@ -16,8 +17,9 @@ $(function() {
         $('body').alterClass('gotafe-*', lastClass);
         event.preventDefault();
     });
+});
 
-    // Swap out classes
+(function($) {
     $.fn.alterClass = function(removals, additions) {
         var self = this;
         if (removals.indexOf('*') === -1) {
@@ -37,5 +39,4 @@ $(function() {
         });
         return !additions ? self : self.addClass(additions);
     };
-
-});
+})(jQuery);
