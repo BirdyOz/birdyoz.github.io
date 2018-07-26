@@ -2,12 +2,13 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-07-06 13:54:29
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2018-07-26 08:58:55
+* @Last Modified time: 2018-07-26 10:22:04
 */
 
 
 /* GLOBAL */
 
+/* Increase the contrast of text, esp on hidden/conditional content*/
 body {
     color: #202020;
 }
@@ -54,10 +55,10 @@ body {
     display: none;
 }
 
-#moodle-footer {
+/*#moodle-footer {
     font-size: 0.8em;
     background-color: #1f3345 !important;
-}
+}*/
 
 .copyright-statement {
     font-size: 0.8em
