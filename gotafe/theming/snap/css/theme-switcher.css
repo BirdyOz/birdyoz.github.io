@@ -1,0 +1,20 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @Date:   2018-07-27 08:57:17
+* @Last Modified by:   BirdyOz
+* @Last Modified time: 2018-07-27 09:18:12
+*/
+
+body[class*="gotafe-banner-"] #page-header {
+    background-image: none !important;
+}
+
+
+body.gotafe-banner-food-and-fibre #page-header {background-color: red;}
+body.gotafe-banner-technical-trades #page-header {background-color: red;}
+body.gotafe-banner-business-and-it #page-header {background-color: red;}
+body.gotafe-banner-manufacturing #page-header {background-color: red;}
+body.gotafe-banner-education-and-training #page-header {background-color: red;}
+body.gotafe-banner-creative-services #page-header {background-color: red;}
+body.gotafe-banner-health-community-and-fitness #page-header {background-color: red;}
+body.gotafe-banner-hospitality-baking-events-and-tourism #page-header {background-color: red;}
