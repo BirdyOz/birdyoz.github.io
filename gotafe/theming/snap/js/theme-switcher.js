@@ -2,14 +2,14 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2018-07-27 10:28:26
+ * @Last Modified time: 2018-07-27 10:52:28
  */
 
 jQuery(document).ready(function($) {
 
     // Append stylesheet
     $('head').append('<link rel="stylesheet" type="text/css" href="https://birdyoz.github.io/gotafe/theming/snap/css/theme-switcher.css">');
-    $('head').append('<link rel="stylesheet" type="text/css" href="http://localhost:8888/gotafe/theming/snap/css/theme-switcher.css">');
+    // $('head').append('<link rel="stylesheet" type="text/css" href="http://localhost:8888/gotafe/theming/snap/css/theme-switcher.css">');
 
     // Set placeholder class.  To be swapped ou on mouxe click.
     var curr_class = "gotafe-placeholder";
