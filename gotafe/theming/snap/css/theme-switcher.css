@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-07-27 08:57:17
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2018-07-27 09:44:25
+* @Last Modified time: 2018-08-02 09:22:03
 */
 
 body[class*="gotafe-banner-"] #page-header {
@@ -21,4 +21,24 @@ body.gotafe-banner-hospitality-baking-events-and-tourism #page-header {backgroun
 
 body.gotafe-narrow-banner .mast-image {
     min-height: 200px !important;
+}
+
+body.gotafe-high-contrast .alert {
+    background-image: none;
+}
+
+body.gotafe-high-contrast .alert-success {
+    color: green;
+}
+
+body.gotafe-high-contrast .alert-info {
+    color: #00c;
+}
+
+body.gotafe-high-contrast .alert-warning {
+    color: #ff6300;
+}
+
+body.gotafe-high-contrast .alert-danger {
+    color: #c90000;
 }
