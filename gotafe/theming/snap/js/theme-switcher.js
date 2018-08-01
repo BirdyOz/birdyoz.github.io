@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2018-07-27 10:52:28
+ * @Last Modified time: 2018-08-02 08:57:42
  */
 
 jQuery(document).ready(function($) {
@@ -39,6 +39,12 @@ jQuery(document).ready(function($) {
     // Toggle heights
     $('a.toggle-banner-height').click(function(event) {
         body.toggleClass('gotafe-narrow-banner');
+        event.preventDefault();
+    });
+
+    // Toggle contrast
+    $('a.toggle-high-contrast').click(function(event) {
+        body.toggleClass('gotafe-high-contrast');
         event.preventDefault();
     });
 
