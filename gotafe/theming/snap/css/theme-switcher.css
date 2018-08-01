@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-07-27 08:57:17
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2018-08-02 09:22:03
+* @Last Modified time: 2018-08-02 09:51:07
 */
 
 body[class*="gotafe-banner-"] #page-header {
@@ -29,16 +29,20 @@ body.gotafe-high-contrast .alert {
 
 body.gotafe-high-contrast .alert-success {
     color: green;
+    background-color: rgba(139,195,74,.05);
 }
 
 body.gotafe-high-contrast .alert-info {
     color: #00c;
+    background-color: rgba(3,169,244,.05);
 }
 
 body.gotafe-high-contrast .alert-warning {
     color: #ff6300;
+    background-color: rgba(255,152,0,.05);
 }
 
 body.gotafe-high-contrast .alert-danger {
     color: #c90000;
+    background-color: rgba(233,30,99,.05);
 }
