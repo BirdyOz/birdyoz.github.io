@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-07-27 08:57:17
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2018-08-02 09:51:07
+* @Last Modified time: 2018-08-02 12:08:16
 */
 
 body[class*="gotafe-banner-"] #page-header {
@@ -23,26 +23,32 @@ body.gotafe-narrow-banner .mast-image {
     min-height: 200px !important;
 }
 
-body.gotafe-high-contrast .alert {
-    background-image: none;
+/* Message alerts*/
+
+.alert {
+    background-image: none !important;
 }
 
-body.gotafe-high-contrast .alert-success {
-    color: green;
-    background-color: rgba(139,195,74,.05);
+.alert-success {
+    color: black;
+    background-color: rgba(139,195,74,.2);
+    border-left-color: #8bc34a !important;
 }
 
-body.gotafe-high-contrast .alert-info {
-    color: #00c;
-    background-color: rgba(3,169,244,.05);
+.alert-info {
+    color: black;
+    background-color: rgba(3,169,244,.2);
+    border-left-color: #03a9f4;
 }
 
-body.gotafe-high-contrast .alert-warning {
-    color: #ff6300;
-    background-color: rgba(255,152,0,.05);
+.alert-warning {
+    color: black
+    background-color: rgba(255,152,0,.2);
+    border-left-color: #ff9800;
 }
 
-body.gotafe-high-contrast .alert-danger {
-    color: #c90000;
-    background-color: rgba(233,30,99,.05);
+.alert-danger {
+    color: black;
+    background-color: rgba(233,30,99,.2);
+    border-left-color: #e91e63;
 }
