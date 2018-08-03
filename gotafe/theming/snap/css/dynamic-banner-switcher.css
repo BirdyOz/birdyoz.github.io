@@ -1,0 +1,56 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @Date:   2018-07-27 08:57:17
+* @Last Modified by:   BirdyOz
+* @Last Modified time: 2018-08-03 13:59:57
+*/
+
+body[class*="gotafe-banner-"] #page-header {
+    background-image: none !important;
+}
+
+
+body.gotafe-banner-food-and-fibre #page-header {background-color: #25612b;}
+body.gotafe-banner-technical-trades #page-header {background-color: #0a6164;}
+body.gotafe-banner-business-and-it #page-header {background-color: #005091;}
+body.gotafe-banner-manufacturing #page-header {background-color: #083e48;}
+body.gotafe-banner-education-and-training #page-header {background-color: #152f62;}
+body.gotafe-banner-creative-services #page-header {background-color: #8a1350;}
+body.gotafe-banner-health-community-and-fitness #page-header {background-color: #a51916;}
+body.gotafe-banner-hospitality-baking-events-and-tourism #page-header {background-color: #4f2c66;}
+
+body.gotafe-narrow-banner .mast-image {
+    min-height: 200px !important;
+}
+
+#gotafe-banner-codes, #gotafe-banner-audience, #gotafe-banner-year .panel-body {
+    color: #fff;
+    font-size: 1.2em;
+    text-shadow: 1px 1px 1px #000;
+    }
+
+#gotafe-banner-codes .muted, #gotafe-banner-audience .muted {
+    color: #ccc;
+    font-size: 0.8em;
+    display: inline-block;
+    min-width: 6em;
+    /*text-align: right;*/
+    padding-right: 0.2em;
+    }
+
+#gotafe-banner-year {
+    border: 1px solid white;
+    border-radius: 5px;
+    opacity: .8;
+    min-width: 7em;
+    background-color: rgba(0,0,0,.3);
+}
+
+#gotafe-banner-year .panel-heading {
+    font-size: 0.9em;
+    padding: 0 4px;
+}
+
+#gotafe-banner-year .panel-body {
+    padding: 4px;
+}
