@@ -2,169 +2,176 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-08-09 16:17:08
+ * @Last Modified time: 2018-08-10 08:55:54
  */
 
 jQuery(document).ready(function($) {
-    // Prepend stylesheet
-    $('head').append('<link rel="stylesheet" type="text/css" href="https://birdyoz.github.io/gotafe/theming/snap/css/dynamic-banner-switcher.css">');
 
-    // Define global variables
-    var logo, codes_array, details_array, code_text, title_text, audience_text, audience_name, year_text = "";
+    // Only invoke this s cript within a course
+    // Check whether I am being invoked at the site level.  If I am not at the site level, I must be in a course
+    if ($('.format-site').length === 0) {
 
+        // Prepend stylesheet
+        $('head').append('<link rel="stylesheet" type="text/css" href="https://birdyoz.github.io/gotafe/theming/snap/css/dynamic-banner-switcher.css">');
 
-    // Extract breadcrumbs.  Create an array.  Only select items from breadcrumbs which refer to categories.
-    var breadcrumbs = $(".breadcrumb-item>a");
-
-    // Loop through the breadcrumbs, looking for sub-branding
-    $(breadcrumbs).each(function() {
-        var breadcrumb = $(this).text();
-
-        // Convert breadcrumb into "slug", then add class to #page-header.
-        // This will allow for more granular sub-branding, once banner images have been developed
-
-        var breadcrumb_class = "gotafe-breadcrumb-" + slugify(breadcrumb);
-        console.log("@GB: breadcrumb_class = ", breadcrumb_class);
-        $('body').addClass(breadcrumb_class);
-    });
+        // Define global variables
+        var logo, codes_array, details_array, code_text, title_text, audience_text, audience_name, year_text = "";
 
 
+        // Extract breadcrumbs.  Create an array.  Only select items from breadcrumbs which refer to categories.
+        var breadcrumbs = $(".breadcrumb-item>a");
 
-    // Extract course short description from breadcrumbs.  It is the current banner header
-    var description = $('#page-mast>h1>a').text();
+        // Loop through the breadcrumbs, looking for sub-branding
+        $(breadcrumbs).each(function() {
+            var breadcrumb = $(this).text();
 
-    // This regex pattern matches the GOTAFE 2017 course naming convention
-    //  UNIT CODE: Unit Title ([Audience, ]Year)
-    //      OR
-    //  UNIT CODE 1 | UNIT CODE 2 | UNIT CODE 3: Cluster Title([Audience, ]Year)
-    //
-    // Examples:
-    //  HLTEN511B: Provide nursing care for clients requiring palliative care (2016)
-    //  AHCHBR203A: Provide daily care for horses (VETIS, 2016)
-    //  SITXMPR501: Obtain and manage sponsorship (Hosp, 2016)
-    //  BSBWOR502A: Ensure Team Effectiveness (ID16)
-    //  AHCWRK502A | AHCWRK503A: Reports & Data Cluster 1 (Wine, ID17)
-    //
-    // Capture groups:
-    // /^(.*)\:(.*)\((.*)\)
-    //    $1    $2    $3
-    //  $1 - Code(s)
-    //  $2 - Descriptive title
-    //  $3 - Audience (if defined) & Year
+            // Convert breadcrumb into "slug", then add class to #page-header.
+            // This will allow for more granular sub-branding, once banner images have been developed
 
-    var re = /^(.*)\:(.*)\((.*)\)/gi;
-    var TitleArray = re.exec(description);
-
-
-    // Only parses title if it matches the naming convention; ie it matches the pattern defined by the regex
-    // This is to avoid unnecessary processing of descriptions that do not match the naming convention
-    if (TitleArray) {
-
-        // Add .mast-image to page header.  This "tricks" snap to think their is a banner image, and style the text accordingly
-        $('#page-header').addClass('mast-image');
-
-        // Extract codes_array
-        codes_array = TitleArray[1].split("|").sort();
-        // Trim whitespace
-        codes_array = $.map(codes_array, function(value) {
-            return value.trim();
+            var breadcrumb_class = "gotafe-breadcrumb-" + slugify(breadcrumb);
+            console.log("@GB: breadcrumb_class = ", breadcrumb_class);
+            $('body').addClass(breadcrumb_class);
         });
 
-        console.log("@GB: codes_array = ", codes_array);
 
 
-        // Extract descriptive title
-        title_text = TitleArray[2].trim();
+        // Extract course short description from breadcrumbs.  It is the current banner header
+        var description = $('#page-mast>h1>a').text();
 
-        // Update banner heading, to match descriptive title
-        $('#page-mast>h1>a').text(title_text);
+        // This regex pattern matches the GOTAFE 2019 course naming convention
+        //  UNIT CODE: Unit Title ([Audience, ]Year)
+        //      OR
+        //  UNIT CODE 1 | UNIT CODE 2 | UNIT CODE 3: Cluster Title ([Audience, ]Year)
+        //
+        // Examples:
+        //  HLTEN511B: Provide nursing care for clients requiring palliative care (2019)
+        //  AHCHBR203A: Provide daily care for horses (VETIS, 2019)
+        //  SITXMPR501: Obtain and manage sponsorship (Hosp, 2019)
+        //  BSBWOR502A: Ensure Team Effectiveness (ID19)
+        //  AHCWRK502A | AHCWRK503A: Reports & Data Cluster 1 (Wine, ID19)
+        //
+        // Capture groups:
+        // /^(.*)\:(.*)\((.*)\)
+        //    $1    $2    $3
+        //  $1 - Code(s)
+        //  $2 - Descriptive title
+        //  $3 - Audience (if defined) & Year
 
-        // Extract year and audience
-        details_array = TitleArray[3].split(",");
-        details_array = $.map(details_array, function(value) {
-            return value.trim();
-        });
+        var re = /^(.*)\:(.*)\((.*)\)/gi;
+        var TitleArray = re.exec(description);
 
-        // Separate out year from audience
-        if (details_array.length === 1) {
-            year_text = details_array[0];
-        } else {
-            // If there is an audience, add it to the banner
-            audience_str = details_array.slice(0, details_array.length - 1).join(", ");
 
-            // Get the friendly name for this audience
-            if (audience_str.indexOf('-') !== -1) {
-                audience_name = "";
-                audience_arr = audience_str.split("-");
-                audience_newarr = [];
-                $.each(audience_arr, function(index, val) {
-                    var friendly = friendlyname(val);
-                    audience_newarr.push(friendly);
-                    // audience_name = audience_name + friendly + ", ";
-                });
-                audience_name = audience_newarr.join(", ");
+        // Only parses title if it matches the naming convention; ie it matches the pattern defined by the regex
+        // This is to avoid unnecessary processing of descriptions that do not match the naming convention
+
+        if (TitleArray) {
+
+            // Add .mast-image to page header.  This "tricks" snap to think their is a banner image, and style the text accordingly
+            $('#page-header').addClass('mast-image');
+
+            // Extract codes_array
+            codes_array = TitleArray[1].split("|").sort();
+            // Trim whitespace
+            codes_array = $.map(codes_array, function(value) {
+                return value.trim();
+            });
+
+            console.log("@GB: codes_array = ", codes_array);
+
+
+            // Extract descriptive title
+            title_text = TitleArray[2].trim();
+
+            // Update banner heading, to match descriptive title
+            $('#page-mast>h1>a').text(title_text);
+
+            // Extract year and audience
+            details_array = TitleArray[3].split(",");
+            details_array = $.map(details_array, function(value) {
+                return value.trim();
+            });
+
+            // Separate out year from audience
+            if (details_array.length === 1) {
+                year_text = details_array[0];
             } else {
-                audience_name = friendlyname(audience_str);
+                // If there is an audience, add it to the banner
+                audience_str = details_array.slice(0, details_array.length - 1).join(", ");
+
+                // Get the friendly name for this audience
+                if (audience_str.indexOf('-') !== -1) {
+                    audience_name = "";
+                    audience_arr = audience_str.split("-");
+                    audience_newarr = [];
+                    $.each(audience_arr, function(index, val) {
+                        var friendly = friendlyname(val);
+                        audience_newarr.push(friendly);
+                        // audience_name = audience_name + friendly + ", ";
+                    });
+                    audience_name = audience_newarr.join(", ");
+                } else {
+                    audience_name = friendlyname(audience_str);
+                }
+
+                console.log("@GB: audience_name = ", audience_name);
+                audience_text = "<div id =\"gotafe-banner-audience\"><span class=\"muted\">Audience: <\/span>" + audience_name + "<\/div>";
+                $('#page-mast>h1').after(audience_text);
+
+                // Add 'Audience' class to body.
+                var audience_class = "gotafe-audience-" + slugify(audience_str);
+                $('body').addClass(audience_class);
+                year_text = details_array[details_array.length - 1];
             }
 
-            console.log("@GB: audience_name = ", audience_name);
-            audience_text = "<div id =\"gotafe-banner-audience\"><span class=\"muted\">Audience: <\/span>" + audience_name + "<\/div>";
-            $('#page-mast>h1').after(audience_text);
+            // For each code, add class to body.
+            // This will allow for more granular sub-branding, once banner images have been developed
+            $.each(codes_array, function(index, val) {
+                var code_class = "gotafe-code-" + slugify(val);
+                $('body').addClass(code_class);
+            });
 
-            // Add 'Audience' class to body.
-            var audience_class = "gotafe-audience-" + slugify(audience_str);
-            $('body').addClass(audience_class);
-            year_text = details_array[details_array.length - 1];
+            // If there is more than one code
+            if (codes_array.length === 1) {
+                // Single Unit of Comptency
+                code_text = "<div id =\"gotafe-banner-codes\"><span class=\"muted\">Code: <\/span>" + codes_array + "<\/div>";
+
+            } else {
+                // Cluster of 2 or more units
+                // concatenate with ", ".  Use " & " before the last code
+                code_text = "<div id =\"gotafe-banner-codes\"><span class=\"muted\">Codes: <\/span>" + codes_array.slice(0, codes_array.length - 1).join(", ") + " & " + codes_array[codes_array.length - 1] + "<\/div>";
+            }
+            // Append below banner heading
+            $('#page-mast>h1').after(code_text);
+
+            // Update Page Headings to prepend year.  Add as a bootstrap panel
+            $('#page-mast>h1').before("<div id =\"gotafe-banner-year\" class=\"panel pull-right text-center\"> <div class=\"panel-body \">" + year_text + "<\/div>");
+
+            // Add 'Year' class to #page-header.
+            var year_class = "gotafe-year-" + slugify(year_text);
+            $('body').addClass(year_class);
+
+            // Is this subject 'In Development'?
+            if (year_text.substring(0, 2) === "ID") {
+                // Add footer to 'Year' panel
+                $('#gotafe-banner-year').prepend("<div class=\"panel-heading\">In Development<\/div>");
+                $('#gotafe-banner-year').addClass("panel-danger");
+            }
+
+            // Is this subject 'In Development'?
+            if (year_text.substring(0, 2) === "LD") {
+                // Add footer to 'Year' panel
+                $('#gotafe-banner-year').prepend("<div class=\"panel-heading\">Learning Development<\/div>");
+                $('#gotafe-banner-year').addClass("panel-danger");
+            }
+
+            // Is this subject 'In Development'?
+            if (year_text.substring(0, 2) === "SP") {
+                // Add footer to 'Year' panel
+                $('#gotafe-banner-year').prepend("<div class=\"panel-heading\">Staff Sandpit<\/div>");
+                $('#gotafe-banner-year').addClass("panel-danger");
+            }
+
         }
-
-        // For each code, add class to body.
-        // This will allow for more granular sub-branding, once banner images have been developed
-        $.each(codes_array, function(index, val) {
-            var code_class = "gotafe-code-" + slugify(val);
-            $('body').addClass(code_class);
-        });
-
-        // If there is more than one code
-        if (codes_array.length === 1) {
-            // Single Unit of Comptency
-            code_text = "<div id =\"gotafe-banner-codes\"><span class=\"muted\">Code: <\/span>" + codes_array + "<\/div>";
-
-        } else {
-            // Cluster of 2 or more units
-            // concatenate with ", ".  Use " & " before the last code
-            code_text = "<div id =\"gotafe-banner-codes\"><span class=\"muted\">Codes: <\/span>" + codes_array.slice(0, codes_array.length - 1).join(", ") + " & " + codes_array[codes_array.length - 1] + "<\/div>";
-        }
-        // Append below banner heading
-        $('#page-mast>h1').after(code_text);
-
-        // Update Page Headings to prepend year.  Add as a bootstrap panel
-        $('#page-mast>h1').before("<div id =\"gotafe-banner-year\" class=\"panel pull-right text-center\"> <div class=\"panel-body \">" + year_text + "<\/div>");
-
-        // Add 'Year' class to #page-header.
-        var year_class = "gotafe-year-" + slugify(year_text);
-        $('body').addClass(year_class);
-
-        // Is this subject 'In Development'?
-        if (year_text.substring(0, 2) === "ID") {
-            // Add footer to 'Year' panel
-            $('#gotafe-banner-year').prepend("<div class=\"panel-heading\">In Development<\/div>");
-            $('#gotafe-banner-year').addClass("panel-danger");
-        }
-
-        // Is this subject 'In Development'?
-        if (year_text.substring(0, 2) === "LD") {
-            // Add footer to 'Year' panel
-            $('#gotafe-banner-year').prepend("<div class=\"panel-heading\">Learning Development<\/div>");
-            $('#gotafe-banner-year').addClass("panel-danger");
-        }
-
-        // Is this subject 'In Development'?
-        if (year_text.substring(0, 2) === "SP") {
-            // Add footer to 'Year' panel
-            $('#gotafe-banner-year').prepend("<div class=\"panel-heading\">Staff Sandpit<\/div>");
-            $('#gotafe-banner-year').addClass("panel-danger");
-        }
-
     }
 
 });
