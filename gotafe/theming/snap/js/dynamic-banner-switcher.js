@@ -2,15 +2,15 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-08-09 13:11:07
+ * @Last Modified time: 2018-08-09 14:36:27
  */
 
 jQuery(document).ready(function($) {
     console.log("@GB: Dyanamic banner script loaded");
 
     // Append stylesheet
-    // $('head').append('<link rel="stylesheet" type="text/css" href="https://birdyoz.github.io/gotafe/theming/snap/css/dynamic-banner-switcher.css">');
-    $('head').append('<link rel="stylesheet" type="text/css" href="http://localhost:8888/gotafe/theming/snap/css/dynamic-banner-switcher.css">');
+    $('head').append('<link rel="stylesheet" type="text/css" href="https://birdyoz.github.io/gotafe/theming/snap/css/dynamic-banner-switcher.css">');
+    // $('head').append('<link rel="stylesheet" type="text/css" href="http://localhost:8888/gotafe/theming/snap/css/dynamic-banner-switcher.css">');
 
     // Set placeholder class.  To be swapped ou on mouxe click.
     var curr_class = "gotafe-placeholder";
