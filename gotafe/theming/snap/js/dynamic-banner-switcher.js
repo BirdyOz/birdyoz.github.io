@@ -2,19 +2,18 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-08-09 11:09:48
+ * @Last Modified time: 2018-08-09 13:11:07
  */
 
 jQuery(document).ready(function($) {
     console.log("@GB: Dyanamic banner script loaded");
 
     // Append stylesheet
-    $('head').append('<link rel="stylesheet" type="text/css" href="https://birdyoz.github.io/gotafe/theming/snap/css/dynamic-banner-switcher.css">');
-    // $('head').append('<link rel="stylesheet" type="text/css" href="http://gitlocal:8888/public/gotafe/theming/snap/css/dynamic-banner-switcher.css">');
+    // $('head').append('<link rel="stylesheet" type="text/css" href="https://birdyoz.github.io/gotafe/theming/snap/css/dynamic-banner-switcher.css">');
+    $('head').append('<link rel="stylesheet" type="text/css" href="http://localhost:8888/gotafe/theming/snap/css/dynamic-banner-switcher.css">');
 
     // Set placeholder class.  To be swapped ou on mouxe click.
     var curr_class = "gotafe-placeholder";
-    console.log("@GB: curr_class = ", curr_class);
     // Define hook for body
     var body = $('body');
     // Add placeholder class
@@ -60,7 +59,7 @@ jQuery(document).ready(function($) {
 
 
     // // Extract breadcrumbs.  Create an array.  Only select items from breadcrumbs which refer to categories.
-    var breadcrumbs = $("ul.breadcrumb a[href*='categoryid'] span[itemprop='title']");
+    var breadcrumbs = $(".breadcrumb-item>a");
 
     // Loop through the breadcrumbs, looking for sub-branding
     $(breadcrumbs).each(function() {
@@ -69,8 +68,9 @@ jQuery(document).ready(function($) {
         // Convert breadcrumb into "slug", then add class to #page-header.
         // This will allow for more granular sub-branding, once banner images have been developed
 
-        var breadcrumb_class = "breadcrumbs-" + slugify(breadcrumb);
-        $('header#page-header').addClass(breadcrumb_class);
+        var breadcrumb_class = "gotafe-breadcrumb-" + slugify(breadcrumb);
+        console.log("@GB: breadcrumb_class = ", breadcrumb_class);
+        $('body').addClass(breadcrumb_class);
     });
 
 
@@ -104,6 +104,9 @@ jQuery(document).ready(function($) {
     // Only parses title if it matches the naming convention; ie it matches the pattern defined by the regex
     // This is to avoid unnecessary processing of descriptions that do not match the naming convention
     if (TitleArray) {
+
+        // Add .mast-image to page header.  This "tricks" snap to think their is a banner image, and style the text accordingly
+        $('#page-header').addClass('mast-image');
 
         // Extract codes_array
         codes_array = TitleArray[1].split("|").sort();
@@ -159,7 +162,7 @@ jQuery(document).ready(function($) {
             year_text = details_array[details_array.length - 1];
         }
 
-                // For each code, add class to body.
+        // For each code, add class to body.
         // This will allow for more granular sub-branding, once banner images have been developed
         $.each(codes_array, function(index, val) {
             var code_class = "gotafe-code-" + slugify(val);
@@ -207,15 +210,6 @@ jQuery(document).ready(function($) {
             $('#gotafe-banner-year').addClass("panel-danger");
         }
 
-
-        // DEBUG ONLY - IF TEST BANNER
-        if (year_text.substring(0, 2) === "TB") {
-            // Add footer to 'Year' panel
-            $('#gotafe-banner-year').prepend("<div class=\"panel-heading\">TEST BANNER<\/div>");
-            $('#gotafe-banner-year').addClass("panel-danger");
-            // add test-banner to #page to allow for selective addition of custom banners
-            $('#page').addClass("test-banner");
-        }
     }
 
 });
@@ -239,45 +233,63 @@ function friendlyname(text) {
     var shortname = slugify(text);
     var longname = "";
     var audiences = {
-        "ag": "Agriculture",
-        "agedcare": "Aged Care",
-        "allhlth": "Allied Health",
-        "ansci": "Animal Sciences",
-        "auto": "Automotive",
-        "beauty": "Beauty",
-        "build": "Building and Construction",
-        "bus": "Business",
-        "cab": "Cabinet Making",
-        "carptry": "Carpentry",
-        "childserv": "Childrens Services",
-        "clm": "Conservation and Land Management",
-        "comserv": "Community Services",
-        "csu": "Charles Sturt University",
-        "dairy": "Dairy",
-        "design": "Design",
-        "elec": "Electrical",
-        "edsupt": "Educational Support",
-        "foodpro": "Food Production",
-        "gamedev": "Game Development",
-        "glass": "Glass",
-        "hair": "Hairdressing",
-        "hort": "Horticulture",
-        "hosp": "Hospitality",
-        "hydropon": "Hydroponics",
-        "it": "Information Technology",
-        "jnry": "Joinery",
-        "learndev": "Learning and Development",
-        "lsu": "Learning Services Unit",
-        "ncee": "NCEE",
-        "nurse": "Nursing",
-        "plumb": "Plumbing",
-        "rec": "Outdoor Recreation",
-        "sport": "Sport",
-        "tourism": "Tourism",
-        "trainassess": "Training and Assessment",
-        "vit": "Viticulture",
-        "voc": "Vocational",
-        "wine": "Winemaking"
+        "acct"       : "Accounting",
+        "admin"      : "Administration",
+        "ag"         : "Agriculture ",
+        "ansci"      : "Animal Sciences",
+        "art"        : "Art",
+        "auto"       : "Automotive",
+        "baking"     : "Baking",
+        "beauty"     : "Beauty",
+        "book"       : "Bookkeeping",
+        "build"      : "Building and Construction",
+        "bus"        : "Business",
+        "cab"        : "Cabinet Making",
+        "carptry"    : "Carpentry",
+        "childserv"  : "Childcare",
+        "clm"        : "Conservation and Land Management",
+        "comcook"    : "Commercial Cookery",
+        "comserv"    : "Community Services",
+        "construct"  : "Construction",
+        "csu"        : "Charles Sturt University",
+        "dental"     : "Dental",
+        "design"     : "Design",
+        "dmedia"     : "Digital Media",
+        "edsupt"     : "Education Support",
+        "elec"       : "Electrotechnology",
+        "eng"        : "Engineering",
+        "evntman"    : "Event Management",
+        "foodpro"    : "Food Processing",
+        "gas"        : "Gasfitting",
+        "gened"      : "General Education",
+        "glass"      : "Glass",
+        "hair"       : "Hairdressing",
+        "health"     : "Health",
+        "hort"       : "Horticulture",
+        "hosp"       : "Hospitality",
+        "hr"         : "Human Resources",
+        "hydropon"   : "Hydroponics",
+        "indsupt"    : "Individual Suupport",
+        "it"         : "Information Technology",
+        "jnry"       : "Joinery",
+        "koorie"     : "Koorie Education",
+        "learndev"   : "Learning and Development",
+        "lsu"        : "LSU",
+        "media"      : "Media",
+        "mngmt"      : "Management",
+        "multicult"  : "Multicultural Education",
+        "ncee"       : "NCEE",
+        "nurse"      : "Nursing",
+        "ohs"        : "OHS",
+        "plumb"      : "Plumbing",
+        "projman"    : "Project Management",
+        "rec"        : "Outdoor Recreation",
+        "sport"      : "Sport",
+        "teachtrain" : "Teaching and Training",
+        "tourism"    : "Tourism",
+        "vit"        : "Viticulture",
+        "voc"        : "Vocational",
+        "wine"       : "Winemaking"
     };
     if (shortname in audiences) {
         longname = audiences[shortname];
