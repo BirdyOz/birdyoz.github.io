@@ -1,8 +1,8 @@
 /*
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
- * @Last Modified by:   BirdyOz
- * @Last Modified time: 2018-08-03 14:36:12
+ * @Last Modified by:   Greg Bird
+ * @Last Modified time: 2018-08-09 11:09:48
  */
 
 jQuery(document).ready(function($) {
