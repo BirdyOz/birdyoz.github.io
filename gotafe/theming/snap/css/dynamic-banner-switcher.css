@@ -2,7 +2,11 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-07-27 08:57:17
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-08-09 16:03:58
+<<<<<<< HEAD
+* @Last Modified time: 2018-08-09 16:09:15
+=======
+* @Last Modified time: 2018-08-09 15:58:04
+>>>>>>> 2bd0b3f8541bc29b30ef0b509b9406d377b0c061
 */
 
 /* Remove background image if one is applied */
@@ -13,8 +17,13 @@
 /* Hide the 'Change cover image' button*/
 #snap-coverimagecontrol {display: none !important;}
 
+
 /* If not in a cdefined  category, apply a defualt colour */
+<<<<<<< HEAD
 body.gotafe-placeholder #page-header {background-color: black;}
+=======
+body.gotafe-placeholder #page-header, body.gotafe-breadcrumb-2019-courses #page-header {background-color: black;}
+>>>>>>> 2bd0b3f8541bc29b30ef0b509b9406d377b0c061
 
 /* Apply  banner colours for teaching areas */
 body.gotafe-breadcrumb-business-it #page-header {background-color: #005091 !important;}
