@@ -58,29 +58,25 @@ jQuery(document).ready(function($) {
 
     var logo, codes_array, details_array, code_text, title_text, audience_text, audience_name, year_text = "";
 
-    // //Set default branding logo to 'Main'
-    // $('header#page-header').addClass("Main");
-
 
     // // Extract breadcrumbs.  Create an array.  Only select items from breadcrumbs which refer to categories.
-    // var breadcrumbs = $("ul.breadcrumb a[href*='categoryid'] span[itemprop='title']");
+    var breadcrumbs = $("ul.breadcrumb a[href*='categoryid'] span[itemprop='title']");
 
-    // // Loop through the breadcrumbs, looking for sub-branding
-    // $(breadcrumbs).each(function() {
-    //     var breadcrumb = $(this).text();
+    // Loop through the breadcrumbs, looking for sub-branding
+    $(breadcrumbs).each(function() {
+        var breadcrumb = $(this).text();
 
-    //     // Convert breadcrumb into "slug", then add class to #page-header.
-    //     // This will allow for more granular sub-branding, once banner images have been developed
+        // Convert breadcrumb into "slug", then add class to #page-header.
+        // This will allow for more granular sub-branding, once banner images have been developed
 
-    //     var breadcrumb_class = "breadcrumbs-" + slugify(breadcrumb);
-    //     $('header#page-header').addClass(breadcrumb_class);
-    // });
+        var breadcrumb_class = "breadcrumbs-" + slugify(breadcrumb);
+        $('header#page-header').addClass(breadcrumb_class);
+    });
 
 
 
     // Extract course short description from breadcrumbs.  It is the current banner header
     var description = $('#page-mast>h1>a').text();
-    console.log("@GB: description = ", description);
 
     // This regex pattern matches the GOTAFE 2017 course naming convention
     //  UNIT CODE: Unit Title ([Audience, ]Year)
@@ -173,12 +169,12 @@ jQuery(document).ready(function($) {
         // If there is more than one code
         if (codes_array.length === 1) {
             // Single Unit of Comptency
-            code_text = "<div id =\"gotafe-banner-codes\"><span class=\"muted\">Unit Code: <\/span>" + codes_array + "<\/div>";
+            code_text = "<div id =\"gotafe-banner-codes\"><span class=\"muted\">Code: <\/span>" + codes_array + "<\/div>";
 
         } else {
             // Cluster of 2 or more units
             // concatenate with ", ".  Use " & " before the last code
-            code_text = "<div id =\"gotafe-banner-codes\"><span class=\"muted\">Unit Codes: <\/span>" + codes_array.slice(0, codes_array.length - 1).join(", ") + " & " + codes_array[codes_array.length - 1] + "<\/div>";
+            code_text = "<div id =\"gotafe-banner-codes\"><span class=\"muted\">Codes: <\/span>" + codes_array.slice(0, codes_array.length - 1).join(", ") + " & " + codes_array[codes_array.length - 1] + "<\/div>";
         }
         // Append below banner heading
         $('#page-mast>h1').after(code_text);
