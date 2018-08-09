@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-07-27 08:57:17
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-08-09 14:49:25
+* @Last Modified time: 2018-08-09 15:51:20
 */
 
 /* Remove background image if one is appliedc */
@@ -14,19 +14,19 @@ body[class*="gotafe-breadcrumb-"] #page-header {
 #snap-coverimagecontrol {display: none !important;}
 
 /* If not in a cdefined  category, apply a defualt colour */
-body.gotafe-placeholder #page-header {background-color: #435881;}
+body.gotafe-placeholder.gotafe-breadcrumb-2019-courses #page-header {background-color: black;}
 
 /* Apply  banner colours for teaching areas */
-body.gotafe-breadcrumb-business-it #page-header {background-color: #005091;}
-body.gotafe-breadcrumb-creative-services #page-header {background-color: #8a1350;}
-body.gotafe-breadcrumb-education-teaching #page-header {background-color: #152f62;}
-body.gotafe-breadcrumb-food-fibre #page-header {background-color: #25612b;}
-body.gotafe-breadcrumb-health-community #page-header {background-color: #a51916;}
-body.gotafe-breadcrumb-hospitality-baking-events-tourism #page-header {background-color: #4f2c66;}
-body.gotafe-breadcrumb-manufacturing #page-header {background-color: #083e48;}
-body.gotafe-breadcrumb-technical-trades #page-header {background-color: #0a6164;}
-body.gotafe-breadcrumb-learning-development #page-header {background-color: #435881;}
-body.gotafe-breadcrumb-2019-snap-sandpits #page-header {background-color: #7A3B05;}
+body.gotafe-breadcrumb-business-it #page-header {background-color: #005091 !important;}
+body.gotafe-breadcrumb-creative-services #page-header {background-color: #8a1350 !important;}
+body.gotafe-breadcrumb-education-teaching #page-header {background-color: #152f62 !important;}
+body.gotafe-breadcrumb-food-fibre #page-header {background-color: #25612b !important;}
+body.gotafe-breadcrumb-health-community #page-header {background-color: #a51916 !important;}
+body.gotafe-breadcrumb-hospitality-baking-events-tourism #page-header {background-color: #4f2c66 !important;}
+body.gotafe-breadcrumb-manufacturing #page-header {background-color: #083e48 !important;}
+body.gotafe-breadcrumb-technical-trades #page-header {background-color: #0a6164 !important;}
+body.gotafe-breadcrumb-learning-development #page-header {background-color: black !important;}
+body.gotafe-breadcrumb-2019-snap-sandpits #page-header {background-color: #7A3B05 !important;}
 
 /* Style Banner elements, such as codes, audience and year */
 #gotafe-banner-codes, #gotafe-banner-audience, #gotafe-banner-year .panel-body {

@@ -2,11 +2,10 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-08-09 14:36:27
+ * @Last Modified time: 2018-08-09 15:14:18
  */
 
 jQuery(document).ready(function($) {
-    console.log("@GB: Dyanamic banner script loaded");
 
     // Append stylesheet
     $('head').append('<link rel="stylesheet" type="text/css" href="https://birdyoz.github.io/gotafe/theming/snap/css/dynamic-banner-switcher.css">');
@@ -18,6 +17,10 @@ jQuery(document).ready(function($) {
     var body = $('body');
     // Add placeholder class
     body.addClass(curr_class);
+
+
+    // Add .mast-image to page header.  This "tricks" snap to think their is a banner image, and style the text accordingly
+    $('#page-header').addClass('mast-image');
 
     // Switcher buttons - Trap click actions
     $('#switcher a').click(function(event) {
@@ -35,25 +38,6 @@ jQuery(document).ready(function($) {
         $('#gotafe-banner-audience').html("<span class=\"muted\">Audience: <\/span>" + btntxt);
         event.preventDefault();
     });
-
-    // Toggle heights
-    $('a.toggle-banner-height').click(function(event) {
-        body.toggleClass('gotafe-narrow-banner');
-        event.preventDefault();
-    });
-
-    // Toggle contrast
-    $('a.toggle-high-contrast').click(function(event) {
-        body.toggleClass('gotafe-high-contrast');
-        event.preventDefault();
-    });
-
-    // Toggle images
-    $('a.toggle-banner-image').click(function(event) {
-        body.toggleClass(curr_class);
-        event.preventDefault();
-    });
-
 
     var logo, codes_array, details_array, code_text, title_text, audience_text, audience_name, year_text = "";
 
