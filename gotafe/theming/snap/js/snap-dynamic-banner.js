@@ -2,16 +2,20 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-08-10 11:39:25
+ * @Last Modified time: 2018-08-10 14:23:12
  */
 
 jQuery(document).ready(function($) {
+    BuildBanner(); // Build dynamic banners
+    AddSearhToMyCourses(); // Add search box to My Courses UI
+});
 
-    // Only invoke this script within a course
-    // Check whether I am being invoked at the site level.  If I am not at the site level, I must be in a course
+function BuildBanner() {
+    // Only invoke The BuildBarrer function if within a course
+    // If I am not at the site level, I must be in a course
     if ($('.format-site').length === 0) {
         // Prepend stylesheet
-        $('head').append('<link rel="stylesheet" type="text/css" href="https://birdyoz.github.io/gotafe/theming/snap/css/dynamic-banner-switcher.css">');
+        // $('head').append('<link rel="stylesheet" type="text/css" href="https://birdyoz.github.io/gotafe/theming/snap/css/dynamic-banner-switcher.css">');
 
         // Define global variables
         var logo, codes_array, details_array, code_text, title_text, audience_text, audience_name, year_text = "";
@@ -165,22 +169,8 @@ jQuery(document).ready(function($) {
 
         }
     }
-});
-
-function BuildBanner() {
-
 }
 
-function slugify(text) {
-    // https://gist.github.com/mathewbyrne/1280286
-    return text.toString().toLowerCase()
-        .replace(/\s+/g, '-') // Replace spaces with -
-        .replace(/[^\w\-]+/g, '') // Remove all non-word chars
-        .replace(/\-\-+/g, '-') // Replace multiple - with single -
-        .replace(/^-+/, '') // Trim - from start of text
-        .replace(/-+$/, '') // Trim - from end of text
-        .replace(/[\s_-]+/g, '-');
-}
 
 function friendlyname(text) {
     // Translate audience abbreviations into human readable alternatives
@@ -252,3 +242,21 @@ function friendlyname(text) {
     }
     return longname;
 }
+
+
+function slugify(text) {
+    // https://gist.github.com/mathewbyrne/1280286
+    return text.toString().toLowerCase()
+        .replace(/\s+/g, '-') // Replace spaces with -
+        .replace(/[^\w\-]+/g, '') // Remove all non-word chars
+        .replace(/\-\-+/g, '-') // Replace multiple - with single -
+        .replace(/^-+/, '') // Trim - from start of text
+        .replace(/-+$/, '') // Trim - from end of text
+        .replace(/[\s_-]+/g, '-');
+}
+
+function AddSearhToMyCourses() {
+    // Adds a search box to the top of the SNAP "My Courses" UI
+     var snip = '<div class="clearfix"></div> <div class="card-block snap-mycourses-search"> <div class="card-text content"> <div class="no-overflow"> <form id="coursesearch" action="https://gotafetest34.trainingvc.com.au/course/search.php" method="get"> <fieldset class="coursesearchbox invisiblefieldset"> <label for="shortsearchbox">Search all courses </label> <input name="search" id="shortsearchbox" type="text" value=""> <input type="submit" value="Go"> </fieldset> </form> </div> <div class="footer"></div> </div>';
+    $('#snap-pm-courses-current-cards').prepend(snip);
+ }
