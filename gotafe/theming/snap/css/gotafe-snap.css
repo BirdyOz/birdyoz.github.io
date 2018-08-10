@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-07-06 13:54:29
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-08-10 10:09:10
+* @Last Modified time: 2018-08-10 10:53:38
 */
 
 
@@ -42,6 +42,18 @@ body {
     background-color: rgba(233,30,99,.2);
     border-left-color: #e91e63 !important;
 }
+
+/* SITE FRONTPAGE */
+#moodle-frontpage-elements .news-article-preview a.btn-default {
+    background-color: #FFF;
+}
+
+#moodle-frontpage-elements .news-article-preview a.btn-default:hover, #moodle-frontpage-elements .news-article-preview a.btn-default:active, #moodle-frontpage-elements .news-article-preview a.btn-default:focus {
+    background-color: #000;
+}
+
+
+
 
 /* Increase the contrast of muted and dimmed items */
 .text-muted, a.dimmed, a.dimmed:link, a.dimmed:visited, a.dimmed_text, a.dimmed_text:link, a.dimmed_text:visited, .dimmed_text, .dimmed_text a, .dimmed_text a:link, .dimmed_text a:visited, .dimmed_category, .dimmed_category a {
