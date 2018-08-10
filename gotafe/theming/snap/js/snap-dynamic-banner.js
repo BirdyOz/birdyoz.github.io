@@ -2,21 +2,19 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-08-10 08:55:54
+ * @Last Modified time: 2018-08-10 11:39:25
  */
 
 jQuery(document).ready(function($) {
 
-    // Only invoke this s cript within a course
+    // Only invoke this script within a course
     // Check whether I am being invoked at the site level.  If I am not at the site level, I must be in a course
     if ($('.format-site').length === 0) {
-
         // Prepend stylesheet
         $('head').append('<link rel="stylesheet" type="text/css" href="https://birdyoz.github.io/gotafe/theming/snap/css/dynamic-banner-switcher.css">');
 
         // Define global variables
         var logo, codes_array, details_array, code_text, title_text, audience_text, audience_name, year_text = "";
-
 
         // Extract breadcrumbs.  Create an array.  Only select items from breadcrumbs which refer to categories.
         var breadcrumbs = $(".breadcrumb-item>a");
@@ -24,16 +22,11 @@ jQuery(document).ready(function($) {
         // Loop through the breadcrumbs, looking for sub-branding
         $(breadcrumbs).each(function() {
             var breadcrumb = $(this).text();
-
-            // Convert breadcrumb into "slug", then add class to #page-header.
-            // This will allow for more granular sub-branding, once banner images have been developed
-
+            // Convert breadcrumb into "slug", then add class to body
             var breadcrumb_class = "gotafe-breadcrumb-" + slugify(breadcrumb);
             console.log("@GB: breadcrumb_class = ", breadcrumb_class);
             $('body').addClass(breadcrumb_class);
         });
-
-
 
         // Extract course short description from breadcrumbs.  It is the current banner header
         var description = $('#page-mast>h1>a').text();
@@ -60,8 +53,7 @@ jQuery(document).ready(function($) {
         var re = /^(.*)\:(.*)\((.*)\)/gi;
         var TitleArray = re.exec(description);
 
-
-        // Only parses title if it matches the naming convention; ie it matches the pattern defined by the regex
+        // Only parse title if it matches the naming convention; ie it matches the pattern defined by the regex
         // This is to avoid unnecessary processing of descriptions that do not match the naming convention
 
         if (TitleArray) {
@@ -173,11 +165,11 @@ jQuery(document).ready(function($) {
 
         }
     }
-
 });
 
+function BuildBanner() {
 
-
+}
 
 function slugify(text) {
     // https://gist.github.com/mathewbyrne/1280286
