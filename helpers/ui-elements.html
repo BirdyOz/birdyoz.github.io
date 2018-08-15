@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="#">
+    <meta name="author" content="#">
+    <title>@BirdyOz: Unsplash image embedder & attribution maker</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">@BirdyOz:  Unsplash embedder & attribution maker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#quotes">fancy quote</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#boxes">Boxes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#alerts">Alerts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#interactive">Interactive elements</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#modals">Modals</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="clearfix"></div>
+    <!-- Marketing messaging and featurettes
+        ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+    <div class="container marketing" style="margin-top: 100px">
+        <h1 class="display-4">Re-usable UI elements for Moodle (&amp; elsewhere)</h1>
+        <p class="lead">The following UI elements can be used to decorate your Moodle contents and create interactivity, all within the Moodle editor.</p>
+        <p>They use a combination of Bootrstap and FontAwesome.  These are both 'baked in to Moodle' so it makes editing a breeze</p>
+
+<h2 id="quotes">Fancy blockquotes</h2>
+<div class="copythis">
+<!-- Fancy Blockquotes -->
+<blockquote><i class="fa fa-fw fa-quote-left fa-2x fa-pull-left text-muted" aria-hidden="true"></i>
+    <p> Insert quote here</p><i class="fa fa-fw fa-quote-right fa-2x fa-pull-right text-muted" aria-hidden="true"></i>
+    <footer class="blockquote-footer">
+        Insert citation here
+    </footer>
+</blockquote>
+<!-- End of Fancy Blockquotes -->
+
+</div>
+
+<hr>
+
+<h2 id="boxes">Boxes</h2>
+<div class="copythis">
+<!-- Think box -->
+<div class="well card"  style="padding: 10px">
+    <h4 class="text-success"><i class="fa fa-lightbulb-o"></i> Think</h4>
+    <p>Insert content here</p>
+</div>
+<!-- End of think box -->
+
+</div>
+
+<hr>
+
+<div class="copythis">
+<!-- Read box -->
+<div class="well card"  style="padding: 10px">
+    <h4 class="text-info"><i class="fa fa-book"></i> Read</h4>
+    <p>Insert content here</p>
+</div>
+<!-- End of read box -->
+
+</div>
+
+<hr>
+
+<div class="copythis">
+<!-- Discuss box -->
+<div class="well card"  style="padding: 10px">
+    <h4 class="text-warning"><i class="fa fa-comments"></i> Discuss</h4>
+    <p>Insert content here</p>
+</div>
+<!-- End of discuss box -->
+
+</div>
+
+<hr>
+
+
+
+<div class="copythis">
+<!-- Important box -->
+<div class="well card"  style="padding: 10px">
+    <h4 class="text-danger"><i class="fa fa-exclamation-triangle"></i> Important</h4>
+    <p>Insert content here</p>
+</div>
+<!-- End of important box -->
+
+</div>
+
+<hr>
+
+<div class="copythis">
+<!-- Reflect box -->
+<div class="well card"  style="padding: 10px">
+    <h4 style="color: purple !important"><i class="fa fa-search"></i> Reflect</h4>
+    <p>Insert content here</p>
+</div>
+<!-- End of reflect box -->
+
+</div>
+<hr>
+
+<div class="copythis">
+<!-- Video box -->
+<div class="well card"  style="padding: 10px" style="padding: 10px">
+    <h4 class="text-danger"><i class="fa fa-play-circle-o"></i> Name of video - playtime in brackets (00:00)</h4>
+    <p>Insert video here</p>
+    <div class="text-right">
+    <small class="text-muted"><a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" class="collapsed">Text transcript</a></small>
+</div>
+<div class="collapse" id="collapseExample" aria-expanded="false">
+    <!-- Terxt transcript -->
+    <div class="well card text-muted" style="padding: 10px !important; margin: 10px !important; border-color: #aaa !important">
+        <h5>Text transcript</h5>
+        <p>[Paste transcript here]</p>
+        <div class="text-center">
+            <a class="btn btn-primary text-center" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample"><i class="fa fa-chevron-circle-up"></i> Close transcript</a>
+        </div>
+    </div>
+</div>
+</div>
+<!-- End of video box -->
+
+</div>
+
+
+<hr>
+
+<h2 id="alerts">Alerts</h2>
+<div class="copythis">
+<!-- Success alert -->
+<div class="alert alert-success" role="alert">
+    <p><strong>Success:</strong> Insert details/description here.</p>
+</div>
+<!-- End of success alert -->
+
+</div>
+
+<hr>
+
+<div class="copythis">
+<!-- Info alert -->
+<div class="alert alert-info" role="alert">
+    <p><strong>Info:</strong> Insert details/description here.</p>
+</div>
+<!-- End of info alert -->
+
+</div>
+
+<hr>
+
+<div class="copythis">
+<!-- Warning alert -->
+<div class="alert alert-warning" role="alert">
+    <p><strong>Consider:</strong> Insert details/description here.</p>
+</div>
+<!-- End of warning alert -->
+
+</div>
+
+<hr>
+
+
+<div class="copythis">
+<!-- Danger altert -->
+<div class="alert alert-danger" role="alert">
+    <p><strong>Important:</strong> Insert details/description here.</p>
+</div>
+</div>
+<!-- End of danger alert -->
+
+<hr>
+
+<h2 id="interactive">Interactive elements</h2>
+
+<!-- Decoratrive button -->
+<h5>Decorative button. <span class="muted">(Make sure you update the href)</span></h5>
+<div class="copythis">
+ <a class="btn btn-lg btn-primary" href="#">Insert button text</a>
+ <p></p>
+<!-- End of decorative button -->
+
+</div>
+
+<hr>
+
+<h5>Accordion menu <span class="muted">(6 items max, delete unwanted items in the HTML)</span></h5>
+<div class="copythis">
+<!-- Sart of accordion menu -->
+<div id="accordion">
+
+<!-- Start of Item 1 -->
+<div class="card">
+    <div class="card-header" id="heading-1">
+        <h5 class="mb-0">
+    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse-1" aria-expanded="false" aria-controls="collapse-1">
+      Heading for Item 1
+    </button>
+  </h5>
+    </div>
+    <div id="collapse-1" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body" style="padding: 10px;">
+            Content for Item 1
+        </div>
+    </div>
+</div>
+<!-- End of Item 1 -->
+
+
+<!-- Start of Item 2 -->
+<div class="card">
+    <div class="card-header" id="heading-2">
+        <h5 class="mb-0">
+    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+      Heading for Item 2
+    </button>
+  </h5>
+    </div>
+    <div id="collapse-2" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body" style="padding: 10px;">
+            Content for Item 2
+        </div>
+    </div>
+</div>
+<!-- End of Item 2 -->
+
+
+<!-- Start of Item 3 -->
+<div class="card">
+    <div class="card-header" id="heading-3">
+        <h5 class="mb-0">
+    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
+      Heading for Item 3
+    </button>
+  </h5>
+    </div>
+    <div id="collapse-3" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body" style="padding: 10px;">
+            Content for Item 3
+        </div>
+    </div>
+</div>
+<!-- End of Item 3 -->
+
+
+<!-- Start of Item 4 -->
+<div class="card">
+    <div class="card-header" id="heading-4">
+        <h5 class="mb-0">
+    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
+      Heading for Item 4
+    </button>
+  </h5>
+    </div>
+    <div id="collapse-4" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body" style="padding: 10px;">
+            Content for Item 4
+        </div>
+    </div>
+</div>
+<!-- End of Item 4 -->
+
+
+<!-- Start of Item 5 -->
+<div class="card">
+    <div class="card-header" id="heading-5">
+        <h5 class="mb-0">
+    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse-5" aria-expanded="false" aria-controls="collapse-5">
+      Heading for Item 5
+    </button>
+  </h5>
+    </div>
+    <div id="collapse-5" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body" style="padding: 10px;">
+            Content for Item 5
+        </div>
+    </div>
+</div>
+<!-- End of Item 5 -->
+
+
+<!-- Start of Item 6 -->
+<div class="card">
+    <div class="card-header" id="heading-6">
+        <h5 class="mb-0">
+    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse-6" aria-expanded="false" aria-controls="collapse-6">
+      Heading for Item 6
+    </button>
+  </h5>
+    </div>
+    <div id="collapse-6" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+        <div class="card-body" style="padding: 10px;">
+            Content for Item 6
+        </div>
+    </div>
+</div>
+<!-- End of Item 6 -->
+</div>
+<!-- End of accordion menu -->
+
+</div>
+<hr>
+<h2 class="modals">Modals</h2>
+<h4>View larger image</h4>
+<p>This UI element requires some hand coding.  You will need to manually edit the image sources for the sm ller and larger image.</p>
+<p>These can both point to the same image, as they will be dynamically resized to suit.</p>
+<div class="copythis">
+<!-- Start of View larger image -->
+
+<!-- Start of smaller image-->
+<div class="float-right" style="float: right; width: 30%; max-width: 320px; min-width: 200px; margin:0 10px 10px 20px !important">
+    <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        <!-- Change smaller image here -->
+        <img src="https://source.unsplash.com/qqd8APhaOg4" class="img-responsive img-fluid"><br>Click to view larger image</a>
+</div>
+<!-- End of smaller image-->
+
+<!-- Start of larger image-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <!-- Change larger image here -->
+                <img src="https://source.unsplash.com/qqd8APhaOg4" class="img-responsive img-fluid" style="width: 100%;">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of larger image-->
+
+<!-- End of view larger image -->
+</div>
+
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <script src="ui-elements.js"></script>
+
+
+</body>
+
+</html>
