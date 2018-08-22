@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-08-22 13:58:58
+ * @Last Modified time: 2018-08-22 14:06:27
  */
 
 $(function() {
@@ -49,13 +49,13 @@ $(function() {
                 copyTextToClipboard(paste);
 
 
-                btn.toggleClass('btn-outline-primary btn-light');
+                btn.toggleClass('btn-outline-primary btn-success');
                 btn.html('<i class="fa fa-check" aria-hidden="true"></i> Done! Embed code copied to clipboard');
 
                 window.setTimeout(function() {
                     btn.html('<i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code');
                     // btn.removeClass('btn-danger');
-                    btn.toggleClass('btn-outline-primary btn-light');
+                    btn.toggleClass('btn-outline-primary btn-success');
                 }, 3000);
 
                 // Cancel the default action
