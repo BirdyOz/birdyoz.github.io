@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-08-22 13:33:26
+ * @Last Modified time: 2018-08-22 13:36:25
  */
 
 $(function() {
@@ -29,7 +29,7 @@ $(function() {
 
             $('img').each(function(index, el) {
                 el.src = image_url;
-                $(el).attr('alt', title);
+                // $(el).attr('alt', title);
                 console.log("@GB: title = ", title);
             });
 
