@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-08-22 13:41:21
+ * @Last Modified time: 2018-08-22 13:58:58
  */
 
 $(function() {
@@ -30,7 +30,7 @@ $(function() {
             $('img').each(function(index, el) {
                 el.src = image_url;
                 $(this).attr('alt', title);
-                console.log("@GB: title = ", title);
+                $(this).attr('title', title);
             });
 
             $('small').each(function(index, el) {
@@ -47,7 +47,17 @@ $(function() {
                 console.log("@GB: paste = ", paste);
 
                 copyTextToClipboard(paste);
-                btn.text('Embed code copied!');
+
+
+                btn.toggleClass('btn-outline-primary btn-light');
+                btn.html('<i class="fa fa-check" aria-hidden="true"></i> Done! Embed code copied to clipboard');
+
+                window.setTimeout(function() {
+                    btn.html('<i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code');
+                    // btn.removeClass('btn-danger');
+                    btn.toggleClass('btn-outline-primary btn-light');
+                }, 3000);
+
                 // Cancel the default action
                 event.preventDefault();
             });
