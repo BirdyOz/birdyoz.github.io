@@ -1,12 +1,13 @@
 /*
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
- * @Last Modified by:   BirdyOz
- * @Last Modified time: 2018-05-15 08:52:28
+ * @Last Modified by:   Greg Bird
+ * @Last Modified time: 2018-08-22 13:27:19
  */
 
 $(function() {
 
+    console.log("@GB: Unsplash embed code invoked", title);
     var url_string = window.location.href;
     if (url_string.indexOf("?") > 0) {
         console.log("@GB: Has parameters");
@@ -28,6 +29,8 @@ $(function() {
 
             $('img').each(function(index, el) {
                 el.src = image_url;
+                el.attr('alt', title);
+                console.log("@GB: title = ", title);
             });
 
             $('small').each(function(index, el) {
