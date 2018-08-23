@@ -1,0 +1,629 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @Date:   2018-07-12 15:34:34
+* @Last Modified by:   BirdyOz
+* @Last Modified time: 2018-07-13 08:14:29
+*/
+
+
+
+/**
+ * GENERAL
+ */
+
+body {
+    background-color: #fff;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    padding-top: 0;
+}
+.container-fluid {
+    max-width: 100%;
+}
+.container-fluid {
+    margin-left: 15px;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 400 !important;
+}
+
+a:link,
+a:visited {
+    color: #364093 !important;
+}
+
+a:hover,
+a:focus {
+    color: #1A236C !important;
+}
+
+
+/* Dimmed items */
+
+.accesshide,
+.course-content ul li.section.hidden .activity .activityinstance,
+.course-content ul li.section.hidden .content>div,
+.course-content ul li.section.hidden .sectionname>span,
+.dimmed,
+.dimmed_category a
+.dimmed_category,
+.dimmed_text a,
+.dimmed_text a:link,
+.dimmed_text a:visited,
+.dimmed_text,
+.hidden,
+.usersuspended a,
+.usersuspended a:link,
+.usersuspended a:visited,
+.usersuspended,
+a.dimmed,
+a.dimmed:link,
+a.dimmed:visited,
+a.dimmed_text,
+a.dimmed_text:link,
+a.dimmed_text:visited,
+span.arrow
+{
+    opacity: 1 !important;
+    font-style: italic;
+    color: #555 !important;
+}
+
+/**
+ * BANNER
+ */
+
+/*#page-header {
+    height: 280px !important;
+}*/
+
+.page-context-header {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 60px 10px 4px 320px;
+    padding: 0 1em 1em 1em;
+    font-size: 1em;
+    line-height: 1em;
+    width: auto;
+    min-height: 120px;
+    border-radius: 8px;
+}
+.page-context-header h1 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1.6em;
+    margin: 0 0 0.5em 0;
+    line-height: 1em;
+    color: #fff;
+}
+
+
+/**
+ * Alternative banner on dashboard
+ */
+body#page-my-index .page-context-header {
+    margin-left: 65%
+}
+
+/**
+ * Alternative banner on login screen
+ */
+
+body.notloggedin header#page-header {
+    background: none !important;
+    height: 60px;
+    margin-top: 40px;
+    padding: 20px 0 0 30px;
+    background-color: #1f3345 !important;
+    }
+
+body.notloggedin header#page-header .logo::after {
+    content: "Welcome to GOTAFE Moodle";
+    padding-top: 10px;
+    color: #FFF;
+    font-size: 2em;
+    text-align: center;
+    display: block;
+    }
+
+/**
+ * Alternative banner layout for different widths
+ */
+
+/* Hide logo from login screen if width less than 680px */
+
+@media (max-width: 680px) {
+    body.notloggedin header#page-header .logo {
+        background-image: none !important;
+    }
+}
+
+/*When the navbar collapses*/
+
+@media (max-width: 978px) {
+    .page-context-header {
+        margin: 60px 10px 4px 180px;
+        font-size: 0.8em;
+        min-height: 0;
+    }
+}
+
+/*When the navbar collapses*/
+
+@media (max-width: 780px) {
+    .page-context-header {
+        margin: 0 10px 0 0;
+        font-size: 0.8em;
+        width: 100%;
+        min-height: 0;
+    }
+}
+
+/**
+ * DYNAMIC BANNER ELEMENTS
+ */
+
+#codes,
+#audience {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.2em;
+    line-height: 1.4em;
+    font-weight: 500;
+    color: #fff;
+}
+#codes span,
+#audience span {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    color: #eee;
+}
+#year {
+    border: 4px solid #ccc;
+    border-radius: 8px;
+    background: transparent;
+    color: #fff;
+}
+#year * {
+    padding: 0.3em 0.7em;
+}
+#year .panel-body {
+    font-size: 1.4em;
+}
+#year .panel-heading {
+    font-size: 0.8em;
+    background: red !important;
+}
+#year.panel-danger {
+    border-color: red !important;
+}
+
+/*Defaul banner*/
+
+
+/*Departmental Banners*/
+
+.Main {
+    background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/main.jpg') no-repeat left;
+}
+.Main .page-context-header {
+    background: rgba(11, 38, 80, 0.6)
+}
+.Main #year {
+    border-color: rgba(255, 255, 255, 0.2)
+}
+
+/*Departmental banners - From category*/
+[class*="breadcrumbs-ag"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/ag.jpg') no-repeat left;}
+[class*="breadcrumbs-aged"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/agedcare.jpg') no-repeat left;}
+[class*="breadcrumbs-allied"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/allhlth.jpg') no-repeat left;}
+[class*="breadcrumbs-animal"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/ansci.jpg') no-repeat left;}
+[class*="breadcrumbs-auto"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/auto.jpg') no-repeat left;}
+[class*="breadcrumbs-beauty"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/beauty.jpg') no-repeat left;}
+[class*="breadcrumbs-build"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/build.jpg') no-repeat left;}
+[class*="breadcrumbs-business"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/bus.jpg') no-repeat left;}
+[class*="breadcrumbs-cab"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/cab.jpg') no-repeat left;}
+[class*="breadcrumbs-carp"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/carptry.jpg') no-repeat left;}
+[class*="breadcrumbs-child"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/childserv.jpg') no-repeat left;}
+[class*="breadcrumbs-conservation"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/clm.jpg') no-repeat left;}
+[class*="breadcrumbs-community"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/comserv.jpg') no-repeat left;}
+[class*="breadcrumbs-csu"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/csu.jpg') no-repeat left;}
+[class*="breadcrumbs-ncde"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/dairy.jpg') no-repeat left;}
+[class*="breadcrumbs-design"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/design.jpg') no-repeat left;}
+[class*="breadcrumbs-edsupt"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/edsupt.jpg') no-repeat left;}
+[class*="breadcrumbs-elec"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/elec.jpg') no-repeat left;}
+[class*="breadcrumbs-manufacturing"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/foodpro.jpg') no-repeat left;}
+[class*="breadcrumbs-media"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/gamedev.jpg') no-repeat left;}
+[class*="breadcrumbs-glass"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/glass.jpg') no-repeat left;}
+[class*="breadcrumbs-hair"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/hair.jpg') no-repeat left;}
+[class*="breadcrumbs-hort"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/hort.jpg') no-repeat left;}
+[class*="breadcrumbs-hosp"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/hosp.jpg') no-repeat left;}
+[class*="breadcrumbs-hydropon"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/hydropon.jpg') no-repeat left;}
+[class*="breadcrumbs-information"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/it.jpg') no-repeat left;}
+[class*="breadcrumbs-jnry"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/jnry.jpg') no-repeat left;}
+[class*="breadcrumbs-learndev"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/learndev.jpg') no-repeat left;}
+[class*="breadcrumbs-lsu"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/lsu.jpg') no-repeat left;}
+[class*="breadcrumbs-main"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/main.jpg') no-repeat left;}
+[class*="breadcrumbs-ncee"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/ncee-new.jpg') no-repeat left;}
+[class*="breadcrumbs-nurs"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/nurse.jpg') no-repeat left;}
+[class*="breadcrumbs-plumb"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/plumb.jpg') no-repeat left;}
+[class*="breadcrumbs-rec"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/rec.jpg') no-repeat left;}
+[class*="breadcrumbs-sport"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/sport.jpg') no-repeat left;}
+[class*="breadcrumbs-tourism"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/tourism.jpg') no-repeat left;}
+[class*="breadcrumbs-train"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/trainassess.jpg') no-repeat left;}
+[class*="breadcrumbs-vit"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/vit.jpg') no-repeat left;}
+[class*="breadcrumbs-voc"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/voc.jpg') no-repeat left;}
+[class*="breadcrumbs-wine"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/wine.jpg') no-repeat left;}
+
+/*Department banners - From audience.  Force overrides*/
+[class*="audience-ag"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/ag.jpg') no-repeat left !important;}
+[class*="audience-agedcare"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/agedcare.jpg') no-repeat left !important;}
+[class*="audience-allhlth"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/allhlth.jpg') no-repeat left !important;}
+[class*="audience-ansci"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/ansci.jpg') no-repeat left !important;}
+[class*="audience-auto"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/auto.jpg') no-repeat left !important;}
+[class*="audience-beauty"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/beauty.jpg') no-repeat left !important;}
+[class*="audience-build"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/build.jpg') no-repeat left !important;}
+[class*="audience-bus"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/bus.jpg') no-repeat left !important;}
+[class*="audience-cab"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/cab.jpg') no-repeat left !important;}
+[class*="audience-carptry"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/carptry.jpg') no-repeat left !important;}
+[class*="audience-childserv"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/childserv.jpg') no-repeat left !important;}
+[class*="audience-clm"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/clm.jpg') no-repeat left !important;}
+[class*="audience-comserv"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/comserv.jpg') no-repeat left !important;}
+[class*="audience-csu"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/csu.jpg') no-repeat left !important;}
+[class*="audience-dairy"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/dairy.jpg') no-repeat left !important;}
+[class*="audience-design"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/design.jpg') no-repeat left !important;}
+[class*="audience-edsupt"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/edsupt.jpg') no-repeat left !important;}
+[class*="audience-elec"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/elec.jpg') no-repeat left !important;}
+[class*="audience-foodpro"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/foodpro.jpg') no-repeat left !important;}
+[class*="audience-gamedev"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/gamedev.jpg') no-repeat left !important;}
+[class*="audience-glass"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/glass.jpg') no-repeat left !important;}
+[class*="audience-hair"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/hair.jpg') no-repeat left !important;}
+[class*="audience-hort"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/hort.jpg') no-repeat left !important;}
+[class*="audience-hosp"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/hosp.jpg') no-repeat left !important;}
+[class*="audience-hydropon"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/hydropon.jpg') no-repeat left !important;}
+[class*="audience-it"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/it.jpg') no-repeat left !important;}
+[class*="audience-jnry"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/jnry.jpg') no-repeat left !important;}
+[class*="audience-learndev"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/learndev.jpg') no-repeat left !important;}
+[class*="audience-lsu"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/lsu.jpg') no-repeat left !important;}
+[class*="audience-main"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/main.jpg') no-repeat left !important;}
+[class*="audience-ncee"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/ncee-new.jpg') no-repeat left !important;}
+[class*="audience-nurse"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/nurse.jpg') no-repeat left !important;}
+[class*="audience-plumb"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/plumb.jpg') no-repeat left !important;}
+[class*="audience-rec"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/rec.jpg') no-repeat left !important;}
+[class*="audience-sport"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/sport.jpg') no-repeat left !important;}
+[class*="audience-tourism"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/tourism.jpg') no-repeat left !important;}
+[class*="audience-trainassess"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/trainassess.jpg') no-repeat left !important;}
+[class*="audience-vit"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/vit.jpg') no-repeat left !important;}
+[class*="audience-voc"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/voc.jpg') no-repeat left !important;}
+[class*="audience-wine"] {background: url('https://gotafe.trainingvc.com.au/file.php/1/banners/wine.jpg') no-repeat left !important;}
+
+
+/**
+ * NAVIGATION
+ */
+
+
+/*Top Nav*/
+
+.navbar,
+.navbar-inverse,
+.navbar-inner,
+.usermenu {
+    background-color: #021A28 !important;
+    background-image: none !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 1em;
+}
+.navbar .nav>li>a {
+    text-shadow: none !important;
+    font-weight: 500;
+}
+nav.navbar-inner a,
+.usertext {
+    color: white !important;
+    background-image: none !important;
+}
+.navbar .nav li.dropdown.open>.dropdown-toggle,
+.navbar .nav li.dropdown.active>.dropdown-toggle,
+.navbar .nav li.dropdown.open.active>.dropdown-toggle {
+    background-color: black
+}
+nav.navbar-inner a:hover,
+.usertext:hover {
+    color: white !important;
+    background-image: none !important;
+    text-decoration: underline !important;
+}
+.dropdown-menu>li>a:focus,
+.dropdown-menu>li>a:hover {
+    color: #000 !important;
+}
+
+/*Reset dropdown menu */
+
+.actionmenu>li>a,
+.actionmenu>li>a,
+.dropdown-menu>li>a,
+.dropdown-menu>li>a,
+.dropdown-submenu>a,
+.dropdown-submenu>a,
+.menu-action-text {
+    color: black !important;
+}
+.dropdown-menu>li>a:hover,
+.dropdown-menu>li>a:focus,
+.dropdown-submenu:hover>a,
+.dropdown-submenu:focus>a .menu-action-text:hover {
+    color: white !important;
+    background-color: #00699e !important;
+    background-image: none !important;
+}
+
+/*Reset user menu*/
+
+a.menu-action:hover .menu-action-text {
+    color: white !important;
+}
+
+/**
+ * Breadcrumbs
+ */
+
+.breadcrumb {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+    font-weight: 500;
+}
+.breadcrumb > li {
+    text-shadow: none;
+}
+.breadcrumb a {
+    color: #1f3345;
+    font-weight: 500;
+}
+
+/**
+ * BLOCKS
+ */
+
+.block,
+.dockedtitle {
+    background-color: white !important;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.block .header {
+    background-color: #1f3345;
+    margin: 0 6px;
+    padding: 6px;
+    border-radius: 4px;
+}
+.block .header h2 {
+    font-size: 1.1em;
+    color: white;
+    text-shadow: none;
+    text-transform: none;
+}
+
+/**
+ * DOCKED ITEMS
+ */
+
+#dock .dockedtitle {
+    background-image: none !important;
+    padding: 0 0 0 6px;
+    border-radius: 6px;
+    background-color: #1f3345 !important;
+    font-size: 1em;
+    font-weight: 300;
+    color: white;
+    text-shadow: none;
+    text-transform: none;
+}
+#dock .css3transform {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: white;
+}
+
+/**
+ * BUTTONS
+ */
+
+#page-mod-scorm-player .breadcrumb-button > a[title="Exit activity"],
+button,
+input.form-submit,
+input[type="button"],
+[class*="button"] input[type="submit"],
+input[type="reset"],
+.btn,
+input.form-submit,
+input#id_submitbutton,
+input#id_submitbutton2,
+.path-admin .buttons input[type="submit"],
+td.submit input {
+    color: rgb(20, 69, 99) !important;
+    background-color: white !important;
+    background-image: none !important;
+    border: 2px solid rgb(20, 69, 99);
+    padding: 8px 10px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    font-size: 0.9em;
+}
+#page-mod-scorm-player .breadcrumb-button > a[title="Exit activity"]:hover,
+#page-mod-scorm-player .breadcrumb-button > a[title="Exit activity"]:focus,
+button:hover,
+.btn-primary:focus,
+.btn-primary:hover,
+.btn:hover,
+.btn:focus,
+input.form-submit:hover,
+input[type="button"]:hover,
+[class*="button"] input[type="submit"]:hover,
+input[type="reset"]:hover,
+button:focus,
+input.form-submit:focus,
+input#id_submitbutton:hover,
+input#id_submitbutton2:hover,
+input#id_submitbutton:focus,
+input#id_submitbutton2:focus,
+input[type="button"]:focus,
+[class*="button"] input[type="submit"]:focus,
+input[type="reset"]:focus {
+    color: white !important;
+    background-color: rgb(20, 69, 99) !important;
+    border-color: rgb(20, 69, 99) !important;
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    transition: all .5s ease;
+    text-shadow: none;
+}
+
+/* PAGE: COURSE > ONE TOPIC FORMAT */
+
+div.onetopic ul.nav-tabs > li a {
+    color: black !important;
+    background-color: white;
+    background-image: none !important;
+    border: 2px solid #1f3345;
+    padding: 8px 10px;
+    border-radius: 5px;
+    /*text-transform: uppercase;*/
+    font-size: 15px;
+    /*font-size: 0.9em;*/
+    margin: 2px;
+    text-shadow: none;
+}
+
+/* Hover + active */
+
+div.onetopic ul.nav-tabs > li.active > a,
+div.onetopic ul.nav-tabs > li > a:hover,
+div.onetopic ul.nav-tabs > li > a:focus {
+    color: white !important;
+    background-color: #1f3345 !important;
+    border: 2px solid #099!important -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    transition: all .5s ease;
+    text-shadow: none;
+}
+
+/* Dimmed */
+
+.format-onetopic ul.nav-tabs li a .dimmed,
+div.onetopic ul.nav-tabs > li > a .dimmed
+ {
+    opacity: 1 !important;
+    color: #555 !important;
+}
+
+/* Dimmed and hover/focus */
+div.onetopic ul.nav-tabs > li.active > a .dimmed,
+div.onetopic ul.nav-tabs > li.active > a .dimmed,
+div.onetopic ul.nav-tabs > li > a:hover .dimmed,
+div.onetopic ul.nav-tabs > li > a:focus .dimmed {
+    color: white !important;
+}
+
+/**
+ * MAIN CONTENT
+ */
+
+
+
+
+/**
+ * FOOTER
+ */
+
+#page-footer {
+    text-align: left !important;
+    padding: 2em;
+    color: #fff;
+    background-color: #1f3345
+}
+#page-footer .text-center {
+    background: url('http://www.gotafe.vic.edu.au/wp-content/uploads/2016/10/State-Gov-Vic-Logo2.png') no-repeat top right;
+    background-repeat: none;
+    text-align: left !important;
+    margin: 2em 2em 2em 4em;
+}
+#page-footer a {
+    color: #fff !important;
+}
+
+/**
+ * DASHBOARD
+ */
+
+.block_course_overview .content h2.title {
+    font-size: 1.2em !important;
+    line-height: 1.4em !important;
+}
+h3.coursename,
+h3.categoryname,
+h4.categoryname {
+    font-size: 1.1em;
+    line-height: 1.2em;
+}
+
+/**
+ * FIXES TO DISPLAY ISSUES
+ */
+
+/* Re-colour drowdown caret in Top Nav*/
+
+header .caret {
+    border-top-color: white !important;
+    border-bottom-color: white !important;
+}
+
+/* Resize images to fit their container.  To prevent images flowing off the screen, particularly on mobile devices*/
+
+div.no-overflow {
+    overflow: inherit;
+}
+div.no-overflow img {
+    max-width: 100%;
+    max-height: 100%;
+    height: auto;
+}
+
+/*Specific overrides*/
+
+.block_course_contents .section-number {
+    background-color: #333
+}
+#region-main a.rspkr_dr_link {
+    padding-right: 1.2em;
+    padding-left: 0.2em;
+}
+.breadcrumb-nav {
+    margin-left: 1em;
+    background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.breadcrumb-button {
+    margin-right: 1em;
+}
+.small-logo {
+    display: none;
+}
+
+/*IE Only - Move user selector box on the grading interface to the right, to prevent overlap of scrollbars*/
+
+@media  (min-width: 1200px) {
+    div[data-region="grading-navigation"] div[data-region="user-selector"] {
+        margin-left: 1.5% !important;
+    }
+}
+
+/* Fixes for 3.5 to override existing CSS */
+
+.section .activity .actions .btn.btn-link {
+    border-width: 0;
+}
+
+.content-item-container .content-item-body,
+.content-item-container .view-more,
+.popover-region-footer-container .popover-region-seeall-text {
+    color: #1f3345 !important;
+}
