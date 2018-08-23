@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-07-06 13:54:29
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-08-10 14:47:41
+* @Last Modified time: 2018-08-23 15:33:12
 */
 
 /* ===============================
@@ -116,7 +116,7 @@ body {
 #snap-coverimagecontrol {display: none !important;}
 
 /* If not in a cdefined  category, apply a defualt colour */
-body.gotafe-placeholder #page-header, body.gotafe-breadcrumb-courses #page-header {background-color: black;}
+body.gotafe-breadcrumb-courses #page-header {background-color: black;}
 
 /* Apply  banner colours for teaching areas */
 body.gotafe-breadcrumb-business-it #page-header {background-color: #005091 !important;}
