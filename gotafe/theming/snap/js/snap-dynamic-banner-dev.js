@@ -2,12 +2,12 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-08-24 15:37:09
+ * @Last Modified time: 2018-08-24 15:41:48
  */
 
 jQuery(document).ready(function($) {
     BuildBanner(); // Build dynamic banners
-    AddSearhToMyCourses(); // Add search box to My Courses UI
+    AddSearhToMyCourses(); // Add search box to Snap's My Courses UI
 });
 
 function BuildBanner() {
@@ -168,7 +168,6 @@ function BuildBanner() {
     }
 }
 
-
 function friendlyname(text) {
     // Translate audience abbreviations into human readable alternatives
     var shortname = slugify(text);
@@ -239,7 +238,6 @@ function friendlyname(text) {
     }
     return longname;
 }
-
 
 function slugify(text) {
     // https://gist.github.com/mathewbyrne/1280286
