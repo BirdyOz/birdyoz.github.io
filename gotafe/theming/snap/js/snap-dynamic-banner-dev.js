@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-08-17 08:23:11
+ * @Last Modified time: 2018-08-24 10:14:06
  */
 
 jQuery(document).ready(function($) {
@@ -11,16 +11,10 @@ jQuery(document).ready(function($) {
 });
 
 function BuildBanner() {
+    console.log("@GB: BuildBanner invoked (Ver 2018-08-24 10:13:33)");
     // Only invoke The BuildBarrer function if within a course
     // If I am not at the site level, I must be in a course
     if ($('.format-site').length === 0) {
-        // Prepend stylesheet
-        // $('head').append('<link rel="stylesheet" type="text/css" href="https://birdyoz.github.io/gotafe/theming/snap/css/dynamic-banner-switcher.css">');
-
-
-        // Add .mast-image to page header.  This "tricks" snap to think their is a banner image, and style the text accordingly
-        $('#page-header').addClass('mast-image');
-        console.log("@GB: mast-image applied");
 
         // Define global variables
         var logo, codes_array, details_array, code_text, title_text, audience_text, audience_name, year_text = "";
