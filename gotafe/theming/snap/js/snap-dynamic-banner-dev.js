@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-08-24 10:14:06
+ * @Last Modified time: 2018-08-24 10:28:25
  */
 
 jQuery(document).ready(function($) {
@@ -11,10 +11,12 @@ jQuery(document).ready(function($) {
 });
 
 function BuildBanner() {
-    console.log("@GB: BuildBanner invoked (Ver 2018-08-24 10:13:33)");
+    console.log("@GB: BuildBanner invoked (Ver 2018-08-24 10:28:23)");
     // Only invoke The BuildBarrer function if within a course
     // If I am not at the site level, I must be in a course
     if ($('.format-site').length === 0) {
+        // I am in a course, so add a 'hook' to set general styles
+        $('body').addClass('gotafe-in-course');
 
         // Define global variables
         var logo, codes_array, details_array, code_text, title_text, audience_text, audience_name, year_text = "";
