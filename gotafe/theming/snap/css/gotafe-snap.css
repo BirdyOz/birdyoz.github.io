@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-07-06 13:54:29
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-08-24 08:52:32
+* @Last Modified time: 2018-08-24 10:04:27
 */
 
 /* ===============================
@@ -32,6 +32,7 @@ body {
     border-left-color: #03a9f4 !important;
 }
 
+/* Warning messages, including feedback on quizzes.*/
 .alert-warning, #page-admin-index .adminwarning, .uninstalldeleteconfirmexternal, .que .outcome, .que .comment {
     color: black!important;
     background-color: rgba(255,152,0,.2);
