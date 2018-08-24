@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-08-24 10:28:25
+ * @Last Modified time: 2018-08-24 15:37:09
  */
 
 jQuery(document).ready(function($) {
@@ -63,8 +63,6 @@ function BuildBanner() {
 
         if (TitleArray) {
 
-
-
             // Extract codes_array
             codes_array = TitleArray[1].split("|").sort();
             // Trim whitespace
@@ -73,7 +71,6 @@ function BuildBanner() {
             });
 
             console.log("@GB: codes_array = ", codes_array);
-
 
             // Extract descriptive title
             title_text = TitleArray[2].trim();
@@ -153,14 +150,14 @@ function BuildBanner() {
                 $('#gotafe-banner-year').addClass("panel-danger");
             }
 
-            // Is this subject 'In Development'?
+            // Is this subject 'Ledarning and Development'?
             if (year_text.substring(0, 2) === "LD") {
                 // Add footer to 'Year' panel
                 $('#gotafe-banner-year').prepend("<div class=\"panel-heading\">Learning Development<\/div>");
                 $('#gotafe-banner-year').addClass("panel-danger");
             }
 
-            // Is this subject 'In Development'?
+            // Is this subject 'Staff Sandpit'?
             if (year_text.substring(0, 2) === "SP") {
                 // Add footer to 'Year' panel
                 $('#gotafe-banner-year').prepend("<div class=\"panel-heading\">Staff Sandpit<\/div>");
