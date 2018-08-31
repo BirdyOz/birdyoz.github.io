@@ -2,12 +2,11 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-08-22 14:06:27
+ * @Last Modified time: 2018-08-30 16:29:39
  */
 
 $(function() {
 
-    console.log("@GB: Unsplash embed code invoked", title);
     var url_string = window.location.href;
     if (url_string.indexOf("?") > 0) {
         console.log("@GB: Has parameters");
