@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-08-24 15:41:48
+ * @Last Modified time: 2018-08-31 10:21:39
  */
 
 jQuery(document).ready(function($) {
@@ -253,5 +253,5 @@ function slugify(text) {
 function AddSearhToMyCourses() {
     // Adds a search box to the top of the SNAP "My Courses" UI
     var snip = '<div class="clearfix"></div> <div class="card-block snap-mycourses-search"> <div class="card-text content"> <div class="no-overflow"> <form id="coursesearch" action="https://gotafetest34.trainingvc.com.au/course/search.php" method="get"> <fieldset class="coursesearchbox invisiblefieldset"> <label for="shortsearchbox">Search all courses </label> <input name="search" id="shortsearchbox" type="text" value=""> <input type="submit" value="Go"> </fieldset> </form> </div> <div class="footer"></div> </div>';
-    $('#snap-pm-courses-current-cards').prepend(snip);
+    $('#snap-pm-courses-current').prepend(snip);
 }
