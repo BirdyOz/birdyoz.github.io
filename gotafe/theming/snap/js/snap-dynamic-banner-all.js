@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-09-07 11:47:17
+ * @Last Modified time: 2018-09-07 11:55:33
  */
 
 // If JQuery is undefined, inject Jquery
@@ -23,7 +23,7 @@ jQuery(document).ready(function($) {
         // I'm in clean
     } else {
         // I'm in neither - Do nothing
-        return false;
+        return false
     }
 });
 
@@ -186,7 +186,7 @@ function BuildSnapBanner() {
 }
 
 function BuildCleanBanner() {
-    console.log("@GB: BuildCleanBanner Invoked"r);
+    console.log("@GB: BuildCleanBanner Invoked");
 
 }
 
