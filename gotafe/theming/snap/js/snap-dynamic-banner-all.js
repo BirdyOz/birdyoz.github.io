@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-09-07 11:55:33
+ * @Last Modified time: 2018-09-07 11:58:52
  */
 
 // If JQuery is undefined, inject Jquery
@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
         BuildSnapBanner(); // Build dynamic banners
         AddSearhToMyCourses(); // Add search box to Snap's My Courses UI
     } else if ($('head link[href*="/theme/styles.php/clean/"]')[0]) {
-        // I'm in clean
+        BuildCleanBanner(); // Build dynamic banners
     } else {
         // I'm in neither - Do nothing
         return false
