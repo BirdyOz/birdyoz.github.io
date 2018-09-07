@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-09-07 15:02:57
+ * @Last Modified time: 2018-09-07 15:33:41
  */
 
 // If JQuery is undefined, inject Jquery
@@ -44,13 +44,6 @@ function BuildSnapBanner() {
 
         // Break this up to Title, audience, codes and year
         BannerTitle(description, "snap");
-
-        // Update banners only if they match naming convention
-        if (TitleArray) {
-            // Update banner heading, to match descriptive title
-            $('#page-mast>h1>a').text(title_text);
-        }
-
     }
 }
 
@@ -112,7 +105,9 @@ function BannerTitle(description, theme) {
         title_text = TitleArray[2].trim();
 
         // Update banner heading, to match descriptive title
-        $('#page-mast>h1>a').text(title_text);
+        if (theme == "snap") {
+            $('#page-mast>h1>a').text(title_text);
+        }
 
         // Extract year and audience
         details_array = TitleArray[3].split(",");
@@ -159,6 +154,8 @@ function BannerTitle(description, theme) {
                 audience_text = "<div id =\"audience\"><span>Audience: <\/span>" + audience_name + "<\/div>";
                 $('.page-header-headings').append(audience_text);
             }
+
+            // Define year text
             year_text = details_array[details_array.length - 1];
         }
 
