@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-09-07 11:58:52
+ * @Last Modified time: 2018-09-07 12:18:24
  */
 
 // If JQuery is undefined, inject Jquery
@@ -10,11 +10,14 @@
 if (typeof jQuery == 'undefined') {
     document.write('<script src="https://code.jquery.com/jquery-3.3.1.min.js"></' + 'script>');
 }
-
 //
 jQuery(document).ready(function($) {
-    // Determin if I am in Snap, Clean or Other
 
+    // Define global variables
+    var logo, codes_array, details_array, code_text, title_text, audience_text, audience_name, year_text = "";
+
+
+    // Determin if I am in Snap, Clean or Other
     if ($("body.theme-snap")[0]) {
         // I'm in snap
         BuildSnapBanner(); // Build dynamic banners
@@ -23,7 +26,7 @@ jQuery(document).ready(function($) {
         BuildCleanBanner(); // Build dynamic banners
     } else {
         // I'm in neither - Do nothing
-        return false
+        return false;
     }
 });
 
@@ -34,9 +37,6 @@ function BuildSnapBanner() {
     if ($('.format-site').length === 0) {
         // I am in a course, so add a 'hook' to set general styles
         $('body').addClass('gotafe-in-course');
-
-        // Define variables
-        var logo, codes_array, details_array, code_text, title_text, audience_text, audience_name, year_text = "";
 
         // Extract breadcrumbs.  Create an array.  Only select items from breadcrumbs which refer to categories.
         var breadcrumbs = $(".breadcrumb-item>a");
