@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-09-07 13:12:11
+ * @Last Modified time: 2018-09-07 13:16:05
  */
 
 // If JQuery is undefined, inject Jquery
@@ -46,7 +46,9 @@ function BuildSnapBanner() {
 
         // Extract cthe ccourse title
         var description = $('#page-mast>h1>a').text();
-        BannerTitle (decription);
+
+        // Break this up to Title, audience, codes and year
+        BannerTitle (description);
     }
 }
 
