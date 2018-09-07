@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-09-07 12:18:24
+ * @Last Modified time: 2018-09-07 13:03:21
  */
 
 // If JQuery is undefined, inject Jquery
@@ -17,7 +17,7 @@ jQuery(document).ready(function($) {
     var logo, codes_array, details_array, code_text, title_text, audience_text, audience_name, year_text = "";
 
 
-    // Determin if I am in Snap, Clean or Other
+    // Determine if I am in Snap, Clean or Other
     if ($("body.theme-snap")[0]) {
         // I'm in snap
         BuildSnapBanner(); // Build dynamic banners
@@ -38,17 +38,11 @@ function BuildSnapBanner() {
         // I am in a course, so add a 'hook' to set general styles
         $('body').addClass('gotafe-in-course');
 
-        // Extract breadcrumbs.  Create an array.  Only select items from breadcrumbs which refer to categories.
+        // Extract breadcrumbs.  Create an array.
         var breadcrumbs = $(".breadcrumb-item>a");
 
-        // Loop through the breadcrumbs, looking for sub-branding
-        $(breadcrumbs).each(function() {
-            var breadcrumb = $(this).text();
-            // Convert breadcrumb into "slug", then add class to body
-            var breadcrumb_class = "gotafe-breadcrumb-" + slugify(breadcrumb);
-            console.log("@GB: breadcrumb_class = ", breadcrumb_class);
-            $('body').addClass(breadcrumb_class);
-        });
+        // Add a unique class to the body tage, for each element of the breadcrumbs
+        AddBreadcrumbClasses(breadcrumbs);
 
         // Extract course short description from breadcrumbs.  It is the current banner header
         var description = $('#page-mast>h1>a').text();
@@ -190,6 +184,16 @@ function BuildCleanBanner() {
 
 }
 
+function AddBreadcrumbClasses(breadcrumbs) {
+        // Loop through the breadcrumbs, looking for sub-branding
+        $(breadcrumbs).each(function() {
+            var breadcrumb = $(this).text();
+            // Convert breadcrumb into "slug", then add class to body
+            var breadcrumb_class = "gotafe-breadcrumb-" + slugify(breadcrumb);
+            console.log("@GB: breadcrumb_class = ", breadcrumb_class);
+            $('body').addClass(breadcrumb_class);
+        });
+}
 function FriendlyName(text) {
     // Translate audience abbreviations into human readable alternatives
     var shortname = slugify(text);
