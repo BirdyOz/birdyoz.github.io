@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-09-07 14:43:59
+ * @Last Modified time: 2018-09-07 14:50:36
  */
 
 // If JQuery is undefined, inject Jquery
@@ -14,9 +14,9 @@ if (typeof jQuery == 'undefined') {
 jQuery(document).ready(function($) {
 
     // Define global variables
-    var logo, codes_array, details_array, code_text, title_text, audience_text, audience_name, year_text = "";
-    var is_snap = false;
-    var is_clean = false;
+    var logo = "", codes_array = "", details_array = "", code_text = "", title_text = "", audience_text = "", audience_name = "", year_text = "";
+    var is_snap = false, is_clean = false;
+    console.log("@GB: is_snap = ", is_snap);
 
     // Determine if I am in Snap, Clean or Other
     if ($("body.theme-snap")[0]) {
@@ -24,10 +24,14 @@ jQuery(document).ready(function($) {
         is_snap = true;
         BuildSnapBanner(); // Build dynamic banners
         AddSearhToMyCourses(); // Add search box to Snap's My Courses UI
-    } else if ($('head link[href*="/theme/styles.php/clean/"]')[0]) {
+    }
+
+    else if ($('head link[href*="/theme/styles.php/clean/"]')[0]) {
         is_clean = true;
         BuildCleanBanner(); // Build dynamic banners
-    } else {
+    }
+
+    else {
         // I'm in neither - Do nothing
         return false;
     }
@@ -153,6 +157,7 @@ function BannerTitle(description) {
             // Add 'Audience' class to body.
 
             // Update snap banner
+            console.log("@GB: is_snap = ", is_snap);
             if (is_snap==true) {
                 var audience_class = "gotafe-audience-" + slugify(audience_str);
                 $('body').addClass(audience_class);
