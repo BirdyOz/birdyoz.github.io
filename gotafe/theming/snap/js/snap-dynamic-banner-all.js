@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-09-07 13:03:21
+ * @Last Modified time: 2018-09-07 13:12:11
  */
 
 // If JQuery is undefined, inject Jquery
@@ -41,11 +41,32 @@ function BuildSnapBanner() {
         // Extract breadcrumbs.  Create an array.
         var breadcrumbs = $(".breadcrumb-item>a");
 
-        // Add a unique class to the body tage, for each element of the breadcrumbs
+        // Add a unique class to the body tag, for each element of the breadcrumbs
         AddBreadcrumbClasses(breadcrumbs);
 
-        // Extract course short description from breadcrumbs.  It is the current banner header
+        // Extract cthe ccourse title
         var description = $('#page-mast>h1>a').text();
+        BannerTitle (decription);
+    }
+}
+
+function BuildCleanBanner() {
+    console.log("@GB: BuildCleanBanner Invoked");
+
+}
+
+function AddBreadcrumbClasses(breadcrumbs) {
+        // Loop through the breadcrumbs, looking for sub-branding
+        $(breadcrumbs).each(function() {
+            var breadcrumb = $(this).text();
+            // Convert breadcrumb into "slug", then add class to body
+            var breadcrumb_class = "gotafe-breadcrumb-" + slugify(breadcrumb);
+            console.log("@GB: breadcrumb_class = ", breadcrumb_class);
+            $('body').addClass(breadcrumb_class);
+        });
+}
+
+function BannerTitle (decription) {
 
         // This regex pattern matches the GOTAFE 2019 course naming convention
         //  UNIT CODE: Unit Title ([Audience, ]Year)
@@ -176,23 +197,6 @@ function BuildSnapBanner() {
             }
 
         }
-    }
-}
-
-function BuildCleanBanner() {
-    console.log("@GB: BuildCleanBanner Invoked");
-
-}
-
-function AddBreadcrumbClasses(breadcrumbs) {
-        // Loop through the breadcrumbs, looking for sub-branding
-        $(breadcrumbs).each(function() {
-            var breadcrumb = $(this).text();
-            // Convert breadcrumb into "slug", then add class to body
-            var breadcrumb_class = "gotafe-breadcrumb-" + slugify(breadcrumb);
-            console.log("@GB: breadcrumb_class = ", breadcrumb_class);
-            $('body').addClass(breadcrumb_class);
-        });
 }
 function FriendlyName(text) {
     // Translate audience abbreviations into human readable alternatives
