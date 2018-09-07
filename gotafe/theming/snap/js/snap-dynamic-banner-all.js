@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-09-07 14:39:09
+ * @Last Modified time: 2018-09-07 14:43:59
  */
 
 // If JQuery is undefined, inject Jquery
@@ -15,7 +15,8 @@ jQuery(document).ready(function($) {
 
     // Define global variables
     var logo, codes_array, details_array, code_text, title_text, audience_text, audience_name, year_text = "";
-    var is_snap, is_clean = false;
+    var is_snap = false;
+    var is_clean = false;
 
     // Determine if I am in Snap, Clean or Other
     if ($("body.theme-snap")[0]) {
