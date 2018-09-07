@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-09-07 14:34:07
+ * @Last Modified time: 2018-09-07 14:39:09
  */
 
 // If JQuery is undefined, inject Jquery
@@ -152,7 +152,7 @@ function BannerTitle(description) {
             // Add 'Audience' class to body.
 
             // Update snap banner
-            if (is_snap) {
+            if (is_snap==true) {
                 var audience_class = "gotafe-audience-" + slugify(audience_str);
                 $('body').addClass(audience_class);
                 audience_text = "<div id =\"gotafe-banner-audience\"><span class=\"muted\">Audience: <\/span>" + audience_name + "<\/div>";
@@ -160,7 +160,7 @@ function BannerTitle(description) {
             }
 
             // Update clean banner
-            if (is_clean) {
+            if (is_clean==true) {
                 var audience_class = "audience-" + slugify(audience_str);
                 $('header#page-header').addClass(audience_class);
                 audience_text = "<div id =\"audience\"><span>Audience: <\/span>" + audience_name + "<\/div>";
