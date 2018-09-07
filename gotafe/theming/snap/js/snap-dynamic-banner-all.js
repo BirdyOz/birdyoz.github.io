@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-09-07 14:32:05
+ * @Last Modified time: 2018-09-07 14:34:07
  */
 
 // If JQuery is undefined, inject Jquery
@@ -52,6 +52,11 @@ function BuildSnapBanner() {
         // Break this up to Title, audience, codes and year
         BannerTitle(description);
 
+        // Update banners only if they match naming convention
+        if (TitleArray) {
+            // Update banner heading, to match descriptive title
+            $('#page-mast>h1>a').text(title_text);
+        }
 
     }
 }
@@ -145,7 +150,6 @@ function BannerTitle(description) {
             }
 
             // Add 'Audience' class to body.
-
 
             // Update snap banner
             if (is_snap) {
