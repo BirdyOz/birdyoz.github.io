@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-09-07 14:50:36
+ * @Last Modified time: 2018-09-07 15:02:57
  */
 
 // If JQuery is undefined, inject Jquery
@@ -13,25 +13,13 @@ if (typeof jQuery == 'undefined') {
 //
 jQuery(document).ready(function($) {
 
-    // Define global variables
-    var logo = "", codes_array = "", details_array = "", code_text = "", title_text = "", audience_text = "", audience_name = "", year_text = "";
-    var is_snap = false, is_clean = false;
-    console.log("@GB: is_snap = ", is_snap);
-
     // Determine if I am in Snap, Clean or Other
     if ($("body.theme-snap")[0]) {
-        // I'm in snap
-        is_snap = true;
         BuildSnapBanner(); // Build dynamic banners
         AddSearhToMyCourses(); // Add search box to Snap's My Courses UI
-    }
-
-    else if ($('head link[href*="/theme/styles.php/clean/"]')[0]) {
-        is_clean = true;
+    } else if ($('head link[href*="/theme/styles.php/clean/"]')[0]) {
         BuildCleanBanner(); // Build dynamic banners
-    }
-
-    else {
+    } else {
         // I'm in neither - Do nothing
         return false;
     }
@@ -55,7 +43,7 @@ function BuildSnapBanner() {
         var description = $('#page-mast>h1>a').text();
 
         // Break this up to Title, audience, codes and year
-        BannerTitle(description);
+        BannerTitle(description, "snap");
 
         // Update banners only if they match naming convention
         if (TitleArray) {
@@ -82,7 +70,7 @@ function AddBreadcrumbClasses(breadcrumbs) {
     });
 }
 
-function BannerTitle(description) {
+function BannerTitle(description, theme) {
 
     // This regex pattern matches the GOTAFE 2019 course naming convention
     //  UNIT CODE: Unit Title ([Audience, ]Year)
@@ -157,8 +145,7 @@ function BannerTitle(description) {
             // Add 'Audience' class to body.
 
             // Update snap banner
-            console.log("@GB: is_snap = ", is_snap);
-            if (is_snap==true) {
+            if (theme == "snap") {
                 var audience_class = "gotafe-audience-" + slugify(audience_str);
                 $('body').addClass(audience_class);
                 audience_text = "<div id =\"gotafe-banner-audience\"><span class=\"muted\">Audience: <\/span>" + audience_name + "<\/div>";
@@ -166,7 +153,7 @@ function BannerTitle(description) {
             }
 
             // Update clean banner
-            if (is_clean==true) {
+            if (theme == "clean") {
                 var audience_class = "audience-" + slugify(audience_str);
                 $('header#page-header').addClass(audience_class);
                 audience_text = "<div id =\"audience\"><span>Audience: <\/span>" + audience_name + "<\/div>";
