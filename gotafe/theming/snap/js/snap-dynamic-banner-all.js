@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-09-07 15:33:41
+ * @Last Modified time: 2018-09-07 15:44:20
  */
 
 // If JQuery is undefined, inject Jquery
@@ -35,13 +35,11 @@ function BuildSnapBanner() {
 
         // Extract breadcrumbs.  Create an array.
         var breadcrumbs = $(".breadcrumb-item>a");
-
         // Add a unique class to the body tag, for each element of the breadcrumbs
         AddBreadcrumbClasses(breadcrumbs);
 
-        // Extract cthe ccourse title
+        // Extract the ccourse title
         var description = $('#page-mast>h1>a').text();
-
         // Break this up to Title, audience, codes and year
         BannerTitle(description, "snap");
     }
@@ -66,40 +64,13 @@ function AddBreadcrumbClasses(breadcrumbs) {
 function BannerTitle(description, theme) {
 
     // This regex pattern matches the GOTAFE 2019 course naming convention
-    //  UNIT CODE: Unit Title ([Audience, ]Year)
-    //      OR
-    //  UNIT CODE 1 | UNIT CODE 2 | UNIT CODE 3: Cluster Title ([Audience, ]Year)
-    //
-    // Examples:
-    //  HLTEN511B: Provide nursing care for clients requiring palliative care (2019)
-    //  AHCHBR203A: Provide daily care for horses (VETIS, 2019)
-    //  SITXMPR501: Obtain and manage sponsorship (Hosp, 2019)
-    //  BSBWOR502A: Ensure Team Effectiveness (ID19)
-    //  AHCWRK502A | AHCWRK503A: Reports & Data Cluster 1 (Wine, ID19)
-    //
-    // Capture groups:
-    // /^(.*)\:(.*)\((.*)\)
-    //    $1    $2    $3
-    //  $1 - Code(s)
-    //  $2 - Descriptive title
-    //  $3 - Audience (if defined) & Year
-
+    //  eg AHCWRK502A | AHCWRK503A: Reports & Data Cluster 1 (Wine, 2019)
     var re = /^(.*)\:(.*)\((.*)\)/gi;
     var TitleArray = re.exec(description);
 
     // Only parse title if it matches the naming convention; ie it matches the pattern defined by the regex
-    // This is to avoid unnecessary processing of descriptions that do not match the naming convention
-
     if (TitleArray) {
 
-        // Extract codes_array
-        codes_array = TitleArray[1].split("|").sort();
-        // Trim whitespace
-        codes_array = $.map(codes_array, function(value) {
-            return value.trim();
-        });
-
-        console.log("@GB: codes_array = ", codes_array);
 
         // Extract descriptive title
         title_text = TitleArray[2].trim();
@@ -108,6 +79,35 @@ function BannerTitle(description, theme) {
         if (theme == "snap") {
             $('#page-mast>h1>a').text(title_text);
         }
+
+
+
+        // Extract codes_array
+        codes_array = TitleArray[1].split("|").sort();
+        // Trim whitespace
+        codes_array = $.map(codes_array, function(value) {
+            return value.trim();
+        });
+
+
+        // For each code, add class to body.
+        // This will allow for more granular sub-branding, once banner images have been developed
+        $.each(codes_array, function(index, val) {
+            var code_class = "gotafe-code-" + slugify(val);
+            $('body').addClass(code_class);
+        });
+
+        // If there is more than one code
+        if (codes_array.length === 1) {
+            // Single Unit of Comptency
+            code_text = "<div id =\"gotafe-banner-codes\"><span class=\"muted\">Code: <\/span>" + codes_array + "<\/div>";
+        } else {
+            // Cluster of 2 or more units
+            // concatenate with ", ".  Use " & " before the last code
+            code_text = "<div id =\"gotafe-banner-codes\"><span class=\"muted\">Codes: <\/span>" + codes_array.slice(0, codes_array.length - 1).join(", ") + " & " + codes_array[codes_array.length - 1] + "<\/div>";
+        }
+        // Append below banner heading
+        $('#page-mast>h1').after(code_text);
 
         // Extract year and audience
         details_array = TitleArray[3].split(",");
@@ -159,25 +159,7 @@ function BannerTitle(description, theme) {
             year_text = details_array[details_array.length - 1];
         }
 
-        // For each code, add class to body.
-        // This will allow for more granular sub-branding, once banner images have been developed
-        $.each(codes_array, function(index, val) {
-            var code_class = "gotafe-code-" + slugify(val);
-            $('body').addClass(code_class);
-        });
 
-        // If there is more than one code
-        if (codes_array.length === 1) {
-            // Single Unit of Comptency
-            code_text = "<div id =\"gotafe-banner-codes\"><span class=\"muted\">Code: <\/span>" + codes_array + "<\/div>";
-
-        } else {
-            // Cluster of 2 or more units
-            // concatenate with ", ".  Use " & " before the last code
-            code_text = "<div id =\"gotafe-banner-codes\"><span class=\"muted\">Codes: <\/span>" + codes_array.slice(0, codes_array.length - 1).join(", ") + " & " + codes_array[codes_array.length - 1] + "<\/div>";
-        }
-        // Append below banner heading
-        $('#page-mast>h1').after(code_text);
 
         // Update Page Headings to prepend year.  Add as a bootstrap panel
         $('#page-mast>h1').before("<div id =\"gotafe-banner-year\" class=\"panel pull-right text-center\"> <div class=\"panel-body \">" + year_text + "<\/div>");
