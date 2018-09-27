@@ -1,6 +1,7 @@
 # Wodonga Snap Retheming
 
-This document outline the taks and 'Steps to replicate' for the Wodonga snap retheming, as seen at: [Wodonga - Open Learning (formerly MoodleRooms) - Dress rehearsal site](https://wodonga-tafevc.mrooms.net/)
+This document outline the taks and 'Steps to replicate' for the Wodonga snap retheming, as seen at: <br>
+ **[Wodonga - Open Learning (formerly MoodleRooms) - Dress rehearsal site](https://wodonga-tafevc.mrooms.net/)**
 
 <!-- MarkdownTOC -->
 
@@ -46,9 +47,12 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
 
 1. Copy the contents of the file [/css/wodonga-snap.css](/css/wodonga-snap.css)
 2. Paste the contents of this into the SNAP theme settings, as found at: 'Appearance > Themes > Snap > Custom CSS' (theme_snap | customcss)
+3. Save and force-refresh your browser. (Note, for the developer ONLY, you may notice that Moodle momentarily loses all styling. This is due to your browser caching the old CSS.  <kbd>SHIFT</kbd> <kbd>+</kbd> Refresh to see your chnages.)
 
 <a id="snap-theme-setting-changes"></a>
 ### Snap theme setting changes ###
+
+1. Social media - Social Media links are found at: 'Appearance > Themes > Snap > Social Media'<br>To remove social media, simply blank out any links here.
 
 
 <a id="language-pack-changes"></a>
