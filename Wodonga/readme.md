@@ -52,12 +52,12 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
 <a id="language-pack-changes"></a>
 ### Language pack changes ###
 
-Language pack changes control changes to terminology, such as reffering to 'Courses' as 'Units'
+Language packs control changes to terminology, such as referring to 'Courses' as 'Units'
 
 1. From Site administration > Language customisation, Choose "English (en)"
 2. Change the following Strings **FROM** "Dashboard" **TO** "Help"
-    - *core > myhome*.  Local Customisation = 'Help'
-    - *core_admin > mymoodle*.  Local Customisation = 'Help'
-    - *core_my > mymoodle* .  Local Customisation = 'Help'
+    - *core > myhome* - Local Customisation = 'Help'
+    - *core_admin > mymoodle* - Local Customisation = 'Help'
+    - *core_my > mymoodle*  - Local Customisation = 'Help'
 
 
