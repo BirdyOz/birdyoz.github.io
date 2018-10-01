@@ -10,7 +10,6 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
     - [CSS theming changes](#css-theming-changes)
     - [Snap theme setting changes](#snap-theme-setting-changes)
     - [Language pack changes](#language-pack-changes)
-    - [Javascipt 'hacks'](#javascipt-hacks)
 
 <!-- /MarkdownTOC -->
 
@@ -30,9 +29,9 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
     + [x] Style the logout and last viewed to appear as bootstrap buttons
     + [x] Remove the course progress bar
 - Accessibility and contrast changes
-    + [ ] Change colour of hidden/conditional items to #BC243C
+    + [x] Change colour of hidden/conditional items to #BC243C
 - Edits to Moodle course interface
-    + [ ] Relocate the Course Dashboard to the top of LH navigation
+    + [x] Relocate the Course Dashboard to the top of LH navigation
 - Review and confirm changes
     + [ ] Confirm changes with Geoff
     + [ ] Document all chnages
@@ -60,9 +59,4 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
 
 Language pack chnages control changes to terminology, such as reffering to 'Courses' as 'Units'
 
-<a id="javascipt-hacks"></a>
-### Javascipt 'hacks' ###
 
-For functional changes that cannot be controlled through CSS or Moodle configuration changes described above, Javascript can be deployed to manipulate the DOM and re-render the page dynamically.
-
-Moodle snap theme has built in JQuery support, that provides a ready means to maniplulate the DOM.
