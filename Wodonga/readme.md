@@ -8,7 +8,6 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
 - [Task list](#task-list)
 - [Steps to replicate](#steps-to-replicate)
     - [CSS theming changes](#css-theming-changes)
-    - [Snap theme setting changes](#snap-theme-setting-changes)
     - [Language pack changes](#language-pack-changes)
 
 <!-- /MarkdownTOC -->
@@ -23,9 +22,9 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
     + [x] Theme out footer elements
     + [ ] Remove social media
 - Amendments to the SNAP ‘My Courses’ interface
-    + [ ] Rename 'Dashboard' to 'Help'
+    + [x] Rename 'Dashboard' to 'Help'
     + [x] Relocate the logout
-    + [x] Rename the close box to last viewed.  Reposition to the left of logout
+    + [x] Rename the close box to last viewed.  Reposition to the left  of logout
     + [x] Style the logout and last viewed to appear as bootstrap buttons
     + [x] Remove the course progress bar
 - Accessibility and contrast changes
@@ -34,7 +33,7 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
     + [x] Relocate the Course Dashboard to the top of LH navigation
 - Review and confirm changes
     + [ ] Confirm changes with Geoff
-    + [ ] Document all chnages
+    + [ ] Document all changes
     + [ ] Sign off and handover
 
 
@@ -48,15 +47,17 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
 2. Paste the contents of this into the SNAP theme settings, as found at: 'Appearance > Themes > Snap > Custom CSS' (theme_snap | customcss)
 3. Save and force-refresh your browser. (Note, for the developer ONLY, you may notice that Moodle momentarily loses all styling. This is due to your browser caching the old CSS.  <kbd>SHIFT</kbd> <kbd>+</kbd> Refresh to see your chnages.)
 
-<a id="snap-theme-setting-changes"></a>
-### Snap theme setting changes ###
-
-1. Social media - Social Media links are found at: 'Appearance > Themes > Snap > Social Media'<br>To remove social media, simply blank out any links here.
 
 
 <a id="language-pack-changes"></a>
 ### Language pack changes ###
 
-Language pack chnages control changes to terminology, such as reffering to 'Courses' as 'Units'
+Language pack changes control changes to terminology, such as reffering to 'Courses' as 'Units'
+
+1. From Site administration > Language customisation, Choose "English (en)"
+2. Change the following Strings **FROM** "Dashboard" **TO** "Help"
+    - *core > myhome*.  Local Customisation = 'Help'
+    - *core_admin > mymoodle*.  Local Customisation = 'Help'
+    - *core_my > mymoodle* .  Local Customisation = 'Help'
 
 
