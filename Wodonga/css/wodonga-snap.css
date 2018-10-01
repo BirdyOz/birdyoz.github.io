@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-10-01 08:14:38
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-10-01 08:47:51
+* @Last Modified time: 2018-10-01 10:06:10
 */
 
 
@@ -21,9 +21,64 @@
     margin-top: 0;
 }
 
+
+
 /* ==================================================
-   Snas My Courses Interface
+   Snap My Courses Interface
    ================================================== */
+
+/* Remove progress bar */
+.coursecard-dynamicinfo {
+    display: none;
+}
+
+/* Move logout */
+#snap-pm-logout {
+    position: absolute;
+    top: 18px;
+    right: 4px;
+    padding-left: 24px !important;
+}
+
+/* Style close button */
+#snap-pm-close {
+    position: absolute;
+    top: 18px;
+    right: 110px;
+    background: none !important;
+    width: auto;
+    font-size: 1em;
+    padding-top: 13px !important;
+}
+
+#snap-pm-close:before {display: none;}
+
+#snap-pm-close small {
+    display: none;
+}
+
+#snap-pm-close:after {
+    content: "Last Viewed" !important;
+}
+
+.snap-icon-close:before {
+    background-image: none !important;
+}
+
+/* Style as if Boostrap buttons */
+a#snap-pm-logout, a#snap-pm-close {
+    border: 1px solid white;
+    padding: 10px;
+    font-size: 0.8em !important;
+    height: 42px;
+}
+
+a#snap-pm-logout:hover, a#snap-pm-close:hover {
+  text-decoration: none;
+  background-color: black !important;
+  }
+
+
 
 
 /* ==================================================
@@ -35,6 +90,10 @@
    Footer
    ================================================== */
 
+/* reduce padding whitespace */
+#moodle-footer {
+    padding-top: 20px;
+}
 
 /* Hide MoodleRooms specific footer text and copyright statement */
 #mrooms-footer {
@@ -42,5 +101,7 @@
     height: 1.2em;
 }
 
-/* Tutn back on the Moodle help link */
-#mrooms-footer a.helplinkpopup {visibility: visible !important;}
+/* Turn back on the Moodle help link */
+#mrooms-footer a.helplinkpopup {
+    visibility: visible !important;
+}
