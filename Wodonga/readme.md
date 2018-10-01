@@ -20,7 +20,7 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
     + [x] Collapse whitespace
     + [x] Remove duplicate login buttons
     + [x] Theme out footer elements
-    + [ ] Remove social media
+    + [ ] ~~Remove social media~~
 - Amendments to the SNAP ‘My Courses’ interface
     + [x] Rename 'Dashboard' to 'Help'
     + [x] Relocate the logout
@@ -33,7 +33,7 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
     + [x] Relocate the Course Dashboard to the top of LH navigation
 - Review and confirm changes
     + [ ] Confirm changes with Geoff
-    + [ ] Document all changes
+    + [x] Document all changes
     + [ ] Sign off and handover
 
 
@@ -56,8 +56,8 @@ Language packs control changes to terminology, such as referring to 'Courses' as
 
 1. From Site administration > Language customisation, Choose "English (en)"
 2. Change the following Strings **FROM** "Dashboard" **TO** "Help"
-    - *core > myhome* - Local Customisation = 'Help'
-    - *core_admin > mymoodle* - Local Customisation = 'Help'
-    - *core_my > mymoodle*  - Local Customisation = 'Help'
+    - *core > myhome* -> Local Customisation = 'Help'
+    - *core_admin > mymoodle* -> Local Customisation = 'Help'
+    - *core_my > mymoodle*  -> Local Customisation = 'Help'
 
 
