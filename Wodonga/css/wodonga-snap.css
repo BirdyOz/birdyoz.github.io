@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-10-01 08:14:38
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-10-01 10:06:10
+* @Last Modified time: 2018-10-01 11:25:53
 */
 
 
@@ -32,7 +32,7 @@
     display: none;
 }
 
-/* Move logout */
+/* Move and style logout */
 #snap-pm-logout {
     position: absolute;
     top: 18px;
@@ -51,18 +51,20 @@
     padding-top: 13px !important;
 }
 
+/* Remove the close 'X' icon */
 #snap-pm-close:before {display: none;}
-
-#snap-pm-close small {
-    display: none;
-}
-
-#snap-pm-close:after {
-    content: "Last Viewed" !important;
-}
 
 .snap-icon-close:before {
     background-image: none !important;
+}
+
+/* Remove 'close' text */
+#snap-pm-close small {
+    display: none;
+}
+/* Update text to last viewed */
+#snap-pm-close:after {
+    content: "Last Viewed" !important;
 }
 
 /* Style as if Boostrap buttons */
@@ -76,14 +78,44 @@ a#snap-pm-logout, a#snap-pm-close {
 a#snap-pm-logout:hover, a#snap-pm-close:hover {
   text-decoration: none;
   background-color: black !important;
-  }
+}
 
-
+/* Remove dash after 'Grades' */
+a[href $="/grade/report/overview/index.php"]:after {
+  display: none !important;
+}
 
 
 /* ==================================================
-   Moodle Course
+   Moodle Course - Navigation
    ================================================== */
+
+/* Increased contrast for hidden/conditional/unpublished content.  */
+
+#snap-course-wrapper #chapters li.draft .chapter-title:before {
+    background-color: #BC243C;
+}
+
+.snap-conditional-tag, .snap-stealth-tag, .snap-draft-tag, .snap-current-tag, .text-warning, .red, .notifyproblem, .completion-expired, span.flagged-tag, tr.flagged-tag, span.flagged-tag a, tr.flagged-tag a, .moodle-dialogue-exception .param-stacktrace .stacktrace-line, .connecting {
+    color: #BC243C!important;
+}
+
+
+/* Move Course Dashboard above LH navigation */
+
+#course-toc {
+  margin-top: 3em;
+}
+
+#toc-search {
+  top: 4em;
+}
+
+#course-toc a[href="#coursetools"] {
+  /*display: none !important;*/
+  position: absolute;
+  top: 1em;
+}
 
 
 /* ==================================================
