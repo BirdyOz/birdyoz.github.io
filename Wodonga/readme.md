@@ -20,8 +20,8 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
     + [x] Collapse whitespace
     + [x] Remove duplicate login buttons
     + [x] Theme out footer elements
-    + ~~[ ] Remove social media~~
     + [ ] Remove policies and mobile app links from footer
+    + [x] Make "Browse all units" larger.
 - Amendments to the SNAP ‘My Courses’ interface
     + [x] Rename 'Dashboard' to 'Help'
     + [x] Relocate the logout
@@ -29,12 +29,13 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
     + [x] Style the logout and last viewed to appear as bootstrap buttons
     + [x] Remove the course progress bar
     + [ ] On small format devices push content down to make space for buttons and render as text links
+    + [x] Round the corners of buttons
 - Accessibility and contrast changes
     + [x] Change colour of hidden/conditional items to #BC243C
 - Edits to Moodle course interface
     + [x] Relocate the Course Dashboard to the top of LH navigation
 - Review and confirm changes
-    + [ ] Confirm changes with Geoff
+    + [x] Confirm changes with Geoff
     + [x] Document all changes
     + [ ] Sign off and handover
 

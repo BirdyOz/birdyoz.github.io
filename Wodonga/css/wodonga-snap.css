@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-10-01 08:14:38
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-10-02 15:48:13
+* @Last Modified time: 2018-10-02 16:01:30
 */
 
 
@@ -84,6 +84,10 @@ a#snap-pm-logout:hover, a#snap-pm-close:hover {
 /* Remove dash after 'Grades' */
 a[href $="/grade/report/overview/index.php"]:after {
   display: none !important;
+}
+
+.snap-personal-menu-more {
+  padding-right: 40px !important;
 }
 
 .snap-personal-menu-more small {
