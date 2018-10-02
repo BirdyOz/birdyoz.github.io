@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-10-01 08:14:38
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-10-02 12:36:28
+* @Last Modified time: 2018-10-02 15:48:13
 */
 
 
@@ -36,7 +36,7 @@
 #snap-pm-logout {
     position: absolute;
     top: 18px;
-    right: 4px;
+    right: 20px;
     padding-left: 24px !important;
 }
 
@@ -44,7 +44,7 @@
 #snap-pm-close {
     position: absolute;
     top: 18px;
-    right: 110px;
+    right: 130px;
     background: none !important;
     width: auto;
     font-size: 1em;
@@ -69,10 +69,11 @@
 
 /* Style as if Boostrap buttons */
 a#snap-pm-logout, a#snap-pm-close {
-    border: 1px solid white;
+    border: 2px solid #ccc;
     padding: 10px;
     font-size: 0.8em !important;
     height: 42px;
+    border-radius: 5px;
 }
 
 a#snap-pm-logout:hover, a#snap-pm-close:hover {
@@ -85,6 +86,10 @@ a[href $="/grade/report/overview/index.php"]:after {
   display: none !important;
 }
 
+.snap-personal-menu-more small {
+  font-size: 0.9em !important;
+  /*display: none;*/
+}
 
 /* ==================================================
    Moodle Course - Navigation
