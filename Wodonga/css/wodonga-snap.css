@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-10-01 08:14:38
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-10-01 11:25:53
+* @Last Modified time: 2018-10-02 12:36:28
 */
 
 
@@ -92,12 +92,19 @@ a[href $="/grade/report/overview/index.php"]:after {
 
 /* Increased contrast for hidden/conditional/unpublished content.  */
 
-#snap-course-wrapper #chapters li.draft .chapter-title:before {
+#snap-course-wrapper #chapters li.draft .chapter-title:before,
+#snap-course-wrapper #chapters li.conditional .chapter-title:before {
     background-color: #BC243C;
+}
+
+#snap-course-wrapper #chapters li.draft small,
+#snap-course-wrapper #chapters li.conditional small {
+    font-weight: bold !important;
 }
 
 .snap-conditional-tag, .snap-stealth-tag, .snap-draft-tag, .snap-current-tag, .text-warning, .red, .notifyproblem, .completion-expired, span.flagged-tag, tr.flagged-tag, span.flagged-tag a, tr.flagged-tag a, .moodle-dialogue-exception .param-stacktrace .stacktrace-line, .connecting {
     color: #BC243C!important;
+    font-weight: bold !important;
 }
 
 

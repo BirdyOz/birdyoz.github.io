@@ -20,7 +20,7 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
     + [x] Collapse whitespace
     + [x] Remove duplicate login buttons
     + [x] Theme out footer elements
-    + [ ] ~~Remove social media~~
+    + ~~[ ] Remove social media~~
 - Amendments to the SNAP ‘My Courses’ interface
     + [x] Rename 'Dashboard' to 'Help'
     + [x] Relocate the logout
@@ -52,7 +52,7 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
 <a id="language-pack-changes"></a>
 ### Language pack changes ###
 
-Language packs control changes to terminology, such as referring to 'Courses' as 'Units'
+Language packs control changes to terminology, such as changing 'Dashboard' as 'Help'
 
 1. From Site administration > Language customisation, Choose "English (en)"
 2. Change the following Strings **FROM** "Dashboard" **TO** "Help"
