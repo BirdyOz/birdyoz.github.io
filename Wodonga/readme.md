@@ -28,7 +28,7 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
     + [x] Rename the close box to last viewed.  Reposition to the left  of logout
     + [x] Style the logout and last viewed to appear as bootstrap buttons
     + [x] Remove the course progress bar
-    + [ ] On small format devices push content down to make space for buttons and render as text links
+    + [x] On small format devices push content down to make space for buttons and render as text links
     + [x] Round the corners of buttons
 - Accessibility and contrast changes
     + [x] Change colour of hidden/conditional items to #BC243C

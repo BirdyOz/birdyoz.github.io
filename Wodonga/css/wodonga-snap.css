@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-10-01 08:14:38
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-10-03 08:44:09
+* @Last Modified time: 2018-10-03 09:35:35
 */
 
 
@@ -95,7 +95,7 @@ a[href $="/grade/report/overview/index.php"]:after {
   /*display: none;*/
 }
 
-/* Style on smaller devices - smaller */
+/* Style on smaller devices - smaller than 991px*/
 @media (max-width: 991px) {
     #snap-pm-close {
       top: 9px;
@@ -114,8 +114,19 @@ a[href $="/grade/report/overview/index.php"]:after {
     }
 }
 
+/* Style on smaller devices - smaller than 767px*/
 @media (max-width: 767px) {
-
+    #snap-pm-close {
+      top: 0px;
+      right: 70px;
+    }
+    #snap-pm-logout {
+      top: 11px;
+      right: 5px;
+    }
+    .snap-pm-user {
+      margin-top: 15px;
+    }
 }
 
 /* ==================================================
@@ -156,6 +167,13 @@ a[href $="/grade/report/overview/index.php"]:after {
   top: 1em;
 }
 
+
+/* Style on smaller devices - smaller than 991px*/
+@media (max-width: 991px) {
+  #course-toc #chapters {
+    margin-top: 3em;
+  }
+}
 
 /* ==================================================
    Footer
