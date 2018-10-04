@@ -37,7 +37,7 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
 - Review and confirm changes
     + [x] Confirm changes with Geoff
     + [x] Document all changes
-    + [ ] Sign off and handover
+    + [x] Sign off and handover
 
 
 <a id="steps-to-replicate"></a>
