@@ -20,7 +20,7 @@ This document outline the taks and 'Steps to replicate' for the Wodonga snap ret
     + [x] Collapse whitespace
     + [x] Remove duplicate login buttons
     + [x] Theme out footer elements
-    + [ ] Remove policies and mobile app links from footer
+    + [x] Remove policies and mobile app links from footer
     + [x] Make "Browse all units" larger.
 - Amendments to the SNAP ‘My Courses’ interface
     + [x] Rename 'Dashboard' to 'Help'

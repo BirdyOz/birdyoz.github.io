@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-10-01 08:14:38
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-10-03 09:35:35
+* @Last Modified time: 2018-10-04 14:27:34
 */
 
 
@@ -193,4 +193,10 @@ a[href $="/grade/report/overview/index.php"]:after {
 /* Turn back on the Moodle help link */
 #mrooms-footer a.helplinkpopup {
     visibility: visible !important;
+}
+
+
+/* Remove Moodle Mobile and policies link */
+#page-footer {
+  display: none !important;
 }
