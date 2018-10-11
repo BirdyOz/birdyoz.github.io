@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-07-06 13:54:29
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-09-14 13:06:24
+* @Last Modified time: 2018-10-11 13:59:45
 */
 
 /* ===============================
@@ -184,3 +184,32 @@ body.gotafe-breadcrumb-2019-snap-sandpits #page-header {background-color: #7A3B0
     height: 1.2em;
 }
 #mrooms-footer a.helplinkpopup {visibility: visible; !important;}
+
+
+/* ===============================
+   SPECIFIC OVERRRIDES AND UI/UX FIXES
+   =============================== */
+
+
+/* Adsjust layout issues of user report table */
+table.user-grade .column-itemname a {
+font-size: 1em !important;
+}
+
+table.user-grade .column-grade {
+padding-top: 0.5em;
+font-weight: bold;
+}
+
+table.user-grade .column-feedback {
+/*width: 36% !important;*/
+padding-top: 0.5em;
+padding-left: 1em;
+font-size: 1em !important;
+}
+
+
+/* Increase contrasrt of breadcrumb separator */
+.breadcrumb-item + .breadcrumb-item::before {
+    color: #bbb;
+}
