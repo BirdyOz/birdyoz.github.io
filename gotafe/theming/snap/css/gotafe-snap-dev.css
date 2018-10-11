@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-07-06 13:54:29
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-09-18 16:16:48
+* @Last Modified time: 2018-10-11 14:03:09
 */
 
 
@@ -254,7 +254,25 @@ body.gotafe-breadcrumb-2019-snap-sandpits #page-header {
     padding: 4px;
 }
 
+/* Add Background with opacity to text above images, to increase contrast */
 
+#page-header.mast-image .breadcrumb-item,
+#page-header.mast-image h1 a,
+#page-header.mast-image #gotafe-banner-audience,
+#page-header.mast-image #gotafe-banner-codes {
+    background: rgba(0, 0, 0, .5);
+    padding: 4px;
+    display: table;
+}
+
+/* ===============================
+   TABLES
+   =============================== */
+
+.gotafe-in-course table th, .gotafe-in-course table td{
+    border: 1px solid  rgb(125, 159, 211);
+    padding: 2px;
+}
 
 /* ===============================
    FOOTER
@@ -276,4 +294,32 @@ body.gotafe-breadcrumb-2019-snap-sandpits #page-header {
     height: 1.2em;
 }
 #mrooms-footer a.helplinkpopup {visibility: visible; !important;}
+
+/* ===============================
+   SPECIFIC OVERRRIDES AND UI/UX FIXES
+   =============================== */
+
+
+/* Adsjust layout issues of user report table */
+table.user-grade .column-itemname a {
+font-size: 1em !important;
+}
+
+table.user-grade .column-grade {
+padding-top: 0.5em;
+font-weight: bold;
+}
+
+table.user-grade .column-feedback {
+/*width: 36% !important;*/
+padding-top: 0.5em;
+padding-left: 1em;
+font-size: 1em !important;
+}
+
+
+/* Increase contrasrt of breadcrumb separator */
+.breadcrumb-item + .breadcrumb-item::before {
+    color: #bbb;
+}
 

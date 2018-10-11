@@ -1,0 +1,30 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @Date:   2018-10-11 08:13:56
+* @Last Modified by:   Greg Bird
+* @Last Modified time: 2018-10-11 12:38:35
+*/
+
+/* Adsjust layout issues of user report table */
+table.user-grade .column-itemname a {
+font-size: 1em !important;
+}
+
+table.user-grade .column-grade {
+padding-top: 0.5em;
+font-weight: bold;
+}
+
+table.user-grade .column-feedback {
+/*width: 36% !important;*/
+padding-top: 0.5em;
+padding-left: 1em;
+font-size: 1em !important;
+}
+
+/* Increase contrasrt of breadcrumb separator */
+.breadcrumb-item + .breadcrumb-item::before {
+    color: #bbb;
+}
+
+
