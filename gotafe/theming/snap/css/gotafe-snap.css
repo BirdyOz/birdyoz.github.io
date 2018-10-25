@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-07-06 13:54:29
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-10-11 13:59:45
+* @Last Modified time: 2018-10-11 14:21:24
 */
 
 /* ===============================
@@ -108,10 +108,16 @@ body {
    DYNAMIC BANNERS
    =============================== */
 
-/* Remove background image if one is applied */
-/*body[class*="gotafe-breadcrumb-"] #page-header {
-    background-image: none !important;
-}*/
+/* Set defualt text and colour background if in a corse with a dynamic banner */
+
+body.gotafe-in-course #page-header {
+    background-color: black
+}
+
+body.gotafe-in-course #page-header, body.gotafe-in-course #page-header a {
+    color: #FFF !important;
+    text-shadow: 2px 2px 2px #000;
+}
 
 /* Hide the 'Change cover image' button*/
 #snap-coverimagecontrol {display: none !important;}
