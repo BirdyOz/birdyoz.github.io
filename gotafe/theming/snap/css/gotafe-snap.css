@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-07-06 13:54:29
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-10-11 14:21:24
+* @Last Modified time: 2018-11-01 11:36:59
 */
 
 /* ===============================
@@ -14,39 +14,13 @@ body {
     color: #202020;
 }
 
-/* Message alerts*/
-
-.alert {
-    background-image: none !important;
-}
-
-.alert-success {
-    color: black;
-    background-color: rgba(139,195,74,.2);
-    border-left-color: #8bc34a !important;
-}
-
-.alert-info {
-    color: black!important;
-    background-color: rgba(3,169,244,.2);
-    border-left-color: #03a9f4 !important;
-}
-
-/* Warning messages, including feedback on quizzes.*/
-.alert-warning, #page-admin-index .adminwarning, .uninstalldeleteconfirmexternal, .que .outcome, .que .comment {
-    color: black!important;
-    background-color: rgba(255,152,0,.2);
-    border-left-color: #ff9800 !important;
-}
-
-.alert-danger {
-    color: black!important;
-    background-color: rgba(233,30,99,.2);
-    border-left-color: #e91e63 !important;
+/* Remove fixed witdh for content and other containers.  Caters for larger display sizes.*/
+.course-content, .settingsform, #page-mod-page-view #region-main, #snap-course-footer-about {
+     max-width: 100% !important;
 }
 
 /* ===============================
-   SITE FRONTYPAGE
+   SITE FRONTPAGE
    =============================== */
 
 #moodle-frontpage-elements .news-article-preview a.btn-default {
@@ -56,8 +30,6 @@ body {
 #moodle-frontpage-elements .news-article-preview a.btn-default:hover, #moodle-frontpage-elements .news-article-preview a.btn-default:active, #moodle-frontpage-elements .news-article-preview a.btn-default:focus {
     background-color: #000;
 }
-
-
 
 
 /* Increase the contrast of muted and dimmed items */
@@ -114,7 +86,7 @@ body.gotafe-in-course #page-header {
     background-color: black
 }
 
-body.gotafe-in-course #page-header, body.gotafe-in-course #page-header a {
+body.gotafe-in-course #page-header, body.gotafe-in-course #page-header a, body.gotafe-in-course #page-header h1, body.gotafe-in-course #page-header * {
     color: #FFF !important;
     text-shadow: 2px 2px 2px #000;
 }
@@ -191,11 +163,43 @@ body.gotafe-breadcrumb-2019-snap-sandpits #page-header {background-color: #7A3B0
 }
 #mrooms-footer a.helplinkpopup {visibility: visible; !important;}
 
+/* ===============================
+   ALERTS
+   =============================== */
+/* Message alerts*/
+
+.alert {
+    background-image: none !important;
+}
+
+.alert-success {
+    color: black;
+    background-color: rgba(139,195,74,.2);
+    border-left-color: #8bc34a !important;
+}
+
+.alert-info {
+    color: black!important;
+    background-color: rgba(3,169,244,.2);
+    border-left-color: #03a9f4 !important;
+}
+
+/* Warning messages, including feedback on quizzes.*/
+.alert-warning, #page-admin-index .adminwarning, .uninstalldeleteconfirmexternal, .que .outcome, .que .comment {
+    color: black!important;
+    background-color: rgba(255,152,0,.2);
+    border-left-color: #ff9800 !important;
+}
+
+.alert-danger {
+    color: black!important;
+    background-color: rgba(233,30,99,.2);
+    border-left-color: #e91e63 !important;
+}
 
 /* ===============================
    SPECIFIC OVERRRIDES AND UI/UX FIXES
    =============================== */
-
 
 /* Adsjust layout issues of user report table */
 table.user-grade .column-itemname a {
@@ -214,8 +218,18 @@ padding-left: 1em;
 font-size: 1em !important;
 }
 
-
 /* Increase contrasrt of breadcrumb separator */
 .breadcrumb-item + .breadcrumb-item::before {
     color: #bbb;
+}
+
+/* User tours - Change background to black with opacity */
+div[data-flexitour="backdrop"] {
+background-color: black;
+    opacity: .4;
+}
+
+/* Fix to Grading form display for large number of criteria */
+.path-mod-assign [data-region="review-panel"].collapsed + [data-region="grade-panel"] [data-region="grade"], .path-mod-assign [data-region="grade-panel"].fullwidth [data-region="grade"],.gradingform_rubric {
+    max-width: 100% !important;
 }

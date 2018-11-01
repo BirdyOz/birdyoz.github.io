@@ -1,0 +1,11 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @Date:   2018-10-29 14:11:00
+* @Last Modified by:   birdyoz
+* @Last Modified time: 2018-10-31 11:37:36
+*/
+
+/* Remove fixed witdh for content and other containers.  Caters for larger display sizes.*/
+.course-content, .settingsform, #page-mod-page-view #region-main, #snap-course-footer-about {
+     max-width: 100% !important;
+}
