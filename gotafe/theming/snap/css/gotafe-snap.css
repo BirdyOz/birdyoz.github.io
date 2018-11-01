@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-07-06 13:54:29
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-11-01 11:36:59
+* @Last Modified time: 2018-11-01 12:00:32
 */
 
 /* ===============================
@@ -15,7 +15,7 @@ body {
 }
 
 /* Remove fixed witdh for content and other containers.  Caters for larger display sizes.*/
-.course-content, .settingsform, #page-mod-page-view #region-main, #snap-course-footer-about {
+.course-content, .settingsform, #region-main, #snap-course-footer-about {
      max-width: 100% !important;
 }
 
@@ -57,6 +57,10 @@ body {
 .published-status {
     opacity: 1;
     font-weight: 400 !important;
+}
+/* Hide the Course contacts (teachers) */
+#snap-course-footer-contacts .snap-media-object {
+    display: none !important;
 }
 
 /* ===============================
