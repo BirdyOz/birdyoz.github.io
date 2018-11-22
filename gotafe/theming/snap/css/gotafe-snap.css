@@ -1,9 +1,10 @@
 /*
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
-* @Date:   2018-07-06 13:54:29
+* @First Created:   2018-11-22 14:55:12
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-11-22 12:21:20
+* @Last Modified time: 2018-11-22 14:57:11
 */
+
 
 /* ===============================
    GLOBAL
@@ -39,7 +40,7 @@ body {
 
 
 /* ===============================
-   COURSE CONTENT PAGES
+   COURSE CONTENT PAGES & SIDE NAV
    =============================== */
 
 
@@ -57,6 +58,18 @@ body {
 .published-status {
     opacity: 1;
     font-weight: 400 !important;
+}
+
+/* Increased contrast and green progress circle, to highlight active section*/
+.snap-visible-section a{
+    color: black !important;
+}
+
+.snap-visible-section a:before {
+  font-family: FontAwesome;
+    content:"\f111";
+    color: #0a6164;
+    padding-right: 6px;
 }
 
 /* ===============================
@@ -168,7 +181,7 @@ body[class*="gotafe-breadcrumb-2019-snap-sandpits"] #page-header {background-col
 
 
 /* Hide the Course contacts (teachers) */
-#snap-course-footer-contacts .snap-media-object {
+#snap-course-footer-contacts h5, #snap-course-footer-contacts .snap-media-object {
     display: none !important;
 }
 
