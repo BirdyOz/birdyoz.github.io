@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @Date:   2018-07-06 13:54:29
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-11-16 09:14:01
+* @Last Modified time: 2018-11-22 12:21:20
 */
 
 /* ===============================
@@ -57,10 +57,6 @@ body {
 .published-status {
     opacity: 1;
     font-weight: 400 !important;
-}
-/* Hide the Course contacts (teachers) */
-#snap-course-footer-contacts .snap-media-object {
-    display: none !important;
 }
 
 /* ===============================
@@ -146,26 +142,35 @@ body[class*="gotafe-breadcrumb-2019-snap-sandpits"] #page-header {background-col
     padding: 4px;
 }
 
-
 /* ===============================
    FOOTER
    =============================== */
 
-#moodle-custom-menu {
-    display: none;
-}
-
-
-.copyright-statement {
-    font-size: 0.8em
-}
 
 /* Hide MoodleRooms specific footer text and copyright statement */
 #mrooms-footer {
     visibility: hidden;
     height: 1.2em;
 }
-#mrooms-footer a.helplinkpopup {visibility: visible; !important;}
+
+/* Hide the custom menu (in favour of a custom footer) */
+#moodle-custom-menu {
+    display: none;
+}
+
+/* Reduce the size of the copyright statement */
+.copyright-statement {
+    font-size: 0.8em
+}
+
+/* Turn back on the Moodle help link */
+#mrooms-footer a.helplinkpopup {visibility: visible !important;}
+
+
+/* Hide the Course contacts (teachers) */
+#snap-course-footer-contacts .snap-media-object {
+    display: none !important;
+}
 
 /* ===============================
    ALERTS
