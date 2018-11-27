@@ -1,0 +1,6 @@
+[
+  {
+      "keys": ["ctrl+command+option+g"],
+      "command": "process_gift_file"
+  }
+]
