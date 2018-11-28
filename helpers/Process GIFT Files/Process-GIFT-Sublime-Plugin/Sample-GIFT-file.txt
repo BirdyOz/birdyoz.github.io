@@ -1,0 +1,42 @@
+$CATEGORY: QuestionTypes/Basic
+
+This is a True/False question.  They contain either "T" or "F" in the curly braces {T}
+
+This is a multiple choice.  The correct answer is shown by the equals sign {
+    = Correct answer
+    Incorrect answer 1
+    Incorrect answer 2
+}
+
+This is a matching.  Matches are on the same line, separated by an equals sign {
+    Term 1 = Definition 1
+    Term 2 = Definition 2
+    Term 3 = Definition 3
+}
+
+This a multiple response (one or more correct answers).  Each correct answer is identified by the equals sign {
+    = Correct answer 1
+    = Correct answer 2
+    Incorrect answer 1
+    Incorrect answer 2
+    Incorrect answer 3
+}
+
+This is an essay question.  Long response.  REMEMBER: Essay questions cannot be computer marked {}
+
+$CATEGORY: QuestionTypes/Advanced
+
+This is a multiple choice WITH FEEDBACK.  The feedback is shown AFTER the hash "#" symbol {
+    = Correct answer #Feedback for correct answer
+    Incorrect answer 1 #Feedback for Incorrect answer
+    Incorrect answer 2 #Feedback for Incorrect answer
+}
+
+This is a "description". (a question without any answers).  It can be useful for adding instructions.  Note the pipe sybol at the end of line |
+
+
+This is a fill in the blank question.  Students type an answer - Two plus {=two =2} equals four.
+
+This is a missing word answer.  A gap is created and it is turned into a multiple choice - Two plus {=two ~three ~four} equals four.
+
+This is a numeric response.  It can have a range of acceptable answers (eg. 40 -> 44) - The secret to life, universe and everything is {=42:2}
