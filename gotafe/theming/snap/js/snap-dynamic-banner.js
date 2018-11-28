@@ -2,25 +2,21 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-06-22 15:01:21
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-08-17 08:23:11
+ * @Last Modified time: 2018-10-04 11:12:31
  */
 
 jQuery(document).ready(function($) {
     BuildBanner(); // Build dynamic banners
-    AddSearhToMyCourses(); // Add search box to My Courses UI
+    AddSearhToMyCourses(); // Add search box to Snap's My Courses UI
 });
 
 function BuildBanner() {
+    console.log("@GB: BuildBanner invoked (Ver 2018-08-24 10:28:23)");
     // Only invoke The BuildBarrer function if within a course
     // If I am not at the site level, I must be in a course
     if ($('.format-site').length === 0) {
-        // Prepend stylesheet
-        // $('head').append('<link rel="stylesheet" type="text/css" href="https://birdyoz.github.io/gotafe/theming/snap/css/dynamic-banner-switcher.css">');
-
-
-        // Add .mast-image to page header.  This "tricks" snap to think their is a banner image, and style the text accordingly
-        $('#page-header').addClass('mast-image');
-        console.log("@GB: mast-image applied");
+        // I am in a course, so add a 'hook' to set general styles
+        $('body').addClass('gotafe-in-course');
 
         // Define global variables
         var logo, codes_array, details_array, code_text, title_text, audience_text, audience_name, year_text = "";
@@ -67,8 +63,6 @@ function BuildBanner() {
 
         if (TitleArray) {
 
-
-
             // Extract codes_array
             codes_array = TitleArray[1].split("|").sort();
             // Trim whitespace
@@ -77,7 +71,6 @@ function BuildBanner() {
             });
 
             console.log("@GB: codes_array = ", codes_array);
-
 
             // Extract descriptive title
             title_text = TitleArray[2].trim();
@@ -157,14 +150,14 @@ function BuildBanner() {
                 $('#gotafe-banner-year').addClass("panel-danger");
             }
 
-            // Is this subject 'In Development'?
+            // Is this subject 'Ledarning and Development'?
             if (year_text.substring(0, 2) === "LD") {
                 // Add footer to 'Year' panel
                 $('#gotafe-banner-year').prepend("<div class=\"panel-heading\">Learning Development<\/div>");
                 $('#gotafe-banner-year').addClass("panel-danger");
             }
 
-            // Is this subject 'In Development'?
+            // Is this subject 'Staff Sandpit'?
             if (year_text.substring(0, 2) === "SP") {
                 // Add footer to 'Year' panel
                 $('#gotafe-banner-year').prepend("<div class=\"panel-heading\">Staff Sandpit<\/div>");
@@ -174,7 +167,6 @@ function BuildBanner() {
         }
     }
 }
-
 
 function friendlyname(text) {
     // Translate audience abbreviations into human readable alternatives
@@ -247,7 +239,6 @@ function friendlyname(text) {
     return longname;
 }
 
-
 function slugify(text) {
     // https://gist.github.com/mathewbyrne/1280286
     return text.toString().toLowerCase()
@@ -261,6 +252,7 @@ function slugify(text) {
 
 function AddSearhToMyCourses() {
     // Adds a search box to the top of the SNAP "My Courses" UI
-    var snip = '<div class="clearfix"></div> <div class="card-block snap-mycourses-search"> <div class="card-text content"> <div class="no-overflow"> <form id="coursesearch" action="https://gotafetest34.trainingvc.com.au/course/search.php" method="get"> <fieldset class="coursesearchbox invisiblefieldset"> <label for="shortsearchbox">Search all courses </label> <input name="search" id="shortsearchbox" type="text" value=""> <input type="submit" value="Go"> </fieldset> </form> </div> <div class="footer"></div> </div>';
-    $('#snap-pm-courses-current-cards').prepend(snip);
+    var snip = '<div class="clearfix"></div> <div class="card-block snap-mycourses-search"> <div class="card-text content"> <div class="no-overflow"> <form id="coursesearch" action="/course/search.php" method="get"> <fieldset class="coursesearchbox invisiblefieldset"> <label for="shortsearchbox">Search all courses </label> <input name="search" id="shortsearchbox" type="text" value=""> <input type="submit" value="Go"> </fieldset> </form> </div> <div class="footer"></div> </div>';
+    $('#snap-pm-courses-current').prepend(snip);
+    $('#snap-pm-courses-current').not(':has(#snap-pm-courses-current-cards)').addClass('gotafe-no-courses');
 }
