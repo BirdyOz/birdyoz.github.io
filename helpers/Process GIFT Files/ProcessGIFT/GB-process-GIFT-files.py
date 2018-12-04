@@ -3,13 +3,17 @@ import sublime, sublime_plugin, os, subprocess, datetime, shutil
 
 class ProcessGiftFileCommand(sublime_plugin.TextCommand):
     def run(self, edit):
-        duplicatefile(self, edit,'_BACKUP')
+        # save file contents to buffer
+        buffer_text = self.view.substr(sublime.Region(0, self.view.size()))
+        print(buffer_text)
         numberquestions(self, edit)
         alternates(self, edit)
-        duplicatefile(self, edit,'_GIFT')
-
+        duplicatefile(self, edit)
+        restorefrombuffer(self, edit, buffer_text)
 
 def numberquestions(self, edit):
+
+
     self.view.sel().clear()  # clear any existing selections
     count = 0
     question = 1
@@ -94,7 +98,7 @@ def alternates(self, edit):
                 # print("Match: ", line)
                 line = '= ' + line.replace('=', '->')
                 # print("line: ", line)
-            elif not line.startswith("=") and not line.startswith("~") and len(line) > 0:
+            elif not line.startswith("=") and not line.startswith("~") and len(line) > 0  and line !="F" and line !="T":
                 # improperly formatted multichoice incorrect
                 line = '~ ' + line
                 incorrect += 1
@@ -141,7 +145,7 @@ def roundit(val):
     return pc
 
 
-def duplicatefile(self, edit, state):
+def duplicatefile(self, edit):
     self.view.run_command("save")
     if self.view.file_name():
         file_name = self.view.file_name()
@@ -149,7 +153,7 @@ def duplicatefile(self, edit, state):
         base_name = os.path.basename(file_name)
         base_base, base_ext = os.path.splitext(base_name)
         target_dir = dir_name
-        target_file = base_base+state+base_ext
+        target_file = base_base+"_GIFT"+base_ext
         target_target = os.path.join(target_dir, target_file)
 
         try:
@@ -157,3 +161,21 @@ def duplicatefile(self, edit, state):
             sublime.status_message("GIFT FILE READY: %s" % target_file)
         except:
             sublime.status_message("Error while copying file")
+        new_window = sublime.active_window()
+        new_window.run_command('set_layout', {
+            'cols': [0.0, 0.5, 1.0],
+            'rows': [0.0, 1.0],
+            'cells': [[0, 0, 1, 1], [1, 0, 2, 1]]
+        })
+        new_window.focus_group(1)
+        new_window.open_file(target_target)
+        new_window.focus_group(0)
+
+def restorefrombuffer(self, edit, buffer_text):
+        self.view.run_command("select_all")
+        sels = self.view.sel()
+        for sel in sels:
+            self.view.replace(edit, sel, buffer_text)
+        self.view.sel().clear()
+        self.view.run_command("save")
+
