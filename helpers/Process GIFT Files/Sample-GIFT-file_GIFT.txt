@@ -1,0 +1,41 @@
+$CATEGORY: QuestionTypes/Basic
+
+::QuestionTypes.Basic.Q01:: This is a True/False question.  They contain either "T" or "F" in the curly braces {T}
+
+::QuestionTypes.Basic.Q02:: This is a multiple choice.  The correct answer is shown by the equals sign {
+    = Correct answer
+    ~ Incorrect answer 1
+    ~ Incorrect answer 2
+}
+
+::QuestionTypes.Basic.Q03:: This is a matching.  Matches are on the same line, separated by an equals sign {
+    = Term 1 -> Definition 1
+    = Term 2 -> Definition 2
+    = Term 3 -> Definition 3
+}
+
+::QuestionTypes.Basic.Q04:: This a multiple response (one or more correct answers).  Each correct answer is identified by the equals sign {
+    ~%50% Correct answer 1
+    ~%50% Correct answer 2
+    ~%-33.33333% Incorrect answer 1
+    ~%-33.33333% Incorrect answer 2
+    ~%-33.33333% Incorrect answer 3
+}
+
+::QuestionTypes.Basic.Q05:: This is an essay question.  Long response.  REMEMBER: Essay questions cannot be computer marked {}
+
+$CATEGORY: QuestionTypes/Advanced
+
+::QuestionTypes.Advanced.Q01:: This is a multiple choice WITH FEEDBACK.  The feedback is shown AFTER the hash "#" symbol {
+    = Correct answer #Feedback for correct answer
+    ~ Incorrect answer 1 #Feedback for Incorrect answer
+    ~ Incorrect answer 2 #Feedback for Incorrect answer
+}
+
+::QuestionTypes.Advanced.Q02:: This is a "description". (a question without any answers).  It can be useful for adding instructions.  Note the pipe sybol at the end of line
+
+::QuestionTypes.Advanced.Q03:: This is a fill in the blank question.  Students type an answer - Two plus {=two =2} equals four.
+
+::QuestionTypes.Advanced.Q04:: This is a missing word answer.  A gap is created and it is turned into a multiple choice - Two plus {=two ~three ~four} equals four.
+
+::QuestionTypes.Advanced.Q05:: This is a numeric response.  It can have a range of acceptable answers (eg. 40 -> 44) - The secret to life, universe and everything is {=42:2}
