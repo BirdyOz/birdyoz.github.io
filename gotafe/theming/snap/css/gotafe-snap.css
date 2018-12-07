@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2018-11-22 14:55:12
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2018-11-22 14:57:11
+* @Last Modified time: 2018-12-07 12:38:38
 */
 
 
@@ -254,4 +254,14 @@ background-color: black;
 /* Fix to Grading form display for large number of criteria */
 .path-mod-assign [data-region="review-panel"].collapsed + [data-region="grade-panel"] [data-region="grade"], .path-mod-assign [data-region="grade-panel"].fullwidth [data-region="grade"],.gradingform_rubric {
     max-width: 100% !important;
+}
+
+
+/* Increased contrast for dropdown menu items in ATTO editor - eg styles menu*/
+
+.editor_atto_menu .dropdown-menu>li>a:hover, .editor_atto_menu .dropdown-menu>li>a:hover {
+    background-color: #369 !important;
+    background-image: none !important;
+    color: white !important;
+    ;
 }
