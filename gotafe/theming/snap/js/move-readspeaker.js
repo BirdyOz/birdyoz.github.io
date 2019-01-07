@@ -2,14 +2,14 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-01-07 13:52:10
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2019-01-07 14:24:00
+* @Last Modified time: 2019-01-07 14:37:39
 */
 
 var oHead = document.getElementsByTagName('HEAD').item(0);
 var link  = document.createElement('link');
 link.rel  = 'stylesheet';
 link.type = 'text/css';
-link.href = "//f1-oc.readspeaker.com/script/9644/snap.styles.css";
+link.href = "//birdyoz.github.io/gotafe/theming/snap/css/move-readspeaker.css";
 oHead.appendChild(link);
 
 window.addEventListener("load", function() {

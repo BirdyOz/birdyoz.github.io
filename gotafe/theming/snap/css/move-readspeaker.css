@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-01-07 13:54:31
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2019-01-07 13:54:40
+* @Last Modified time: 2019-01-07 14:36:28
 */
 
 .block_readspeaker_embhl {
@@ -10,8 +10,10 @@
     margin: 0 !important;
     padding: 0 !important;
     z-index: 12;
+    min-height: 0 !important;
 }
 
-.block_readspeaker_embhl h2, .block_readspeaker_embhl h3  {
-    display: none;
+.block_readspeaker_embhl h2, .block_readspeaker_embhl h3 , .block_readspeaker_embhl h5 {
+    display: none !important;
 }
+
