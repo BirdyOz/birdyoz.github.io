@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-01-07 13:52:10
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2019-01-07 13:54:00
+* @Last Modified time: 2019-01-07 14:20:33
 */
 
 var oHead = document.getElementsByTagName('HEAD').item(0);
@@ -37,7 +37,7 @@ window.addEventListener("load", function() {
         }
 
         var RS_player = $('.block_readspeaker_embhl').detach();
-        $('#region-main').prepend(RS_player);
+        $('#course-toc').prepend(RS_player);
     });
 
 });
