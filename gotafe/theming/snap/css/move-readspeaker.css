@@ -1,0 +1,17 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @First Created:   2019-01-07 13:54:31
+* @Last Modified by:   Greg Bird
+* @Last Modified time: 2019-01-07 13:54:40
+*/
+
+.block_readspeaker_embhl {
+    display: inline-block;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: 12;
+}
+
+.block_readspeaker_embhl h2, .block_readspeaker_embhl h3  {
+    display: none;
+}
