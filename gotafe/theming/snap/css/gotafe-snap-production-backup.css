@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2018-11-22 14:55:12
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2019-01-08 14:55:45
+* @Last Modified time: 2018-12-07 12:23:11
 */
 
 
@@ -89,37 +89,13 @@ body {
     }
 }
 
-/* Replace the course search "GO" form input with a custom image */
-
-#snap-pm form#coursesearch input[type=submit] {
-  background : url("/pluginfile.php/1/tool_themeassets/assets/0/GOLearn_logo_40x40.png") no-repeat center center;
-  width : 43px;
-  height :43px;
-  border : none;
-  color : transparent;
-  font-size : 0;
-  float: right;
-  position: relative;
-  margin: -5px 0 0 5px;
-}
-
 /* ===============================
    DYNAMIC BANNERS
    =============================== */
 
 /* Set defualt text and colour background if in a corse with a dynamic banner */
 
-body.gota#mr-nav form#coursesearch input[type=submit] {
-  background : url("https://gotafe.trainingvc.com.au/pluginfile.php/1/tool_themeassets/assets/0/GOLearn_logo_40x40.png") no-repeat center center;
-  width : 43px;
-  height :43px;
-  border : none;
-  color : transparent;
-  font-size : 0;
-  float: right;
-  position: relative;
-  margin: -5px 0 0 5px;
-}fe-in-course #page-header {
+body.gotafe-in-course #page-header {
     background-color: black
 }
 
@@ -172,9 +148,7 @@ body[class*="gotafe-breadcrumb-2019-snap-sandpits"] #page-header {background-col
 
 #gotafe-banner-year .panel-heading {
     font-size: 0.9em;
-    padding: 2px 8px;
-    background: red;
-    border-bottom: 1px solid white;
+    padding: 0 4px;
 }
 
 #gotafe-banner-year .panel-body {
@@ -221,26 +195,26 @@ body[class*="gotafe-breadcrumb-2019-snap-sandpits"] #page-header {background-col
 }
 
 .alert-success {
-    color: black !important;
+    color: black;
     background-color: rgba(139,195,74,.2);
     border-left-color: #8bc34a !important;
 }
 
 .alert-info {
-    color: black !important;
+    color: black!important;
     background-color: rgba(3,169,244,.2);
     border-left-color: #03a9f4 !important;
 }
 
 /* Warning messages, including feedback on quizzes.*/
 .alert-warning, #page-admin-index .adminwarning, .uninstalldeleteconfirmexternal, .que .outcome, .que .comment {
-    color: black !important;
+    color: black!important;
     background-color: rgba(255,152,0,.2);
     border-left-color: #ff9800 !important;
 }
 
 .alert-danger {
-    color: black !important;
+    color: black!important;
     background-color: rgba(233,30,99,.2);
     border-left-color: #e91e63 !important;
 }
