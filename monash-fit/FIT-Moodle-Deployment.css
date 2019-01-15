@@ -2,14 +2,14 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-01-15 16:05:23
 * @Last Modified by:   birdyoz
-* @Last Modified time: 2019-01-15 16:54:07
+* @Last Modified time: 2019-01-15 18:19:34
 */
 
 
 
 
 /*=============================================
- Main content - UI overrides #region-main
+ 2019 UI changes
 =============================================*/
 
 /* Fade down hidden sections */
@@ -23,6 +23,16 @@ li.section.hidden a, li.section.hidden .fa, li.section.hidden h1, li.section.hid
 div.dimmed_text a, div.dimmed_text .fa, div.dimmed_text h1, div.dimmed_text h2, div.dimmed_text h3, div.dimmed_text h4, div.dimmed_text h5, div.dimmed_text h6, {
     opacity: 0.6
 }
+
+
+
+/* Position the editing on/off button*/
+
+#edit-on-off {
+    position: absolute;
+    right: 15px;
+}
+
 
 /*=============================================
   Existing FIT CSS overrides - As found at:

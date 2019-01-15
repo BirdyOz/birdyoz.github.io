@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @First Created:   2019-01-15 16:04:39
  * @Last Modified by:   birdyoz
- * @Last Modified time: 2019-01-15 18:14:29
+ * @Last Modified time: 2019-01-15 18:29:37
  */
 
 
@@ -105,10 +105,14 @@ function extract_show_hide() {
     if (menu.length) {
         console.log("@GB: menu = ", menu);
         var html = $(menu).html();
+        if (html.indexOf("Turn editing on") >= 0) {
+            var state = "btn-primary";
+        } else {
+             var state = "btn-success"; }
         console.log("@GB: html = ", html);
         var href = $(menu).attr('href');
         console.log("@GB: href = ", href);
-        var btn = '<a class="btn btn-primary" id="edit-on-off" href="'+href+'">'+html+'</a>';
+        var btn = '<a class="btn '+state+'" id="edit-on-off" href="' + href + '">' + html + '</a>';
         console.log("@GB: btn = ", btn);
         $("#page-navbar").before(btn);
     }
