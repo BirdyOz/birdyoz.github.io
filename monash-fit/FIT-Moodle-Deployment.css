@@ -1,0 +1,273 @@
+/*
+*  @Created  : 2017-03-31 13:01:41
+*  @Modified : 2019-01-14 11:04:00
+*/
+
+/*Banner container*/
+
+.monash-banner {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+.brand {
+    display: none;
+}
+
+  .banner-editable {
+   /* background: url("https://source.unsplash.com/XJXWbfSo2f0/1200x200") no-repeat center center;*/
+    background: url("https://mahara.infotech.monash.edu/moodle/img/fit-moodle-banner-blue.png") no-repeat center center;
+    background-size: 100%;
+    height: 150px;
+    text-shadow: 1px 1px 2px black;
+    margin: 0;
+    cursor: pointer;
+    color: #FFF;
+  }
+
+#section-1 .section-modchooser,
+#add_menus-section-1 {
+    display: none;
+}
+.increase-sections, .reduce-sections {
+display:none;
+}
+
+.monash-banner .well {
+    background-color: #fcfcfc;
+    margin: 0;
+    padding: 0;
+}
+
+/*Banner buttons*/
+
+.monash-banner .btn,
+.monash-banner .btn a {
+    color: #000;
+    background-color: #fcfcfc;
+    background-image: none !important;
+    border: none !important;
+    padding: 4px 12px;
+    border-left: 1px solid red;
+}
+.monash-banner .btn:hover,
+.monash-banner .btn:focus,
+.monash-banner .btn:active,
+.monash-banner .btn a:active,
+.monash-banner .btn a:hover,
+.monash-banner .btn a:focus {
+    color: black !important;
+    background-color: #eee !important;
+    background-image: none !important;
+    border: none !important;
+}
+.monash-banner .btn-group {
+    background-color: #fcfcfc;
+    /*width: 100%;*/
+    display: inline-block;
+    white-space: normal !important;
+}
+.monash-banner .btn-toolbar {
+    border-color: red;
+}
+.monash-banner .stream,
+.monash-banner .stream:hover {
+    background-color: white !important;
+    color: black !important;
+    cursor: unset !important;
+    /*font-weight: bold;*/
+}
+
+/*
+EDITABLE BANNER TEXT
+ */
+
+
+/*Set semitransparent background for banner text*/
+
+.banner-editable .alpha-bg {
+    background: rgba(0, 0, 0, 0.5);
+    padding-right: 1em;
+    padding-left: 30px;
+    display: in-line;
+}
+
+/*Establish default Unsplash background image*/
+
+.banner-editable .container-fluid {
+    background-color: white;
+    opacity: 0.9;
+}
+.banner-editable h1 {
+    margin-top: 0;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+    font-size: 2.4em;
+    color: white;
+    font-weight: 400;
+}
+.banner-editable h1 strong {
+    font-weight: 500;
+}
+.banner-editable p {
+    font-size: 1.8em;
+    font-weight: 300;
+    font-style: italic;
+}
+
+/*Hide button text on smaller views and devices*/
+
+#jump-to-content {
+        display: none;
+    }
+
+@media screen and (max-width: 767px) {
+    #jump-to-content {
+        display: block !important;
+    }
+}
+
+/*Show jump-to-content button in one column view only*/
+
+@media screen and (max-width: 1000px) {
+    .monash-banner .btn span,
+    .monash-banner .btn a span {
+        display: none;
+    }
+}
+
+/*Hide "logged in user" block*/
+.block_myprofile {
+    display: none;
+}
+
+/*Turn it back on when editing*/
+body.editing .block_myprofile {
+    display: block;
+}
+
+/*Hide the ability to add activities to Section-0*/
+
+#section-0 .section-modchooser,
+#add_menus-section-0 {
+    display: none;
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    font-size: 3em;
+    width: 32px;
+    height: 32px;
+    text-align: center;
+    line-height: 30px;
+    color:  #0076b1;
+    cursor: pointer;
+    border: 0;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: opacity 0.2s ease-out;
+    opacity: 0;
+}
+
+#back-to-top:hover,
+#back-to-top.show:hover {
+    opacity: 1;
+    transition: opacity 0.2s ease-out;
+}
+#back-to-top.show {
+    opacity: 0.5;
+}
+.sb-btn {
+    opacity: 0.5;
+    margin-right: 10px;
+    background: #0076b1;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    font-size: 1em;
+    padding: 4px 0 0 0;
+    border-radius: 6px;
+    right: 60px !important;
+}
+.sb-btn:after {
+    content: "FIT Online Support";
+}
+.sb-btn:hover {
+    opacity: 1;
+    transition: opacity 0.2s ease-out;
+}
+.sb-btn.en_bottom {
+    background-image: none;
+}
+
+/*Customisation for Monash Color*/
+
+.list-group-item {
+    color: #006cab;
+}
+
+.list-group-item.active {
+    background-color: #006cab;
+}
+
+.list-group-item:hover {
+    background-color: #006cab;
+}
+
+.mdl-left a {
+    color: #006cab;
+}
+
+.mdl-right a {
+    color: #006cab;
+}
+
+.breadcrumb-item a {
+    color: #006cab;
+}
+
+.section-title a {
+    color: #006cab;
+}
+
+.column a {
+    color: #006cab;
+}
+
+.page-link a {
+    color: #006cab;
+}
+
+.page-item a {
+    color: #006cab;
+}
+
+.active .page-link {
+    background-color: #006cab, 
+    color: #ffffff
+}
+
+h3 span a {
+    color: #006cab
+}
+
+#icon {
+    color: #006cab;
+}
+
+#icon2 {
+    color:#222222;
+}
+
+.iconhelp{
+    display:none;
+}
+
+#completionprogressid{
+    display:none;
+}
