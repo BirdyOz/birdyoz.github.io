@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @First Created:   2019-01-15 16:04:39
  * @Last Modified by:   birdyoz
- * @Last Modified time: 2019-01-15 21:25:04
+ * @Last Modified time: 2019-01-15 21:31:57
  */
 
 
@@ -77,7 +77,7 @@ function contact_support() {
     console.log("@GB: fit_ID = ", fit_ID);
     var fit_email = $('.myprofileitem.email').text();
     console.log("@GB: fit_email = ", fit_email);
-    var fit_unit = $('header>h1').text();
+    var fit_unit = ('.m-l-0 .font-weight-bold').text();
     console.log("@GB: fit_unit = ", fit_unit);
 
     // Load external script
