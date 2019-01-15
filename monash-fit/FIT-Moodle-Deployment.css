@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-01-15 16:05:23
 * @Last Modified by:   birdyoz
-* @Last Modified time: 2019-01-15 18:19:34
+* @Last Modified time: 2019-01-15 21:09:53
 */
 
 
@@ -33,6 +33,19 @@ div.dimmed_text a, div.dimmed_text .fa, div.dimmed_text h1, div.dimmed_text h2, 
     right: 15px;
 }
 
+/* Resize Font-Awesome icons at smaller screen sizes*/
+
+@media screen and (max-width: 860px) {
+    .fa-5x {
+        font-size: 4em !important;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .fa-5x {
+        font-size: 2em !important;
+    }
+}
 
 /*=============================================
   Existing FIT CSS overrides - As found at:
@@ -52,8 +65,8 @@ div.dimmed_text a, div.dimmed_text .fa, div.dimmed_text h1, div.dimmed_text h2, 
     display: none;
 }
 
-  .banner-editable {
-   /* background: url("https://source.unsplash.com/XJXWbfSo2f0/1200x200") no-repeat center center;*/
+.banner-editable {
+    /* background: url("https://source.unsplash.com/XJXWbfSo2f0/1200x200") no-repeat center center;*/
     background: url("https://mahara.infotech.monash.edu/moodle/img/fit-moodle-banner-blue.png") no-repeat center center;
     background-size: 100%;
     height: 150px;
@@ -61,14 +74,16 @@ div.dimmed_text a, div.dimmed_text .fa, div.dimmed_text h1, div.dimmed_text h2, 
     margin: 0;
     cursor: pointer;
     color: #FFF;
-  }
+}
 
 #section-1 .section-modchooser,
 #add_menus-section-1 {
     display: none;
 }
-.increase-sections, .reduce-sections {
-display:none;
+
+.increase-sections,
+.reduce-sections {
+    display: none;
 }
 
 .monash-banner .well {
@@ -88,6 +103,7 @@ display:none;
     padding: 4px 12px;
     border-left: 1px solid red;
 }
+
 .monash-banner .btn:hover,
 .monash-banner .btn:focus,
 .monash-banner .btn:active,
@@ -99,15 +115,18 @@ display:none;
     background-image: none !important;
     border: none !important;
 }
+
 .monash-banner .btn-group {
     background-color: #fcfcfc;
     /*width: 100%;*/
     display: inline-block;
     white-space: normal !important;
 }
+
 .monash-banner .btn-toolbar {
     border-color: red;
 }
+
 .monash-banner .stream,
 .monash-banner .stream:hover {
     background-color: white !important;
@@ -136,6 +155,7 @@ EDITABLE BANNER TEXT
     background-color: white;
     opacity: 0.9;
 }
+
 .banner-editable h1 {
     margin-top: 0;
     padding: 0.5em 0.5em 0.5em 0.5em;
@@ -143,9 +163,11 @@ EDITABLE BANNER TEXT
     color: white;
     font-weight: 400;
 }
+
 .banner-editable h1 strong {
     font-weight: 500;
 }
+
 .banner-editable p {
     font-size: 1.8em;
     font-weight: 300;
@@ -155,8 +177,8 @@ EDITABLE BANNER TEXT
 /*Hide button text on smaller views and devices*/
 
 #jump-to-content {
-        display: none;
-    }
+    display: none;
+}
 
 @media screen and (max-width: 767px) {
     #jump-to-content {
@@ -167,6 +189,7 @@ EDITABLE BANNER TEXT
 /*Show jump-to-content button in one column view only*/
 
 @media screen and (max-width: 1000px) {
+
     .monash-banner .btn span,
     .monash-banner .btn a span {
         display: none;
@@ -200,7 +223,7 @@ body.editing .block_myprofile {
     height: 32px;
     text-align: center;
     line-height: 30px;
-    color:  #0076b1;
+    color: #0076b1;
     cursor: pointer;
     border: 0;
     border-radius: 2px;
@@ -214,9 +237,11 @@ body.editing .block_myprofile {
     opacity: 1;
     transition: opacity 0.2s ease-out;
 }
+
 #back-to-top.show {
     opacity: 0.5;
 }
+
 .sb-btn {
     opacity: 0.5;
     margin-right: 10px;
@@ -229,13 +254,16 @@ body.editing .block_myprofile {
     border-radius: 6px;
     right: 60px !important;
 }
+
 .sb-btn:after {
     content: "FIT Online Support";
 }
+
 .sb-btn:hover {
     opacity: 1;
     transition: opacity 0.2s ease-out;
 }
+
 .sb-btn.en_bottom {
     background-image: none;
 }
@@ -284,7 +312,7 @@ body.editing .block_myprofile {
 
 .active .page-link {
     background-color: #006cab,
-    color: #ffffff
+        color: #ffffff
 }
 
 h3 span a {
@@ -296,13 +324,13 @@ h3 span a {
 }
 
 #icon2 {
-    color:#222222;
+    color: #222222;
 }
 
-.iconhelp{
-    display:none;
+.iconhelp {
+    display: none;
 }
 
-#completionprogressid{
-    display:none;
+#completionprogressid {
+    display: none;
 }
