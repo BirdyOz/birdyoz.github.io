@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @First Created:   2019-01-15 16:04:39
  * @Last Modified by:   birdyoz
- * @Last Modified time: 2019-01-15 21:13:43
+ * @Last Modified time: 2019-01-15 21:25:04
  */
 
 
@@ -107,18 +107,30 @@ function extract_show_hide() {
     var menu = $('.context-header-settings-menu a[href*="edit=o"]');
 
 
-        if (menu.length) {
-            console.log("@GB: menu = ", menu);
-            var html = $(menu).html();
-            if (html.indexOf("Turn editing on") >= 0) {
-                var state = "btn-primary";
-            } else {
-                 var state = "btn-success"; }
-            console.log("@GB: html = ", html);
-            var href = $(menu).attr('href');
-            console.log("@GB: href = ", href);
-            var btn = '<a class="btn '+state+'" id="edit-on-off" href="' + href + '">' + html + '</a>';
-            console.log("@GB: btn = ", btn);
-            $("#page-navbar").before(btn);
+    if (menu.length) {
+        console.log("@GB: menu = ", menu);
+        var html = $(menu).html();
+        if (html.indexOf("Turn editing on") >= 0) {
+            var state = "btn-primary";
+        } else {
+            var state = "btn-success";
         }
+        console.log("@GB: html = ", html);
+        var href = $(menu).attr('href');
+        console.log("@GB: href = ", href);
+        var btn = '<a class="btn ' + state + '" id="edit-on-off" href="' + href + '">' + html + '</a>';
+        console.log("@GB: btn = ", btn);
+        $("#page-navbar").before(btn);
     }
+}
+
+
+
+$.urlParam = function(name) {
+    var results = new RegExp('[\?&]' + name + '=([^]*)').exec(window.location.href);
+    if (results == null) {
+        return null;
+    } else {
+        return results[1] || 0;
+    }
+}
