@@ -1,9 +1,28 @@
 /*
-*  @Created  : 2017-03-31 13:01:41
-*  @Modified : 2019-01-14 11:04:00
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @First Created:   2019-01-15 16:05:23
+* @Last Modified by:   birdyoz
+* @Last Modified time: 2019-01-15 16:39:04
 */
 
-/*Banner container*/
+
+
+
+/*=============================================
+ Main content - UI overrides #region-main
+=============================================*/
+
+/* Fade down hidden sections */
+
+li.section.hidden a, li.section.hidden .fa, li.section.hidden h1, li.section.hidden h2, li.section.hidden h3, li.section.hidden h4, li.section.hidden h5, li.section.hidden h6, {
+    opacity: 0.6
+}
+
+/*=============================================
+  Existing FIT CSS overrides - As found at:
+  https://mahara.infotech.monash.edu/moodle/css/Moodle-deployment-s12018.css
+=============================================*/
+
 
 .monash-banner {
     max-width: 1200px;
@@ -248,7 +267,7 @@ body.editing .block_myprofile {
 }
 
 .active .page-link {
-    background-color: #006cab, 
+    background-color: #006cab,
     color: #ffffff
 }
 
