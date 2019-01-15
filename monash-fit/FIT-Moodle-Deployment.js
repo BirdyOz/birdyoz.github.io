@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @First Created:   2019-01-15 16:04:39
  * @Last Modified by:   birdyoz
- * @Last Modified time: 2019-01-15 18:29:37
+ * @Last Modified time: 2019-01-15 21:13:43
  */
 
 
@@ -70,10 +70,15 @@ function editing_on_off(argument) {
 function contact_support() {
     // Get user and environment variables
     var fit_user = $('.myprofileitem.fullname').text();
+    console.log("@GB: fit_user = ", fit_user);
     var fit_URL = document.location.href;
+    console.log("@GB: fit_URL = ", fit_URL);
     var fit_ID = $.urlParam('id');
+    console.log("@GB: fit_ID = ", fit_ID);
     var fit_email = $('.myprofileitem.email').text();
+    console.log("@GB: fit_email = ", fit_email);
     var fit_unit = $('header>h1').text();
+    console.log("@GB: fit_unit = ", fit_unit);
 
     // Load external script
     $.getScript("//d3932137p5ikt7.cloudfront.net/widget_v3/loader.min.js")
@@ -102,18 +107,18 @@ function extract_show_hide() {
     var menu = $('.context-header-settings-menu a[href*="edit=o"]');
 
 
-    if (menu.length) {
-        console.log("@GB: menu = ", menu);
-        var html = $(menu).html();
-        if (html.indexOf("Turn editing on") >= 0) {
-            var state = "btn-primary";
-        } else {
-             var state = "btn-success"; }
-        console.log("@GB: html = ", html);
-        var href = $(menu).attr('href');
-        console.log("@GB: href = ", href);
-        var btn = '<a class="btn '+state+'" id="edit-on-off" href="' + href + '">' + html + '</a>';
-        console.log("@GB: btn = ", btn);
-        $("#page-navbar").before(btn);
+        if (menu.length) {
+            console.log("@GB: menu = ", menu);
+            var html = $(menu).html();
+            if (html.indexOf("Turn editing on") >= 0) {
+                var state = "btn-primary";
+            } else {
+                 var state = "btn-success"; }
+            console.log("@GB: html = ", html);
+            var href = $(menu).attr('href');
+            console.log("@GB: href = ", href);
+            var btn = '<a class="btn '+state+'" id="edit-on-off" href="' + href + '">' + html + '</a>';
+            console.log("@GB: btn = ", btn);
+            $("#page-navbar").before(btn);
+        }
     }
-}
