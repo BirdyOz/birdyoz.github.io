@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-01-15 16:05:23
 * @Last Modified by:   birdyoz
-* @Last Modified time: 2019-01-15 16:39:04
+* @Last Modified time: 2019-01-15 16:54:07
 */
 
 
@@ -15,6 +15,12 @@
 /* Fade down hidden sections */
 
 li.section.hidden a, li.section.hidden .fa, li.section.hidden h1, li.section.hidden h2, li.section.hidden h3, li.section.hidden h4, li.section.hidden h5, li.section.hidden h6, {
+    opacity: 0.6
+}
+
+/* Fade down dimmede items */
+
+div.dimmed_text a, div.dimmed_text .fa, div.dimmed_text h1, div.dimmed_text h2, div.dimmed_text h3, div.dimmed_text h4, div.dimmed_text h5, div.dimmed_text h6, {
     opacity: 0.6
 }
 

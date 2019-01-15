@@ -1,12 +1,18 @@
 /*
- *  @Created  : 2017-05-17 16:46:47
- *  @Modified : 2019-01-14 10:56:00
+ * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+ * @First Created:   2019-01-15 16:04:39
+ * @Last Modified by:   birdyoz
+ * @Last Modified time: 2019-01-15 18:08:20
  */
+
 
 // JQuery - on page load
 $(function() {
     // Add back to top button
     back_to_top();
+
+    // In the Boost theme, extract the show-hide button from the cog menu and integrate back into UI
+    extract_show_hide();
 
     // Add 'Contact support', but only if editing is on
     if ($('body.editing').length > 0) {
@@ -27,10 +33,10 @@ $(function() {
     localStorage.getItem('aElements');
     localStorage.getItem('tdElements');
 
-     var btn = document.getElementsByClassName('btn');
-         for (var i = 0; i < btn.length; i++) {
-         btn[i].style.color = localStorage.getItem('btn');
-        }
+    var btn = document.getElementsByClassName('btn');
+    for (var i = 0; i < btn.length; i++) {
+        btn[i].style.color = localStorage.getItem('btn');
+    }
 });
 
 function back_to_top() {
@@ -88,4 +94,22 @@ function contact_support() {
             console.log("@GB: exception = ", exception);
             console.log("@GB: settings = ", settings);
         });
+}
+
+
+function extract_show_hide() {
+    // Target the turn editing on/off menu item
+    var menu = $('.context-header-settings-menu a[href*="edit=o"]');
+
+
+    if (menu.length) {
+        console.log("@GB: menu = ", menu);
+        var html = $(menu).html();
+        console.log("@GB: html = ", html);
+        var href = $(menu).attr('href');
+        console.log("@GB: href = ", href);
+        var btn = '<a class="btn btn-primary" id="edit-on-off" href="'+href+'">'+html+'</a>';
+        console.log("@GB: btn = ", btn);
+        $("page-navbar").before(btn);
+    }
 }
