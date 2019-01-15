@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @First Created:   2019-01-15 16:04:39
  * @Last Modified by:   birdyoz
- * @Last Modified time: 2019-01-15 18:08:20
+ * @Last Modified time: 2019-01-15 18:14:29
  */
 
 
@@ -110,6 +110,6 @@ function extract_show_hide() {
         console.log("@GB: href = ", href);
         var btn = '<a class="btn btn-primary" id="edit-on-off" href="'+href+'">'+html+'</a>';
         console.log("@GB: btn = ", btn);
-        $("page-navbar").before(btn);
+        $("#page-navbar").before(btn);
     }
 }
