@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-01-15 16:05:23
 * @Last Modified by:   birdyoz
-* @Last Modified time: 2019-01-16 11:12:06
+* @Last Modified time: 2019-01-18 09:01:58
 */
 
 
@@ -45,6 +45,24 @@ div.dimmed_text a, div.dimmed_text .fa, div.dimmed_text h1, div.dimmed_text h2, 
     .fa-5x {
         font-size: 2em !important;
     }
+}
+
+
+/* Limit enrolment options */
+
+select.custom-select {
+    content: "FRED";
+}
+
+#id_roletoassign option:not([value="19"]) {
+    display: none;
+}
+
+
+/* Fiu positioning of 'New Activity' flag on grid format*/
+
+.format-grid .course-content ul.gridicons li img.new_activity {
+    margin-top: -38px !important;
 }
 
 /*=============================================
