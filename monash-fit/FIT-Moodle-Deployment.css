@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-01-15 16:05:23
 * @Last Modified by:   birdyoz
-* @Last Modified time: 2019-01-18 09:36:58
+* @Last Modified time: 2019-01-18 13:15:26
 */
 
 
@@ -45,6 +45,10 @@ li.section.hidden #icon, div.dimmed_text #icon {
     }
 }
 
+/* Extend right margins for left floted content*/
+.float-md-left {
+    margin-right: 2em;
+}
 
 /* Limit enrolment options */
 
