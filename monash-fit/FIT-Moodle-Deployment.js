@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @First Created:   2019-01-15 16:04:39
  * @Last Modified by:   birdyoz
- * @Last Modified time: 2019-01-15 21:45:05
+ * @Last Modified time: 2019-01-18 16:12:06
  */
 
 
@@ -13,6 +13,9 @@ $(function() {
 
     // In the Boost theme, extract the show-hide button from the cog menu and integrate back into UI
     extract_show_hide();
+
+    // Limit the enrolments for the lecturer role to just 'guest'
+    limit_enrolment_options();
 
     // Add 'Contact support', but only if editing is on
     if ($('body.editing').length > 0) {
@@ -110,6 +113,8 @@ function extract_show_hide() {
     if (menu.length) {
         console.log("@GB: menu = ", menu);
         var html = $(menu).html();
+
+        // set different button themes for editing on or off
         if (html.indexOf("Turn editing on") >= 0) {
             var state = "btn-primary";
         } else {
@@ -120,11 +125,53 @@ function extract_show_hide() {
         console.log("@GB: href = ", href);
         var btn = '<a class="btn ' + state + '" id="edit-on-off" href="' + href + '">' + html + '</a>';
         console.log("@GB: btn = ", btn);
+
+        // Add button before breadcrumbs
         $("#page-navbar").before(btn);
     }
 }
 
+function limit_enrolment_options() {
+    //If I am on the enrolment screem
+    if (window.location.href.indexOf("user/index.php?id=") > 0 & window.location.href.indexOf("limit_enrolment=off") < 0) {
 
+        var fit_email = $('.myprofileitem.email').text();
+        console.log("@GB: fit_email = ", fit_email);
+        var allowed_users = ["XXXXX"];
+
+        if ($.inArray(fit_email, allowed_users) !== -1) {
+            // I am an allowed user
+            console.log("@GB: allowed_users = ", allowed_users);
+        } else {
+            // I am NOT an allowed user so restrict my access
+            $('.inplaceeditable').attr('data-options', '');
+            $('.quickediticon .fa-pencil').hide();
+
+            $(".enrol_manual_plugin").click(function() {
+                setTimeout(function() {
+                    var options = $('select#id_roletoassign option');
+                    if (options.length > 0) {
+                        console.log("@GB: options = ", options);
+                        $.each(options, function(index, val) {
+                            txt = $(this).text();
+                            console.log("@GB: txt = ", txt);
+                            if (txt == "Tutor") {
+                                console.log("@GB: Tutor found");
+                                $(this).attr('selected', 'selected');
+
+                            } else {
+                                $(this).remove()
+                            }
+                            /* iterate through array or object */
+                        });
+                    }
+
+                }, 3000);
+            });
+        }
+    }
+
+}
 
 $.urlParam = function(name) {
     var results = new RegExp('[\?&]' + name + '=([^]*)').exec(window.location.href);
