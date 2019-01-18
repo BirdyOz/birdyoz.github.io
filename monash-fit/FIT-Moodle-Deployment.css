@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-01-15 16:05:23
 * @Last Modified by:   birdyoz
-* @Last Modified time: 2019-01-18 13:15:26
+* @Last Modified time: 2019-01-18 14:28:49
 */
 
 
@@ -19,16 +19,23 @@ li.section.hidden a, li.section.hidden .fa, li.section.hidden h1, li.section.hid
 }
 
 
-li.section.hidden #icon, div.dimmed_text #icon {
-    color: grey !important;
-}
-
 
 /* Position the editing on/off button*/
 
 #edit-on-off {
     position: absolute;
     right: 15px;
+}
+
+/* FONT AWESOME */
+
+.fa-circle {
+    color: #006cab;
+}
+
+
+li.section.hidden .fa-circle, div.dimmed_text .fa-circle {
+    color: grey !important;
 }
 
 /* Resize Font-Awesome icons at smaller screen sizes*/
@@ -339,9 +346,6 @@ h3 span a {
     color: #006cab
 }
 
-#icon {
-    color: #006cab;
-}
 
 #icon2 {
     color: #222222;
