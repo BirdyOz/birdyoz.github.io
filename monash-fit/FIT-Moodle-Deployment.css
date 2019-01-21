@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-01-15 16:05:23
 * @Last Modified by:   birdyoz
-* @Last Modified time: 2019-01-18 14:28:49
+* @Last Modified time: 2019-01-21 15:00:40
 */
 
 
@@ -25,6 +25,14 @@ li.section.hidden a, li.section.hidden .fa, li.section.hidden h1, li.section.hid
 #edit-on-off {
     position: absolute;
     right: 15px;
+}
+
+@media screen and (max-width: 600px) {
+    #edit-on-off:before {
+        content: "\f040";
+    }
+    #edit-on-off span {display: none;
+    }
 }
 
 /* FONT AWESOME */
@@ -55,16 +63,6 @@ li.section.hidden .fa-circle, div.dimmed_text .fa-circle {
 /* Extend right margins for left floted content*/
 .float-md-left {
     margin-right: 2em;
-}
-
-/* Limit enrolment options */
-
-select.custom-select {
-    content: "FRED";
-}
-
-#id_roletoassign option:not([value="19"]) {
-    display: none;
 }
 
 
