@@ -2,12 +2,13 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @First Created:   2019-01-15 16:04:39
  * @Last Modified by:   birdyoz
- * @Last Modified time: 2019-01-21 14:33:58
+ * @Last Modified time: 2019-01-21 14:48:15
  *
  *
  * NOTE TO FIT Administators:
  * This script includes code to limit the enrolment options for lecturers.
- * To bypass this, add staff email details to the 'allowed_users' array.
+ * To bypass this, add staff email details to the 'allowed_users' array,
+ * OR append the URL to include '&limit_enrolment=off'
  */
 
 
@@ -83,7 +84,7 @@ function contact_support() {
     console.log("@GB: fit_user = ", fit_user);
     var fit_URL = document.location.href;
     console.log("@GB: fit_URL = ", fit_URL);
-    var fit_ID = $.urlParam('id');
+    var fit_ID = getUrlParameter('id');
     console.log("@GB: fit_ID = ", fit_ID);
     var fit_email = $('.myprofileitem.email').text();
     console.log("@GB: fit_email = ", fit_email);
@@ -151,7 +152,6 @@ function limit_enrolment_options() {
             "margot.schuhmacher@monash.edu",
             "matt.chen@monash.edu",
             "milad.sayad@monash.edu",
-            "milad.sayad5@monash.edu",
             "rajib.uddin@monash.edu"
         ];
 
@@ -191,11 +191,17 @@ function limit_enrolment_options() {
 
 }
 
-$.urlParam = function(name) {
-    var results = new RegExp('[\?&]' + name + '=([^]*)').exec(window.location.href);
-    if (results == null) {
-        return null;
-    } else {
-        return results[1] || 0;
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = window.location.search.substring(1),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+        }
     }
-}
+};
