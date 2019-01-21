@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-01-15 16:05:23
 * @Last Modified by:   birdyoz
-* @Last Modified time: 2019-01-21 15:09:12
+* @Last Modified time: 2019-01-21 15:14:02
 */
 
 
@@ -51,11 +51,17 @@ li.section.hidden .fa-circle, div.dimmed_text .fa-circle {
     .fa-5x {
         font-size: 4em !important;
     }
+    .fa-4x {
+        font-size: 3em !important;
+    }
 }
 
 @media screen and (max-width: 600px) {
     .fa-5x {
         font-size: 2em !important;
+    }
+    .fa-4x {
+        font-size: 1.5em !important;
     }
 }
 
