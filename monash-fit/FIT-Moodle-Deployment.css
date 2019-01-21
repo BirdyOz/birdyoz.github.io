@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-01-15 16:05:23
 * @Last Modified by:   birdyoz
-* @Last Modified time: 2019-01-21 15:25:02
+* @Last Modified time: 2019-01-21 15:27:59
 */
 
 
@@ -30,7 +30,7 @@ li.section.hidden a, li.section.hidden .fa, li.section.hidden h1, li.section.hid
 @media screen and (max-width: 600px) {
     #edit-on-off:before {
         font-family: FontAwesome;
-        content:"\f14b";
+        content:"\f040";
     }
     #edit-on-off span {display: none;}
 }
