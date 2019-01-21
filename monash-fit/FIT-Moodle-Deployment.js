@@ -2,8 +2,15 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @First Created:   2019-01-15 16:04:39
  * @Last Modified by:   birdyoz
- * @Last Modified time: 2019-01-18 16:12:06
+ * @Last Modified time: 2019-01-21 14:33:58
+ *
+ *
+ * NOTE TO FIT Administators:
+ * This script includes code to limit the enrolment options for lecturers.
+ * To bypass this, add staff email details to the 'allowed_users' array.
  */
+
+
 
 
 // JQuery - on page load
@@ -132,12 +139,21 @@ function extract_show_hide() {
 }
 
 function limit_enrolment_options() {
-    //If I am on the enrolment screem
+    //If I am on the enrolment screem and I DO NOT have "limit_enrolment=off"
     if (window.location.href.indexOf("user/index.php?id=") > 0 & window.location.href.indexOf("limit_enrolment=off") < 0) {
 
-        var fit_email = $('.myprofileitem.email').text();
+        var fit_email = $('.myprofileitem.email').text().toLowerCase();
         console.log("@GB: fit_email = ", fit_email);
-        var allowed_users = ["XXXXX"];
+
+        // whitelist of allowed users who DO NOT have the enrolment restriction
+        var allowed_users = [
+            "jamie.fulcher@monash.edu",
+            "margot.schuhmacher@monash.edu",
+            "matt.chen@monash.edu",
+            "milad.sayad@monash.edu",
+            "milad.sayad5@monash.edu",
+            "rajib.uddin@monash.edu"
+        ];
 
         if ($.inArray(fit_email, allowed_users) !== -1) {
             // I am an allowed user
@@ -147,7 +163,9 @@ function limit_enrolment_options() {
             $('.inplaceeditable').attr('data-options', '');
             $('.quickediticon .fa-pencil').hide();
 
+            // Listen for mouse click on 'Enrol users' button
             $(".enrol_manual_plugin").click(function() {
+                // Wait 3 secs while the list loads
                 setTimeout(function() {
                     var options = $('select#id_roletoassign option');
                     if (options.length > 0) {
