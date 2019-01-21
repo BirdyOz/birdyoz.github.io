@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @First Created:   2019-01-15 16:04:39
  * @Last Modified by:   birdyoz
- * @Last Modified time: 2019-01-21 14:48:15
+ * @Last Modified time: 2019-01-21 14:57:57
  *
  *
  * NOTE TO FIT Administators:
@@ -74,9 +74,6 @@ function back_to_top() {
     }
 }
 
-function editing_on_off(argument) {
-    // body...
-}
 
 function contact_support() {
     // Get user and environment variables
@@ -131,7 +128,7 @@ function extract_show_hide() {
         console.log("@GB: html = ", html);
         var href = $(menu).attr('href');
         console.log("@GB: href = ", href);
-        var btn = '<a class="btn ' + state + '" id="edit-on-off" href="' + href + '">' + html + '</a>';
+        var btn = '<a class="btn ' + state + '" id="edit-on-off" href="' + href + '"><span>' + html + '</span></a>';
         console.log("@GB: btn = ", btn);
 
         // Add button before breadcrumbs
