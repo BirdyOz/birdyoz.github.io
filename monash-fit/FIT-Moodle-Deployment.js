@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @First Created:   2019-01-15 16:04:39
  * @Last Modified by:   birdyoz
- * @Last Modified time: 2019-01-24 16:05:11
+ * @Last Modified time: 2019-01-24 16:14:19
  *
  *
  * NOTE TO FIT Administators:
@@ -171,7 +171,6 @@ function limit_enrolment_options() {
             console.log("@GB: guests = ", guests);
             $.each(guests, function(index, val) {
                 /* iterate through array or object */
-                console.log("@GB: n = ", n);
                 txt = $.trim($(this).text());
                 console.log("@GB: txt = ", txt);
                 // If Guest
