@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-01-15 16:05:23
 * @Last Modified by:   birdyoz
-* @Last Modified time: 2019-01-21 15:30:13
+* @Last Modified time: 2019-01-24 15:00:41
 */
 
 
@@ -76,8 +76,11 @@ li.section.hidden .fa-circle, div.dimmed_text .fa-circle {
 /* Fiu positioning of 'New Activity' flag on grid format*/
 
 .format-grid .course-content ul.gridicons li img.new_activity {
-    margin-top: -38px !important;
+    content: url("https://birdyoz.github.io/monash-fit/FIT-new-activity.png");
+    margin-left: 160px !important;
+    margin-top: -130px !important;
 }
+
 
 /*=============================================
   Existing FIT CSS overrides - As found at:
