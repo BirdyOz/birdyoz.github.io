@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @First Created:   2019-01-15 16:04:39
  * @Last Modified by:   birdyoz
- * @Last Modified time: 2019-01-24 14:24:51
+ * @Last Modified time: 2019-01-24 16:05:11
  *
  *
  * NOTE TO FIT Administators:
@@ -160,6 +160,29 @@ function limit_enrolment_options() {
             $('.inplaceeditable').attr('data-options', '');
             $('.quickediticon .fa-pencil').hide();
 
+            // Hide edit and un enrol links
+
+            $('a.editenrollink').hide();
+            $('a.unenrollink').hide();
+
+
+            //Selectively turn these back on again, if role = guest
+            var guests = $('a.quickeditlink');
+            console.log("@GB: guests = ", guests);
+            $.each(guests, function(index, val) {
+                /* iterate through array or object */
+                console.log("@GB: n = ", n);
+                txt = $.trim($(this).text());
+                console.log("@GB: txt = ", txt);
+                // If Guest
+                if (txt == "Guest") {
+                    console.log("@GB: Guest found");
+                    // Turn links back on again
+                    $('a.editenrollink').eq(index).show();
+                    $('a.unenrollink').eq(index).show();
+                }
+            });
+
             // Listen for mouse click on 'Enrol users' button
             $(".enrol_manual_plugin").click(function() {
                 // Wait 3 secs while the list loads
@@ -181,7 +204,7 @@ function limit_enrolment_options() {
                         });
                     }
 
-                }, 3000);
+                }, 2000);
             });
         }
     }
