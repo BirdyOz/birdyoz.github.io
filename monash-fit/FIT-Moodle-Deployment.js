@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @First Created:   2019-01-15 16:04:39
  * @Last Modified by:   birdyoz
- * @Last Modified time: 2019-01-21 14:57:57
+ * @Last Modified time: 2019-01-24 14:24:51
  *
  *
  * NOTE TO FIT Administators:
@@ -170,8 +170,8 @@ function limit_enrolment_options() {
                         $.each(options, function(index, val) {
                             txt = $(this).text();
                             console.log("@GB: txt = ", txt);
-                            if (txt == "Tutor") {
-                                console.log("@GB: Tutor found");
+                            if (txt == "Guest") {
+                                console.log("@GB: Guest found");
                                 $(this).attr('selected', 'selected');
 
                             } else {
