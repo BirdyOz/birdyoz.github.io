@@ -1,8 +1,8 @@
 /*
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2018-11-22 14:55:12
-* @Last Modified by:   Greg Bird
-* @Last Modified time: 2019-01-08 14:55:45
+* @Last Modified by:   birdyoz
+* @Last Modified time: 2019-01-25 12:54:38
 */
 
 
@@ -87,6 +87,16 @@ body {
     .coursecard .coursecard-body h3{
         font-size: 0.8em
     }
+}
+
+/* Update "Courses" link to "Current Courses" and make bolder */
+
+a[aria-controls="snap-pm-courses-current"] {
+    font-weight: bold
+}
+
+a[aria-controls="snap-pm-courses-current"]:before {
+    content: "Current "
 }
 
 /* Replace the course search "GO" form input with a custom image */

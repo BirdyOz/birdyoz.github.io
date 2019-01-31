@@ -1,4 +1,2 @@
-.editor_atto_menu .dropdown-menu>li>a:hover {
-    background-color: #369 !important:
-    color: white !important;
+a[aria-controls="snap-pm-courses-current"] {display: none;
 }
