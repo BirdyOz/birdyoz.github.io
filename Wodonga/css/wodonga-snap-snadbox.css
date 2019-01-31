@@ -1,0 +1,248 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com) (with edits by eWorks and GY)
+* @Date:   2018-10-01 08:14:38
+* @Last Modified by:   birdyoz
+* @Last Modified time: 2019-01-22 16:29:06
+*/
+
+/* ==================================================
+   Top Naviagtion bar and breadcrumbs
+   - Only applies if a masthead image has been added
+   ================================================== */
+
+
+.mast-image h1 a, .mast-image .breadcrumb {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.5);
+    /*background: rgba(255, 255, 255, 0.5); */
+    padding: 8px;
+}
+
+.mast-image .breadcrumb {
+    margin: 0;
+}
+
+
+.mast-image h1 a,.mast-image .breadcrumb-item a {
+    color: white !important;
+    /*color: #174F6E !important;*/
+}
+/* ==================================================
+   Homepage
+   ================================================== */
+
+/* Hide redundant login button */
+#page-site-index #page-mast .btn {
+    display: none;
+}
+
+/* Collapse whitespace */
+#page-site-index #moodle-footer {
+    margin-top: 0;
+}
+
+
+
+/* ==================================================
+   Snap My Courses Interface
+   ================================================== */
+
+/* Remove progress bar */
+.coursecard-dynamicinfo {
+    display: none;
+}
+
+/* Move and style logout */
+#snap-pm-logout {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    padding-left: 24px !important;
+}
+
+/* Style close button */
+#snap-pm-close {
+    position: absolute;
+    top: 18px;
+    right: 130px;
+    background: none !important;
+    width: auto;
+    font-size: 1em;
+    padding-top: 13px !important;
+}
+
+/* Remove the close 'X' icon */
+#snap-pm-close:before {display: none;}
+
+.snap-icon-close:before {
+    background-image: none !important;
+}
+
+/* Remove 'close' text */
+#snap-pm-close small {
+    display: none;
+}
+/* Update text to last viewed */
+#snap-pm-close:after {
+    content: "Last Viewed" !important;
+}
+
+/* Hide on login screen */
+#page-site-index #snap-pm-close {
+    display: none;
+}
+
+/* Style as if Boostrap buttons */
+a#snap-pm-logout, a#snap-pm-close {
+    border: 2px solid #ccc;
+    padding: 10px;
+    font-size: 0.8em !important;
+    height: 42px;
+    border-radius: 5px;
+}
+
+a#snap-pm-logout:hover, a#snap-pm-close:hover {
+  text-decoration: none;
+  background-color: black !important;
+}
+
+/* Remove dash after 'Grades' */
+a[href $="/grade/report/overview/index.php"]:after {
+  display: none !important;
+}
+
+.snap-personal-menu-more {
+  padding-right: 40px !important;
+}
+
+.snap-personal-menu-more small {
+  font-size: 0.9em !important;
+  /*display: none;*/
+}
+
+/* Style on smaller devices - smaller than 991px*/
+@media (max-width: 991px) {
+    #snap-pm-close {
+      top: 9px;
+      right: 100px;
+    }
+
+    a#snap-pm-logout,a#snap-pm-close {
+        border: none !important;
+        padding: 0;
+        height: auto;
+    }
+
+    a#snap-pm-logout:hover,a#snap-pm-close:hover {
+        text-decoration: underline !important;
+        background: none !important;
+    }
+}
+
+/* Style on smaller devices - smaller than 767px*/
+@media (max-width: 767px) {
+    #snap-pm-close {
+      top: 0px;
+      right: 70px;
+    }
+    #snap-pm-logout {
+      top: 11px;
+      right: 5px;
+    }
+    .snap-pm-user {
+      margin-top: 15px;
+    }
+}
+
+/* ==================================================
+   Moodle Course - Navigation
+   ================================================== */
+
+/* Increased contrast for hidden/conditional/unpublished content.  */
+
+#snap-course-wrapper #chapters li.draft .chapter-title:before,
+#snap-course-wrapper #chapters li.conditional .chapter-title:before {
+    background-color: #BC243C;
+}
+
+#snap-course-wrapper #chapters li.draft small,
+#snap-course-wrapper #chapters li.conditional small {
+    font-weight: bold !important;
+}
+
+.snap-conditional-tag, .snap-stealth-tag, .snap-draft-tag, .snap-current-tag, .text-warning, .red, .notifyproblem, .completion-expired, span.flagged-tag, tr.flagged-tag, span.flagged-tag a, tr.flagged-tag a, .moodle-dialogue-exception .param-stacktrace .stacktrace-line, .connecting {
+    color: #BC243C!important;
+    font-weight: bold !important;
+}
+
+
+/* Move Course Dashboard above LH navigation */
+
+#course-toc {
+  margin-top: 3em;
+}
+
+#toc-search {
+  top: 4em;
+}
+
+#course-toc a[href="#coursetools"] {
+  /*display: none !important;*/
+  position: absolute;
+  top: 1em;
+}
+
+
+/* Style on smaller devices - smaller than 991px*/
+@media (max-width: 991px) {
+  #course-toc #chapters {
+    margin-top: 3em;
+  }
+}
+
+/* ==================================================
+   Footer
+   ================================================== */
+
+/* reduce padding whitespace */
+#moodle-footer {
+    padding-top: 20px;
+}
+
+/* Hide MoodleRooms specific footer text and copyright statement */
+#mrooms-footer {
+    visibility: hidden;
+    height: 1.2em;
+}
+
+/* Turn back on the Moodle help link */
+#mrooms-footer a.helplinkpopup {
+    visibility: visible !important;
+}
+
+
+/* Remove Moodle Mobile and policies link */
+#page-footer {
+  display: none !important;
+}
+
+/* User tours - Change background to black with opacity */
+div[data-flexitour="backdrop"] {
+background-color: black;
+    opacity: .4;
+}
+
+/* Reports fixes ~ to remove flash message and dashboard area */
+
+#page-blocks-reports-view .flash-description,
+#page-blocks-reports-view .report-dashboard-area {
+  display: none !important;
+}
+
+/* Remove Progress and Grade donuts from Student dashboard */
+
+#snap-student-dashboard.row.clearfix,
+.col-xs-3.text-center.snap-student-dashboard-progress,
+.col-xs-3.text-center.snap-student-dashboard-grade {
+  display: none !important;
+}
