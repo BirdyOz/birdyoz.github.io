@@ -1,7 +1,33 @@
 SELECT ec.fullname,
-       array_to_string(array_agg(CASE WHEN uce.rolearchetype = 'editingteacher' THEN uce.username END), ', ') AS editing_teachers,
-       array_to_string(array_agg(CASE WHEN uce.rolearchetype = 'teacher' THEN uce.username END), ', ') AS non_editing_teachers
+       ec.id,
+       array_to_string(array_agg(CASE
+                                     WHEN uce.roleshortname = 'trainerdeveloper' THEN uce.username
+                                 END), ', ') AS course_developers,
+       array_to_string(array_agg(CASE
+                                     WHEN uce.roleshortname = 'gotafetrainer' THEN uce.username
+                                 END), ', ') AS gotafe_trainers,
+       ec.category1,
+       ec.category2,
+       ec.category3,
+       ec.category4,
+       ec.visible,
+       ec.totalactivestudents_1day,
+       ec.totalactivestudents_7days,
+       ec.totalactivestudents_30days,
+       ec.totalactivestudents_thisyear,
+       ec.totalstudents
 FROM e_course ec
 JOIN e_user_course_enrolments uce ON ec.id = uce.courseid
-WHERE ec.id = '7545'
-GROUP BY ec.fullname
+GROUP BY ec.id,
+         ec.fullname,
+         ec.category1,
+         ec.category2,
+         ec.category3,
+         ec.category4,
+         ec.visible,
+         ec.totalstudents,
+         ec.totalactivestudents_7days,
+         ec.totalactivestudents_1day,
+         ec.totalactivestudents_30days,
+         ec.totalactivestudents_thisyear
+LIMIT 10
