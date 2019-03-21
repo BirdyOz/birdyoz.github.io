@@ -16,8 +16,8 @@ SELECT ec.fullname,
        ec.totalactivestudents_30days,
        ec.totalactivestudents_thisyear,
        ec.totalstudents
-FROM e_course ec
-JOIN e_user_course_enrolments uce ON ec.id = uce.courseid
+FROM public.e_course ec
+JOIN public.e_user_course_enrolments uce ON ec.id = uce.courseid
 GROUP BY ec.id,
          ec.fullname,
          ec.category1,
