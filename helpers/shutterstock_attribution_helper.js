@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-04-01 17:17:29
+ * @Last Modified time: 2019-04-01 19:51:01
  */
 
 $(function() {
@@ -41,7 +41,7 @@ $(function() {
             var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
             var yyyy = today.getFullYear();
 
-            today = mm + '/' + dd + '/' + yyyy;
+            today = dd + '/' + mm + '/' + yyyy;
             console.log("@GB: today = ", today);
 
 
