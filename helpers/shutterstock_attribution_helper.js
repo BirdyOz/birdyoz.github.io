@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-04-01 15:30:52
+ * @Last Modified time: 2019-04-01 16:52:23
  */
 
 $(function() {
@@ -26,14 +26,30 @@ $(function() {
             var user = url.searchParams.get("user");
             console.log("@GB: user = ", user);
 
-            var user_name = $(user).innerHTML();
-            console.log("@GB: user_name = ", user_name);
+            // PULL APART USERR DETAILS
+            var re = /href="(.*?)".*?>(.*?)</gi;
+            var user_details = re.exec(user);
+            console.log("@GB: user_details = ", user_details);
+            var user_name = user_details[2];
+            var user_url = "https://www.shutterstock.com/" + user_details[1];
+            console.log("@GB: user_url = ", user_url);
+
+            // Get current date string
+
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = mm + '/' + dd + '/' + yyyy;
+            console.log("@GB: today = ", today);
 
 
-            var image_url = "https://image.shutterstock.com/image-photo/" + descriptors.join("-") + "-450w-" + image_id + ".jpg";
+            var image_url = "https://image.shutterstock.com/z/" + image_id + ".jpg";
+            // var image_url = "https://image.shutterstock.com/image-photo/" + descriptors.join("-") + "-450w-" + image_id + ".jpg";
             console.log("@GB: image_url = ", image_url);
-            // var dom = '<a href="' + addr + '" target="_blank">Photo</a> by <a href="https://unsplash.com/' + user + '" target="_blank">' + user + '</a> on <a href="https://unsplash.com" target="_blank">Unsplash</a>';
-            var dom = user;
+            var dom = 'Photo ' + image_id + ' used under licence with <a target="_blank" href="https://www.shutterstock.com/">shutterstock.com</a> by <a  target="_blank" href="' + user_url + '">' + user_name + '</a>, accessed ' + today;
+
 
             $('img').each(function(index, el) {
                 el.src = image_url;
