@@ -43,7 +43,7 @@
         ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
     <div class="container marketing" style="margin-top: 100px">
-        <h1 class="display-4">Pixabay attribution maker</h1>
+        <h1 class="display-4">Pixabay attribution maker.</h1>
         <p class="lead">A Bookmarklet to create HTML snippets to create Pixabay attributions and properly align these statements with the image. These can be pasted into any HTML editor.</p>
         <p>
             <button class="btn btn-lg btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -54,7 +54,7 @@
             <div class="card card-body">
                 <h2>First time user?</h2>
                 <ol>
-                    <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Bvar%20url%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Fpixabay_attribution_helper.html%3Fimg%3D'%2BencodeURIComponent(document.querySelectorAll('%5Bitemprop%3D%22contentURL%22%5D')%5B0%5D.outerHTML)%2B'%26statement%3D'%2BencodeURIComponent(document.querySelector('span.attribution_field%20span').innerHTML)%3Bwindow.open(url%2C'_blank')%7D)()">Pixabay attribution maker</a> | <a class="bookmarklet" href="javascript:(function()%7Bvar%20url%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Fpixabay_attribution_helper.html%3Fimg%3D'%2BencodeURIComponent(document.querySelectorAll('%5Bitemprop%3D%22contentURL%22%5D')%5B0%5D.outerHTML)%2B'%26statement%3D'%2BencodeURIComponent(document.querySelector('span.attribution_field%20span').innerHTML)%3Bwindow.open(url%2C'_blank')%7D)()">this link</a>
+                    <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Bvar%20el%20%3D%20document.querySelectorAll('%5Bitemprop%3D%22contentURL%22%5D')%5B0%5D%3Bvar%20src%20%3D%20encodeURIComponent(el.getAttributeNode(%22src%22).value)%3Bvar%20alt%20%3D%20encodeURIComponent(el.getAttributeNode(%22alt%22).value)%3Bvar%20statement%20%3D%20encodeURIComponent(document.querySelector('span.attribution_field%20span').innerHTML)%3Bvar%20url%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Fpixabay_attribution_helper.html%3Fsrc%3D'%2Bsrc%2B'%26statement%3D'%2Bstatement%2B'%26alt%3D'%2Balt%3Bwindow.open(url%2C'_blank')%7D)()">Pixabay attribution maker</a>
                         <br><span class="text-muted">(Note: Make sure you drag the link onto your browser bookmarks. Clicking will just bring you back to here)</span></li>
                     <li>Visit Pixabay and locate the image you wish to attribute</li>
                     <li>Click on the 'Pixabay attribution maker' in your bookmarks</li>

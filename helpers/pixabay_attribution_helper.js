@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-04-03 13:23:46
+ * @Last Modified time: 2019-04-03 14:05:06
  */
 
 $(function() {
@@ -15,9 +15,8 @@ $(function() {
 
         if (statement.length > 0) {
 
-            var img = $.parseHTML(url.searchParams.get("img"));
-            var alt = $(img).attr("alt");
-            var src = $(img).attr("src");
+            var alt =  url.searchParams.get("alt");
+            var src =  url.searchParams.get("src");
             console.log("@GB: src = ", src);
             console.log("@GB: alt = ", alt);
 
