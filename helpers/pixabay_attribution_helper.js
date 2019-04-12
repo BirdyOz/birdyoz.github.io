@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-04-03 14:05:06
+ * @Last Modified time: 2019-04-12 13:27:10
  */
 
 $(function() {
@@ -22,7 +22,7 @@ $(function() {
 
 
             $('img').each(function(index, el) {
-                el.src = src;
+                el.src = "https://dummyimage.com//b094b0/e3b1e3&text=Replace+with+downloaded+pixabay+image";
                 $(this).attr('alt', alt);
                 $(this).attr('title', alt);
             });
