@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="#">
+    <meta name="author" content="#">
+    <title>@BirdyOz: Unsplash image embedder & attribution maker</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">@BirdyOz:  Unsplash embedder & attribution maker</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#right">Float Right</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#left">Float Left</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#center">Centered</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#large">Full-screen</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#overlay">Text Overlay</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="clearfix"></div>
+    <!-- Marketing messaging and featurettes
+        ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+    <div class="container marketing" style="margin-top: 100px">
+        <h1 class="display-4">Unsplash image embedder & attribution maker</h1>
+        <p class="lead">A Bookmarklet to create HTML snippets to embed Unsplash images with proper attribution. These can be pasted into any HTML editor.</p>
+        <p>
+            <button class="btn btn-lg btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                First time? Click here for setup instructions.
+            </button>
+        </p>
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body">
+                <h2>First time user?</h2>
+                <ol>
+                    <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Bvar%20url%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Funsplash_embed.html%3Faddr%3D'%2BencodeURIComponent(document.location.href)%2B'%26title%3D'%2BencodeURIComponent(document.title)%3Bwindow.open(url%2C'_blank')%7D)()">Unsplash embedder & attribution maker</a>
+                        <br><span class="text-muted">(Note: Make sure you drag the link onto your browser bookmarks.  Clicking will just bring you back to here)</span></li>
+                    <li>Visit Unsplash - Beautiful Free Images and find your favourite image</li>
+                    <li>Click on the 'Unsplash embedder & attribution maker' in your bookmarks</li>
+                    <li>You will be returned to this page, but now your selected image will be displayed below</li>
+                    <li>Press the copy button next to the layout type that you prefer. This will copy the HTML to your clipboard</li>
+                    <li>Paste this HTML anywhere that you can paste code (eg a Moodle page or tool)</li>
+                    <li>Ready to go? Visit <p><strong><a href="https://unsplash.com/">Beautiful Free Images & Pictures | Unsplash</a></strong></p>, select an image that you like and then press on the "Unsplash Embedder"</li>
+
+                </ol>
+                <h3>Show me how (Screen Video Tutorial)</h3>
+                <div><div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.2493%;"><iframe src="//cdn.iframe.ly/api/iframe?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DBNlEK-6ef4o&amp;key=c46013d31771189d4639a29af622a1f2" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen scrolling="no"></iframe></div></div>
+            </div>
+        </div>
+        <!-- Three columns of text below the carousel -->
+        <!-- /.row -->
+        <!-- START THE FEATURETTES -->
+        <div id="embedder">
+            <hr class="featurette-divider clearfix"  id="right">
+            <div class="clearfix">
+<div class="unsplash-copy unsplash-fr">
+<!-- Start of Unsplash Embed Code - Float Right  (Embed code by @BirdyOz)-->
+<div class="float-right" style="float: right; width: 30%; max-width: 320px; min-width: 200px; margin:0 0 10px 20px !important">
+    <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+UnSplash" class="img-responsive img-fluid">
+    <div class="text-muted" style="opacity: 0.5">
+        <small><a href="#" target="_blank">Photo</a> by <a href="#" target="_blank">Author</a> on <a href="https://usnsplash.com" target="_blank">Unsplash</a></small>
+    </div>
+</div>
+<!-- End of Unsplash Embed Code -->
+</div>
+                <h2 class="featurette-heading">Float Right <span class="text-muted">(Image to the right of text)</span></h2>
+                <p class="lead">Image will occupy 30% of the available space, between the minimum width of 200px and maximum width of 320px</p>
+                <button id="unsplash-fr" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
+            </div>
+            <hr class="featurette-divider clearfix"  id="left">
+            <div class="clearfix">
+<div class="unsplash-copy unsplash-fl">
+<!-- Start of Unsplash Embed Code - Float Left (Embed code by @BirdyOz)-->
+<div class="float-left" style="float: left; width: 30%; max-width: 320px; min-width: 200px; margin:0 20px 10px 0 !important">
+    <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+Unsplash" class="img-responsive img-fluid">
+    <div class="text-muted" style="opacity: 0.5">
+        <small><a href="#">Photo</a> by <a href="#">Author</a> on <a href="https://usnsplash.com" target="_blank">Unsplash</a></small>
+    </div>
+</div>
+<!-- End of Unsplash Embed code -->
+</div>
+                <h2 class="featurette-heading">Float Left <span class="text-muted">(Image to the left of text)</span></h2>
+                <p class="lead">Image will occupy 30% of the available space, between the minimum width of 200px and maximum width of 320px</p>
+                <button id="unsplash-fl" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
+            </div>
+            <hr class="featurette-divider clearfix" id="center">
+            <div class="clearfix">
+                <h2 class="featurette-heading">Centered <span class="text-muted">(Image above or below text)</span></h2>
+                <p class="lead">Image will occupy 60% of the available space, aligned to the center of the container.</p>
+                <button id="unsplash-ce" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
+<div class="unsplash-copy unsplash-ce">
+<!-- Start of Unsplash Embed Code - Centered (Embed code by @BirdyOz)-->
+<div style="width:60%; margin: 20px 20% !important;">
+    <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+UnSplash" class="img-responsive img-fluid">
+    <div class="text-muted" style="opacity: 0.5">
+        <small><a href="#">Photo</a> by <a href="#">Author</a> on <a href="https://usnsplash.com" target="_blank">Unsplash</a></small>
+    </div>
+</div>
+<!-- End of Unsplash Embed code -->
+</div>
+            </div>
+                <hr class="featurette-divider clearfix"  id="large">
+                <div class="clearfix">
+                <h2 class="featurette-heading">Full width <span class="text-muted">(Image above or below text)</span></h2>
+                <p class="lead">Image will occupy 100% of the available space</p>
+                <button id="unsplash-lg" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
+<div class="unsplash-copy unsplash-lg">
+<!-- Start of Unsplash Embed Code - Full-width (Embed code by @BirdyOz)-->
+<div style="width:100%; margin: 20px auto;">
+    <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+UnSplash" class="img-responsive img-fluid">
+    <div class="text-muted" style="opacity: 0.5">
+        <small><a href="#">Photo</a> by <a href="#">Author</a> on <a href="https://usnsplash.com" target="_blank">Unsplash</a></small>
+    </div>
+</div>
+</div>
+<!-- End of Unsplash Embed code -->
+
+<hr class="featurette-divider clearfix"  id="overlay">
+                <div class="clearfix">
+                <h2 class="featurette-heading">Full width, with text overlay <span class="text-muted">(Custom text overlay)</span></h2>
+                <p class="lead">Image will occupy 100% of the available space.  Text overlay can be edited by you, after embedding</p>
+                <button id="unsplash-ov" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
+<div class="unsplash-copy unsplash-ov">
+<!-- Start of Unsplash Embed Code - Full-width, with text overlay (Embed code by @BirdyOz)-->
+<div class="overlay" style="width:100%; margin: 20px auto; text-align: center; color: white !important; text-shadow: 2px 2px 4px #000000; position: relative;">
+    <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+UnSplash" class="img-responsive img-fluid" style="width:100%">
+   <div class="text-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%">
+       <p class="" style="font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) )) !important; line-height: calc( 20px + (32 - 16) * ( 80vw / (1000 - 400) )) !important;">Text overlay goes here</p>
+       <p class="" style="font-size: calc( 12px + (24 - 16) * ( 60vw / (1000 - 400) )) !important; line-height: calc( 10px + (20 - 10) * ( 80vw / (1000 - 400) )) !important;">Optional byline or citation goes here.  Delete if not required.</p>
+   </div>
+</div>
+<div class="text-muted" style="opacity: 0.5; margin-top: -1.2em">
+    <small><a href="#">Photo</a> by <a href="#">Author</a> on <a href="https://usnsplash.com" target="_blank">Unsplash</a></small>
+</div>
+<!-- End of Unsplash Embed code -->
+</div>
+            </div>
+        </div>
+        <!-- /END THE FEATURETTES -->
+        <!-- FOOTER -->
+        <hr>
+        <footer class="page-footer">
+            <p class="float-right"><a href="#">Back to top</a></p>
+            <p>'Unsplash Embed - attribution maker' by Greg Bird (@BirdyOz) | <a href="https://twitter.com/BirdyOz" target="_blank">Twitter</a> | <a href="https://www.linkedin.com/in/birdyoz/" target="_blank">LinkedIn</a> | <a href="https://www.youtube.com/BirdyOz" target="_blank">YouTube</a> | <a href="mailto:greg.bird.oz@gmail.com">email</a></p>
+        </footer>
+    </div>
+    <!-- /.container -->
+    <!-- Bootstrap core JavaScript
+        ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="unsplash_encode.js"></script>
+
+</body>
+
+</html>
