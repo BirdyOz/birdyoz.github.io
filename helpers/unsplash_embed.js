@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2018-08-30 16:29:39
+ * @Last Modified time: 2019-05-20 11:00:38
  */
 
 $(function() {
@@ -23,7 +23,16 @@ $(function() {
             var user = TitleArray[2];
             var image = addr.substring(addr.lastIndexOf("/") + 1, addr.length);
             var image_url = "https://source.unsplash.com/" + image;
-            var dom = '<a href="' + addr + '" target="_blank">Photo</a> by <a href="https://unsplash.com/' + user + '" target="_blank">' + user + '</a> on <a href="https://unsplash.com" target="_blank">Unsplash</a>';
+
+
+            // Get current date string
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            today = dd + '/' + mm + '/' + yyyy;
+
+            var dom = '<a href="' + addr + '" target="_blank">Photo</a> by <a href="https://unsplash.com/' + user + '" target="_blank">' + user + '</a> on <a href="https://unsplash.com" target="_blank">Unsplash</a>, accessed ' + today;
 
 
             $('img').each(function(index, el) {

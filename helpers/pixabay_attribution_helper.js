@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-04-12 13:27:10
+ * @Last Modified time: 2019-05-20 10:58:43
  */
 
 $(function() {
@@ -15,10 +15,17 @@ $(function() {
 
         if (statement.length > 0) {
 
-            var alt =  url.searchParams.get("alt");
-            var src =  url.searchParams.get("src");
+            var alt = url.searchParams.get("alt");
+            var src = url.searchParams.get("src");
             console.log("@GB: src = ", src);
             console.log("@GB: alt = ", alt);
+
+            // Get current date string
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+            today = dd + '/' + mm + '/' + yyyy;
 
 
             $('img').each(function(index, el) {
@@ -28,7 +35,7 @@ $(function() {
             });
 
             $('small').each(function(index, el) {
-                $(this).html(statement);
+                $(this).html(statement + ', accessed ' + today);
             });
 
             $('#embedder button').click(function(event) {
