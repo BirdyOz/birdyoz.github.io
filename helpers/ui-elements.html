@@ -37,7 +37,13 @@
                     <a class="nav-link" href="#tables">Tables</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="#cards">Card Groups</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#modals">Modals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#attribution">Attribution</a>
                 </li>
             </ul>
         </div>
@@ -225,79 +231,7 @@
 
 <hr>
 
-<h2 id="attribution">Attribution</h2>
-<h3>Floated image</h3>
-<p>This provides an image and attribution placeholder, that can be "swapped out" with your own image and attribution</p>
-<div class="copythis">
-<!-- Image placheloder - Right floated image -->
-<div class="float-right" style="float: right; width: 30%; max-width: 320px; min-width: 200px; margin:0 0 10px 20px !important">
-    <img src="https://via.placeholder.com/320x240?text=Replace+Me" width="320" height="235" alt="" class="img-responsive atto_image_button_text-bottom">
-    <div class="text-muted" style="opacity: 0.5">
-        <small>Attribution goes here</small>
-    </div>
-</div>
-<!-- End of image placeholder -->
-</div>
-<div class="clearfix container-fluid"></div>
-<hr>
-<h3>Attribution only</h3>
-<p>Often, when you copy an attribution statement from elsewhere (eg wikimedia) the text is too large and it dominates the screen.  This reduces the test size and opacity, to make this attribution less dominant</p>
-<div class="copythis">
-<!-- Attribution -->
-<div style="opacity: 0.6">
-    <small>Paste your attribution statement here</small>
-</div>
-<!-- End of attribution -->
 
-</div>
-<hr>
-<h3>Attribution statement for  Department of Training and Workforce Development</h3>
-<p>The West Australian Content has very specific requirements for attribution</p>
-<p>Change the document tite and link, plus page number in the snippet below:</p>
-
-<div class="copythis">
-<!-- Start of W.A. Attribution -->
-<div class="text-muted" style="opacity: 0.6">
-    <small><a class="collapsed d-print-block" data-toggle="collapse" href="#WAattribution1" role="button" aria-expanded="false" aria-controls="WAattribution1">
-            Source</a>:</small>
-</div>
-<div class="collapse" id="WAattribution1" style="">
-    <div class="card card-body">
-        <div class="text-muted" style="opacity: 0.6">
-            <small><a href="https://www.dtwd.wa.gov.au/sites/default/files/teachingproducts/BC016_CCBY.PDF" target="_blank">BC016 - Introduction to surveying: Second edition</a>, p14. © Department of Training and Workforce Development, reproduced under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0 licence</a>
-                <a class="btn-block btn btn-sm btn-light collapsed" data-toggle="collapse" href="#WAattribution1" role="button" aria-expanded="false" aria-controls="WAattribution1">Hide</a></small>
-        </div>
-    </div>
-</div>
-<!-- End of W.A. Attribution -->
-</div>
-
-
-<hr>
-
-<h3>Attribution statement for 'Reproduced with Permission' content</h3>
-<p>This UI elelemt is for when permission has been granted by the copyright owner. </p>
-<p> When updating the 'Source:' statement, change the text is square brackets to reflect the source and copyright status</p>
-<div class="copythis">
-<!-- Start of 'Reproduced wiuth permission' statement -->
-<blockquote>
-    <p>Attributable content goes here</p>
-    <!-- Start of Show/Hide interface -->
-    <div class="text-muted" style="opacity: 0.6">
-    <small><a class="collapsed d-print-block" data-toggle="collapse" href="#Attribution1" role="button" aria-expanded="false" aria-controls="Attribution1">
-            Source</a>:</small>
-    </div>
-    <div class="collapse" id="Attribution1" style="">
-    <div class="card card-body">
-        <div class="text-muted" style="opacity: 0.6">
-            <small>[Title and year of publication], p[XX]. <br>© [Copyright owner]. Reproduced with permission.
-                <a class="btn-block btn btn-sm btn-light collapsed" data-toggle="collapse" href="#Attribution1" role="button" aria-expanded="false" aria-controls="Attribution1">Hide</a></small>
-        </div>
-    </div>
-    </div>
-</blockquote>
-</div>
-<!-- end of 'Reproduced wiuth permission' statement -->
 <h2 id="interactive">Interactive elements</h2>
 
 <!-- Decoratrive button -->
@@ -590,6 +524,168 @@
 <!-- End of larger image-->
 
 <!-- End of view larger image -->
+</div>
+
+<div class="clearfix container-fluid"></div>
+<hr>
+<h2 id="cards">Card Groups</h2>
+<p>Card Group acheive an accessible "table-like" layout of content into columns.  These columns are linearised on smaller format devices</p>
+<p>You can add/remove columns by following the instructions in the HTML comments for the snippet.</p>
+
+<h3>3 Cards with headers</h3>
+<div class="copythis">
+<!-- Start of Card Group - With top image and footnote -->
+<div class="card-group">
+    <!-- Start of first card -->
+    <div class="card">
+        <div class="card-header"><h5>Card header</h5></div>
+        <div class="card-body">
+            <p class="card-text">Card body text</p>
+
+        </div>
+    </div>
+    <!-- End of first card -->
+    <!-- End of second card -->
+    <div class="card">
+        <div class="card-header"><h5>Card header</h5></div>
+        <div class="card-body">
+            <p class="card-text">Card body text</p>
+
+        </div>
+    </div>
+    <!-- End of second card -->
+    <!-- End of third card.  Delete if not required.  Duplicate for four or more cards -->
+    <div class="card">
+        <div class="card-header"><h5>Card header</h5></div>
+        <div class="card-body">
+            <p class="card-text">Card body text</p>
+
+        </div>
+    </div>
+    <!-- End of third card -->
+</div>
+<!-- End of Card Group.-->
+</div>
+<hr>
+
+<h3>3 Cards with top image and bottom footer</h3>
+<div class="copythis">
+<!-- Start of Card Group - With top image and footnote -->
+<div class="card-group">
+    <!-- Start of first card -->
+    <div class="card">
+        <img src="https://via.placeholder.com/320x180?text=Replace+Me" class="card-img-top" alt="">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Card body text</p>
+            <div class="card-footer">
+                <small class="text-muted">Card footer</small>
+            </div>
+        </div>
+    </div>
+    <!-- End of first card -->
+    <!-- End of second card -->
+    <div class="card">
+        <img src="https://via.placeholder.com/320x180?text=Replace+Me" class="card-img-top" alt="">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Card body text</p>
+            <div class="card-footer">
+                <small class="text-muted">Card footer</small>
+            </div>
+        </div>
+    </div>
+    <!-- End of second card -->
+    <!-- End of third card.  Delete if not required.  Duplicate for four or more cards -->
+    <div class="card">
+        <img src="https://via.placeholder.com/320x180?text=Replace+Me" class="card-img-top" alt="">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Card body text</p>
+            <div class="card-footer">
+                <small class="text-muted">Card footer</small>
+            </div>
+        </div>
+    </div>
+    <!-- End of third card -->
+</div>
+<!-- End of Card Group.-->
+</div>
+<hr>
+<div class="clearfix container-fluid"></div>
+<hr>
+<h2 id="attribution">Attribution</h2>
+<h3>Floated image</h3>
+<p>This provides an image and attribution placeholder, that can be "swapped out" with your own image and attribution</p>
+<div class="copythis">
+<!-- Image placheloder - Right floated image -->
+<div class="float-right" style="float: right; width: 30%; max-width: 320px; min-width: 200px; margin:0 0 10px 20px !important">
+    <img src="https://via.placeholder.com/320x180?text=Replace+Me" width="320" height="235" alt="" class="img-responsive atto_image_button_text-bottom">
+    <div class="text-muted" style="opacity: 0.5">
+        <small>Attribution goes here</small>
+    </div>
+</div>
+<!-- End of image placeholder -->
+</div>
+<div class="clearfix container-fluid"></div>
+<hr>
+<h3>Attribution only</h3>
+<p>Often, when you copy an attribution statement from elsewhere (eg wikimedia) the text is too large and it dominates the screen.  This reduces the test size and opacity, to make this attribution less dominant</p>
+<div class="copythis">
+<!-- Attribution -->
+<div style="opacity: 0.6">
+    <small>Paste your attribution statement here</small>
+</div>
+<!-- End of attribution -->
+
+</div>
+<hr>
+<h3>Attribution statement for  Department of Training and Workforce Development</h3>
+<p>The West Australian Content has very specific requirements for attribution</p>
+<p>Change the document tite and link, plus page number in the snippet below:</p>
+
+<div class="copythis">
+<!-- Start of W.A. Attribution -->
+<div class="text-muted" style="opacity: 0.6">
+    <small><a class="collapsed d-print-block" data-toggle="collapse" href="#WAattribution1" role="button" aria-expanded="false" aria-controls="WAattribution1">
+            Source</a>:</small>
+</div>
+<div class="collapse" id="WAattribution1" style="">
+    <div class="card card-body">
+        <div class="text-muted" style="opacity: 0.6">
+            <small><a href="https://www.dtwd.wa.gov.au/sites/default/files/teachingproducts/BC016_CCBY.PDF" target="_blank">BC016 - Introduction to surveying: Second edition</a>, p14. © Department of Training and Workforce Development, reproduced under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0 licence</a>
+                <a class="btn-block btn btn-sm btn-light collapsed" data-toggle="collapse" href="#WAattribution1" role="button" aria-expanded="false" aria-controls="WAattribution1">Hide</a></small>
+        </div>
+    </div>
+</div>
+<!-- End of W.A. Attribution -->
+</div>
+
+
+<hr>
+
+<h3>Attribution statement for 'Reproduced with Permission' content</h3>
+<p>This UI elelemt is for when permission has been granted by the copyright owner. </p>
+<p> When updating the 'Source:' statement, change the text is square brackets to reflect the source and copyright status</p>
+<div class="copythis">
+<!-- Start of 'Reproduced wiuth permission' statement -->
+<blockquote>
+    <p>Attributable content goes here</p>
+    <!-- Start of Show/Hide interface -->
+    <div class="text-muted" style="opacity: 0.6">
+    <small><a class="collapsed d-print-block" data-toggle="collapse" href="#Attribution1" role="button" aria-expanded="false" aria-controls="Attribution1">
+            Source</a>:</small>
+    </div>
+    <div class="collapse" id="Attribution1" style="">
+    <div class="card card-body">
+        <div class="text-muted" style="opacity: 0.6">
+            <small>[Title and year of publication], p[XX]. <br>© [Copyright owner]. Reproduced with permission.
+                <a class="btn-block btn btn-sm btn-light collapsed" data-toggle="collapse" href="#Attribution1" role="button" aria-expanded="false" aria-controls="Attribution1">Hide</a></small>
+        </div>
+    </div>
+    </div>
+</blockquote>
+<!-- end of 'Reproduced wiuth permission' statement -->
 </div>
 
 
