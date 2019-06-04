@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-04 14:36:45
+ * @Last Modified time: 2019-06-04 15:39:35
  */
 
 $(function() {
@@ -70,7 +70,7 @@ $(function() {
                         '    <h4 class="text-danger"><i class="fa fa-play-circle-o"></i> ' + title + ' (' + ts + ')</h4>\n' +
                         '    <p>' + description + '</p>\n' +
                         '    <div class="embed-responsive embed-responsive-' + aspect + '">\n' +
-                        '        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/' + yt_video_id + '?rel=0" allowfullscreen></iframe>\n' +
+                        '        <iframe class="embed-responsive-item vjs-tech" src="https://www.youtube.com/embed/' + yt_video_id + '?rel=0" allowfullscreen></iframe>\n' +
                         '    </div>\n' +
                         '</div>';
 
