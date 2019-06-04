@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-04 13:26:24
+ * @Last Modified time: 2019-06-04 14:36:45
  */
 
 $(function() {
@@ -13,40 +13,31 @@ $(function() {
     if (url_string.indexOf("?") > 0) {
         var url = new URL(url_string);
         var yt_video_id = url.searchParams.get("yt_video_id");
-        console.log("@GB: yt_video_id = ", yt_video_id);
+        var width = parseInt(url.searchParams.get("width"),10);
+        console.log("@GB: width = ", width);
+        var height = parseInt(url.searchParams.get("height"),10);
+        console.log("@GB: height = ", height);
+        var ratio = width / height;
+        console.log("@GB: ratio = ", ratio);
+        var aspect = "";
+        if (ratio == 1) {
+            aspect = "1by1"
+        } else if (ratio > 2.3) {
+            aspect = "21by9"
+        } else if (ratio > 1.7) {
+            aspect = "16by9"
+        } else {
+            aspect = "4by3"
+        }
+        console.log("@GB: aspect = ", aspect);
         if (yt_video_id.length > 0) {
             // Define global vars
             var yt_api_key = "AIzaSyBlBpATO1tgHN3qrPe0ZT9haE1nTBlQaU4",
                 // yt_video_id = "Rtmj-oE6wPU",
                 yt_snippet_endpoint = "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails&id=" + yt_video_id + "&key=" + yt_api_key,
-                yt_oembed = "https://www.youtube.com/oembed?type=json&url=https://www.youtube.com/watch?v=" + yt_video_id,
-                aspect = "";
+                yt_oembed = "https://www.youtube.com/oembed?type=json&url=https://www.youtube.com/watch?v=" + yt_video_id;
 
-            // Establish video dimensions
-            var oembed = $.getJSON(yt_oembed)
-                .done(function(dimensions) {
-                    var width = dimensions.width;
-                    console.log("@GB: width = ", width);
-                    var height = dimensions.height;
-                    console.log("@GB: height = ", height);
-                    // Establish video ratio
-                    var ratio = width / height;
-                    console.log("@GB: ratio = ", ratio);
-                    if (ratio == 1) {
-                        aspect = "1by1"
-                    } else if (ratio > 2.3) {
-                        aspect = "21by9"
-                    } else if (ratio > 1.7) {
-                        aspect = "16by9"
-                    } else {
-                        aspect = "4by3"
-                    }
-                    console.log("@GB: aspect = ", aspect);
-                    return aspect;
-                })
-                .fail(function() {
-                    console.log("error, see console");
-                });
+
 
             // Extract video details from api
             var jqxhr = $.getJSON(yt_snippet_endpoint)
