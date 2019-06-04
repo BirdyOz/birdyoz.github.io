@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-04 15:39:35
+ * @Last Modified time: 2019-06-04 18:49:30
  */
 
 $(function() {
@@ -13,9 +13,9 @@ $(function() {
     if (url_string.indexOf("?") > 0) {
         var url = new URL(url_string);
         var yt_video_id = url.searchParams.get("yt_video_id");
-        var width = parseInt(url.searchParams.get("width"),10);
+        var width = parseInt(url.searchParams.get("width"), 10);
         console.log("@GB: width = ", width);
-        var height = parseInt(url.searchParams.get("height"),10);
+        var height = parseInt(url.searchParams.get("height"), 10);
         console.log("@GB: height = ", height);
         var ratio = width / height;
         console.log("@GB: ratio = ", ratio);
@@ -48,6 +48,14 @@ $(function() {
                     var title = vid.title;
                     console.log("@GB: title = ", title);
                     var description = vid.description;
+                    if (description.length > 0) {
+                        $("#checkbox").prop( "checked", true );
+                        desc  = '    <p class="YT_Desc">' + description + '</p>\n'
+                        console.log("@GB: desc = ", desc);
+                    }
+                    else {
+                        $("#checkbox").prop('disabled', true);
+                    }
                     console.log("@GB: description = ", description);
                     var duration = data.items[0].contentDetails.duration.split(/\D+/);
                     duration.pop();
@@ -68,7 +76,7 @@ $(function() {
                     var dom =
                         '<div class="card well" style="padding: 10px">\n' +
                         '    <h4 class="text-danger"><i class="fa fa-play-circle-o"></i> ' + title + ' (' + ts + ')</h4>\n' +
-                        '    <p>' + description + '</p>\n' +
+                        desc +
                         '    <div class="embed-responsive embed-responsive-' + aspect + '">\n' +
                         '        <iframe class="embed-responsive-item vjs-tech" src="https://www.youtube.com/embed/' + yt_video_id + '?rel=0" allowfullscreen></iframe>\n' +
                         '    </div>\n' +
@@ -96,6 +104,19 @@ $(function() {
                 .fail(function() {
                     console.log("error, see console");
                 });
+
+            $("#checkbox").change(function() {
+                if (this.checked) {
+                    console.log("@GB: checked = checked");
+                    //Do stuff
+                    $('h4.text-danger').after(desc)
+                }
+                else {
+                    console.log("@GB: checked = unchecked");
+                    $('.YT_Desc').remove()
+
+                }
+            });
         }
     }
 
