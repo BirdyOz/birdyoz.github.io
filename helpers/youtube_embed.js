@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-04 18:49:30
+ * @Last Modified time: 2019-06-04 18:56:33
  */
 
 $(function() {
@@ -48,6 +48,7 @@ $(function() {
                     var title = vid.title;
                     console.log("@GB: title = ", title);
                     var description = vid.description;
+                    var desc = "";
                     if (description.length > 0) {
                         $("#checkbox").prop( "checked", true );
                         desc  = '    <p class="YT_Desc">' + description + '</p>\n'
