@@ -14,7 +14,7 @@
 
 <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">@BirdyOz: Unsplash embedder & attribution maker</a>
+        <a class="navbar-brand" href="#">@BirdyOz: Youtube Embedder</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -44,7 +44,7 @@
     <!-- Wrap the rest of the page in another container to center all the content. -->
     <div class="container marketing" style="margin-top: 100px">
         <h1 class="display-4">YouTube responsive video embedder</h1>
-        <p class="lead">A Bookmarklet to create HTML snippets to embed a YouTube video. These can be pasted into any HTML editor.</p>
+        <p class="lead">A Bookmarklet to create HTML snippets to embed a YouTube video. These can be pasted into any HTML editor, such as the ATTO editor in Moodle</p>
         <p>Videos are fully responsive (scale to 100% of the container).  'Video box' is pre-populated with title, playtime, description and aspect ratio</p>
         <p>
             <button class="btn btn-lg btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -55,11 +55,11 @@
             <div class="card card-body">
                 <h2>First time user?</h2>
                 <ol>
-                    <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Bvar%20el%20%3D%20document.querySelectorAll('%5Bitemprop%3D%22contentURL%22%5D')%5B0%5D%3Bvar%20src%20%3D%20encodeURIComponent(el.getAttributeNode(%22src%22).value)%3Bvar%20alt%20%3D%20encodeURIComponent(el.getAttributeNode(%22alt%22).value)%3Bvar%20statement%20%3D%20encodeURIComponent(document.querySelector('span.attribution_field%20span').innerHTML)%3Bvar%20url%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Fpixabay_attribution_helper.html%3Fsrc%3D'%2Bsrc%2B'%26statement%3D'%2Bstatement%2B'%26alt%3D'%2Balt%3Bwindow.open(url%2C'_blank')%7D)()">Pixabay attribution maker</a>
+                    <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Bvar%20url_string%20%3D%20window.location.href%3Bvar%20el%20%3D%20document.getElementsByTagName(%22video%22)%5B0%5D%3Bvar%20width%20%3D%20el.offsetWidth%3Bvar%20height%20%3D%20el.offsetHeight%3Bif%20(url_string.indexOf(%22%3F%22)%20%3E%200)%20%7Bvar%20url%20%3D%20new%20URL(url_string)%3Bvar%20ytv%20%3D%20url.searchParams.get(%22v%22)%3Bvar%20url%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Fyoutube_embedder.html%3Fyt_video_id%3D'%20%2B%20ytv%20%2B%20'%26width%3D'%20%2B%20width%20%2B%20'%26height%3D'%20%2B%20height%3Bwindow.open(url%2C%20'_blank')%3B%7D%7D)()">YouTube Embedder</a>
                         <br><span class="text-muted">(Note: Make sure you drag the link onto your browser bookmarks. Clicking will just bring you back to here)</span></li>
-                    <li>Visit Pixabay and locate the image you wish to attribute</li>
-                    <li>Click on the 'Pixabay attribution maker' in your bookmarks</li>
-                    <li>You will be returned to this page, but now your selected image will be displayed below</li>
+                    <li>Visit YouTube and locate the video that you want</li>
+                    <li>Click on the 'Youtube embedder' in your bookmarks</li>
+                    <li>You will be returned to this page, but now your selected video will be displayed below</li>
                     <li>Press the copy button next to the layout type that you prefer. This will copy the HTML to your clipboard</li>
                     <li>Paste this HTML anywhere that you can paste code (eg a Moodle page or tool)</li>
                 </ol>
