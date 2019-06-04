@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-04 18:56:33
+ * @Last Modified time: 2019-06-04 19:01:09
  */
 
 $(function() {
@@ -50,11 +50,10 @@ $(function() {
                     var description = vid.description;
                     var desc = "";
                     if (description.length > 0) {
-                        $("#checkbox").prop( "checked", true );
-                        desc  = '    <p class="YT_Desc">' + description + '</p>\n'
+                        $("#checkbox").prop("checked", true);
+                        desc = '    <p class="YT_Desc">' + description + '</p>\n'
                         console.log("@GB: desc = ", desc);
-                    }
-                    else {
+                    } else {
                         $("#checkbox").prop('disabled', true);
                     }
                     console.log("@GB: description = ", description);
@@ -96,6 +95,11 @@ $(function() {
                         copyTextToClipboard(paste);
                         btn.toggleClass('btn-outline-primary btn-success');
                         btn.html('<i class="fa fa-check" aria-hidden="true"></i> Done! Embed code copied to clipboard');
+                        window.setTimeout(function() {
+                            btn.html('<i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code');
+                            // btn.removeClass('btn-danger');
+                            btn.toggleClass('btn-outline-primary btn-success');
+                        }, 3000);
 
                         event.preventDefault();
                     });
@@ -111,8 +115,7 @@ $(function() {
                     console.log("@GB: checked = checked");
                     //Do stuff
                     $('h4.text-danger').after(desc)
-                }
-                else {
+                } else {
                     console.log("@GB: checked = unchecked");
                     $('.YT_Desc').remove()
 
