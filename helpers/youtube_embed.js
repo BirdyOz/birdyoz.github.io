@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-04 12:50:06
+ * @Last Modified time: 2019-06-04 13:26:24
  */
 
 $(function() {
@@ -19,7 +19,7 @@ $(function() {
             var yt_api_key = "AIzaSyBlBpATO1tgHN3qrPe0ZT9haE1nTBlQaU4",
                 // yt_video_id = "Rtmj-oE6wPU",
                 yt_snippet_endpoint = "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails&id=" + yt_video_id + "&key=" + yt_api_key,
-                yt_oembed = "https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=" + yt_video_id,
+                yt_oembed = "https://www.youtube.com/oembed?type=json&url=https://www.youtube.com/watch?v=" + yt_video_id,
                 aspect = "";
 
             // Establish video dimensions
