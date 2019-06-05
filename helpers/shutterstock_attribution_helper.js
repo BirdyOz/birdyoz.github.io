@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-04-01 19:51:01
+ * @Last Modified time: 2019-06-05 12:50:27
  */
 
 $(function() {
@@ -31,8 +31,8 @@ $(function() {
             var user_details = re.exec(user);
             console.log("@GB: user_details = ", user_details);
             var user_name = user_details[2];
-            var user_url = "https://www.shutterstock.com/" + user_details[1];
-            console.log("@GB: user_url = ", user_url);
+            // var user_url = "https://www.shutterstock.com/" + user_details[1];
+            var user_url = "https://www.shutterstock.com/g/" + user_details[2];
 
             // Get current date string
 
