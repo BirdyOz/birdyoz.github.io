@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-13 12:55:10
+ * @Last Modified time: 2019-06-13 13:43:29
  */
 
 $(function() {
@@ -13,23 +13,7 @@ $(function() {
     if (url_string.indexOf("?") > 0) {
         var url = new URL(url_string);
         var yt_video_id = url.searchParams.get("yt_video_id");
-        var width = parseInt(url.searchParams.get("width"), 10);
-        console.log("@GB: width = ", width);
-        var height = parseInt(url.searchParams.get("height"), 10);
-        console.log("@GB: height = ", height);
-        var ratio = width / height;
-        console.log("@GB: ratio = ", ratio);
-        var aspect = "";
-        if (ratio == 1) {
-            aspect = "1by1"
-        } else if (ratio > 2.3) {
-            aspect = "21by9"
-        } else if (ratio > 1.7) {
-            aspect = "16by9"
-        } else {
-            aspect = "4by3"
-        }
-        console.log("@GB: aspect = ", aspect);
+
 
         // Make YouTube API call
         if (yt_video_id.length > 0) {
@@ -46,7 +30,6 @@ $(function() {
                 .done(function(data) {
                     console.log("@GB: data = ", data);
                     var vid = data.items[0].snippet;
-                    console.log("@GB: vid = ", vid);
                     var title = vid.title;
                     console.log("@GB: title = ", title);
                     var description = vid.description;
@@ -64,27 +47,47 @@ $(function() {
                     var embeddable = data.items[0].status.embeddable;
                     console.log("@GB: embeddable = ", embeddable);
 
-                    // Extract dimenssion from embed code
+                    // Extract dimenssion from embed code.  Establish ratio.
                     var embedcode = data.items[0].player.embedHtml;
                     console.log("@GB: embedcode = ", embedcode);
                     var embed_width = $(embedcode).attr("width");
                     console.log("@GB: embed_width = ", embed_width);
                     var embed_height = $(embedcode).attr("height");
                     console.log("@GB: embed_height = ", embed_height);
-
-                    var duration = data.items[0].contentDetails.duration.split(/\D+/);
-                    duration.pop();
-                    duration.shift();
-
-                    $.each(duration, function(index, value) {
-                        if (value.length == 1) {
-                            value = "0" + value
+                    var ratio = embed_width / embed_height;
+                    console.log("@GB: ratio = ", ratio);
+                    var aspect = "";
+                    if (ratio == 1) {
+                        aspect = "1by1"
+                    } else if (ratio > 2.3) {
+                        aspect = "21by9"
+                    } else if (ratio > 1.7) {
+                        aspect = "16by9"
+                    } else {
+                        aspect = "4by3"
+                    }
+                    console.log("@GB: aspect = ", aspect);
+                    // determine duration
+                    var duration = window.parseISO8601Duration(data.items[0].contentDetails.duration);
+                    console.log("@GB: duration = ", duration);
+                    var duration_str = "";
+                    if (duration.hours != 0) {
+                        duration_str = duration.hours + ":";
+                    }
+                    if (duration.minutes != 0) {
+                        if (duration.minutes.length === 1) {
+                            duration_str += "0"
                         }
-                        duration[index] = value
-                    });
+                        duration_str += duration.minutes + ":";
+                    } else { duration_str += "00:" }
+                    if (duration.seconds != 0) {
+                        if (duration.seconds.length === 1) {
+                            console.log("@GB: duration.seconds.length = ", duration.seconds.length);
+                            duration_str += "0"
+                        }
+                        duration_str += duration.seconds;
+                    } else { duration_str += "00" }
 
-                    var ts = duration.join(":");
-                    console.log("@GB: ts = ", ts);
 
                     // Build Dom
                     var dom = "";
@@ -92,7 +95,7 @@ $(function() {
                     if (embeddable === true) {
                         dom =
                             '<div class="card well" style="padding: 10px">\n' +
-                            '    <h4 class="text-danger"><i class="fa fa-play-circle-o"></i> ' + title + ' (' + ts + ')</h4>\n' +
+                            '    <h4 class="text-danger"><i class="fa fa-play-circle-o"></i> ' + title + ' (' + duration_str + ')</h4>\n' +
                             desc +
                             '    <div class="embed-responsive embed-responsive-' + aspect + '">\n' +
                             '        <iframe class="embed-responsive-item vjs-tech" src="https://www.youtube.com/embed/' + yt_video_id + '?rel=0" allowfullscreen></iframe>\n' +
@@ -104,11 +107,11 @@ $(function() {
 
                         dom =
                             '<div class="card well" style="padding: 10px">\n' +
-                            '    <h4 class="text-danger"><i class="fa fa-play-circle-o"></i> ' + title + ' (' + ts + ')</h4>\n' +
+                            '    <h4 class="text-danger"><i class="fa fa-play-circle-o"></i> ' + title + ' (' + duration_str + ')</h4>\n' +
                             desc +
                             '<div class="overlay" style="width:100%; margin: 20px auto; text-align: center; color: white  !important; text-shadow: 2px 2px 4px #000000; position: relative;">\n' +
-                            '    <a href="'+ url +'" target="_blank" style="color: white  !important">\n' +
-                            '        <img src="' + thumb +'" class="img-responsive img-fluid" style="width:100%" alt="Link to YouTube video" title="Video opens in a new tab">\n' +
+                            '    <a href="' + url + '" target="_blank" style="color: white  !important">\n' +
+                            '        <img src="' + thumb + '" class="img-responsive img-fluid" style="width:100%" alt="Link to YouTube video" title="Video opens in a new tab">\n' +
                             '        <div class="text-overlay" style="background-color: rgba(0, 0, 0, 0.4); padding:2em;position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%">\n' +
                             '            <p class="" style="font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) )) !important; line-height: calc( 20px + (32 - 16) * ( 80vw / (1000 - 400) )) !important;"><i class="fa fa-play-circle-o"></i> View video</p>\n' +
                             '            <p class="" style="font-size: calc( 12px + (24 - 16) * ( 60vw / (1000 - 400) )) !important; line-height: calc( 10px + (20 - 10) * ( 80vw / (1000 - 400) )) !important;">(Opens in new tab)</p>\n' +
@@ -159,6 +162,25 @@ $(function() {
         }
     }
 
+
+
+
+
+    window.parseISO8601Duration = function(iso8601Duration) {
+        var iso8601DurationRegex = /(-)?P(?:([.,\d]+)Y)?(?:([.,\d]+)M)?(?:([.,\d]+)W)?(?:([.,\d]+)D)?T(?:([.,\d]+)H)?(?:([.,\d]+)M)?(?:([.,\d]+)S)?/;
+        var matches = iso8601Duration.match(iso8601DurationRegex);
+
+        return {
+            sign: matches[1] === undefined ? '+' : '-',
+            years: matches[2] === undefined ? 0 : matches[2],
+            months: matches[3] === undefined ? 0 : matches[3],
+            weeks: matches[4] === undefined ? 0 : matches[4],
+            days: matches[5] === undefined ? 0 : matches[5],
+            hours: matches[6] === undefined ? 0 : matches[6],
+            minutes: matches[7] === undefined ? 0 : matches[7],
+            seconds: matches[8] === undefined ? 0 : matches[8]
+        };
+    };
 
 
     function fallbackCopyTextToClipboard(text) {
