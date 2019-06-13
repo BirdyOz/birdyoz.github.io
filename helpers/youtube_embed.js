@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-13 12:21:02
+ * @Last Modified time: 2019-06-13 12:55:10
  */
 
 $(function() {
@@ -103,6 +103,9 @@ $(function() {
                         var url = "https://www.youtube.com/watch?v=" + yt_video_id;
 
                         dom =
+                            '<div class="card well" style="padding: 10px">\n' +
+                            '    <h4 class="text-danger"><i class="fa fa-play-circle-o"></i> ' + title + ' (' + ts + ')</h4>\n' +
+                            desc +
                             '<div class="overlay" style="width:100%; margin: 20px auto; text-align: center; color: white  !important; text-shadow: 2px 2px 4px #000000; position: relative;">\n' +
                             '    <a href="'+ url +'" target="_blank" style="color: white  !important">\n' +
                             '        <img src="' + thumb +'" class="img-responsive img-fluid" style="width:100%" alt="Link to YouTube video" title="Video opens in a new tab">\n' +
@@ -111,7 +114,7 @@ $(function() {
                             '            <p class="" style="font-size: calc( 12px + (24 - 16) * ( 60vw / (1000 - 400) )) !important; line-height: calc( 10px + (20 - 10) * ( 80vw / (1000 - 400) )) !important;">(Opens in new tab)</p>\n' +
                             '        </div>\n' +
                             '    </a>\n' +
-                            '</div>';
+                            '</div></div>';
                     }
 
                     console.log("@GB: dom = ", dom);
