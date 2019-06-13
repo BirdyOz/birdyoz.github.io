@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-04 19:01:09
+ * @Last Modified time: 2019-06-13 12:21:02
  */
 
 $(function() {
@@ -30,12 +30,14 @@ $(function() {
             aspect = "4by3"
         }
         console.log("@GB: aspect = ", aspect);
+
+        // Make YouTube API call
         if (yt_video_id.length > 0) {
             // Define global vars
             var yt_api_key = "AIzaSyBlBpATO1tgHN3qrPe0ZT9haE1nTBlQaU4",
                 // yt_video_id = "Rtmj-oE6wPU",
-                yt_snippet_endpoint = "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails&id=" + yt_video_id + "&key=" + yt_api_key,
-                yt_oembed = "https://www.youtube.com/oembed?type=json&url=https://www.youtube.com/watch?v=" + yt_video_id;
+                yt_snippet_endpoint = "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatus%2Cplayer&id=" + yt_video_id + "&key=" + yt_api_key;
+            console.log("@GB: yt_snippet_endpoint = ", yt_snippet_endpoint);
 
 
 
@@ -57,6 +59,19 @@ $(function() {
                         $("#checkbox").prop('disabled', true);
                     }
                     console.log("@GB: description = ", description);
+
+                    // Is embedding allowed?
+                    var embeddable = data.items[0].status.embeddable;
+                    console.log("@GB: embeddable = ", embeddable);
+
+                    // Extract dimenssion from embed code
+                    var embedcode = data.items[0].player.embedHtml;
+                    console.log("@GB: embedcode = ", embedcode);
+                    var embed_width = $(embedcode).attr("width");
+                    console.log("@GB: embed_width = ", embed_width);
+                    var embed_height = $(embedcode).attr("height");
+                    console.log("@GB: embed_height = ", embed_height);
+
                     var duration = data.items[0].contentDetails.duration.split(/\D+/);
                     duration.pop();
                     duration.shift();
@@ -72,15 +87,32 @@ $(function() {
                     console.log("@GB: ts = ", ts);
 
                     // Build Dom
+                    var dom = "";
+                    // Is embedding allowed?
+                    if (embeddable === true) {
+                        dom =
+                            '<div class="card well" style="padding: 10px">\n' +
+                            '    <h4 class="text-danger"><i class="fa fa-play-circle-o"></i> ' + title + ' (' + ts + ')</h4>\n' +
+                            desc +
+                            '    <div class="embed-responsive embed-responsive-' + aspect + '">\n' +
+                            '        <iframe class="embed-responsive-item vjs-tech" src="https://www.youtube.com/embed/' + yt_video_id + '?rel=0" allowfullscreen></iframe>\n' +
+                            '    </div>\n' +
+                            '</div>';
+                    } else {
+                        var thumb = data.items[0].snippet.thumbnails.maxres.url;
+                        var url = "https://www.youtube.com/watch?v=" + yt_video_id;
 
-                    var dom =
-                        '<div class="card well" style="padding: 10px">\n' +
-                        '    <h4 class="text-danger"><i class="fa fa-play-circle-o"></i> ' + title + ' (' + ts + ')</h4>\n' +
-                        desc +
-                        '    <div class="embed-responsive embed-responsive-' + aspect + '">\n' +
-                        '        <iframe class="embed-responsive-item vjs-tech" src="https://www.youtube.com/embed/' + yt_video_id + '?rel=0" allowfullscreen></iframe>\n' +
-                        '    </div>\n' +
-                        '</div>';
+                        dom =
+                            '<div class="overlay" style="width:100%; margin: 20px auto; text-align: center; color: white  !important; text-shadow: 2px 2px 4px #000000; position: relative;">\n' +
+                            '    <a href="'+ url +'" target="_blank" style="color: white  !important">\n' +
+                            '        <img src="' + thumb +'" class="img-responsive img-fluid" style="width:100%" alt="Link to YouTube video" title="Video opens in a new tab">\n' +
+                            '        <div class="text-overlay" style="background-color: rgba(0, 0, 0, 0.4); padding:2em;position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%">\n' +
+                            '            <p class="" style="font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) )) !important; line-height: calc( 20px + (32 - 16) * ( 80vw / (1000 - 400) )) !important;"><i class="fa fa-play-circle-o"></i> View video</p>\n' +
+                            '            <p class="" style="font-size: calc( 12px + (24 - 16) * ( 60vw / (1000 - 400) )) !important; line-height: calc( 10px + (20 - 10) * ( 80vw / (1000 - 400) )) !important;">(Opens in new tab)</p>\n' +
+                            '        </div>\n' +
+                            '    </a>\n' +
+                            '</div>';
+                    }
 
                     console.log("@GB: dom = ", dom);
                     $('#yt_video_placeholder').replaceWith(dom);
