@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-20 12:30:31
+ * @Last Modified time: 2019-06-20 16:26:04
  */
 
 $(function() {
@@ -20,7 +20,7 @@ $(function() {
         console.log("@GB: img_lge = ", img_lge);
         var img_med = img_lge.replace("w=1080", "w=720");
         console.log("@GB: img_med = ", img_med);
-        var img_sml = img_lge.replace("w=1080", "w=400");
+        var img_sml = img_lge.replace("w=1080", "w=360");
         console.log("@GB: img_sml = ", img_sml);
         var re = /by (.*?) \((.*?)\)/gi;
         var TitleArray = re.exec(title);
@@ -58,6 +58,20 @@ $(function() {
                 $(this).attr('alt', title);
                 $(this).attr('title', title);
             });
+
+             $('a.img-sml').each(function(index, el) {
+                $(this).attr('href', img_sml);
+                $(this).attr('download', "Unsplash-"+image+"-360W.jpg");
+            });
+            $('a.img-med').each(function(index, el) {
+                $(this).attr('href', img_med);
+                $(this).attr('download', "Unsplash-"+image+"-720W.jpg");
+            });
+            $('a.img-lge').each(function(index, el) {
+                $(this).attr('href', img_lge);
+                $(this).attr('download', "Unsplash-"+image+"-1024W.jpg");
+            });
+
 
             $('small').each(function(index, el) {
                 $(this).html(dom);

@@ -54,7 +54,7 @@
             <div class="card card-body">
                 <h2>First time user?</h2>
                 <ol>
-                    <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Bvar%20url%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Funsplash_embed.html%3Faddr%3D'%2BencodeURIComponent(document.location.href)%2B'%26title%3D'%2BencodeURIComponent(document.title)%3Bwindow.open(url%2C'_blank')%7D)()">Unsplash embedder & attribution maker</a>
+                    <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Bjavascript%3A(function()%257Bvar%20title%20%253D%20document.title%253Bconsole.log(%22%2540GB%253A%20title%20%253D%20%22%252C%20title)%253Bvar%20img%20%20%253D%20encodeURIComponent(document.querySelectorAll('%255Bproperty%253D%22og%253Aimage%22%255D')%255B0%255D.getAttribute(%22content%22))%253Bconsole.log(%22%2540GB%253A%20img%20%253D%20%22%252C%20img)%253Bvar%20url%20%253D%20'https%253A%252F%252Fbirdyoz.github.io%252Fhelpers%252Funsplash_embed_new.html%253Faddr%253D'%252BencodeURIComponent(document.location.href)%252B'%2526title%253D'%252BencodeURIComponent(document.title)%252B'%2526img%253D'%252Bimg%253Bconsole.log(%22%2540GB%253A%20url%20%253D%20%22%252C%20url)%253Bwindow.open(url%252C'_blank')%257D)()%7D)()">New! Unsplash Embedder</a>
                         <br><span class="text-muted">(Note: Make sure you drag the link onto your browser bookmarks.  Clicking will just bring you back to here)</span></li>
                     <li>Visit Unsplash - Beautiful Free Images and find your favourite image</li>
                     <li>Click on the 'Unsplash embedder & attribution maker' in your bookmarks</li>
@@ -77,7 +77,7 @@
 
 <div class="unsplash-copy unsplash-fr">
 <!-- Start of Unsplash Embed Code - Float Right  (Embed code by @BirdyOz)-->
-<div class="float-right" style="float: right; width: 30%; max-width: 320px; min-width: 200px; margin:0 0 10px 20px !important">
+<div class="float-right" style="float: right; width: 30%; max-width: 360px; min-width: 200px; margin:0 0 10px 20px !important">
     <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+UnSplash" class="img-responsive img-fluid img-sml">
     <div class="text-muted" style="opacity: 0.5">
         <small><a href="#" target="_blank">Photo</a> by <a href="#" target="_blank">Author</a> on <a href="https://usnsplash.com" target="_blank">Unsplash</a></small>
@@ -86,17 +86,17 @@
 <!-- End of Unsplash Embed Code -->
 </div>
                 <h2 class="featurette-heading">Float Right <span class="text-muted">(Image to the right of text)</span></h2>
-                <p class="lead">Image will occupy 30% of the available space, between the minimum width of 200px and maximum width of 320px</p>
+                <p class="lead">Image will occupy 30% of the available space, between the minimum width of 200px and maximum width of 360px</p>
                 <button id="unsplash-fr" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
                 <a download="custom-filename.jpg" class="btn btn-outline-primary img-sml" href="http://images.unsplash.com/photo-1536724609414-5f000e9a2745?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyjhchbfawqiojeymdd9" title="ImageName"> <i class="fa fa-download"></i>
-                    Download 400px wide image
+                    Download 360px wide image
                 </a>
             </div>
             <hr class="featurette-divider clearfix"  id="left">
             <div class="clearfix">
 <div class="unsplash-copy unsplash-fl">
 <!-- Start of Unsplash Embed Code - Float Left (Embed code by @BirdyOz)-->
-<div class="float-left" style="float: left; width: 30%; max-width: 320px; min-width: 200px; margin:0 20px 10px 0 !important">
+<div class="float-left" style="float: left; width: 30%; max-width: 360px; min-width: 200px; margin:0 20px 10px 0 !important">
     <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+Unsplash" class="img-responsive img-fluid img-sml">
     <div class="text-muted" style="opacity: 0.5">
         <small><a href="#">Photo</a> by <a href="#">Author</a> on <a href="https://usnsplash.com" target="_blank">Unsplash</a></small>
@@ -105,11 +105,11 @@
 <!-- End of Unsplash Embed code -->
 </div>
                 <h2 class="featurette-heading">Float Left <span class="text-muted">(Image to the left of text)</span></h2>
-                <p class="lead">Image will occupy 30% of the available space, between the minimum width of 200px and maximum width of 320px</p>
+                <p class="lead">Image will occupy 30% of the available space, between the minimum width of 200px and maximum width of 360px</p>
                 <button id="unsplash-fl" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
 
                 <a download="custom-filename.jpg" class="btn btn-outline-primary img-sml" href="http://images.unsplash.com/photo-1536724609414-5f000e9a2745?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyjhchbfawqiojeymdd9" title="ImageName"> <i class="fa fa-download"></i>
-                    Download 400px wide image
+                    Download 360px wide image
                 </a>
             </div>
             <hr class="featurette-divider clearfix" id="center">
@@ -118,7 +118,7 @@
                 <p class="lead">Image will occupy 60% of the available space, aligned to the center of the container.</p>
                 <button id="unsplash-ce" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
 
-                <a download="custom-filename.jpg" class="btn btn-outline-primary img-sml" href="http://images.unsplash.com/photo-1536724609414-5f000e9a2745?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyjhchbfawqiojeymdd9" title="ImageName"> <i class="fa fa-download"></i>
+                <a download="custom-filename.jpg" class="btn btn-outline-primary img-med" href="http://images.unsplash.com/photo-1536724609414-5f000e9a2745?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyjhchbfawqiojeymdd9" title="ImageName"> <i class="fa fa-download"></i>
                     Download 720px wide image
                 </a>
 <div class="unsplash-copy unsplash-ce">
@@ -138,8 +138,8 @@
                 <p class="lead">Image will occupy 100% of the available space</p>
                 <button id="unsplash-lg" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
 
-                <a download="custom-filename.jpg" class="btn btn-outline-primary img-sml" href="http://images.unsplash.com/photo-1536724609414-5f000e9a2745?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyjhchbfawqiojeymdd9" title="ImageName"> <i class="fa fa-download"></i>
-                    Download 1024px wide image
+                <a download="custom-filename.jpg" class="btn btn-outline-primary img-lge" href="http://images.unsplash.com/photo-1536724609414-5f000e9a2745?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyjhchbfawqiojeymdd9" title="ImageName"> <i class="fa fa-download"></i>
+                    Download 1080px wide image
                 </a>
 <div class="unsplash-copy unsplash-lg">
 <!-- Start of Unsplash Embed Code - Full-width (Embed code by @BirdyOz)-->
@@ -158,7 +158,7 @@
                 <p class="lead">Image will occupy 100% of the available space.  Text overlay can be edited by you, after embedding</p>
                 <button id="unsplash-ov" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
 
-                <a download="custom-filename.jpg" class="btn btn-outline-primary img-sml" href="http://images.unsplash.com/photo-1536724609414-5f000e9a2745?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyjhchbfawqiojeymdd9" title="ImageName"> <i class="fa fa-download"></i>
+                <a download="custom-filename.jpg" class="btn btn-outline-primary img-lge" href="http://images.unsplash.com/photo-1536724609414-5f000e9a2745?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyjhchbfawqiojeymdd9" title="ImageName"> <i class="fa fa-download"></i>
                     Download 1024px wide image
                 </a>
 <div class="unsplash-copy unsplash-ov">
