@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-20 18:46:42
+ * @Last Modified time: 2019-06-21 09:40:07
  */
 
 $(function() {
@@ -10,12 +10,13 @@ $(function() {
     var url_string = window.location.href;
     if (url_string.indexOf("?") > 0) {
         console.log("@GB: Has parameters");
-
+        // Extract URL variable
         var url = new URL(url_string);
         var addr = url.searchParams.get("addr");
         console.log("@GB: addr = ", addr);
         var title = url.searchParams.get("title");
         console.log("@GB: title = ", title);
+        // Establish image sizes
         var img_lge = decodeURIComponent(url.searchParams.get("img"));
         img_lge = img_lge.replace("http://", "https://");
         console.log("@GB: img_lge = ", img_lge);
@@ -45,7 +46,7 @@ $(function() {
 
             var dom = '<a href="' + addr + '" target="_blank">Photo</a> by <a href="https://unsplash.com/' + user + '" target="_blank">' + user + '</a> on <a href="https://unsplash.com" target="_blank">Unsplash</a>, accessed ' + today;
 
-
+            // Inject images of appropriate sizes
             $('img.img-sml').each(function(index, el) {
                 el.src = img_sml;
                 $(this).attr('alt', title);
@@ -62,34 +63,14 @@ $(function() {
                 $(this).attr('title', title);
             });
 
-            $('a.img-sml').each(function(index, el) {
-                $(this).attr('href', img_dl(img_sml));
-                $(this).attr('download', "Unsplash-" + img + "-360W.jpg");
-            });
-            $('a.img-med').each(function(index, el) {
-                $(this).attr('href', img_dl(img_med));
-                $(this).attr('download', "Unsplash-" + img + "-720W.jpg");
-            });
-            $('a.img-lge').each(function(index, el) {
-                $(this).attr('href', img_dl(img_lge));
-                $(this).attr('download', "Unsplash-" + img + "-1024W.jpg");
-            });
-
+            // add attribution
             $('small').each(function(index, el) {
                 $(this).html(dom);
             });
 
-
-
-
-
-
-
-
-
+            // Copy embed code
             $('#embedder button').click(function(event) {
                 /* Act on the event */
-
                 var btn = $(this);
                 var closest = btn.prev('.unsplash-copy');
                 var id = "." + btn.attr('id');
@@ -107,6 +88,24 @@ $(function() {
                     // btn.removeClass('btn-danger');
                     btn.toggleClass('btn-outline-primary btn-success');
                 }, 3000);
+
+                // Cancel the default action
+                event.preventDefault();
+            });
+
+            $('a.download').click(function(event) {
+                /* Act on the event */
+                var btn = $(this);
+                var title = btn.attr("title");
+                console.log("@GB: title = ", title);
+                var dl_img = img_lge;
+                if (title === "img-sml") { dl_img = img_sml };
+                if (title === "img-med") { dl_img = img_med };
+
+                downloader(img, dl_img);
+
+                btn.toggleClass('btn-outline-primary btn-success');
+                btn.html('<i class="fa fa-check" aria-hidden="true"></i> Done! Image downloaded');
 
                 // Cancel the default action
                 event.preventDefault();
@@ -154,31 +153,37 @@ $(function() {
         });
     }
 
-    function img_dl(src) {
-        console.log("@GB: img_dl src = ", src);
+    function downloader(name, content) {
         var image = new Image();
         image.crossOrigin = "anonymous";
-        image.src = src;
+        image.src = content;
         // get file name - you might need to modify this if your image url doesn't contain a file extension otherwise you can set the file name manually
-        var fileName = "fred.jpg";
+        var fileName = image.src.split(/(\\|\/)/g).pop();
         image.onload = function() {
             var canvas = document.createElement('canvas');
             canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
             canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+            console.log("@GB: canvas.width = ", canvas.width);
             canvas.getContext('2d').drawImage(this, 0, 0);
             var blob;
-            // ... get as Data URI
-            if (image.src.indexOf(".jpg") > -1) {
-                blob = canvas.toDataURL("image/jpeg");
-            } else if (image.src.indexOf(".png") > -1) {
-                blob = canvas.toDataURL("image/png");
-            } else if (image.src.indexOf(".gif") > -1) {
-                blob = canvas.toDataURL("image/gif");
-            } else {
-                blob = canvas.toDataURL("image/jpeg");
-            }
-            return blob
+            blob = canvas.toDataURL("image/jpeg");
+
+            var link = document.createElement('a');
+            link.style = 'position: fixed; left -10000px;';
+            link.href = blob;
+
+            link.download = "Unsplash-" + name + "-" + canvas.width + "x" + canvas.height + ".jpg";
+            console.log("@GB: link.download = ", link.download);
+
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         };
+
     }
+
+
+
 
 });
