@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-20 18:31:41
+ * @Last Modified time: 2019-06-20 18:46:42
  */
 
 $(function() {
@@ -17,6 +17,7 @@ $(function() {
         var title = url.searchParams.get("title");
         console.log("@GB: title = ", title);
         var img_lge = decodeURIComponent(url.searchParams.get("img"));
+        img_lge = img_lge.replace("http://", "https://");
         console.log("@GB: img_lge = ", img_lge);
         var img_med = img_lge.replace("w=1080", "w=720");
         console.log("@GB: img_med = ", img_med);
