@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-20 18:18:29
+ * @Last Modified time: 2019-06-20 18:31:41
  */
 
 $(function() {
@@ -62,18 +62,17 @@ $(function() {
             });
 
             $('a.img-sml').each(function(index, el) {
-                $(this).attr('href', img_sml);
+                $(this).attr('href', img_dl(img_sml));
                 $(this).attr('download', "Unsplash-" + img + "-360W.jpg");
             });
             $('a.img-med').each(function(index, el) {
-                $(this).attr('href', img_med);
+                $(this).attr('href', img_dl(img_med));
                 $(this).attr('download', "Unsplash-" + img + "-720W.jpg");
             });
             $('a.img-lge').each(function(index, el) {
-                $(this).attr('href', img_lge);
+                $(this).attr('href', img_dl(img_lge));
                 $(this).attr('download', "Unsplash-" + img + "-1024W.jpg");
             });
-            img_dl(img_sml);
 
             $('small').each(function(index, el) {
                 $(this).html(dom);
@@ -155,11 +154,12 @@ $(function() {
     }
 
     function img_dl(src) {
+        console.log("@GB: img_dl src = ", src);
         var image = new Image();
         image.crossOrigin = "anonymous";
         image.src = src;
         // get file name - you might need to modify this if your image url doesn't contain a file extension otherwise you can set the file name manually
-        var fileName = image.src.split(/(\\|\/)/g).pop();
+        var fileName = "fred.jpg";
         image.onload = function() {
             var canvas = document.createElement('canvas');
             canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
@@ -176,7 +176,7 @@ $(function() {
             } else {
                 blob = canvas.toDataURL("image/jpeg");
             }
-            $("body").append("<b>Click image to download.</b><br><a download='" + fileName + "' href='" + blob + "'><img src='" + blob + "'/></a>");
+            return blob
         };
     }
 
