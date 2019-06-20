@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-20 16:26:04
+ * @Last Modified time: 2019-06-20 18:18:29
  */
 
 $(function() {
@@ -28,9 +28,11 @@ $(function() {
         if (TitleArray !== null) {
 
             var name = TitleArray[1];
+            console.log("@GB: name = ", name);
             var user = TitleArray[2];
-            var image = addr.substring(addr.lastIndexOf("/") + 1, addr.length);
-            var image_url = "https://source.unsplash.com/" + image;
+            console.log("@GB: user = ", user);
+            var img = addr.substring(addr.lastIndexOf("/") + 1, addr.length);
+            var img_url = "https://source.unsplash.com/" + img;
 
 
             // Get current date string
@@ -59,23 +61,31 @@ $(function() {
                 $(this).attr('title', title);
             });
 
-             $('a.img-sml').each(function(index, el) {
+            $('a.img-sml').each(function(index, el) {
                 $(this).attr('href', img_sml);
-                $(this).attr('download', "Unsplash-"+image+"-360W.jpg");
+                $(this).attr('download', "Unsplash-" + img + "-360W.jpg");
             });
             $('a.img-med').each(function(index, el) {
                 $(this).attr('href', img_med);
-                $(this).attr('download', "Unsplash-"+image+"-720W.jpg");
+                $(this).attr('download', "Unsplash-" + img + "-720W.jpg");
             });
             $('a.img-lge').each(function(index, el) {
                 $(this).attr('href', img_lge);
-                $(this).attr('download', "Unsplash-"+image+"-1024W.jpg");
+                $(this).attr('download', "Unsplash-" + img + "-1024W.jpg");
             });
-
+            img_dl(img_sml);
 
             $('small').each(function(index, el) {
                 $(this).html(dom);
             });
+
+
+
+
+
+
+
+
 
             $('#embedder button').click(function(event) {
                 /* Act on the event */
@@ -142,6 +152,32 @@ $(function() {
         }, function(err) {
 
         });
+    }
+
+    function img_dl(src) {
+        var image = new Image();
+        image.crossOrigin = "anonymous";
+        image.src = src;
+        // get file name - you might need to modify this if your image url doesn't contain a file extension otherwise you can set the file name manually
+        var fileName = image.src.split(/(\\|\/)/g).pop();
+        image.onload = function() {
+            var canvas = document.createElement('canvas');
+            canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
+            canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+            canvas.getContext('2d').drawImage(this, 0, 0);
+            var blob;
+            // ... get as Data URI
+            if (image.src.indexOf(".jpg") > -1) {
+                blob = canvas.toDataURL("image/jpeg");
+            } else if (image.src.indexOf(".png") > -1) {
+                blob = canvas.toDataURL("image/png");
+            } else if (image.src.indexOf(".gif") > -1) {
+                blob = canvas.toDataURL("image/gif");
+            } else {
+                blob = canvas.toDataURL("image/jpeg");
+            }
+            $("body").append("<b>Click image to download.</b><br><a download='" + fileName + "' href='" + blob + "'><img src='" + blob + "'/></a>");
+        };
     }
 
 });
