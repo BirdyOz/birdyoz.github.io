@@ -42,7 +42,41 @@
     <!-- Marketing messaging and featurettes
         ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
+
+
+
     <div class="container marketing" style="margin-top: 100px">
+
+        <!-- Alert IE users -->
+        <div class="alert alert-ie alert-warning alert-dismissible collapse" role="alert">
+            <strong>INTERNET EXPORER USER?</strong> Not all functionality is guaranteed.  Try Chrome, Firefox or Safari
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <!-- Alert FIRST TIME users -->
+        <div class="alert alert-ft alert-warning alert-dismissible collapse" role="alert">
+            <strong>FIRST TIME USER?</strong> Click on the "First time" button for setup instructions
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="alert alert-new alert-warning alert-dismissible collapse" role="alert">
+            <p><strong>NEW FEATURES, UPGRADE NOW!</strong> This new version dynamically resizes Unsplash images and allows you to download these resized versions.</p>
+            <p>To upgrade</p>
+                <ol>
+                    <li>Remove/Delete the old "Unsplash embedder" bookmarklet from your bookarks bar.</li>
+                    <li><strong>Drag</strong> the new bookmarklet into your bookmarks bar: <a class="bookmarklet" href="javascript:(function()%7Bvar%20title%20%3D%20document.title%3Bconsole.log(%22%40GB%3A%20title%20%3D%20%22%2C%20title)%3Bvar%20img%20%20%3D%20encodeURIComponent(document.querySelectorAll('%5Bproperty%3D%22og%3Aimage%22%5D')%5B0%5D.getAttribute(%22content%22))%3Bconsole.log(%22%40GB%3A%20img%20%3D%20%22%2C%20img)%3Bvar%20url%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Funsplash_embed_new.html%3Faddr%3D'%2BencodeURIComponent(document.location.href)%2B'%26title%3D'%2BencodeURIComponent(document.title)%2B'%26img%3D'%2Bimg%3Bconsole.log(%22%40GB%3A%20url%20%3D%20%22%2C%20url)%3Bwindow.open(url%2C'_blank')%7D)()">Unsplash Embedder 2</a>
+                        <br><span class="text-muted">(Note: Make sure you drag the link onto your browser bookmarks. Clicking will just bring you back to here)</span></li>
+                </ol>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+
         <h1 class="display-4">Unsplash image embedder & attribution maker</h1>
         <p class="lead">A Bookmarklet to create HTML snippets to embed Unsplash images with proper attribution. These can be pasted into any HTML editor.</p>
         <p>
@@ -54,7 +88,7 @@
             <div class="card card-body">
                 <h2>First time user?</h2>
                 <ol>
-                    <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Bvar%20title%20%3D%20document.title%3Bconsole.log(%22%40GB%3A%20title%20%3D%20%22%2C%20title)%3Bvar%20img%20%20%3D%20encodeURIComponent(document.querySelectorAll('%5Bproperty%3D%22og%3Aimage%22%5D')%5B0%5D.getAttribute(%22content%22))%3Bconsole.log(%22%40GB%3A%20img%20%3D%20%22%2C%20img)%3Bvar%20url%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Funsplash_embed_new.html%3Faddr%3D'%2BencodeURIComponent(document.location.href)%2B'%26title%3D'%2BencodeURIComponent(document.title)%2B'%26img%3D'%2Bimg%3Bconsole.log(%22%40GB%3A%20url%20%3D%20%22%2C%20url)%3Bwindow.open(url%2C'_blank')%7D)()">TEST! Unsplash Embedder</a>
+                    <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Bvar%20title%20%3D%20document.title%3Bconsole.log(%22%40GB%3A%20title%20%3D%20%22%2C%20title)%3Bvar%20img%20%20%3D%20encodeURIComponent(document.querySelectorAll('%5Bproperty%3D%22og%3Aimage%22%5D')%5B0%5D.getAttribute(%22content%22))%3Bconsole.log(%22%40GB%3A%20img%20%3D%20%22%2C%20img)%3Bvar%20url%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Funsplash_embed_new.html%3Faddr%3D'%2BencodeURIComponent(document.location.href)%2B'%26title%3D'%2BencodeURIComponent(document.title)%2B'%26img%3D'%2Bimg%3Bconsole.log(%22%40GB%3A%20url%20%3D%20%22%2C%20url)%3Bwindow.open(url%2C'_blank')%7D)()">Unsplash Embedder 2</a>
                         <br><span class="text-muted">(Note: Make sure you drag the link onto your browser bookmarks. Clicking will just bring you back to here)</span></li>
                     <li>Visit Unsplash - Beautiful Free Images and find your favourite image</li>
                     <li>Click on the 'Unsplash embedder & attribution maker' in your bookmarks</li>
