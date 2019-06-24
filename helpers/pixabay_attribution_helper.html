@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="#">
     <meta name="author" content="#">
-    <title>@BirdyOz: Pixabay attribution maker</title>
+    <title>@BirdyOz: Pixabay attribution helper & image resizer</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -14,7 +14,7 @@
 
 <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">@BirdyOz: Pixabay attribution maker</a>
+        <a class="navbar-brand" href="#">@BirdyOz: Pixabay attribution helper & image resizer</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -42,9 +42,31 @@
     <!-- Marketing messaging and featurettes
         ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
+
+
+
     <div class="container marketing" style="margin-top: 100px">
-        <h1 class="display-4">Pixabay attribution maker.</h1>
-        <p class="lead">A Bookmarklet to create HTML snippets to create Pixabay attributions and properly align these statements with the image. These can be pasted into any HTML editor.</p>
+
+        <!-- Alert IE users -->
+        <div class="alert alert-ie alert-warning alert-dismissible collapse" role="alert">
+            <strong>INTERNET EXPORER USER?</strong> Not all functionality is guaranteed.  Try Chrome, Firefox or Safari
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <!-- Alert FIRST TIME users -->
+        <div class="alert alert-ft alert-warning alert-dismissible collapse" role="alert">
+            <strong>FIRST TIME USER?</strong> Click on the "First time" button for setup instructions
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+
+        <h1 class="display-4">Pixabay attribution helper & image resizer</h1>
+        <p class="lead">A Bookmarklet to create a Pixabay attribution plus placeholder image, then properly align these statements with the image. </p>
+        <p>The placeholder image can then be replaced with a properly resized image, as provided.</p>
         <p>
             <button class="btn btn-lg btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
                 First time? Click here for setup instructions.
@@ -56,113 +78,120 @@
                 <ol>
                     <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Bvar%20el%20%3D%20document.querySelectorAll('%5Bitemprop%3D%22contentURL%22%5D')%5B0%5D%3Bvar%20src%20%3D%20encodeURIComponent(el.getAttributeNode(%22src%22).value)%3Bvar%20alt%20%3D%20encodeURIComponent(el.getAttributeNode(%22alt%22).value)%3Bvar%20statement%20%3D%20encodeURIComponent(document.querySelector('span.attribution_field%20span').innerHTML)%3Bvar%20url%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Fpixabay_attribution_helper.html%3Fsrc%3D'%2Bsrc%2B'%26statement%3D'%2Bstatement%2B'%26alt%3D'%2Balt%3Bwindow.open(url%2C'_blank')%7D)()">Pixabay attribution maker</a>
                         <br><span class="text-muted">(Note: Make sure you drag the link onto your browser bookmarks. Clicking will just bring you back to here)</span></li>
-                    <li>Visit Pixabay and locate the image you wish to attribute</li>
-                    <li>Click on the 'Pixabay attribution maker' in your bookmarks</li>
+                    <li>Visit Pixabay - Beautiful Free Images and find your favourite image</li>
+                    <li>Click on the 'Pixabay embedder & attribution maker' in your bookmarks</li>
                     <li>You will be returned to this page, but now your selected image will be displayed below</li>
                     <li>Press the copy button next to the layout type that you prefer. This will copy the HTML to your clipboard</li>
                     <li>Paste this HTML anywhere that you can paste code (eg a Moodle page or tool)</li>
+                    <li>Ready to go? Visit <p><strong><a href="https://pixabay.com//">Beautiful Free Images & Pictures | Pixabay</a></strong></p>, select an image that you like and then press on the "Pixabay Embedder"</li>
                 </ol>
-
+                <h3>Show me how (Screen Video Tutorial)</h3>
+                <div>
+                    <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.2493%;"><iframe src="//cdn.iframe.ly/api/iframe?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DBNlEK-6ef4o&amp;key=c46013d31771189d4639a29af622a1f2" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen scrolling="no"></iframe></div>
+                </div>
             </div>
         </div>
         <!-- Three columns of text below the carousel -->
         <!-- /.row -->
-
         <!-- START THE FEATURETTES -->
         <div id="embedder">
             <hr class="featurette-divider clearfix" id="right">
             <div class="clearfix">
-<div class="unsplash-copy unsplash-fr">
+                <div class="pixabay-copy pixabay-fr">
 <!-- Start of Pixabay Embed Code - Float Right  (Embed code by @BirdyOz)-->
-<div class="float-right" style="float: right; width: 30%; max-width: 320px; min-width: 200px; margin:0 0 10px 20px !important">
-    <!-- REPLACE the img src with a link to the purchased shutterstock image -->
-    <!-- Remember to resize the image appropriately, BEFORE upload -->
-    <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+UnSplash" class="img-responsive img-fluid">
+<div class="float-right" style="float: right; width: 30%; max-width: 360px; min-width: 200px; margin:0 0 10px 20px !important">
+    <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+UnSplash" class="img-responsive img-fluid img-sml">
     <div class="text-muted" style="opacity: 0.5">
-        <small>Attribution goes here</small>
+        <small><a href="#" target="_blank">Photo</a> by <a href="#" target="_blank">Author</a> on <a href="https://pixabay.com/" target="_blank">Pixabay</a></small>
     </div>
 </div>
 <!-- End of Pixabay Embed Code -->
-</div>
+                </div>
                 <h2 class="featurette-heading">Float Right <span class="text-muted">(Image to the right of text)</span></h2>
-                <p class="lead">Image will occupy 30% of the available space, between the minimum width of 200px and maximum width of 320px</p>
-                <button id="unsplash-fr" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
+                <p class="lead">Image will occupy 30% of the available space, between the minimum width of 200px and maximum width of 360px</p>
+                <button id="pixabay-fr" href="" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
+                <a class="btn btn-outline-primary download" href="" title="img-sml"> <i class="fa fa-download"></i>
+                    Download small image
+                </a>
             </div>
             <hr class="featurette-divider clearfix" id="left">
             <div class="clearfix">
-<div class="unsplash-copy unsplash-fl">
+                <div class="pixabay-copy pixabay-fl">
 <!-- Start of Pixabay Embed Code - Float Left (Embed code by @BirdyOz)-->
-<div class="float-left" style="float: left; width: 30%; max-width: 320px; min-width: 200px; margin:0 20px 10px 0 !important">
-    <!-- REPLACE the img src with a link to the purchased shutterstock image -->
-    <!-- Remember to resize the image appropriately, BEFORE upload -->
-    <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+Pixabay" class="img-responsive img-fluid">
+<div class="float-left" style="float: left; width: 30%; max-width: 360px; min-width: 200px; margin:0 20px 10px 0 !important">
+    <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+Pixabay" class="img-responsive img-fluid img-sml">
     <div class="text-muted" style="opacity: 0.5">
-        <small>Attribution goes here</small>
+        <small><a href="#">Photo</a> by <a href="#">Author</a> on <a href="https://pixabay.com/" target="_blank">Pixabay</a></small>
     </div>
 </div>
 <!-- End of Pixabay Embed code -->
-</div>
+                </div>
                 <h2 class="featurette-heading">Float Left <span class="text-muted">(Image to the left of text)</span></h2>
-                <p class="lead">Image will occupy 30% of the available space, between the minimum width of 200px and maximum width of 320px</p>
-                <button id="unsplash-fl" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
+                <p class="lead">Image will occupy 30% of the available space, between the minimum width of 200px and maximum width of 360px</p>
+                <button id="pixabay-fl" href="" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
+                <a class="btn btn-outline-primary download" href="" title="img-sml"> <i class="fa fa-download"></i>
+                    Download small image
+                </a>
             </div>
             <hr class="featurette-divider clearfix" id="center">
             <div class="clearfix">
                 <h2 class="featurette-heading">Centered <span class="text-muted">(Image above or below text)</span></h2>
                 <p class="lead">Image will occupy 60% of the available space, aligned to the center of the container.</p>
-                <button id="unsplash-ce" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
-<div class="unsplash-copy unsplash-ce">
+                <button id="pixabay-ce" href="" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
+                <a class="btn btn-outline-primary download" href="" title="img-med"> <i class="fa fa-download"></i>
+                    Download medium image
+                </a>
+                <div class="pixabay-copy pixabay-ce">
 <!-- Start of Pixabay Embed Code - Centered (Embed code by @BirdyOz)-->
 <div style="width:60%; margin: 20px 20% !important;">
-    <!-- REPLACE the img src with a link to the purchased shutterstock image -->
-    <!-- Remember to resize the image appropriately, BEFORE upload -->
-    <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+UnSplash" class="img-responsive img-fluid">
+    <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+UnSplash" class="img-responsive img-fluid img-med">
     <div class="text-muted" style="opacity: 0.5">
-        <small>Attribution goes here</small>
+        <small><a href="#">Photo</a> by <a href="#">Author</a> on <a href="https://pixabay.com/" target="_blank">Pixabay</a></small>
     </div>
 </div>
 <!-- End of Pixabay Embed code -->
-</div>
+                </div>
             </div>
             <hr class="featurette-divider clearfix" id="large">
             <div class="clearfix">
                 <h2 class="featurette-heading">Full width <span class="text-muted">(Image above or below text)</span></h2>
                 <p class="lead">Image will occupy 100% of the available space</p>
-                <button id="unsplash-lg" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
-<div class="unsplash-copy unsplash-lg">
+                <button id="pixabay-lg" href="" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
+                <a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
+                    Download large image
+                </a>
+                <div class="pixabay-copy pixabay-lg">
 <!-- Start of Pixabay Embed Code - Full-width (Embed code by @BirdyOz)-->
 <div style="width:100%; margin: 20px auto;">
-    <!-- REPLACE the img src with a link to the purchased shutterstock image -->
-    <!-- Remember to resize the image appropriately, BEFORE upload -->
-    <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+UnSplash" class="img-responsive img-fluid"  style="width:100%">
+    <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+UnSplash" class="img-responsive img-fluid img-lge">
     <div class="text-muted" style="opacity: 0.5">
-        <small>Attribution goes here</small>
+        <small><a href="#">Photo</a> by <a href="#">Author</a> on <a href="https://pixabay.com/" target="_blank">Pixabay</a></small>
     </div>
 </div>
 <!-- End of Pixabay Embed code -->
-</div>
-
+                </div>
                 <hr class="featurette-divider clearfix" id="overlay">
                 <div class="clearfix">
                     <h2 class="featurette-heading">Full width, with text overlay <span class="text-muted">(Custom text overlay)</span></h2>
                     <p class="lead">Image will occupy 100% of the available space. Text overlay can be edited by you, after embedding</p>
-                    <button id="unsplash-ov" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
-<div class="unsplash-copy unsplash-ov">
+                    <button id="pixabay-ov" href="" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
+                    <a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
+                        Download large image
+                    </a>
+                    <div class="pixabay-copy pixabay-ov">
 <!-- Start of Pixabay Embed Code - Full-width, with text overlay (Embed code by @BirdyOz)-->
 <div class="overlay" style="width:100%; margin: 20px auto; text-align: center; color: white !important; text-shadow: 2px 2px 4px #000000; position: relative;">
-    <!-- REPLACE the img src with a link to the purchased shutterstock image -->
-    <!-- Remember to resize the image appropriately, BEFORE upload -->
-    <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+UnSplash" class="img-responsive img-fluid" style="width:100%">
+    <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+UnSplash" class="img-responsive img-fluid img-sml" style="width:100%">
     <div class="text-overlay" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%">
         <p class="" style="font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) )) !important; line-height: calc( 20px + (32 - 16) * ( 80vw / (1000 - 400) )) !important;">Text overlay goes here</p>
         <p class="" style="font-size: calc( 12px + (24 - 16) * ( 60vw / (1000 - 400) )) !important; line-height: calc( 10px + (20 - 10) * ( 80vw / (1000 - 400) )) !important;">Optional byline or citation goes here. Delete if not required.</p>
     </div>
 </div>
 <div class="text-muted" style="opacity: 0.5; margin-top: -1.2em">
-    <small>Attribution goes here</small>
+    <small><a href="#">Photo</a> by <a href="#">Author</a> on <a href="https://pixabay.com/" target="_blank">Pixabay</a></small>
 </div>
 <!-- End of Pixabay Embed code -->
-</div>
+                    </div>
                 </div>
             </div>
             <!-- /END THE FEATURETTES -->
@@ -170,17 +199,20 @@
             <hr>
             <footer class="page-footer">
                 <p class="float-right"><a href="#">Back to top</a></p>
-                <p>'Pixabay attribution maker' by Greg Bird (@BirdyOz) | <a href="https://twitter.com/BirdyOz" target="_blank">Twitter</a> | <a href="https://www.linkedin.com/in/birdyoz/" target="_blank">LinkedIn</a> | <a href="https://www.youtube.com/BirdyOz" target="_blank">YouTube</a> | <a href="mailto:greg.bird.oz@gmail.com">email</a></p>
+                <p>'Pixabay Embed - attribution maker' by Greg Bird (@BirdyOz) | <a href="https://twitter.com/BirdyOz" target="_blank">Twitter</a> | <a href="https://www.linkedin.com/in/birdyoz/" target="_blank">LinkedIn</a> | <a href="https://www.youtube.com/BirdyOz" target="_blank">YouTube</a> | <a href="mailto:greg.bird.oz@gmail.com">email</a></p>
             </footer>
         </div>
         <!-- /.container -->
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="pixabay_attribution_helper.js"></script>
+        <script src="pixabay_attribution_helper_new.js"></script>
 </body>
 
 </html>
