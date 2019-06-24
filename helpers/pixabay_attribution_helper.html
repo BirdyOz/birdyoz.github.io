@@ -42,19 +42,20 @@
     <!-- Marketing messaging and featurettes
         ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
-
-
-
     <div class="container marketing" style="margin-top: 100px">
-
+        <!-- PREVIEW -->
+        <div class="preview_card card float-right ml-2 d-none" style="width: 150px;">
+            <img class="card-img-top preview" src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+Pixabay" alt="Preview">
+            <span class="text-center muted d-block">Preview</span>
+        </div>
+        <!-- END PTREVIEW -->
         <!-- Alert IE users -->
         <div class="alert alert-ie alert-warning alert-dismissible collapse" role="alert">
-            <strong>INTERNET EXPORER USER?</strong> Not all functionality is guaranteed.  Try Chrome, Firefox or Safari
+            <strong>INTERNET EXPORER USER?</strong> Not all functionality is guaranteed. Try Chrome, Firefox or Safari
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-
         <!-- Alert FIRST TIME users -->
         <div class="alert alert-ft alert-warning alert-dismissible collapse" role="alert">
             <strong>FIRST TIME USER?</strong> Click on the "First time" button for setup instructions
@@ -62,8 +63,6 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-
-
         <h1 class="display-4">Pixabay attribution helper & image resizer</h1>
         <p class="lead">A Bookmarklet to create a Pixabay attribution plus placeholder image, then properly align these statements with the image. </p>
         <p>The placeholder image can then be replaced with a properly resized image, as provided.</p>
@@ -78,13 +77,15 @@
                 <ol>
                     <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Bvar%20el%20%3D%20document.querySelectorAll('%5Bitemprop%3D%22contentURL%22%5D')%5B0%5D%3Bvar%20src%20%3D%20encodeURIComponent(el.getAttributeNode(%22src%22).value)%3Bvar%20alt%20%3D%20encodeURIComponent(el.getAttributeNode(%22alt%22).value)%3Bvar%20statement%20%3D%20encodeURIComponent(document.querySelector('span.attribution_field%20span').innerHTML)%3Bvar%20url%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Fpixabay_attribution_helper.html%3Fsrc%3D'%2Bsrc%2B'%26statement%3D'%2Bstatement%2B'%26alt%3D'%2Balt%3Bwindow.open(url%2C'_blank')%7D)()">Pixabay attribution maker</a>
                         <br><span class="text-muted">(Note: Make sure you drag the link onto your browser bookmarks. Clicking will just bring you back to here)</span></li>
-                    <li>Visit Pixabay - Beautiful Free Images and find your favourite image</li>
-                    <li>Click on the 'Pixabay embedder & attribution maker' in your bookmarks</li>
+                    <li>Visit Pixabay and find your favourite image</li>
+                    <li>Click on the 'Pixabay attribution helper & image resizer' in your bookmarks</li>
                     <li>You will be returned to this page, but now your selected image will be displayed below</li>
                     <li>Press the copy button next to the layout type that you prefer. This will copy the HTML to your clipboard</li>
                     <li>Paste this HTML anywhere that you can paste code (eg a Moodle page or tool)</li>
-                    <li>Ready to go? Visit <p><strong><a href="https://pixabay.com//">Beautiful Free Images & Pictures | Pixabay</a></strong></p>, select an image that you like and then press on the "Pixabay Embedder"</li>
+                    <li>Download the resized image as provided</li>
+                    <li>Upload this image to replace the placeholder</li>
                 </ol>
+                <p class="alert alert-info">NB: Pixabay does not allow for hotlinking (embedding). They require that you download their images and re-upload to your own platform (Moodle or other).</p>
                 <h3>Show me how (Screen Video Tutorial)</h3>
                 <div>
                     <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.2493%;"><iframe src="//cdn.iframe.ly/api/iframe?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DBNlEK-6ef4o&amp;key=c46013d31771189d4639a29af622a1f2" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen scrolling="no"></iframe></div>
@@ -206,10 +207,7 @@
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="pixabay_attribution_helper_new.js"></script>

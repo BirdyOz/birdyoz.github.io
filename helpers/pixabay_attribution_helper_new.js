@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-24 10:55:24
+ * @Last Modified time: 2019-06-24 12:21:49
  */
 
 $(function() {
@@ -41,6 +41,13 @@ $(function() {
                     console.log("@GB: img_med = ", img_med);
                     var img_sml = img_lge.replace("_1280", "_640");
                     console.log("@GB: img_sml = ", img_sml);
+
+                    // Update preview image
+
+                    var img_preview = data.hits[0].previewURL;
+                    console.log("@GB: img_preview = ", img_preview);
+                    $('.preview_card').toggleClass('d-none d-block');
+                    $('img.preview').attr('src', img_preview);
 
                     $('a.download').click(function(event) {
 
@@ -83,11 +90,12 @@ $(function() {
             today = dd + '/' + mm + '/' + yyyy;
 
 
-            $('img').each(function(index, el) {
+            $('.pixabay-copy img').each(function(index, el) {
                 el.src = "https://dummyimage.com//b094b0/BAD761&text=Replace+with+downloaded+pixabay+image";
                 $(this).attr('alt', alt);
                 $(this).attr('title', alt);
             });
+
 
             $('small').each(function(index, el) {
                 $(this).html(statement + ', accessed ' + today);
@@ -177,24 +185,30 @@ $(function() {
             console.log("@GB: canvas.width = ", canvas.width);
             canvas.getContext('2d').drawImage(this, 0, 0);
             var blob;
+            var ext = ".jpg"
             // ... get as Data URI
             if (image.src.indexOf(".jpg") > -1) {
                 blob = canvas.toDataURL("image/jpeg");
+                ext = ".jpg"
             } else if (image.src.indexOf(".jpeg") > -1) {
                 blob = canvas.toDataURL("image/jpeg");
+                ext = ".jpg"
             } else if (image.src.indexOf(".png") > -1) {
                 blob = canvas.toDataURL("image/png");
+                ext = ".png"
             } else if (image.src.indexOf(".gif") > -1) {
                 blob = canvas.toDataURL("image/gif");
+                ext = ".gif"
             } else {
                 blob = canvas.toDataURL("image/png");
+                ext = ".png"
             }
 
             var link = document.createElement('a');
             link.style = 'position: fixed; left -10000px;';
             link.href = blob;
 
-            link.download = "Pixabay-" + name + "-" + canvas.width + "x" + canvas.height + ".jpg";
+            link.download = "Pixabay-" + name + "-" + canvas.width + "x" + canvas.height + ext;
             console.log("@GB: link.download = ", link.download);
 
 
