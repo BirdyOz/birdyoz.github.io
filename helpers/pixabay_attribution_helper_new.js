@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-24 10:40:23
+ * @Last Modified time: 2019-06-24 10:55:24
  */
 
 $(function() {
@@ -177,7 +177,18 @@ $(function() {
             console.log("@GB: canvas.width = ", canvas.width);
             canvas.getContext('2d').drawImage(this, 0, 0);
             var blob;
-            blob = canvas.toDataURL("image/jpeg");
+            // ... get as Data URI
+            if (image.src.indexOf(".jpg") > -1) {
+                blob = canvas.toDataURL("image/jpeg");
+            } else if (image.src.indexOf(".jpeg") > -1) {
+                blob = canvas.toDataURL("image/jpeg");
+            } else if (image.src.indexOf(".png") > -1) {
+                blob = canvas.toDataURL("image/png");
+            } else if (image.src.indexOf(".gif") > -1) {
+                blob = canvas.toDataURL("image/gif");
+            } else {
+                blob = canvas.toDataURL("image/png");
+            }
 
             var link = document.createElement('a');
             link.style = 'position: fixed; left -10000px;';
