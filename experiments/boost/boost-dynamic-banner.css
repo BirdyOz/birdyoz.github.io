@@ -1,0 +1,26 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @First Created:   2019-07-01 14:13:36
+* @Last Modified by:   Greg Bird
+* @Last Modified time: 2019-07-01 14:23:26
+*/
+
+/*Change the names of these classes to MATCH the ctegories in your hierarchy*/
+
+/* Uses "Starts with" CSS selectors.  This Future-proofs your CSS if you make subtle changes in the
+category titles between years, eg:
+- breadcrumb-sub-category 2019
+- breadcrumb-sub-category 2020
+*/
+
+body[class*="breadcrumb-top-level-category"] {
+    /*Add your custom CSS here*/
+}
+
+body[class*="breadcrumb-sub-category"] {
+    /*Add your custom CSS here*/
+}
+
+body[class*="breadcrumb-sub-sub-category"] {
+    /*Add your custom CSS here*/
+}
