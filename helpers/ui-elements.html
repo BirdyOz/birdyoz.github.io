@@ -319,14 +319,6 @@
 
 <h2 id="interactive">Interactive elements</h2>
 
-<!-- Decoratrive button -->
-<h5>Decorative button. <span class="muted">(Make sure you update the href)</span></h5>
-<div class="copythis">
- <a class="btn btn-lg btn-primary" href="#">Insert button text</a>
- <p></p>
-<!-- End of decorative button -->
-
-</div>
 
 <hr>
 <h5>Show/hide interface</h5>
@@ -454,6 +446,78 @@
 </div>
 <!-- End of accordion 1 -->
 
+</div>
+<hr>
+
+<h3>Horizontal tabs</h3>
+<p>Horizontal tabs are most useful for small numbers of tabs and when the tab text is short</p>
+<div class="copythis">
+    <!-- Start of horizontal tabs -->
+    <ul class="nav nav-pills mb-0" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active show" id="h-tabs-t1-tab" data-toggle="pill" href="#h-tabs-t1" role="tab" aria-controls="h-tabs-t1" aria-selected="true">Tab 1</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="h-tabs-t2-tab" data-toggle="pill" href="#h-tabs-t2" role="tab" aria-controls="h-tabs-t2" aria-selected="false">Tab 2</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="h-tabs-t3-tab" data-toggle="pill" href="#h-tabs-t3" role="tab" aria-controls="h-tabs-t3" aria-selected="false">Tab 3</a>
+        </li>
+    </ul>
+    <div class="tab-content card" id="pills-tabContent">
+        <div class="tab-pane p-3 fade active show" id="h-tabs-t1" role="tabpanel" aria-labelledby="h-tabs-t1-tab">
+            <h4>Tab 1</h4>
+            <p>Tab 1 content goes here.</p>
+        </div>
+        <div class="tab-pane p-3 fade" id="h-tabs-t2" role="tabpanel" aria-labelledby="h-tabs-t2-tab">
+            <h4>Tab 2</h4>
+            <p>Tab 2 content goes here.</p>
+        </div>
+        <div class="tab-pane p-3 fade" id="h-tabs-t3" role="tabpanel" aria-labelledby="h-tabs-t3-tab">
+            <h4>Tab 3</h4>
+            <p>Tab 3 content goes here.</p>
+        </div>
+    </div>
+    <!-- End of horizontal tabs -->
+</div>
+<br>
+<hr>
+<br>
+<h3>Vertical Tabs</h3>
+<p>Vertical tabs are more useful for more tabs or longer tab titles</p>
+<div class="copythis">
+    <!-- Start of vertical tabs -->
+    <div class="row">
+        <div class="col-3 no-gutters">
+            <div class="nav flex-column nav-pills" id="v-tabs-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active show" id="v-tabs-t1-tab" data-toggle="pill" href="#v-tabs-t1" role="tab" aria-controls="v-tabs-t1" aria-selected="true">Tab 1</a>
+                <a class="nav-link" id="v-tabs-t2-tab" data-toggle="pill" href="#v-tabs-t2" role="tab" aria-controls="v-tabs-t2" aria-selected="false">Tab 2</a>
+                <a class="nav-link" id="v-tabs-t3-tab" data-toggle="pill" href="#v-tabs-t3" role="tab" aria-controls="v-tabs-t3" aria-selected="false">Tab 3</a>
+                <a class="nav-link" id="v-tabs-t4-tab" data-toggle="pill" href="#v-tabs-t4" role="tab" aria-controls="v-tabs-t4" aria-selected="false">Tab 4</a>
+            </div>
+        </div>
+        <div class="col-9 no-gutters">
+            <div class="tab-content" id="v-tabs-tabContent">
+                <div class="tab-pane card p-3 fade active show" id="v-tabs-t1" role="tabpanel" aria-labelledby="v-tabs-t1-tab">
+                    <h4>Tab 1</h4>
+                    <p>Tab 1 content goes here</p>
+                </div>
+                <div class="tab-pane card p-3 fade" id="v-tabs-t2" role="tabpanel" aria-labelledby="v-tabs-t2-tab">
+                    <h4>Tab 2</h4>
+                    <p>Tab 2 content goes here</p>
+                </div>
+                <div class="tab-pane card p-3 fade" id="v-tabs-t3" role="tabpanel" aria-labelledby="v-tabs-t3-tab">
+                    <h4>Tab 3</h4>
+                    <p>Tab 3 content goes here</p>
+                </div>
+                <div class="tab-pane card p-3 fade" id="v-tabs-t4" role="tabpanel" aria-labelledby="v-tabs-t4-tab">
+                    <h4>Tab 4</h4>
+                    <p>Tab 4 content goes here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End of vertical tabs -->
 </div>
 <hr>
 
