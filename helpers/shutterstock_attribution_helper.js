@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-05 12:50:27
+ * @Last Modified time: 2019-07-17 13:49:20
  */
 
 $(function() {
@@ -20,7 +20,7 @@ $(function() {
 
             var image_id = descriptors.pop();
 
-            var alt = descriptors.join(", ");
+            var alt = descriptors.join(" ");
             console.log("@GB: alt = ", alt);
 
             var user = url.searchParams.get("user");
