@@ -1,4 +1,4 @@
-$CATEGORY: QuestionTypes/Basic
+$CATEGORY: DEF345/AT1
 
 This is a True/False question.  They contain either "T" or "F" in the curly braces {T}
 
@@ -17,14 +17,14 @@ This is a matching.  Matches are on the same line, separated by an equals sign {
 This a multiple response (one or more correct answers).  Each correct answer is identified by the equals sign {
     = Correct answer 1
     = Correct answer 2
-    Incorrect answer 1
+    = Incorrect answer 1
     Incorrect answer 2
     Incorrect answer 3
 }
 
 This is an essay question.  Long response.  REMEMBER: Essay questions cannot be computer marked {}
 
-$CATEGORY: QuestionTypes/Advanced
+$CATEGORY: DEF345/AT2
 
 This is a multiple choice WITH FEEDBACK.  The feedback is shown AFTER the hash "#" symbol {
     = Correct answer #Feedback for correct answer
