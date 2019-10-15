@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-13 13:43:29
+ * @Last Modified time: 2019-10-15 15:46:29
  */
 
 $(function() {
@@ -102,7 +102,12 @@ $(function() {
                             '    </div>\n' +
                             '</div>';
                     } else {
-                        var thumb = data.items[0].snippet.thumbnails.maxres.url;
+                        var thumb = "";
+                        thumb = data.items[0].snippet.thumbnails.maxres.url;
+                        //If no maxres thumb, choose default
+                        if (thumb == null) {
+                            thumb = data.items[0].snippet.thumbnails.standard.url;
+                        }
                         var url = "https://www.youtube.com/watch?v=" + yt_video_id;
 
                         dom =
