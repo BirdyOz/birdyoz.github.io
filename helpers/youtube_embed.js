@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-10-15 16:00:34
+ * @Last Modified time: 2019-10-15 16:43:49
  */
 
 $(function() {
@@ -102,14 +102,11 @@ $(function() {
                             '    </div>\n' +
                             '</div>';
                     } else {
-                        var thumb = "";
-
-                        // If no maxres thumb, choose default
-                        if (data.items[0].snippet.thumbnails.maxres.url) {
-                            thumb = data.items[0].snippet.thumbnails.maxres.url;
-                        }
-                        else {
-                            thumb = data.items[0].snippet.thumbnails.standard.url;
+                        var thumb = data.items[0].snippet.thumbnails.standard.url;
+                        console.log("@GB: Standard thumb = ", thumb);
+                        if (data.items[0].snippet.thumbnails.hasOwnProperty('maxres')) {
+                            var thumb = data.items[0].snippet.thumbnails.maxres.url;
+                            console.log("@GB: Maxres thumb = ", thumb);
                         }
                         var url = "https://www.youtube.com/watch?v=" + yt_video_id;
 
@@ -128,7 +125,7 @@ $(function() {
                             '</div></div>';
                     }
 
-                    console.log("@GB: dom = ", dom);
+                    // console.log("@GB: dom = ", dom);
                     $('#yt_video_placeholder').replaceWith(dom);
 
 
