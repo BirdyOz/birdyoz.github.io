@@ -1,0 +1,38 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @First Created:   2019-10-18 08:26:40
+* @Last Modified by:   Greg Bird
+* @Last Modified time: 2019-10-18 08:41:23
+*/
+
+/*Set colour of breadcrumbs*/
+.mast-image .breadcrumb-item a {
+    color: #fff !important;
+}
+
+/*Fix hidden subchapters checkbox in Snap MP2*/
+.path-mod-book #id_general .fcontainer .checkbox{
+display:inline
+}
+
+/*  Change the backdrop to user tours */
+div[data-flexitour="backdrop"] {
+background-color: black;
+    opacity: .9;
+}
+
+/*----- Hide user notification ----*/
+.theme-snap #user-notifications { display: none; }
+
+
+/* Shrink unneccessary whitespace on cards */
+p.snap-resource-card-fadeout {display: none;}
+
+/* Fix issue where collapsed accordions cannot be edited in the new ATTO editor
+Expand all collapsed items in the atto edtitor, to expose their content */
+
+
+.editor_atto .collapse, .book_chapter .collapse {
+    display: block !important;
+    height: auto  !important;
+}
