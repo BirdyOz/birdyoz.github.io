@@ -2,9 +2,9 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-21 14:43:33
+ * @Last Modified time: 2019-10-18 12:18:35
  */
-
+// 192.168.1.4:8005/unsplash_embed.html
 $(function() {
     // Detect IE
     var isIE = detectIE();
@@ -20,19 +20,26 @@ $(function() {
 
         // Extract URL variables
         var url = new URL(url_string);
+        console.log("@GB: url = ", url);
         var addr = url.searchParams.get("addr");
-        var title = url.searchParams.get("title");
+        console.log("@GB: addr = ", addr);
+        var title = url.searchParams.get("title").split("photo – ")[0];
+
+        console.log("@GB: title = ", title);
+        var user = url.searchParams.get("user");
+        console.log("@GB: user = ", user);
+
+        // alert users to update bookmarklet
+        if (user == null && title !== null) {
+            $(".alert-new").toggleClass('collapse show');
+            console.log("@GB: alert users to update bookmarklet");
+        }
 
 
-        // Pull apart Unsplash title to form an array
-        var re = /by (.*?) \((.*?)\)/gi;
-        var TitleArray = re.exec(title);
-        console.log("@GB: TitleArray = ", TitleArray);
-        if (TitleArray !== null) {
+        // embed unsplash
+        if (user !== null) {
 
-            var name = TitleArray[1];
-            console.log("@GB: name = ", name);
-            var user = TitleArray[2];
+            var user = user;
             console.log("@GB: user = ", user);
             var img = addr.substring(addr.lastIndexOf("/") + 1, addr.length);
             var img_url = "https://source.unsplash.com/" + img;
