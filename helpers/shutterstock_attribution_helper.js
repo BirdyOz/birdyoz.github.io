@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-07-17 13:49:20
+ * @Last Modified time: 2019-11-01 11:47:44
  */
 
 $(function() {
@@ -26,7 +26,7 @@ $(function() {
             var user = url.searchParams.get("user");
             console.log("@GB: user = ", user);
 
-            // PULL APART USERR DETAILS
+            // PULL APART USER DETAILS
             var re = /href="(.*?)".*?>(.*?)</gi;
             var user_details = re.exec(user);
             console.log("@GB: user_details = ", user_details);
@@ -45,7 +45,7 @@ $(function() {
             console.log("@GB: today = ", today);
 
 
-            var image_url = "https://image.shutterstock.com/z/" + image_id + ".jpg";
+            var image_url = "https://image.shutterstock.com/z/-" + image_id + ".jpg";
             // var image_url = "https://image.shutterstock.com/image-photo/" + descriptors.join("-") + "-450w-" + image_id + ".jpg";
             console.log("@GB: image_url = ", image_url);
             var dom = 'Image ' + image_id + ' used under licence with <a target="_blank" href="https://www.shutterstock.com/">shutterstock.com</a> by <a  target="_blank" href="' + user_url + '">' + user_name + '</a>, accessed ' + today;
