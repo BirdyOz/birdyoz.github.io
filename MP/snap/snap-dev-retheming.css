@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2019-11-19 13:02:43
+* @Last Modified time: 2019-11-25 10:26:06
 */
 
 
@@ -11,16 +11,18 @@
    ========================================================================== */
 
 /* Set opaque bg */
-#page-mast h1, #page-mast .breadcrumb-nav {
+.mast-image #page-mast h1,
+.mast-image .breadcrumb-nav {
     color: white;
-    background-color: rgba(0,0,0,.5);
+    background-color: rgba(0, 0, 0, .5);
     display: inline-block;
     padding: 0.2em 0.4em;
 }
 
 
 /* style links */
-#page-mast h1 a, #page-mast .breadcrumb a {
+.mast-image #page-mast h1 a,
+.mast-image .breadcrumb a {
     color: white !important;
     text-shadow: 1px 1px 3px black !important;
 }
@@ -40,7 +42,7 @@
 /* Current marker */
 #snap-course-wrapper #chapters li.snap-visible-section .chapter-title:before {
     font-family: FontAwesome;
-    content:"\f0da";
+    content: "\f0da";
     background: none;
     margin-right: .4em;
 }
@@ -55,42 +57,59 @@
 #snap-course-wrapper #chapters li.conditional .chapter-title:before {
     font-family: FontAwesome;
     color: #b55600;
-    content:"\f023";
+    content: "\f023";
     background: none;
     margin-right: .4em;
 }
 
 /* Increase contract of hidden items*/
-#snap-course-wrapper #chapters li.draft .published-status, .snap-draft-tag, .coursecard-body .published-status {
+#snap-course-wrapper #chapters li.draft .published-status,
+.coursecard-body .snap-draft-tag,
+.coursecard-body .published-status {
     /*font-weight: bold;*/
     color: maroon !important;
 }
 
-.snap-draft-tag, .coursecard-body .published-status  {
+/* Add light yellow stripe behind hidden items to increase attention*/
+.coursecard-body .snap-draft-tag,
+.coursecard-body .published-status {
     background-color: rgba(255, 255, 0, .4);
 }
 
 /* Hidden marker */
-#snap-course-wrapper #chapters li.draft .chapter-title:before, .snap-draft-tag:before, .coursecard-body .published-status:before {
+#snap-course-wrapper #chapters li.draft .chapter-title:before,
+.snap-draft-tag:before,
+.coursecard-body .published-status:before {
     font-family: FontAwesome;
     color: #333;
-    content:"\f070 ";
+    content: "\f070 ";
     background: none;
     margin-right: .4em;
 }
 
 
+/* ==========================================================================
+   @GB - Display fixes
+   ========================================================================== */
+
 /*Fix nested ul display bug*/
-ul > ul {
+ul>ul {
     -webkit-margin-before: 0;
     list-style-type: circle
+}
+
+/*Remove outline around focussed elements*/
+
+.theme-snap a:focus, .theme-snap .dropdown-toggle:focus {
+     outline: none;
 }
 
 
 /* Fix for scrollbar issue (#15923) */
 
-.snap-form-advanced #id_modstandardelshdr .form-inline[data-fieldtype="editor"] div:first-child, .snap-form-advanced #id_overallfeedbackhdr .form-inline[data-fieldtype="editor"] div:first-child {
-overflow: auto !important;
+.snap-form-advanced #id_modstandardelshdr .form-inline[data-fieldtype="editor"] div:first-child,
+.snap-form-advanced #id_overallfeedbackhdr .form-inline[data-fieldtype="editor"] div:first-child {
+    overflow: auto !important;
 }
 
 
@@ -99,23 +118,25 @@ overflow: auto !important;
 General
 ---------*/
 
-#moodle-page {margin-top: 5em;}
+#moodle-page {
+    margin-top: 5em;
+}
 
 #page-login-index #page-header {
-    display:none;
+    display: none;
 }
 
 #page-login-index .loginpanel h2 {
-    font-size:2em;
+    font-size: 2em;
 }
 
 body {
-    font-size:16px;
+    font-size: 16px;
 }
 
 
 #snap-home.logo {
-    height:80px;
+    height: 80px;
 }
 
 
@@ -128,7 +149,8 @@ h1 {
     font-size: 250%;
 }
 
-h2, .h2 {
+h2,
+.h2 {
     font-size: 200%;
 }
 
@@ -215,11 +237,14 @@ h2, .h2 {
 .path-course-view {
     min-height: 200px;
 }
+
 ul {
     list-style: none;
 }
 
-ul, menu, dir {
+ul,
+menu,
+dir {
     display: block;
     list-style-type: disc;
     -webkit-margin-before: 1em;
@@ -241,6 +266,11 @@ body.snap-resource-card li.snap-resource {
     height: 180px;
     background-position: 50% 65%;
 }
+
+
+/* ==========================================================================
+   @GB - Original MP top nav.  Commented out
+   ========================================================================== */
 
 /*----------
 Custom menu
@@ -370,12 +400,14 @@ Header / My Courses Menu
     margin-top: 1.4em;
 }
 
-#page-content .block_settings.state-visible, .block_settings:target {
+#page-content .block_settings.state-visible,
+.block_settings:target {
     height: calc(100% - 7.3em);
     margin-top: 7.3em;
 }
 
-.block_settings>.card-body, .userprofile .profile_tree .block_settings>section {
+.block_settings>.card-body,
+.userprofile .profile_tree .block_settings>section {
     padding: 0;
 }
 
@@ -412,7 +444,7 @@ redefined background image
 
 .snap-pm-user {
     padding-left: 320px;
-    margin-top:0.7em;
+    margin-top: 0.7em;
 }
 
 #snap-pm-header .userpicture {
@@ -462,7 +494,7 @@ Courses details
     height: 50px;
 }
 
-#snap-course-footer #snap-course-footer-contacts .snap-media-object .snap-media-body > a:first-child {
+#snap-course-footer #snap-course-footer-contacts .snap-media-object .snap-media-body>a:first-child {
     visibility: visible;
 }
 
@@ -493,19 +525,17 @@ Footer
 
 
 #moodle-footer .mp-footer-contact .label {
-    width:100%;
+    width: 100%;
     text-align: left;
-    padding:0;
-    margin:0;
+    padding: 0;
+    margin: 0;
     color: #999;
-    display:inline-block;
-    font-size:100%;
+    display: inline-block;
+    font-size: 100%;
     background-color: transparent;
 }
 
-#moodle-footer .mp-footer-contact .phone-number {
-
-}
+#moodle-footer .mp-footer-contact .phone-number {}
 
 #moodle-footer .mp-footer-contact .phone-number .phone {
     font-size: 160%;
@@ -513,18 +543,18 @@ Footer
 }
 
 #moodle-footer .mp-footer-contact .phone-number .content {
-    font-size:12px;
+    font-size: 12px;
     width: 80%;
-    display:inline-block;
+    display: inline-block;
     text-align: left;
 }
 
-#moodle-footer > .row {
+#moodle-footer>.row {
     width: 100%;
-    margin:0;
-    padding:0;
-    display:inline-block;
-    float:left;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    float: left;
 }
 
 #mrooms-footer {
@@ -532,13 +562,13 @@ Footer
     width: 100%;
 }
 
-#moodle-footer > #snap_socialmedia_links {
+#moodle-footer>#snap_socialmedia_links {
     width: 100%;
-    margin:20px 0;
-    padding:0;
-    display:inline-block;
-    float:left;
-    text-align:center;
+    margin: 20px 0;
+    padding: 0;
+    display: inline-block;
+    float: left;
+    text-align: center;
 }
 
 .snap-media-object.course-footer-update-assign {
@@ -564,14 +594,15 @@ Footer
     font-size: 80%;
 }
 
-#footer-bottom ul, #footer-bottom li {
+#footer-bottom ul,
+#footer-bottom li {
     margin: 0;
     padding: 0;
 }
 
 #footer-bottom li {
     margin-left: 1em;
-    display:inline-block;
+    display: inline-block;
 }
 
 footer ul {
@@ -580,8 +611,8 @@ footer ul {
 }
 
 #page-footer {
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
 
 
@@ -592,41 +623,43 @@ footer ul {
     display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
     -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
+    flex-wrap: wrap;
     -ms-flex-pack: distribute;
-        justify-content: space-around;
+    justify-content: space-around;
 }
 
 .mp-footer-box {
     -webkit-box-flex: 0;
-        -ms-flex: 0 1 280px;
-            flex: 0 1 280px;
+    -ms-flex: 0 1 280px;
+    flex: 0 1 280px;
     margin: 10px;
 
 }
 
 .mp-footer-contact .phone-number,
-.mp-footer-contact .address
-{
+.mp-footer-contact .address {
     -webkit-box-flex: 1;
-        -ms-flex: 1 0 300px;
-            flex: 1 0 300px;
+    -ms-flex: 1 0 300px;
+    flex: 1 0 300px;
     margin-top: 10px;
 }
 
 
 .course-content {
-        max-width: 80em;
+    max-width: 80em;
 }
+
 #region-main {
-        max-width: 80em;
+    max-width: 80em;
 }
+
 #chooseform .option {
     zoom: 1.3;
 }
+
 #chooseform .moduletypetitle {
     zoom: 1.3;
 }
@@ -659,8 +692,7 @@ width from 66.6667% to 90%;
 min height from 100px to 50px .
 -----*/
 #page-mod-assign-view .assign-intro {
-    width: 90%
-    min-height: 50px;
+    width: 90% min-height: 50px;
 }
 
 /*-----
@@ -692,26 +724,26 @@ Assignment submission div
 /*-----
 ReadSpeaker Adjustments
 -----*/
-.block_readspeaker_embhl{
-   min-height:auto !important;
-   font-size: 1rem;
+.block_readspeaker_embhl {
+    min-height: auto !important;
+    font-size: 1rem;
 }
 
 /*-----
 Put Assessment submission declaration checkbox at the bottom of the page
 -----*/
 .checkbox label {
-position: relative;
+    position: relative;
 }
 
 input#id_submissionstatement {
-position: absolute;
-bottom: 50px;
-left: 50%;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
 }
 
 .has-danger .form-control-feedback {
-text-align: center;
+    text-align: center;
 }
 
 /*-----
@@ -720,12 +752,14 @@ Adjust assessment submission summary layout
 .pull-right {
     margin-top: 0;
 }
+
 #page-mod-assign-view .assign-intro {
     margin-top: 3px;
     float: left;
     width: 100%;
     min-height: 20px;
 }
+
 #page-mod-assign-view .groupselector {
     margin-left: 0;
     margin-right: 0;
@@ -733,12 +767,15 @@ Adjust assessment submission summary layout
     width: 100%;
     min-height: 80px;
 }
+
 #page-mod-assign-view .assign-grading-summary {
     width: 100%;
 }
+
 #page-mod-assign-view .assign-submission-data {
     width: 100%;
 }
+
 #page-mod-assign-view .assign-feedback {
     width: 100%;
 }
@@ -749,7 +786,7 @@ Hide site summary section
 
 /* User tours - Change background to black with opacity */
 div[data-flexitour="backdrop"] {
-background-color: black;
+    background-color: black;
     opacity: .4;
 }
 
@@ -776,6 +813,7 @@ Hide "Recent Activity" on site footer section
     visibility: hidden;
     height: 0px;
 }
+
 /*-----
 Changes below are for updating in September 2019
 -----*/
@@ -784,12 +822,17 @@ Changes below are for updating in September 2019
 Edit box page width change
 -----*/
 
-.path-mod-assign .snap-form-required fieldset, .path-mod-hvp .snap-form-required fieldset, .path-grade .snap-form-required fieldset, .path-admin-report .snap-form-required fieldset, .pagelayout-admin .snap-form-required fieldset, #page-course-editsection .snap-form-required fieldset {
+.path-mod-assign .snap-form-required fieldset,
+.path-mod-hvp .snap-form-required fieldset,
+.path-grade .snap-form-required fieldset,
+.path-admin-report .snap-form-required fieldset,
+.pagelayout-admin .snap-form-required fieldset,
+#page-course-editsection .snap-form-required fieldset {
     max-width: 100%;
     margin: 1em 0;
 }
 
-#region-main textarea{
+#region-main textarea {
     width: 100%;
 }
 
@@ -797,7 +840,8 @@ Edit box page width change
 Full width Shortname field
 -----*/
 
-input#id_shortname, input#id_fullname  {
+input#id_shortname,
+input#id_fullname {
     width: 100%;
 }
 
@@ -819,13 +863,15 @@ body.snap-resource-card li.snap-resource.snap-resource-long {
 Attempt to fix subchapter problem
 ----*/
 .path-mod-book #id_general .fcontainer .checkbox {
-    display:block !important;
+    display: block !important;
 }
 
 /*-----
 Advanced grading rubric height
 ----*/
-.gradingform_rubric .criterion .levels, .gradingform_rubric .criterion .levels table, .gradingform_rubric .criterion .levels table tbody {
+.gradingform_rubric .criterion .levels,
+.gradingform_rubric .criterion .levels table,
+.gradingform_rubric .criterion .levels table tbody {
     height: 100%;
     width: 100%;
 }
@@ -894,6 +940,7 @@ College of Education and Leadership Category
 .category-178 #page-header:not(.mast-image) {
     background-color: #4286f4;
 }
+
 /*---------
 People and Culture Category
 ---------*/
