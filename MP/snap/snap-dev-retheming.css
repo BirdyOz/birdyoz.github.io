@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2019-11-25 10:26:06
+* @Last Modified time: 2019-11-25 14:46:36
 */
 
 
@@ -11,8 +11,8 @@
    ========================================================================== */
 
 /* Set opaque bg */
-.mast-image #page-mast h1,
-.mast-image .breadcrumb-nav {
+#page-mast h1,
+.breadcrumb-nav,  {
     color: white;
     background-color: rgba(0, 0, 0, .5);
     display: inline-block;
@@ -21,8 +21,8 @@
 
 
 /* style links */
-.mast-image #page-mast h1 a,
-.mast-image .breadcrumb a {
+#page-mast h1 a,
+.breadcrumb a, .breadcrumb-nav a, #page-mast .btn {
     color: white !important;
     text-shadow: 1px 1px 3px black !important;
 }
@@ -71,8 +71,8 @@
 }
 
 /* Add light yellow stripe behind hidden items to increase attention*/
-.coursecard-body .snap-draft-tag,
-.coursecard-body .published-status {
+.snap-draft-tag,
+.published-status {
     background-color: rgba(255, 255, 0, .4);
 }
 
@@ -87,13 +87,16 @@
     margin-right: .4em;
 }
 
+/*remove duplicate eyeball on hidden sections */
+.snap-draft-section.snap-draft-tag:before {content: "";}
+
 
 /* ==========================================================================
    @GB - Display fixes
    ========================================================================== */
 
 /*Fix nested ul display bug*/
-ul>ul {
+.content ul>ul {
     -webkit-margin-before: 0;
     list-style-type: circle
 }
@@ -112,7 +115,11 @@ ul>ul {
     overflow: auto !important;
 }
 
+/*Hide data privacy tag*/
 
+#page-footer .tool_dataprivacy {
+    display: none;
+}
 
 /*---------
 General
