@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2019-11-25 14:46:36
+* @Last Modified time: 2019-11-27 11:08:02
 */
 
 
@@ -431,10 +431,6 @@ Header / My Courses Menu
 .snap-my-courses-menu {
     font-size: 18px;
     text-transform: uppercase;
-}
-
-#snap-pm-courses .snap-personal-menu-more {
-    position: relative;
 }
 
 /*-----
