@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2019-11-27 11:16:19
+* @Last Modified time: 2019-12-02 17:30:12
 */
 
 
@@ -441,7 +441,7 @@ redefined background image
 -----*/
 
 #snap-pm-header {
-    background: url(https://www.melbournepolytechnic.edu.au/wp-content/themes/melbourne-poly/images/common/logo-melbourne-polytechnic-white.png) no-repeat center left 20px #170052;
+    background: url("/pluginfile.php/1/tool_themeassets/assets/0/MP-Logo_Horiz_Reverse.png") no-repeat center left 20px #170052;
     padding: 1%;
 }
 
@@ -685,7 +685,7 @@ If no cover image, then display MP colour.
 }*/
 
 #snap-pm-courses .coursecard {
-    background-image: url("https://online.melbournepolytechnic.edu.au/file.php/1/course-card-image.png");
+    background-image: url("/pluginfile.php/1/tool_themeassets/assets/0/course-card-image.png");
     background-color: #170052 !important;
 }
 
@@ -885,7 +885,7 @@ Course and category styles
 -------------------------*/
 
 .course-1 #page-header:not(.mast-image) {
-    background-image: url("https://www.melbournepolytechnic.edu.au/wp-content/uploads/2013/04/banner-greensborough.jpg");
+    background-image: url("/pluginfile.php/1/tool_themeassets/assets/0/fairfield-campus.jpg");
 }
 
 /*---------
@@ -956,7 +956,7 @@ Information, Communication and Technology Category
 ---------*/
 
 .category-112 #page-header:not(.mast-image) {
-    background-image: url("https://nmit-lcms.trainingvc.com.au/share/proxy/alfresco-noauth/api/internal/shared/node/zMXn2lDNRFy7GYBepjDcXQ/content/thumbnails/imgpreview?c=force&lastModified=imgpreview%3A1514849135062");
+    background-image: url("/pluginfile.php/1/tool_themeassets/assets/0/imgpreview.jpeg");
 }
 
 
@@ -965,5 +965,5 @@ Learning Environments Category
 ---------*/
 
 .category-228 #page-header:not(.mast-image) {
-    background-image: url("https://online.melbournepolytechnic.edu.au/pluginfile.php/160171/theme_snap/coverimage/1531964327/category-image.jpg");
+    background-image: url("/pluginfile.php/1/tool_themeassets/assets/0/category-image.jpg");
 }
