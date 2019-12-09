@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2019-12-02 17:30:12
+* @Last Modified time: 2019-12-09 14:22:23
 */
 
 
@@ -106,6 +106,14 @@
 .theme-snap a:focus, .theme-snap .dropdown-toggle:focus {
      outline: none;
 }
+
+
+
+
+/* ==========================================================================
+   @GB - Existing MP CSS BELOW
+   ========================================================================== */
+
 
 
 /* Fix for scrollbar issue (#15923) */
@@ -422,11 +430,13 @@ Header / My Courses Menu
     left: -320px;
 }
 
-#mr-nav {
+/*@GB - commented out to let header be fullwidth*/
+
+/*#mr-nav {
     padding: 0 4%;
     position: absolute;
     width: 100%;
-}
+}*/
 
 .snap-my-courses-menu {
     font-size: 18px;
@@ -466,7 +476,7 @@ redefined background image
 
 
 /*------
-Courses details
+Snap footer - Staff Contacts
 ------*/
 
 #snap-course-footer #snap-course-footer-contacts .snap-media-object {
