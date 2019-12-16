@@ -2,32 +2,59 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-03-08 10:05:22
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2019-12-09 10:55:06
+* @Last Modified time: 2019-12-16 17:50:06
 */
 
+/**
+ * ESTABLISH PLATFORM VARIABLE
+ */
 
-
+// Get page URL
 var url = (window.location.href).split("#")[0];
-console.log("@GB: url = ", url);
+// Get course ID
 var courseid = getUrlParameter('id');
-console.log("@GB: courseid = ", courseid);
+// Get page title
 var title = document.title;
-console.log("@GB: title = ", title);
 
 
-var msg ="mailto:onlinecampus@gotafe.vic.edu.au?subject=Shell%20ready%20for%20activation%20%28Course%20ID%20%3D%20" + courseid + "%29&body=This%20shell%20is%20ready%20for%20final%20edit%20and%20release%3A%20%0A%0A" + title + " %0AURL%3A%20https%3A%2F%2Fgotafe.trainingvc.com.au%2Fcourse%2Fview.php%3Fid%3D" + courseid + "%0A%0AI%20plan%20to%20begin%20teaching%20on%3A%0A%0AI%20need%20these%20trainers%20enrolled%20in%20this%20shell%3A%0A%0AMany%20thanks";
+/**
+ * ASSIGN EMAIL VARIABLES
+ */
 
+var to = "onlinecampus@gotafe.vic.edu.au";
+var subj = `Shell ready for activation. (Course ID = ${courseid})`;
+console.log("@GB: subj = ", subj);
+
+// multiline body string
+var body =
+`This shell is ready for final edit and release:
+
+${title}
+URL: ${url}
+
+I plan to begin teaching on:
+
+I need these trainers enrolled in this shell:
+
+Many thanks`;
+console.log("@GB: body = ", body);
+
+/**
+ * COMPILE EMAIL.  URL encode all text and links
+ */
+
+var msg =`mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
 
 var html = '<a href="'+msg+'" class="btn btn-primary"><i class="fa fa-envelope-o"></i>  Send request for shell release</a><br>';
-console.log("@GB: html = ", html);
-
-// $('p:contains("Once your shell is ready, use the link to send a confirmation mail")').after(html);
 
 
-document.write(html);
+// Inject button.  Confirm that the releavnt page contents has loaded
+// PRIOR to injectiong button.  This is to workaround Snap's lazyloading feature
+$('p:contains("Once your shell is ready, use the link to send a confirmation mail")').after(html);
 
 
 
+// Extract URL parameters
 function getUrlParameter(sParam) {
     var sPageURL = window.location.search.substring(1),
         sURLVariables = sPageURL.split('&'),
