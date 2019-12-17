@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-03-08 10:05:22
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2019-12-16 17:50:06
+* @Last Modified time: 2019-12-17 14:03:12
 */
 
 /**
@@ -46,6 +46,7 @@ console.log("@GB: body = ", body);
 var msg =`mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(body)}`;
 
 var html = '<a href="'+msg+'" class="btn btn-primary"><i class="fa fa-envelope-o"></i>  Send request for shell release</a><br>';
+console.log("@GB: html = ", html);
 
 
 // Inject button.  Confirm that the releavnt page contents has loaded
