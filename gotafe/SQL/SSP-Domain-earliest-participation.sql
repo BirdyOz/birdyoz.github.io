@@ -99,13 +99,14 @@ FROM
                                                                 END)) query
      WHERE (logtime BETWEEN '2017-01-01 00:00:00' AND '2020-12-31 23:59:59')
          AND moduleidnumber LIKE '%_SSP'
-         AND (modulename || ' - ' || action) IN ('assign - submit for grading',
-                                                 'forum - add post',
-                                                 'glossary - add entry',
-                                                 'glossary - update entry',
-                                                 'lesson - end',
-                                                 'quiz - attempt',
-                                                 'forum - update post')
+         AND (modulename || ' - ' || action)
+         IN ('assign - submit for grading',
+             'forum - add post',
+             'glossary - add entry',
+             'glossary - update entry',
+             'lesson - end',
+             'quiz - attempt',
+             'forum - update post')
          AND email LIKE '%@student.gotafe.vic.edu.au'
          AND substr(username, 1, 1) IN ('0',
                                         '1',
