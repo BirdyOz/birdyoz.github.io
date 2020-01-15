@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-03-08 10:05:22
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2019-12-17 14:03:12
+* @Last Modified time: 2019-12-17 14:12:15
 */
 
 /**
@@ -51,7 +51,7 @@ console.log("@GB: html = ", html);
 
 // Inject button.  Confirm that the releavnt page contents has loaded
 // PRIOR to injectiong button.  This is to workaround Snap's lazyloading feature
-$('p:contains("Once your shell is ready, use the link to send a confirmation mail")').after(html);
+$('p:contains("Once your shell is ready, use the link")').after(html);
 
 
 
