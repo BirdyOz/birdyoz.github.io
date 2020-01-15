@@ -17,7 +17,7 @@ This is a matching.  Matches are on the same line, separated by an equals sign {
 This a multiple response (one or more correct answers).  Each correct answer is identified by the equals sign {
     = Correct answer 1
     = Correct answer 2
-    = Incorrect answer 1
+    Incorrect answer 1
     Incorrect answer 2
     Incorrect answer 3
 }
