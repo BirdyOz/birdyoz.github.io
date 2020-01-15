@@ -1,0 +1,228 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @First Created:   2020-01-14 11:17:23
+* @Last Modified by:   Greg Bird
+* @Last Modified time: 2020-01-14 16:00:39
+*/
+
+
+/* ==========================================================================
+   SITE WIDE
+   ========================================================================== */
+
+body, h1, h2, h3, h4, h5, h6 {
+font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: #000;
+}
+
+/* ==========================================================================
+   BANNERS
+   ========================================================================== */
+
+/* Set opaque bg */
+.mast-image h1,
+.mast-image .breadcrumb-nav  {
+    color: white;
+    background-color: rgba(0, 0, 0, .5);
+    padding: 0.2em 0.4em;
+    /*display: inline-block;*/
+}
+
+
+/* style links */
+.mast-image h1 a,
+.mast-image .breadcrumb a, .mast-image .breadcrumb-nav a {
+    color: white !important;
+    text-shadow: 1px 1px 3px black !important;
+}
+
+/* ==========================================================================
+   ToC changes - colours and markers
+   ========================================================================== */
+
+/* Increase contract of current section*/
+#snap-course-wrapper #chapters li.snap-visible-section a {
+    font-weight: bold;
+    color: black;
+}
+
+/* Current marker */
+#snap-course-wrapper #chapters li.snap-visible-section .chapter-title:before {
+    font-family: FontAwesome;
+    content: "\f0da";
+    background: none;
+    margin-right: .4em;
+}
+
+/* Increase contract of conditional items*/
+#snap-course-wrapper #chapters li.conditional .published-status {
+    font-weight: bold;
+    color: #b55600;
+}
+
+/* Conditional marker */
+#snap-course-wrapper #chapters li.conditional .chapter-title:before {
+    font-family: FontAwesome;
+    color: #b55600;
+    content: "\f023";
+    background: none;
+    margin-right: .4em;
+}
+
+/* Increase contract of hidden items*/
+#snap-course-wrapper #chapters li.draft .published-status,
+.coursecard-body .snap-draft-tag,
+.coursecard-body .published-status {
+    /*font-weight: bold;*/
+    color: maroon !important;
+}
+
+/* Add light yellow stripe behind hidden items to increase attention*/
+.snap-draft-tag,
+.published-status {
+    background-color: rgba(255, 255, 0, .4);
+}
+
+/* Hidden marker */
+#snap-course-wrapper #chapters li.draft .chapter-title:before,
+.snap-draft-tag:before,
+.coursecard-body .published-status:before {
+    font-family: FontAwesome;
+    color: #333;
+    content: "\f070 ";
+    background: none;
+    margin-right: .4em;
+}
+
+
+/* ==========================================================================
+   ICON REPLACEMENTS
+   ========================================================================== */
+
+
+/*Add FA5 alternative for BELL*/
+
+/*#nav-notification-popover-container .icon.fa-bell:before, .fa-bell:before {
+    content: "\f0f3";
+}
+*/
+
+/*Choice*/
+.modtype_choice img.activityicon {
+    display: none;
+}
+
+.modtype_choice .instancename:before {
+    font-family: "fontawesome";
+    content:"\f022";
+    font-size: 2em;
+    color: #ffa000;
+    padding: 0.1em 0.2em;
+    border-radius: 4px;
+    background-color: rgba(255, 160, 0, .1);
+    margin-right: .2em;
+
+}
+
+/*Quiz*/
+.modtype_quiz img.activityicon {
+    display: none;
+}
+
+.modtype_quiz .instancename::before {
+    font-family: "fontawesome";
+    content:"\f058";
+    font-size: 2em;
+    color: #ffa000;
+    padding: 0.1em 0.2em;
+    border-radius: 4px;
+    background-color: rgba(255, 160, 0, .1);
+    margin-right: .4em;
+}
+
+
+/*Open Forum*/
+.modtype_hsuforum img.activityicon {
+    display: none;
+}
+
+.modtype_hsuforum .instancename::before {
+    font-family: "fontawesome";
+    content:"\f0e6";
+    font-size: 2em;
+    color: rgba(139, 195, 74, 1);
+    padding: 0.1em 0.2em;
+    border-radius: 4px;
+    background-color: rgba(139, 195, 74, .1);
+    margin-right: .4em;
+}
+
+/* Feedback*/
+.modtype_feedback img.activityicon {
+    display: none;
+}
+
+.modtype_feedback .instancename::before {
+    font-family: "fontawesome";
+    content:"\f11d";
+    font-size: 2em;
+    color: #ffa000;
+    padding: 0.1em 0.2em;
+    border-radius: 4px;
+    background-color: rgba(255, 160, 0, .1);
+    margin-right: .4em;
+}
+
+
+/* Assignment*/
+.modtype_assign img.activityicon {
+    display: none;
+}
+
+.modtype_assign .instancename::before {
+    font-family: "fontawesome";
+    content:"\f0f6";
+    font-size: 2em;
+    color: rgba(3, 169, 244, 1);
+    padding: 0.1em 0.2em;
+    border-radius: 4px;
+    background-color: rgba(3, 169, 244, .1);
+    margin-right: .4em;
+}
+
+
+/* H5P*/
+.modtype_hvp img.activityicon {
+    display: none;
+}
+
+.modtype_hvp .instancename::before {
+    font-family: "fontawesome";
+    content:"\f25a";
+    font-size: 2em;
+    color: rgba(1, 89, 57, 1);
+    padding: 0.1em 0.2em;
+    border-radius: 4px;
+    background-color: rgba(1, 89, 57, .1);
+    margin-right: .4em;
+}
+
+/* Change activity completion tick to Academy Green*/
+
+
+
+/* ==========================================================================
+   DISPLAY FIXES
+   ========================================================================== */
+
+/* Hide tool labels */
+.modtype_label .activityinstance .snap-assettype {
+    visibility: hidden;
+}
+
+#page-login-index .snap-login {
+background-color: transparent;
+}
