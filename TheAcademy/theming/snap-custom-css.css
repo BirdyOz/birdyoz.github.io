@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2020-01-14 11:17:23
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2020-01-14 16:00:39
+* @Last Modified time: 2020-02-05 11:24:59
 */
 
 
@@ -11,41 +11,22 @@
    ========================================================================== */
 
 body, h1, h2, h3, h4, h5, h6 {
-font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #000;
+    font-weight: 500;
 }
+
 
 /* ==========================================================================
-   BANNERS
-   ========================================================================== */
-
-/* Set opaque bg */
-.mast-image h1,
-.mast-image .breadcrumb-nav  {
-    color: white;
-    background-color: rgba(0, 0, 0, .5);
-    padding: 0.2em 0.4em;
-    /*display: inline-block;*/
-}
-
-
-/* style links */
-.mast-image h1 a,
-.mast-image .breadcrumb a, .mast-image .breadcrumb-nav a {
-    color: white !important;
-    text-shadow: 1px 1px 3px black !important;
-}
-
-/* ==========================================================================
-   ToC changes - colours and markers
+   LH NAVIGATION - COLOURS AND MARKERS
    ========================================================================== */
 
 /* Increase contract of current section*/
 #snap-course-wrapper #chapters li.snap-visible-section a {
-    font-weight: bold;
+    font-weight: 500;
     color: black;
 }
 
@@ -59,14 +40,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 /* Increase contract of conditional items*/
 #snap-course-wrapper #chapters li.conditional .published-status {
-    font-weight: bold;
-    color: #b55600;
+    font-weight: 500;
+    color: #666;
 }
 
 /* Conditional marker */
 #snap-course-wrapper #chapters li.conditional .chapter-title:before {
     font-family: FontAwesome;
-    color: #b55600;
+    color: #666;
     content: "\f023";
     background: none;
     margin-right: .4em;
@@ -76,15 +57,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 #snap-course-wrapper #chapters li.draft .published-status,
 .coursecard-body .snap-draft-tag,
 .coursecard-body .published-status {
-    /*font-weight: bold;*/
+    font-weight: 500;
     color: maroon !important;
 }
 
-/* Add light yellow stripe behind hidden items to increase attention*/
-.snap-draft-tag,
-.published-status {
-    background-color: rgba(255, 255, 0, .4);
-}
+
 
 /* Hidden marker */
 #snap-course-wrapper #chapters li.draft .chapter-title:before,
@@ -102,13 +79,11 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
    ICON REPLACEMENTS
    ========================================================================== */
 
-
-/*Add FA5 alternative for BELL*/
-
-/*#nav-notification-popover-container .icon.fa-bell:before, .fa-bell:before {
-    content: "\f0f3";
+/*Change link text to black*/
+a.mod-link {
+    color: #000 !important;
 }
-*/
+
 
 /*Choice*/
 .modtype_choice img.activityicon {
@@ -117,7 +92,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .modtype_choice .instancename:before {
     font-family: "fontawesome";
-    content:"\f022";
+    content: "\f022";
     font-size: 2em;
     color: #ffa000;
     padding: 0.1em 0.2em;
@@ -134,7 +109,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .modtype_quiz .instancename::before {
     font-family: "fontawesome";
-    content:"\f058";
+    content: "\f058";
     font-size: 2em;
     color: #ffa000;
     padding: 0.1em 0.2em;
@@ -144,14 +119,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 
-/*Open Forum*/
-.modtype_hsuforum img.activityicon {
+/*Forum*/
+.modtype_forum img.activityicon, .modtype_hsuforum img.activityicon {
     display: none;
 }
 
-.modtype_hsuforum .instancename::before {
+.modtype_forum .instancename::before, .modtype_hsuforum .instancename::before {
     font-family: "fontawesome";
-    content:"\f0e6";
+    content: "\f0e6";
     font-size: 2em;
     color: rgba(139, 195, 74, 1);
     padding: 0.1em 0.2em;
@@ -167,7 +142,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .modtype_feedback .instancename::before {
     font-family: "fontawesome";
-    content:"\f11d";
+    content: "\f11d";
     font-size: 2em;
     color: #ffa000;
     padding: 0.1em 0.2em;
@@ -184,7 +159,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .modtype_assign .instancename::before {
     font-family: "fontawesome";
-    content:"\f0f6";
+    content: "\f0f6";
     font-size: 2em;
     color: rgba(3, 169, 244, 1);
     padding: 0.1em 0.2em;
@@ -201,7 +176,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .modtype_hvp .instancename::before {
     font-family: "fontawesome";
-    content:"\f25a";
+    content: "\f25a";
     font-size: 2em;
     color: rgba(1, 89, 57, 1);
     padding: 0.1em 0.2em;
@@ -210,7 +185,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     margin-right: .4em;
 }
 
-/* Change activity completion tick to Academy Green*/
+/* ==========================================================================
+   POST-FIXES TO UI ELEMENTS
+   ========================================================================== */
 
 
 
@@ -218,11 +195,29 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
    DISPLAY FIXES
    ========================================================================== */
 
+
+
+/*  Change the backdrop to user tours */
+div[data-flexitour="backdrop"] {
+background-color: black;
+    opacity: .4;
+}
+
+
+/* Fix for the contrast (visibility) of notifications */
+.theme-snap #mr-nav .popover-region-notifications a {
+    color: rgba(1, 89, 57, 1);
+}
+
 /* Hide tool labels */
 .modtype_label .activityinstance .snap-assettype {
     visibility: hidden;
 }
 
+.modtype_book h4 {
+    display: none;
+}
+
 #page-login-index .snap-login {
-background-color: transparent;
+    background-color: transparent;
 }
