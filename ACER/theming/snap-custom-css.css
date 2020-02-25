@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2020-01-14 11:17:23
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2020-02-10 14:59:56
+* @Last Modified time: 2020-02-25 12:57:06
 */
 
 
@@ -82,6 +82,7 @@ div.topbar {display: none;}
    ICON REPLACEMENTS
    ========================================================================== */
 
+
 /* ==========================================================================
    POST-FIXES TO UI ELEMENTS
    ========================================================================== */
@@ -90,7 +91,6 @@ div.topbar {display: none;}
 /* ==========================================================================
    DISPLAY FIXES
    ========================================================================== */
-
 
 
 /*  Change the backdrop to user tours */
@@ -117,3 +117,30 @@ background-color: black;
 #page-login-index .snap-login {
     background-color: transparent;
 }
+
+
+/* ==========================================================================
+   CPP CUSTOMISATIONS - THEME OVERRIDES
+   ========================================================================== */
+
+
+/* Change nav text back to white */
+.category-925 #mr-nav a, .category-925 #mr-nav .icon {
+  color: #fff!important;
+}
+
+.category-925 #mr-nav #snap-pm-trigger {
+  background-color: #132068
+}
+
+a#snap-home {
+  visibility: hidden;
+  margin-left: -4em;
+  }
+
+
+a#snap-home:after {
+  visibility: visible;
+  content: "CERTIFIED PRACTICING PRINCIPAL";
+}
+
