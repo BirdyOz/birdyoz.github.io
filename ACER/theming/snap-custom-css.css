@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2020-01-14 11:17:23
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2020-02-25 12:57:06
+* @Last Modified time: 2020-03-03 10:43:37
 */
 
 
@@ -10,24 +10,36 @@
    SITE WIDE
    ========================================================================== */
 
-div.topbar {display: none;}
+/* Hide topbar from Snap theme */
+div.topbar {
+    display: none;
+}
+
+
+/* Change headings to Poppins font */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Poppins', 'Roboto', 'Arial', sans-serif;
+}
+
 
 /* ==========================================================================
    BANNER
    ========================================================================== */
 
-#page-header.mast-image a{
+#page-header.mast-image a {
     color: #fff;
     text-shadow: 2px 2px black;
     background: rgba(0, 0, 0, 0.2);
     padding: 0.3em 0.2em;
+    display: inline-block;
 }
+
 
 /* ==========================================================================
    LH NAVIGATION - COLOURS AND MARKERS
    ========================================================================== */
 
-/* Increase contract of current section*/
+/* Increase contract of current section */
 #snap-course-wrapper #chapters li.snap-visible-section a {
     font-weight: 500;
     color: black;
@@ -95,7 +107,7 @@ div.topbar {display: none;}
 
 /*  Change the backdrop to user tours */
 div[data-flexitour="backdrop"] {
-background-color: black;
+    background-color: black;
     opacity: .4;
 }
 
@@ -124,23 +136,27 @@ background-color: black;
    ========================================================================== */
 
 
-/* Change nav text back to white */
-.category-925 #mr-nav a, .category-925 #mr-nav .icon {
-  color: #fff!important;
+
+.category-925 a#snap-home {
+    background-image: url('https://www.certifiedprincipal.org/assets/images/dest/cpp/cpp-logo.svg') !important;
 }
 
-.category-925 #mr-nav #snap-pm-trigger {
-  background-color: #132068
+
+
+@media (min-width: 768px) {
+    .category-925 #snap-home.logo {
+        height: 90px;
+    }
+
+    .category-925 #page-header {
+        margin-top: 110px;
+    }
+
+    .category-925 #mr-nav {
+        top: 0;
+    }
+
+    .category-925 .breadcrumb-nav {
+        margin-top: -3em;
+    }
 }
-
-a#snap-home {
-  visibility: hidden;
-  margin-left: -4em;
-  }
-
-
-a#snap-home:after {
-  visibility: visible;
-  content: "CERTIFIED PRACTICING PRINCIPAL";
-}
-
