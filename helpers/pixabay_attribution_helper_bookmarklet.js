@@ -1,13 +1,11 @@
-var addr = document.location.href.split("?")[0];
-console.log("@GB: addr = ", addr);
-if (document.getElementsByClassName("product-contrib").length === 0) {
-    el = document.querySelectorAll('[data-track-label="contributorLink"]')[0].parentNode;
-} else {
-    el = document.getElementsByClassName("product-contrib")[0].getElementsByTagName("h3")[0];
-}
+var el = document.getElementById("media_container").getElementsByTagName("img")[0];
 console.log("@GB: el = ", el);
-var user = encodeURIComponent(el.innerHTML);
-console.log("@GB: user = ", user);
-var url = 'https://birdyoz.github.io/helpers/shutterstock_attribution_helper.html?addr=' + addr + '&user=' + user;
+var src = encodeURIComponent(el.getAttributeNode("src").value);
+console.log("@GB: src = ", src);
+var alt = encodeURIComponent(el.getAttributeNode("alt").value);
+console.log("@GB: alt = ", alt);
+var statement = encodeURIComponent(document.querySelector('span.attribution_field span').innerHTML);
+console.log("@GB: statement = ", statement);
+var url = 'https://birdyoz.github.io/helpers/pixabay_attribution_helper.html?src=' + src + '&statement=' + statement + '&alt=' + alt;
 console.log("@GB: url = ", url);
 window.open(url, '_blank')

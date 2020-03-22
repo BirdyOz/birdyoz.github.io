@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2019-06-24 12:21:49
+ * @Last Modified time: 2020-03-23 10:21:06
  */
 
 $(function() {
@@ -13,9 +13,11 @@ $(function() {
         $(".alert-ie").toggleClass('collapse show');
     };
 
+    // var url = "https://pixabay.com/users/drfuenteshernandez-7757554/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=4903050";
     var url_string = window.location.href;
     if (url_string.indexOf("?") > 0) {
         var url = new URL(url_string);
+        console.log("@GB: url = ", url);
         var statement = url.searchParams.get("statement");
         console.log("@GB: statement = ", statement);
 
