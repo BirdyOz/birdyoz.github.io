@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2020-03-30 17:20:42
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2020-03-31 17:45:47
+* @Last Modified time: 2020-04-01 10:27:14
 */
 
 
@@ -30,6 +30,17 @@
     font-family: VIC-Bold;
     src: url(/pluginfile.php/1/tool_themeassets/assets/0/Fonts/VIC-Bold.woff) format("woff"), url(/pluginfile.php/1/tool_themeassets/assets/0/Fonts/VIC-Bold.woff2) format("woff2")
 }
+
+/*Override specific instances of Snap overrides to Vic-Regular*/
+body, .section li.snap-asset, #page-site-index .sitetopic>a:last-of-type, .summary .edit-summary, label, .label, .form-label, .form-defaultinfo, .form-description, .form-filemanager, .ffilepicker, .ffilemanager, .fdescription, .fstatic, .collapsible-actions, input, button, select, .pagination, .initialbar, .paging, .alert, #page-admin-index .releasenoteslink, #page-admin-index .adminwarning, #page-admin-index .adminerror, .que .formulation, .que .outcome, .que .comment, .assignfeedback_editpdf_widget .label, .nav-pills, .nav-tabs, .course-report-dashboard, .yui3-tabview-list, .yuimenu, #course-category-listings, .progress .bar, .dndupload-progress-outer .bar, .progress-bar, .dndupload-progress-inner, .yui-dt-paginator, .snap-conditional-tag, .snap-stealth-tag, .snap-draft-tag, .snap-current-tag, .btn, #page-grade-grading-manage .actions .action, #rubric-rubric.gradingform_rubric #rubric-criteria .criterion .addlevel input, #rubric-rubric.gradingform_rubric .addcriterion, .messaging-area-container .messaging-area .contacts-area .searcharea .heading,  .path-calendar .maincalendar .calendar-controls .current, #page-user-profile .userprofile .profile_tree .node_category h3, .path-course.path-user .userprofile .profile_tree .node_category h3, #page-course-edit #maincontent + h2, #page-course-editsection #maincontent + h2, .pagelayout-admin.path-mod #maincontent + h2, .h6, legend, .mform legend a, .mform legend a:hover, .coursebox .info .coursename, .collapsibleregioncaption, .snap-featured-course-title, #coursetools-list a{
+   font-family: VIC-Regular, Arial, Helvetica, "sans-serif";
+}
+
+/*Override specific instances of Snap overrides to Vic-SemiBold*/
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+   font-family: VIC-SemiBold, Arial, Helvetica, "sans-serif";
+}
+
 
 /* ==========================================================================
    FRONTPAGE
