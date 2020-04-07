@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2020-03-30 17:20:42
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2020-04-01 10:27:14
+* @Last Modified time: 2020-04-06 15:40:18
 */
 
 
@@ -59,6 +59,17 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   width: 96%
   margin: 1em 2%;
 }*/
+
+
+
+/* ==========================================================================
+   PERSONAL MENU
+   ========================================================================== */
+
+/* Hide grades */
+#snap-pm-grades {
+  display: none;
+}
 
 
 
@@ -136,13 +147,39 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 
 /* ==========================================================================
-   POST-FIXES TO UI ELEMENTS
+   HIDE FIELDS FROM SELF REGISTRATION FORM
    ========================================================================== */
 
+#id_supplyinfo .form-group:nth-child(4) {
+display: none;
+}
+
+/*Redce font size on post registration confirmation statement*/
+
+#page-login-signup #notice > p {
+  font-size: 0.6em;
+  color: #000;
+}
 
 /* ==========================================================================
    DISPLAY FIXES
    ========================================================================== */
+
+
+/* Suppress Policy statement modal window (transparent, bottom of screen)*/
+
+.eupopup-container-bottom {
+  display: none;
+}
+
+/* Spuppress Open reports  and gradebook in Course dashboard*/
+
+#ct-open-reports, #ct-course-gradebook {
+  display: none;
+}
+
+
+
 
 
 /*  Change the backdrop to user tours */
