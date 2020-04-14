@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2020-01-14 11:17:23
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2020-03-03 10:43:37
+* @Last Modified time: 2020-04-14 11:46:18
 */
 
 
@@ -32,6 +32,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     background: rgba(0, 0, 0, 0.2);
     padding: 0.3em 0.2em;
     display: inline-block;
+}
+
+
+/* Fix vertical alignment of banner image*/
+#page-header {
+    background-position: center center;
 }
 
 
@@ -122,9 +128,9 @@ div[data-flexitour="backdrop"] {
     visibility: hidden;
 }
 
-.modtype_book h4 {
+/*.modtype_book h4 {
     display: none;
-}
+}*/
 
 #page-login-index .snap-login {
     background-color: transparent;
@@ -141,7 +147,10 @@ div[data-flexitour="backdrop"] {
     background-image: url('https://www.certifiedprincipal.org/assets/images/dest/cpp/cpp-logo.svg') !important;
 }
 
-
+/* reset vertical alignment of banner image, just for CPP*/
+.category-925 #page-header {
+    background-position: center top;
+}
 
 @media (min-width: 768px) {
     .category-925 #snap-home.logo {
