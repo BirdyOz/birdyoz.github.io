@@ -1,0 +1,121 @@
+/*
+------------------------------------------------------------
+------------------------------------------------------------
+STYLE TABBED NAVIGATION FOR E-LEARNING AND ASSESSMENT PROJECT
+GREG BIRD 2004
+------------------------------------------------------------
+------------------------------------------------------------
+*/
+/* 
+----------------------
+TOP LEVEL TABS
+----------------------
+*/
+#tabnav{
+	clear: both;
+	padding-left: 4px;
+	font-size: 90%;
+	text-align: center;
+}
+#tabnav ul{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+#tabnav li{
+	float: left;
+}
+#tabnav a.tab{
+	width: 10em;
+	margin: 5px 2px 0 0;
+	float: left;
+	border: 1px solid #aaaaaa;
+	padding: 3px;
+	white-space: nowrap;
+	color: #444444;
+	background: #fcf6a8;
+	text-decoration: none;
+	position: relative;/*
+	font-weight: bold;*/
+	top: 0;
+}
+#tabnav a.tab:hover{
+	padding-bottom: 8px;
+	margin-top: 0px;
+	color: #000000;
+	background: #ffffff;
+	position: relative;
+	top: 0;
+}
+/* STYLE ACTIVE TAB DIFFERENTLY */
+body#tab1 #tabnav li#t1 a.tab,
+body#tab2 #tabnav li#t2 a.tab,
+body#tab3 #tabnav li#t3 a.tab,
+body#tab4 #tabnav li#t4 a.tab,
+body#tab5 #tabnav li#t5 a.tab,
+body#tab6 #tabnav li#t6 a.tab,
+body#tab7 #tabnav li#t7 a.tab {
+	margin: 0 2px 0 0;
+	border: 1px solid #666666;
+	border-bottom: none;
+	padding: 6px 4px 6px 10px;
+	color: #000000;
+	background: #ffec01;
+	cursor: default;
+}
+/* 
+----------------------
+SUB TABS
+----------------------
+*/
+div#tabsubnav{
+	border-bottom: 1px solid #aaaaaa;
+	margin: 0px;
+	display: block;
+	background: #ffec01;
+	height: 1.7em;
+	clear: both;
+	padding: 4px;
+}
+#tabsubnav ul{
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+#tabsubnav li{
+	float: left;
+}
+#tabsubnav  a{
+	border: 1px solid #aaaaaa;
+	float: left;
+	font-size: 86%;
+	padding: 2px 4px;
+	margin: 0 2px;
+	white-space: nowrap;
+	color: #444444;
+	text-decoration: none;
+	height: 1.4em;
+}
+#tabsubnav  a img{
+	border: 0;
+	margin:0 2px 0 0;
+	padding:0;
+	float:left;
+}
+#tabsubnav  a:hover{
+	color: #000000;
+	background: #ffffff;
+	border: 1px solid #000000;
+}
+/* STYLE ACTIVE SUBTAB DIFFERENTLY */
+body.subtab1 #tabsubnav li.st1 a,
+body.subtab2 #tabsubnav li.st2 a,
+body.subtab3 #tabsubnav li.st3 a,
+body.subtab4 #tabsubnav li.st4 a,
+body.subtab5 #tabsubnav li.st5 a,
+body.subtab6 #tabsubnav li.st6 a,
+body.subtab7 #tabsubnav li.st7 a{
+	color: #000000;
+	background: #ffffff;
+	border: 1px solid #000000;
+}

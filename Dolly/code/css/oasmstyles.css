@@ -1,0 +1,14 @@
+/*
+------------------------------------------------------------
+------------------------------------------------------------
+IMPORT ALL RELAVANT CSS FOR E-LEARNING AND ASSESSMENT PROJECT
+GREG BIRD 2004
+------------------------------------------------------------
+------------------------------------------------------------
+*/
+@import url("layout.css");
+@import url("tabs.css");
+@import url("shadows.css");
+@import url("domcollapse.css");
+@import url("oasm/oasm_layout.css");
+@import url("oasm/boxes.css");

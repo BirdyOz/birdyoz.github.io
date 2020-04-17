@@ -1,0 +1,89 @@
+#leftcolumn{
+margin:0;
+padding:5px;
+width:170px;
+float:left;
+clear: none;
+border:1px solid #d8d6ae;
+font:110% Verdana,Geneva,Arial,Helvetica,sans-serif;
+}
+#leftcolumn h2{
+font:110% Verdana,Geneva,Arial,Helvetica,sans-serif;
+margin-bottom:4px;
+}
+#rightcolumn{
+margin-left:190px;
+width: auto;
+}
+/* MENU SYSTEM */
+#nav ul{
+margin:0;
+padding:0;
+list-style:none;
+}
+#nav li li{
+display:none;
+}
+#nav li a{
+padding-left:10px;
+text-decoration:none;
+}
+
+#nav li li a{
+padding-left:0;
+text-decoration:none;
+}
+
+#nav  a:hover{
+color:#ff4500;
+}
+#menu li{
+list-style-type:upper-alpha;
+list-style-position:inside;
+background: url("../../../assessing/images/templateimages/closed.gif") 16px 8px no-repeat;
+}
+
+li#cs{
+background: url("../../../assessing/images/templateimages/closed.gif") 0px 6px no-repeat;
+}
+
+.small{
+font-size:xx-small;
+}
+/* Open active navigation section */
+body.nav1 li#a,
+body.nav2 li#b,
+body.nav3 li#c,
+body.nav4 li#d,
+body.nav5 li#e,
+body.nav6 li#f,
+body.nav7 li#cs{
+background:none;
+font-weight:bold;
+background:none;
+}
+
+body.nav1 li#a li,
+body.nav2 li#b li,
+body.nav3 li#c li,
+body.nav4 li#d li,
+body.nav5 li#e li,
+body.nav6 li#f li{
+background:none;
+font-size:80%;
+display:list-item;
+list-style-type: decimal;
+margin-left: 10px;
+font-weight:normal;
+}
+
+body.nav7 li#cs li{
+background:none;
+font-size:80%;
+display:list-item;
+margin: 0 0 0 20px;
+padding:0;
+font-weight:normal;
+}
+
+

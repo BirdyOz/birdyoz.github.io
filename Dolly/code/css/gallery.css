@@ -1,0 +1,93 @@
+#gallery ul{
+	clear: both;
+	margin: 0;
+	padding: 0;
+	display: inline;
+	margin: 0;
+	padding: 0;
+}
+
+#gallery li{
+	list-style-type: none;
+	float: left;
+	color: #696969;
+}
+#gallery li a{
+	font: small tahoma,verdana,sans-serif;
+	border: 2px solid #ffcc33;
+	text-align: center;
+	display: block;
+	width: 120px;
+	padding: 4px;
+	height: 50px;
+	text-overflow: clip;
+	margin: 5px;
+	color: #955623;
+	text-decoration: none;
+	position: relative;
+	/*background:  url("http://designing.flexiblelearning.net.au/code/css/images/gradient_up1.png");*/
+	background:  url("images/gradient_up1.jpg");
+}
+
+
+
+#gallery li a.nulllink {
+	color: #696969;	
+	border: 2px solid white;
+	background:  url("images/gradient_up.png");
+}
+
+#gallery li a span{
+	display: none;
+}
+
+#gallery li a.nulllink span {	
+	display: block;
+}
+#gallery li a:hover,#gallery li a:focus{
+	color: #000000;
+	border: 2px solid #955623;
+	z-index: 24;
+	/*background:  url("images/gradient_down2.png");*/
+	background:  url("images/gradient_down1.jpg");
+}
+
+#gallery li a:hover.nulllink {	
+	border: 2px solid white;
+	background: url("http://designing.flexiblelearning.net.au/code/css/images/gradient_down.png");
+}
+#gallery li a:hover span,#gallery li a:focus span{
+	position: absolute;
+	display: block;
+	left: 60px;
+	top: 30px;
+	width: 120px;
+	text-align: center;
+	z-index: 25;
+	background: #fff3b3;
+	padding: 10px;
+	border: 1px solid #696969;
+}
+#gallery li.transcript{
+	list-style-type: none;
+	clear: both;
+}
+#gallery li.transcript a{
+	font-size: xx-small;
+	border: none;
+	text-align: center;
+	display: block;
+	width: auto;
+	padding: 0 0 0 6px;
+	height: auto;
+	margin: 0;
+	color: #955623;
+	text-decoration: underline;
+	background:  none;
+}
+
+#gallery li.transcript a:hover,#gallery li.transcript a:focus{
+	color: #000000;
+	border: none;
+	background: none;
+}

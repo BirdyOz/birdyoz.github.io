@@ -1,0 +1,27 @@
+.trigger {
+	padding: 0;
+	color: #955623;
+	cursor: default;
+}
+ .trigger span{
+	color: #0066d5;
+	text-decoration: underline;
+}
+.triggerexpanded{
+
+}
+
+.triggernormal{
+}
+p.triggerhover{
+	text-decoration: underline;
+	color: #000000; /*background: url("http://designing.flexiblelearning.net.au/code/css/images/moreless.png") no-repeat 0px -89px #ffffff;*/
+}
+.triggerhover span{
+	color: #000000;
+}
+.elementnormal{
+}
+.elementcollapsed{
+	display: none;
+}

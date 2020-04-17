@@ -1,0 +1,250 @@
+/*
+------------------------------------------------------------
+------------------------------------------------------------
+LAYOUT FOR E-LERNING AND ASSESSMENT PROJECT
+GREG BIRD 2004
+edited by e-Works 2008
+------------------------------------------------------------
+------------------------------------------------------------
+*/
+/* 
+----------------------
+HTML ELEMENTS
+----------------------
+*/
+body {
+	margin: 0;
+	border: 10px solid #143b5c;
+	padding: 0;
+	min-width: 740px;
+	font-family: trebuchet ms,verdana,sans-serif;
+}
+body, div {
+	font-size: x-small;
+	voice-family: "\"}\"";
+	voice-family: inherit;
+	font-size: small;
+	color: #333333;
+}
+a{
+	color: #0066cc;
+}
+a.external {	
+	background-image: url("../../images/icons/new_window.png");
+	background-position: right;
+	background-repeat: no-repeat;
+	padding-right: 18px;
+}
+
+a:hover{
+	color: #333333;
+}
+a:active{
+	color: #000000;
+}
+/* To clear wierd ie bug where notes bg appears randomly on page */
+#samples,.clearnote{
+	background-color: white;
+}
+
+#content p, #content li, #content ul{
+	line-height: 180%;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: "trebuchet ms",arial,verdana,sans-serif;
+	color: #202e6e;
+}
+#tab2 #gallery h2{
+	clear: both;
+}
+h1{
+	margin: 0 0 -12px 0;
+	font-size: 180%;
+	height: 40px;
+	padding: 3px 0 0 0;
+	font-weight: normal;
+	/*background: url("../../images/icons/generic_h1.png") no-repeat;*/
+	background: url("../../images/icons/generic_h1_v2.jpg") no-repeat;
+}
+/* CUSTOM H1 STYLES FOR VARIOUS SECTIONS OF THE SITE FOUND IN THE ACTIVITIES CSS*/
+h2{
+	margin-bottom: 0;
+	font-weight: normal;
+	font-size: 140%;
+	border-bottom: 2px solid #99d9fd;
+}
+h3{
+	font-size: 100%;
+}
+h4{
+	margin-bottom: 0;
+	margin-left: 20px;
+	font-size: 90%;
+}
+acronym {
+	border-bottom: 1px dotted #666666;
+	cursor: help;
+}
+/* 
+----------------------
+ID's FOR LAYOUT
+----------------------
+*/
+#navlist li
+{
+display: inline;
+list-style-type: none;
+padding-right: 20px;
+}
+#container {
+	margin: 0;
+	border: 1px solid #ffffff;
+}
+
+
+#banner {
+	background: url("../../images/template_images/de_banner.jpg") #010066 no-repeat;
+}
+
+#bannertext {
+	height: 155px;
+	text-align: right;
+	font-size: xx-small;
+	padding-right: 4px;
+	color: #fff3b3;
+}
+#bodyarea{
+	background: #ffffff;
+}
+#content {
+	display: block; /*
+	width: 100%;*/
+	margin: 10px;
+}
+#date {
+	text-align: center;
+	font-size: x-small;
+	padding-top: 20px;
+	color: #808080;
+}
+
+#switcher {
+	margin: 8px;
+}
+#switcher a {
+	font-size: x-small;
+}
+#switcher #print {
+	display: none;
+}
+/* 
+----------------------
+CLASSES
+----------------------
+*/
+.floatleft{
+	float: left;
+}
+.floatright{
+	float: right;
+	padding: 20px;
+	z-index: 200;
+}
+
+.note {
+	width: auto;
+	display: block;
+	padding: 4px;
+	margin: 0px;
+	background: #e2f3fd;
+	border-top: 1px solid #99d9fd;
+}
+.highlight {
+	border: 4px solid #bdc3df;
+	margin: 10px;
+	padding: 10px;
+	background: #ffffff;
+}
+.highlight h1, .highlight h2, .highlight h3 {
+	color: #143b5c;
+}
+.spacer {
+	clear: both;
+}
+.xxsmall{
+	font-size: xx-small;
+}
+
+#logo {
+	height: 50px;
+	border-right: 1px solid #143b5c;	
+	border-bottom: 1px solid #143b5c;
+}
+#footer {
+	text-align: center;
+	color: #000000;
+	border-top: 1px solid #999999;
+	padding-top: 10px;
+	background: #fff;
+	font-size: xx-small;
+}
+
+ .floathead
+{
+	float: left;
+	width: 230px;
+	margin: 0 0 10px 10px;
+	background-color: #fff;
+	padding: 5px;
+	border-top: 1px solid #999;
+	border-right: 2px solid #555;
+	border-bottom: 2px solid #555;
+	border-left: 1px solid #999;
+	height: 30px;
+	text-align: center;
+	font-weight: bold;
+	font-size: 110%;
+}
+
+div.floathead img
+{
+border-top: 2px solid #555;
+border-right: 1px solid #999;
+border-bottom: 1px solid #999;
+border-left: 2px solid #555;
+}	
+ .floatleft
+{
+	float: left;
+	width: 230px;
+	margin: 0 0 10px 10px;
+	background-color: #fff;
+	padding: 5px;
+	border-top: 1px solid #999;
+	border-right: 2px solid #555;
+	border-bottom: 2px solid #555;
+	border-left: 1px solid #999;
+	height: 150px;
+	text-align: left;
+}
+
+div.floatleft img
+{
+border-top: 2px solid #555;
+border-right: 1px solid #999;
+border-bottom: 1px solid #999;
+border-left: 2px solid #555;
+}
+
+
+
+.clearleft{clear: both}
+
+code {
+font-size: small;
+}
+h3.tour{
+font-weight: 600;
+font-style:italic;
+font-size: x-large;
+}

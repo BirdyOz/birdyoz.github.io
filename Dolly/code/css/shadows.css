@@ -1,0 +1,48 @@
+/* shadows */
+.img-shadow {
+  float:right;
+  background:   url("../../assessing/images/template_images/shadowAlpha.png") no-repeat bottom right !important;
+  background:   url("../../assessing/images/template_images/shadow.gif") no-repeat bottom right;
+  margin: 10px 0 0 10px !important;
+  margin: 10px 0 0 5px;
+  clear: none;
+  }
+
+.img-shadow img {
+  display: block;
+  position: relative;
+  border: 1px solid #a9a9a9;
+  padding: 2px;
+  margin: -6px 6px 6px -6px;
+  background-color: #fff;
+  }
+  
+ .img-shadow a:hover img{	
+  border: 1px solid black;
+}  
+ 
+  
+.shadow {
+  width: 90%;
+  float:left;
+  background:   url("../../assessing/images/template_images/shadowAlpha.png") no-repeat bottom right !important;
+  margin: 10px 0 0 10px !important;
+  margin: 10px 0 0 5px;
+  }
+
+.shadow div {
+  background: none !important;
+  background: url("../../assessing/images/template_images/shadow2.gif") no-repeat left top;
+  padding: 0 !important;
+  padding: 0 6px 6px 0;
+  }
+
+.shadow p, .shadow div div{
+  color: #777;
+  background-color: #fff;
+  font: italic 1em georgia, serif;
+  border: 1px solid #a9a9a9;
+  padding: 4px;
+  margin: -6px 6px 6px -6px !important;
+  margin: 0;
+  }

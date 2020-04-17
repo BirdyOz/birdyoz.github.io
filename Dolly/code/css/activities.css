@@ -1,0 +1,62 @@
+h3 {
+	margin-bottom: 1em!important;
+	margin-bottom: -1.5em;
+	padding-bottom: 0;
+}
+/*CUSTOMISE H1's*/
+body.subtab2#tab2 #content h1 {
+	padding-left: 40px;
+	background: url("../../images/icons/square_h1.jpg") no-repeat;
+}
+body.subtab3#tab2 #content h1 {
+	padding-left: 40px;
+	background: url("../../images/icons/star_h1.jpg") no-repeat;
+}
+body.subtab4#tab2 #content h1 {
+	padding-left: 40px;
+	background: url("../../images/icons/triangle_h1.jpg") no-repeat;
+}
+body.subtab5#tab2 #content h1 {
+	padding-left: 40px;
+	background: url("../../images/icons/circle_h1.jpg") no-repeat;
+}
+
+caption{
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+.enhancedtable{
+	border-collapse: collapse;
+	background: #e2f3fd;
+	/*border: 2px solid #b0c4de;*/
+	border: 2px solid #99d9fd;
+	margin: 0;
+	width: 95%;
+}
+.enhancedtable th {
+	text-align: left;
+}
+.enhancedtable td,.enhancedtable th {
+	border-bottom: 1px dotted #b0c4de;
+	font-size: 1em;
+	padding: 5px;
+}
+.enhancedtable th {
+	width: 30%;
+}
+.enhancedtablecolouredrow {
+	background: #f5f9fb;
+}
+.enhancedtablerowhover{
+	background: #fcf6a8;
+}
+#integrating, #resources {
+	margin-left: 20px;
+}
+#integrating h2, #resources h2{
+	margin-left: -20px;
+}
+#samples {
+display: block;
+background-color: WHITE;
+}

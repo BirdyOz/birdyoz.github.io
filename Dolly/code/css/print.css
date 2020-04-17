@@ -1,0 +1,64 @@
+/*
+------------------------------------------------------------
+------------------------------------------------------------
+PRINT CSS FOR E-LEARNING AND ASSESSMENT PROJECT
+GREG BIRD 2004
+------------------------------------------------------------
+------------------------------------------------------------
+*/
+/* 
+----------------------
+HTML ELEMENTS
+----------------------
+*/
+* {
+	float: none;
+}
+div.img-shadow {
+	float: right;
+}
+div.img-shadow img{
+	border: 2px solid #aaaaaa;
+	padding: 4px;
+	background-color: white;
+}
+
+body, p, td, th, ul, a {
+	color: #000000;
+	font: 12pt "Times New Roman", Garamond, serif;
+	background: #ffffff;
+}
+
+h2 {
+	border-top: 1px dotted #aaaaaa;
+}
+#container {
+	width: 100%;
+}
+#banner, .trigger span, .xxsmall,#leftcolumn {
+	display: none;
+}
+td, th {
+	border-bottom: 1px solid #aaaaaa;
+	text-align: left;
+}
+th {
+	font-weight: bold;
+}
+#footer {
+	border-top: 3px double #000000;
+	margin-top: 40px;
+	font-size: 8pt;
+}
+#switcher #screen {
+	display: none;
+}
+#switcher #screen a{
+	color: #ff0000;
+}
+#switcher #print {
+	display: block;
+}
+#switcher #print a{
+	color: #0000cd;
+}

@@ -1,0 +1,188 @@
+/* MISCELLANEOUS DIV's */
+#case_study {
+	margin: 10px;
+	padding: 10px;
+	border: 3px solid #b67c7d;
+	background:  url("../../../assessing/images/templateimages/case_study.jpg") no-repeat;
+}
+
+#case_study h2 {
+	margin: 0px;
+	padding-left: 100px;
+	padding-bottom: 20px;
+	color: #b67c7d;
+}
+
+#aqtf_lge {
+	margin: 10px;
+	padding: 10px;
+	border: 3px solid #6fa38e;
+	background:  url("../../../assessing/images/templateimages/aqtf_lge.jpg") no-repeat;
+}
+
+#aqtf_lge h2 {
+	margin: 0px;
+	padding-left: 100px;
+	padding-bottom: 20px;
+	color: #6fa38e;
+}
+
+	
+#aqtf {
+   margin: 20px 5px 10px 10px;
+	padding: 5px;
+	border: 1px solid #6fa38e;
+	background:  url("../../../assessing/images/templateimages/aqtf_sml.jpg") no-repeat;
+	float: right;
+	font-size: 0.8em;
+}
+
+#aqtf ul {
+margin: 0px 0px 0px 16px;
+	list-style-type: circle;
+}
+
+
+#aqtf h2 {
+	margin: 0px;
+	padding-left: 60px;
+	padding-bottom: 5px;
+	color: #6fa38e;
+}
+	
+	
+#toolkit {
+	margin: 10px;
+	padding: 10px;
+	border: 3px solid #6f75a2;
+	/*height: 400px;
+	overflow: scroll;*/
+	background: #ffffff url("../../../assessing/images/templateimages/toolbox.jpg") no-repeat;
+}
+
+#toolkit h2 {
+	margin: 0px;
+	padding-left: 100px;
+	padding-bottom: 35px;
+	color: #6f75a2;
+}
+
+#record {
+	margin: 10px;
+	padding: 10px;
+	border: 3px solid #9c6ea2;
+	/*height: 400px;
+	overflow: scroll;*/
+	background: #ffffff url("../../../assessing/images/templateimages/record.jpg") no-repeat;
+}
+
+#record h2 {
+	margin: 0px;
+	padding-left: 100px;
+	padding-bottom: 20px;
+	color: #9c6ea2;
+}
+
+#success {
+	margin: 10px;
+	padding: 10px;
+	border: 3px solid #660000;
+	/*height: 400px;
+	overflow: scroll;*/
+	background: #ffffff url("../../../assessing/images/templateimages/success.jpg") no-repeat;
+}
+
+#success h2 {
+	margin: 0px;
+	padding-left: 100px;
+	padding-bottom: 20px;
+	color: #660000;
+}
+
+#rear_view {
+	margin: 10px;
+	padding: 10px;
+	border: 3px solid #666600;
+	/*height: 400px;
+	overflow: scroll;*/
+	background: #ffffff url("../../../assessing/images/templateimages/rearview.jpg") no-repeat;
+}
+
+#rear_view h2 {
+	margin: 0px;
+	padding-left: 100px;
+	padding-bottom: 20px;
+	color: #666600;
+}
+
+#results {
+	margin: 10px;
+	padding: 10px;
+	border: 3px solid #CC6600;
+	/*height: 400px;
+	overflow: scroll;*/
+	background: #ffffff url("../../../assessing/images/templateimages/results.jpg") no-repeat;
+}
+
+#results h2 {
+	margin: 0px;
+	padding-left: 100px;
+	padding-bottom: 20px;
+	color: #CC6600;
+}
+/* Classses */
+
+
+.tool {
+	border: 3px solid #d6d7e4;
+	background-color: #f3f3f4;
+	font-size: 0.9em;
+}	
+
+
+.tool .topline {
+	color: #fff;
+	padding: 4px;
+	background: #6f75a2;
+	font-size: 0.9	em;
+	border-bottom: 3px double white;
+}
+
+.tool .topline h3 {	
+color: #fff;
+	font-size: 1.2em;	
+	padding: 0px;
+	margin: 0px;
+}
+
+.tool .topline .rightfloat {	
+	color: #fff;
+	text-align: right;
+}
+
+.more h4 {
+    color: #b22222;
+    font-size: 1em;
+	 cursor: pointer;
+}
+
+.show {
+	display: block;
+}
+
+.hide {
+	display:none;
+}
+
+
+.more h4 {
+    color: #b22222;
+    font-size: 1em;
+	 cursor: pointer;
+	 border: none;
+}
+
+.indextable td{
+	border-bottom: 1px solid #D2D2B0;
+	padding-bottom: 20px;
+}
