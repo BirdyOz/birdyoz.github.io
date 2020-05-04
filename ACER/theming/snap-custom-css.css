@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2020-01-14 11:17:23
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2020-04-14 11:46:18
+* @Last Modified time: 2020-04-20 12:54:03
 */
 
 
@@ -106,6 +106,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
    ========================================================================== */
 
 
+/* Fix issue where collapsed accordions cannot be edited in the new ATTO editor
+Expand all collapsed items in the atto edtitor, to expose their content */
+
+
+.editor_atto .collapse, .book_chapter .collapse {
+    display: block !important;
+    height: auto  !important;
+}
+
 /* ==========================================================================
    DISPLAY FIXES
    ========================================================================== */
@@ -134,6 +143,16 @@ div[data-flexitour="backdrop"] {
 
 #page-login-index .snap-login {
     background-color: transparent;
+}
+
+
+/*Create hanging indent for references (attribution statements)*/
+
+.ref, .EndNoteBibliography {
+    margin-left: 1.5em;
+    text-indent: -1.5em;
+    font-size: smaller;
+    color: #555;
 }
 
 
