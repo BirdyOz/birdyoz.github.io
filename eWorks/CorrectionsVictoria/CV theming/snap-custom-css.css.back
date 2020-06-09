@@ -1,0 +1,233 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @First Created:   2020-05-12 13:18:16
+* @Last Modified by:   birdyoz
+* @Last Modified time: 2020-05-13 09:15:02
+*/
+
+
+/* ==========================================================================
+   FONTS - Load VICFont Webfonts
+   Temporary hack - Load fonts from W4V until alternative location is porovided
+   ========================================================================== */
+
+@font-face {
+    font-family: VIC-Regular;
+    src: url(https://openlms.educationapps.vic.gov.au/pluginfile.php/1/tool_themeassets/assets/0/Fonts/VIC-Regular.woff) format("woff"), url(https://openlms.educationapps.vic.gov.au/pluginfile.php/1/tool_themeassets/assets/0/Fonts/VIC-Regular.woff2) format("woff2")
+}
+
+@font-face {
+    font-family: VIC-Medium;
+    src: url(https://openlms.educationapps.vic.gov.au/pluginfile.php/1/tool_themeassets/assets/0/Fonts/VIC-Medium.woff) format("woff"), url(https://openlms.educationapps.vic.gov.au/pluginfile.php/1/tool_themeassets/assets/0/Fonts/VIC-Medium.woff2) format("woff2")
+}
+
+@font-face {
+    font-family: VIC-SemiBold;
+    src: url(https://openlms.educationapps.vic.gov.au/pluginfile.php/1/tool_themeassets/assets/0/Fonts/VIC-SemiBold.woff) format("woff"), url(https://openlms.educationapps.vic.gov.au/pluginfile.php/1/tool_themeassets/assets/0/Fonts/VIC-SemiBold.woff2) format("woff2")
+}
+
+@font-face {
+    font-family: VIC-Bold;
+    src: url(https://openlms.educationapps.vic.gov.au/pluginfile.php/1/tool_themeassets/assets/0/Fonts/VIC-Bold.woff) format("woff"), url(https://openlms.educationapps.vic.gov.au/pluginfile.php/1/tool_themeassets/assets/0/Fonts/VIC-Bold.woff2) format("woff2")
+}
+
+/*Override specific instances of Snap overrides to Vic-Regular*/
+body, .section li.snap-asset, #page-site-index .sitetopic>a:last-of-type, .summary .edit-summary, label, .label, .form-label, .form-defaultinfo, .form-description, .form-filemanager, .ffilepicker, .ffilemanager, .fdescription, .fstatic, .collapsible-actions, input, button, select, .pagination, .initialbar, .paging, .alert, #page-admin-index .releasenoteslink, #page-admin-index .adminwarning, #page-admin-index .adminerror, .que .formulation, .que .outcome, .que .comment, .assignfeedback_editpdf_widget .label, .nav-pills, .nav-tabs, .course-report-dashboard, .yui3-tabview-list, .yuimenu, #course-category-listings, .progress .bar, .dndupload-progress-outer .bar, .progress-bar, .dndupload-progress-inner, .yui-dt-paginator, .snap-conditional-tag, .snap-stealth-tag, .snap-draft-tag, .snap-current-tag, .btn, #page-grade-grading-manage .actions .action, #rubric-rubric.gradingform_rubric #rubric-criteria .criterion .addlevel input, #rubric-rubric.gradingform_rubric .addcriterion, .messaging-area-container .messaging-area .contacts-area .searcharea .heading,  .path-calendar .maincalendar .calendar-controls .current, #page-user-profile .userprofile .profile_tree .node_category h3, .path-course.path-user .userprofile .profile_tree .node_category h3, #page-course-edit #maincontent + h2, #page-course-editsection #maincontent + h2, .pagelayout-admin.path-mod #maincontent + h2, .h6, legend, .mform legend a, .mform legend a:hover, .coursebox .info .coursename, .collapsibleregioncaption, .snap-featured-course-title, #coursetools-list a{
+   font-family: VIC-Regular, Arial, Helvetica, "sans-serif";
+}
+
+/*Override specific instances of Snap overrides to Vic-SemiBold*/
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+   font-family: VIC-SemiBold, Arial, Helvetica, "sans-serif";
+}
+
+strong, b {font-family: VIC-Bold, Arial, Helvetica, "sans-serif";}
+
+
+/* ==========================================================================
+   FRONTPAGE
+   ========================================================================== */
+
+/*#page-site-index {
+  background-image: url('https://www.vic.gov.au/img/header-pattern-shape.png');
+  background-position: -1rem -6.5rem;
+  background-size: 20rem;
+  background-repeat: no-repeat;
+  margin-top: 100px;
+  border-radius: 10px;
+}
+
+#page-site-index #mr-nav {
+  width: 96%
+  margin: 1em 2%;
+}*/
+
+/* ==========================================================================
+   SUB THEMING
+   ========================================================================== */
+
+/*Box Hill*/
+body.category-2 #snap-home.logo, .snap-logo-sitename {
+    background-image: url(https://www.boxhill.edu.au/images/logo-7031bd847ffd1720b109a2b.svg);
+}
+
+/*Fed Uni*/
+body.category-3 #snap-home.logo, .snap-logo-sitename {
+    background-image: url(https://federation.edu.au/__data/assets/file/0010/466858/FED_colour_logo.svg);
+}
+
+/*Kangan*/
+body.category-4 #snap-home.logo, .snap-logo-sitename {
+    background-image: url(https://vta.trainingvc.com.au/pluginfile.php/1/tool_themeassets/assets/0/kangan.png);
+}
+
+/*Bendigo*/
+body.category-5 #snap-home.logo, .snap-logo-sitename {
+    background-image: url(https://vta.trainingvc.com.au/pluginfile.php/1/tool_themeassets/assets/0/bendigo.png);
+}
+
+/* ==========================================================================
+   PERSONAL MENU
+   ========================================================================== */
+
+/* Hide grades */
+#snap-pm-grades {
+  display: none;
+}
+
+
+
+/* ==========================================================================
+   BANNER
+   ========================================================================== */
+
+#page-header.mast-image a {
+    color: #fff;
+    text-shadow: 2px 2px black;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.3em 0.2em;
+    display: inline-block;
+}
+
+
+/* ==========================================================================
+   LH NAVIGATION - COLOURS AND MARKERS
+   ========================================================================== */
+
+/* Increase contract of current section */
+#snap-course-wrapper #chapters li.snap-visible-section a {
+    font-weight: 500;
+    color: black;
+}
+
+/* Current marker */
+#snap-course-wrapper #chapters li.snap-visible-section .chapter-title:before {
+    font-family: FontAwesome;
+    content: "\f0da";
+    background: none;
+    margin-right: .4em;
+}
+
+/* Increase contract of conditional items*/
+#snap-course-wrapper #chapters li.conditional .published-status {
+    font-weight: 500;
+    color: #666;
+}
+
+/* Conditional marker */
+#snap-course-wrapper #chapters li.conditional .chapter-title:before {
+    font-family: FontAwesome;
+    color: #666;
+    content: "\f023";
+    background: none;
+    margin-right: .4em;
+}
+
+/* Increase contract of hidden items*/
+#snap-course-wrapper #chapters li.draft .published-status,
+.coursecard-body .snap-draft-tag,
+.coursecard-body .published-status {
+    font-weight: 500;
+    color: maroon !important;
+}
+
+
+
+/* Hidden marker */
+#snap-course-wrapper #chapters li.draft .chapter-title:before,
+.snap-draft-tag:before,
+.coursecard-body .published-status:before {
+    font-family: FontAwesome;
+    color: #333;
+    content: "\f070 ";
+    background: none;
+    margin-right: .4em;
+}
+
+
+/* ==========================================================================
+   ICON REPLACEMENTS
+   ========================================================================== */
+
+
+/* ==========================================================================
+   HIDE FIELDS FROM SELF REGISTRATION FORM
+   ========================================================================== */
+
+#id_supplyinfo .form-group:nth-child(4) {
+display: none;
+}
+
+/*Redce font size on post registration confirmation statement*/
+
+#page-login-signup #notice > p {
+  font-size: 0.6em;
+  color: #000;
+}
+
+/* ==========================================================================
+   DISPLAY FIXES
+   ========================================================================== */
+
+
+/* Remove bullet point from section headers*/
+
+li.section {list-style-type: none;}
+
+/* Suppress Policy statement modal window (transparent, bottom of screen)*/
+
+.eupopup-container-bottom {
+  display: none;
+}
+
+/* Spuppress Open reports  and gradebook in Course dashboard*/
+
+#ct-open-reports, #ct-course-gradebook {
+  display: none;
+}
+
+
+/*  Change the backdrop to user tours */
+div[data-flexitour="backdrop"] {
+    background-color: black;
+    opacity: .4;
+}
+
+
+/* Fix for the contrast (visibility) of notifications */
+.theme-snap #mr-nav .popover-region-notifications a {
+    color: rgba(1, 89, 57, 1);
+}
+
+/* Hide tool labels */
+.modtype_label .activityinstance .snap-assettype {
+    visibility: hidden;
+}
+
+.modtype_book h4 {
+    display: none;
+}
+
+#page-login-index .snap-login {
+    background-color: transparent;
+}
