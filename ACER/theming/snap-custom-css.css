@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2020-01-14 11:17:23
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2020-06-24 15:16:17
+* @Last Modified time: 2020-06-29 09:28:07
 */
 
 
@@ -19,6 +19,20 @@ div.topbar {
 /* Change headings to Poppins font */
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: 'Poppins', 'Roboto', 'Arial', sans-serif;
+}
+
+/* ==========================================================================
+   FRONTPAGE
+   ========================================================================== */
+
+/*Not logged in - hide search box*/
+#page-site-index.notloggedin .search-input-wrapper {
+    display: none;
+}
+
+/*Logged in - hide search box*/
+#page-site-index:not(.notloggedin) .sitetopic {
+    display: none;
 }
 
 
