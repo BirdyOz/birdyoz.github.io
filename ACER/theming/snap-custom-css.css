@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2020-01-14 11:17:23
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2020-04-20 12:54:03
+* @Last Modified time: 2020-06-24 15:16:17
 */
 
 
@@ -153,6 +153,11 @@ div[data-flexitour="backdrop"] {
     text-indent: -1.5em;
     font-size: smaller;
     color: #555;
+}
+
+.ref-inline {
+    margin-left: 1.5em;
+    text-indent: -1.5em;
 }
 
 
