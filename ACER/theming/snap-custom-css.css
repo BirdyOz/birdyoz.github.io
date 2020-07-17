@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2020-01-14 11:17:23
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2020-07-01 15:05:21
+* @Last Modified time: 2020-07-17 11:04:46
 */
 
 
@@ -34,6 +34,18 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 #page-site-index:not(.notloggedin) .sitetopic {
     display: none;
 }
+
+
+/* ==========================================================================
+   LOGIN Screen (/login/index.php)
+   ========================================================================== */
+
+/*Not logged in - hide search box*/
+#page-login-index.notloggedin .snap-login-row {
+    background-color: rgba(255, 255, 255, .9)
+}
+
+
 
 
 /* ==========================================================================
@@ -152,11 +164,15 @@ div[data-flexitour="backdrop"] {
 }
 
 
-/* Fix display bug in books, where editing controls overlay text*/
+/*Snap on M3.8 books display fix- when inside a book, hide the book description from top*/
+body#page-mod-book-view #region-main #intro {
+   display: none;
+}
+
+/* Fix display bug when editing books, where editing controls overlay text*/
 body#page-mod-book-view.editing .book_toc .d-flex {
   display: block !important;
 }
-
 body#page-mod-book-view.editing .book_toc .text-truncate {
   white-space: normal;
 }
