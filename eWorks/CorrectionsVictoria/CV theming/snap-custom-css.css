@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2020-05-12 13:18:16
 * @Last Modified by:   birdyoz
-* @Last Modified time: 2020-07-09 11:27:22
+* @Last Modified time: 2020-07-20 08:57:35
 */
 
 
@@ -61,6 +61,21 @@ strong, b {font-family: VIC-Bold, Arial, Helvetica, "sans-serif";}
   width: 96%
   margin: 1em 2%;
 }*/
+
+/* ==========================================================================
+   LOGIN Screen (/login/index.php)
+   ========================================================================== */
+
+/*Not logged in - hide search box*/
+#page-login-index.notloggedin .snap-login {
+    background-color: rgba(255, 255, 255, .9)
+}
+
+/*Not logged in - hide search box*/
+#page-login-index.notloggedin .snap-logo-sitename {
+    display: none;
+}
+
 
 /* ==========================================================================
    SUB THEMING
