@@ -1,0 +1,197 @@
+$CATEGORY: HLTAAP001/Commencement
+
+Organise the following from LEAST Complex (simplest) to MOST Complex {
+    1 (LEAST COMPLEX). = Cell
+    2. = Tissue
+    3. = Organ
+    4. = Body Sytem
+    5 (MOST COMPLEX). = Organism
+}
+
+Choose from the dropdown list to complete the sentences: {
+    Red Blood ______ = Cell
+    Connective  ______ = Tissue
+    The Stomach ______ = Organ
+    Cardiovascular  ______ = System
+    The human  ______ = Organism
+}
+
+Which of the following is an example of organs that work together to form a body system? {
+    = Stomach, liver, small intestine
+    Heart, kidneys, skin
+    Brain, stomach, bladder
+}
+
+
+
+$CATEGORY: HLTAAP001/Topic 1
+
+
+
+Match the body sytem with it's primary function {
+    Supplies your body with oxygen and rids your body of carbon dioxide. = Respiratory System
+    Ingests food and water and breaks it down into usable nutrients. Excretes solid waste products. = Digestive System
+    Moves materials between body systems, including oxygenated blood, nutrients, hormones, and waste products. = Cardiovascular
+    Cleans dissolved waste products from the blood and excretes them. = Renal System
+    Secretes hormones and other chemical signals that allow body systems to act cooperatively. = Endocrine System
+    Controls all other systems.  Allows perception, emotion, thought, and rapid response to the environment. = Nervous System
+    Provides structure and protection to internal organs. Allows the body to move on command. = Musculoskeletal system
+    Covers and protects the body and regulates its exchange with the outside world. Transports excess heat to the environment. = Integumentary System
+    Fights infection. = Lymphatic System
+    The sex organs that allow for the production of offspring. = Reproductive System
+}
+
+Match the organ or tissue with the body system that it belongs to. {
+    Lungs = Respiratory System
+    Stomach = Digestive System
+    Heart = Cardiovascular System
+    Kidney = Renal System
+    Pancreas = Endocrine System
+    Brain = Nervous System
+    Bicep = Musculoskeletal system
+    Skin = Integumentary System
+    Spleen = Lymphatic System
+    Uterus = Reproductive System
+}
+
+
+Identify four (4) organs or tissues that are part of the CARDIOVASCULAR system? {
+    = Heart
+    = Aorta
+    = Arteries
+    = Veins
+    Kidney
+    Spleen
+}
+
+Which three (3) statements are true of the RESPIRATORY system? {
+    = Absorbs oxygen
+    = Excretes Carbon Dioxide
+    = Excretes water vapour
+    Regulates temperature
+    Includes the aorta and ventrical
+}
+
+Which three (3) statements are true of the MUSCULOSKELETAL system? {
+    = Provides protection to internal organs
+    = Allows for movement and motor skills
+    = Includes both voluntary and involuntary muscles
+    Controls perception, emotion and thought
+    Filters and excretes waste fluids and electrolytes
+}
+
+The ENDOCRINE system: {
+    = sends hormones throughout the body to trigger change and growth
+    is responsible for maintaining fluid balance and pH
+    exchanges heat with the outside world, to perform thermal regulation
+}
+
+Identify four (4) organs that are part of the DIGESTIVE system? {
+    = Oesophagus
+    = Mouth
+    = Stomach
+    = Intestines
+    Kidneys
+    Lungs
+    Spleen
+}
+
+The role of the REPRODUCTIVE system is to: {
+    = Create offspring through sexual repriduction
+    Control perception, emotion and thought
+    Trigger puberty through hormonal chynage
+}
+
+Which three (3) statements are true of the INTEGUMENTARY system? {
+    = Creates a barrier with the outside world
+    = Protects against injury, infection and fluid loss
+    = Exchanges heat with the environment
+    Filters the blood remove waste products
+    Exchanges waste Carbon Dioxide for fresh Oxygen
+}
+
+The primary role of the LYMPHATIC system is to: {
+    = Fight off infection
+    supply oxygenated blood to body tissues
+    allow for movement and motion
+    provide structural protection to internal organs
+}
+
+Identify three (3) organs or tissues that are part of the NERVOUS system? {
+    = Brain
+    = Spinal column
+    = Nerves and neurons
+    Veins
+    Kidney
+    Spleen
+}
+
+The human body has ONLY five senses - vision, hearing, taste, touch and smell. {F}
+
+The immune system {
+    = fights off infection, such as bacteria and viruses
+    causes illness and disease
+    controls homestasis and maintains fluid balance
+}
+
+
+
+$CATEGORY: HLTAAP001/Topic 2
+
+
+
+Identify four (4) factors for good health {
+    = Healthy eating
+    = Physical activity
+    = Good and regular sleep
+    = Maintaining effective hygiene and cleanliness
+    Excessive alcohol consumption
+    Avoiding exercise
+    Adopting each new dietary fad that is promoted to you
+}
+
+Homeostasis is the: {
+    = body sytems working togther to maintain a steady balance of temperature, water and pH
+    medical desctription for remaining seted for prolonged periods of time
+    mechanism that repairs damaged body tissues
+}
+
+Which three (3) body systems work together to balance fluid, electrolyte and pH balance: {
+    = The respiratory system, by excreting CO2 that would otherwise turn to carbonic acid
+    = The urinary system, by filtering the blood and expelling excess fluid and electrolytes
+    = The digestive system, by consuming and repleneshing lost fluids and electrolytes
+    The endocrine system, by sending hormones that trigger thirst and replenish lost fluids.
+    The musculoskeletal system, by triggering stomach cramps that cause you to become hungry
+}
+
+Identify four (4) examples of the ellimination of waste products {
+    = faeces, via the digestive system
+    = urine, via the urinary system
+    = excess CO2, via the respiratory system
+    = excess heat, via the integumentary system
+    excess blood, via the circulatory system
+    pain signals triggered by injury, sent via the nervous system
+}
+
+What are three (3) ways of preventing the spread of disease? {
+    = good personal hygiene and hadwashing
+    = appropriate food handling/disposal techniques
+    = cleaning and covering cuts and abrasions
+    attending work, even if sick
+    avoiding or ignoring medical advice and treatment
+    allowing yourself to 'heal naturally' without intervention
+}
+
+Which three (3) of the following can cause infections? {
+    = Bacteria
+    = Viruses
+    = Fungi
+    Chemical exposure
+    Lack of sleep
+}
+
+Body sytems work independantly (as discrete sytems).  There is no overlap or communication between body systems {F}
+
+
+
+

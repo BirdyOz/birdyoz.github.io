@@ -1,0 +1,31 @@
+$CATEGORY: Trivia/Capitals
+
+::Trivia.Capitals.Q01:: Sydney is the Capital city of Australia {F}
+
+::Trivia.Capitals.Q02:: What is the capital city of Australia? {
+    ~ Camberra
+    ~ Sydney
+    = Melbourne
+    ~ Adelaide
+}
+
+::Trivia.Capitals.Q03:: Match the State with their capital city {
+    = VIC -> Melbourne
+    = NSW -> Sydney
+    = WA -> Perth
+    = SA -> Adelaide
+}
+
+$CATEGORY: Trivia/Animals
+
+::Trivia.Animals.Q01:: Which of the following are Australian native marsupials? {
+    ~%50% Kangaroo
+    ~%-33.33333% Dingo
+    ~%50% Wombat
+    ~%-33.33333% Camel
+    ~%-33.33333% Dog
+}
+
+::Trivia.Animals.Q02:: The echidna and the platypus are {=monotremes}.  They are the only mammals to lay eggs
+
+::Trivia.Animals.Q03:: In one paragraph, describe some other unique qualities of the playtpus {}

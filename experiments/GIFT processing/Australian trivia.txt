@@ -1,0 +1,31 @@
+$CATEGORY: Trivia/Capitals
+
+Sydney is the Capital city of Australia {F}
+
+What is the capital city of Australia? {
+    Camberra
+    Sydney
+    = Melbourne
+    Adelaide
+}
+
+Match the State with their capital city {
+    VIC = Melbourne
+    NSW = Sydney
+    WA = Perth
+    SA = Adelaide
+}
+
+$CATEGORY: Trivia/Animals
+
+Which of the following are Australian native marsupials? {
+    = Kangaroo
+    Dingo
+    = Wombat
+    Camel
+    Dog
+}
+
+The echidna and the platypus are {=monotremes}.  They are the only mammals to lay eggs
+
+In one paragraph, describe some other unique qualities of the playtpus {}
