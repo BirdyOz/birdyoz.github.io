@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-10-18 08:26:40
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2019-10-18 08:41:23
+* @Last Modified time: 2020-07-27 14:29:51
 */
 
 /*Set colour of breadcrumbs*/
@@ -11,28 +11,41 @@
 }
 
 /*Fix hidden subchapters checkbox in Snap MP2*/
-.path-mod-book #id_general .fcontainer .checkbox{
-display:inline
+.path-mod-book #id_general .fcontainer .checkbox {
+    display: inline
 }
 
 /*  Change the backdrop to user tours */
 div[data-flexitour="backdrop"] {
-background-color: black;
+    background-color: black;
     opacity: .9;
 }
 
 /*----- Hide user notification ----*/
-.theme-snap #user-notifications { display: none; }
+.theme-snap #user-notifications {
+    display: none;
+}
 
 
 /* Shrink unneccessary whitespace on cards */
-p.snap-resource-card-fadeout {display: none;}
+p.snap-resource-card-fadeout {
+    display: none;
+}
 
 /* Fix issue where collapsed accordions cannot be edited in the new ATTO editor
-Expand all collapsed items in the atto edtitor, to expose their content */
 
+/*Snap on M3.8 books fix - when inside a book, hide the book description from top*/
 
-.editor_atto .collapse, .book_chapter .collapse {
+body#page-mod-book-view #region-main #intro {
+    display: none;
+}
+
+/* Fix display bug when editing books, where editing controls overlay text*/
+
+body#page-mod-book-view.editing .book_toc .d-flex {
     display: block !important;
-    height: auto  !important;
+}
+
+body#page-mod-book-view.editing .book_toc .text-truncate {
+    white-space: normal;
 }
