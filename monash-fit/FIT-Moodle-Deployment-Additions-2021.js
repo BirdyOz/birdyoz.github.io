@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @First Created:   2019-01-15 16:04:39
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2021-01-27 14:56:19
+ * @Last Modified time: 2021-01-27 15:17:43
  *
  *
  * NOTE TO FIT Administators:
@@ -17,14 +17,16 @@
 // JQuery - on page load
 $(function() {
     // Define text to graders
-    var text_to_grader = '<div class="alert alert-warning" role="alert"> <strong>Attention Graders:</strong> (Put statement here)</div>';
-
+    add_text_to_grader();
     limit_enrolment_options();
 });
 
-function add_text_to_grader(text) {
+function add_text_to_grader() {
+    // If I am on the Grader report - View or setup tabs
     if (window.location.href.indexOf('/grade/report/grader/index.php') > 0 || window.location.href.indexOf('/local/gradebook_reskin/index.php') > 0) {
-        $(".grade-navigation").before(text);
+
+        var text_to_grader = '<div class="alert alert-warning" role="alert"> <strong>Attention Graders:</strong> (Put statement here)</div>';
+        $(".grade-navigation").before(text_to_grader);
     }
 }
 
@@ -65,10 +67,10 @@ function limit_enrolment_options() {
                 // If roles include "Lecturer" (including quotes)
                 if (txt.indexOf('"Lecturer"') !== -1) {
                     // Remove lecturer role from JSON string
-                    txt = txt.replace('{"key":3,"value":"Lecturer"},','');
+                    txt = txt.replace('{"key":3,"value":"Lecturer"},', '');
                     // Inject string back in as attributes.
                     // This will remove "lecturer" from the dropdown list
-                    txt = $(this).attr('data-options',txt)
+                    txt = $(this).attr('data-options', txt)
                 }
             });
 
