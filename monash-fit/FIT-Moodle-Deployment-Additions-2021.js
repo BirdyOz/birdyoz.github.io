@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @First Created:   2019-01-15 16:04:39
  * @Last Modified by:   Greg Bird
- * @Last Modified time: 2021-01-21 15:17:42
+ * @Last Modified time: 2021-01-27 14:56:19
  *
  *
  * NOTE TO FIT Administators:
@@ -19,22 +19,26 @@ $(function() {
     // Define text to graders
     var text_to_grader = '<div class="alert alert-warning" role="alert"> <strong>Attention Graders:</strong> (Put statement here)</div>';
 
-    add_text_to_grader(text_to_grader);
-    // Limit the enrolments for the lecturer role to just 'guest'
     limit_enrolment_options();
 });
 
 function add_text_to_grader(text) {
     if (window.location.href.indexOf('/grade/report/grader/index.php') > 0 || window.location.href.indexOf('/local/gradebook_reskin/index.php') > 0) {
-        $(".card-monash").after(text);
+        $(".grade-navigation").before(text);
     }
 }
+
 
 function limit_enrolment_options() {
     //If I am on the enrolment screem and I DO NOT have "limit_enrolment=off"
     if (window.location.href.indexOf("user/index.php?id=") > 0 & window.location.href.indexOf("limit_enrolment=off") < 0) {
 
-        var fit_email = $('.myprofileitem.email').text().toLowerCase();
+        // Determine current user
+        var curr_userid = $('.logininfo');
+        console.log("@GB: curr_userid = ", curr_userid);
+
+
+        var fit_email = $('.myprofileitem>a').text().toLowerCase();
         console.log("@GB: fit_email = ", fit_email);
 
         // whitelist of allowed users who DO NOT have the enrolment restriction
@@ -51,49 +55,37 @@ function limit_enrolment_options() {
             console.log("@GB: allowed_users = ", allowed_users);
         } else {
             // I am NOT an allowed user so restrict my access
-            $('.inplaceeditable').attr('data-options', '');
-            $('.quickediticon .fa-pencil').hide();
 
-            // Hide edit and un enrol links
-
-            $('a.editenrollink').hide();
-            $('a.unenrollink').hide();
-
-
-            //Selectively turn these back on again, if role = guest
-            var guests = $('a.quickeditlink');
-            console.log("@GB: guests = ", guests);
-            $.each(guests, function(index, val) {
-                /* iterate through array or object */
-                txt = $.trim($(this).text());
+            //find all role chnages (pen symbol)
+            var change_role = $('.inplaceeditable');
+            $.each(change_role, function(index, val) {
+                // Extract roles as string
+                txt = $(this).attr('data-options');
                 console.log("@GB: txt = ", txt);
-                // If Guest
-                if (txt == "Guest") {
-                    console.log("@GB: Guest found");
-                    // Turn links back on again
-                    $('a.editenrollink').eq(index).show();
-                    $('a.unenrollink').eq(index).show();
+                // If roles include "Lecturer" (including quotes)
+                if (txt.indexOf('"Lecturer"') !== -1) {
+                    // Remove lecturer role from JSON string
+                    txt = txt.replace('{"key":3,"value":"Lecturer"},','');
+                    // Inject string back in as attributes.
+                    // This will remove "lecturer" from the dropdown list
+                    txt = $(this).attr('data-options',txt)
                 }
             });
 
             // Listen for mouse click on 'Enrol users' button
             $(".enrol_manual_plugin").click(function() {
-                // Wait 3 secs while the list loads
+                // Wait 2 secs while the list loads
                 setTimeout(function() {
                     var options = $('select#id_roletoassign option');
                     if (options.length > 0) {
-                        console.log("@GB: options = ", options);
                         $.each(options, function(index, val) {
                             txt = $(this).text();
-                            console.log("@GB: txt = ", txt);
-                            if (txt == "Guest") {
-                                console.log("@GB: Guest found");
-                                $(this).attr('selected', 'selected');
-
-                            } else {
-                                $(this).remove()
+                            // Assign role includes "Lecturer"
+                            if (txt == "Lecturer") {
+                                console.log("@GB: Lecturer found");
+                                $(this).remove();
+                                console.log("@GB: Lecturer removed");
                             }
-                            /* iterate through array or object */
                         });
                     }
 
