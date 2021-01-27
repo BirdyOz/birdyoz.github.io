@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-10-18 08:26:40
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2020-07-27 14:29:51
+* @Last Modified time: 2021-01-18 16:37:39
 */
 
 /*Set colour of breadcrumbs*/
@@ -18,7 +18,7 @@
 /*  Change the backdrop to user tours */
 div[data-flexitour="backdrop"] {
     background-color: black;
-    opacity: .9;
+    opacity: .6;
 }
 
 /*----- Hide user notification ----*/
@@ -26,13 +26,17 @@ div[data-flexitour="backdrop"] {
     display: none;
 }
 
-
 /* Shrink unneccessary whitespace on cards */
 p.snap-resource-card-fadeout {
     display: none;
 }
 
-/* Fix issue where collapsed accordions cannot be edited in the new ATTO editor
+/* Fix issue where collapsed accordions cannot be edited in the new ATTO editor */
+
+.editor_atto .collapse, .book_chapter .collapse {
+    display: block !important;
+    height: auto  !important;
+}
 
 /*Snap on M3.8 books fix - when inside a book, hide the book description from top*/
 
@@ -48,4 +52,10 @@ body#page-mod-book-view.editing .book_toc .d-flex {
 
 body#page-mod-book-view.editing .book_toc .text-truncate {
     white-space: normal;
+}
+
+/* Hide the M3.9 H5P Content bank from course admin menu*/
+
+#settingsnav a[href*="/contentbank/"]{
+    /*display: none;*/
 }
