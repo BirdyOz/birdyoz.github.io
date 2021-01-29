@@ -1,12 +1,22 @@
 /*
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-01-15 16:05:23
-* @Last Modified by:   birdyoz
-* @Last Modified time: 2019-01-24 15:00:41
+* @Last Modified by:   Greg Bird
+* @Last Modified time: 2021-01-29 14:24:52
 */
 
 
 
+
+/*=============================================
+ 2021 UI changes
+=============================================*/
+
+/* Remove duplicated Topic heading (H3) from the grid view */
+
+.single-section .section-navigation h3.sectionname {
+    display: none;
+}
 
 /*=============================================
  2019 UI changes
