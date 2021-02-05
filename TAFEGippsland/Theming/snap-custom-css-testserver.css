@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2021-02-04 13:58:29
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2021-02-05 15:17:13
+* @Last Modified time: 2021-02-05 15:27:49
 */
 
 /* ==========================================================================
@@ -36,6 +36,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 /* Fix vertical alignment of banner image*/
+
 /*#page-header {
     background-position: center center;
 }*/
