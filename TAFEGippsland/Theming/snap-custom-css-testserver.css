@@ -2,23 +2,30 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2021-02-04 13:58:29
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2021-02-15 14:33:26
+* @Last Modified time: 2021-02-16 09:56:41
 */
 
 /* ==========================================================================
    SITE WIDE
    ========================================================================== */
 
+
+/* Change body to Lato */
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+
 /* Change headings to Martel */
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #000;
-    font-weight: 500;
+    font-weight: 600;
     font-family: 'Martel', serif;
 }
 
 /* Add an underline to links within body content, to make them easier to spot */
-.course-content .no-overflow a {
-    border-bottom: 1px dotted #007f50;
+.no-overflow a {
+    text-decoration: underline;
 }
 
 
@@ -135,7 +142,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: "fontawesome";
     content:"\f1c1";
     font-size: 2em;
-    color: #c50606;
+    color: #cb0506;
     padding: 0.1em 0.2em;
     margin-right: .4em;
 }
@@ -147,7 +154,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 .snap-asset-link img.activityicon[src$="spreadsheet"] + p.instancename::before {
     font-family: "fontawesome";
-    content:"\f1c1";
+    content:"\f1c3";
     font-size: 2em;
     color: #1c6d43;
     padding: 0.1em 0.2em;
@@ -196,6 +203,7 @@ body#page-mod-book-view #region-main #intro {
 
 /* Turn off "message" link and icon in Snap footer for specific categories */
 
-body.category-1 #snap-course-footer a[href *="/message/"] {
+body.category-288 #snap-course-footer a[href *="/message/"],
+body.category-289 #snap-course-footer a[href *="/message/"],  {
     display: none;
-}
+    }
