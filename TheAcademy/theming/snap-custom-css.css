@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2020-01-14 11:17:23
 * @Last Modified by:   Greg Bird
-* @Last Modified time: 2020-02-05 11:24:59
+* @Last Modified time: 2021-04-15 11:42:40
 */
 
 
@@ -21,7 +21,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 
 /* ==========================================================================
-   LH NAVIGATION - COLOURS AND MARKERS
+   ToC changes - colours and markers
    ========================================================================== */
 
 /* Increase contract of current section*/
@@ -185,9 +185,31 @@ a.mod-link {
     margin-right: .4em;
 }
 
+
+
 /* ==========================================================================
-   POST-FIXES TO UI ELEMENTS
+   Cross branding, incl. footer
    ========================================================================== */
+
+/* Set footer icon heights */
+#snap-footer-content img.aca-footer-logo {
+    height: 50px !important;
+    width: auto;
+}
+
+#moodle-footer {
+    background-color: #000;
+}
+
+/* For GOTAFE students - Essendon and Wangaratta campuses - add the gotafe logo to header */
+.snap-pbb-essendon #snap-home, .snap-pbb-wangaratta #snap-home {
+    background-image: url(https://myacademy.eworks.edu.au/pluginfile.php/1/tool_themeassets/assets/0/academy%20-%20gotafe.png);
+    }
+
+/* For WHC students - Geelong students */
+.snap-pbb-geelong #snap-home {
+    background-image: url(https://myacademy.eworks.edu.au/pluginfile.php/1/tool_themeassets/assets/0/academy-whc.png);
+    }
 
 
 
@@ -195,6 +217,20 @@ a.mod-link {
    DISPLAY FIXES
    ========================================================================== */
 
+/*Snap on M3.8 books display fix- when inside a book, hide the book description from top*/
+body#page-mod-book-view #region-main #intro {
+   display: none;
+}
+
+
+
+/* Fix display bug when editing books, where editing controls overlay text*/
+body#page-mod-book-view.editing .book_toc .d-flex {
+  display: block !important;
+}
+body#page-mod-book-view.editing .book_toc .text-truncate {
+  white-space: normal;
+}
 
 
 /*  Change the backdrop to user tours */
