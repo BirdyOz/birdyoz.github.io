@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-08-13 08:57:28
+ * @Last Modified time: 2021-08-13 12:59:46
  */
 
 $(function() {
@@ -14,15 +14,27 @@ $(function() {
     var title = "";
     var user = "";
     var link = "";
-    var startCollapsed = true;
-    var width = "col-5";
-    var percent = "42%";
-    console.log("@GB: today = ", today);
     var id = "";
+    var startCollapsed = true;
+    var maxpx = 1440;
+    var width = "col-5";
+    var dimensions = [{"id": "col-1", "percent": "8%", "px": 120 },
+                      {"id": "col-2", "percent": "17%", "px": 240 },
+                      {"id": "col-3", "percent": "25%", "px": 360 },
+                      {"id": "col-4", "percent": "33%", "px": 480 },
+                      {"id": "col-5", "percent": "42%", "px": 600 },
+                      {"id": "col-6", "percent": "50%", "px": 720 },
+                      {"id": "col-7", "percent": "58%", "px": 840 },
+                      {"id": "col-8", "percent": "67%", "px": 960 },
+                      {"id": "col-9", "percent": "75%", "px": 1080 },
+                      {"id": "col-10", "percent": "83%", "px": 1200 },
+                      {"id": "col-11", "percent": "92%", "px": 1320 },
+                      {"id": "col-12", "percent": "100%", "px": 1440 }];
     var url_string = window.location.href;
     if (url_string.indexOf("?") > 0) {
         console.log("@GB: Has parameters");
         var url = new URL(url_string);
+        console.log("@GB: url = ", url);
         id = url.searchParams.get("id");
     } else {
         console.log("@GB: No parameters");
@@ -32,7 +44,7 @@ $(function() {
     var uri = "https://api.unsplash.com/photos/" + id + "?client_id=336b527b2e18d045045820b78062b95c825376311326b2a08f9b93eef7efc07b";
     $.getJSON(uri, function(result) {
         console.log("@GB: result = ", result);
-        src = result.urls.full;
+        src = result.urls.regular;
         console.log("@GB: src = ", src);
         user = result.user.username;
         console.log("@GB: user = ", user);
@@ -69,6 +81,7 @@ $(function() {
         $('.unsplash-floated>figure').addClass(selected_id);
         $('.percent').text(selected_val);
         width = selected_id;
+        console.log("@GB: width = ", width);
     });
 
     $('#source-open').change(function() {
@@ -86,7 +99,8 @@ $(function() {
 
     $('#embedder button').click(function(event) {
         /* Act on the event */
-
+        // Cancel the default action
+        event.preventDefault();
         var btn = $(this);
         var closest = btn.prev('.unsplash-copy');
         var id = "." + btn.attr('id');
@@ -99,23 +113,33 @@ $(function() {
         btn.toggleClass('btn-outline-primary btn-success');
         btn.html('<i class="fa fa-check" aria-hidden="true"></i> Done! Embed code copied to clipboard');
 
+
         window.setTimeout(function() {
             btn.html('<i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code');
             // btn.removeClass('btn-danger');
             btn.toggleClass('btn-outline-primary btn-success');
         }, 3000);
 
-        // Cancel the default action
-        event.preventDefault();
     });
+
+
     $('a.download').click(function(event) {
         /* Act on the event */
         var btn = $(this);
         var title = btn.attr("title");
-        console.log("@GB: title = ", title);
+        var px = maxpx;
+        if (title == "img-sml") {
+            var result = dimensions.filter(function(e){return e.id == width;});
+            console.log(result);
+            px = result[0].px;
+            console.log("@GB: px = ", px);
+        }
+        var regex = /&w\=[0-9]+/i;
+        src = src.replace(regex,"&w="+px);
+        console.log("@GB: src = ", src);
 
         // Parse image to Canvas download
-        // downloader(img, dl_img);
+        downloader(id,src);
 
         btn.toggleClass('btn-outline-primary btn-success');
         btn.html('<i class="fa fa-check" aria-hidden="true"></i> Done! Image downloaded');

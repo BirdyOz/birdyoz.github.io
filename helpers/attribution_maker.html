@@ -35,7 +35,7 @@
             <div class="card card-body">
                 <h2>First time user?</h2>
                 <ol>
-                    <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Bvar%20url%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Funsplash_embed.html%3Faddr%3D'%2BencodeURIComponent(document.location.href)%2B'%26title%3D'%2BencodeURIComponent(document.title)%3Bwindow.open(url%2C'_blank')%7D)()">Unsplash embedder & attribution maker</a>
+                    <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Bvar%20url%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Fattribution_maker%3Faddr%3D'%2BencodeURIComponent(document.location.href)%2B'%26title%3D'%2BencodeURIComponent(document.title)%3Bwindow.open(url%2C'_blank')%7D)()">AH+</a>
                         <br>(Note: Make sure you drag the link onto your browser bookmarks. Clicking will just bring you back to here)</li>
                     <li>Visit Unsplash - Beautiful Free Images and find your favourite image</li>
                     <li>Click on the 'Unsplash embedder & attribution maker' in your bookmarks</li>
@@ -80,8 +80,8 @@
                 <p class="lead">Image will occupy <strong class="percent">42%</strong> of the available space.
                     <br> The image will resize and the text will reflow as you resize the browser.</p>
                 <p>The following placeholder text is included to show the realtionship between the image and text.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <button id="unsplash-fr" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
-                        Download large image
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <button id="unsplash-fr" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-sml"> <i class="fa fa-download"></i>
+                        Download small image
                     </a>
             </div>
             <hr class="featurette-divider clearfix" id="left">
@@ -97,14 +97,16 @@
                 <p class="lead">Image will occupy <strong class="percent">42%</strong> of the available space.
                     <br> The image will resize and the text will reflow as you resize the browser.</p>
                 <p>The following placeholder text is included to show the realtionship between the image and text.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <button id="unsplash-fr" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
-                        Download large image
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <button id="unsplash-fr" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-sml"> <i class="fa fa-download"></i>
+                        Download small image
                     </a>
             </div>
             <hr class="featurette-divider clearfix" id="large">
             <div class="clearfix">
                 <h2 class="featurette-heading">Full width (Image above or below text)</h2>
-                <p class="lead">Image will occupy 100% of the available space</p>
+                <p class="lead">Image will occupy 100% of the available space</p><button id="unsplash-lg" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
+                        Download large image
+                    </a>
                 <div class="clearfix">
                     <div class="unsplash-copy unsplash-lg">
                         <!-- Start of Unsplash Image Embed - Full screen -->
@@ -113,11 +115,7 @@
                         <!-- End of Unsplash Image Embed - Full screen -->
 
                     </div>
-                </div> <button id="unsplash-lg" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
-                        Download large image
-                    </a><button id="unsplash-lg" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
-                        Download large image
-                    </a>
+                </div>
                 <hr class="featurette-divider clearfix" id="overlay">
                 <div class="clearfix">
                     <h2 class="featurette-heading">Full width, with text overlay (Custom text overlay)</h2>
@@ -160,7 +158,7 @@
         <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <script src="attribution_maker"></script>
+        <script src="attribution_maker.js"></script>
 </body>
 
 </html>
