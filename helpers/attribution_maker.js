@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-08-13 12:59:46
+ * @Last Modified time: 2021-08-13 13:17:12
  */
 
 $(function() {
@@ -32,13 +32,15 @@ $(function() {
                       {"id": "col-12", "percent": "100%", "px": 1440 }];
     var url_string = window.location.href;
     if (url_string.indexOf("?") > 0) {
-        console.log("@GB: Has parameters");
         var url = new URL(url_string);
         console.log("@GB: url = ", url);
-        id = url.searchParams.get("id");
+        var addr = url.searchParams.get("addr");
+        console.log("@GB: addr = ", addr);
+        var n = addr.lastIndexOf('/');
+        var id = addr.substring(n + 1);
+
     } else {
         console.log("@GB: No parameters");
-        id = "TXxiFuQLBKQ";
     }
 
     var uri = "https://api.unsplash.com/photos/" + id + "?client_id=336b527b2e18d045045820b78062b95c825376311326b2a08f9b93eef7efc07b";
