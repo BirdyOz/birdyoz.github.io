@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-08-16 18:55:56
+ * @Last Modified time: 2021-08-16 19:14:39
  */
 
 $(function() {
@@ -110,7 +110,7 @@ $(function() {
         console.log("@GB: Wikimedia file id = ", id);
 
         site_url = "https://commons.wikimedia.org/";
-        uri = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=imageinfo&list=&meta=&iiprop=timestamp%7Cuser%7Cextmetadata%7Curl%7Cuserid&iilimit=1&iiurlwidth=1440&titles=" + id;
+        uri = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=imageinfo&list=&meta=&iiprop=timestamp%7Cuser%7Cextmetadata%7Curl%7Cuserid&iilimit=1&iiurlwidth=1440&origin=*&titles=" + id;
         console.log("@GB: uri = ", uri);
         maxpx = 1280;
 
