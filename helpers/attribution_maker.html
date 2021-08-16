@@ -6,19 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="#">
     <meta name="author" content="#">
-    <title>@BirdyOz: Unsplash image embedder & attribution maker</title>
+    <title>@BirdyOz: Unsplash/Pixabay image embedder & attribution maker</title>
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> <a class="navbar-brand" href="#">@BirdyOz: Unsplash embedder & attribution maker</a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> </button>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> <a class="navbar-brand" href="#">@BirdyOz: Unsplash/Pixabay image embedder & attribution maker</a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item"> <a class="nav-link" href="#right">Float Right</a> </li>
                 <li class="nav-item"> <a class="nav-link" href="#left">Float Left</a> </li>
-                <li class="nav-item"> <a class="nav-link" href="#center">Centered</a> </li>
                 <li class="nav-item"> <a class="nav-link" href="#large">Full-screen</a> </li>
                 <li class="nav-item"> <a class="nav-link" href="#overlay">Text Overlay</a> </li>
             </ul>
@@ -28,8 +27,16 @@
     <!-- Marketing messaging and featurettes ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
     <div class="container marketing" style="margin-top: 100px">
-        <h1 class="display-4">Unsplash image embedder & attribution maker</h1>
-        <p class="lead">A Bookmarklet to create HTML snippets to embed Unsplash images with proper attribution. These can be pasted into any HTML editor.</p>
+        <h1 class="display-4">Unsplash/Pixabay image embedder & attribution maker</h1>
+        <p class="lead">A Bookmarklet to create HTML snippets to embed Unsplash or Pixabay images with proper attribution. These can be pasted into any HTML editor.</p>
+
+
+        <div class="firsttime-warning alert alert-danger collapse">
+            <h3>First time user?</h3>
+            <p>Follow the instuctions below</p>
+        </div>
+
+
         <p> <button class="btn btn-lg btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> First time? Click here for setup instructions. </button> </p>
         <div class="collapse" id="collapseExample">
             <div class="card card-body">
@@ -38,7 +45,7 @@
                     <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Bvar%20url%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Fattribution_maker%3Faddr%3D'%2BencodeURIComponent(document.location.href)%2B'%26title%3D'%2BencodeURIComponent(document.title)%3Bwindow.open(url%2C'_blank')%7D)()">Attribution maker</a>
                         <br>(Note: Make sure you drag the link onto your browser bookmarks. Clicking will just bring you back to here)</li>
                     <li>Visit Unsplash - Beautiful Free Images and find your favourite image</li>
-                    <li>Click on the 'Unsplash embedder & attribution maker' in your bookmarks</li>
+                    <li>Click on the 'Attribution maker' in your bookmarks</li>
                     <li>You will be returned to this page, but now your selected image will be displayed below</li>
                     <li>Press the copy button next to the layout type that you prefer. This will copy the HTML to your clipboard</li>
                     <li>Paste this HTML anywhere that you can paste code (eg a Moodle page or tool)</li>
@@ -47,6 +54,15 @@
                 <h3>Show me how (Screen Video Tutorial)</h3>
                 <div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.2493%;"><iframe src="//cdn.iframe.ly/api/iframe?url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DBNlEK-6ef4o&amp;key=c46013d31771189d4639a29af622a1f2" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen scrolling="no"></iframe></div>
             </div>
+        </div>
+        <div class="pixabay-warning alert alert-danger collapse">
+            <h3>Important note - Pixabay previews expire in 24hrs</h3>
+            <p>Pixabay does not allow hot-linking (embedding) and their previews will expire within 24 hrs</p>
+            <p>To protect against this, ensure that you:</p>
+            <ol>
+                <li>Download the appropriately sized image</li>
+                <li>Upload this to Moodle (or other system) to replace the preview</li>
+            </ol>
         </div>
         <!-- Three columns of text below the carousel -->
         <!-- /.row -->
@@ -67,12 +83,13 @@
             <!-- End of image resizer -->
 
             <div class="clearfix container-fluid"></div>
+
             <div class="clearfix">
-                <div class="unsplash-copy unsplash-floated unsplash-fr">
+                <div class="maker-copy maker-floated maker-fr">
 
                     <!-- Start of Unsplash Image Embed - Float Right -->
                     <figure class="figure border rounded p-1 bg-light text-right float-right col-5 ml-4">
-                        <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+Unsplash" class="img-responsive img-fluid"> </figure>
+                        <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid"> </figure>
                     <!-- End of Unsplash Image Embed - Float Right -->
 
                 </div>
@@ -80,38 +97,38 @@
                 <p class="lead">Image will occupy <strong class="percent">42%</strong> of the available space.
                     <br> The image will resize and the text will reflow as you resize the browser.</p>
                 <p>The following placeholder text is included to show the realtionship between the image and text.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <button id="unsplash-fr" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-sml"> <i class="fa fa-download"></i>
-                        Download small image
-                    </a>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <button id="maker-fr" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-sml"> <i class="fa fa-download"></i>
+                    Download small image
+                </a>
             </div>
             <hr class="featurette-divider clearfix" id="left">
             <div class="clearfix">
-                <div class="unsplash-copy unsplash-floated unsplash-fr">
-<!-- Start of Unsplash Image Embed - Float Left -->
-<figure class="figure border rounded p-1 bg-light text-right float-left col-5 mr-4">
-    <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+Unsplash" class="img-responsive img-fluid"> </figure>
-<!-- End of Unsplash Image Embed - Float Left -->
+                <div class="maker-copy maker-floated maker-fr">
+                    <!-- Start of Unsplash Image Embed - Float Left -->
+                    <figure class="figure border rounded p-1 bg-light text-right float-left col-5 mr-4">
+                        <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid"> </figure>
+                    <!-- End of Unsplash Image Embed - Float Left -->
 
                 </div>
                 <h2 class="featurette-heading">Float Left (Image to the left of text)</h2>
                 <p class="lead">Image will occupy <strong class="percent">42%</strong> of the available space.
                     <br> The image will resize and the text will reflow as you resize the browser.</p>
                 <p>The following placeholder text is included to show the realtionship between the image and text.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <button id="unsplash-fr" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-sml"> <i class="fa fa-download"></i>
-                        Download small image
-                    </a>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <button id="maker-fr" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-sml"> <i class="fa fa-download"></i>
+                    Download small image
+                </a>
             </div>
             <hr class="featurette-divider clearfix" id="large">
             <div class="clearfix">
                 <h2 class="featurette-heading">Full width (Image above or below text)</h2>
-                <p class="lead">Image will occupy 100% of the available space</p><button id="unsplash-lg" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
-                        Download large image
-                    </a>
+                <p class="lead">Image will occupy 100% of the available space</p><button id="maker-lg" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
+                    Download large image
+                </a>
                 <div class="clearfix">
-                    <div class="unsplash-copy unsplash-lg">
+                    <div class="maker-copy maker-lg">
                         <!-- Start of Unsplash Image Embed - Full screen -->
                         <figure class="figure border rounded p-1 bg-light text-right col-12">
-                            <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+Unsplash" class="img-responsive img-fluid"> </figure>
+                            <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid"> </figure>
                         <!-- End of Unsplash Image Embed - Full screen -->
 
                     </div>
@@ -119,17 +136,17 @@
                 <hr class="featurette-divider clearfix" id="overlay">
                 <div class="clearfix">
                     <h2 class="featurette-heading">Full width, with text overlay (Custom text overlay)</h2>
-                    <p class="lead">Image will occupy 100% of the available space. Text overlay can be edited by you, after embedding</p> <button id="unsplash-ov" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
+                    <p class="lead">Image will occupy 100% of the available space. Text overlay can be edited by you, after embedding</p> <button id="maker-ov" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
                         Download large image
                     </a>
-                    <div class="unsplash-copy unsplash-ov">
+                    <div class="maker-copy maker-ov">
 
                         <!-- Start of Unsplash Embed Code - Full-width, with text overlay (Embed code by @BirdyOz)-->
                         <div class="overlay" style="position: relative;">
 
                             <!-- Start of Unsplash Image Embed - Float Left -->
                             <figure class="figure border rounded p-1 bg-light text-right col-12">
-                                <img src="https://dummyimage.com//b094b0/e3b1e3&text=Loading+image+from+Unsplash" class="img-responsive img-fluid"> </figure>
+                                <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid"> </figure>
                             <!-- End of Unsplash Image Embed - Float Left -->
 
                             <div class="text-overlay" style="text-align: center; color: white !important; text-shadow: 2px 2px 4px #000000; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%">
