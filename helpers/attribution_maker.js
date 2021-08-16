@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-08-16 15:41:36
+ * @Last Modified time: 2021-08-16 18:55:56
  */
 
 $(function() {
@@ -30,6 +30,7 @@ $(function() {
     if (url_string.indexOf("?") > 0) {
         url = new URL(url_string);
         img_orig = url.searchParams.get("addr");
+        console.log("@GB: img_orig = ", img_orig);
         // Detect site
         if (img_orig.includes('unsplash')) {
             site = "Unsplash";
@@ -37,6 +38,10 @@ $(function() {
         if (img_orig.includes('pixabay')) {
             site = "Pixabay";
             $('.pixabay-warning').show();
+        }
+        if (img_orig.includes('wikimedia')) {
+            site = "Wikimedia Commons";
+            console.log("@GB: site = ", site);
         }
 
     } else {
@@ -65,7 +70,7 @@ $(function() {
             title = result.description;
             alt = result.alt_description;
             download_lge = img_src.replace("&w=1080", "&w=1440");
-            img_src=download_lge;
+            img_src = download_lge;
             download_sml = img_src.replace("&w=1080", "&w=720");
             buildHTML();
         });
@@ -81,7 +86,6 @@ $(function() {
         licence_url = "https://pixabay.com/service/license/";
         api_key = "11445-7c3e3173d6f9a6047e64583ca";
         uri = "https://pixabay.com/api/?key=" + api_key + "&id=" + id;
-        maxpx = 1280;
 
         $.getJSON(uri, function() {})
             .done(function(data) {
@@ -95,6 +99,41 @@ $(function() {
                 img_name = "Image";
                 download_sml = data.hits[0].webformatURL; // Small image 640px wide
                 download_lge = img_src; // Large image 1280px wide
+                buildHTML();
+            });
+    }
+
+    // If I am Wikimedia
+    if (site == "Wikimedia Commons") {
+        n = img_orig.lastIndexOf('/');
+        id = img_orig.substring(n + 1);
+        console.log("@GB: Wikimedia file id = ", id);
+
+        site_url = "https://commons.wikimedia.org/";
+        uri = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=imageinfo&list=&meta=&iiprop=timestamp%7Cuser%7Cextmetadata%7Curl%7Cuserid&iilimit=1&iiurlwidth=1440&titles=" + id;
+        console.log("@GB: uri = ", uri);
+        maxpx = 1280;
+
+        $.getJSON(uri, function() {})
+            .done(function(data) {
+                json = data.query.pages[-1];
+                console.log("@GB: json = ", json);
+                img_src = json.imageinfo[0].thumburl;
+                console.log("@GB: img_src = ", img_src);
+                user = json.imageinfo[0].user;
+                user_url = "https://commons.wikimedia.org/wiki/User:"+user.replace(" ", "_");
+                console.log("@GB: user_url = ", user_url);
+                alt = json.imageinfo[0].extmetadata.ImageDescription.value;
+                console.log("@GB: alt = ", alt);
+                img_name = "Image";
+                download_sml = img_src.replace("1440px", "720px"); // Small image 720px wide
+                console.log("@GB: download_sml = ", download_sml);
+                download_lge = img_src; // Large image 1440px wide
+                console.log("@GB: download_lge = ", download_lge);
+                licence = json.imageinfo[0].extmetadata.LicenseShortName.value;
+                console.log("@GB: licence = ", licence);
+                licence_url = json.imageinfo[0].extmetadata.LicenseUrl.value;
+                console.log("@GB: licence_url = ", licence_url);
                 buildHTML();
             });
     }
