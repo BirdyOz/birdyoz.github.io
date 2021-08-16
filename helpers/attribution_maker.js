@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-08-16 19:14:39
+ * @Last Modified time: 2021-08-16 19:24:36
  */
 
 $(function() {
@@ -123,7 +123,7 @@ $(function() {
                 user = json.imageinfo[0].user;
                 user_url = "https://commons.wikimedia.org/wiki/User:"+user.replace(" ", "_");
                 console.log("@GB: user_url = ", user_url);
-                alt = json.imageinfo[0].extmetadata.ImageDescription.value;
+                alt = json.imageinfo[0].extmetadata.ObjectName.value;
                 console.log("@GB: alt = ", alt);
                 img_name = "Image";
                 download_sml = img_src.replace("1440px", "720px"); // Small image 720px wide
