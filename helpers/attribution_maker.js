@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-08-18 10:01:49
+ * @Last Modified time: 2021-08-19 09:44:13
  */
 
 $(function() {
@@ -109,7 +109,8 @@ $(function() {
                 alt.pop();
                 alt=alt.join(" ");
                 console.log("@GB: alt = ", alt);
-                download_sml = img_orig+"?auto=compress&cs=tinysrgb&w=720";// Large image 1280px wide
+                download_sml = img_orig+"?auto=compress&cs=tinysrgb&w=720";
+                download_lge = img_src;
                 buildHTML();
             }
         });
