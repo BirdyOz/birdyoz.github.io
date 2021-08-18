@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-08-17 16:15:29
+ * @Last Modified time: 2021-08-18 10:01:49
  */
 
 $(function() {
@@ -248,20 +248,19 @@ $(function() {
     });
 
     function unsplashSnippet(i) {
-        var snippet = `
-        <img src="${img_src}" class="img-responsive img-fluid img-sml" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
-        <figcaption class="figure-caption text-muted small">
-            <small>
-                ${startCollapsed ? `
-                <!-- Start of Show/Hide interface, ID = ${id}-${i} -->
-                <a class="source-btn" data-toggle="collapse" href="#show-${id}-${i}" role="button" aria-expanded="false" aria-controls="show-${id}-${i}">&#9660; Show attribution</a>
-                <div class="source collapse m-0 p-0" id="show-${id}-${i}">` : ''}
-                <a href="${img_orig}" target="_blank">${img_name}</a> by <a href="${user_url}" target="_blank">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>
-                    <br><a href="${licence_url}" target="_blank">${licence}</a>. Added ${today} ${startCollapsed ? `</div>
-                <!-- End of Show/Hide interface, ID = ${id}-${i} -->` : ''}
-            </small>
-        </figcaption>
-    `;
+        var snippet =
+`<img src="${img_src}" class="img-responsive img-fluid img-sml" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
+<figcaption class="figure-caption text-muted small">
+    <small>
+        ${startCollapsed ? `
+        <!-- Start of Show/Hide interface, ID = ${id}-${i} -->
+        <a class="source-btn" data-toggle="collapse" href="#show-${id}-${i}" role="button" aria-expanded="false" aria-controls="show-${id}-${i}">&#9660; Show attribution</a>
+        <div class="source collapse m-0 p-0" id="show-${id}-${i}">` : ''}
+        <a href="${img_orig}" target="_blank">${img_name}</a> by <a href="${user_url}" target="_blank">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>
+            <br><a href="${licence_url}" target="_blank">${licence}</a>. Added ${today} ${startCollapsed ? `</div>
+        <!-- End of Show/Hide interface, ID = ${id}-${i} -->` : ''}
+    </small>
+</figcaption>`;
         return snippet;
     }
 
