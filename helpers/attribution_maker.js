@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-08-19 09:44:13
+ * @Last Modified time: 2021-08-19 13:40:06
  */
 
 $(function() {
@@ -99,7 +99,7 @@ $(function() {
                 console.log("@GB: data = ", data);
                 img_orig = data.src.original;
                 console.log("@GB: img_orig = ", img_orig);
-                img_src=img_orig+"?auto=compress&cs=tinysrgb&w=1440";
+                img_src = img_orig + "?auto=compress&cs=tinysrgb&w=1440";
                 console.log("@GB: img_src = ", img_src);
                 user = data.photographer;
                 console.log("@GB: user = ", user);
@@ -107,9 +107,9 @@ $(function() {
                 console.log("@GB: user_url = ", user_url);
                 alt = data.url.split("/")[4].split("-");
                 alt.pop();
-                alt=alt.join(" ");
+                alt = alt.join(" ");
                 console.log("@GB: alt = ", alt);
-                download_sml = img_orig+"?auto=compress&cs=tinysrgb&w=720";
+                download_sml = img_orig + "?auto=compress&cs=tinysrgb&w=720";
                 download_lge = img_src;
                 buildHTML();
             }
@@ -148,7 +148,10 @@ $(function() {
         n = img_orig.lastIndexOf('/');
         id = img_orig.substring(n + 1);
         console.log("@GB: Wikimedia file id = ", id);
-
+        if (!id.includes('File:')) {
+            console.log("@GB: id does not include File: = ", id);
+            id = "File:" + id;
+        }
         site_url = "https://commons.wikimedia.org/";
         uri = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=imageinfo&list=&meta=&iiprop=timestamp%7Cuser%7Cextmetadata%7Curl%7Cuserid&iilimit=1&iiurlwidth=1440&origin=*&titles=" + id;
         console.log("@GB: uri = ", uri);
@@ -172,7 +175,14 @@ $(function() {
                 console.log("@GB: download_lge = ", download_lge);
                 licence = json.imageinfo[0].extmetadata.LicenseShortName.value;
                 console.log("@GB: licence = ", licence);
-                licence_url = json.imageinfo[0].extmetadata.LicenseUrl.value;
+                try {
+                    licence_url = json.imageinfo[0].extmetadata.LicenseUrl.value;
+                } catch (error) {
+                    console.error("Error: " + error);
+                    // expected output: ReferenceError: nonExistentFunction is not defined
+                    // Note - error messages will vary depending on browser
+                    licence_url = "https://en.wikipedia.org/wiki/Public_domain";
+                }
                 console.log("@GB: licence_url = ", licence_url);
                 buildHTML();
             });
@@ -250,10 +260,9 @@ $(function() {
 
     function unsplashSnippet(i) {
         var snippet =
-`<img src="${img_src}" class="img-responsive img-fluid img-sml" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
+            `<img src="${img_src}" class="img-responsive img-fluid img-sml" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
 <figcaption class="figure-caption text-muted small">
-    <small>
-        ${startCollapsed ? `
+    <small>${startCollapsed ? `
         <!-- Start of Show/Hide interface, ID = ${id}-${i} -->
         <a class="source-btn" data-toggle="collapse" href="#show-${id}-${i}" role="button" aria-expanded="false" aria-controls="show-${id}-${i}">&#9660; Show attribution</a>
         <div class="source collapse m-0 p-0" id="show-${id}-${i}">` : ''}
