@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-08-19 13:40:06
+ * @Last Modified time: 2021-08-20 12:16:59
  */
 
 $(function() {
@@ -219,8 +219,11 @@ $(function() {
         // Cancel the default action
         event.preventDefault();
         var btn = $(this);
+        console.log("@GB: btn = ", btn);
         var closest = btn.prev('.maker-copy');
+        console.log("@GB: closest = ", closest);
         var id = "." + btn.attr('id');
+        console.log("@GB: id = ", id);
         var paste = $(id).html();
         console.log("@GB: paste = ", paste);
 
@@ -260,7 +263,7 @@ $(function() {
 
     function unsplashSnippet(i) {
         var snippet =
-            `<img src="${img_src}" class="img-responsive img-fluid img-sml" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
+ `<img src="${img_src}" class="img-responsive img-fluid img-sml" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
 <figcaption class="figure-caption text-muted small">
     <small>${startCollapsed ? `
         <!-- Start of Show/Hide interface, ID = ${id}-${i} -->
