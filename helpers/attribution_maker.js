@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-08-20 12:16:59
+ * @Last Modified time: 2021-08-23 16:39:53
  */
 
 $(function() {
@@ -75,7 +75,7 @@ $(function() {
             alt = result.alt_description;
             download_lge = img_src.replace("&w=1080", "&w=1440");
             img_src = download_lge;
-            download_sml = img_src.replace("&w=1080", "&w=720");
+            download_sml = img_src.replace("&w=1440", "&w=720");
             buildHTML();
         });
     }
@@ -155,7 +155,6 @@ $(function() {
         site_url = "https://commons.wikimedia.org/";
         uri = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=imageinfo&list=&meta=&iiprop=timestamp%7Cuser%7Cextmetadata%7Curl%7Cuserid&iilimit=1&iiurlwidth=1440&origin=*&titles=" + id;
         console.log("@GB: uri = ", uri);
-        maxpx = 1280;
 
         $.getJSON(uri, function() {})
             .done(function(data) {
@@ -184,6 +183,8 @@ $(function() {
                     licence_url = "https://en.wikipedia.org/wiki/Public_domain";
                 }
                 console.log("@GB: licence_url = ", licence_url);
+                id = id.slugify();
+                console.log("@GB: Sluggified id = ", id);
                 buildHTML();
             });
     }
@@ -263,7 +264,7 @@ $(function() {
 
     function unsplashSnippet(i) {
         var snippet =
- `<img src="${img_src}" class="img-responsive img-fluid img-sml" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
+            `<img src="${img_src}" class="img-responsive img-fluid img-sml" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
 <figcaption class="figure-caption text-muted small">
     <small>${startCollapsed ? `
         <!-- Start of Show/Hide interface, ID = ${id}-${i} -->
@@ -352,5 +353,16 @@ $(function() {
         };
 
     }
+
+    String.prototype.slugify = function(separator = "-") {
+        return this
+            .toString()
+            .normalize('NFD') // split an accented letter in the base letter and the acent
+            .replace(/[\u0300-\u036f]/g, '') // remove all previously split accents
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9 ]/g, separator) // remove all chars not letters, numbers and spaces (to be replaced)
+            .replace(/\s+/g, separator);
+    };
 
 });
