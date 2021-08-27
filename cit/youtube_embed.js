@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-08-27 11:36:08
+ * @Last Modified time: 2021-08-27 11:55:56
  */
 
 $(function() {
@@ -101,7 +101,8 @@ $(function() {
                     if (embeddable === true) {
                         dom =
 `<!-- Start of CIT YouTube Video -->
-<div class="mt-2 mb-2 w-100 clearfix container-fluid">
+<div class="clearfix container-fluid"></div>
+<div class="mt-2 mb-2 w-100">
     <h5 class="label-heading"><i class="fa fa-play-circle fa-fw"></i> ${title} (${duration_str})</h5>
     ${desc}
     <div class="embed-responsive embed-responsive-${aspect}"> <iframe class="embed-responsive-item vjs-tech" src="https://www.youtube.com/embed/${yt_video_id}?rel=0" allowfullscreen=""></iframe> </div>
@@ -123,7 +124,8 @@ $(function() {
 
                         dom =
 `<!-- Start of CIT YouTube Video. Video does not allow embedding -->
-<div class="mt-2 mb-2 w-100 clearfix container-fluid">
+<div class="clearfix container-fluid"></div>
+<div class="mt-2 mb-2 w-100">
     <h5 class="label-heading"><i class="fa fa-play-circle fa-fw"></i> ${title} (${duration_str})</h5>
     ${desc}
     <div class="overlay" style="width:100%; margin: 20px auto; text-align: center; color: white  !important; text-shadow: 2px 2px 4px #000000; position: relative;">
