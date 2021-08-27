@@ -10,6 +10,14 @@
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+      <style type="text/css">
+        .label-heading {
+            border-top: 3px solid #008eb8;
+            padding-top: 10px;
+            display: block;
+            width: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -33,23 +41,11 @@
                     <li><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Bvar%20url_string%20%3D%20window.location.href%3Bif%20(url_string.indexOf(%22%3F%22)%20%3E%200)%20%7Bvar%20url%20%3D%20new%20URL(url_string)%3Bvar%20ytv%20%3D%20url.searchParams.get(%22v%22)%3Bvar%20url%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fcit%2Fyoutube_embedder.html%3Fyt_video_id%3D'%20%2B%20ytv%3Bwindow.open(url%2C%20'_blank')%3B%7D%7D)()">CIT YouTube Embedder</a>
                         <br><span class="text-muted">(Note: Make sure you drag the link onto your browser bookmarks. Clicking will just bring you back to here)</span></li>
                     <li>Visit YouTube and locate the video that you want</li>
-                    <li>Click on the 'Youtube embedder' in your bookmarks</li>
+                    <li>Click on the 'CIT YouTube embedder' in your bookmarks</li>
                     <li>You will be returned to this page, but now your selected video will be displayed below</li>
                     <li>Press the copy button next to the layout type that you prefer. This will copy the HTML to your clipboard</li>
                     <li>Paste this HTML anywhere that you can paste code (eg a Moodle page or tool)</li>
                 </ol>
-
-                <!-- Start of Video box -->
-                <div class="card well" style="padding: 10px">
-                    <h4 class="text-danger"><i class="fa fa-play-circle-o"></i> Youtube responsive video embedder (03:16)</h4>
-                    <p class="YT_Desc">Get responsive Youtube embed code, complete with video box, title, description and playtime
-                    </p>
-                    <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item vjs-tech" src="https://www.youtube.com/embed/UTmOpykVuTQ?rel=0" allowfullscreen=""></iframe>
-                    </div>
-                </div>
-                <!-- End of video box -->
-
             </div>
         </div>
         <hr id="btn">
