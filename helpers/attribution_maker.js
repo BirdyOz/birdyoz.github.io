@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-08-23 16:39:53
+ * @Last Modified time: 2021-09-01 09:53:31
  */
 
 $(function() {
@@ -15,16 +15,18 @@ $(function() {
     let img_name = "Photo"; // Image name.   Defualt to "Photo"
     let img_orig = ""; // Link to original image
     let img_src = ""; // src of image to be displayed in page
-    let download_sml = ""; // Small image 960px wide
-    let download_lge = ""; // Large image 1920px wide
-    let alt = "";
-    let user = "";
-    let user_url = "";
-    let licence = "";
-    let licence_url = "";
-    let title = null; //If a title is set, this will be used
-    let startCollapsed = true;
+    let download_sml = ""; // Small image 720px wide
+    let download_lge = ""; // Large image 1440px wide
+    let alt = ""; // alternative text
+    let user = ""; //username
+    let user_url = ""; //URL to user profile
+    let licence = ""; // Licence type, eg "Free to use|Public Domain|CC-BY" etc.
+    let licence_url = ""; // Link to licence
+    let title = null; //If tyhe image has a title, then this will be used
+    let startCollapsed = true; // Default to collapsed view
     let width = "col-5"; // Default width for floated images
+
+
     // Get URL parameters
     url_string = window.location.href;
     if (url_string.indexOf("?") > 0) {
@@ -61,9 +63,9 @@ $(function() {
         site_url = "https://unsplash.com";
         licence = "Free to use";
         licence_url = "https://unsplash.com/licence";
-
+        key = "MzM2YjUyN2IyZTE4ZDA0NTA0NTgyMGI3ODA2MmI5NWM4MjUzNzYzMTEzMjZiMmEwOGY5YjkzZWVmN2VmYzA3Yg%3D%3D";
         // API call
-        uri = "https://api.unsplash.com/photos/" + id + "?client_id=336b527b2e18d045045820b78062b95c825376311326b2a08f9b93eef7efc07b";
+        uri = "https://api.unsplash.com/photos/" + id + "?client_id="+atob(decodeURIComponent(key));
 
         $.getJSON(uri, function(result) {
             console.log("@GB: result = ", result);
@@ -88,13 +90,13 @@ $(function() {
         site_url = "https://pexels.com/";
         licence = "Free to use";
         licence_url = "https://www.pexels.com/license/";
-        api_key = "563492ad6f91700001000001bfeffd077baf454dab29d6300bdf740d";
+        key = "NTYzNDkyYWQ2ZjkxNzAwMDAxMDAwMDAxYmZlZmZkMDc3YmFmNDU0ZGFiMjlkNjMwMGJkZjc0MGQ%3D";
         uri = "https://api.pexels.com/v1/photos/" + id;
 
         $.ajax({
             url: uri,
             dataType: 'json',
-            headers: { 'Authorization': api_key },
+            headers: { 'Authorization': atob(decodeURIComponent(key)) },
             success: function(data) {
                 console.log("@GB: data = ", data);
                 img_orig = data.src.original;
@@ -124,8 +126,8 @@ $(function() {
         site_url = "https://pixabay.com/";
         licence = "Free to use";
         licence_url = "https://pixabay.com/service/license/";
-        api_key = "11445-7c3e3173d6f9a6047e64583ca";
-        uri = "https://pixabay.com/api/?key=" + api_key + "&id=" + id;
+        key = "MTE0NDUtN2MzZTMxNzNkNmY5YTYwNDdlNjQ1ODNjYQ%3D%3D";
+        uri = "https://pixabay.com/api/?key=" + atob(decodeURIComponent(key)) + "&id=" + id;
 
         $.getJSON(uri, function() {})
             .done(function(data) {
@@ -149,11 +151,11 @@ $(function() {
         id = img_orig.substring(n + 1);
         console.log("@GB: Wikimedia file id = ", id);
         if (!id.includes('File:')) {
-            console.log("@GB: id does not include File: = ", id);
+                    console.log("@GB: id does not include File: = ", id);
             id = "File:" + id;
         }
         site_url = "https://commons.wikimedia.org/";
-        uri = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=imageinfo&list=&meta=&iiprop=timestamp%7Cuser%7Cextmetadata%7Curl%7Cuserid&iilimit=1&iiurlwidth=1440&origin=*&titles=" + id;
+        uri = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=imageinfo&list=&meta=&iiprop=timestamp%7Cuser%7Cextmetadata%7Curl%7Cuserid&iilimit=1&iiurlwidth=720&origin=*&titles=" + id;
         console.log("@GB: uri = ", uri);
 
         $.getJSON(uri, function() {})
@@ -168,9 +170,10 @@ $(function() {
                 alt = json.imageinfo[0].extmetadata.ObjectName.value;
                 console.log("@GB: alt = ", alt);
                 img_name = "Image";
-                download_sml = img_src.replace("1440px", "720px"); // Small image 720px wide
+                download_sml = img_src; // Small image 720px wide
                 console.log("@GB: download_sml = ", download_sml);
-                download_lge = img_src; // Large image 1440px wide
+                download_lge = json.imageinfo[0].responsiveUrls[2]; // Large image 1440px wide
+                img_src = download_lge;
                 console.log("@GB: download_lge = ", download_lge);
                 licence = json.imageinfo[0].extmetadata.LicenseShortName.value;
                 console.log("@GB: licence = ", licence);
@@ -265,10 +268,10 @@ $(function() {
     function unsplashSnippet(i) {
         var snippet =
             `<img src="${img_src}" class="img-responsive img-fluid img-sml" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
-<figcaption class="figure-caption text-muted small">
+<figcaption class="figure-caption text-muted small fw-lighter">
     <small>${startCollapsed ? `
         <!-- Start of Show/Hide interface, ID = ${id}-${i} -->
-        <a class="source-btn" data-toggle="collapse" href="#show-${id}-${i}" role="button" aria-expanded="false" aria-controls="show-${id}-${i}">&#9660; Show attribution</a>
+        <a class="source-btn text-muted" data-toggle="collapse" href="#show-${id}-${i}" role="button" aria-expanded="false" aria-controls="show-${id}-${i}">&#9661; Show attribution</a>
         <div class="source collapse m-0 p-0" id="show-${id}-${i}">` : ''}
         <a href="${img_orig}" target="_blank">${img_name}</a> by <a href="${user_url}" target="_blank">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>
             <br><a href="${licence_url}" target="_blank">${licence}</a>. Added ${today} ${startCollapsed ? `</div>
