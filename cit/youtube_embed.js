@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-08-30 14:13:11
+ * @Last Modified time: 2021-09-01 10:23:44
  */
 
 $(function() {
@@ -18,11 +18,8 @@ $(function() {
         // Make YouTube API call
         if (yt_video_id.length > 0) {
             // Define global vars
-            var yt_api_key = "AIzaSyBahXsq4Hx0tfHLymKnZH1G99nLiA3gpKA",
-            // var yt_api_key = "AIzaSyBlBpATO1tgHN3qrPe0ZT9haE1nTBlQaU4",
-            // var yt_api_key = "AIzaSyDFPyUHKht-uI7r4sUggbO3bvq7woHAjd0",
-                // yt_video_id = "Rtmj-oE6wPU",
-                yt_snippet_endpoint = "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatus%2Cplayer&id=" + yt_video_id + "&key=" + yt_api_key;
+            var key = "QUl6YVN5QmFoWHNxNEh4MHRmSEx5bUtuWkgxRzk5bkxpQTNncEtB",
+                yt_snippet_endpoint = "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatus%2Cplayer&id=" + yt_video_id + "&key=" + atob(decodeURIComponent(key));
             console.log("@GB: yt_snippet_endpoint = ", yt_snippet_endpoint);
 
 
