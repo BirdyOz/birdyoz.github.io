@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-09-01 12:51:26
+ * @Last Modified time: 2021-09-02 11:15:54
  */
 
 $(function() {
@@ -23,10 +23,18 @@ $(function() {
     let licence = ""; // Licence type, eg "Free to use|Public Domain|CC-BY" etc.
     let licence_url = ""; // Link to licence
     let title = null; //If tyhe image has a title, then this will be used
-    let startCollapsed = true; // Default to collapsed view
+    let startCollapsed = false; // Default to collapsed view
     let width = "col-5"; // Default width for floated images
     let json = ""; // JSON Object returned by API call
 
+
+    // Set defualt value of collapsed or shown
+
+    if (startCollapsed) {
+        // statement
+    } else {
+        $('#start-shown').click();
+    }
 
     // Get URL parameters
     url_string = window.location.href;
@@ -75,6 +83,7 @@ $(function() {
             img_src = download_lge;
             download_sml = img_src.replace("&w=1440", "&w=720");
             buildHTML();
+            logger();
         });
     }
 
@@ -103,6 +112,7 @@ $(function() {
                 download_sml = img_orig + "?auto=compress&cs=tinysrgb&w=720";
                 download_lge = img_src;
                 buildHTML();
+                logger();
             }
         });
     }
@@ -128,6 +138,7 @@ $(function() {
                 download_sml = json.hits[0].webformatURL; // Small image 640px wide
                 download_lge = img_src; // Large image 1280px wide
                 buildHTML();
+                logger();
             });
     }
 
