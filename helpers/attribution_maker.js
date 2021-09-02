@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-09-02 11:15:54
+ * @Last Modified time: 2021-09-02 16:19:39
  */
 
 $(function() {
@@ -23,7 +23,8 @@ $(function() {
     let licence = ""; // Licence type, eg "Free to use|Public Domain|CC-BY" etc.
     let licence_url = ""; // Link to licence
     let title = null; //If tyhe image has a title, then this will be used
-    let startCollapsed = false; // Default to collapsed view
+    let startCollapsed = true; // Default to collapsed view
+    let org = null; // to cater for organisation specific changes
     let width = "col-5"; // Default width for floated images
     let json = ""; // JSON Object returned by API call
 
@@ -54,6 +55,13 @@ $(function() {
         }
         if (img_orig.includes('pexels.com')) {
             site = "Pexels";
+        }
+        org = url.searchParams.get("org");
+        console.log("@GB: org = ", org);
+
+        if (org == 'mp') {
+            startCollapsed = false;
+            $('#collapser').hide();
         }
 
     } else {
@@ -242,7 +250,7 @@ $(function() {
         event.preventDefault();
     });
 
-    function unsplashSnippet(i) {
+    function embedSnippet(i) {
         var snippet = `<img src="${img_src}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
 <figcaption class="figure-caption text-muted small fw-lighter">
     <small>${startCollapsed ? `
@@ -257,9 +265,26 @@ $(function() {
         return snippet;
     }
 
+    function mpSnippet(i) {
+        var snippet = `<img src="${img_src}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
+<figcaption class="figure-caption text-muted small fw-lighter">
+    <small>${startCollapsed ? `
+        <!-- Start of Show/Hide interface, ID = ${id}-${i} -->
+        <a class="source-btn text-muted" data-toggle="collapse" href="#show-${id}-${i}" role="button" aria-expanded="false" aria-controls="show-${id}-${i}">&#9661; Show attribution</a>
+        <div class="source collapse m-0 p-0" id="show-${id}-${i}">` : ''}
+        <a href="${img_orig}" target="_blank">${img_name}</a> by <a href="${user_url}" target="_blank">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>, <a href="${licence_url}" target="_blank">Licence</a>, added on ${today} ${startCollapsed ? `</div>
+        <!-- End of Show/Hide interface, ID = ${id}-${i} -->` : ''}
+    </small>
+</figcaption>`;
+        return snippet;
+    }
+
     function buildHTML() {
         $('.maker-copy figure').each(function(index) {
-            snippet = unsplashSnippet(index);
+            if (org == 'mp') {
+                snippet = mpSnippet(index);
+            } else { snippet = embedSnippet(index); }
+
             $(this).html(snippet);
         });
     }
