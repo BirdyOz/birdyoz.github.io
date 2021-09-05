@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="#">
+    <meta name="author" content="#">
+    <title>@BirdyOz: Re-usable UI elements for Moodle (&amp; elsewhere)</title>
+    <!-- Bootstrap core CSS -->
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">@BirdyOz: Re-usable UI elements</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#quotes">Quotes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#boxes">Boxes</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#alerts">Alerts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#interactive">Interactives</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#tables">Tables</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#cards">Cards</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#other">More UI's</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#modals">Modals</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#attribution">Attribution</a>
+                </li>
+            </ul>
+        </div>
+        <button class="btn btn-outline-light" href="#navCollapse" target="#navCollapse" type="button" data-toggle="collapse" data-target="#navCollapse" aria-expanded="false" aria-controls="collapseExample">
+            Want more helpers?
+        </button>
+    </nav>
+    <div class="clearfix"></div>
+    <div class="mt-4 pt-5 pb-2 alert-warning collapse" id="navCollapse">
+        <div class="card-deck m-3">
+            <div class="card text-white shadow rounded bg-primary">
+                <h5 class="card-header mt-2">UI elements</h5>
+                <div class="card-body">
+                    <p class="card-text">Get code snippets for various layout and design elements, including interactive elements.</p>
+                    <a href="https://birdyoz.github.io/helpers/ui-elements.html" class="stretched-link"></a>
+                </div>
+            </div>
+            <div class="card text-white shadow rounded bg-danger">
+                <h5 class="card-header mt-2">Youtube helper</h5>
+                <div class="card-body">
+                    <p class="card-text">Get responsive Youtube embed code, complete with video box, title, description and playtime</p>
+                    <a href="https://birdyoz.github.io/helpers/youtube_embedder.html" class="stretched-link"></a>
+                </div>
+            </div>
+            <div class="card text-white shadow rounded bg-secondary">
+                <h5 class="card-header mt-2">Unsplash helper</h5>
+                <div class="card-body">
+                    <p class="card-text">Get responsive Unsplash image embed with attribution, for various screen layouts. Download appropriately resized images</p>
+                    <a href="https://birdyoz.github.io/helpers/unsplash_embed.html" class="stretched-link"></a>
+                </div>
+            </div>
+            <div class="card text-white shadow rounded bg-success">
+                <h5 class="card-header mt-2">Pixabay helper</h5>
+                <div class="card-body">
+                    <p class="card-text">Get responsive Pixabay image placeholder with attribution. Download resized images, to replace this placeholder.</p>
+                    <a href="https://birdyoz.github.io/helpers/pixabay_attribution_helper.html" class="stretched-link"></a>
+                </div>
+            </div>
+            <div class="card text-white shadow rounded bg-info">
+                <h5 class="card-header mt-2">Shutterstock helper</h5>
+                <div class="card-body">
+                    <p class="card-text">Get Shutterstock image placeholder with attribution. To be replaced with the purchased shutterstock original.</p>
+                    <a href="https://birdyoz.github.io/helpers/shutterstock_attribution_helper.html" class="stretched-link"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Marketing messaging and featurettes
+        ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+    <div class="container marketing" style="margin-top: 100px">
+        <h1 class="display-4">Re-usable UI elements for Moodle (&amp; elsewhere)</h1>
+        <p class="lead">The following UI elements can be used to decorate your Moodle contents and create interactivity, all within the Moodle editor.</p>
+        <p class="lead">They use a combination of Bootrstap and FontAwesome. These are both 'baked in to Moodle' so it makes editing a breeze</p>
+
+<!-- Start of Show/Hide interface -->
+<p>
+  <a class="btn btn-primary" data-toggle="collapse" href="#HiddenContent1" role="button" aria-expanded="false" aria-controls="HiddenContent1">
+    Need help?
+  </a>
+</p>
+<div class="collapse" id="HiddenContent1">
+  <div class="card card-body">
+
+<!-- Start of Video box -->
+<div class="card well" style="padding: 10px">
+    <h4 class="text-danger"><i class="fa fa-play-circle-o"></i> UI elements - Enrich your online learning content (06:40)</h4>
+    <div class="embed-responsive embed-responsive-16by9">
+        <iframe class="embed-responsive-item vjs-tech" src="https://www.youtube.com/embed/P5VIC9_qm90?rel=0" allowfullscreen=""></iframe>
+    </div>
+</div>
+<!-- End of video box -->
+
+    <small><a class="btn-block btn btn-sm btn-light" class="text-center" data-toggle="collapse" href="#HiddenContent1" role="button" aria-expanded="false" aria-controls="HiddenContent1">Hide</a></small>
+  </div>
+</div>
+<!-- End of Show/Hide interface -->
+
+        <hr>
+        <h2 id="quotes">Fancy blockquotes</h2>
+<div class="copythis">
+<!-- Fancy Blockquotes -->
+<blockquote class="blockquote"><i aria-hidden="true" class="fa fa-fw fa-quote-left fa-2x fa-pull-left text-muted" aria-hidden="true"></i>
+    <p> Insert quote here</p><i aria-hidden="true" class="fa fa-fw fa-quote-right fa-2x fa-pull-right text-muted" aria-hidden="true"></i>
+    <div class="blockquote-footer">
+        Insert citation here
+    </div>
+</blockquote>
+<!-- End of Fancy Blockquotes -->
+</div>
+        <hr>
+        <h2 id="boxes">Boxes</h2>
+<div class="copythis">
+<!-- Think box -->
+<div class="well card" style="padding: 10px">
+    <h4 class="text-success"><i aria-hidden="true" class="fa fa-lightbulb-o"></i> Think</h4>
+    <p>Insert content here</p>
+</div>
+<!-- End of think box -->
+</div>
+        <hr>
+<div class="copythis">
+<!-- Read box -->
+<div class="well card" style="padding: 10px">
+    <h4 class="text-info"><i aria-hidden="true" class="fa fa-book"></i> Read</h4>
+    <p>Insert content here</p>
+</div>
+<!-- End of read box -->
+</div>
+        <hr>
+<div class="copythis">
+<!-- Discuss box -->
+<div class="well card" style="padding: 10px">
+    <h4 class="text-warning"><i aria-hidden="true" class="fa fa-comments"></i> Discuss</h4>
+    <p>Insert content here</p>
+</div>
+<!-- End of discuss box -->
+</div>
+        <hr>
+<div class="copythis">
+<!-- Important box -->
+<div class="well card" style="padding: 10px">
+    <h4 class="text-danger"><i aria-hidden="true" class="fa fa-exclamation-triangle"></i> Important</h4>
+    <p>Insert content here</p>
+</div>
+<!-- End of important box -->
+</div>
+        <hr>
+<div class="copythis">
+<!-- Reflect box -->
+<div class="well card" style="padding: 10px">
+    <h4 style="color: purple !important"><i aria-hidden="true" class="fa fa-search"></i> Reflect</h4>
+    <p>Insert content here</p>
+</div>
+<!-- End of reflect box -->
+</div>
+        <hr>
+<div class="copythis">
+<!-- Law/standard box -->
+<div class="well card" style="padding: 10px">
+    <h4 style="color: #c30 !important"><i aria-hidden="true" class="fa fa-balance-scale"></i> Law/Standard</h4>
+    <p>Insert content here</p>
+    <div class="alert alert-warning" role="alert">
+        Check with your workplace or library for a copy of this standard.
+    </div>
+</div>
+<!-- End of Law/standard box  box -->
+</div>
+        <hr>
+<div class="copythis">
+<!-- Portfolio box -->
+<div class="well card" style="padding: 10px">
+    <h4 class="text-success"><i aria-hidden="true" class="fa fa-flag"></i> Portfolio - [Name of Portfolio activity]</h4>
+    <p>Insert description of portfolio activity here</p>
+    <div class="alert alert-warning" role="alert">
+        Record your responses in your portfolio of evidence
+    </div>
+</div>
+<!-- End of Portfolio box -->
+</div>
+        <hr>
+<div class="copythis">
+<!-- Video box -->
+<div class="well card" style="padding: 10px" style="padding: 10px">
+    <h4 class="text-danger"><i aria-hidden="true" class="fa fa-play-circle-o"></i> Name of video - playtime in brackets (00:00)</h4>
+    <p>Insert video here</p>
+    <div class="text-right">
+        <small class="text-muted"><a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample" class="collapsed">Text transcript</a></small>
+    </div>
+    <div class="collapse" id="collapseExample" aria-expanded="false">
+        <!-- Terxt transcript -->
+        <div class="well card text-muted" style="padding: 10px !important; margin: 10px !important; border-color: #aaa !important">
+            <h5>Text transcript</h5>
+            <p>[Paste transcript here]</p>
+            <div class="text-center">
+                <a class="btn btn-primary text-center" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="true" aria-controls="collapseExample"><i aria-hidden="true" class="fa fa-chevron-circle-up"></i> Close transcript</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of video box -->
+</div>
+        <hr>
+<div class="copythis">
+<!-- Activity box -->
+<div class="well card" style="padding: 10px">
+    <h4 style="color: #c30 !important"><i aria-hidden="true" class="fa fa-tasks"></i> Activity</h4>
+    <p>Insert content here. Use this for basic activities</p>
+</div>
+<!-- End of Activity box -->
+</div>
+<div class="copythis">
+<!-- Extendec Activity box -->
+<div class="well card" style="padding: 10px">
+    <h4 style="color: #c30 !important"><i aria-hidden="true" class="fa fa-tasks"></i> Activity - [name of activity]</h4>
+    <p>Insert instructions here. Use this for extended activities where the student needs to record their findings.</p>
+    <div class="alert alert-warning" role="alert">
+        Record your responses in your <em>Learner's Worksheet</em>. Bring this document with you to your next face-to-face class to discuss with your teacher and fellow students. 
+    </div>
+</div>
+<!-- End of Extended Activity box -->
+</div>
+        <hr>
+<div class="copythis">
+<!-- Further information box -->
+<div class="well card" style="padding: 10px">
+    <h4 style="color: #277A37 !important"><i aria-hidden="true" class="fa fa-info-circle"></i> Further information</h4>
+    <p>Insert content here</p>
+</div>
+<!-- End of Further information box -->
+</div>
+        <hr>
+        <h2 id="alerts">Alerts</h2>
+<div class="copythis">
+<!-- Success alert -->
+<div class="alert alert-success" role="alert">
+    <p><strong>Success:</strong> Insert details/description here.</p>
+</div>
+<!-- End of success alert -->
+</div>
+        <hr>
+<div class="copythis">
+<!-- Info alert -->
+<div class="alert alert-info" role="alert">
+    <p><strong>Info:</strong> Insert details/description here.</p>
+</div>
+<!-- End of info alert -->
+</div>
+        <hr>
+<div class="copythis">
+<!-- Warning alert -->
+<div class="alert alert-warning" role="alert">
+    <p><strong>Consider:</strong> Insert details/description here.</p>
+</div>
+<!-- End of warning alert -->
+</div>
+        <hr>
+<div class="copythis">
+<!-- Danger altert -->
+<div class="alert alert-danger" role="alert">
+    <p><strong>Important:</strong> Insert details/description here.</p>
+</div>
+</div>
+        <!-- End of danger alert -->
+        <hr>
+        <h2 id="interactive">Interactive elements</h2>
+        <hr>
+        <h5>Show/hide interface</h5>
+<div class="copythis">
+<!-- Start of Show/Hide interface -->
+<p>
+    <a class="btn btn-primary" data-toggle="collapse" href="#HiddenContent1" role="button" aria-expanded="false" aria-controls="HiddenContent1">
+        More
+    </a>
+</p>
+<div class="collapse" id="HiddenContent1">
+    <div class="card card-body">
+        <p>Insert hidden content here.</p>
+        <small><a class="btn-block btn btn-sm btn-light" class="text-center" data-toggle="collapse" href="#HiddenContent1" role="button" aria-expanded="false" aria-controls="HiddenContent1">Hide</a></small>
+    </div>
+</div>
+<!-- End of Show/Hide interface -->
+</div>
+        <hr>
+        <h5>Accordion menu <span class="muted">(6 items max, delete unwanted items in the HTML)</span></h5>
+<div class="copythis">
+<!--  Start of accordion 1
+NB: If you require more than one accordion on the same page
+replace all instnaces of "accordion-1" with accordion-2" (etc)
+-->
+<div id="accordion-1">
+    <!-- Start of Item 1 -->
+    <div class="card">
+        <div class="card-header" id="accordion-1-heading-1">
+            <h5 class="mb-0"> <button class="btn btn-link" data-toggle="collapse" data-target="#accordion-1-collapse-1" aria-expanded="false" aria-controls="collapse-1">
+                    Heading for item 1
+                </button> </h5>
+        </div>
+        <div id="accordion-1-collapse-1" class="collapse" aria-labelledby="accordion-1-heading-1" data-parent="#accordion-1">
+            <div class="card-body" style="padding: 10px;">
+                <p>Content for item 1</p>
+            </div>
+        </div>
+    </div>
+    <!-- End of Item 1 -->
+    <!-- Start of Item 2 -->
+    <div class="card">
+        <div class="card-header" id="accordion-1-heading-2">
+            <h5 class="mb-0"> <button class="btn btn-link" data-toggle="collapse" data-target="#accordion-1-collapse-2" aria-expanded="false" aria-controls="collapse-2">
+                    Heading for item 2
+                </button> </h5>
+        </div>
+        <div id="accordion-1-collapse-2" class="collapse" aria-labelledby="accordion-1-heading-2" data-parent="#accordion-1">
+            <div class="card-body" style="padding: 10px;">
+                <p>Content for item 2</p>
+            </div>
+        </div>
+    </div>
+    <!-- End of Item 2 -->
+    <!-- Start of Item 3 -->
+    <div class="card">
+        <div class="card-header" id="accordion-1-heading-3">
+            <h5 class="mb-0"> <button class="btn btn-link" data-toggle="collapse" data-target="#accordion-1-collapse-3" aria-expanded="false" aria-controls="collapse-3">
+                    Heading for item 3
+                </button> </h5>
+        </div>
+        <div id="accordion-1-collapse-3" class="collapse" aria-labelledby="accordion-1-heading-3" data-parent="#accordion-1">
+            <div class="card-body" style="padding: 10px;">
+                <p>Content for item 3</p>
+            </div>
+        </div>
+    </div>
+    <!-- End of Item 3 -->
+    <!-- Start of Item 4 -->
+    <div class="card">
+        <div class="card-header" id="accordion-1-heading-4">
+            <h5 class="mb-0"> <button class="btn btn-link" data-toggle="collapse" data-target="#accordion-1-collapse-4" aria-expanded="false" aria-controls="collapse-4">
+                    Heading for item 4
+                </button> </h5>
+        </div>
+        <div id="accordion-1-collapse-4" class="collapse" aria-labelledby="accordion-1-heading-4" data-parent="#accordion-1">
+            <div class="card-body" style="padding: 10px;">
+                <p>Content for item 4</p>
+            </div>
+        </div>
+    </div>
+    <!-- End of Item 4 -->
+    <!-- Start of Item 5 -->
+    <div class="card">
+        <div class="card-header" id="accordion-1-heading-5">
+            <h5 class="mb-0"> <button class="btn btn-link" data-toggle="collapse" data-target="#accordion-1-collapse-5" aria-expanded="false" aria-controls="collapse-5">
+                    Heading for item 5
+                </button> </h5>
+        </div>
+        <div id="accordion-1-collapse-5" class="collapse" aria-labelledby="accordion-1-heading-5" data-parent="#accordion-1">
+            <div class="card-body" style="padding: 10px;">
+                <p>Content for item 5</p>
+            </div>
+        </div>
+    </div>
+    <!-- End of Item 5 -->
+    <!-- Start of Item 6 -->
+    <div class="card">
+        <div class="card-header" id="accordion-1-heading-6">
+            <h5 class="mb-0"> <button class="btn btn-link" data-toggle="collapse" data-target="#accordion-1-collapse-6" aria-expanded="false" aria-controls="collapse-6">
+                    Heading for item 6
+                </button> </h5>
+        </div>
+        <div id="accordion-1-collapse-6" class="collapse" aria-labelledby="accordion-1-heading-6" data-parent="#accordion-1">
+            <div class="card-body" style="padding: 10px;">
+                <p>Content for item 6</p>
+            </div>
+        </div>
+    </div>
+    <!-- End of Item 6 -->
+</div>
+<!-- End of accordion 1 -->
+</div>
+        <hr>
+        <h3>Horizontal tabs</h3>
+        <p>Horizontal tabs are most useful for small numbers of tabs and when the tab text is short</p>
+<div class="copythis">
+<!-- Start of horizontal tabs -->
+<ul class="nav nav-pills mb-0" id="pills-tab" role="tablist">
+    <li class="nav-item">
+        <a class="nav-link active show" id="h-tabs-t1-tab" data-toggle="pill" href="#h-tabs-t1" role="tab" aria-controls="h-tabs-t1" aria-selected="true">Tab 1</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="h-tabs-t2-tab" data-toggle="pill" href="#h-tabs-t2" role="tab" aria-controls="h-tabs-t2" aria-selected="false">Tab 2</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" id="h-tabs-t3-tab" data-toggle="pill" href="#h-tabs-t3" role="tab" aria-controls="h-tabs-t3" aria-selected="false">Tab 3</a>
+    </li>
+</ul>
+<div class="tab-content card" id="pills-tabContent">
+    <div class="tab-pane p-3 fade active show" id="h-tabs-t1" role="tabpanel" aria-labelledby="h-tabs-t1-tab">
+        <h4>Tab 1</h4>
+        <p>Tab 1 content goes here.</p>
+    </div>
+    <div class="tab-pane p-3 fade" id="h-tabs-t2" role="tabpanel" aria-labelledby="h-tabs-t2-tab">
+        <h4>Tab 2</h4>
+        <p>Tab 2 content goes here.</p>
+    </div>
+    <div class="tab-pane p-3 fade" id="h-tabs-t3" role="tabpanel" aria-labelledby="h-tabs-t3-tab">
+        <h4>Tab 3</h4>
+        <p>Tab 3 content goes here.</p>
+    </div>
+</div>
+<!-- End of horizontal tabs -->
+</div>
+        <br>
+        <hr>
+        <br>
+        <h3>Vertical Tabs</h3>
+        <p>Vertical tabs are more useful for more tabs or longer tab titles</p>
+<div class="copythis">
+<!-- Start of vertical tabs -->
+<div class="row">
+    <div class="col-3 no-gutters">
+        <div class="nav flex-column nav-pills" id="v-tabs-tab" role="tablist" aria-orientation="vertical">
+            <a class="nav-link active show" id="v-tabs-t1-tab" data-toggle="pill" href="#v-tabs-t1" role="tab" aria-controls="v-tabs-t1" aria-selected="true">Tab 1</a>
+            <a class="nav-link" id="v-tabs-t2-tab" data-toggle="pill" href="#v-tabs-t2" role="tab" aria-controls="v-tabs-t2" aria-selected="false">Tab 2</a>
+            <a class="nav-link" id="v-tabs-t3-tab" data-toggle="pill" href="#v-tabs-t3" role="tab" aria-controls="v-tabs-t3" aria-selected="false">Tab 3</a>
+            <a class="nav-link" id="v-tabs-t4-tab" data-toggle="pill" href="#v-tabs-t4" role="tab" aria-controls="v-tabs-t4" aria-selected="false">Tab 4</a>
+        </div>
+    </div>
+    <div class="col-9 no-gutters">
+        <div class="tab-content" id="v-tabs-tabContent">
+            <div class="tab-pane card p-3 fade active show" id="v-tabs-t1" role="tabpanel" aria-labelledby="v-tabs-t1-tab">
+                <h4>Tab 1</h4>
+                <p>Tab 1 content goes here</p>
+            </div>
+            <div class="tab-pane card p-3 fade" id="v-tabs-t2" role="tabpanel" aria-labelledby="v-tabs-t2-tab">
+                <h4>Tab 2</h4>
+                <p>Tab 2 content goes here</p>
+            </div>
+            <div class="tab-pane card p-3 fade" id="v-tabs-t3" role="tabpanel" aria-labelledby="v-tabs-t3-tab">
+                <h4>Tab 3</h4>
+                <p>Tab 3 content goes here</p>
+            </div>
+            <div class="tab-pane card p-3 fade" id="v-tabs-t4" role="tabpanel" aria-labelledby="v-tabs-t4-tab">
+                <h4>Tab 4</h4>
+                <p>Tab 4 content goes here</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of vertical tabs -->
+</div>
+        <hr>
+        <h2 id="tables">Tables</h2>
+        <h4>Table - Column headings</h4>
+<div class="copythis">
+<!-- Start of Table - Column headings -->
+<table class="table table-bordered table-striped">
+    <caption style="caption-side: top">Insert caption</caption>
+    <thead>
+        <tr>
+            <th scope="col">Col 1</th>
+            <th scope="col">Col 2</th>
+            <th scope="col">Col 3</th>
+            <th scope="col">Col 4</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<!-- End of table -->
+</div>
+        <h4>Table - Row headings</h4>
+<div class="copythis">
+<!-- Start of Table - Row headings -->
+<table class="table table-bordered table-striped">
+    <caption style="caption-side: top">Insert caption</caption>
+    <tbody>
+        <tr>
+            <th scope="row">Row 1</th>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th scope="row">Row 2</th>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th scope="row">Row 3</th>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th scope="row">Row 4</th>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<!-- End of table -->
+</div>
+        <h4>Table - Row and Column headings</h4>
+<div class="copythis">
+<!-- Start of Table - Row and Column headings -->
+<table class="table table-bordered table-striped">
+    <caption style="caption-side: top">Insert Caption</caption>
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Col 1</th>
+            <th scope="col">Col 2</th>
+            <th scope="col">Col 3</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">Row 1</th>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th scope="row">Row 2</th>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th scope="row">Row 3</th>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+<!-- End of table -->
+</div>
+        <hr>
+        <h2 id="modals">Modals</h2>
+        <h4>View larger image</h4>
+        <p>This UI element requires some hand coding. You will need to manually edit the image sources for the sm ller and larger image.</p>
+        <p>These can both point to the same image, as they will be dynamically resized to suit.</p>
+<div class="copythis">
+<!-- Start of View larger image -->
+<!-- Start of smaller image-->
+<div class="float-right" style="float: right; width: 30%; max-width: 320px; min-width: 200px; margin:0 10px 10px 20px !important">
+    <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        <!-- Change smaller image here -->
+        <img src="https://source.unsplash.com/qqd8APhaOg4" class="img-responsive img-fluid"><br>Click to view larger image</a>
+</div>
+<!-- End of smaller image-->
+<!-- Start of larger image-->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <!-- Change larger image here -->
+                <img src="https://source.unsplash.com/qqd8APhaOg4" class="img-responsive img-fluid" style="width: 100%;">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End of larger image-->
+<!-- End of view larger image -->
+</div>
+        <div class="clearfix container-fluid"></div>
+        <hr>
+        <h2 id="cards">Card Groups</h2>
+        <p>Card Group acheive an accessible "table-like" layout of content into columns. These columns are linearised on smaller format devices</p>
+        <p>You can add/remove columns by following the instructions in the HTML comments for the snippet.</p>
+        <h3>3 Cards with headers</h3>
+<div class="copythis">
+<!-- Start of Card Group - With top image and footnote -->
+<div class="card-group">
+    <!-- Start of first card -->
+    <div class="card">
+        <div class="card-header">
+            <h5>Card header</h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Card body text</p>
+        </div>
+    </div>
+    <!-- End of first card -->
+    <!-- Start of second card -->
+    <div class="card">
+        <div class="card-header">
+            <h5>Card header</h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Card body text</p>
+        </div>
+    </div>
+    <!-- End of second card -->
+    <!-- Start of third card.  Delete if not required.  Duplicate for four or more cards -->
+    <div class="card">
+        <div class="card-header">
+            <h5>Card header</h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Card body text</p>
+        </div>
+    </div>
+    <!-- End of third card -->
+</div>
+<!-- End of Card Group.-->
+</div>
+        <hr>
+        <h3>3 Cards with top image and bottom footer</h3>
+<div class="copythis">
+<!-- Start of Card Group - With top image and footnote -->
+<div class="card-group">
+    <!-- Start of first card -->
+    <div class="card">
+        <img src="https://via.placeholder.com/320x180?text=Replace+Me" class="card-img-top" alt="">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Card body text</p>
+            <div class="card-footer">
+                <small class="text-muted">Card footer</small>
+            </div>
+        </div>
+    </div>
+    <!-- End of first card -->
+    <!-- Start of second card -->
+    <div class="card">
+        <img src="https://via.placeholder.com/320x180?text=Replace+Me" class="card-img-top" alt="">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Card body text</p>
+            <div class="card-footer">
+                <small class="text-muted">Card footer</small>
+            </div>
+        </div>
+    </div>
+    <!-- End of second card -->
+    <!-- Start of third card.  Delete if not required.  Duplicate for four or more cards -->
+    <div class="card">
+        <img src="https://via.placeholder.com/320x180?text=Replace+Me" class="card-img-top" alt="">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Card body text</p>
+            <div class="card-footer">
+                <small class="text-muted">Card footer</small>
+            </div>
+        </div>
+    </div>
+    <!-- End of third card -->
+</div>
+<!-- End of Card Group.-->
+</div>
+        <hr>
+        <h3>3 Card deck with top image and 'More ...' buttons</h3>
+<div class="copythis">
+<!-- Start of Card Group - With top image and footnote -->
+<div class="card-deck">
+    <!-- Start of first card -->
+    <div class="card">
+        <img src="https://via.placeholder.com/320x180?text=Replace+Me" class="card-img-top" alt="">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Card body text</p>
+            <!-- Start of Show/Hide interface -->
+            <p>
+                <a class="btn btn-primary btn-block" data-toggle="collapse" href="#CardHiddenContent1" role="button" aria-expanded="false" aria-controls="CardHiddenContent1">
+                    More …
+                </a>
+            </p>
+            <div class="collapse" id="CardHiddenContent1">
+                <div class="card card-body">
+                    Place additional content here
+                    <small><a class="btn-block btn btn-sm btn-light" class="text-center" data-toggle="collapse" href="#CardHiddenContent1" role="button" aria-expanded="false" aria-controls="CardHiddenContent1">Hide</a></small>
+                </div>
+            </div>
+            <!-- End of Show/Hide interface -->
+        </div>
+    </div>
+    <!-- End of first card -->
+    <!-- Start of second card -->
+    <div class="card">
+        <img src="https://via.placeholder.com/320x180?text=Replace+Me" class="card-img-top" alt="">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Card body text</p>
+            <!-- Start of Show/Hide interface -->
+            <p>
+                <a class="btn btn-primary btn-block" data-toggle="collapse" href="#CardHiddenContent2" role="button" aria-expanded="false" aria-controls="CardHiddenContent2">
+                    More …
+                </a>
+            </p>
+            <div class="collapse" id="CardHiddenContent2">
+                <div class="card card-body">
+                    Place additional content here
+                    <small><a class="btn-block btn btn-sm btn-light" class="text-center" data-toggle="collapse" href="#CardHiddenContent2" role="button" aria-expanded="false" aria-controls="CardHiddenContent2">Hide</a></small>
+                </div>
+            </div>
+            <!-- End of Show/Hide interface -->
+        </div>
+    </div>
+    <!-- End of second card -->
+    <!-- Start of third card.  Delete if not required. -->
+    <div class="card">
+        <img src="https://via.placeholder.com/320x180?text=Replace+Me" class="card-img-top" alt="">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Card body text</p>
+            <!-- Start of Show/Hide interface -->
+            <p>
+                <a class="btn btn-primary btn-block" data-toggle="collapse" href="#CardHiddenContent3" role="button" aria-expanded="false" aria-controls="CardHiddenContent3">
+                    More …
+                </a>
+            </p>
+            <div class="collapse" id="CardHiddenContent3">
+                <div class="card card-body">
+                    Place additional content here
+                    <small><a class="btn-block btn btn-sm btn-light" class="text-center" data-toggle="collapse" href="#CardHiddenContent3" role="button" aria-expanded="false" aria-controls="CardHiddenContent3">Hide</a></small>
+                </div>
+            </div>
+            <!-- End of Show/Hide interface -->
+        </div>
+    </div>
+    <!-- End of third card -->
+</div>
+<!-- End of Card Group.-->
+</div>
+        <div class="clearfix container-fluid"></div>
+        <hr>
+        <h2 id="attribution">Attribution</h2>
+        <h3>Floated image</h3>
+        <p>This provides an image and attribution placeholder, that can be "swapped out" with your own image and attribution</p>
+<div class="copythis">
+<!-- Image placheloder - Right floated image -->
+<div class="float-right" style="float: right; width: 30%; max-width: 320px; min-width: 200px; margin:0 0 10px 20px !important">
+    <img src="https://via.placeholder.com/320x180?text=Replace+Me" width="320" height="235" alt="" class="img-responsive atto_image_button_text-bottom">
+    <div class="text-muted" style="opacity: 0.5">
+        <small>Attribution goes here</small>
+    </div>
+</div>
+<!-- End of image placeholder -->
+</div>
+
+<div class="clearfix container-fluid"></div>
+        <hr>
+        <h2 id="more">More UI's</h2>
+        <h3>Estimated time</h3>
+        <p>This UI element allows you to provide student to complete content and activities</p>
+<div class="copythis">
+<!-- Estimated time -->
+<div class="card float-right text-center bg-info text-white" style="width: 10rem;">
+  <div class="card-body text-white">
+    <span class="card-text h1 text-white"><i class="fa fa-clock-o fa-3x"></i><br>
+    10 hrs</span>
+  </div>
+    <div class="card-footer small">
+    <p class="card-text">Including reading, activities and forum participation.</p>
+  </div>
+</div>
+<!-- End of Estimated time -->
+</div>
+<div class="clearfix container-fluid"></div>
+
+        <h3>Tip, with image</h3>
+
+<div class="copythis">
+<!-- Start of 'Tip' Card Group - Two column text and image layout -->
+<div class="card-group">
+    <!-- Start of first card -->
+    <div class="card">
+        <div class="card-body">
+            <h4 class="text-success"><i class="fa fa-lightbulb-o"></i> Tip</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+        </div>
+    </div>
+    <!-- End of first card -->
+    <!-- Start of second card -->
+    <div class="card">
+        <img src="https://via.placeholder.com/320x180?text=Replace+Me" class="card-img-top" alt="">
+    </div>
+    <!-- End of second card -->
+</div>
+<!-- End of 'Tip' Card Group.-->
+</div>
+
+        <h3>Tip, with tip text</h3>
+
+<div class="copythis">
+<!-- Start of 'Tip' Card Group - Two column text and hint layout -->
+<div class="card-group">
+    <!-- Start of first card -->
+    <div class="card">
+        <div class="card-body">
+            <h4 class="text-success"><i class="fa fa-lightbulb-o"></i> Tip</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+        </div>
+    </div>
+    <!-- End of first card -->
+    <!-- Start of second card -->
+    <div class="card bg-success text-white">
+        <div class="card-body lead text-white">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+        </div>
+    </div>
+    <!-- End of second card -->
+</div>
+<!-- End of 'Tip' Card Group.-->
+</div>
+
+
+        <div class="clearfix container-fluid"></div>
+        <hr>
+        <h3>Attribution only</h3>
+        <p>Often, when you copy an attribution statement from elsewhere (eg wikimedia) the text is too large and it dominates the screen. This reduces the test size and opacity, to make this attribution less dominant</p>
+<div class="copythis">
+<!-- Attribution -->
+<div style="opacity: 0.6">
+    <small>Paste your attribution statement here</small>
+</div>
+<!-- End of attribution -->
+</div>
+        <hr>
+        <h3>Attribution statement for Department of Training and Workforce Development</h3>
+        <p>The West Australian Content has very specific requirements for attribution</p>
+        <p>Change the document tite and link, plus page number in the snippet below:</p>
+<div class="copythis">
+<!-- Start of W.A. Attribution -->
+<div class="text-muted" style="opacity: 0.6">
+    <small><a class="collapsed d-print-block" data-toggle="collapse" href="#WAattribution1" role="button" aria-expanded="false" aria-controls="WAattribution1">
+            Source</a>:</small>
+</div>
+<div class="collapse" id="WAattribution1" style="">
+    <div class="card card-body">
+        <div class="text-muted" style="opacity: 0.6">
+            <small><a href="https://www.dtwd.wa.gov.au/sites/default/files/teachingproducts/BC016_CCBY.PDF" target="_blank">BC016 - Introduction to surveying: Second edition</a>, p14. © Department of Training and Workforce Development, reproduced under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0 licence</a>
+                <a class="btn-block btn btn-sm btn-light collapsed" data-toggle="collapse" href="#WAattribution1" role="button" aria-expanded="false" aria-controls="WAattribution1">Hide</a></small>
+        </div>
+    </div>
+</div>
+<!-- End of W.A. Attribution -->
+</div>
+        <hr>
+        <h3>Attribution statement for 'Toolbox' content</h3>
+        <p>This UI element is currently configured for the BuildRight toolbox. Make sure that you update details to reference other toolboxes</p>
+<div class="copythis">
+<!-- Start of Toolbox attribution -->
+<div class="text-muted" style="opacity: 0.6">
+    <small>Source: "<a target="_blank" href="https://emedia.rmit.edu.au/dlsweb/Toolbox/buildright/content/bcgbc4007a/comp_index.htm">BuildRight toolbox</a>" © Commonwealth of Australia 2007. - Used under the <a target="_blank" href="https://emedia.rmit.edu.au/dlsweb/Toolbox/buildright/toolbox10_01/shared/disclaimer_copyright.htm">AEShareNet-S licence.</a></small>
+</div>
+<!-- end of Toolbox attribution  -->
+</div>
+        <hr>
+        <h3>Safe Work Autralia</h3>
+        <p>Edit this attribution to include the name of the publication, link and page number</p>
+<div class="copythis">
+<!-- Start of 'SWA - Reproduced with permission' statement -->
+<div class="text-muted" style="opacity: 0.6">
+    <small><a href="#" target="_blank">Name and link to publication</a>, pXX. © <a href="https://www.safeworkaustralia.gov.au/copyright" target="_blank">Safe Work Australia</a>. Reproduced under a <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC-BY 4.0</a> licence.</small>
+</div>
+<!-- end of 'SWA- Reproduced with permission' statement -->
+</div>
+<hr>
+        <h3>Attribution statement for 'Reproduced with Permission' content</h3>
+        <p>This UI elelemt is for when permission has been granted by the copyright owner. </p>
+        <p> When updating the 'Source:' statement, change the text is square brackets to reflect the source and copyright status</p>
+<div class="copythis">
+<!-- Start of 'Reproduced with permission' statement -->
+<blockquote>
+    <p>Attributable content goes here</p>
+    <!-- Start of Show/Hide interface -->
+    <div class="text-muted" style="opacity: 0.6">
+        <small><a class="collapsed d-print-block" data-toggle="collapse" href="#Attribution1" role="button" aria-expanded="false" aria-controls="Attribution1">
+                Source</a>:</small>
+    </div>
+    <div class="collapse" id="Attribution1" style="">
+        <div class="card card-body">
+            <div class="text-muted" style="opacity: 0.6">
+                <small>[Title and year of publication], p[XX]. <br>© [Copyright owner]. Reproduced with permission.
+                    <a class="btn-block btn btn-sm btn-light collapsed" data-toggle="collapse" href="#Attribution1" role="button" aria-expanded="false" aria-controls="Attribution1">Hide</a></small>
+            </div>
+        </div>
+    </div>
+</blockquote>
+<!-- end of 'Reproduced with permission' statement -->
+</div>
+<hr>
+
+<h3>VTA generated content/images</h3>
+<div class="copythis">
+<!-- Start of 'VTA - Reproduced with permission' statement -->
+<div class="text-muted" style="opacity: 0.6">
+    <small>© VTA 2019. Reproduced with permission.</small>
+</div>
+<!-- end of 'VTA- Reproduced with permission' statement -->
+</div>
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <!-- JavaScript and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+
+        <script src="ui-elements.js"></script>
+</body>
+
+</html>
