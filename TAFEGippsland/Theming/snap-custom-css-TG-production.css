@@ -1,0 +1,209 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @First Created:   2021-02-04 13:58:29
+* @Last Modified by:   BirdyOz
+* @Last Modified time: 2021-07-27 09:53:17
+*/
+
+/* ==========================================================================
+   SITE WIDE
+   ========================================================================== */
+
+
+/* Change body to Lato */
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+
+/* Change headings to Martel */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    color: #000;
+    font-weight: 600;
+    font-family: 'Martel', serif;
+}
+
+/* Add an underline to links within body content, to make them easier to spot */
+.no-overflow a {
+    text-decoration: underline;
+}
+
+
+/* ==========================================================================
+   BANNER
+   ========================================================================== */
+
+/* Add opaque backgrounds to text over banner image*/
+#page-header.mast-image a {
+    color: #fff;
+    text-shadow: 2px 2px black;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.3em 0.2em;
+    display: inline-block;
+}
+
+/* Fix vertical alignment of banner image*/
+
+/*#page-header {
+    background-position: center center;
+}*/
+
+/* ==========================================================================
+   LH NAVIGATION - COLOURS AND MARKERS
+   ========================================================================== */
+
+/* Increase contract of current section*/
+#snap-course-wrapper #chapters li.snap-visible-section a {
+    font-weight: 500;
+    color: black;
+}
+
+/* Current marker */
+#snap-course-wrapper #chapters li.snap-visible-section .chapter-title:before {
+    font-family: FontAwesome;
+    content: "\f0da";
+    background: none;
+    margin-right: .4em;
+}
+
+/*/* Increase contract of conditional items*/
+#snap-course-wrapper #chapters li.conditional .published-status {
+    font-weight: 500;
+    color: #666;
+}
+
+/* Conditional marker */
+#snap-course-wrapper #chapters li.conditional .chapter-title:before {
+    font-family: FontAwesome;
+    color: #666;
+    content: "\f023";
+    background: none;
+    margin-right: .4em;
+}
+
+/* Increase contract of hidden items*/
+#snap-course-wrapper #chapters li.draft .published-status,
+.coursecard-body .snap-draft-tag,
+.coursecard-body .published-status {
+    font-weight: 500;
+    color: maroon !important;
+}
+
+/* Hidden marker */
+#snap-course-wrapper #chapters li.draft .chapter-title:before,
+.snap-draft-tag:before,
+.coursecard-body .published-status:before {
+    font-family: FontAwesome;
+    color: #333;
+    content: "\f070 ";
+    background: none;
+    margin-right: .4em;
+}
+
+/* ==========================================================================
+   ICON REPLACEMENTS
+   ========================================================================== */
+
+
+/*Word*/
+.snap-asset-link img.activityicon[src$="document"] {
+    display: none;
+}
+
+.snap-asset-link img.activityicon[src$="document"] + p.instancename::before {
+    font-family: "fontawesome";
+    content:"\f1c2";
+    font-size: 2em;
+    color: #2a5294;
+    padding: 0.1em 0.2em;
+    margin-right: .4em;
+}
+
+/*PPT*/
+.snap-asset-link img.activityicon[src$="powerpoint"] {
+    display: none;
+}
+
+.snap-asset-link img.activityicon[src$="powerpoint"] + p.instancename::before {
+    font-family: "fontawesome";
+    content:"\f1c4";
+    font-size: 2em;
+    color: #ca4324;
+    padding: 0.1em 0.2em;
+    margin-right: .4em;
+}
+
+/*PDF*/
+.snap-asset-link img.activityicon[src$="pdf"] {
+    display: none;
+}
+
+.snap-asset-link img.activityicon[src$="pdf"] + p.instancename::before {
+    font-family: "fontawesome";
+    content:"\f1c1";
+    font-size: 2em;
+    color: #cb0506;
+    padding: 0.1em 0.2em;
+    margin-right: .4em;
+}
+
+/*Excel*/
+.snap-asset-link img.activityicon[src$="spreadsheet"] {
+    display: none;
+}
+
+.snap-asset-link img.activityicon[src$="spreadsheet"] + p.instancename::before {
+    font-family: "fontawesome";
+    content:"\f1c3";
+    font-size: 2em;
+    color: #1c6d43;
+    padding: 0.1em 0.2em;
+    margin-right: .4em;
+}
+
+/* ==========================================================================
+   DISPLAY FIXES
+   ========================================================================== */
+
+
+/*  Change the backdrop to user tours */
+div[data-flexitour="backdrop"] {
+    background-color: black;
+    opacity: .4;
+}
+
+/* Automatically "Expand All" collapsed items in editing interfaces*/
+body[id$="-mod"] fieldset.collapsed div.fcontainer {
+    display: block !important;
+}
+
+/* Hide the 'Expand all/Collapse all' button, as it is no longer needed*/
+body[id$="-mod"] .collapsible-actions {
+    display: none !important;
+}
+
+/* Fix issue where collapsed accordions cannot be edited in the new ATTO editor
+Expand all collapsed items in the atto edtitor, to expose their content */
+
+.exatto-acc-card .collapse , .editor_atto .collapse {
+ display: block !important;
+ height: auto !important;
+}
+
+ /*Snap on M3.8 books fix - when inside a book, hide the book description from top*/
+
+body#page-mod-book-view #region-main #intro {
+   display: none;
+}
+
+/* ==========================================================================
+   CATEGORY SPECIFIC FIXES
+   ========================================================================== */
+
+
+/* Turn off "message" link and icon in Snap footer for specific categories */
+
+body.category-288 #snap-course-footer a[href *="/message/"],
+body.category-289 #snap-course-footer a[href *="/message/"],  {
+    display: none;
+    }

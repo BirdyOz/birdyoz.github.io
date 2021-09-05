@@ -1,0 +1,12 @@
+<!-- Swap out Snap Personal menu for standard dashboard  -->
+<!-- 27.07.21 - Greg Bird -->
+<script type="text/javascript">
+$(function() {
+    // Handler for .ready() called.
+    $('#snap-pm-trigger').each(function(index, el) {
+        $(this).attr("href", "/moodle/my"); // Update URL
+        $(this).find('span').text('My Training'); // Update text
+        $(this).removeClass("js-snap-pm-trigger"); // Remove Snap JS actions
+    });
+});
+</script>
