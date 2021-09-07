@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-09-07 14:20:33
+ * @Last Modified time: 2021-09-07 14:35:37
  */
 
 $(function() {
@@ -140,7 +140,7 @@ $(function() {
             .done(function(json) {
                 img_src = json.hits[0].largeImageURL;
                 user = json.hits[0].user;
-                user_url = json.hits[0].userImageURL;
+                user_url = "https://pixabay.com/users/" + user;
                 alt = json.hits[0].tags;
                 img_name = "Image";
                 download_sml = json.hits[0].webformatURL; // Small image 640px wide
@@ -279,6 +279,11 @@ $(function() {
         return snippet;
     }
 
+    function textSnippet(i) {
+        var snippet = `<small class="text-muted"><a href="${img_orig}" target="_blank">${img_name}</a> by <a href="${user_url}" target="_blank">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>, <a href="${licence_url}" target="_blank">${licence}</a>, added on ${today}</small>`;
+        return snippet;
+    }
+
     function buildHTML() {
         $('.maker-copy figure').each(function(index) {
             if (org == 'mp') {
@@ -310,6 +315,7 @@ $(function() {
         console.log("@GB: download_lge = ", download_lge);
         console.log("@GB: user = ", user);
         console.log("@GB: alt = ", alt);
+        console.log("@GB: title = ", title);
         console.log("@GB: licence = ", licence);
         console.log("@GB: licence_url = ", licence_url);
         console.log("@GB: json = ", json);
