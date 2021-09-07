@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-09-03 12:03:19
+ * @Last Modified time: 2021-09-07 14:20:33
  */
 
 $(function() {
@@ -91,7 +91,7 @@ $(function() {
             img_src = download_lge;
             download_sml = img_src.replace("&w=1440", "&w=720");
             buildHTML();
-            logger();
+            logger(json);
         });
     }
 
@@ -120,7 +120,7 @@ $(function() {
                 download_sml = img_orig + "?auto=compress&cs=tinysrgb&w=720";
                 download_lge = img_src;
                 buildHTML();
-                logger();
+                logger(json);
             }
         });
     }
@@ -146,7 +146,7 @@ $(function() {
                 download_sml = json.hits[0].webformatURL; // Small image 640px wide
                 download_lge = img_src; // Large image 1280px wide
                 buildHTML();
-                logger();
+                logger(json);
             });
     }
 
@@ -185,7 +185,7 @@ $(function() {
                 }
                 id = id.slugify();
                 buildHTML();
-                logger();
+                logger(json);
             });
     }
 
@@ -303,7 +303,7 @@ $(function() {
         return today;
     }
 
-    function logger() {
+    function logger(json) {
         console.log("@GB: site = ", site);
         console.log("@GB: img_orig = ", img_orig);
         console.log("@GB: download_sml = ", download_sml);
