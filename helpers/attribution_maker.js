@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-09-07 14:35:37
+ * @Last Modified time: 2021-09-09 10:51:57
  */
 
 $(function() {
@@ -110,14 +110,14 @@ $(function() {
             dataType: 'json',
             headers: { 'Authorization': atob(decodeURIComponent(key)) },
             success: function(json) {
-                img_orig = json.src.original;
-                img_src = img_orig + "?auto=compress&cs=tinysrgb&w=1440";
+                img_src = json.src.original;
+                img_src = img_src + "?auto=compress&cs=tinysrgb&w=1440";
                 user = json.photographer;
                 user_url = json.photographer_url;
                 alt = json.url.split("/")[4].split("-");
                 alt.pop();
                 alt = alt.join(" ");
-                download_sml = img_orig + "?auto=compress&cs=tinysrgb&w=720";
+                download_sml = img_src + "?auto=compress&cs=tinysrgb&w=720";
                 download_lge = img_src;
                 buildHTML();
                 logger(json);
