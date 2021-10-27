@@ -1,0 +1,826 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @First Created:   2019-11-04 17:49:21
+* @Last Modified by:   Greg Bird
+* @Last Modified time: 2019-11-04 17:49:25
+*/
+
+
+/* Fix for scrollbar issue (#15923) */
+
+.snap-form-advanced #id_modstandardelshdr .form-inline[data-fieldtype="editor"] div:first-child, .snap-form-advanced #id_overallfeedbackhdr .form-inline[data-fieldtype="editor"] div:first-child {
+overflow: auto !important;
+}
+
+/*-------------------------
+Course and category styles
+-------------------------*/
+
+.course-1 #page-header:not(.mast-image) {
+    background-image: url("https://www.melbournepolytechnic.edu.au/wp-content/uploads/2013/04/banner-greensborough.jpg");
+}
+
+/*---------
+Archive Category
+---------*/
+.category-327 #page-header:not(.mast-image) {
+    background-color: #c5c5c5;
+}
+
+/*---------
+Creative Arts Category
+---------*/
+.category-77 #page-header:not(.mast-image) {
+    background-color: #196a6b;
+}
+
+/*---------
+Business Innovation and Entrepreneurship Category
+---------*/
+.category-118 #page-header:not(.mast-image) {
+    background-color: #329828;
+}
+
+/*---------
+Engineering Design and Construction Category
+---------*/
+.category-121 #page-header:not(.mast-image) {
+    background-color: #6eb4cd;
+}
+
+/*---------
+Food Plant & Animal Industries Category
+---------*/
+.category-311 #page-header:not(.mast-image) {
+    background-color: #00833c;
+}
+
+/*---------
+Foundation and Preparatory Studies Category
+---------*/
+.category-119 #page-header:not(.mast-image) {
+    background-color: #f18903;
+}
+
+/*---------
+Health and Education Category
+---------*/
+.category-312 #page-header:not(.mast-image) {
+    background-color: #863176;
+}
+
+/*---------
+College of Education and Leadership Category
+---------*/
+.category-178 #page-header:not(.mast-image) {
+    background-color: #4286f4;
+}
+/*---------
+People and Culture Category
+---------*/
+.category-302 #page-header:not(.mast-image) {
+    background-color: #4286f4;
+}
+
+/*---------
+Information, Communication and Technology Category
+---------*/
+
+.category-112 #page-header:not(.mast-image) {
+    background-image: url("https://nmit-lcms.trainingvc.com.au/share/proxy/alfresco-noauth/api/internal/shared/node/zMXn2lDNRFy7GYBepjDcXQ/content/thumbnails/imgpreview?c=force&lastModified=imgpreview%3A1514849135062");
+}
+
+
+/*---------
+Learning Environments Category
+---------*/
+
+.category-228 #page-header:not(.mast-image) {
+    background-image: url("https://online.melbournepolytechnic.edu.au/pluginfile.php/160171/theme_snap/coverimage/1531964327/category-image.jpg");
+}
+
+/*---------
+General
+---------*/
+
+#moodle-page {margin-top: 5em;}
+
+#page-login-index #page-header {
+    display:none;
+}
+
+#page-login-index .loginpanel h2 {
+    font-size:2em;
+}
+
+body {
+    font-size:16px;
+}
+
+
+#snap-home.logo {
+    height:80px;
+}
+
+
+#page-header {
+    min-height: 100px;
+    padding-top: 1em;
+}
+
+h1 {
+    font-size: 250%;
+}
+
+h2, .h2 {
+    font-size: 200%;
+}
+
+#page-mast h1 {
+    background-color: rgba(255,255,255,.8);
+    padding: 0 0.5rem;
+    display:inline-block;
+    margin-bottom: 0;
+    line-height: 1.2em;
+}
+
+#page-mast h1 a {
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+    margin-left: 0.1rem;
+    font-size: 2.0rem;
+    font-weight: 300;
+}
+
+.mast-image #page-mast h1 a {
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+    margin-left: 0.1rem;
+    font-size: 2.0rem;
+    font-weight: 300;
+}
+
+.mast-image #page-mast h1 a:hover {
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+}
+
+.mast-image #page-mast h1 a:visited {
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+}
+
+ul {
+    list-style: none;
+}
+
+ul, menu, dir {
+    display: block;
+    list-style-type: disc;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 40px;
+}
+
+hr {
+    height: 0em;
+}
+
+.mast-image .breadcrumb li a {
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+}
+
+.mast-image .breadcrumb li {
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+}
+
+.breadcrumb-nav {
+    background-color: rgba(255,255,255,.8);
+    display:inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.breadcrumb-nav .breadcrumb {
+    color: #170052;
+    margin: 0 10px;
+}
+
+.mast-image .breadcrumb>li+li:before {
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+}
+
+.mast-image .breadcrumb a{
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+}
+
+.mast-image .breadcrumb a:visited{
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+}
+
+.path-course-view .mast-image {
+    min-height: 200px;
+}
+
+/*-------------------------
+Resource: Card Box Style
+-------------------------*/
+
+body.snap-resource-card li.snap-resource {
+    height: 180px;
+    background-position: 50% 65%;
+}
+
+/*----------
+Custom menu
+----------*/
+
+
+
+.mp-menu-wrapper {
+    width: 100%;
+    font-weight: 500;
+    display: inline-block;
+    text-align: center;
+}
+
+.mp-custom-alert {
+    color: #fff;
+    background-color: #DF6262;
+    width: 100%;
+    padding: 0.3em;
+}
+
+
+.mp-menu{
+    text-transform: uppercase;
+    z-index:34;
+    width:100%;
+    background:#f1f1f1;
+    font-size:90%;
+    background-color: #f1f1f1;
+    padding: 0;
+    margin:0;
+    display:none;
+    visibility: hidden;
+}
+
+.mp-menu.open {
+    display:inherit;
+    visibility: visible;
+}
+
+
+.mp-menu ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    list-style-image: none;
+}
+
+.mp-menu li {
+    display: block;
+    border-bottom: 1px solid #5959bd;
+}
+
+.mp-menu li a {
+    text-decoration:none;
+    margin: 0px;
+    padding:15px 0;
+    display:block;
+    width:100%;
+    color:#fff;
+    padding-left:2em;
+}
+
+.mp-menu li a:hover {
+    color: #000;
+    text-decoration:none;
+}
+
+
+.mp-hamburger {
+  background:none;
+  position:absolute;
+  top:0;
+  right:10px;
+  line-height:40px;
+  padding: 0px 15px 0px 15px;
+  margin:0;
+  color:#999;
+  border:0;
+  font-size:1.4em;
+  font-weight:bold;
+  cursor:pointer;
+  outline:none;
+  z-index:34;
+}
+
+
+@media (min-width: 768px) {
+
+    .mp-hamburger {
+        display:none;
+        visibility: hidden;
+    }
+
+    .mp-menu {
+        margin: 0;
+        padding:0;
+        display:inherit;
+        visibility: visible;
+        top:0;
+        left:0;
+        background-color: transparent;
+    }
+
+    .mp-menu li {
+        display:inline-block;
+        margin: 0 2em;
+        border-bottom: none;
+    }
+
+    .mp-menu li a {
+        padding: 10px 0;
+        color: #170052;
+    }
+
+    .mp-menu li a:hover {
+        text-decoration: underline;
+    }
+}
+
+
+/*-----------
+Header / My Courses Menu
+-----------*/
+
+.pull-right {
+    margin-top: 1.4em;
+}
+
+#page-content .block_settings.state-visible, .block_settings:target {
+    height: calc(100% - 7.3em);
+    margin-top: 7.3em;
+}
+
+.block_settings>.card-body, .userprofile .profile_tree .block_settings>section {
+    padding: 0;
+}
+
+#page.offcanvas {
+    left: -320px;
+}
+
+#mr-nav {
+    padding: 0 4%;
+    position: absolute;
+    width: 100%;
+}
+
+.snap-my-courses-menu {
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+#snap-pm-courses .snap-personal-menu-more {
+    position: relative;
+}
+
+/*-----
+redefined background image
+.coursecard {
+    background-image: none !important;
+}
+-----*/
+
+#snap-pm-header {
+    background: url(https://www.melbournepolytechnic.edu.au/wp-content/themes/melbourne-poly/images/common/logo-melbourne-polytechnic-white.png) no-repeat center left 20px #170052;
+    padding: 1%;
+}
+
+.snap-pm-user {
+    padding-left: 320px;
+    margin-top:0.7em;
+}
+
+#snap-pm-header .userpicture {
+    width: 50px;
+    height: 50px;
+}
+
+.snap-pm-user .h1 {
+    font-size: 170%;
+}
+
+
+#snap-pm-header-quicklinks {
+    font-size: 90%;
+}
+
+
+/*------
+Courses details
+------*/
+
+#snap-course-footer #snap-course-footer-contacts .snap-media-object {
+    display: inline-block;
+    width: 50%;
+}
+
+@media (min-width: 920px) {
+    #snap-course-footer #snap-course-footer-contacts .snap-media-object {
+        width: 33%;
+    }
+}
+
+@media (min-width: 1280px) {
+    #snap-course-footer #snap-course-footer-contacts .snap-media-object {
+        width: 25%;
+    }
+}
+
+@media (min-width: 1600px) {
+    #snap-course-footer #snap-course-footer-contacts .snap-media-object {
+        width: 20%;
+    }
+}
+
+#snap-course-footer #snap-course-footer-contacts .snap-media-object .snap-media-body {
+    visibility: hidden;
+    height: 50px;
+}
+
+#snap-course-footer #snap-course-footer-contacts .snap-media-object .snap-media-body > a:first-child {
+    visibility: visible;
+}
+
+#snap-course-footer-contacts .snap-media-object .userpicture {
+    width: 40px;
+}
+
+#snap-course-footer .col-lg-3.col-md-4 {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+}
+
+
+#snap-course-footer .col-lg-9.col-md-8 {
+    display: none;
+}
+
+
+/*------
+Footer
+------*/
+
+#moodle-footer {
+    background-color: #161616;
+}
+
+
+
+#moodle-footer .mp-footer-contact .label {
+    width:100%;
+    text-align: left;
+    padding:0;
+    margin:0;
+    color: #999;
+    display:inline-block;
+    font-size:100%;
+    background-color: transparent;
+}
+
+#moodle-footer .mp-footer-contact .phone-number {
+
+}
+
+#moodle-footer .mp-footer-contact .phone-number .phone {
+    font-size: 160%;
+    font-weight: bold;
+}
+
+#moodle-footer .mp-footer-contact .phone-number .content {
+    font-size:12px;
+    width: 80%;
+    display:inline-block;
+    text-align: left;
+}
+
+#moodle-footer > .row {
+    width: 100%;
+    margin:0;
+    padding:0;
+    display:inline-block;
+    float:left;
+}
+
+#mrooms-footer {
+    clear: both;
+    width: 100%;
+}
+
+#moodle-footer > #snap_socialmedia_links {
+    width: 100%;
+    margin:20px 0;
+    padding:0;
+    display:inline-block;
+    float:left;
+    text-align:center;
+}
+
+.snap-media-object.course-footer-update-assign {
+    display: none;
+}
+
+.snap-media-object.course-footer-update-forum {
+    display: none;
+}
+
+.copyright {
+    clear: right;
+    font-size: 90%;
+}
+
+#moodle-footer h2 {
+    font-size: 200%;
+}
+
+#footer-bottom {
+    padding-top: 15px;
+    text-align: left;
+    font-size: 80%;
+}
+
+#footer-bottom ul, #footer-bottom li {
+    margin: 0;
+    padding: 0;
+}
+
+#footer-bottom li {
+    margin-left: 1em;
+    display:inline-block;
+}
+
+footer ul {
+    margin: 0;
+    list-style-type: none;
+}
+
+#page-footer {
+    margin:0;
+    padding:0;
+}
+
+
+.mp-footer-buttons,
+.mp-footer-contact {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+}
+
+.mp-footer-box {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 280px;
+            flex: 0 1 280px;
+    margin: 10px;
+
+}
+
+.mp-footer-contact .phone-number,
+.mp-footer-contact .address
+{
+    -webkit-box-flex: 1;
+        -ms-flex: 1 0 300px;
+            flex: 1 0 300px;
+    margin-top: 10px;
+}
+
+
+.course-content {
+        max-width: 80em;
+}
+#region-main {
+        max-width: 80em;
+}
+#chooseform .option {
+    zoom: 1.3;
+}
+#chooseform .moduletypetitle {
+    zoom: 1.3;
+}
+
+/*------
+Assignment View fix
+------*/
+
+#page-mod-assign-view {
+    width: 100%;
+}
+
+/*-----
+Change dashboard course card backgroup
+If there is a cover image in course then display the cover image.
+If no cover image, then display MP colour.
+-----*/
+/* #snap-pm-courses .coursecard {
+    background-image: linear-gradient(to bottom right, #170052, #170052);
+}*/
+
+#snap-pm-courses .coursecard {
+    background-image: url("https://online.melbournepolytechnic.edu.au/file.php/1/course-card-image.png");
+    background-color: #170052 !important;
+}
+
+/*-----
+Change assignment information div
+width from 66.6667% to 90%;
+min height from 100px to 50px .
+-----*/
+#page-mod-assign-view .assign-intro {
+    width: 90%
+    min-height: 50px;
+}
+
+/*-----
+Align progress percentage number on the same line .
+-----*/
+.pull-right {
+    margin-top: 1em;
+}
+
+/*-----
+Assignment grading summary div
+-----*/
+#page-mod-assign-view .assign-grading-summary {
+    margin-left: 0px;
+    float: left;
+    width: 90%;
+}
+
+/*-----
+Assignment submission div
+-----*/
+#page-mod-assign-view .assign-submission-data {
+    margin-left: 0px;
+    float: left;
+    width: 90%;
+}
+
+
+/*-----
+ReadSpeaker Adjustments
+-----*/
+.block_readspeaker_embhl{
+   min-height:auto !important;
+   font-size: 1rem;
+}
+
+/*-----
+Put Assessment submission declaration checkbox at the bottom of the page
+-----*/
+.checkbox label {
+position: relative;
+}
+
+input#id_submissionstatement {
+position: absolute;
+bottom: 50px;
+left: 50%;
+}
+
+.has-danger .form-control-feedback {
+text-align: center;
+}
+
+/*-----
+Adjust assessment submission summary layout
+-----*/
+.pull-right {
+    margin-top: 0;
+}
+#page-mod-assign-view .assign-intro {
+    margin-top: 3px;
+    float: left;
+    width: 100%;
+    min-height: 20px;
+}
+#page-mod-assign-view .groupselector {
+    margin-left: 0;
+    margin-right: 0;
+    float: left;
+    width: 100%;
+    min-height: 80px;
+}
+#page-mod-assign-view .assign-grading-summary {
+    width: 100%;
+}
+#page-mod-assign-view .assign-submission-data {
+    width: 100%;
+}
+#page-mod-assign-view .assign-feedback {
+    width: 100%;
+}
+
+/*-----
+Hide site summary section
+-----*/
+
+/* User tours - Change background to black with opacity */
+div[data-flexitour="backdrop"] {
+background-color: black;
+    opacity: .4;
+}
+
+#moodle-page {
+    font-size: 1rem;
+}
+
+/*-----
+Hide student dashboard in Site Tools
+-----*/
+
+#snap-student-dashboard {
+    padding: 0em;
+    visibility: hidden;
+    height: 0px;
+}
+
+/*-----
+Hide "Recent Activity" on site footer section
+-----*/
+
+#snap-course-footer-recent-activity {
+    padding: 0em;
+    visibility: hidden;
+    height: 0px;
+}
+/*-----
+Changes below are for updating in September 2019
+-----*/
+
+/*-----
+Edit box page width change
+-----*/
+
+.path-mod-assign .snap-form-required fieldset, .path-mod-hvp .snap-form-required fieldset, .path-grade .snap-form-required fieldset, .path-admin-report .snap-form-required fieldset, .pagelayout-admin .snap-form-required fieldset, #page-course-editsection .snap-form-required fieldset {
+    max-width: 100%;
+    margin: 1em 0;
+}
+
+#region-main textarea{
+    width: 100%;
+}
+
+/*-----
+Full width Shortname field
+-----*/
+
+input#id_shortname, input#id_fullname  {
+    width: 100%;
+}
+
+/*-----
+Hide user notification
+----*/
+.theme-snap #user-notifications {
+    display: none;
+}
+
+/*-----
+Card height update
+----*/
+body.snap-resource-card li.snap-resource.snap-resource-long {
+    height: 15em;
+}
+
+/*-----
+Attempt to fix subchapter problem
+----*/
+.path-mod-book #id_general .fcontainer .checkbox {
+    display:block !important;
+}
+
+/*-----
+Advanced grading rubric height
+----*/
+.gradingform_rubric .criterion .levels, .gradingform_rubric .criterion .levels table, .gradingform_rubric .criterion .levels table tbody {
+    height: 100%;
+    width: 100%;
+}

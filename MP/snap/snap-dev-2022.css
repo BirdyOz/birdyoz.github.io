@@ -2,12 +2,91 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2021-10-27 14:06:00
+* @Last Modified time: 2021-10-27 17:16:19
 */
 
 
+
 /* ==========================================================================
-   @GB - Alternative, inverted banner (white text on opaque black)
+   @GB 2021 - Site wide layout
+   ========================================================================== */
+
+/* Reduce  vertical height of MP logo */
+
+
+
+/* ==========================================================================
+   @GB 2021 - File types. Add Font-awesome icons based on extension
+   ========================================================================== */
+
+/* MS Word */
+
+a[href$=".docx"]::before, a[href$=".doc"]::before  {
+    font-family: "fontawesome";
+    content:"\f1c2";
+    color: #2a5294;
+    margin-right: 0.2em;
+}
+
+body.snap-resource-card li.snap-resource.snap-mime-document {
+    background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/word.svg);
+}
+
+/* Powerpoint */
+
+a[href$=".pptx"]::before, a[href$=".ppt"]::before, li[data-type="ppt"] p.instancename::before {
+    font-family: "fontawesome";
+    content:"\f1c4";
+    color: #ca4324;
+    margin-right: 0.2em;
+}
+
+
+body.snap-resource-card li.snap-resource.snap-mime-document {
+    background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/word.svg);
+}
+
+/* Excel */
+
+a[href$=".xlsx"]::before, a[href$=".xls"]::before  {
+    font-family: "fontawesome";
+    content:"\f1c3";
+    color: #1c6d43;
+    margin-right: 0.2em;
+}
+
+body.snap-resource-card li.snap-resource.snap-mime-spreadsheet {
+    background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/excel.svg);
+}
+
+/* PDF */
+
+a[href$=".pdf"]::before {
+    font-family: "fontawesome";
+    content:"\f1c1";
+    color: #cb0506;
+    margin-right: 0.2em;
+}
+
+body.snap-resource-card li.snap-resource.snap-mime-pdf {
+    background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/pdf.svg);
+}
+
+/*---------
+Activity name autolinking
+---------*/
+
+/* Forum */
+
+a.autolink[href*="forum"]::before {
+    font-family: "fontawesome";
+    content:"\f0e6";
+    margin-right: 0.2em;
+    color: #1c6d43;
+}
+
+/* ==========================================================================
+   @GB 2019 - Alternative, inverted banner (white text on opaque black)
    ========================================================================== */
 
 /* Set opaque bg */
@@ -30,7 +109,7 @@
 
 
 /* ==========================================================================
-   @GB - ToC changes - colours and markers
+   @GB 2019 - ToC changes - colours and markers
    ========================================================================== */
 
 /* Increase contract of current section*/
@@ -92,7 +171,7 @@
 
 
 /* ==========================================================================
-   @GB - Display fixes
+   @GB 2019 - Display fixes
    ========================================================================== */
 
 /*Fix nested ul display bug*/
@@ -110,8 +189,13 @@
 
 
 
+
+
+
+
+
 /* ==========================================================================
-   @GB - Existing MP CSS BELOW
+   @GB 2019 - Existing MP CSS BELOW
    ========================================================================== */
 
 
@@ -170,85 +254,6 @@ h2,
 }
 
 
-
-
-
-
-/* ==========================================================================
-   @GB - Original MP banner styles.  Commented out
-   ========================================================================== */
-
-/*#page-mast h1 {
-    background-color: rgba(255,255,255,.8);
-    padding: 0 0.5rem;
-    display:inline-block;
-    margin-bottom: 0;
-    line-height: 1.2em;
-}
-
-#page-mast h1 a {
-    color: #170052;
-    text-shadow: 0px 0px 0px rgba(0,0,0,0);
-    margin-left: 0.1rem;
-    font-size: 2.0rem;
-    font-weight: 300;
-}
-
-#page-mast h1 a {
-    color: #170052;
-    text-shadow: 0px 0px 0px rgba(0,0,0,0);
-    margin-left: 0.1rem;
-    font-size: 2.0rem;
-    font-weight: 300;
-}
-
-#page-mast h1 a:hover {
-    color: #170052;
-    text-shadow: 0px 0px 0px rgba(0,0,0,0);
-}
-
-#page-mast h1 a:visited {
-    color: #170052;
-    text-shadow: 0px 0px 0px rgba(0,0,0,0);
-}
-
-.breadcrumb li a {
-    color: #170052;
-    text-shadow: 0px 0px 0px rgba(0,0,0,0);
-}
-
-.breadcrumb li {
-    color: #170052;
-    text-shadow: 0px 0px 0px rgba(0,0,0,0);
-}
-
-.breadcrumb-nav {
-    background-color: rgba(255,255,255,.8);
-    display:inline-block;
-    margin-bottom: 0.5rem;
-}
-
-.breadcrumb-nav .breadcrumb {
-    color: #170052;
-    margin: 0 10px;
-}
-
-.breadcrumb>li+li:before {
-    color: #170052;
-    text-shadow: 0px 0px 0px rgba(0,0,0,0);
-}
-
-.breadcrumb a{
-    color: #170052;
-    text-shadow: 0px 0px 0px rgba(0,0,0,0);
-}
-
-.breadcrumb a:visited{
-    color: #170052;
-    text-shadow: 0px 0px 0px rgba(0,0,0,0);
-}
-*/
-
 .path-course-view {
     min-height: 200px;
 }
@@ -283,129 +288,6 @@ body.snap-resource-card li.snap-resource {
 }
 
 
-/* ==========================================================================
-   @GB - Original MP top nav.  Commented out
-   ========================================================================== */
-
-/*----------
-Custom menu
-----------*/
-
-
-
-/*.mp-menu-wrapper {
-    width: 100%;
-    font-weight: 500;
-    display: inline-block;
-    text-align: center;
-}
-
-.mp-custom-alert {
-    color: #fff;
-    background-color: #DF6262;
-    width: 100%;
-    padding: 0.3em;
-}
-
-
-.mp-menu{
-    text-transform: uppercase;
-    z-index:34;
-    width:100%;
-    background:#f1f1f1;
-    font-size:90%;
-    background-color: #f1f1f1;
-    padding: 0;
-    margin:0;
-    display:none;
-    visibility: hidden;
-}
-
-.mp-menu.open {
-    display:inherit;
-    visibility: visible;
-}
-
-
-.mp-menu ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    list-style-image: none;
-}
-
-.mp-menu li {
-    display: block;
-    border-bottom: 1px solid #5959bd;
-}
-
-.mp-menu li a {
-    text-decoration:none;
-    margin: 0px;
-    padding:15px 0;
-    display:block;
-    width:100%;
-    color:#fff;
-    padding-left:2em;
-}
-
-.mp-menu li a:hover {
-    color: #000;
-    text-decoration:none;
-}
-
-
-.mp-hamburger {
-  background:none;
-  position:absolute;
-  top:0;
-  right:10px;
-  line-height:40px;
-  padding: 0px 15px 0px 15px;
-  margin:0;
-  color:#999;
-  border:0;
-  font-size:1.4em;
-  font-weight:bold;
-  cursor:pointer;
-  outline:none;
-  z-index:34;
-}
-
-
-@media (min-width: 768px) {
-
-    .mp-hamburger {
-        display:none;
-        visibility: hidden;
-    }
-
-    .mp-menu {
-        margin: 0;
-        padding:0;
-        display:inherit;
-        visibility: visible;
-        top:0;
-        left:0;
-        background-color: transparent;
-    }
-
-    .mp-menu li {
-        display:inline-block;
-        margin: 0 2em;
-        border-bottom: none;
-    }
-
-    .mp-menu li a {
-        padding: 10px 0;
-        color: #170052;
-    }
-
-    .mp-menu li a:hover {
-        text-decoration: underline;
-    }
-}
-*/
 
 /*-----------
 Header / My Courses Menu
@@ -430,25 +312,12 @@ Header / My Courses Menu
     left: -320px;
 }
 
-/*@GB - commented out to let header be fullwidth*/
-
-/*#mr-nav {
-    padding: 0 4%;
-    position: absolute;
-    width: 100%;
-}*/
 
 .snap-my-courses-menu {
     font-size: 18px;
     text-transform: uppercase;
 }
 
-/*-----
-redefined background image
-.coursecard {
-    background-image: none !important;
-}
------*/
 
 #snap-pm-header {
     background: url("/pluginfile.php/1/tool_themeassets/assets/0/MP-Logo_Horiz_Reverse.png") no-repeat center left 20px #170052;
@@ -1201,16 +1070,27 @@ span.chaptername {
     font-weight: normal!important;
 }
 
-/* UI elements - Padding Book Header from content*/
-.box.py-3.generalbox.book_content h3, h4 {
-    padding-bottom: 20px;
+/* UI elements - For advanced grading checklist*/
+.gradingform_checklist {
+    max-width: 100%!important;
 }
 
-.text-muted a:link {
-    font-weight: normal!important;
+.gradingform_checklist .group .items .item .definition {
+    width: 75%;
 }
 
-/* UI elements - Fix page container view*/
+div#checklist-groups .odd {
+    background-color: lightgrey;
+}
+
+div#checklist-groups .item-wrapper {
+    padding: 5px;
+}
+
+div#advancedgrading-groups {
+    width: max-content;
+}
+
 #pagemod-content-container > * {
  width: 100%;
 }
@@ -1226,4 +1106,79 @@ ul.dashed > li:before {
    content: "-";
    text-indent: -20px;
    padding: 5px;
+}
+
+a.external-link {
+  /*position: relative;*/
+  padding-right: 20px;
+}
+
+a.external-link:after {
+font-family: FontAwesome;
+    content: "\f08e";
+/*display: inline-block;*/
+   padding-left: 5px;
+}
+
+a.forum-link:before {
+font-family: FontAwesome;
+   content:"\f086";
+/*display: inline-block;*/
+   padding-right: 5px;
+/*content: url("https://mynmit-sandbox.mrooms.net/theme/image.php/snap/forum/1626842706/icon");*/
+}
+
+/* MP Branded Footer elements*/
+div#mrooms-footer {
+    max-width: 100%!important;
+    padding-bottom: 1rem;
+}
+
+.footer .footer__copy {
+    line-height: 1.7;
+    color: #fff;
+    border-top: .2rem solid hsla(0,0%,59.2%,.2);
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+}
+
+.footer .footer__copy .footer__copy-inner {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.footer .footer__post .footer__post-inner {
+    position: relative;
+}
+
+.footer .footer__post .footer__post-ack {
+    display: block;
+    margin: 0 auto;
+    max-width: 60%;
+    text-align:center;
+}
+
+.footer .footer__copy .footer__copy-logo {
+    width: 12.8rem;
+    margin-bottom: 0;
+}
+
+footer.footer.mp-footer {
+    opacity: .75;
+}
+
+
+body.snap-resource-card li.snap-resource.snap-mime-powerpoint {
+    background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/powerpoint.svg);
 }
