@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2021-10-28 13:51:06
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2021-10-28 13:51:46
+* @Last Modified time: 2021-10-28 14:32:14
 */
 
 
@@ -12,17 +12,14 @@
    ========================================================================== */
 
 
-/* Change body to Lato */
-body {
-    font-family: 'Lato', sans-serif;
+
+body, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
 }
 
-
-/* Change headings to Martel */
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #000;
-    font-weight: 600;
-    font-family: 'Martel', serif;
+    font-weight: 500;
 }
 
 /* Add an underline to links within body content, to make them easier to spot */
@@ -30,6 +27,15 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     text-decoration: underline;
 }
 
+
+
+/* ==========================================================================
+   DASHBOARD
+   ========================================================================== */
+
+#page-my-index .breadcrumb-nav {
+    display: none;
+}
 
 /* ==========================================================================
    BANNER
