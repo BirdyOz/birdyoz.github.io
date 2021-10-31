@@ -2,17 +2,54 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2021-11-01 09:02:56
+* @Last Modified time: 2021-11-01 09:26:08
 */
 
+/* ==========================================================================
+   @GB 2021 - Top nav
+   ========================================================================== */
+#snap-custom-menu-header .navbar {
+    font-size: 0.9em;
+    border-bottom: 1px solid #fff;
+}
+
+header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-item a {
+    font-weight: 400 !important;
+}
+
+header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-item a.nav-link {
+    height: auto;
+}
+
+.theme-snap header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-item div.dropdown-menu {
+    background-color: rgba(23,0,82,.9);
+}
 
 
 /* ==========================================================================
-   @GB 2021 - Site wide layout
+   @GB 2021 - Banner - reduced height, reduced font
    ========================================================================== */
 
-/* Reduce  vertical height of MP logo */
+/* Set opaque bg */
+#page-mast h1,
+.breadcrumb-nav  {
+    color: white;
+    background-color: rgba(0, 0, 0, .5);
+    display: inline-block;
+    padding: 0.1em;
+    font-size: 2em;
+}
 
+/* style links */
+#page-mast h1 a,
+.breadcrumb a, .breadcrumb-nav a {
+    color: white !important;
+    text-shadow: 1px 1px 3px black !important;
+}
+
+.path-course-view .mast-image {
+    min-height: 210px;
+}
 
 /* ==========================================================================
    @GB 2021 - File types. Add Font-awesome icons based on extension
@@ -83,26 +120,6 @@ a.autolink[href*="forum"]::before {
     color: #1c6d43;
 }
 
-/* ==========================================================================
-   @GB 2019 - Alternative, inverted banner (white text on opaque black)
-   ========================================================================== */
-
-/* Set opaque bg */
-/*#page-mast h1,
-.breadcrumb-nav  {
-    color: white;
-    background-color: rgba(0, 0, 0, .5);
-    display: inline-block;
-    padding: 0.2em 0.4em;
-}*/
-
-
-/* style links */
-/*#page-mast h1 a,
-.breadcrumb a, .breadcrumb-nav a {
-    color: white !important;
-    text-shadow: 1px 1px 3px black !important;
-}*/
 
 
 
