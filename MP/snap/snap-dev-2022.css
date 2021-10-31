@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2021-11-01 08:50:01
+* @Last Modified time: 2021-11-01 09:02:56
 */
 
 
@@ -14,63 +14,61 @@
 /* Reduce  vertical height of MP logo */
 
 
-
 /* ==========================================================================
    @GB 2021 - File types. Add Font-awesome icons based on extension
    ========================================================================== */
 
 /* MS Word */
 
-/*a[href$=".docx"]::before, a[href$=".doc"]::before  {
+a[href$=".docx"]::before, a[href$=".doc"]::before  {
     font-family: "fontawesome";
     content:"\f1c2";
     color: #2a5294;
     margin-right: 0.2em;
-}*/
+}
 
-/*body.snap-resource-card li.snap-resource.snap-mime-document {
+body.snap-resource-card li.snap-resource.snap-mime-document {
     background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/word.svg);
-}*/
+}
 
 /* Powerpoint */
 
-/*a[href$=".pptx"]::before, a[href$=".ppt"]::before, li[data-type="ppt"] p.instancename::before {
+a[href$=".pptx"]::before, a[href$=".ppt"]::before, li[data-type="ppt"] p.instancename::before {
     font-family: "fontawesome";
     content:"\f1c4";
     color: #ca4324;
     margin-right: 0.2em;
-}*/
+}
 
-
-/*body.snap-resource-card li.snap-resource.snap-mime-document {
-    background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/word.svg);
-}*/
+body.snap-resource-card li.snap-resource.snap-mime-powerpoint {
+    background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/powerpoint.svg);
+}
 
 /* Excel */
 
-/*a[href$=".xlsx"]::before, a[href$=".xls"]::before  {
+a[href$=".xlsx"]::before, a[href$=".xls"]::before  {
     font-family: "fontawesome";
     content:"\f1c3";
     color: #1c6d43;
     margin-right: 0.2em;
-}*/
+}
 
-/*body.snap-resource-card li.snap-resource.snap-mime-spreadsheet {
+body.snap-resource-card li.snap-resource.snap-mime-spreadsheet {
     background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/excel.svg);
-}*/
+}
 
 /* PDF */
 
-/*a[href$=".pdf"]::before {
+a[href$=".pdf"]::before {
     font-family: "fontawesome";
     content:"\f1c1";
     color: #cb0506;
     margin-right: 0.2em;
-}*/
+}
 
-/*body.snap-resource-card li.snap-resource.snap-mime-pdf {
+body.snap-resource-card li.snap-resource.snap-mime-pdf {
     background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/pdf.svg);
-}*/
+}
 
 /*---------
 Activity name autolinking
@@ -78,12 +76,12 @@ Activity name autolinking
 
 /* Forum */
 
-/*a.autolink[href*="forum"]::before {
+a.autolink[href*="forum"]::before {
     font-family: "fontawesome";
     content:"\f0e6";
     margin-right: 0.2em;
     color: #1c6d43;
-}*/
+}
 
 /* ==========================================================================
    @GB 2019 - Alternative, inverted banner (white text on opaque black)
@@ -146,8 +144,8 @@ Activity name autolinking
 .coursecard-body .snap-draft-tag,
 .coursecard-body .published-status {
     /*font-weight: bold;*/
-    color: maroon !important;
-}*/
+    /*color: maroon !important;*/
+/*}*/
 
 /* Add light yellow stripe behind hidden items to increase attention*/
 /*.snap-draft-tag,
@@ -167,7 +165,7 @@ Activity name autolinking
 }*/
 
 /*remove duplicate eyeball on hidden sections */
-.snap-draft-section.snap-draft-tag:before {/*content: "";*/}
+/*.snap-draft-section.snap-draft-tag:before {content: "";}*/
 
 
 /* ==========================================================================
@@ -559,9 +557,9 @@ Change dashboard course card backgroup
 If there is a cover image in course then display the cover image.
 If no cover image, then display MP colour.
 -----*/
- #snap-pm-courses .coursecard {
+/* #snap-pm-courses .coursecard {
     background-image: linear-gradient(to bottom right, #170052, #170052);
-}
+}*/
 
 /*#snap-pm-courses .coursecard {
     background-image: url("/pluginfile.php/1/tool_themeassets/assets/0/course-card-image.png");
@@ -1108,24 +1106,24 @@ height:auto;
    padding: 5px;
 }*/
 
-a.external-link {
+/*a.external-link {
   position: relative;
   padding-right: 20px;
-}
+}*/
 
 /*a.external-link:after {
 font-family: FontAwesome;
     content: "\f08e";
 /*display: inline-block;*/
-   padding-left: 5px;
+/*   padding-left: 5px;
 }*/
 
 /*a.forum-link:before {
 font-family: FontAwesome;
    content:"\f086";
 /*display: inline-block;*/
-   padding-right: 5px;
-/*content: url("https://mynmit-sandbox.mrooms.net/theme/image.php/snap/forum/1626842706/icon");*/
+/*   padding-right: 5px;
+content: url("https://mynmit-sandbox.mrooms.net/theme/image.php/snap/forum/1626842706/icon");
 }*/
 
 /* MP Branded Footer elements*/
@@ -1181,4 +1179,4 @@ font-family: FontAwesome;
 
 /*body.snap-resource-card li.snap-resource.snap-mime-powerpoint {
     background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/powerpoint.svg);
-}*/
+}
