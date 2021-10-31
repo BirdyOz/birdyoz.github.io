@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2021-10-28 13:51:06
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2021-10-28 14:32:14
+* @Last Modified time: 2021-10-28 16:17:17
 */
 
 
@@ -36,6 +36,21 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 #page-my-index .breadcrumb-nav {
     display: none;
 }
+
+#page-my-index #page-header {
+ background:  #565656;
+}
+
+#page-my-index #page-header h1 {
+ color:  white;
+}
+
+#page-my-index #region-main  {
+    margin-top: 1em;
+}
+
+
+
 
 /* ==========================================================================
    BANNER
@@ -203,15 +218,3 @@ Expand all collapsed items in the atto edtitor, to expose their content */
 body#page-mod-book-view #region-main #intro {
    display: none;
 }
-
-/* ==========================================================================
-   CATEGORY SPECIFIC FIXES
-   ========================================================================== */
-
-
-/* Turn off "message" link and icon in Snap footer for specific categories */
-
-body.category-288 #snap-course-footer a[href *="/message/"],
-body.category-289 #snap-course-footer a[href *="/message/"]  {
-    display: none;
-    }
