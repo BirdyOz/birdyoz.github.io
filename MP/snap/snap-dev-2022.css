@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2021-11-01 10:15:14
+* @Last Modified time: 2021-11-01 10:26:38
 */
 
 /* ==========================================================================
@@ -47,6 +47,7 @@ header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-
     text-shadow: 1px 1px 3px black !important;
 }
 
+
 .path-course-view .mast-image {
     min-height: 210px;
 }
@@ -55,6 +56,8 @@ header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-
    @GB 2021 - Mobile specific changes
    ========================================================================== */
 
+
+/*Reduce banner size on smaller devices*/
 @media (max-width: 1001px) {
     #page-header {
         padding-top: 0;
@@ -83,6 +86,78 @@ header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-
       -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
       box-shadow: 0 0 0 0 rgba(204,169,44, 0);
   }
+}
+
+/* ==========================================================================
+   @GB 2021 - ToC changes - colours and markers
+   ========================================================================== */
+
+/* Pulse the search bar */
+
+#toc-search-input {
+  box-shadow: 0 0 0 rgba(204,169,44, 0.8);
+  animation: pulse 3s;
+}
+
+
+
+/* Increase contract of current section*/
+#snap-course-wrapper #chapters li.snap-visible-section a {
+    font-weight: bold;
+    color: black;
+}
+
+/* Current marker */
+#snap-course-wrapper #chapters li.snap-visible-section .chapter-title:before {
+font-family: FontAwesome;
+content: "\f0da";
+background: none;
+margin-right: .4em;
+}
+
+/* Increase contract of conditional items*/
+#snap-course-wrapper #chapters li.conditional .published-status {
+    font-weight: bold;
+    color: #b55600;
+}
+
+/* Conditional marker */
+#snap-course-wrapper #chapters li.conditional .chapter-title:before {
+    font-family: FontAwesome;
+    color: #b55600;
+    content: "\f023";
+    background: none;
+    margin-right: .4em;
+}
+
+/* Increase contract of hidden items*/
+#snap-course-wrapper #chapters li.draft .published-status,
+.coursecard-body .snap-draft-tag,
+.coursecard-body .published-status {
+    font-weight: bold;
+    color: maroon !important;
+}
+
+/* Add light yellow stripe behind hidden items to increase attention*/
+.snap-draft-tag,
+.published-status {
+    background-color: rgba(255, 255, 0, .4);
+}
+
+/*Hidden marker*/
+#snap-course-wrapper #chapters li.draft .chapter-title:before,
+.snap-draft-tag:before,
+.coursecard-body .published-status:before {
+    font-family: FontAwesome;
+    color: #333;
+    content: "\f070 ";
+    background: none;
+    margin-right: .4em;
+}
+
+/*remove duplicate eyeball on hidden sections */
+.snap-draft-section.snap-draft-tag:before {
+    content: "";
 }
 
 /* ==========================================================================
@@ -154,73 +229,8 @@ a.autolink[href*="forum"]::before {
     color: #1c6d43;
 }
 
-
 /* ==========================================================================
-   @GB 2019 - ToC changes - colours and markers
-   ========================================================================== */
-
-/* Increase contract of current section*/
-#snap-course-wrapper #chapters li.snap-visible-section a {
-    font-weight: bold;
-    color: black;
-}
-
-/* Current marker */
-/*#snap-course-wrapper #chapters li.snap-visible-section .chapter-title:before {*/
-font-family: FontAwesome;
-content: "\f0da";
-background: none;
-margin-right: .4em;
-}
-
-/* Increase contract of conditional items*/
-#snap-course-wrapper #chapters li.conditional .published-status {
-    font-weight: bold;
-    color: #b55600;
-}
-
-/* Conditional marker */
-#snap-course-wrapper #chapters li.conditional .chapter-title:before {
-    font-family: FontAwesome;
-    color: #b55600;
-    content: "\f023";
-    background: none;
-    margin-right: .4em;
-}
-
-/* Increase contract of hidden items*/
-#snap-course-wrapper #chapters li.draft .published-status,
-.coursecard-body .snap-draft-tag,
-.coursecard-body .published-status {
-    font-weight: bold;
-    color: maroon !important;
-}
-
-/* Add light yellow stripe behind hidden items to increase attention*/
-.snap-draft-tag,
-.published-status {
-    background-color: rgba(255, 255, 0, .4);
-}
-
-/*Hidden marker*/
-#snap-course-wrapper #chapters li.draft .chapter-title:before,
-.snap-draft-tag:before,
-.coursecard-body .published-status:before {
-    font-family: FontAwesome;
-    color: #333;
-    content: "\f070 ";
-    background: none;
-    margin-right: .4em;
-}
-
-/*remove duplicate eyeball on hidden sections */
-.snap-draft-section.snap-draft-tag:before {
-    content: "";
-}
-
-
-/* ==========================================================================
-   @GB 2019 - Display fixes
+   @GB 2021 - Display fixes
    ==========================================================================
 
 /*Fix nested ul display bug*/
@@ -234,12 +244,6 @@ margin-right: .4em;
 .theme-snap a:focus, .theme-snap .dropdown-toggle:focus {
     outline: none;
 }
-
-
-
-
-
-
 
 
 
