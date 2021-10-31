@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2021-11-01 09:26:08
+* @Last Modified time: 2021-11-01 10:15:14
 */
 
 /* ==========================================================================
@@ -22,7 +22,7 @@ header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-
 }
 
 .theme-snap header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-item div.dropdown-menu {
-    background-color: rgba(23,0,82,.9);
+    background-color: rgba(23, 0, 82, .9);
 }
 
 
@@ -32,7 +32,7 @@ header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-
 
 /* Set opaque bg */
 #page-mast h1,
-.breadcrumb-nav  {
+.breadcrumb-nav {
     color: white;
     background-color: rgba(0, 0, 0, .5);
     display: inline-block;
@@ -52,14 +52,48 @@ header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-
 }
 
 /* ==========================================================================
+   @GB 2021 - Mobile specific changes
+   ========================================================================== */
+
+@media (max-width: 1001px) {
+    #page-header {
+        padding-top: 0;
+    }
+}
+
+#toc-mobile-menu-toggle {
+  box-shadow: 0 0 0 rgba(204,169,44, 0.8);
+  animation: pulse 2s infinite;
+}
+
+#toc-mobile-menu-toggle:hover {
+  animation: none;
+}
+
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0.8);
+    box-shadow: 0 0 0 0 rgba(204,169,44, 0.8);
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+      box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+
+/* ==========================================================================
    @GB 2021 - File types. Add Font-awesome icons based on extension
    ========================================================================== */
 
 /* MS Word */
 
-a[href$=".docx"]::before, a[href$=".doc"]::before  {
+a[href$=".docx"]::before, a[href$=".doc"]::before {
     font-family: "fontawesome";
-    content:"\f1c2";
+    content: "\f1c2";
     color: #2a5294;
     margin-right: 0.2em;
 }
@@ -72,7 +106,7 @@ body.snap-resource-card li.snap-resource.snap-mime-document {
 
 a[href$=".pptx"]::before, a[href$=".ppt"]::before, li[data-type="ppt"] p.instancename::before {
     font-family: "fontawesome";
-    content:"\f1c4";
+    content: "\f1c4";
     color: #ca4324;
     margin-right: 0.2em;
 }
@@ -83,9 +117,9 @@ body.snap-resource-card li.snap-resource.snap-mime-powerpoint {
 
 /* Excel */
 
-a[href$=".xlsx"]::before, a[href$=".xls"]::before  {
+a[href$=".xlsx"]::before, a[href$=".xls"]::before {
     font-family: "fontawesome";
-    content:"\f1c3";
+    content: "\f1c3";
     color: #1c6d43;
     margin-right: 0.2em;
 }
@@ -98,7 +132,7 @@ body.snap-resource-card li.snap-resource.snap-mime-spreadsheet {
 
 a[href$=".pdf"]::before {
     font-family: "fontawesome";
-    content:"\f1c1";
+    content: "\f1c1";
     color: #cb0506;
     margin-right: 0.2em;
 }
@@ -115,12 +149,10 @@ Activity name autolinking
 
 a.autolink[href*="forum"]::before {
     font-family: "fontawesome";
-    content:"\f0e6";
+    content: "\f0e6";
     margin-right: 0.2em;
     color: #1c6d43;
 }
-
-
 
 
 /* ==========================================================================
@@ -128,50 +160,50 @@ a.autolink[href*="forum"]::before {
    ========================================================================== */
 
 /* Increase contract of current section*/
-/*#snap-course-wrapper #chapters li.snap-visible-section a {
+#snap-course-wrapper #chapters li.snap-visible-section a {
     font-weight: bold;
     color: black;
-}*/
+}
 
 /* Current marker */
-/*#snap-course-wrapper #chapters li.snap-visible-section .chapter-title:before {
-    font-family: FontAwesome;
-    content: "\f0da";
-    background: none;
-    margin-right: .4em;
-}*/
+/*#snap-course-wrapper #chapters li.snap-visible-section .chapter-title:before {*/
+font-family: FontAwesome;
+content: "\f0da";
+background: none;
+margin-right: .4em;
+}
 
 /* Increase contract of conditional items*/
-/*#snap-course-wrapper #chapters li.conditional .published-status {
+#snap-course-wrapper #chapters li.conditional .published-status {
     font-weight: bold;
     color: #b55600;
-}*/
+}
 
 /* Conditional marker */
-/*#snap-course-wrapper #chapters li.conditional .chapter-title:before {
+#snap-course-wrapper #chapters li.conditional .chapter-title:before {
     font-family: FontAwesome;
     color: #b55600;
     content: "\f023";
     background: none;
     margin-right: .4em;
-}*/
+}
 
 /* Increase contract of hidden items*/
-/*#snap-course-wrapper #chapters li.draft .published-status,
+#snap-course-wrapper #chapters li.draft .published-status,
 .coursecard-body .snap-draft-tag,
 .coursecard-body .published-status {
-    /*font-weight: bold;*/
-    /*color: maroon !important;*/
-/*}*/
+    font-weight: bold;
+    color: maroon !important;
+}
 
 /* Add light yellow stripe behind hidden items to increase attention*/
-/*.snap-draft-tag,
+.snap-draft-tag,
 .published-status {
     background-color: rgba(255, 255, 0, .4);
-}*/
+}
 
-/* Hidden marker */
-/*#snap-course-wrapper #chapters li.draft .chapter-title:before,
+/*Hidden marker*/
+#snap-course-wrapper #chapters li.draft .chapter-title:before,
 .snap-draft-tag:before,
 .coursecard-body .published-status:before {
     font-family: FontAwesome;
@@ -179,27 +211,29 @@ a.autolink[href*="forum"]::before {
     content: "\f070 ";
     background: none;
     margin-right: .4em;
-}*/
+}
 
 /*remove duplicate eyeball on hidden sections */
-/*.snap-draft-section.snap-draft-tag:before {content: "";}*/
+.snap-draft-section.snap-draft-tag:before {
+    content: "";
+}
 
 
 /* ==========================================================================
    @GB 2019 - Display fixes
-   ========================================================================== */
+   ==========================================================================
 
 /*Fix nested ul display bug*/
-/*.content ul>ul {
+.content ul>ul {
     -webkit-margin-before: 0;
     list-style-type: circle
-}*/
+}
 
 /*Remove outline around focussed elements*/
 
-/*.theme-snap a:focus, .theme-snap .dropdown-toggle:focus {
-     outline: none;
-}*/
+.theme-snap a:focus, .theme-snap .dropdown-toggle:focus {
+    outline: none;
+}
 
 
 
