@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2021-11-01 11:00:13
+* @Last Modified time: 2021-11-01 11:41:52
 */
 
 /* ==========================================================================
@@ -261,70 +261,148 @@ a.autolink[href*="forum"]::before {
    ========================================================================== */
 
 
-
 /* Fix for scrollbar issue (#15923) */
 
-/*.snap-form-advanced #id_modstandardelshdr .form-inline[data-fieldtype="editor"] div:first-child,
+.snap-form-advanced #id_modstandardelshdr .form-inline[data-fieldtype="editor"] div:first-child,
 .snap-form-advanced #id_overallfeedbackhdr .form-inline[data-fieldtype="editor"] div:first-child {
     overflow: auto !important;
-}*/
+}
 
 /*Hide data privacy tag*/
 
-/*#page-footer .tool_dataprivacy {
+#page-footer .tool_dataprivacy {
     display: none;
-}*/
+}
 
 /*---------
 General
 ---------*/
 
-/*#moodle-page {
+#moodle-page {
     margin-top: 5em;
-}*/
+}
 
-/*#page-login-index #page-header {
+#page-login-index #page-header {
     display: none;
-}*/
+}
 
-/*#page-login-index .loginpanel h2 {
+#page-login-index .loginpanel h2 {
     font-size: 2em;
-}*/
+}
 
-/*body {
+body {
     font-size: 16px;
-}*/
+}
 
 
-/*#snap-home.logo {
+#snap-home.logo {
     height: 80px;
-}*/
+}
 
 
-/*#page-header {
+#page-header {
     min-height: 100px;
     padding-top: 1em;
-}*/
+}
 
-/*h1 {
+h1 {
     font-size: 250%;
-}*/
+}
 
-/*h2,
+h2,
 .h2 {
     font-size: 200%;
-}*/
+}
 
 
-/*.path-course-view {
+
+
+
+
+/* ==========================================================================
+   @GB - Original MP banner styles.  Commented out
+   ========================================================================== */
+
+/*#page-mast h1 {
+    background-color: rgba(255,255,255,.8);
+    padding: 0 0.5rem;
+    display:inline-block;
+    margin-bottom: 0;
+    line-height: 1.2em;
+}
+
+#page-mast h1 a {
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+    margin-left: 0.1rem;
+    font-size: 2.0rem;
+    font-weight: 300;
+}
+
+#page-mast h1 a {
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+    margin-left: 0.1rem;
+    font-size: 2.0rem;
+    font-weight: 300;
+}
+
+#page-mast h1 a:hover {
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+}
+
+#page-mast h1 a:visited {
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+}
+
+.breadcrumb li a {
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+}
+
+.breadcrumb li {
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+}
+
+.breadcrumb-nav {
+    background-color: rgba(255,255,255,.8);
+    display:inline-block;
+    margin-bottom: 0.5rem;
+}
+
+.breadcrumb-nav .breadcrumb {
+    color: #170052;
+    margin: 0 10px;
+}
+
+.breadcrumb>li+li:before {
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+}
+
+.breadcrumb a{
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+}
+
+.breadcrumb a:visited{
+    color: #170052;
+    text-shadow: 0px 0px 0px rgba(0,0,0,0);
+}
+*/
+
+.path-course-view {
     min-height: 200px;
-}*/
+}
 
-/*ul {
+ul {
     list-style: none;
-}*/
+}
 
-/*ul,
+ul,
 menu,
 dir {
     display: block;
@@ -334,141 +412,277 @@ dir {
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
     -webkit-padding-start: 40px;
-}*/
+}
 
-/*hr {
+hr {
     height: 0em;
-}*/
+}
 
 /*-------------------------
 Resource: Card Box Style
 -------------------------*/
 
-/*body.snap-resource-card li.snap-resource {
+body.snap-resource-card li.snap-resource {
     height: 180px;
     background-position: 50% 65%;
-}*/
+}
 
 
+/* ==========================================================================
+   @GB - Original MP top nav.  Commented out
+   ========================================================================== */
+
+/*----------
+Custom menu
+----------*/
+
+
+
+/*.mp-menu-wrapper {
+    width: 100%;
+    font-weight: 500;
+    display: inline-block;
+    text-align: center;
+}
+
+.mp-custom-alert {
+    color: #fff;
+    background-color: #DF6262;
+    width: 100%;
+    padding: 0.3em;
+}
+
+
+.mp-menu{
+    text-transform: uppercase;
+    z-index:34;
+    width:100%;
+    background:#f1f1f1;
+    font-size:90%;
+    background-color: #f1f1f1;
+    padding: 0;
+    margin:0;
+    display:none;
+    visibility: hidden;
+}
+
+.mp-menu.open {
+    display:inherit;
+    visibility: visible;
+}
+
+
+.mp-menu ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    list-style-image: none;
+}
+
+.mp-menu li {
+    display: block;
+    border-bottom: 1px solid #5959bd;
+}
+
+.mp-menu li a {
+    text-decoration:none;
+    margin: 0px;
+    padding:15px 0;
+    display:block;
+    width:100%;
+    color:#fff;
+    padding-left:2em;
+}
+
+.mp-menu li a:hover {
+    color: #000;
+    text-decoration:none;
+}
+
+
+.mp-hamburger {
+  background:none;
+  position:absolute;
+  top:0;
+  right:10px;
+  line-height:40px;
+  padding: 0px 15px 0px 15px;
+  margin:0;
+  color:#999;
+  border:0;
+  font-size:1.4em;
+  font-weight:bold;
+  cursor:pointer;
+  outline:none;
+  z-index:34;
+}
+
+
+@media (min-width: 768px) {
+
+    .mp-hamburger {
+        display:none;
+        visibility: hidden;
+    }
+
+    .mp-menu {
+        margin: 0;
+        padding:0;
+        display:inherit;
+        visibility: visible;
+        top:0;
+        left:0;
+        background-color: transparent;
+    }
+
+    .mp-menu li {
+        display:inline-block;
+        margin: 0 2em;
+        border-bottom: none;
+    }
+
+    .mp-menu li a {
+        padding: 10px 0;
+        color: #170052;
+    }
+
+    .mp-menu li a:hover {
+        text-decoration: underline;
+    }
+}
+*/
 
 /*-----------
 Header / My Courses Menu
 -----------*/
 
-/*.pull-right {
+.pull-right {
     margin-top: 1.4em;
-}*/
+}
 
-/*#page-content .block_settings.state-visible,
+#page-content .block_settings.state-visible,
 .block_settings:target {
     height: calc(100% - 7.3em);
     margin-top: 7.3em;
-}*/
+}
 
-/*.block_settings>.card-body,
+.block_settings>.card-body,
 .userprofile .profile_tree .block_settings>section {
     padding: 0;
-}*/
+}
 
-/*#page.offcanvas {
+#page.offcanvas {
     left: -320px;
+}
+
+/*@GB - commented out to let header be fullwidth*/
+
+/*#mr-nav {
+    padding: 0 4%;
+    position: absolute;
+    width: 100%;
 }*/
 
-
-/*.snap-my-courses-menu {
+.snap-my-courses-menu {
     font-size: 18px;
     text-transform: uppercase;
-}*/
+}
 
+/*-----
+redefined background image
+.coursecard {
+    background-image: none !important;
+}
+-----*/
 
-/*#snap-pm-header {
+#snap-pm-header {
     background: url("/pluginfile.php/1/tool_themeassets/assets/0/MP-Logo_Horiz_Reverse.png") no-repeat center left 20px #170052;
     padding: 1%;
-}*/
+}
 
-/*.snap-pm-user {
+.snap-pm-user {
     padding-left: 320px;
     margin-top: 0.7em;
-}*/
+}
 
-/*#snap-pm-header .userpicture {
+#snap-pm-header .userpicture {
     width: 50px;
     height: 50px;
-}*/
+}
 
-/*.snap-pm-user .h1 {
+.snap-pm-user .h1 {
     font-size: 170%;
-}*/
+}
 
 
-/*#snap-pm-header-quicklinks {
+#snap-pm-header-quicklinks {
     font-size: 90%;
-}*/
+}
 
 
 /*------
 Snap footer - Staff Contacts
 ------*/
 
-/*#snap-course-footer #snap-course-footer-contacts .snap-media-object {
+#snap-course-footer #snap-course-footer-contacts .snap-media-object {
     display: inline-block;
     width: 50%;
-}*/
+}
 
-/*@media (min-width: 920px) {
+@media (min-width: 920px) {
     #snap-course-footer #snap-course-footer-contacts .snap-media-object {
         width: 33%;
     }
-}*/
+}
 
-/*@media (min-width: 1280px) {
+@media (min-width: 1280px) {
     #snap-course-footer #snap-course-footer-contacts .snap-media-object {
         width: 25%;
     }
-}*/
+}
 
-/*@media (min-width: 1600px) {
+@media (min-width: 1600px) {
     #snap-course-footer #snap-course-footer-contacts .snap-media-object {
         width: 20%;
     }
-}*/
+}
 
-/*#snap-course-footer #snap-course-footer-contacts .snap-media-object .snap-media-body {
+#snap-course-footer #snap-course-footer-contacts .snap-media-object .snap-media-body {
     visibility: hidden;
     height: 50px;
-}*/
+}
 
-/*#snap-course-footer #snap-course-footer-contacts .snap-media-object .snap-media-body>a:first-child {
+#snap-course-footer #snap-course-footer-contacts .snap-media-object .snap-media-body>a:first-child {
     visibility: visible;
-}*/
+}
 
-/*#snap-course-footer-contacts .snap-media-object .userpicture {
+#snap-course-footer-contacts .snap-media-object .userpicture {
     width: 40px;
-}*/
+}
 
-/*#snap-course-footer .col-lg-3.col-md-4 {
+#snap-course-footer .col-lg-3.col-md-4 {
     width: 100%;
     max-width: 100%;
     flex: 0 0 100%;
-}*/
+}
 
 
-/*#snap-course-footer .col-lg-9.col-md-8 {
+#snap-course-footer .col-lg-9.col-md-8 {
     display: none;
-}*/
+}
 
 
 /*------
 Footer
 ------*/
 
-/*#moodle-footer {
+#moodle-footer {
     background-color: #161616;
-}*/
+}
 
 
 
-/*#moodle-footer .mp-footer-contact .label {
+#moodle-footer .mp-footer-contact .label {
     width: 100%;
     text-align: left;
     padding: 0;
@@ -477,90 +691,90 @@ Footer
     display: inline-block;
     font-size: 100%;
     background-color: transparent;
-}*/
+}
 
-/*#moodle-footer .mp-footer-contact .phone-number {}*/
+#moodle-footer .mp-footer-contact .phone-number {}
 
-/*#moodle-footer .mp-footer-contact .phone-number .phone {
+#moodle-footer .mp-footer-contact .phone-number .phone {
     font-size: 160%;
     font-weight: bold;
-}*/
+}
 
-/*#moodle-footer .mp-footer-contact .phone-number .content {
+#moodle-footer .mp-footer-contact .phone-number .content {
     font-size: 12px;
     width: 80%;
     display: inline-block;
     text-align: left;
-}*/
+}
 
-/*#moodle-footer>.row {
+#moodle-footer>.row {
     width: 100%;
     margin: 0;
     padding: 0;
     display: inline-block;
     float: left;
-}*/
+}
 
-/*#mrooms-footer {
+#mrooms-footer {
     clear: both;
     width: 100%;
-}*/
+}
 
-/*#moodle-footer>#snap_socialmedia_links {
+#moodle-footer>#snap_socialmedia_links {
     width: 100%;
     margin: 20px 0;
     padding: 0;
     display: inline-block;
     float: left;
     text-align: center;
-}*/
+}
 
-/*.snap-media-object.course-footer-update-assign {
+.snap-media-object.course-footer-update-assign {
     display: none;
-}*/
+}
 
-/*.snap-media-object.course-footer-update-forum {
+.snap-media-object.course-footer-update-forum {
     display: none;
-}*/
+}
 
-/*.copyright {
+.copyright {
     clear: right;
     font-size: 90%;
-}*/
+}
 
-/*#moodle-footer h2 {
+#moodle-footer h2 {
     font-size: 200%;
-}*/
+}
 
-/*#footer-bottom {
+#footer-bottom {
     padding-top: 15px;
     text-align: left;
     font-size: 80%;
-}*/
+}
 
-/*#footer-bottom ul,
+#footer-bottom ul,
 #footer-bottom li {
     margin: 0;
     padding: 0;
-}*/
+}
 
-/*#footer-bottom li {
+#footer-bottom li {
     margin-left: 1em;
     display: inline-block;
-}*/
+}
 
-/*footer ul {
+footer ul {
     margin: 0;
     list-style-type: none;
-}*/
+}
 
-/*#page-footer {
+#page-footer {
     margin: 0;
     padding: 0;
-}*/
+}
 
 
-/*.mp-footer-buttons,
+.mp-footer-buttons,
 .mp-footer-contact {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -573,48 +787,48 @@ Footer
     flex-wrap: wrap;
     -ms-flex-pack: distribute;
     justify-content: space-around;
-}*/
+}
 
-/*.mp-footer-box {
+.mp-footer-box {
     -webkit-box-flex: 0;
     -ms-flex: 0 1 280px;
     flex: 0 1 280px;
     margin: 10px;
 
-}*/
+}
 
-/*.mp-footer-contact .phone-number,
+.mp-footer-contact .phone-number,
 .mp-footer-contact .address {
     -webkit-box-flex: 1;
     -ms-flex: 1 0 300px;
     flex: 1 0 300px;
     margin-top: 10px;
-}*/
+}
 
 
-/*.course-content {
+.course-content {
     max-width: 80em;
-}*/
+}
 
-/*#region-main {
+#region-main {
     max-width: 80em;
-}*/
+}
 
-/*#chooseform .option {
+#chooseform .option {
     zoom: 1.3;
-}*/
+}
 
-/*#chooseform .moduletypetitle {
+#chooseform .moduletypetitle {
     zoom: 1.3;
-}*/
+}
 
 /*------
 Assignment View fix
 ------*/
 
-/*#page-mod-assign-view {
+#page-mod-assign-view {
     width: 100%;
-}*/
+}
 
 /*-----
 Change dashboard course card backgroup
@@ -625,139 +839,139 @@ If no cover image, then display MP colour.
     background-image: linear-gradient(to bottom right, #170052, #170052);
 }*/
 
-/*#snap-pm-courses .coursecard {
+#snap-pm-courses .coursecard {
     background-image: url("/pluginfile.php/1/tool_themeassets/assets/0/course-card-image.png");
     background-color: #170052 !important;
-}*/
+}
 
 /*-----
 Change assignment information div
 width from 66.6667% to 90%;
 min height from 100px to 50px .
 -----*/
-/*#page-mod-assign-view .assign-intro {
+#page-mod-assign-view .assign-intro {
     width: 90% min-height: 50px;
-}*/
+}
 
 /*-----
 Align progress percentage number on the same line .
 -----*/
-/*.pull-right {
+.pull-right {
     margin-top: 1em;
-}*/
+}
 
 /*-----
 Assignment grading summary div
 -----*/
-/*#page-mod-assign-view .assign-grading-summary {
+#page-mod-assign-view .assign-grading-summary {
     margin-left: 0px;
     float: left;
     width: 90%;
-}*/
+}
 
 /*-----
 Assignment submission div
 -----*/
-/*#page-mod-assign-view .assign-submission-data {
+#page-mod-assign-view .assign-submission-data {
     margin-left: 0px;
     float: left;
     width: 90%;
-}*/
+}
 
 
 /*-----
 ReadSpeaker Adjustments
 -----*/
-/*.block_readspeaker_embhl {
+.block_readspeaker_embhl {
     min-height: auto !important;
     font-size: 1rem;
-}*/
+}
 
 /*-----
 Put Assessment submission declaration checkbox at the bottom of the page
 -----*/
-/*.checkbox label {
+.checkbox label {
     position: relative;
-}*/
+}
 
-/*input#id_submissionstatement {
+input#id_submissionstatement {
     position: absolute;
     bottom: 50px;
     left: 50%;
-}*/
+}
 
-/*.has-danger .form-control-feedback {
+.has-danger .form-control-feedback {
     text-align: center;
-}*/
+}
 
 /*-----
 Adjust assessment submission summary layout
 -----*/
-/*.pull-right {
+.pull-right {
     margin-top: 0;
-}*/
+}
 
-/*#page-mod-assign-view .assign-intro {
+#page-mod-assign-view .assign-intro {
     margin-top: 3px;
     float: left;
     width: 100%;
     min-height: 20px;
-}*/
+}
 
-/*#page-mod-assign-view .groupselector {
+#page-mod-assign-view .groupselector {
     margin-left: 0;
     margin-right: 0;
     float: left;
     width: 100%;
     min-height: 80px;
-}*/
+}
 
-/*#page-mod-assign-view .assign-grading-summary {
+#page-mod-assign-view .assign-grading-summary {
     width: 100%;
-}*/
+}
 
-/*#page-mod-assign-view .assign-submission-data {
+#page-mod-assign-view .assign-submission-data {
     width: 100%;
-}*/
+}
 
-/*#page-mod-assign-view .assign-feedback {
+#page-mod-assign-view .assign-feedback {
     width: 100%;
-}*/
+}
 
 /*-----
 Hide site summary section
 -----*/
 
 /* User tours - Change background to black with opacity */
-/*div[data-flexitour="backdrop"] {
+div[data-flexitour="backdrop"] {
     background-color: black;
     opacity: .4;
-}*/
+}
 
-/*#moodle-page {
+#moodle-page {
     font-size: 1rem;
-}*/
+}
 
 /*-----
 Hide student dashboard in Site Tools
 -----*/
 
-/*#snap-student-dashboard {
+#snap-student-dashboard {
     padding: 0em;
     visibility: hidden;
     height: 0px;
-}*/
+}
 
 /*-----
 Hide "Recent Activity" on site footer section
 -----*/
 
-/*#snap-course-footer-recent-activity {
+#snap-course-footer-recent-activity {
     padding: 0em;
     visibility: hidden;
     height: 0px;
     display: none;
-}*/
+}
 
 /*-----
 Changes below are for updating in September 2019
@@ -767,7 +981,7 @@ Changes below are for updating in September 2019
 Edit box page width change
 -----*/
 
-/*.path-mod-assign .snap-form-required fieldset,
+.path-mod-assign .snap-form-required fieldset,
 .path-mod-hvp .snap-form-required fieldset,
 .path-grade .snap-form-required fieldset,
 .path-admin-report .snap-form-required fieldset,
@@ -775,239 +989,239 @@ Edit box page width change
 #page-course-editsection .snap-form-required fieldset {
     max-width: 100%;
     margin: 1em 0;
-}*/
+}
 
-/*#region-main textarea {
+#region-main textarea {
     width: 100%;
-}*/
+}
 
 /*-----
 Full width Shortname field
 -----*/
 
-/*input#id_shortname,
+input#id_shortname,
 input#id_fullname {
     width: 100%;
-}*/
+}
 
 /*-----
 Hide user notification
 ----*/
-/*.theme-snap #user-notifications {
+.theme-snap #user-notifications {
     display: none;
-}*/
+}
 
 /*-----
 Card height update
 ----*/
-/*body.snap-resource-card li.snap-resource.snap-resource-long {
+body.snap-resource-card li.snap-resource.snap-resource-long {
     height: 15em;
-}*/
+}
 
 /*-----
 Attempt to fix subchapter problem
 ----*/
-/*.path-mod-book #id_general .fcontainer .checkbox {
+.path-mod-book #id_general .fcontainer .checkbox {
     display: block !important;
-}*/
+}
 
 /*-----
 Advanced grading rubric height
 ----*/
-/*.gradingform_rubric .criterion .levels,
+.gradingform_rubric .criterion .levels,
 .gradingform_rubric .criterion .levels table,
 .gradingform_rubric .criterion .levels table tbody {
     height: 100%;
     width: 100%;
-}*/
+}
 
 
 /*-------------------------
 Course and category styles
 -------------------------*/
 
-/*.course-1 #page-header:not(.mast-image) {
+.course-1 #page-header:not(.mast-image) {
     background-image: url("/pluginfile.php/1/tool_themeassets/assets/0/fairfield-campus.jpg");
-}*/
+}
 
 /*---------
 Archive Category
 ---------*/
-/*.category-327 #page-header:not(.mast-image) {
+.category-327 #page-header:not(.mast-image) {
     background-color: #c5c5c5;
-}*/
+}
 
 /*---------
 Creative Arts Category
 ---------*/
-/*.category-77 #page-header:not(.mast-image) {
+.category-77 #page-header:not(.mast-image) {
     background-color: #196a6b;
-}*/
+}
 
 /*---------
 Business Innovation and Entrepreneurship Category
 ---------*/
-/*.category-118 #page-header:not(.mast-image) {
+.category-118 #page-header:not(.mast-image) {
     background-color: #329828;
-}*/
+}
 
 /*---------
 Engineering Design and Construction Category
 ---------*/
-/*.category-121 #page-header:not(.mast-image) {
+.category-121 #page-header:not(.mast-image) {
     background-color: #6eb4cd;
-}*/
+}
 
 /*---------
 Food Plant & Animal Industries Category
 ---------*/
-/*.category-311 #page-header:not(.mast-image) {
+.category-311 #page-header:not(.mast-image) {
     background-color: #00833c;
-}*/
+}
 
 /*---------
 Foundation and Preparatory Studies Category
 ---------*/
-/*.category-119 #page-header:not(.mast-image) {
+.category-119 #page-header:not(.mast-image) {
     background-color: #f18903;
-}*/
+}
 
 /*---------
 Health and Education Category
 ---------*/
-/*.category-312 #page-header:not(.mast-image) {
+.category-312 #page-header:not(.mast-image) {
     background-color: #863176;
-}*/
+}
 
 /*---------
 College of Education and Leadership Category
 ---------*/
-/*.category-178 #page-header:not(.mast-image) {
+.category-178 #page-header:not(.mast-image) {
     background-color: #4286f4;
-}*/
+}
 
 /*---------
 People and Culture Category
 ---------*/
-/*.category-302 #page-header:not(.mast-image) {
+.category-302 #page-header:not(.mast-image) {
     background-color: #4286f4;
-}*/
+}
 
 /*---------
 Information, Communication and Technology Category
 ---------*/
 
-/*.category-112 #page-header:not(.mast-image) {
+.category-112 #page-header:not(.mast-image) {
     background-image: url("/pluginfile.php/1/tool_themeassets/assets/0/imgpreview.jpeg");
-}*/
+}
 
 
 /*---------
 Learning Environments Category
 ---------*/
 
-/*.category-228 #page-header:not(.mast-image) {
+.category-228 #page-header:not(.mast-image) {
     background-image: url("/pluginfile.php/160171/theme_snap/coverimage/1531964327/category-image.jpg");
-}*/
+}
 
 /*---------
 Learning Environments Template Category
 ---------*/
 
-/*.category-227 #page-header:not(.mast-image) {
+.category-227 #page-header:not(.mast-image) {
     background-image: url("/pluginfile.php/1/tool_themeassets/assets/0/LE_Templates.jpg");
-}*/
+}
 
 /*---------
 For top navigation
 ---------*/
-/*#mr-nav #snap-header {
+#mr-nav #snap-header {
     padding: .1em 4% !important;
-}*/
+}
 
-/*#mr-nav {
+#mr-nav {
     top: 50px !important;
-}*/
+}
 
-/*#page-header {
+#page-header {
     padding-top: 0.25em !important;
-}*/
+}
 
 /*---------
 To fix the rubric display
 ---------*/
 
-/*gradingform_rubric .criteria {
+gradingform_rubric .criteria {
     height: 100%;
     width: 100%;
     overflow: auto;
-}*/
+}
 
 /*---------
 To remove "label" from labels GT 06/01/2020
 ---------*/
 
-/*.label .snap-assettype{
+.label .snap-assettype{
     display: none !important;
-}*/
+}
 
 /*---------
 To remove whitespace top of from labels GT 10/01/2020
 ---------*/
 
 
-/*.label .asset-wrapper .snap-header-card {
+.label .asset-wrapper .snap-header-card {
     padding-bottom: 0 !important;
-}*/
+}
 
-/*.label .activityinstance {
+.label .activityinstance {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
-}*/
+}
 
-/*.alert.alert-primary, #page-admin-index .releasenoteslink.alert-primary, #page-admin-index #page-admin-index .releasenoteslink, #page-admin-index #adminsettings .form-overridden.releasenoteslink, #adminsettings #page-admin-index .form-overridden.releasenoteslink, #page-admin-index .que .formulation.releasenoteslink, .que #page-admin-index .formulation.releasenoteslink, #page-admin-index .assignfeedback_editpdf_widget .label.releasenoteslink, .assignfeedback_editpdf_widget #page-admin-index .label.releasenoteslink, #page-admin-index .adminwarning.alert-primary, #page-admin-index #page-admin-index .releasenoteslink.adminwarning, #page-admin-index #adminsettings .form-overridden.adminwarning, #adminsettings #page-admin-index .form-overridden.adminwarning, #page-admin-index .que .formulation.adminwarning, .que #page-admin-index .formulation.adminwarning, #page-admin-index .assignfeedback_editpdf_widget .label.adminwarning, .assignfeedback_editpdf_widget #page-admin-index .label.adminwarning, #page-admin-index .adminerror.alert-primary, #page-admin-index #page-admin-index .releasenoteslink.adminerror, #page-admin-index #adminsettings .form-overridden.adminerror, #adminsettings #page-admin-index .form-overridden.adminerror, #page-admin-index .que .formulation.adminerror, .que #page-admin-index .formulation.adminerror, #page-admin-index .assignfeedback_editpdf_widget .label.adminerror, .assignfeedback_editpdf_widget #page-admin-index .label.adminerror, .que .formulation.alert-primary, .que #page-admin-index .releasenoteslink.formulation, #page-admin-index .que .releasenoteslink.formulation, .que #adminsettings .form-overridden.formulation, #adminsettings .que .form-overridden.formulation, .que .que .formulation, .que .assignfeedback_editpdf_widget .label.formulation, .assignfeedback_editpdf_widget .que .label.formulation, .que .outcome.alert-primary, .que #page-admin-index .releasenoteslink.outcome, #page-admin-index .que .releasenoteslink.outcome, .que #adminsettings .form-overridden.outcome, #adminsettings .que .form-overridden.outcome, .que .que .formulation.outcome, .que .assignfeedback_editpdf_widget .label.outcome, .assignfeedback_editpdf_widget .que .label.outcome, .que .comment.alert-primary, .que #page-admin-index .releasenoteslink.comment, #page-admin-index .que .releasenoteslink.comment, .que #adminsettings .form-overridden.comment, #adminsettings .que .form-overridden.comment, .que .que .formulation.comment, .que .assignfeedback_editpdf_widget .label.comment, .assignfeedback_editpdf_widget .que .label.comment, .assignfeedback_editpdf_widget .label.alert-primary, .assignfeedback_editpdf_widget #page-admin-index .releasenoteslink.label, #page-admin-index .assignfeedback_editpdf_widget .releasenoteslink.label, .assignfeedback_editpdf_widget #adminsettings .form-overridden.label, #adminsettings .assignfeedback_editpdf_widget .form-overridden.label, .assignfeedback_editpdf_widget .que .formulation.label, .que .assignfeedback_editpdf_widget .formulation.label, .assignfeedback_editpdf_widget .assignfeedback_editpdf_widget .label, #page-admin-index .releasenoteslink.alert, #page-admin-index #page-admin-index .adminwarning.releasenoteslink, #page-admin-index #page-admin-index .adminerror.releasenoteslink, #page-admin-index .que .outcome.releasenoteslink, .que #page-admin-index .outcome.releasenoteslink, #page-admin-index .que .comment.releasenoteslink, .que #page-admin-index .comment.releasenoteslink, #adminsettings .form-overridden.alert, #adminsettings #page-admin-index .releasenoteslink.form-overridden, #page-admin-index #adminsettings .releasenoteslink.form-overridden, #adminsettings #page-admin-index .adminwarning.form-overridden, #page-admin-index #adminsettings .adminwarning.form-overridden, #adminsettings #page-admin-index .adminerror.form-overridden, #page-admin-index #adminsettings .adminerror.form-overridden, #adminsettings .que .formulation.form-overridden, .que #adminsettings .formulation.form-overridden, #adminsettings .que .outcome.form-overridden, .que #adminsettings .outcome.form-overridden, #adminsettings .que .comment.form-overridden, .que #adminsettings .comment.form-overridden, #adminsettings .assignfeedback_editpdf_widget .label.form-overridden, .assignfeedback_editpdf_widget #adminsettings .label.form-overridden, .que .formulation.alert, .que #page-admin-index .adminwarning.formulation, #page-admin-index .que .adminwarning.formulation, .que #page-admin-index .adminerror.formulation, #page-admin-index .que .adminerror.formulation, .que .que .outcome.formulation, .que .que .comment.formulation, .assignfeedback_editpdf_widget .label.alert, .assignfeedback_editpdf_widget #page-admin-index .adminwarning.label, #page-admin-index .assignfeedback_editpdf_widget .adminwarning.label, .assignfeedback_editpdf_widget #page-admin-index .adminerror.label, #page-admin-index .assignfeedback_editpdf_widget .adminerror.label, .assignfeedback_editpdf_widget .que .outcome.label, .que .assignfeedback_editpdf_widget .outcome.label, .assignfeedback_editpdf_widget .que .comment.label, .que .assignfeedback_editpdf_widget .comment.label {
+.alert.alert-primary, #page-admin-index .releasenoteslink.alert-primary, #page-admin-index #page-admin-index .releasenoteslink, #page-admin-index #adminsettings .form-overridden.releasenoteslink, #adminsettings #page-admin-index .form-overridden.releasenoteslink, #page-admin-index .que .formulation.releasenoteslink, .que #page-admin-index .formulation.releasenoteslink, #page-admin-index .assignfeedback_editpdf_widget .label.releasenoteslink, .assignfeedback_editpdf_widget #page-admin-index .label.releasenoteslink, #page-admin-index .adminwarning.alert-primary, #page-admin-index #page-admin-index .releasenoteslink.adminwarning, #page-admin-index #adminsettings .form-overridden.adminwarning, #adminsettings #page-admin-index .form-overridden.adminwarning, #page-admin-index .que .formulation.adminwarning, .que #page-admin-index .formulation.adminwarning, #page-admin-index .assignfeedback_editpdf_widget .label.adminwarning, .assignfeedback_editpdf_widget #page-admin-index .label.adminwarning, #page-admin-index .adminerror.alert-primary, #page-admin-index #page-admin-index .releasenoteslink.adminerror, #page-admin-index #adminsettings .form-overridden.adminerror, #adminsettings #page-admin-index .form-overridden.adminerror, #page-admin-index .que .formulation.adminerror, .que #page-admin-index .formulation.adminerror, #page-admin-index .assignfeedback_editpdf_widget .label.adminerror, .assignfeedback_editpdf_widget #page-admin-index .label.adminerror, .que .formulation.alert-primary, .que #page-admin-index .releasenoteslink.formulation, #page-admin-index .que .releasenoteslink.formulation, .que #adminsettings .form-overridden.formulation, #adminsettings .que .form-overridden.formulation, .que .que .formulation, .que .assignfeedback_editpdf_widget .label.formulation, .assignfeedback_editpdf_widget .que .label.formulation, .que .outcome.alert-primary, .que #page-admin-index .releasenoteslink.outcome, #page-admin-index .que .releasenoteslink.outcome, .que #adminsettings .form-overridden.outcome, #adminsettings .que .form-overridden.outcome, .que .que .formulation.outcome, .que .assignfeedback_editpdf_widget .label.outcome, .assignfeedback_editpdf_widget .que .label.outcome, .que .comment.alert-primary, .que #page-admin-index .releasenoteslink.comment, #page-admin-index .que .releasenoteslink.comment, .que #adminsettings .form-overridden.comment, #adminsettings .que .form-overridden.comment, .que .que .formulation.comment, .que .assignfeedback_editpdf_widget .label.comment, .assignfeedback_editpdf_widget .que .label.comment, .assignfeedback_editpdf_widget .label.alert-primary, .assignfeedback_editpdf_widget #page-admin-index .releasenoteslink.label, #page-admin-index .assignfeedback_editpdf_widget .releasenoteslink.label, .assignfeedback_editpdf_widget #adminsettings .form-overridden.label, #adminsettings .assignfeedback_editpdf_widget .form-overridden.label, .assignfeedback_editpdf_widget .que .formulation.label, .que .assignfeedback_editpdf_widget .formulation.label, .assignfeedback_editpdf_widget .assignfeedback_editpdf_widget .label, #page-admin-index .releasenoteslink.alert, #page-admin-index #page-admin-index .adminwarning.releasenoteslink, #page-admin-index #page-admin-index .adminerror.releasenoteslink, #page-admin-index .que .outcome.releasenoteslink, .que #page-admin-index .outcome.releasenoteslink, #page-admin-index .que .comment.releasenoteslink, .que #page-admin-index .comment.releasenoteslink, #adminsettings .form-overridden.alert, #adminsettings #page-admin-index .releasenoteslink.form-overridden, #page-admin-index #adminsettings .releasenoteslink.form-overridden, #adminsettings #page-admin-index .adminwarning.form-overridden, #page-admin-index #adminsettings .adminwarning.form-overridden, #adminsettings #page-admin-index .adminerror.form-overridden, #page-admin-index #adminsettings .adminerror.form-overridden, #adminsettings .que .formulation.form-overridden, .que #adminsettings .formulation.form-overridden, #adminsettings .que .outcome.form-overridden, .que #adminsettings .outcome.form-overridden, #adminsettings .que .comment.form-overridden, .que #adminsettings .comment.form-overridden, #adminsettings .assignfeedback_editpdf_widget .label.form-overridden, .assignfeedback_editpdf_widget #adminsettings .label.form-overridden, .que .formulation.alert, .que #page-admin-index .adminwarning.formulation, #page-admin-index .que .adminwarning.formulation, .que #page-admin-index .adminerror.formulation, #page-admin-index .que .adminerror.formulation, .que .que .outcome.formulation, .que .que .comment.formulation, .assignfeedback_editpdf_widget .label.alert, .assignfeedback_editpdf_widget #page-admin-index .adminwarning.label, #page-admin-index .assignfeedback_editpdf_widget .adminwarning.label, .assignfeedback_editpdf_widget #page-admin-index .adminerror.label, #page-admin-index .assignfeedback_editpdf_widget .adminerror.label, .assignfeedback_editpdf_widget .que .outcome.label, .que .assignfeedback_editpdf_widget .outcome.label, .assignfeedback_editpdf_widget .que .comment.label, .que .assignfeedback_editpdf_widget .comment.label {
      border-left: 3em solid;
-}*/
+}
 
 /*---------
 To fix the rubric display
 ---------*/
-/*.gradingform_rubric .criteria {
+.gradingform_rubric .criteria {
     display: inline-table !important;
-}*/
+}
 
-/*#rubric-rubric.gradingform_rubric #rubric-criteria .criterion .description {
+#rubric-rubric.gradingform_rubric #rubric-criteria .criterion .description {
     width: 20% !important;
-}*/
+}
 
 /*---------
 Hide login button
 ---------*/
-/*.theme-snap #mr-nav a.snap-login-button {
+.theme-snap #mr-nav a.snap-login-button {
     visibility: hidden !important;
-}*/
+}
 
-/*#mr-nav {
+#mr-nav {
     position: absolute!important;
-}*/
+}
 
 /* Fix issue where collapsed accordions cannot be edited in the new ATTO editor
 Expand all collapsed items in the atto edtitor, to expose their content */
 
 
-/*.editor_atto .collapse, .book_chapter .collapse {
+.editor_atto .collapse, .book_chapter .collapse {
     display: block !important;
     height: auto  !important;
-}*/
+}
 
 /*---------
 Adjust to show front menu - CH
 ---------*/
-/*.collapse.show {
+.collapse.show {
     display: block;
     z-index: 9998 !important
     background-color: #fff;
-}*/
+}
 
 /*
  * Restore visiblity of submit buttons in Andresco dialogs.
@@ -1017,194 +1231,194 @@ Adjust to show front menu - CH
  * restore visibly.)
  *
  **/
-/*#page-mod-url-mod form.andresco-form-dialog input#id_submitbutton,
+#page-mod-url-mod form.andresco-form-dialog input#id_submitbutton,
 #page-mod-page-mod form.andresco-form-dialog input#id_submitbutton,
 #page-mod-resource-mod form.andresco-form-dialog input#id_submitbutton {
     display: inline-block;
-}*/
+}
 
 /*Snap on M3.8 books fix - when inside a book, hide the book description from top*/
-/*body#page-mod-book-view #region-main #intro {
+body#page-mod-book-view #region-main #intro {
     display: none;
-}*/
+}
 
-/*.swatch-indigo {
+.swatch-indigo {
     color: #fff;
     background-color: #6610f2;
-}*/
+}
 
-/*.swatch-yellow {
+.swatch-yellow {
     color: #212529;
     background-color: #ffc107;
-}*/
+}
 
-/*.swatch-teal {
+.swatch-teal {
     color: #fff;
     background-color: #20c997;
-}*/
+}
 
-/*.swatch-cyan {
+.swatch-cyan {
     color: #fff;
     background-color: #17a2b8;
-}*/
+}
 
-/*.ddmatch li.matchdrag {
+.ddmatch li.matchdrag {
 height:auto;
-}*/
+}
 
 /*Snap Atto editor drop down heading menu*/
-/*.theme-snap .dropdown-menu>li>a:hover, .theme-snap .dropdown-menu>li>a:focus {
+.theme-snap .dropdown-menu>li>a:hover, .theme-snap .dropdown-menu>li>a:focus {
     background-color: #efefef!important;
-}*/
+}
 
-/*video[role="application"] {
+video[role="application"] {
   display: none;
   visibility: hidden;
-}*/
+}
 
 /* UI elements - text-weblink bg */
-/*.text-weblink h4 {
+.text-weblink h4 {
     color: rgba(0, 55, 255, 1);
-}*/
+}
 
 /* UI elements - Set text-pdf */
-/*.text-pdf h4 {
+.text-pdf h4 {
     color: #EB0E00;
-}*/
+}
 
 /* UI elements - Set text-word */
-/*.text-word h4 {
+.text-word h4 {
     color: #0054BC;
-}*/
+}
 
 /* UI elements - Set text-excel */
-/*.text-excel h4 {
+.text-excel h4 {
     color: #107C41;
-}*/
+}
 
 /* UI elements - Set text-ppt */
-/*.text-ppt h4 {
+.text-ppt h4 {
     color: #C33C1C;
-}*/
+}
 
 /* UI elements - Set text-think */
-/*.text-think h4 {
+.text-think h4 {
     color: #078725;
-}*/
+}
 
 /* UI elements - Set text-read */
-/*.text-read h4 {
+.text-read h4 {
     color: #008390;
-}*/
+}
 
 /* UI elements - Set text-discuss */
-/*.text-discuss h4 {
+.text-discuss h4 {
     color: #947200;
-}*/
+}
 
 
 /* UI elements - Set think-box */
-/*.think-box h4 {
+.think-box h4 {
     color: #078725;
-}*/
+}
 
 /* UI elements - Set read-box */
-/*.read-box h4 {
+.read-box h4 {
     color: #008390;
-}*/
+}
 
 /* UI elements - Set discuss-box */
-/*.discuss-box h4 {
+.discuss-box h4 {
     color: #947200;
-}*/
+}
 
 /* UI elements - Set reflect-box */
-/*.reflect-box h4 {
+.reflect-box h4 {
     color: purple !important;
-}*/
+}
 
 /* UI elements - Set links in eBooks to bold*/
-/*.box.py-3.generalbox.book_content a:link {
+.box.py-3.generalbox.book_content a:link {
     font-weight: bold;
-}*/
+}
 
-/*span.chaptername {
+span.chaptername {
     font-weight: normal!important;
-}*/
+}
 
 /* UI elements - For advanced grading checklist*/
-/*.gradingform_checklist {
+.gradingform_checklist {
     max-width: 100%!important;
-}*/
+}
 
-/*.gradingform_checklist .group .items .item .definition {
+.gradingform_checklist .group .items .item .definition {
     width: 75%;
-}*/
+}
 
-/*div#checklist-groups .odd {
+div#checklist-groups .odd {
     background-color: lightgrey;
-}*/
+}
 
-/*div#checklist-groups .item-wrapper {
+div#checklist-groups .item-wrapper {
     padding: 5px;
-}*/
+}
 
-/*div#advancedgrading-groups {
+div#advancedgrading-groups {
     width: max-content;
-}*/
+}
 
-/*#pagemod-content-container > * {
+#pagemod-content-container > * {
  width: 100%;
-}*/
+}
 
 /* UI elements - For Unorder list dash*/
-/*ul.dashed {
+ul.dashed {
    list-style-type: none;
-}*/
-/*ul.dashed > li {
+}
+ul.dashed > li {
    text-indent: -20px;
-}*/
-/*ul.dashed > li:before {
+}
+ul.dashed > li:before {
    content: "-";
    text-indent: -20px;
    padding: 5px;
-}*/
+}
 
-/*a.external-link {
-  position: relative;
+a.external-link {
+  /*position: relative;*/
   padding-right: 20px;
-}*/
+}
 
-/*a.external-link:after {
+a.external-link:after {
 font-family: FontAwesome;
     content: "\f08e";
 /*display: inline-block;*/
-/*   padding-left: 5px;
-}*/
+   padding-left: 5px;
+}
 
-/*a.forum-link:before {
+a.forum-link:before {
 font-family: FontAwesome;
    content:"\f086";
 /*display: inline-block;*/
-/*   padding-right: 5px;
-content: url("https://mynmit-sandbox.mrooms.net/theme/image.php/snap/forum/1626842706/icon");
-}*/
+   padding-right: 5px;
+/*content: url("https://mynmit-sandbox.mrooms.net/theme/image.php/snap/forum/1626842706/icon");*/
+}
 
 /* MP Branded Footer elements*/
-/*div#mrooms-footer {
+div#mrooms-footer {
     max-width: 100%!important;
     padding-bottom: 1rem;
-}*/
+}
 
-/*.footer .footer__copy {
+.footer .footer__copy {
     line-height: 1.7;
     color: #fff;
     border-top: .2rem solid hsla(0,0%,59.2%,.2);
     padding-top: 4rem;
     padding-bottom: 2rem;
-}*/
+}
 
-/*.footer .footer__copy .footer__copy-inner {
+.footer .footer__copy .footer__copy-inner {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -1218,29 +1432,24 @@ content: url("https://mynmit-sandbox.mrooms.net/theme/image.php/snap/forum/16268
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-}*/
+}
 
-/*.footer .footer__post .footer__post-inner {
+.footer .footer__post .footer__post-inner {
     position: relative;
-}*/
+}
 
-/*.footer .footer__post .footer__post-ack {
+.footer .footer__post .footer__post-ack {
     display: block;
     margin: 0 auto;
     max-width: 60%;
     text-align:center;
-}*/
+}
 
-/*.footer .footer__copy .footer__copy-logo {
+.footer .footer__copy .footer__copy-logo {
     width: 12.8rem;
     margin-bottom: 0;
-}*/
+}
 
-/*footer.footer.mp-footer {
+footer.footer.mp-footer {
     opacity: .75;
-}*/
-
-
-/*body.snap-resource-card li.snap-resource.snap-mime-powerpoint {
-    background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/powerpoint.svg);
 }
