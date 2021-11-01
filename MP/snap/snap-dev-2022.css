@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2021-11-01 12:14:56
+* @Last Modified time: 2021-11-01 12:51:14
 */
 
 /* ==========================================================================
@@ -30,6 +30,7 @@ header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-
 header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-item .dropdown-toggle {
     margin-right: 0.2em;
 }
+
 
 /* ==========================================================================
    @GB 2021 - Banner - reduced height, reduced font
@@ -554,7 +555,7 @@ Custom menu
 Header / My Courses Menu
 -----------*/
 
-.pull-right {
+/*.pull-right {
     margin-top: 1.4em;
 }
 
@@ -572,7 +573,7 @@ Header / My Courses Menu
 #page.offcanvas {
     left: -320px;
 }
-
+*/
 /*@GB - commented out to let header be fullwidth*/
 
 /*#mr-nav {
