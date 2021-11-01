@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2021-11-01 12:51:14
+* @Last Modified time: 2021-11-01 14:10:17
 */
 
 /* ==========================================================================
@@ -243,8 +243,27 @@ a.autolink[href*="forum"]::before {
 }
 
 /* ==========================================================================
+   @GB 2021 - Display fixes
+   ========================================================================== */
+
+
+#page-mod-assign-editsubmission #id_submissionstatement {
+    transform: scale(2);
+    padding:10px;
+    margin-bottom: 5px;
+    animation: pulse 2s infinite;
+    box-shadow: 0 0 0 rgba(204, 169, 44, 0.8);
+}
+
+#page-mod-assign-editsubmission #id_submissionstatement:checked {
+    animation: unset;
+}
+
+
+
+/* ==========================================================================
    @GB 2019 - Display fixes
-   ==========================================================================
+   ========================================================================== */
 
 /*Fix nested ul display bug*/
 .content ul>ul {
