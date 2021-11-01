@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2021-11-01 11:41:52
+* @Last Modified time: 2021-11-01 12:14:56
 */
 
 /* ==========================================================================
@@ -23,10 +23,13 @@ header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-
     height: auto;
 }
 
-.theme-snap header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-item div.dropdown-menu {
+header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-item div.dropdown-menu {
     background-color: rgba(23, 0, 82, .9);
 }
 
+header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-item .dropdown-toggle {
+    margin-right: 0.2em;
+}
 
 /* ==========================================================================
    @GB 2021 - Banner - reduced height, reduced font
@@ -239,7 +242,7 @@ a.autolink[href*="forum"]::before {
 }
 
 /* ==========================================================================
-   @GB 2021 - Display fixes
+   @GB 2019 - Display fixes
    ==========================================================================
 
 /*Fix nested ul display bug*/
@@ -278,9 +281,9 @@ a.autolink[href*="forum"]::before {
 General
 ---------*/
 
-#moodle-page {
+/*#moodle-page {
     margin-top: 5em;
-}
+}*/
 
 #page-login-index #page-header {
     display: none;
@@ -295,15 +298,15 @@ body {
 }
 
 
-#snap-home.logo {
+/*#snap-home.logo {
     height: 80px;
-}
+}*/
 
 
-#page-header {
+/*#page-header {
     min-height: 100px;
     padding-top: 1em;
-}
+}*/
 
 h1 {
     font-size: 250%;
@@ -313,11 +316,6 @@ h2,
 .h2 {
     font-size: 200%;
 }
-
-
-
-
-
 
 /* ==========================================================================
    @GB - Original MP banner styles.  Commented out
@@ -398,11 +396,11 @@ h2,
     min-height: 200px;
 }
 
-ul {
+/*ul {
     list-style: none;
-}
+}*/
 
-ul,
+/*ul,
 menu,
 dir {
     display: block;
@@ -412,7 +410,7 @@ dir {
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
     -webkit-padding-start: 40px;
-}
+}*/
 
 hr {
     height: 0em;
@@ -1135,7 +1133,7 @@ Learning Environments Template Category
 /*---------
 For top navigation
 ---------*/
-#mr-nav #snap-header {
+/*#mr-nav #snap-header {
     padding: .1em 4% !important;
 }
 
@@ -1146,7 +1144,7 @@ For top navigation
 #page-header {
     padding-top: 0.25em !important;
 }
-
+*/
 /*---------
 To fix the rubric display
 ---------*/
