@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2021-11-01 14:10:17
+* @Last Modified time: 2021-11-04 15:24:32
 */
 
 /* ==========================================================================
@@ -84,6 +84,8 @@ header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-
 #toc-mobile-menu-toggle:hover {
     animation: none;
 }
+
+/* Define pulsing animation */
 
 @keyframes pulse {
     0% {
@@ -226,7 +228,7 @@ a[href$=".pdf"]::before {
 }
 
 body.snap-resource-card li.snap-resource.snap-mime-pdf {
-    background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/pdf.svg);
+    background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/PDF_file_icon.svg);
 }
 
 /*---------
@@ -248,7 +250,7 @@ a.autolink[href*="forum"]::before {
 
 
 #page-mod-assign-editsubmission #id_submissionstatement {
-    transform: scale(2);
+    transform: scale(3);
     padding:10px;
     margin-bottom: 5px;
     animation: pulse 2s infinite;
@@ -259,17 +261,36 @@ a.autolink[href*="forum"]::before {
     animation: unset;
 }
 
+/* Change nested lists on sections to disc */
 
+.section ul, .snap-native.modtype_book ol.bookmod-chapters.list-bullets  {
+    list-style-type: disc;
+}
+
+#region-main ul {
+    margin-left: 1em;
+}
+
+#region-main ol ol {
+    list-style-type: lower-alpha;
+}
+
+/*Make links in body content bolder*/
+
+#region-main a:link {
+    font-weight: 500;
+}
+
+/* lighten these for links in <small> */
+
+#region-main small a:link {
+    font-weight: 300;
+}
 
 /* ==========================================================================
    @GB 2019 - Display fixes
    ========================================================================== */
 
-/*Fix nested ul display bug*/
-.content ul>ul {
-    -webkit-margin-before: 0;
-    list-style-type: circle
-}
 
 /*Remove outline around focussed elements*/
 
@@ -1356,9 +1377,9 @@ video[role="application"] {
 }
 
 /* UI elements - Set links in eBooks to bold*/
-.box.py-3.generalbox.book_content a:link {
+/*.box.py-3.generalbox.book_content a:link {
     font-weight: bold;
-}
+}*/
 
 span.chaptername {
     font-weight: normal!important;
