@@ -1,6 +1,5 @@
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGVG4V"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TGVG4V" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <!-- For top Navigation -->
@@ -58,23 +57,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav> -->
 <!-- End top Navigation -->
 
-
 <!-- START Set all non MP links open in new tab/window GT-->
 <script>
 $(document).ready(function() {
-
-      $('main a[href^="http"]:not([href*="' + location.hostname + '"]):not(div[class="text-muted"] a[href^="http"])').each(function(){
-
-           // rewrite the following attributes
-           $(this).attr({
-               target: "_blank",
-               title: "Opens in a new window"
-           });
-
-           $(this).addClass('external-link'); // add class to existing classes
-
-           $(this).click(); // trigger it
-})
+    $('main a[href^="http"]:not([href*="' + location.hostname + '"]):not(div[class="text-muted"] a[href^="http"])').each(function() {
+            if (!$(this).closest("small", "figcaption").length) {
+                $(this).attr({
+                    target: "_blank",
+                    title: "Opens in a new window"
+                });
+                $(this).addClass('external-link'); // add class to existing classes
+            }
+    });
 });
 </script>
 <!-- END Set all non MP links open in new tab/window GT-->
@@ -82,19 +76,14 @@ $(document).ready(function() {
 <!-- START Add class forum-link to all forum links GT-->
 <script>
 $(document).ready(function() {
-
-      $('main a[href^="https://mynmit-sandbox.mrooms.net/mod/forum"][class="autolink"]').each(function(){
-
-           // rewrite the following attributes
-           $(this).attr({
-               target: "_blank"
-           });
-
-           $(this).addClass('forum-link'); // add class to existing classes
-
-           $(this).click(); // trigger it
-})
+    $('main a[href^="https://mynmit-sandbox.mrooms.net/mod/forum"][class="autolink"]').each(function() {
+        // rewrite the following attributes
+        $(this).attr({
+            target: "_blank"
+        });
+        $(this).addClass('forum-link'); // add class to existing classes
+        $(this).click(); // trigger it
+    })
 });
-
 </script>
 <!-- END Add class forum-link to all forum links GT-->

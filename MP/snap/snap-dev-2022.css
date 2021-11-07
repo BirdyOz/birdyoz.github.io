@@ -2,11 +2,11 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2021-11-05 09:00:01
+* @Last Modified time: 2021-11-08 08:46:32
 */
 
 /* ==========================================================================
-   @GB 2021 - Top nav
+   @GB 2021 - Dropdown Top nav
    ========================================================================== */
 
 
@@ -90,11 +90,19 @@ header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-
 }
 
 @media (max-width: 992px) {
+
     /*Site wide nav in footer on smaller devices*/
     footer#moodle-footer div#snap-custom-menu-footer nav.navbar li.nav-item {
         background-color: #170052;
         border: 1px solid white;
     }
+
+    /* Fix sub-tiems so they are not truncated */
+    footer#moodle-footer div#snap-custom-menu-footer nav.navbar ul.snap-navbar-content li.nav-item a.dropdown-item {
+        max-width: auto;
+        overflow: visible;
+    }
+
 }
 
 /* Remove border around breadcrumbs on smaller devices */
@@ -302,6 +310,7 @@ a.autolink[href*="forum"]::before {
     list-style-type: disc;
     /*display: none;*/
 }
+
 .contentwithoutlink ul ul {
     list-style-type: circle;
     /*display: none;*/
@@ -1532,4 +1541,3 @@ div#mrooms-footer {
 footer.footer.mp-footer {
     opacity: .75;
 }
-
