@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2021-11-08 08:46:32
+* @Last Modified time: 2021-11-08 13:40:20
 */
 
 /* ==========================================================================
@@ -60,6 +60,11 @@ header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-
 
 /* ==========================================================================
    @GB 2021 - Mobile specific changes
+
+   ATTENTION VE team:
+    Mobile overrides should best be placed at the END of the CSS,
+    to avoid conflicts.   Please move this section down AFTER
+    cleaning up any MP legacy CSS
    ========================================================================== */
 
 
@@ -68,14 +73,13 @@ header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-
 
     /* Tweak Snap PM on smaller devices.  Swap MP logo for "logo only" */
     #snap-pm-header {
-        background: url("/pluginfile.php/1/tool_themeassets/assets/0/MP-small-reverse.png") no-repeat center left 20px #170052;
-        padding: 1%;
+        background: url("/pluginfile.php/1/tool_themeassets/assets/0/MP-small-reverse.png") no-repeat center left 20px #170052 !important;
     }
 
     .snap-pm-user {
-        margin-top: 0;
-        padding-top: 0;
-        padding-left: 110px;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        padding-left: 110px !important;
         font-size: .9em;
     }
 
@@ -289,9 +293,9 @@ a.autolink[href*="forum"]::before {
 
 
 #page-mod-assign-editsubmission #id_submissionstatement {
-    transform: scale(2.5);
+    transform: scale(3);
     animation: pulse 2s infinite;
-    margin-bottom: .2em;
+    margin-bottom: 2em;
     box-shadow: 0 0 0 rgba(204, 169, 44, 0.8);
 }
 
