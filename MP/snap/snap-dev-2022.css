@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2021-11-16 10:51:05
+* @Last Modified time: 2021-11-16 11:15:10
 */
 
 /* ==========================================================================
@@ -381,21 +381,22 @@ input#id_submissionstatement {
 
 /* Change nested lists on sections to disc */
 
-.contentwithoutlink ul, .snap-native.modtype_book ol.bookmod-chapters.list-bullets {
-    list-style-type: disc;
-    /*display: none;*/
+.section ul, .snap-native.modtype_book ol.bookmod-chapters.list-bullets {
+    list-style-type: disc !important;
 }
 
-.contentwithoutlink ul ul {
-    list-style-type: circle;
-    /*display: none;*/
-}
 
+/*Inside Book, Lesson or other tool*/
 #region-main ul {
     margin-left: 1em;
 }
 
+#region-main ol {
+    margin-left: 0;
+}
+
 #region-main ol ol {
+    margin-left: 0;
     list-style-type: lower-alpha;
 }
 
