@@ -1,8 +1,8 @@
 /*
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
- * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-09-30 09:54:44
+ * @Last Modified by:   gbird
+ * @Last Modified time: 2021-12-08 12:09:21
  */
 
 $(function() {
@@ -28,11 +28,25 @@ $(function() {
     let width = "col-5"; // Default width for floated images
     let json = ""; // JSON Object returned by API call
 
+    // Flickr licences
+    let flickr_licences = {
+        "license": [
+          { "id": 1, "name": "Attribution-NonCommercial-ShareAlike License","short": "CC BY-NC-SA", "url": "https://creativecommons.org/licenses/by-nc-sa/2.0/" },
+          { "id": 2, "name": "Attribution-NonCommercial License","short": "CC BY-NC", "url": "https://creativecommons.org/licenses/by-nc/2.0/" },
+          { "id": 3, "name": "Attribution-NonCommercial-NoDerivs License","short": "CC BY-NC-ND", "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/" },
+          { "id": 4, "name": "Attribution License","short": "CC BY", "url": "https://creativecommons.org/licenses/by/2.0/" },
+          { "id": 5, "name": "Attribution-ShareAlike License","short": "CC BY-SA", "url": "https://creativecommons.org/licenses/by-sa/2.0/" },
+          { "id": 6, "name": "Attribution-NoDerivs License","short": "CC BY-ND", "url": "https://creativecommons.org/licenses/by-nd/2.0/" },
+          { "id": 7, "name": "No known copyright restrictions","short": "Commons (Flickr)", "url": "https://www.flickr.com/commons/usage/" },
+          { "id": 8, "name": "United States Government Work","short": "U.S. Government Work", "url": "http://www.usa.gov/copyright.shtml" },
+          { "id": 9, "name": "Public Domain Dedication (CC0)","short": "CC0", "url": "https://creativecommons.org/publicdomain/zero/1.0/" },
+          { "id": 10, "name": "Public Domain Mark","short": "Public Domain", "url": "https://creativecommons.org/publicdomain/mark/1.0/" }
+        ] }
+    console.log("@GB: flickr_licences = ", flickr_licences.license.find(item => item.id === 7).short);
+
 
     // Set defualt value of collapsed or shown
-
     if (startCollapsed) {
-        // statement
     } else {
         $('#start-shown').click();
     }
@@ -59,6 +73,7 @@ $(function() {
         org = url.searchParams.get("org");
         console.log("@GB: org = ", org);
 
+        // If I am Melb Poly, do not allow attribution to be collpased.
         if (org == 'mp') {
             startCollapsed = false;
             $('#collapser').hide();
