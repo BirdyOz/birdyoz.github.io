@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   gbird
- * @Last Modified time: 2021-12-08 15:14:05
+ * @Last Modified time: 2021-12-08 15:31:42
  */
 
 $(function() {
@@ -197,7 +197,7 @@ $(function() {
                     img_src = json.photo.urls.url[0]._content;
                     img_orig = img_src;
                     user = json.photo.owner.realname;
-                    user_url = "https://www.flickr.com/photos/" + json.photo.owner.username;
+                    user_url = "https://www.flickr.com/photos/" + json.photo.owner.nsid;
                     alt = json.photo.description._content;
                     // get image sizes
                     $.getJSON(sizes_uri, function() {})
