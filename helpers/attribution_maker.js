@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   gbird
- * @Last Modified time: 2021-12-08 12:09:21
+ * @Last Modified time: 2021-12-08 13:27:10
  */
 
 $(function() {
@@ -42,8 +42,6 @@ $(function() {
           { "id": 9, "name": "Public Domain Dedication (CC0)","short": "CC0", "url": "https://creativecommons.org/publicdomain/zero/1.0/" },
           { "id": 10, "name": "Public Domain Mark","short": "Public Domain", "url": "https://creativecommons.org/publicdomain/mark/1.0/" }
         ] }
-    console.log("@GB: flickr_licences = ", flickr_licences.license.find(item => item.id === 7).short);
-
 
     // Set defualt value of collapsed or shown
     if (startCollapsed) {
@@ -56,6 +54,8 @@ $(function() {
     if (url_string.indexOf("?") > 0) {
         url = new URL(url_string);
         img_orig = url.searchParams.get("addr");
+        console.log("@GB: img_orig = ", img_orig);
+
         // Detect site
         if (img_orig.includes('unsplash.com')) {
             site = "Unsplash";
@@ -70,6 +70,12 @@ $(function() {
         if (img_orig.includes('pexels.com')) {
             site = "Pexels";
         }
+        if (img_orig.includes('flickr.com')) {
+            site = "Flickr";
+        }
+        console.log("@GB: site = ", site);
+
+        // Detect organisation
         org = url.searchParams.get("org");
         console.log("@GB: org = ", org);
 
@@ -162,6 +168,40 @@ $(function() {
                 download_lge = img_src; // Large image 1280px wide
                 buildHTML();
                 logger(json);
+            });
+    }
+
+    // If I am Flickr
+    if (site == "Flickr") {
+        re = /photo\/([0-9]+)\/in/gi;
+        id = re.exec(img_orig)[1];
+        console.log("@GB: Flickr id = ", id);
+        site_url = "https://www.flickr.com/";
+        key = "MmJjNjJmYzJkYzRhYWVjMGZiMGQ1NjY0MGMzYThhMjA=";
+        // uri = "https://pixabay.com/api/?key=" + atob(decodeURIComponent(key)) + "&id=" + id;
+        licence_uri = "https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=" + atob(decodeURIComponent(key)) + "&photo_id=" + id + "&format=json&&nojsoncallback=1";
+        console.log("@GB: licence_uri = ", licence_uri);
+
+        $.getJSON(licence_uri, function() {})
+            .done(function(json) {
+                let lic = json.photo.license;
+                if (lic==0) {
+                    console.log("You cannot use that image");
+                }
+                licence = flickr_licences.license.find(item => item.id == lic).short;
+                licence_url = flickr_licences.license.find(item => item.id == lic).url;
+                console.log("@GB: lic = ", lic);
+                img_src = json.photo.urls.url[0]._content;
+                user = json.photo.owner.realname;
+                user_url = "https://www.flickr.com/photos/" + json.photo.owner.username;
+                alt = json.photo.description._content;
+            //     download_sml = json.hits[0].webformatURL; // Small image 640px wide
+            //     download_lge = img_src; // Large image 1280px wide
+            //     buildHTML();
+                logger(json);
+            })
+            .fail(function() {
+               console.log( "error" );
             });
     }
 
@@ -320,9 +360,11 @@ $(function() {
     function logger(json) {
         console.log("@GB: site = ", site);
         console.log("@GB: img_orig = ", img_orig);
+        console.log("@GB: img_src = ", img_src);
         console.log("@GB: download_sml = ", download_sml);
         console.log("@GB: download_lge = ", download_lge);
         console.log("@GB: user = ", user);
+        console.log("@GB: user_url = ", user_url);
         console.log("@GB: alt = ", alt);
         console.log("@GB: title = ", title);
         console.log("@GB: licence = ", licence);
