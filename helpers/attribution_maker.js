@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   gbird
- * @Last Modified time: 2021-12-08 14:58:28
+ * @Last Modified time: 2021-12-08 15:14:05
  */
 
 $(function() {
@@ -173,7 +173,7 @@ $(function() {
 
     // If I am Flickr
     if (site == "Flickr") {
-        re = /\/([0-9]+)\/in/gi;
+        re = /\/([0-9]+)\//gi;
         id = re.exec(img_orig)[1];
         console.log("@GB: Flickr id = ", id);
         site_url = "https://www.flickr.com/";
@@ -187,6 +187,7 @@ $(function() {
                 let lic = json.photo.license;
                 // Image is copyrighted
                 if (lic == 0) {
+                    $('.flickr-warning').show();
                     console.log("You cannot use that image");
                 }
                 // Image is CC or PD and image use is allowed
@@ -203,7 +204,7 @@ $(function() {
                         .done(function(json) {
                             download_sml = json.sizes.size.find(item => item.label == "Medium 800").source // Small image 800px wide
                             download_lge = json.sizes.size.find(item => item.label == "Large 1600").source // Small image 1600px wide
-                            img_src=download_lge
+                            img_src = download_lge
                             buildHTML();
 
                             logger(json);
