@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   gbird
- * @Last Modified time: 2021-12-08 14:42:12
+ * @Last Modified time: 2021-12-08 14:58:28
  */
 
 $(function() {
@@ -173,7 +173,7 @@ $(function() {
 
     // If I am Flickr
     if (site == "Flickr") {
-        re = /photo\/([0-9]+)\/in/gi;
+        re = /\/([0-9]+)\/in/gi;
         id = re.exec(img_orig)[1];
         console.log("@GB: Flickr id = ", id);
         site_url = "https://www.flickr.com/";
