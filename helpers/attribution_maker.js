@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   gbird
- * @Last Modified time: 2021-12-08 13:27:10
+ * @Last Modified time: 2021-12-08 14:42:12
  */
 
 $(function() {
@@ -31,21 +31,21 @@ $(function() {
     // Flickr licences
     let flickr_licences = {
         "license": [
-          { "id": 1, "name": "Attribution-NonCommercial-ShareAlike License","short": "CC BY-NC-SA", "url": "https://creativecommons.org/licenses/by-nc-sa/2.0/" },
-          { "id": 2, "name": "Attribution-NonCommercial License","short": "CC BY-NC", "url": "https://creativecommons.org/licenses/by-nc/2.0/" },
-          { "id": 3, "name": "Attribution-NonCommercial-NoDerivs License","short": "CC BY-NC-ND", "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/" },
-          { "id": 4, "name": "Attribution License","short": "CC BY", "url": "https://creativecommons.org/licenses/by/2.0/" },
-          { "id": 5, "name": "Attribution-ShareAlike License","short": "CC BY-SA", "url": "https://creativecommons.org/licenses/by-sa/2.0/" },
-          { "id": 6, "name": "Attribution-NoDerivs License","short": "CC BY-ND", "url": "https://creativecommons.org/licenses/by-nd/2.0/" },
-          { "id": 7, "name": "No known copyright restrictions","short": "Commons (Flickr)", "url": "https://www.flickr.com/commons/usage/" },
-          { "id": 8, "name": "United States Government Work","short": "U.S. Government Work", "url": "http://www.usa.gov/copyright.shtml" },
-          { "id": 9, "name": "Public Domain Dedication (CC0)","short": "CC0", "url": "https://creativecommons.org/publicdomain/zero/1.0/" },
-          { "id": 10, "name": "Public Domain Mark","short": "Public Domain", "url": "https://creativecommons.org/publicdomain/mark/1.0/" }
-        ] }
+            { "id": 1, "name": "Attribution-NonCommercial-ShareAlike License", "short": "CC BY-NC-SA", "url": "https://creativecommons.org/licenses/by-nc-sa/2.0/" },
+            { "id": 2, "name": "Attribution-NonCommercial License", "short": "CC BY-NC", "url": "https://creativecommons.org/licenses/by-nc/2.0/" },
+            { "id": 3, "name": "Attribution-NonCommercial-NoDerivs License", "short": "CC BY-NC-ND", "url": "https://creativecommons.org/licenses/by-nc-nd/2.0/" },
+            { "id": 4, "name": "Attribution License", "short": "CC BY", "url": "https://creativecommons.org/licenses/by/2.0/" },
+            { "id": 5, "name": "Attribution-ShareAlike License", "short": "CC BY-SA", "url": "https://creativecommons.org/licenses/by-sa/2.0/" },
+            { "id": 6, "name": "Attribution-NoDerivs License", "short": "CC BY-ND", "url": "https://creativecommons.org/licenses/by-nd/2.0/" },
+            { "id": 7, "name": "No known copyright restrictions", "short": "Commons (Flickr)", "url": "https://www.flickr.com/commons/usage/" },
+            { "id": 8, "name": "United States Government Work", "short": "U.S. Government Work", "url": "http://www.usa.gov/copyright.shtml" },
+            { "id": 9, "name": "Public Domain Dedication (CC0)", "short": "CC0", "url": "https://creativecommons.org/publicdomain/zero/1.0/" },
+            { "id": 10, "name": "Public Domain Mark", "short": "Public Domain", "url": "https://creativecommons.org/publicdomain/mark/1.0/" }
+        ]
+    }
 
     // Set defualt value of collapsed or shown
-    if (startCollapsed) {
-    } else {
+    if (startCollapsed) {} else {
         $('#start-shown').click();
     }
 
@@ -178,30 +178,44 @@ $(function() {
         console.log("@GB: Flickr id = ", id);
         site_url = "https://www.flickr.com/";
         key = "MmJjNjJmYzJkYzRhYWVjMGZiMGQ1NjY0MGMzYThhMjA=";
-        // uri = "https://pixabay.com/api/?key=" + atob(decodeURIComponent(key)) + "&id=" + id;
-        licence_uri = "https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=" + atob(decodeURIComponent(key)) + "&photo_id=" + id + "&format=json&&nojsoncallback=1";
-        console.log("@GB: licence_uri = ", licence_uri);
+        info_uri = "https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=" + atob(decodeURIComponent(key)) + "&photo_id=" + id + "&format=json&&nojsoncallback=1";
+        sizes_uri = "https://www.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=" + atob(decodeURIComponent(key)) + "&photo_id=" + id + "&format=json&&nojsoncallback=1";
 
-        $.getJSON(licence_uri, function() {})
+
+        $.getJSON(info_uri, function() {})
             .done(function(json) {
                 let lic = json.photo.license;
-                if (lic==0) {
+                // Image is copyrighted
+                if (lic == 0) {
                     console.log("You cannot use that image");
                 }
-                licence = flickr_licences.license.find(item => item.id == lic).short;
-                licence_url = flickr_licences.license.find(item => item.id == lic).url;
-                console.log("@GB: lic = ", lic);
-                img_src = json.photo.urls.url[0]._content;
-                user = json.photo.owner.realname;
-                user_url = "https://www.flickr.com/photos/" + json.photo.owner.username;
-                alt = json.photo.description._content;
-            //     download_sml = json.hits[0].webformatURL; // Small image 640px wide
-            //     download_lge = img_src; // Large image 1280px wide
-            //     buildHTML();
-                logger(json);
+                // Image is CC or PD and image use is allowed
+                else {
+                    licence = flickr_licences.license.find(item => item.id == lic).short;
+                    licence_url = flickr_licences.license.find(item => item.id == lic).url;
+                    img_src = json.photo.urls.url[0]._content;
+                    img_orig = img_src;
+                    user = json.photo.owner.realname;
+                    user_url = "https://www.flickr.com/photos/" + json.photo.owner.username;
+                    alt = json.photo.description._content;
+                    // get image sizes
+                    $.getJSON(sizes_uri, function() {})
+                        .done(function(json) {
+                            download_sml = json.sizes.size.find(item => item.label == "Medium 800").source // Small image 800px wide
+                            download_lge = json.sizes.size.find(item => item.label == "Large 1600").source // Small image 1600px wide
+                            img_src=download_lge
+                            buildHTML();
+
+                            logger(json);
+                        })
+                }
+                //     download_sml = json.hits[0].webformatURL; // Small image 640px wide
+                //     download_lge = img_src; // Large image 1280px wide
+                //     buildHTML();
+
             })
             .fail(function() {
-               console.log( "error" );
+                console.log("error");
             });
     }
 
