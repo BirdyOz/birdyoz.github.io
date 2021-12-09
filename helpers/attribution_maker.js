@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   gbird
- * @Last Modified time: 2021-12-08 15:31:42
+ * @Last Modified time: 2021-12-09 12:03:36
  */
 
 $(function() {
@@ -184,6 +184,7 @@ $(function() {
 
         $.getJSON(info_uri, function() {})
             .done(function(json) {
+                console.log("@GB: json = ", json);
                 let lic = json.photo.license;
                 // Image is copyrighted
                 if (lic == 0) {
@@ -194,19 +195,29 @@ $(function() {
                 else {
                     licence = flickr_licences.license.find(item => item.id == lic).short;
                     licence_url = flickr_licences.license.find(item => item.id == lic).url;
-                    img_src = json.photo.urls.url[0]._content;
-                    img_orig = img_src;
                     user = json.photo.owner.realname;
                     user_url = "https://www.flickr.com/photos/" + json.photo.owner.nsid;
-                    alt = json.photo.description._content;
+                    alt = json.photo.title._content;
+                    title = json.photo.description._content;
                     // get image sizes
                     $.getJSON(sizes_uri, function() {})
-                        .done(function(json) {
-                            download_sml = json.sizes.size.find(item => item.label == "Medium 800").source // Small image 800px wide
-                            download_lge = json.sizes.size.find(item => item.label == "Large 1600").source // Small image 1600px wide
-                            img_src = download_lge
-                            buildHTML();
+                        .done(function(json2) {
+                            img_src = json2.sizes.size.find(item => item.label == "Original").source;
+                            let orig_width = json2.sizes.size.find(item => item.label == "Original").width;
+                            console.log("@GB: orig_width = ", orig_width);
+                            // Check if image is large enough to resize
+                            if (orig_width >= 800) {
+                                download_sml = json2.sizes.size.find(item => item.label == "Medium 800").source
+                            } else { download_sml = img_src };
 
+                            if (orig_width >= 1600) {
+                                download_lge = json2.sizes.size.find(item => item.label == "Large 1600").source
+                                img_src = download_lge
+                            } else { download_lge = img_src };
+
+                            buildHTML();
+                            // Merge back into one JSON object, for logger
+                            $.extend(json, json2);
                             logger(json);
                         })
                 }
