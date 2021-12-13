@@ -2,9 +2,8 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2019-11-04 17:49:21
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2021-11-16 11:15:10
+* @Last Modified time: 2021-12-13 12:53:40
 */
-
 /* ==========================================================================
    @GB 2021 - Dropdown Top nav
    ========================================================================== */
@@ -227,7 +226,7 @@ a[href$=".docx"]:not([href*="readspeaker"])::before, a[href$=".doc"]:not([href*=
 }
 
 body.snap-resource-card li.snap-resource.snap-mime-document {
-    background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/word.svg);
+    background-image: url(/pluginfile.php/1/tool_themeassets/assets/0/word.svg);
     border-top-color: #2A5699;
 
 }
@@ -244,7 +243,7 @@ a[href$=".pptx"]::before, a[href$=".ppt"]::before, li[data-type="ppt"] p.instanc
 }
 
 body.snap-resource-card li.snap-resource.snap-mime-powerpoint {
-    background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/powerpoint.svg);
+    background-image: url(/pluginfile.php/1/tool_themeassets/assets/0/powerpoint.svg);
 }
 
 /* Excel */
@@ -257,7 +256,7 @@ a[href$=".xlsx"]::before, a[href$=".xls"]::before, a[href$=".csv"]::before {
 }
 
 body.snap-resource-card li.snap-resource.snap-mime-spreadsheet {
-    background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/excel.svg);
+    background-image: url(/pluginfile.php/1/tool_themeassets/assets/0/excel.svg);
 }
 
 /* PDF */
@@ -270,7 +269,7 @@ a[href$=".pdf"]:not([href*="readspeaker"])::before {
 }
 
 body.snap-resource-card li.snap-resource.snap-mime-pdf {
-    background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/PDF_file_icon.svg);
+    background-image: url(/pluginfile.php/1/tool_themeassets/assets/0/PDF_file_icon.svg);
 
 }
 
@@ -283,64 +282,105 @@ a[href$=".txt"]::before {
     margin-right: 0.2em;
 }
 
-body.snap-resource-card li.snap-resource.snap-mime-txt {
-    background-image: url(https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/TXT_file_icon.svg);
+/*Zip*/
 
+a[href$=".zip"]::before {
+    font-family: "fontawesome";
+    content:"\f1c6";
+    color: #222222;
+    margin-right: 0.2em;
+}
+/*Image files*/
+:not(small) > a[href$=".jpg"]::before,
+:not(small) > a[href$=".jpeg"]::before,
+:not(small) > a[href$=".pmg"]::before,
+:not(small) > a[href$=".bmp"]::before,
+:not(small) > a[href$=".tif"]::before,
+:not(small) > a[href$=".tiff"]::before,
+:not(small) > a[href$=".gif"]::before {
+    font-family: "fontawesome";
+    content:"\f1c5";
+    color: #222222;
+    margin-right: 0.2em;
 }
 
 /*---------
 Activity name autolinking
 ---------*/
-
+a.autolink::before {
+    box-sizing: border-box;
+}
 /* Forum */
 
-a.autolink[href*="forum"]::before {
-    font-family: "fontawesome";
-    content: "\f0e6";
-    color: transparent;
-    margin-right: 0.2em;
-    background-image: url("https://mynmit-sandbox.mrooms.net/theme/snap/pix_plugins/mod/forum/icon.svg");
-    background-repeat: no-repeat;
+a.autolink[href*="forum"]:before {
+    content: '';
+    background: transparent url(/theme/snap/pix_plugins/mod/forum/icon.svg) no-repeat 50% 50%;
+    display: inline-block;
     background-size: 0.9em 0.9em;
+    height: 0.9em;
+    width: 0.9em;
+    margin-right: 0.2em;
 }
 
 /* Assignment */
 
-a.autolink[href*="assign"]::before {
-    font-family: "fontawesome";
-    content:"\f0ae";
-    color: transparent;
-    margin-right: 0.2em;
-    background-image: url("https://mynmit-sandbox.mrooms.net/theme/snap/pix_plugins/mod/assign/icon.svg");
-    background-repeat: no-repeat;
+a.autolink[href*="assign"]:before {
+    content:'';
+    background: transparent url(/theme/snap/pix_plugins/mod/assign/icon.svg) no-repeat 50% 50%;
+    display: inline-block;
     background-size: 0.9em 0.9em;
+    height: 0.9em;
+    width: 0.9em;
+    margin-right: 0.2em;
 }
 
 /* Quiz */
 
-a.autolink[href*="quiz"]::before {
-    font-family: "fontawesome";
-    content:"\f0ae";
-    color: transparent;
-    margin-right: 0.2em;
-    background-image: url("https://mynmit-sandbox.mrooms.net/theme/snap/pix_plugins/mod/quiz/icon.svg");
-    background-repeat: no-repeat;
+a.autolink[href*="quiz"]:before {
+    content:'';
+    background: transparent url(/theme/snap/pix_plugins/mod/quiz/icon.svg) no-repeat 50% 50%;
+    display: inline-block;
     background-size: 0.9em 0.9em;
+    height: 0.9em;
+    width: 0.9em;
+    margin-right: 0.2em;
 }
 
 /* H5P (hvp) */
 
-a.autolink[href*="hvp"]::before {
-    font-family: "fontawesome";
-    content:"\f0ae";
-    color: transparent;
-    margin-right: 0.2em;
-    background-image: url("https://mynmit-sandbox.mrooms.net/pluginfile.php/1/tool_themeassets/assets/0/H5P_icon.svg");
-    background-repeat: no-repeat;
+a.autolink[href*="hvp"]:before {
+    content:'';
+    background: transparent url(/pluginfile.php/1/tool_themeassets/assets/0/H5P_icon.svg) no-repeat 50% 50%;
+    display: inline-block;
     background-size: 0.9em 0.9em;
+    height: 0.9em;
+    width: 0.9em;
+    margin-right: 0.2em;
 }
 
+/* Book */
 
+a.autolink[href*="book"]:before {
+    content:'';
+    background: transparent url(/theme/snap/pix_plugins/mod/book/icon.svg) no-repeat 50% 50%;
+    display: inline-block;
+    background-size: 0.9em 0.9em;
+    height: 0.9em;
+    width: 0.9em;
+    margin-right: 0.2em;
+}
+
+/* Turnitin (turnitintooltwo) */
+
+a.autolink[href*="turnitintooltwo"]:before {
+    content:'';
+    background: transparent url(/pluginfile.php/1/tool_themeassets/assets/0/turnitin_icon.png) no-repeat 50% 50%;
+    display: inline-block;
+    background-size: 0.9em 0.9em;
+    height: 0.9em;
+    width: 0.9em;
+    margin-right: 0.2em;
+}
 
 /* ==========================================================================
    @GB 2021 - Assignment submission
@@ -381,13 +421,16 @@ input#id_submissionstatement {
 
 /* Change nested lists on sections to disc */
 
-.section ul, .snap-native.modtype_book ol.bookmod-chapters.list-bullets {
-    list-style-type: disc !important;
+/* @GT Added .no-overflow ul for consistency in book pages */
+/* @GT Removed !important causing conflict with ul.dashed */
+
+.section ul, .snap-native.modtype_book ol.bookmod-chapters.list-bullets, .no-overflow ul {
+    list-style-type: disc;
 }
 
 
 /*Inside Book, Lesson or other tool*/
-#region-main ul {
+#region-main .snap-asset-content ul, .book_content ul {
     margin-left: 1em;
 }
 
@@ -398,6 +441,11 @@ input#id_submissionstatement {
 #region-main ol ol {
     margin-left: 0;
     list-style-type: lower-alpha;
+}
+
+#region-main ol ol ol {
+    margin-left: 0;
+    list-style-type: lower-roman;
 }
 
 /*Make links in body content bolder*/
@@ -563,7 +611,7 @@ Start: Moodle Footer
     background-color: #161616;
 }
 
-#moodle-footer .mp-footer-contact .label {
+#moodle-footer .mp-footer-contact .item-title {
     width: 100%;
     text-align: left;
     padding: 0;
@@ -769,6 +817,10 @@ Hide student dashboard in Site Tools
     height: 0px;
 }
 
+#coursetools.state-visible {
+    overflow: hidden;
+}
+
 /*-----
 Hide "Recent Activity" on site footer section
 @SB: Keep - hides recent activity on site footer and site contacts area.
@@ -859,7 +911,7 @@ Course and category styles
 -------------------------*/
 
 .course-1 #page-header:not(.mast-image) {
-    background-image: url("/pluginfile.php/1/tool_themeassets/assets/0/fairfield-campus.jpg");
+    background-image: url("/pluginfile.php/1/tool_themeassets/assets/0/UAT_background.png");
 }
 
 /*---------
@@ -976,26 +1028,25 @@ gradingform_rubric .criteria {
 }
 
 /*---------
-To remove "label" from labels GT 06/01/2020
+To remove "label" from labels GT 06/01/2020 -REMOVE
 ---------*/
-
-.label .snap-assettype {
+/*.label .snap-assettype {
     display: none !important;
-}
-
+}*/
 /*---------
 To remove whitespace top of from labels GT 10/01/2020
 ---------*/
 
 
 .label .asset-wrapper .snap-header-card {
-    padding-bottom: 0 !important;
+    padding-bottom: 0px !important;
 }
 
 .label .activityinstance {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
 }
+
 
 /*---------
 To fix the rubric display
@@ -1202,21 +1253,144 @@ ul.dashed>li {
     text-indent: -20px;
 }
 
-ul.dashed>li:before {
+ul.dashed>li::before {
     content: "-";
     text-indent: -20px;
     padding: 5px;
 }
 
-a.external-link {
-    /*position: relative;*/
-    padding-right: 20px;
-}
-
-a.external-link:after {
+/*Add external link icon to all links with class external links*/
+a.external-link::after {
     font-family: FontAwesome;
     content: "\f08e";
-    /*display: inline-block;*/
-    padding-left: 5px;
+    padding-left: 0.2em;
 }
 
+/* increase Book and Page titles to 1.25em same as h5 heading (small) */
+li.page h3.snap-asset-link, li.book h3.snap-asset-link {
+    font-size:1.25em !important;
+}
+
+/* Decrease the space between Page title and description from 1em to 0em */
+li.page p.instancename  {
+    margin-bottom:0em ;
+}
+
+
+
+/*Update the checklist advanced grading and descriptions*/
+.gradingform_checklist .group .description {
+    width: 100%;
+    padding-bottom: .5em;
+    font-size: large;
+}
+
+.gradingform_checklist .group .items .item .definition .remark {
+    width: 90%;
+}
+
+/*---------------------------------------------------------
+Change background colour to off white to reduce eye strain
+-----------------------------------------------------------*/
+
+/* set background colour */
+
+#snap-header,                  /* Top nav*/
+main#moodle-page,              /* Left nav*/
+section#region-main          /* Main content*/
+
+{
+background-color: rgb(248,248,248);
+}
+
+/* Set background colour for: create new activity button, Drag & drop zone to white to contrast background colour */
+
+.section-modchooser-link,
+.snap-dropzone,
+.summary
+{
+background-color: white !important;
+}
+
+.label .asset-wrapper {
+padding-top: 0px !important;
+}
+
+.label {
+padding-top: 0px !important;
+}
+
+.book, .page {
+padding-top: 0.5em !important;
+}
+
+.summary .no-overflow {
+padding-top: 0.5em !important;
+padding-bottom: 0.25em !important;
+}
+
+.section li.snap-activity {
+margin-left: 0px !important;
+margin-right: 0px !important;}
+
+
+
+/* force padding to match topic summary and activity cards */
+.label, .summary, .book, .page {
+padding-left: 1em !important;
+padding-right: 1em !important;
+}
+
+/* retain white background for content within books */
+.book_content .no-overflow {
+background-color: white !important;
+padding:1em;
+}
+
+/* remove ul style from ui elements */
+.book_content .no-overflow ul.nav.nav-pills, .snap-asset-content .no-overflow ul.nav.nav-pills {
+list-style-type: none !important;
+}
+
+/* reduce line height in topic summary to match body (label etc)*/
+.path-course-view .section .summary p {
+margin-bottom: 1em !important;}
+
+/* force border in card within topic summary */
+.summary .card {
+border: 1px solid rgba(0,0,0,.125) !important;
+padding: 10px !important;
+}
+
+/*hide label header in student view*/
+.label:not(.snap-can-edit) .snap-header-card, .page .snap-header-card, .book .snap-header-card, .book p.snap-resource-card-fadeout, .page p.snap-resource-card-fadeout {
+display:none;
+}
+
+body:not(.pagelayout-course) #moodle-footer {
+margin-top: 0em;
+}
+
+#region-main {
+padding-bottom:1.5em;
+}
+
+#local-joulegrader-assign23-files-inline video {
+    display: none !important;
+    visibility: hidden;}
+
+.coursecard-contacts a.coursecard-contacts-more {word-wrap: normal;
+    overflow-wrap: normal;}
+
+/* user profile page buttons */
+#page-user-profile .page-context-header .header-button-group .btn {
+color:white;
+border-color: #706293;
+background-color:#170052;}
+
+#page-user-profile .page-context-header .header-button-group .btn:hover {
+color: white;
+border-color: white;
+background-color:#170052;
+outline: 3px auto #433173;
+transition: auto;}
