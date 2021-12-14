@@ -1,8 +1,8 @@
 /*
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
- * @Last Modified by:   gbird
- * @Last Modified time: 2021-12-09 12:03:36
+ * @Last Modified by:   BirdyOz
+ * @Last Modified time: 2021-12-15 08:54:42
  */
 
 $(function() {
@@ -332,7 +332,7 @@ $(function() {
     });
 
     function embedSnippet(i) {
-        var snippet = `<img src="${img_src}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
+        var snippet = `<img src="${img_src}" class="img-responsive img-fluid w-100" alt="${alt.text()}"${title!==null ? ` title="${title.text()}"` : ''}>
 <figcaption class="figure-caption text-muted small fw-lighter">
     <small>${startCollapsed ? `
         <!-- Start of Show/Hide interface, ID = ${id}-${i} -->
