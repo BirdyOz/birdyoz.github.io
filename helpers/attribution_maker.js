@@ -1,8 +1,8 @@
 /*
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
- * @Last Modified by:   gbird
- * @Last Modified time: 2021-12-09 12:03:36
+ * @Last Modified by:   BirdyOz
+ * @Last Modified time: 2021-12-15 16:06:56
  */
 
 $(function() {
@@ -199,6 +199,7 @@ $(function() {
                     user_url = "https://www.flickr.com/photos/" + json.photo.owner.nsid;
                     alt = json.photo.title._content;
                     title = json.photo.description._content;
+                    title = stripHTML(title);
                     // get image sizes
                     $.getJSON(sizes_uri, function() {})
                         .done(function(json2) {
@@ -455,7 +456,13 @@ $(function() {
             link.click();
             document.body.removeChild(link);
         };
+    }
 
+    // Sanitise text to remove HTML markup.
+    function stripHTML(str) {
+        str = $.parseHTML(str); // Convert str to DOM
+        str = $(str).text().trim(); // Strip out HTML elements
+        return str;
     }
 
     String.prototype.slugify = function(separator = "-") {
