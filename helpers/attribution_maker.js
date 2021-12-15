@@ -1,8 +1,8 @@
 /*
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
- * @Last Modified by:   gbird
- * @Last Modified time: 2021-12-09 12:03:36
+ * @Last Modified by:   BirdyOz
+ * @Last Modified time: 2021-12-15 12:21:01
  */
 
 $(function() {
@@ -360,6 +360,8 @@ $(function() {
     }
 
     function buildHTML() {
+        title = $(title).text();
+        alt = $(alt).text();
         $('.maker-copy figure').each(function(index) {
             if (org == 'mp') {
                 // Use Melb Poly's attribution rules
