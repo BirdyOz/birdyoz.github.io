@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-12-16 14:56:17
+ * @Last Modified time: 2021-12-16 16:42:17
  */
 
 $(function() {
@@ -309,6 +309,9 @@ $(function() {
         var paste = $(id).html();
         if (id == ".maker-cropped") {
             paste = paste.replace(srcOriginal,"https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+cropped+image");
+        }
+        if (site == "Flickr") {
+            paste = paste.replace(img_src,"https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+downloaded+Pixabay+image");
         }
         console.log("@GB: Copied HTML = ", paste);
         copyTextToClipboard(paste);
