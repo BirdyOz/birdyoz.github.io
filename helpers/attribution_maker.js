@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-12-16 12:39:53
+ * @Last Modified time: 2021-12-16 14:12:56
  */
 
 $(function() {
@@ -44,45 +44,7 @@ $(function() {
         ]
     }
 
-    // Invoke rcrop
-    var $img = $('#rcrop'),
-        $update = $('#update'),
-        inputs = {
-            x: $('#x'),
-            y: $('#y'),
-            width: $('#width'),
-            height: $('#height')
-        },
-        fill = function() {
-            var values = $img.rcrop('getValues');
-            for (var coord in inputs) {
-                inputs[coord].val(values[coord]);
-            }
-        }
 
-    $('#rcrop').rcrop({
-        minSize: [200, 200],
-        preserveAspectRatio: false,
-        grid: true,
-        preview: {
-            display: true,
-            size: ['40%', '40%'],
-            wrapper: '#custom-preview-wrapper',
-        }
-
-    });
-
-    $('#rcrop').on('rcrop-changed rcrop-ready', function() {
-        var srcOriginal = $(this).rcrop('getDataURL');
-        var srcResized = $(this).rcrop('getDataURL', 50, 50);
-        $(".maker-cropped img").attr("src", srcOriginal);
-        fill()
-    });
-
-    $update.click(function() {
-        $img.rcrop('resize', inputs.width.val(), inputs.height.val(), inputs.x.val(), inputs.y.val());
-        fill();
-    })
 
 
     // Set defualt value of collapsed or shown
@@ -360,10 +322,18 @@ $(function() {
         /* Act on the event */
         btn = $(this);
         title = btn.attr("title");
+        console.log("@GB: button title = ", title);
         src = download_lge;
         if (title == "img-sml") {
             src = download_sml;
         }
+        if (title == "img-cropped") {
+            console.log("@GB: img-cropped");
+            src = $(".maker-cropped img").attr("src");
+            console.log("@GB: src = ", src);
+        }
+
+
         downloader(id, src);
 
         btn.toggleClass('btn-outline-primary btn-success');
@@ -411,9 +381,49 @@ $(function() {
                 }
                 snippet = mpSnippet(index);
             } else { snippet = embedSnippet(index); }
-
             $(this).html(snippet);
+            $("#rcrop").attr("src", img_src);
         });
+
+        // Invoke rcrop
+        var $img = $('#rcrop'),
+            $update = $('#update'),
+            inputs = {
+                x: $('#x'),
+                y: $('#y'),
+                width: $('#width'),
+                height: $('#height')
+            },
+            fill = function() {
+                var values = $img.rcrop('getValues');
+                for (var coord in inputs) {
+                    inputs[coord].val(values[coord]);
+                }
+            }
+
+        $('#rcrop').rcrop({
+            minSize: [200, 200],
+            preserveAspectRatio: false,
+            grid: true,
+            preview: {
+                display: true,
+                size: ['40%', '40%'],
+                wrapper: '#custom-preview-wrapper',
+            }
+
+        });
+
+        $('#rcrop').on('rcrop-changed rcrop-ready', function() {
+            var srcOriginal = $(this).rcrop('getDataURL');
+            var srcResized = $(this).rcrop('getDataURL', 50, 50);
+            $(".maker-cropped img").attr("src", srcOriginal);
+            fill()
+        });
+
+        $update.click(function() {
+            $img.rcrop('resize', inputs.width.val(), inputs.height.val(), inputs.x.val(), inputs.y.val());
+            fill();
+        })
     }
 
     function todaysDate() {

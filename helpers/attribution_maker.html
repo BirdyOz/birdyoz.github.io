@@ -21,6 +21,7 @@
                 <li class="nav-item"> <a class="nav-link" href="#left">Float Left</a> </li>
                 <li class="nav-item"> <a class="nav-link" href="#large">Full-screen</a> </li>
                 <li class="nav-item"> <a class="nav-link" href="#overlay">Text Overlay</a> </li>
+                <li class="nav-item"> <a class="nav-link" href="#cropped">Cropped</a> </li>
             </ul>
         </div>
     </nav>
@@ -125,9 +126,7 @@
             <hr class="featurette-divider clearfix" id="large">
             <div class="clearfix">
                 <h2 class="featurette-heading">Full width (Image above or below text)</h2>
-                <p class="lead">Image will occupy 100% of the available space</p><button id="maker-lg" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
-                    Download large image
-                </a>
+                <p class="lead">Image will occupy 100% of the available space</p>
                 <div class="clearfix">
                     <div class="maker-copy maker-lg">
                         <!-- Start of Image Embed - Full width (Embed code by @BirdyOz) -->
@@ -136,13 +135,14 @@
                         </figure>
                         <!-- End of Image Embed - Full width -->
                     </div>
+                    <button id="maker-lg" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
+                    Download large image
+                </a>
                 </div>
                 <hr class="featurette-divider clearfix" id="overlay">
                 <div class="clearfix">
                     <h2 class="featurette-heading">Full width, with text overlay (Custom text overlay)</h2>
-                    <p class="lead">Image will occupy 100% of the available space. Text overlay can be edited by you, after embedding</p> <button id="maker-ov" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
-                        Download large image
-                    </a>
+                    <p class="lead">Image will occupy 100% of the available space. Text overlay can be edited by you, after embedding</p>
                     <div class="maker-copy maker-ov">
                         <!-- Start of Image Embed - Full width, with text overlay (Embed code by @BirdyOz) -->
                         <div class="overlay" style="position: relative;">
@@ -156,6 +156,9 @@
                         </div>
                         <!-- End of Embed code - Full width, with text overlay -->
                     </div>
+                    <button id="maker-ov" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
+                        Download large image
+                    </a>
                 </div>
 
                 <hr class="featurette-divider clearfix" id="crop">
@@ -163,31 +166,26 @@
                     <h2 class="featurette-heading">Cropped</h2>
                     <p class="lead">Use this to dynamically resize and crop an image. You can then download your cropped image, lower</p>
 
-                    <button id="maker-lg" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
-                        Download large image
-                    </a>
+
 
                     <div class="container">
                         <div class="row">
                             <div class="col-9">
                                 <h4>Original</h4>
                                 <img id="rcrop" src="https://images.pexels.com/photos/10358193/pexels-photo-10358193.jpeg?auto=compress&cs=tinysrgb&w=1440" class="img-responsive img-fluid">
-                                <form  class="form-inline">
-                                    <div class="form-group"><label for="width">width: </label><input id="width" type="text"></div>
-                                    <div class="form-group"><label for="height">height:</label><input id="height" type="text"></div>
-                                    <div class="form-group"><label for="x">x:</label><input id="x" type="text"></div>
-                                    <div class="form-group"><label for="y">y:</label><input id="y" type="text"></div>
-                                    <input id="update" type="button" value="Update">
-                                </form>
+
                             </div>
                             <div class="col-3">
                                 <h4>Live preview</h4>
                                 <div id="custom-preview-wrapper"></div>
+                                <form  class="form small text-right text-muted">
+                                    <label for="width">width: </label> <input id="width" type="text"><br>
+                                    <label for="height">height: </label> <input id="height" type="text">
+                                </form>
 
                             </div>
                         </div>
                     </div>
-                    <hr>
 
                     <!-- Cropped -->
                     <h4>Cropped image</h4>
@@ -200,6 +198,9 @@
                             <!-- End of Image Embed - Full width -->
                         </div>
                     </div>
+                    <button id="maker-cropped" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-cropped"> <i class="fa fa-download"></i>
+                        Download cropped image
+                    </a>
                 </div>
                 <!-- /END THE FEATURETTES -->
                 <!-- FOOTER -->
