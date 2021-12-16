@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-12-16 14:12:56
+ * @Last Modified time: 2021-12-16 14:56:17
  */
 
 $(function() {
@@ -27,6 +27,7 @@ $(function() {
     let org = null; // to cater for organisation specific changes
     let width = "col-5"; // Default width for floated images
     let json = ""; // JSON Object returned by API call
+    let srcOriginal = "";
 
     // Flickr licences
     let flickr_licences = {
@@ -304,7 +305,11 @@ $(function() {
         var btn = $(this);
         var closest = btn.prev('.maker-copy');
         var id = "." + btn.attr('id');
+        console.log("@GB: id = ", id);
         var paste = $(id).html();
+        if (id == ".maker-cropped") {
+            paste = paste.replace(srcOriginal,"https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+cropped+image");
+        }
         console.log("@GB: Copied HTML = ", paste);
         copyTextToClipboard(paste);
         btn.toggleClass('btn-outline-primary btn-success');
@@ -414,7 +419,7 @@ $(function() {
         });
 
         $('#rcrop').on('rcrop-changed rcrop-ready', function() {
-            var srcOriginal = $(this).rcrop('getDataURL');
+            srcOriginal = $(this).rcrop('getDataURL');
             var srcResized = $(this).rcrop('getDataURL', 50, 50);
             $(".maker-cropped img").attr("src", srcOriginal);
             fill()
