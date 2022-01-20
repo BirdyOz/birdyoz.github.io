@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-12-16 16:42:17
+ * @Last Modified time: 2022-01-20 11:59:25
  */
 
 $(function() {
@@ -77,7 +77,12 @@ $(function() {
         if (img_orig.includes('flickr.com')) {
             site = "Flickr";
         }
-        console.log("@GB: site = ", site);
+        if (img_orig.includes('shutterstock.com')) {
+            console.log("@GB: Shutterstock");
+            site = "Shutterstock";
+            console.log("@GB: site = ", site);
+        }
+        console.log("@GB: Site = ", site);
 
         // Detect organisation
         org = url.searchParams.get("org");
