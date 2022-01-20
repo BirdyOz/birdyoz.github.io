@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-01-20 14:15:08
+ * @Last Modified time: 2022-01-21 09:33:29
  */
 
 $(function() {
@@ -401,7 +401,7 @@ $(function() {
         return snippet;
     }
 
-    function textSnippet(i) {
+    function textSnippet() {
         var snippet = `<small class="text-muted"><a href="${img_orig}" target="_blank">${img_name}</a> by <a href="${user_url}" target="_blank">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>, <a href="${licence_url}" target="_blank">${licence}</a>, added on ${today}</small>`;
         return snippet;
     }
@@ -418,6 +418,7 @@ $(function() {
             } else { snippet = embedSnippet(index); }
             $(this).html(snippet);
             $("#rcrop").attr("src", img_src);
+            $(".maker-txt").html(textSnippet());
         });
 
         // Invoke rcrop
