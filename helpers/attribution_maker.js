@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-01-20 11:59:25
+ * @Last Modified time: 2022-01-20 14:15:08
  */
 
 $(function() {
@@ -56,9 +56,10 @@ $(function() {
     // Get URL parameters
     url_string = window.location.href;
     if (url_string.indexOf("?") > 0) {
+
         url = new URL(url_string);
         img_orig = url.searchParams.get("addr");
-        console.log("@GB: img_orig = ", img_orig);
+
 
         // Detect site
         if (img_orig.includes('unsplash.com')) {
@@ -78,11 +79,8 @@ $(function() {
             site = "Flickr";
         }
         if (img_orig.includes('shutterstock.com')) {
-            console.log("@GB: Shutterstock");
             site = "Shutterstock";
-            console.log("@GB: site = ", site);
         }
-        console.log("@GB: Site = ", site);
 
         // Detect organisation
         org = url.searchParams.get("org");
@@ -280,6 +278,30 @@ $(function() {
             });
     }
 
+    // If I am Shutterstock
+    // Until API is opened, get values from URL params
+
+    if (site == "Shutterstock") {
+        if (url.searchParams.get("id") == null) {
+            $('.bookmarklet-warning').show();
+            return false;
+        }
+        user = url.searchParams.get("user");
+        user_url = url.searchParams.get("user_url");
+        user = url.searchParams.get("user");
+        alt = url.searchParams.get("alt");
+        title = url.searchParams.get("title");
+        img_src = url.searchParams.get("img_src");
+        id = url.searchParams.get("id");
+        licence = "Used under licence with shutterstock.com";
+        licence_url = "https://www.shutterstock.com/license";
+        site_url = "https://www.shutterstock.com";
+        $('.download').hide();
+        $('.cropper').hide();
+        $('.shutterstock-warning').show();
+        buildHTML();
+        logger();
+    }
 
     $('#resizer').change(function() {
         selected_id = $("input[name='options']:checked").attr('id');
@@ -313,10 +335,10 @@ $(function() {
         console.log("@GB: id = ", id);
         var paste = $(id).html();
         if (id == ".maker-cropped") {
-            paste = paste.replace(srcOriginal,"https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+cropped+image");
+            paste = paste.replace(srcOriginal, "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+cropped+image");
         }
         if (site == "Flickr") {
-            paste = paste.replace(img_src,"https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+downloaded+Pixabay+image");
+            paste = paste.replace(img_src, "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+downloaded+Pixabay+image");
         }
         console.log("@GB: Copied HTML = ", paste);
         copyTextToClipboard(paste);
