@@ -2,15 +2,15 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-01-21 09:33:29
+ * @Last Modified time: 2022-01-24 13:38:34
  */
 
 $(function() {
 
     // Get current date string
     let today = todaysDate();
-    let site = "";
-    let site_url = "";
+    let site = ""; // Image site
+    let site_url = ""; // Primary site URL
     let id = ""; // Image ID
     let img_name = "Photo"; // Image name.   Defualt to "Photo"
     let img_orig = ""; // Link to original image
@@ -27,7 +27,7 @@ $(function() {
     let org = null; // to cater for organisation specific changes
     let width = "col-5"; // Default width for floated images
     let json = ""; // JSON Object returned by API call
-    let srcOriginal = "";
+    let srcOriginal = "" // Original image SRC (High Res);
 
     // Flickr licences
     let flickr_licences = {
@@ -57,6 +57,7 @@ $(function() {
     url_string = window.location.href;
     if (url_string.indexOf("?") > 0) {
 
+        // Get image address
         url = new URL(url_string);
         img_orig = url.searchParams.get("addr");
 
@@ -82,9 +83,9 @@ $(function() {
             site = "Shutterstock";
         }
 
-        // Detect organisation
+        // Detect organisation.
+        // Allows for different attribution 'recipes' for different organsiations (eg MP).
         org = url.searchParams.get("org");
-        console.log("@GB: org = ", org);
 
         // If I am Melb Poly, do not allow attribution to be collpased.
         if (org == 'mp') {
@@ -93,6 +94,7 @@ $(function() {
         }
 
     } else {
+        // No URL parameters exist.   Show first time warning
         console.log("@GB: No parameters");
         $('.firsttime-warning').show();
         $('#collapseExample').show();
@@ -100,8 +102,11 @@ $(function() {
 
     // If I am Unsplash
     if (site == "Unsplash") {
+
+        // Get image ID
         n = img_orig.lastIndexOf('/');
         id = img_orig.substring(n + 1);
+
         site_url = "https://unsplash.com";
         licence = "Free to use";
         licence_url = "https://unsplash.com/license";
@@ -109,6 +114,7 @@ $(function() {
         // API call
         uri = "https://api.unsplash.com/photos/" + id + "?client_id=" + atob(decodeURIComponent(key));
 
+        // API call
         $.getJSON(uri, function(json) {
             img_src = json.urls.regular;
             user = json.user.username;
@@ -125,14 +131,18 @@ $(function() {
 
     // If I am Pexels
     if (site == "Pexels") {
+
+        // Get image ID
         re = /[0-9]+/gi;
         id = re.exec(img_orig)[0];
+
         site_url = "https://pexels.com/";
         licence = "Free to use";
         licence_url = "https://www.pexels.com/license/";
         key = "NTYzNDkyYWQ2ZjkxNzAwMDAxMDAwMDAxYmZlZmZkMDc3YmFmNDU0ZGFiMjlkNjMwMGJkZjc0MGQ%3D";
         uri = "https://api.pexels.com/v1/photos/" + id;
 
+        // API call.   Using $.ajax as paxels requires authentication headers
         $.ajax({
             url: uri,
             dataType: 'json',
@@ -155,9 +165,12 @@ $(function() {
 
     // If I am Pixabay
     if (site == "Pixabay") {
+
+
+        // Get image ID
         re = /[0-9]+/gi;
         id = re.exec(img_orig)[0];
-        console.log("@GB: Pixabay id = ", id);
+
         site_url = "https://pixabay.com/";
         licence = "Free to use";
         licence_url = "https://pixabay.com/service/license/";
@@ -180,9 +193,11 @@ $(function() {
 
     // If I am Flickr
     if (site == "Flickr") {
+
+        // Get image ID
         re = /\/([0-9]+)\//gi;
         id = re.exec(img_orig)[1];
-        console.log("@GB: Flickr id = ", id);
+
         site_url = "https://www.flickr.com/";
         key = "MmJjNjJmYzJkYzRhYWVjMGZiMGQ1NjY0MGMzYThhMjA=";
         info_uri = "https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=" + atob(decodeURIComponent(key)) + "&photo_id=" + id + "&format=json&&nojsoncallback=1";
@@ -241,8 +256,11 @@ $(function() {
 
     // If I am Wikimedia
     if (site == "Wikimedia Commons") {
+
+        // Get image ID
         n = img_orig.lastIndexOf('/');
         id = img_orig.substring(n + 1);
+
         if (!id.includes('File:')) {
             console.log("@GB: id does not include File: = ", id);
             id = "File:" + id;
@@ -253,18 +271,21 @@ $(function() {
         $.getJSON(uri, function() {})
             .done(function(data) {
                 json = data.query.pages[-1];
-                console.log("@GB: json = ", json);
                 img_src = json.imageinfo[0].thumburl;
                 user = json.imageinfo[0].user;
                 user_url = "https://commons.wikimedia.org/wiki/User:" + user.replace(" ", "_");
                 alt = json.imageinfo[0].extmetadata.ObjectName.value;
                 img_name = "Image";
+
                 download_lge = download_sml = img_src; // Small image 720px wide
+
                 if (json.imageinfo[0].thumbwidth >= 720) {
                     download_lge = json.imageinfo[0].responsiveUrls[2]; // Large image 1440px wide
                     img_src = download_lge;
                 }
+
                 licence = json.imageinfo[0].extmetadata.LicenseShortName.value;
+
                 // Exception for public domain images
                 try {
                     licence_url = json.imageinfo[0].extmetadata.LicenseUrl.value;
@@ -272,6 +293,7 @@ $(function() {
                     console.error("Error: " + error);
                     licence_url = "https://en.wikipedia.org/wiki/Public_domain";
                 }
+
                 id = id.slugify();
                 buildHTML();
                 logger(json);
@@ -296,13 +318,18 @@ $(function() {
         licence = "Used under licence with shutterstock.com";
         licence_url = "https://www.shutterstock.com/license";
         site_url = "https://www.shutterstock.com";
+
+        // Hide download buttons and cropper, as these make no sense for SS
         $('.download').hide();
         $('.cropper').hide();
+
+
         $('.shutterstock-warning').show();
         buildHTML();
         logger();
     }
 
+    // Change relative image size for floated images
     $('#resizer').change(function() {
         selected_id = $("input[name='options']:checked").attr('id');
         selected_val = $("input[name='options']:checked").attr('value');
@@ -313,6 +340,7 @@ $(function() {
         console.log("@GB: New width = ", width);
     });
 
+    // Change whether attribution is visible or collapsed (collapsed by default)
     $('#source-open').change(function() {
         selected_val = $("input[name='options']:checked").attr('value');
         if (selected_val == "Shown") {
@@ -326,18 +354,20 @@ $(function() {
 
 
     $('#embedder button').click(function(event) {
-        /* Act on the event */
-        // Cancel the default action
         event.preventDefault();
         var btn = $(this);
         var closest = btn.prev('.maker-copy');
         var id = "." + btn.attr('id');
         console.log("@GB: id = ", id);
         var paste = $(id).html();
+
+        // If Cropped, replace image in embed code with dummy image
         if (id == ".maker-cropped") {
             paste = paste.replace(srcOriginal, "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+cropped+image");
         }
-        if (site == "Flickr") {
+
+        // If Pixabay, replace image in embed code with dummy image
+        if (site == "Pixabay") {
             paste = paste.replace(img_src, "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+downloaded+Pixabay+image");
         }
         console.log("@GB: Copied HTML = ", paste);
@@ -352,7 +382,7 @@ $(function() {
 
     });
 
-
+    // Download appropriately sized image
     $('a.download').click(function(event) {
         /* Act on the event */
         btn = $(this);
@@ -368,7 +398,7 @@ $(function() {
             console.log("@GB: src = ", src);
         }
 
-
+        // Send to Downloader
         downloader(id, src);
 
         btn.toggleClass('btn-outline-primary btn-success');
@@ -378,6 +408,8 @@ $(function() {
         event.preventDefault();
     });
 
+
+    // Return appropriate Embed Code snippet
     function embedSnippet(i) {
         var snippet = `<img src="${img_src}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
 <figcaption class="figure-caption text-muted small fw-lighter">
@@ -393,6 +425,7 @@ $(function() {
         return snippet;
     }
 
+    // If Org = MP, return Melb Poly embed code
     function mpSnippet(i) {
         var snippet = `<img src="${img_src}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
 <figcaption class="figure-caption text-muted small fw-lighter">
@@ -401,11 +434,13 @@ $(function() {
         return snippet;
     }
 
+    // Text only snippet
     function textSnippet() {
         var snippet = `<small class="text-muted"><a href="${img_orig}" target="_blank">${img_name}</a> by <a href="${user_url}" target="_blank">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>, <a href="${licence_url}" target="_blank">${licence}</a>, added on ${today}</small>`;
         return snippet;
     }
 
+    // Build images into interface
     function buildHTML() {
         $('.maker-copy figure').each(function(index) {
             if (org == 'mp') {
@@ -416,12 +451,16 @@ $(function() {
                 }
                 snippet = mpSnippet(index);
             } else { snippet = embedSnippet(index); }
+
             $(this).html(snippet);
+
+            // Set Cropped and Text only alternateives
             $("#rcrop").attr("src", img_src);
             $(".maker-txt").html(textSnippet());
         });
 
-        // Invoke rcrop
+        // Invoke rcrop (image cropper)
+        // Set defaults
         var $img = $('#rcrop'),
             $update = $('#update'),
             inputs = {
@@ -437,6 +476,7 @@ $(function() {
                 }
             }
 
+        // Define rcrop
         $('#rcrop').rcrop({
             minSize: [200, 200],
             preserveAspectRatio: false,
@@ -449,6 +489,7 @@ $(function() {
 
         });
 
+        // Update cropped image on change
         $('#rcrop').on('rcrop-changed rcrop-ready', function() {
             srcOriginal = $(this).rcrop('getDataURL');
             var srcResized = $(this).rcrop('getDataURL', 50, 50);
@@ -462,6 +503,7 @@ $(function() {
         })
     }
 
+    // Return today's date in dd/mm/yyyy format
     function todaysDate() {
         var today = new Date();
         var dd = String(today.getDate()).padStart(2, '0');
@@ -471,6 +513,7 @@ $(function() {
         return today;
     }
 
+    // log all console messages
     function logger(json) {
         console.log("@GB: site = ", site);
         console.log("@GB: img_orig = ", img_orig);
@@ -486,6 +529,7 @@ $(function() {
         console.log("@GB: json = ", json);
     }
 
+    // Copy to clipboard for dumb browsers
     function fallbackCopyTextToClipboard(text) {
         var textArea = document.createElement("textarea");
         textArea.value = text;
@@ -504,6 +548,7 @@ $(function() {
         document.body.removeChild(textArea);
     }
 
+    // Copy to clipboard
     function copyTextToClipboard(text) {
         if (!navigator.clipboard) {
             fallbackCopyTextToClipboard(text);
@@ -516,6 +561,9 @@ $(function() {
         });
     }
 
+    // Download appropriately sized image.
+    // Dynamically create an offscreen canvas area, load the chosen image,
+    // then create a file from the Canvas content
     function downloader(name, content) {
         var image = new Image();
         image.crossOrigin = "anonymous";
@@ -552,6 +600,7 @@ $(function() {
         return str;
     }
 
+    // Sanitise text to remove special chars. Sluggify output.
     String.prototype.slugify = function(separator = "-") {
         return this
             .toString()
