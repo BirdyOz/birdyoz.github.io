@@ -4,8 +4,6 @@ if (document.location.href.includes('shutterstock.com')) {
     console.log("@GB: json = ", json);
     const obj = JSON.parse(json);
     console.log("@GB: obj = ", obj);
-    // const asset = obj.props.pageProps.asset;
-    // console.log("@GB: asset = ", asset);
     // const id = asset.id;
     // console.log("@GB: id = ", id);
     // const img_orig = asset.link;
