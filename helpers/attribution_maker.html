@@ -38,7 +38,8 @@
 
         <div class="firsttime-warning alert alert-danger collapse">
             <h3>First time user?</h3>
-            <p>Follow the instuctions below.  Watch the video for step-by-step instructions.</p>
+            <p>Follow the instuctions below. Watch the video for step-by-step <instructions class=""></instructions>
+            </p>
         </div>
 
         <p> <button class="btn btn-lg btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> First time? Click here for setup instructions. </button> </p>
@@ -88,7 +89,7 @@
             <p>Shutterstock images are commercially licenced and there is a cost associated with this image.</p>
             <p>This service provides you with a watermarked placeholder image. You must replace this placeholder image with a paid original image, that is downloaded separately via your subscription with shutterstock.</p>
             <p>If you do not have a shutterstock subscription, select from one of the free image services listed above</p>
-            <p class="strong">Not seeing the correct Shutterstock image?  Make sure you refresh your browser, BEFORE you click on the attribution maker.</p>
+            <p class="strong">Not seeing the correct Shutterstock image? Make sure you refresh your browser, BEFORE you click on the attribution maker.</p>
         </div>
         <div class="bookmarklet-warning alert alert-danger collapse">
             <h3>You will need to update your Bookmarklet, to use Shutterstock</h3>
@@ -102,7 +103,11 @@
             <hr class="featurette-divider clearfix" id="right">
 
             <!-- Start of collapser -->
-            <div id="collapser" class="float-right mb-4"> Show image attribution as: <div id="source-open" class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons"> <label class="btn btn-outline-primary active"> <input id="start-hidden" type="radio" name="options" id="option2" autocomplete="off" value="Collapsed"> Collapsed </label> <label class="btn btn-outline-primary"> <input id="start-shown" type="radio" name="options" id="option3" autocomplete="off" value="Shown"> Always visible </label> </div>
+            <div id="collapser" class="float-right mb-4"> Show image attribution as:
+                <div id="source-open" class="btn-group btn-group-sm btn-group-toggle start-hidden" data-toggle="buttons">
+                    <label class="btn btn-outline-primary start-hidden"> <input id="start-hidden" type="radio" name="options" autocomplete="off" value="Collapsed"> Collapsed </label>
+                    <label class="btn btn-outline-primary start-shown"> <input id="start-shown" type="radio" name="options" autocomplete="off" value="Shown"> Always visible </label>
+                </div>
             </div>
             <!-- End of image collapser -->
 
@@ -110,11 +115,11 @@
 
             <!-- Start of image resizer -->
             <div class="float-right mb-4"> Relative size of floated images: <div id="resizer" class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-outline-primary"> <input id="col-6" type="radio" name="options" id="option1" autocomplete="off" value="50%"> 50% </label>
-                    <label class="btn btn-outline-primary active"> <input id="col-5" type="radio" name="options" id="option2" autocomplete="off" value="42%" checked> 42% </label>
-                    <label class="btn btn-outline-primary"> <input id="col-4" type="radio" name="options" id="option3" autocomplete="off" value="33%"> 33% </label>
-                    <label class="btn btn-outline-primary"> <input id="col-3" type="radio" name="options" id="option4" autocomplete="off" value="25%"> 25% </label>
-                    <label class="btn btn-outline-primary"> <input id="col-2" type="radio" name="options" id="option5" autocomplete="off" value="17%"> 17% </label>
+                    <label class="btn btn-outline-primary col-6"> <input id="col-6" type="radio" name="options" id="option1" autocomplete="off" value="50%"> 50% </label>
+                    <label class="btn btn-outline-primary col-5"> <input id="col-5" type="radio" name="options" id="option2" autocomplete="off" value="42%"> 42% </label>
+                    <label class="btn btn-outline-primary col-4"> <input id="col-4" type="radio" name="options" id="option3" autocomplete="off" value="33%"> 33% </label>
+                    <label class="btn btn-outline-primary col-3"> <input id="col-3" type="radio" name="options" id="option4" autocomplete="off" value="25%"> 25% </label>
+                    <label class="btn btn-outline-primary col-2"> <input id="col-2" type="radio" name="options" id="option5" autocomplete="off" value="17%"> 17% </label>
                 </div>
             </div>
             <!-- End of image resizer -->
@@ -122,13 +127,13 @@
             <div class="clearfix container-fluid"></div>
 
             <div class="clearfix">
-<div class="maker-copy maker-floated maker-fr">
-<!-- Start of Image Embed - Float Right (Embed code by @BirdyOz) -->
-<figure class="figure border rounded p-1 bg-light text-right float-right col-5 ml-4">
-    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid">
-</figure>
-<!-- End of Image Embed - Float Right -->
-</div>
+                <div class="maker-copy maker-floated maker-fr">
+                    <!-- Start of Image Embed - Float Right (Embed code by @BirdyOz) -->
+                    <figure class="figure border rounded p-1 bg-light text-right float-right col-5 ml-4">
+                        <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid">
+                    </figure>
+                    <!-- End of Image Embed - Float Right -->
+                </div>
                 <h2 class="featurette-heading">Float Right (Image to the right of text)</h2>
                 <p class="lead">Image will occupy <strong class="percent">42%</strong> of the available space.
                     <br> The image will resize and the text will reflow as you resize the browser.</p>
@@ -139,13 +144,13 @@
             </div>
             <hr class="featurette-divider clearfix" id="left">
             <div class="clearfix">
-<div class="maker-copy maker-floated maker-fl">
-<!-- Start of Image Embed - Float Left (Embed code by @BirdyOz) -->
-<figure class="figure border rounded p-1 bg-light text-right float-left col-5 mr-4">
-    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid">
-</figure>
-<!-- End of Image Embed - Float Left -->
-</div>
+                <div class="maker-copy maker-floated maker-fl">
+                    <!-- Start of Image Embed - Float Left (Embed code by @BirdyOz) -->
+                    <figure class="figure border rounded p-1 bg-light text-right float-left col-5 mr-4">
+                        <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid">
+                    </figure>
+                    <!-- End of Image Embed - Float Left -->
+                </div>
                 <h2 class="featurette-heading">Float Left (Image to the left of text)</h2>
                 <p class="lead">Image will occupy <strong class="percent">42%</strong> of the available space.
                     <br> The image will resize and the text will reflow as you resize the browser.</p>
@@ -159,13 +164,13 @@
                 <h2 class="featurette-heading">Full width (Image above or below text)</h2>
                 <p class="lead">Image will occupy 100% of the available space</p>
                 <div class="clearfix">
-<div class="maker-copy maker-lg">
-<!-- Start of Image Embed - Full width (Embed code by @BirdyOz) -->
-<figure class="figure border rounded p-1 bg-light text-right w-100">
-    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100">
-</figure>
-<!-- End of Image Embed - Full width -->
-</div>
+                    <div class="maker-copy maker-lg">
+                        <!-- Start of Image Embed - Full width (Embed code by @BirdyOz) -->
+                        <figure class="figure border rounded p-1 bg-light text-right w-100">
+                            <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100">
+                        </figure>
+                        <!-- End of Image Embed - Full width -->
+                    </div>
                     <button id="maker-lg" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
                         Download large image
                     </a>
@@ -174,19 +179,19 @@
                 <div class="clearfix">
                     <h2 class="featurette-heading">Full width, with text overlay (Custom text overlay)</h2>
                     <p class="lead">Image will occupy 100% of the available space. Text overlay can be edited by you, after embedding</p>
-<div class="maker-copy maker-ov">
-<!-- Start of Image Embed - Full width, with text overlay (Embed code by @BirdyOz) -->
-<div class="overlay" style="position: relative;">
-    <figure class="figure border rounded p-1 bg-light text-right w-100">
-        <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100">
-    </figure>
-    <div class="text-overlay" style="text-align: center; color: white !important; text-shadow: 2px 2px 4px #000000; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%">
-        <p style="font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) )) !important; line-height: calc( 20px + (32 - 16) * ( 80vw / (1000 - 400) )) !important;">Text overlay goes here</p>
-        <p style="font-size: calc( 12px + (24 - 16) * ( 60vw / (1000 - 400) )) !important; line-height: calc( 10px + (20 - 10) * ( 80vw / (1000 - 400) )) !important;">Optional byline or citation goes here. Delete if not required.</p>
-    </div>
-</div>
-<!-- End of Embed code - Full width, with text overlay -->
-</div>
+                    <div class="maker-copy maker-ov">
+                        <!-- Start of Image Embed - Full width, with text overlay (Embed code by @BirdyOz) -->
+                        <div class="overlay" style="position: relative;">
+                            <figure class="figure border rounded p-1 bg-light text-right w-100">
+                                <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100">
+                            </figure>
+                            <div class="text-overlay" style="text-align: center; color: white !important; text-shadow: 2px 2px 4px #000000; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%">
+                                <p style="font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) )) !important; line-height: calc( 20px + (32 - 16) * ( 80vw / (1000 - 400) )) !important;">Text overlay goes here</p>
+                                <p style="font-size: calc( 12px + (24 - 16) * ( 60vw / (1000 - 400) )) !important; line-height: calc( 10px + (20 - 10) * ( 80vw / (1000 - 400) )) !important;">Optional byline or citation goes here. Delete if not required.</p>
+                            </div>
+                        </div>
+                        <!-- End of Embed code - Full width, with text overlay -->
+                    </div>
                     <button id="maker-ov" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
                         Download large image
                     </a>
@@ -220,13 +225,13 @@
                     <!-- Cropped -->
                     <h4>Cropped image</h4>
                     <div class="clearfix">
-<div class="maker-copy maker-cropped">
-<!-- Start of Image Embed - Cropped (Embed code by @BirdyOz) -->
-<figure class="figure border rounded p-1 bg-light text-right w-100">
-    <img id="image-cropped" src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Cropped+image+will+go+here" class="img-responsive img-fluid w-100">
-</figure>
-<!-- End of Image Embed - Cropped -->
-</div>
+                        <div class="maker-copy maker-cropped">
+                            <!-- Start of Image Embed - Cropped (Embed code by @BirdyOz) -->
+                            <figure class="figure border rounded p-1 bg-light text-right w-100">
+                                <img id="image-cropped" src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Cropped+image+will+go+here" class="img-responsive img-fluid w-100">
+                            </figure>
+                            <!-- End of Image Embed - Cropped -->
+                        </div>
                     </div>
                     <button id="maker-cropped" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-cropped"> <i class="fa fa-download"></i>
                         Download cropped image
@@ -239,13 +244,13 @@
                 <p class="lead">Use this option to copy the attribution statement ONLY. This is useful if you are using the image outside of Moodle (eg, in a PowerPoint Presentation), but still need to attribute the image</p>
                 <div class="clearfix">
                     <div class="mb-4">
-<div class="maker-copy maker-txt">
-<!-- Start of Image attribution - text only (Embed code by @BirdyOz) -->
-<div id="attribution">
-    Attribution statement goes here
-</div>
-<!-- End of Image attribution - text only -->
-</div>
+                        <div class="maker-copy maker-txt">
+                            <!-- Start of Image attribution - text only (Embed code by @BirdyOz) -->
+                            <div id="attribution">
+                                Attribution statement goes here
+                            </div>
+                            <!-- End of Image attribution - text only -->
+                        </div>
                     </div>
                     <button id="maker-txt" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
                         Download large image
@@ -266,10 +271,12 @@
     <!-- Bootstrap core JavaScript ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js" integrity="sha256-0H3Nuz3aug3afVbUlsu12Puxva3CP4EhJtPExqs54Vg=" crossorigin="anonymous"></script>
     <script src="rcrop/dist/rcrop.min.js"></script>
     <script src="attribution_maker.js"></script>
+
 </body>
 
 </html>

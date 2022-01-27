@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-01-24 13:38:34
+ * @Last Modified time: 2022-01-27 16:10:36
  */
 
 $(function() {
@@ -29,6 +29,34 @@ $(function() {
     let json = ""; // JSON Object returned by API call
     let srcOriginal = "" // Original image SRC (High Res);
 
+    // Get cookie values:
+
+    let cookieWidth = Cookies.get('cookieWidth');
+    let cookieCollapsed = Cookies.get('cookieCollapsed');
+
+
+    // Set default button
+    $("#source-open .start-hidden").button("toggle");
+
+    // Read cookie
+    if (cookieCollapsed === "false") {
+        // If 'false', toggle button
+        startCollapsed = false;
+        $("#source-open .start-shown").button("toggle");
+    }
+
+
+    // Set relative size
+    if (typeof cookieWidth !== "undefined" && cookieWidth !== width) {
+        $('.maker-floated>figure').removeClass(width);
+        width = cookieWidth;
+        $('.maker-floated>figure').addClass(width);
+    }
+
+
+
+
+
     // Flickr licences
     let flickr_licences = {
         "license": [
@@ -45,13 +73,6 @@ $(function() {
         ]
     }
 
-
-
-
-    // Set defualt value of collapsed or shown
-    if (startCollapsed) {} else {
-        $('#start-shown').click();
-    }
 
     // Get URL parameters
     url_string = window.location.href;
@@ -206,7 +227,6 @@ $(function() {
 
         $.getJSON(info_uri, function() {})
             .done(function(json) {
-                console.log("@GB: json = ", json);
                 let lic = json.photo.license;
                 // Image is copyrighted
                 if (lic == 0) {
@@ -227,7 +247,6 @@ $(function() {
                         .done(function(json2) {
                             img_src = json2.sizes.size.find(item => item.label == "Original").source;
                             let orig_width = json2.sizes.size.find(item => item.label == "Original").width;
-                            console.log("@GB: orig_width = ", orig_width);
                             // Check if image is large enough to resize
                             if (orig_width >= 800) {
                                 download_sml = json2.sizes.size.find(item => item.label == "Medium 800").source
@@ -262,7 +281,6 @@ $(function() {
         id = img_orig.substring(n + 1);
 
         if (!id.includes('File:')) {
-            console.log("@GB: id does not include File: = ", id);
             id = "File:" + id;
         }
         site_url = "https://commons.wikimedia.org/";
@@ -333,16 +351,17 @@ $(function() {
     $('#resizer').change(function() {
         selected_id = $("input[name='options']:checked").attr('id');
         selected_val = $("input[name='options']:checked").attr('value');
+        Cookies.set('cookieWidth', selected_id, { expires: 365, path: '' });
         $('.maker-floated>figure').removeClass(width);
         $('.maker-floated>figure').addClass(selected_id);
         $('.percent').text(selected_val);
         width = selected_id;
-        console.log("@GB: New width = ", width);
     });
 
     // Change whether attribution is visible or collapsed (collapsed by default)
     $('#source-open').change(function() {
         selected_val = $("input[name='options']:checked").attr('value');
+
         if (selected_val == "Shown") {
             startCollapsed = false;
             buildHTML();
@@ -350,6 +369,8 @@ $(function() {
             startCollapsed = true;
             buildHTML();
         }
+
+        Cookies.set('cookieCollapsed', startCollapsed, { expires: 365, path: '' });
     });
 
 
@@ -358,7 +379,6 @@ $(function() {
         var btn = $(this);
         var closest = btn.prev('.maker-copy');
         var id = "." + btn.attr('id');
-        console.log("@GB: id = ", id);
         var paste = $(id).html();
 
         // If Cropped, replace image in embed code with dummy image
@@ -387,15 +407,12 @@ $(function() {
         /* Act on the event */
         btn = $(this);
         title = btn.attr("title");
-        console.log("@GB: button title = ", title);
         src = download_lge;
         if (title == "img-sml") {
             src = download_sml;
         }
         if (title == "img-cropped") {
-            console.log("@GB: img-cropped");
             src = $(".maker-cropped img").attr("src");
-            console.log("@GB: src = ", src);
         }
 
         // Send to Downloader
@@ -447,7 +464,6 @@ $(function() {
                 // Use Melb Poly's attribution rules
                 if (site != "Wikimedia Commons") {
                     licence = "Licence";
-                    console.log("@GB: licence = ", licence);
                 }
                 snippet = mpSnippet(index);
             } else { snippet = embedSnippet(index); }
@@ -457,6 +473,8 @@ $(function() {
             // Set Cropped and Text only alternateives
             $("#rcrop").attr("src", img_src);
             $(".maker-txt").html(textSnippet());
+
+            $("#resizer ." + width).button("toggle");
         });
 
         // Invoke rcrop (image cropper)
@@ -515,18 +533,30 @@ $(function() {
 
     // log all console messages
     function logger(json) {
-        console.log("@GB: site = ", site);
-        console.log("@GB: img_orig = ", img_orig);
-        console.log("@GB: img_src = ", img_src);
-        console.log("@GB: download_sml = ", download_sml);
-        console.log("@GB: download_lge = ", download_lge);
-        console.log("@GB: user = ", user);
-        console.log("@GB: user_url = ", user_url);
-        console.log("@GB: alt = ", alt);
-        console.log("@GB: title = ", title);
-        console.log("@GB: licence = ", licence);
-        console.log("@GB: licence_url = ", licence_url);
-        console.log("@GB: json = ", json);
+        console.groupCollapsed('@GB: Attribution maker values')
+        console.log("@GB: today = ",today)
+        console.log("@GB: site = ",site)
+        console.log("@GB: site_url = ",site_url)
+        console.log("@GB: id = ",id)
+        console.log("@GB: img_name = ",img_name)
+        console.log("@GB: img_orig = ",img_orig)
+        console.log("@GB: img_src = ",img_src)
+        console.log("@GB: download_sml = ",download_sml)
+        console.log("@GB: download_lge = ",download_lge)
+        console.log("@GB: alt = ",alt)
+        console.log("@GB: user = ",user)
+        console.log("@GB: user_url = ",user_url)
+        console.log("@GB: licence = ",licence)
+        console.log("@GB: licence_url = ",licence_url)
+        console.log("@GB: title = ",title)
+        console.log("@GB: startCollapsed = ",startCollapsed)
+        console.log("@GB: org = ",org)
+        console.log("@GB: width = ",width)
+        console.log("@GB: srcOriginal = ",srcOriginal)
+        console.log("@GB: cookieWidth = ",cookieWidth)
+        console.log("@GB: cookieCollapsed = ",cookieCollapsed)
+        console.log("@GB: json = ",json)
+        console.groupEnd()
     }
 
     // Copy to clipboard for dumb browsers
