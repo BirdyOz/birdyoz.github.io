@@ -1,8 +1,8 @@
 /*
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
- * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-01-27 16:10:36
+ * @Last Modified by:   gbird
+ * @Last Modified time: 2022-01-31 10:47:24
  */
 
 $(function() {
@@ -52,10 +52,6 @@ $(function() {
         width = cookieWidth;
         $('.maker-floated>figure').addClass(width);
     }
-
-
-
-
 
     // Flickr licences
     let flickr_licences = {
@@ -109,7 +105,7 @@ $(function() {
         org = url.searchParams.get("org");
 
         // If I am Melb Poly, do not allow attribution to be collpased.
-        if (org == 'mp') {
+        if (org === 'mp') {
             startCollapsed = false;
             $('#collapser').hide();
         }
@@ -425,7 +421,6 @@ $(function() {
         event.preventDefault();
     });
 
-
     // Return appropriate Embed Code snippet
     function embedSnippet(i) {
         var snippet = `<img src="${img_src}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
@@ -473,7 +468,6 @@ $(function() {
             // Set Cropped and Text only alternateives
             $("#rcrop").attr("src", img_src);
             $(".maker-txt").html(textSnippet());
-
             $("#resizer ." + width).button("toggle");
         });
 
@@ -534,28 +528,28 @@ $(function() {
     // log all console messages
     function logger(json) {
         console.groupCollapsed('@GB: Attribution maker values')
-        console.log("@GB: today = ",today)
-        console.log("@GB: site = ",site)
-        console.log("@GB: site_url = ",site_url)
-        console.log("@GB: id = ",id)
-        console.log("@GB: img_name = ",img_name)
-        console.log("@GB: img_orig = ",img_orig)
-        console.log("@GB: img_src = ",img_src)
-        console.log("@GB: download_sml = ",download_sml)
-        console.log("@GB: download_lge = ",download_lge)
-        console.log("@GB: alt = ",alt)
-        console.log("@GB: user = ",user)
-        console.log("@GB: user_url = ",user_url)
-        console.log("@GB: licence = ",licence)
-        console.log("@GB: licence_url = ",licence_url)
-        console.log("@GB: title = ",title)
-        console.log("@GB: startCollapsed = ",startCollapsed)
-        console.log("@GB: org = ",org)
-        console.log("@GB: width = ",width)
-        console.log("@GB: srcOriginal = ",srcOriginal)
-        console.log("@GB: cookieWidth = ",cookieWidth)
-        console.log("@GB: cookieCollapsed = ",cookieCollapsed)
-        console.log("@GB: json = ",json)
+        console.log("@GB: today = ", today)
+        console.log("@GB: site = ", site)
+        console.log("@GB: site_url = ", site_url)
+        console.log("@GB: id = ", id)
+        console.log("@GB: img_name = ", img_name)
+        console.log("@GB: img_orig = ", img_orig)
+        console.log("@GB: img_src = ", img_src)
+        console.log("@GB: download_sml = ", download_sml)
+        console.log("@GB: download_lge = ", download_lge)
+        console.log("@GB: alt = ", alt)
+        console.log("@GB: user = ", user)
+        console.log("@GB: user_url = ", user_url)
+        console.log("@GB: licence = ", licence)
+        console.log("@GB: licence_url = ", licence_url)
+        console.log("@GB: title = ", title)
+        console.log("@GB: startCollapsed = ", startCollapsed)
+        console.log("@GB: org = ", org)
+        console.log("@GB: width = ", width)
+        console.log("@GB: srcOriginal = ", srcOriginal)
+        console.log("@GB: cookieWidth = ", cookieWidth)
+        console.log("@GB: cookieCollapsed = ", cookieCollapsed)
+        console.log("@GB: json = ", json)
         console.groupEnd()
     }
 
