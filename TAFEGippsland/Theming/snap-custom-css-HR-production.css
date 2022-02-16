@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2021-02-04 13:58:29
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2021-07-26 14:26:03
+* @Last Modified time: 2022-02-11 10:46:26
 */
 
 /* ==========================================================================
@@ -37,6 +37,14 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     -o-transition: all .4s ease-in-out;
     transition: all .4s ease-in-out;
 }
+
+
+/* ==========================================================================
+   SNAP MYCOURSES
+   ========================================================================== */
+
+/* Hide progress bar */
+#snap-pm .coursecard-dynamicinfo {display: none;}
 
 
 /* ==========================================================================
