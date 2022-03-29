@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2021-02-04 13:58:29
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2022-02-11 10:46:26
+* @Last Modified time: 2022-03-16 09:58:31
 */
 
 /* ==========================================================================
@@ -44,7 +44,27 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
    ========================================================================== */
 
 /* Hide progress bar */
-#snap-pm .coursecard-dynamicinfo {display: none;}
+#snap-pm .coursecard-dynamicinfo {
+    display: none;
+}
+
+
+/* ==========================================================================
+   DASHBOARD
+   ========================================================================== */
+
+/* Add greater visual attention to category names in course cards, when on dashboard */
+#page-my-index .dashboard-card .categoryname {
+    font-weight: 800;
+    color: black !important;
+    font-size: 1em;
+    display: block;
+    width: 100%;
+    min-height: 3.4em;
+    border-bottom: 1px solid #ccc;
+    margin: 0;
+    white-space: normal !important;
+}
 
 
 /* ==========================================================================
@@ -128,9 +148,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     display: none;
 }
 
-.snap-asset-link img.activityicon[src$="document"] + p.instancename::before {
+.snap-asset-link img.activityicon[src$="document"]+p.instancename::before {
     font-family: "fontawesome";
-    content:"\f1c2";
+    content: "\f1c2";
     font-size: 2em;
     color: #2a5294;
     padding: 0.1em 0.2em;
@@ -142,9 +162,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     display: none;
 }
 
-.snap-asset-link img.activityicon[src$="powerpoint"] + p.instancename::before {
+.snap-asset-link img.activityicon[src$="powerpoint"]+p.instancename::before {
     font-family: "fontawesome";
-    content:"\f1c4";
+    content: "\f1c4";
     font-size: 2em;
     color: #ca4324;
     padding: 0.1em 0.2em;
@@ -156,9 +176,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     display: none;
 }
 
-.snap-asset-link img.activityicon[src$="pdf"] + p.instancename::before {
+.snap-asset-link img.activityicon[src$="pdf"]+p.instancename::before {
     font-family: "fontawesome";
-    content:"\f1c1";
+    content: "\f1c1";
     font-size: 2em;
     color: #cb0506;
     padding: 0.1em 0.2em;
@@ -170,9 +190,9 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     display: none;
 }
 
-.snap-asset-link img.activityicon[src$="spreadsheet"] + p.instancename::before {
+.snap-asset-link img.activityicon[src$="spreadsheet"]+p.instancename::before {
     font-family: "fontawesome";
-    content:"\f1c3";
+    content: "\f1c3";
     font-size: 2em;
     color: #1c6d43;
     padding: 0.1em 0.2em;
@@ -204,14 +224,14 @@ body[id$="-mod"] .collapsible-actions {
 Expand all collapsed items in the atto edtitor, to expose their content */
 
 .editor_atto .collapse {
- display: block !important;
- height: auto !important;
+    display: block !important;
+    height: auto !important;
 }
 
- /*Snap on M3.8 books fix - when inside a book, hide the book description from top*/
+/*Snap on M3.8 books fix - when inside a book, hide the book description from top*/
 
 body#page-mod-book-view #region-main #intro {
-   display: none;
+    display: none;
 }
 
 
@@ -220,7 +240,7 @@ body#page-mod-book-view #region-main #intro {
    SCORM FIXES
    ========================================================================== */
 
- /*When inside a SCORM, hide the "Exit activity" button as it does nothing */
+/*When inside a SCORM, hide the "Exit activity" button as it does nothing */
 
 #page-mod-scorm-player #region-main .snap-page-heading-button {
     display: none !important;

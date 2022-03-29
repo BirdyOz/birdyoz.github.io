@@ -1,0 +1,18 @@
+<script type="text/javascript">
+// TG fix for root relative links
+// To correct the fact that TG have their Moodle root directory set as:
+// '/moodle/', not '/'
+
+// Find all root-relative links (links that start with "/mod/")
+const hrefs = document.querySelectorAll('a[href^="/mod/"]');
+
+// Loop through these root relative links
+hrefs.forEach(
+    function(el) {
+        // Change from '/mod/' to '/moodle/mod/'
+        let href = el.href.replace('/mod/', '/moodle/mod/')
+        // Update href.   Now includes'/moodle/mod/'
+        el.setAttribute('href', href)
+    }
+);
+</script>
