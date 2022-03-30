@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-03-30 12:30:53
+ * @Last Modified time: 2022-03-30 12:35:40
  */
 
 $(function() {
@@ -48,7 +48,7 @@ $(function() {
 
                     // Is embedding allowed?
                     var embeddable = data.items[0].status.embeddable;
-                    if (popup==true) {
+                    if (popup=="true") {
                         embeddable = false
                     }
                     console.log("@GB: embeddable = ", embeddable);
