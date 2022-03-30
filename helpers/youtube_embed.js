@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-03-30 12:21:14
+ * @Last Modified time: 2022-03-30 12:30:53
  */
 
 $(function() {
@@ -14,6 +14,7 @@ $(function() {
         var url = new URL(url_string);
         var yt_video_id = url.searchParams.get("yt_video_id");
         var popup = url.searchParams.get("popup");
+        console.log("@GB: popup = ", popup);
 
 
         // Make YouTube API call
