@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2021-08-02 11:07:05
+ * @Last Modified time: 2022-03-30 12:21:14
  */
 
 $(function() {
@@ -13,6 +13,7 @@ $(function() {
     if (url_string.indexOf("?") > 0) {
         var url = new URL(url_string);
         var yt_video_id = url.searchParams.get("yt_video_id");
+        var popup = url.searchParams.get("popup");
 
 
         // Make YouTube API call
@@ -46,6 +47,9 @@ $(function() {
 
                     // Is embedding allowed?
                     var embeddable = data.items[0].status.embeddable;
+                    if (popup==true) {
+                        embeddable = false
+                    }
                     console.log("@GB: embeddable = ", embeddable);
 
                     // Extract dimenssion from embed code.  Establish ratio.
@@ -95,6 +99,7 @@ $(function() {
                     // Is embedding allowed?
                     if (embeddable === true) {
                         dom =
+                            '<div class="clearfix container-fluid"></div>\n' +
                             '<div class="card well" style="padding: 10px">\n' +
                             '    <h4 class="text-danger"><i class="fa fa-play-circle-o"></i> ' + title + ' (' + duration_str + ')</h4>\n' +
                             desc +
@@ -112,6 +117,7 @@ $(function() {
                         var url = "https://www.youtube.com/watch?v=" + yt_video_id;
 
                         dom =
+                            '<div class="clearfix container-fluid"></div>\n' +
                             '<div class="card well" style="padding: 10px">\n' +
                             '    <h4 class="text-danger"><i class="fa fa-play-circle-o"></i> ' + title + ' (' + duration_str + ')</h4>\n' +
                             desc +
