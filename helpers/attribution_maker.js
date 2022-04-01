@@ -1,8 +1,8 @@
 /*
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
- * @Last Modified by:   gbird
- * @Last Modified time: 2022-01-31 10:47:24
+ * @Last Modified by:   BirdyOz
+ * @Last Modified time: 2022-04-01 15:21:12
  */
 
 $(function() {
@@ -77,6 +77,7 @@ $(function() {
         // Get image address
         url = new URL(url_string);
         img_orig = url.searchParams.get("addr");
+        console.log("@GB: img_orig = ", img_orig);
 
 
         // Detect site
@@ -98,6 +99,16 @@ $(function() {
         }
         if (img_orig.includes('shutterstock.com')) {
             site = "Shutterstock";
+        }
+        if (img_orig.includes('youtube.com')) {
+            site = "youtube";
+            yt_url = new URL(img_orig);
+            console.log("@GB: yt_url = ", yt_url);
+            yt_id = yt_url.searchParams.get("v");
+            console.log("@GB: yt_id = ", yt_id);
+            yt_maker="https://birdyoz.github.io/helpers/youtube_embedder.html?yt_video_id=" + yt_id;
+            console.log("@GB: yt_maker = ", yt_maker);
+            window.location.href = yt_maker;
         }
 
         // Detect organisation.
