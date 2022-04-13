@@ -1,0 +1,1164 @@
+/* 2019-11-25 dcollett mobile log in overrides */
+.mobileLogin-Header {
+  background-image: url("https://d2glwx35mhbfwf.cloudfront.net/v4.10.0/logo-with-padding.svg");
+  background-size: 160px 160px;
+  min-height: 160px;
+}
+
+/* 2019-05-27 dcollett prevent users updating their default email address */
+.email_meta {
+  display: none;
+}
+
+/* 2019-07-02 dcollett hides Canvas logo in footer */
+#footer>a.footer-logo.ic-app-footer__logo-link {
+  display: none;
+}
+
+/* 2019-07-02 dcollett hides Facebook and Twitter links in footer */
+.ic-app-footer__links a:last-child,
+.ic-app-footer__links a:nth-last-child(2) {
+  display: none;
+}
+
+/* 2019-07-02 dcollett don't hide acceptable use policy link in footer */
+#terms_of_service_modal>a.terms_link {
+  display: inline;
+}
+
+/*Breadcrumb fix*/
+#breadcrumbs .ellipsis {
+  float: right;
+}
+
+#breadcrumbs>ul>li {
+  white-space: normal;
+}
+
+/*=============================================================================*/
+/* 2019-07-24 marathv styles for custom UI components */
+/* TODO: need to check/confirm if we need icons and col layout */
+@import url("https://use.fontawesome.com/releases/v5.8.1/css/all.css");
+
+/* Tab styles ----------------------*/
+.uom-ui-tab {
+  margin: 1%;
+}
+
+.uom-ui-trigger {
+  display: inline-block;
+  list-style-type: none;
+  padding: 0.5em 1em;
+  border-radius: 4px 4px 0px 0px;
+  color: #094183;
+  clear: both;
+  cursor: pointer;
+  margin-top: 1px;
+}
+
+.uom-ui-tab.uom-ui-vertical div[role=tablist],
+.uom-ui-tab.uom-ui-vertical .uom-ui-tablist {
+  float: left;
+  width: 30%;
+  margin-right: 2em;
+}
+
+.uom-ui-tab.uom-ui-vertical .uom-ui-trigger {
+  display: block;
+  border-radius: 4px 4px 4px 4px;
+}
+
+@media all and (max-width: 980px) {
+
+  .uom-ui-tab.uom-ui-vertical div[role=tablist],
+  .uom-ui-tab.uom-ui-vertical .uom-ui-tablist {
+    float: none;
+    width: auto;
+    margin-right: 0;
+  }
+
+  .uom-ui-tab.uom-ui-vertical .uom-ui-trigger {
+    display: inline-block;
+    border-radius: 4px 4px 0px 0px;
+  }
+}
+
+.uom-ui-trigger:hover {
+  background-color: #f7f7f7;
+}
+
+.uom-ui-trigger:focus,
+.uom-ui-trigger.uom-ui-tab-selected:focus {
+  outline: 1px dotted #99A2AA;
+  outline-offset: 2px;
+}
+
+.uom-ui-tab-panel {
+  background-color: #f7f7f7;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 0px 4px 4px 4px;
+  line-height: 1.6em;
+  overflow: hidden;
+  /* word-spacing: 4px; */
+}
+
+.uom-ui-tab-panel *:first-child {
+  margin-top: 0;
+}
+
+.uom-ui-tab-panel *:last-child {
+  margin-bottom: 0;
+}
+
+.uom-ui-tab-selected {
+  background-color: #4074B2;
+  color: #fff;
+  /*    box-shadow: 0px 3px 0px #357bcc inset;*/
+}
+
+.uom-ui-trigger.uom-ui-tab-selected:hover {
+  background-color: #4074B2;
+  /*    box-shadow: 0px 3px 0px #4074B2 inset;*/
+  color: #fff;
+  cursor: default;
+}
+
+/* End of Tab styles ----------------------*/
+/* Accordion styles ----------------------*/
+.uom-ui-accordion {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #99a2aa;
+  margin-bottom: 2em;
+}
+
+.uom-ui-accordion h3 {
+  margin: 0;
+  padding: 0;
+}
+
+.uom-ui-accordion.focus {
+  border-color: #99a2aa;
+}
+
+.uom-ui-accordion>*+* {
+  border-top: 1px solid #99a2aa;
+}
+
+.uom-ui-accordion-trigger {
+  background: none;
+  color: #094183;
+  display: block;
+  font-size: 1em !important;
+  font-weight: bold;
+  margin: 0;
+  padding: 1em 1.5em;
+  position: relative;
+  text-align: left;
+  width: 100%;
+  outline: none;
+  font-size: 24px;
+  cursor: pointer;
+  clear: both;
+  box-sizing: border-box;
+}
+
+.uom-ui-accordion-trigger:focus,
+.uom-ui-accordion-trigger:hover {
+  text-decoration: underline;
+}
+
+.uom-ui-accordion *:first-child .uom-ui-accordion-trigger {
+  border-radius: 0;
+}
+
+.uom-ui-accordion-title {
+  display: block;
+  pointer-events: none;
+  border: transparent 2px solid;
+  border-radius: 2px;
+  padding: 0.25em;
+  outline: none;
+}
+
+.uom-ui-accordion-trigger:focus .uom-ui-accordion-title {
+  border-color: transparent;
+}
+
+.uom-ui-accordion-trigger:before {
+  font-size: 1.50em;
+  left: 0.20em;
+  margin-top: -.7em;
+  content: "+";
+  display: inline-block;
+  position: absolute;
+  text-align: left;
+  text-decoration: none;
+  top: 50%;
+  transition: -webkit-transform .2s ease-in-out;
+  transition: transform .2s ease-in-out;
+}
+
+.uom-ui-accordion-trigger[aria-expanded="true"]:before {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.uom-ui-accordion-panel {
+  margin: 0;
+  padding: 0 1.5em 1em 1.9em;
+	border: 0;
+  overflow: hidden;
+}
+
+.uom-ui-accordion-panel > *:first-child {
+	margin-top: 0;
+}
+
+/* For Edge bug https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/4806035/ */
+.uom-ui-accordion-panel[hidden] {
+  display: none;
+}
+
+/* End of Accordion styles ----------------------*/
+/* Table styles ----------------------*/
+.uom-ui-table,
+.uom-ui-table-bordered,
+.uom-ui-table-striped {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  margin: 1em auto;
+	vertical-align: middle;
+}
+
+.uom-ui-table tr,
+.uom-ui-table-striped tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.uom-ui-table td,
+.uom-ui-table th,
+.uom-ui-table-bordered td,
+.uom-ui-table-bordered th,
+.uom-ui-table-striped td,
+.uom-ui-table-striped th {
+  padding: 8px !important;
+}
+
+.uom-ui-table.uom-striped tr:nth-child(even),
+.uom-ui-table-striped tr:nth-child(even){
+  background-color: #e0e0e0;
+}
+.uom-ui-table-bordered tr td,
+.uom-ui-table-bordered tr th {
+	border:1px solid #e0e0e0;
+}
+/*header*/
+.uom-ui-table tr.header th,
+.uom-ui-table tr.header td,
+.uom-ui-table-bordered tr.header th,
+.uom-ui-table-bordered tr.header td,
+.uom-ui-table-striped tr.header th,
+.uom-ui-table-striped tr.header td {
+	color: #012a58;
+	background-color: #edf2f5;
+	text-align: left;
+	vertical-align: bottom;
+	font-weight: 600;
+}
+/* table align */
+.uom-ui-table tbody,
+.uom-ui-table-bordered tbody,
+.uom-ui-table-striped tbody {
+	vertical-align: inherit;
+}
+.align-top { 
+	vertical-align: top!important;
+}
+.align-middle{
+	vertical-align: middle!important
+}
+.align-bottom {
+	vertical-align: bottom!important;
+} 
+/* table responsive */
+.w3-responsive {
+    display: block;
+    overflow-x: auto;
+}
+
+[class^="w3"] {
+    box-sizing: border-box;
+}
+/* END Table styles ----------------------*/
+/* Video styles ----------------------*/
+.uom-ui-video {
+  width: 100%;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 25px;
+  margin-top: 25px;
+  text-align: left;
+  border-bottom: 1px solid #99A2AA;
+}
+
+.uom-ui-video+* {
+  clear: both;
+}
+
+.uom-ui-video p {
+  margin-top: 1%;
+  font-size: 0.75em;
+}
+
+.uom-ui-responsive-wrapper {
+  position: relative;
+  height: 0;
+}
+
+.uom-ui-responsive-wrapper-16-09 {
+  padding-bottom: 56.25%;
+}
+
+.uom-ui-responsive-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.uom-ui-transcript p {
+  text-align: left;
+  display: inline;
+  font-size: small;
+  margin-left: 1%;
+}
+
+/* END Video styles ----------------------*/
+/* textarea ----------------------*/
+.uom-ui-textarea {
+  border: 1px solid #99A2AA;
+  font-size: inherit;
+  min-height: 5em;
+  overflow: auto;
+  padding: 0.5em;
+  resize: vertical;
+  width: 100%;
+  border-radius: 2px;
+  box-sizing: border-box;
+}
+
+/* custom styles ----------------------*/
+/* 20210616 dcollett adding left border to improve notice class accessibility */
+.uom-ui-emphasise,
+.uom-ui-notice--success,
+.uom-ui-notice--warning,
+.uom-ui-notice--danger,
+.uom-ui-notice--info,
+.uom-ui-heavy-emphasis {
+	padding: 0.8rem 1.1rem;
+  margin: 1em 0;
+	color:#272727;
+}
+.uom-ui-emphasise {
+  background-color: #f5f5f5;
+  border-left: .375rem solid #949494;
+}
+.uom-ui-notice--success {
+	background-color: #d5f2e6;
+  border-left:.375rem solid #467749;
+}
+.uom-ui-notice--warning {
+	background-color: #ffdca2;
+  border-left: .375rem solid #b93d1c;
+}
+.uom-ui-notice--danger {
+	background-color: #dc291e;
+  border-left: .375rem solid #b93d1c;
+  color:#f7f7f7;
+}
+.uom-ui-heavy-emphasis,
+.uom-ui-notice--info {
+	background-color: #cde6ff;
+	border-left:.375rem solid #35659e;
+}
+/* background colours ----------------------*/
+
+.uom-ui-dev {
+  background: yellow;
+}
+.uom-ui-bg-alt {
+	padding: 3.5rem 1.4rem .1rem 1.4rem;
+	background-color: rgb(247, 247, 247);
+}
+
+@media all and (max-width: 767px) {
+	.uom-ui-bg-alt {
+		padding: 3.5rem .5rem .1rem .5rem;
+	}
+}
+/*Start blockquote ----------------------*/
+blockquote {
+	margin-top: 2rem;
+	margin-right: auto;
+	margin-bottom: 2rem;
+	margin-left: 0;
+	padding-left: 2rem;
+	padding-right: 1rem;
+	font-family: 'Noto Serif',Georgia,Times New Roman,serif;
+	font-weight: 400;
+	font-size: 16px;
+	text-align: left;
+	line-height: 1.25;
+	color:#2D3B42;
+	quotes: "\201C" "\201D";
+  max-width:840px;
+	border-left-width:.375rem; 
+}
+blockquote>* {
+	display:absolute;
+	font-size: 16px;
+	line-height:1.6em;
+	letter-spacing:0.01rem;
+}
+blockquote:before {
+	content: open-quote;
+	margin-left: -.55em;
+	float:left;
+}
+/*
+blockquote:after{
+	content: close-quote;
+	position: absolute;
+}
+*/
+blockquote:before,
+blockquote p:last-child::after {
+	font-size: 1.6rem;
+}
+blockquote p:last-child::after {
+	content: "\201D";
+	position: absolute;
+	margin: .15rem 0 0 0.2rem;
+}
+.uom-ui-blockquote:before{
+  color: #094183;
+}
+.uom-ui-blockquote {
+    font-size:16px;
+	margin: 0;
+	margin-bottom: 30px;
+}
+
+.uom-ui-blockquote p,
+.uom-ui-blockquote ul li {
+	font-family: 'Noto Serif', serif;
+    font-weight: normal;
+	color: #094183;
+	font-size: larger;
+}
+/*end blockquote */ 
+
+.uom-ui-img.uom-right {
+  max-width: 30%;
+  width: auto;
+  float: right;
+  clear: right;
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  padding: 0;
+}
+
+.uom-ui-img.uom-left {
+  max-width: 30%;
+  width: auto;
+  float: left;
+  clear: left;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+  padding: 0;
+}
+
+/*Images by default will be centered .. to float use the .left .right*/
+.uom-ui-img {
+  display: block;
+  margin: 1rem auto;
+  text-align: center;
+  width: auto;
+  max-width: 80%;
+}
+
+@media all and (max-width: 980px) {
+  .uom-ui-img {
+    width: 100%;
+  }
+
+  .uom-ui-img.uom-left,
+  .uom-ui-img.uom-right {
+    max-width: 50%;
+  }
+}
+
+.uom-ui-img img {
+  max-width: 100% !important;
+}
+
+.uom-ui-reveal {
+  cursor: pointer;
+}
+
+.uom-ui-reveal:focus {
+  outline: none;
+}
+
+.uom-ui-reveal:not(.uom-ui-button):hover {
+  text-decoration: underline;
+}
+
+.uom-ui-reveal.uom-ui-button.uom-primary {
+	margin: 0.5em 1.6% 0.5em 0 !important;
+}
+
+.uom-ui-hidden-content {
+  display: none;
+}
+
+.uom-ui-hidden-content.show {
+  display: block;
+}
+
+.uom-ui-screenReader,
+.uom-ui-screenReader * {
+  height: 0px !important;
+  width: 0px !important;
+  opacity: 0 !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  font-size: 0px !important;
+  line-height: 0px !important;
+}
+
+.uom-ui-border-box {
+  border: 1px solid #094183;
+  padding: 1em;
+  margin: 1em 0;
+}
+
+.uom-ui-add-border-radius {
+  border-radius: 5px;
+}
+
+/* button styles ----------------------*/
+.uom-ui-button {
+  border: 2px solid;
+  border-radius: 4px;
+  display: inline-block;
+  font-weight: 600;
+  padding: 0.5em 2em;
+  margin: 2em 1.6% 2em 0;
+  text-decoration: none !important;
+}
+
+.uom-ui-button.uom-ui-button--short {
+  margin: 0.5em 1.6% 0.5em 0;
+}
+
+.uom-ui-button.uom-primary {
+  background-color: #094183;
+  color: #fff;
+	border-color: hsla(0,0%,100%,.3);
+}
+
+.uom-ui-button.uom-secondary {
+  background-color: #4074B2;
+  color: #fff;
+	border-color: hsla(0,0%,100%,.3);
+}
+
+.uom-ui-button.uom-success {
+  background-color: #22765f;
+  color: #fff;
+	border-color: hsla(0,0%,100%,.3);
+}
+
+.uom-ui-button.uom-warning {
+  background-color: #dc291e;
+  color: #fff;
+	border-color: hsla(0,0%,100%,.3);
+}
+
+.uom-ui-button.uom-dark {
+  background-color: #000;
+  color: #fff;
+	border-color: hsla(0,0%,100%,.3);
+}
+
+.uom-ui-button.uom-outline {
+  background-color: #fff;
+  border-color: #094183;
+  color: #094183;
+}
+
+.uom-ui-button.uom-primary:hover,
+.uom-ui-button.uom-primary:focus {
+  background-color: #fff;
+  border-color: #094183;
+  color: #094183;
+  cursor: pointer;
+}
+
+.uom-ui-button.uom-secondary:hover,
+.uom-ui-button.uom-secondary:focus {
+  background-color: #fff;
+  border-color: #4074B2;
+  color: #4074B2 !important;
+  cursor: pointer;
+}
+
+.uom-ui-button.uom-success:hover,
+.uom-ui-button.uom-success:focus {
+  background-color: #fff;
+  border-color: #22765f;
+  color: #22765f !important;
+  cursor: pointer;
+}
+
+.uom-ui-button.uom-warning:hover,
+.uom-ui-button.uom-warning:focus {
+  background-color: #fff;
+  border-color: #dc291e;
+  color: #dc291e !important;
+  cursor: pointer;
+}
+
+.uom-ui-button.uom-dark:hover,
+.uom-ui-button.uom-dark:focus {
+  background-color: #fff;
+  border-color: #000;
+  color: #000 !important;
+  cursor: pointer;
+}
+
+.uom-ui-button.uom-outline:hover,
+.uom-ui-button.uom-outline:focus {
+  background-color: #094183;
+  color: #fff;
+  cursor: pointer;
+}
+
+.uom-ui-button.uom-disabled,
+.uom-ui-reveal.uom-ui-reveal.uom-disabled,
+.uom-ui-reveal.uom-disabled:hover {
+  background-color: #f7f7f7;
+  border-color: #ccc;
+  color: #ccc;
+  cursor: default;
+}
+
+.uom-ui-button.uom-disabled:visited,
+.uom-ui-button.uom-disabled:active,
+.uom-ui-button.uom-disabled:hover {
+  background-color: #f7f7f7 !important;
+  color: #ccc !important;
+  cursor: default;
+  border-color: #ccc !important;
+}
+
+.uom-ui-button.uom-disabled:hover {
+  cursor: not-allowed;
+}
+/* button widths */
+.uom-ui-button.w-50,
+.uom-ui-button.w-60,
+.uom-ui-button.w-70,
+.uom-ui-button.w-80,
+.uom-ui-button.w-90,
+.uom-ui-button.w-100 {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align:center;
+}
+
+.uom-ui-button.w-50 { 	width: calc(50% - 4em);}
+.uom-ui-button.w-60 { 	width: calc(60% - 4em);}
+.uom-ui-button.w-70 { 	width: calc(70% - 4em);}
+.uom-ui-button.w-80 { 	width: calc(80% - 4em);}
+.uom-ui-button.w-90 { 	width: calc(90% - 4em);}
+.uom-ui-button.w-100 { 	width: calc((100% - .2em) - 4em);}
+
+@media all and (max-width: 767px) {
+	.uom-ui-button.w-50,
+	.uom-ui-button.w-60,
+	.uom-ui-button.w-70,
+	.uom-ui-button.w-80,
+	.uom-ui-button.w-90,
+	.uom-ui-button.w-100 {
+		width: calc((100% - .2em) - 4em);
+	}
+}
+/* END button styles ----------------------*/
+/* slider  ----------------------*/
+.uom-ui-slider {
+  margin: 2em 0;
+  padding: 0 1em;
+}
+
+.uom-ui-slider .labels {
+  text-align: center;
+}
+
+.uom-ui-slider .labels p {
+  margin: 0;
+  padding: 0;
+  width: 33%;
+  display: inline-block;
+  text-align: center;
+  font-size: smaller;
+}
+
+.uom-ui-slider .labels p:first-child {
+  text-align: left;
+}
+
+.uom-ui-slider .labels p:last-child {
+  text-align: right;
+}
+
+.uom-ui-slider-input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  border-radius: 3px;
+}
+
+.uom-ui-slider-input:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 2pt #a6c7ff;
+}
+
+.uom-ui-slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #333;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #d3d3d3;
+}
+
+.uom-ui-slider-input::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #333;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 2px solid #d3d3d3;
+}
+
+/* END slider  ----------------------*/
+/* modals  ----------------------*/
+.uom-ui-modal-container {
+  display: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 20;
+  transition: all .5s ease-in-out;
+}
+
+.uom-ui-modal-content,
+.uom-ui-modal-content-large {
+  margin: 2em auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  background-color: #fff;
+  background-clip: padding-box;
+  border-radius: 3px;
+}
+
+.uom-ui-modal-content {
+  max-width: 500px;
+}
+
+.uom-ui-modal-content-large {
+  max-width: 800px;
+}
+
+.uom-ui-modal-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  padding: 1em;
+  border-bottom: 1px solid #f3f3f3;
+}
+
+.uom-ui-modal-body {
+  position: relative;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1rem;
+}
+
+.uom-ui-modal-close {
+  float: right;
+  margin: 0 0 0 auto;
+  padding: 0.5em 1em;
+}
+
+.uom-ui-modal-header .uom-ui-modal-close {
+  font-size: 1.5rem;
+  margin: 0 0 0 auto;
+  padding: 0.3em .5em;
+}
+
+/* END modals  ----------------------*/
+/* checkbox  ----------------------*/
+.uom-ui-checkbox {
+  display: flex;
+  align-items: top;
+  margin: 2px 0;
+}
+
+.uom-ui-checkbox>span {
+  padding: 0.5rem 0.5rem;
+  font-size: 1rem;
+}
+
+.uom-ui-checkbox>input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.uom-ui-checkbox .uom-ui-checkbox-tick {
+  position: relative;
+  cursor: pointer;
+}
+
+.uom-ui-checkbox .uom-ui-checkbox-tick::before {
+  content: '';
+  display: block;
+  margin: 0 3px;
+  height: 20px;
+  width: 20px;
+  border: 1px #ccc solid;
+  border-radius: 3px;
+}
+
+.uom-ui-checkbox [type=checkbox]:focus+.uom-ui-checkbox-tick::before {
+  outline: none;
+  box-shadow: 0 0px 3px #5e9ed6;
+  border-color: #006fdc;
+}
+
+.uom-ui-checkbox [type=checkbox]:checked~span {
+  color: #008a00;
+  text-decoration: line-through;
+}
+
+/* removes checklist text stylings (strickthrough and green colour) when used with .uom-ui-checkbox */
+.uom-ui-clearstyle [type=checkbox]:checked~span {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.uom-ui-checkbox [type=checkbox]:disabled+.uom-ui-checkbox-tick::before {
+  background: #CFD8DC;
+  border-color: #CFD8DC;
+}
+
+.uom-ui-checkbox [type=checkbox]+.uom-ui-checkbox-tick::after {
+  content: '';
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  border-left: 3px solid #006fdc;
+  border-bottom: 3px solid #006fdc;
+  height: 4px;
+  width: 10px;
+  transform: rotate(-45deg);
+  opacity: 0;
+}
+
+.uom-ui-checkbox [type=checkbox]:checked+.uom-ui-checkbox-tick::after {
+  opacity: 1;
+}
+
+.uom-ui-checklist-parent {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+/* END checkbox  ----------------------*/
+/* grid layout ----------------------*/
+ul.uom-ui-grid {
+  grid-gap: 1.4rem;
+  list-style-type: none;
+  margin-left: 0em;
+  margin-right: 0em;
+  margin-bottom: 3.5rem;
+}
+
+ul.uom-ui-grid>li {
+  background-color: #fff;
+  color: #094183;
+  border-bottom: .4rem solid #C7CDD1;
+  /* unimelb grey #99a2aa*/
+}
+
+ul.uom-ui-grid.uom-with-border>li {
+  border-radius: 4px;
+  border-right: 1px solid #C7CDD1;
+  border-left: 1px solid #C7CDD1;
+  border-top: 1px solid #C7CDD1;
+}
+
+ul.uom-ui-grid>li div.tile-body {
+  padding: 1rem 1rem;
+}
+
+ul.uom-ui-grid>li div.tile-img-banner {
+  background-repeat: no-repeat;
+  background-color: #094183;
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 130px;
+}
+
+ul.uom-ui-grid.uom-ui-two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+ul.uom-ui-grid.uom-ui-tiles-tight {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+/* END grid layout ----------------------*/
+
+/* dropdowns */
+.uom-ui-dropdown select {
+    display: block;
+    width: 100%;
+    padding: .375rem 2.25rem .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border: 1px solid #C7CDD1;
+    border-radius: 3px;
+    margin: 1rem 0;
+}
+
+/* END dropdown */
+
+
+/* END styles for custom UI components */
+/*=============================================================================*/
+/* 2019-01-20 dcollett adding additional menu items to global nav menu */
+/* see: https://community.canvaslms.com/message/101582-global-nav-custom-tray */
+.global-nav-custom-tray {
+  width: 448px !important;
+  top: 0px;
+  bottom: 0px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 6px 7px 0px, rgba(0, 0, 0, 0.25) 0px 10px 28px 0px;
+  background-color: rgb(255, 255, 255);
+  position: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  z-index: 9999;
+  max-width: 100vw;
+  max-height: 100vh;
+}
+
+.gnct-easing {
+  left: -200px;
+  opacity: .8;
+}
+
+.Global-navigation-tray {
+  max-width: 480px;
+}
+
+.gcnt-tray-close-wrapper {
+  right: 8px;
+  position: absolute;
+  left: auto;
+  top: 8px;
+  z-index: 1;
+  display: inline-block;
+}
+
+.gcnt-tray-close-btn {
+  font-size: 1rem;
+  height: 28px;
+  all: initial;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 400;
+  margin: 0px;
+  max-width: 100%;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0px;
+  touch-action: manipulation;
+  transition: background-color 0.2s ease 0s, transform 0.2s ease 0s;
+  vertical-align: middle;
+}
+
+.gcnt-tray-close-btn[type="button"] {
+  -webkit-appearance: none;
+}
+
+.gcnt-tray-close-btn:focus, .gcnt-tray-close-btn:hover, .gcnt-tray-close-btn:active {
+  color: rgb(64, 116, 178);
+  outline: rgb(64, 116, 178);
+}
+
+.gcnt-tray-close-btn:focus, .gcnt-tray-close-btn:hover, .gcnt-tray-close-btn:active {
+  text-decoration: none;
+}
+
+.gcnt-tray-close-btn .gcnt-tray-close-svg-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  display: block;
+}
+
+.gcnt-tray-close-txt {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  clip: rect(0px, 0px, 0px, 0px);
+  margin: -1px;
+  padding: 0px;
+  overflow: hidden;
+  border-width: 0px;
+  border-style: initial;
+  border-color: initial;
+  border-image: initial;
+}
+
+.tray-with-space-for-global-nav {
+  margin-left: 54px;
+}
+
+.gnct-content-wrap {
+  box-sizing: border-box;
+  padding: 1.5rem;
+}
+
+.gcnt-tray-h2 {
+  color: inherit;
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.125rem;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  margin: 0px;
+}
+
+.gcnt-list {
+  list-style-type: none;
+  -webkit-padding-start: 0px;
+  padding-left: 0px;
+  margin: 0.75rem 0;
+  font-weight: 400;
+  font-family: 400;
+  padding: 0px;
+}
+
+.gcnt-list-item {
+  margin-top: 0px;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+  padding: 0px;
+}
+
+.gcnt-list-link-wrapper a.gcnt-list-link:link, .gcnt-list-link-wrapper a.gcnt-list-link:visited, .gcnt-list-link-wrapper button.gcnt-list-link {
+  cursor: pointer;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 400;
+  color: rgb(64, 116, 178);
+  transition: color 0.2s;
+}
+
+.gcnt-link-desc {
+  letter-spacing: normal;
+  font-size: 0.875rem;
+  /* font-weight: 300; */
+}
+
+#global_nav_communities_link>div.menu-item__text {
+  font-size: 0.8rem
+}
+
+/* end global nav menu */
+/*Interim grade styles*/
+#uom-grade-options tr.uom-checked {
+  border: 1px solid black;
+  box-shadow: inset 0 2px black;
+}
+
+/* 20-04-2020 marathv hide custom columns */
+li span[role=menuitemcheckbox]:hover .uom-check-icon svg {
+  fill: #fff;
+}
+
+.uom-check-icon {
+  align-items: center;
+  color: #31465c;
+  display: flex;
+  height: 100%;
+  position: absolute;
+  top: 0px;
+  width: 1em;
+  right: auto;
+  left: 0.75rem;
+}
+
+/* End of custom styles ----------------------*/
+
+
+/* dsweeney 2021-03-10 concluded subject background for settings page */
+.uom-concluded  {
+  background: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22150%22%20height%3D%22150%22%3E%3Ctext%20transform%3D%22rotate(45)%20translate(10%2C10)%22%3E%3Ctspan%20font-size%3D%2214px%22%20font-weight%3D%22400%22%20fill%3D%22rgb(204%2C204%2C204)%22%20stroke%3D%22none%22%3EConcluded%20subject%3C%2Ftspan%3E%3C%2Ftext%3E%3C%2Fsvg%3E');
+}
