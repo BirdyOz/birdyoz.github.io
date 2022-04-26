@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-04-01 15:21:12
+ * @Last Modified time: 2022-04-26 15:36:49
  */
 
 $(function() {
@@ -26,32 +26,10 @@ $(function() {
     let startCollapsed = true; // Default to collapsed view
     let org = null; // to cater for organisation specific changes
     let width = "col-5"; // Default width for floated images
+    let percent = "42%"; // Default percent for floated images
     let json = ""; // JSON Object returned by API call
     let srcOriginal = "" // Original image SRC (High Res);
 
-    // Get cookie values:
-
-    let cookieWidth = Cookies.get('cookieWidth');
-    let cookieCollapsed = Cookies.get('cookieCollapsed');
-
-
-    // Set default button
-    $("#source-open .start-hidden").button("toggle");
-
-    // Read cookie
-    if (cookieCollapsed === "false") {
-        // If 'false', toggle button
-        startCollapsed = false;
-        $("#source-open .start-shown").button("toggle");
-    }
-
-
-    // Set relative size
-    if (typeof cookieWidth !== "undefined" && cookieWidth !== width) {
-        $('.maker-floated>figure').removeClass(width);
-        width = cookieWidth;
-        $('.maker-floated>figure').addClass(width);
-    }
 
     // Flickr licences
     let flickr_licences = {
@@ -106,7 +84,7 @@ $(function() {
             console.log("@GB: yt_url = ", yt_url);
             yt_id = yt_url.searchParams.get("v");
             console.log("@GB: yt_id = ", yt_id);
-            yt_maker="https://birdyoz.github.io/helpers/youtube_embedder.html?yt_video_id=" + yt_id;
+            yt_maker = "https://birdyoz.github.io/helpers/youtube_embedder.html?yt_video_id=" + yt_id;
             console.log("@GB: yt_maker = ", yt_maker);
             window.location.href = yt_maker;
         }
@@ -115,10 +93,24 @@ $(function() {
         // Allows for different attribution 'recipes' for different organsiations (eg MP).
         org = url.searchParams.get("org");
 
-        // If I am Melb Poly, do not allow attribution to be collpased.
-        if (org === 'mp') {
+
+        $('.maker-copy *').each(function(index) {
+            if (org == 'uom') {
+                $(this).removeAttr('class');
+            } else {
+                $(this).removeAttr('style');
+            }
+        })
+
+        // If I am Melb Poly or University of Melb, do not allow attribution to be collpased.
+        if (org === 'mp' || org === 'uom') {
             startCollapsed = false;
             $('#collapser').hide();
+        }
+
+        if (org === 'uom') {
+            console.log("@GB: org = ", org);
+            $('#overlay-container').hide();
         }
 
     } else {
@@ -193,8 +185,6 @@ $(function() {
 
     // If I am Pixabay
     if (site == "Pixabay") {
-
-
         // Get image ID
         re = /[0-9]+/gi;
         id = re.exec(img_orig)[0];
@@ -358,11 +348,16 @@ $(function() {
     $('#resizer').change(function() {
         selected_id = $("input[name='options']:checked").attr('id');
         selected_val = $("input[name='options']:checked").attr('value');
-        Cookies.set('cookieWidth', selected_id, { expires: 365, path: '' });
-        $('.maker-floated>figure').removeClass(width);
-        $('.maker-floated>figure').addClass(selected_id);
+
+        if (org == 'uom') {
+            $('.maker-floated>figure').css("width", selected_val)
+        } else {
+            $('.maker-floated>figure').removeClass(width);
+            $('.maker-floated>figure').addClass(selected_id);
+        }
         $('.percent').text(selected_val);
         width = selected_id;
+        percent = selected_val;
     });
 
     // Change whether attribution is visible or collapsed (collapsed by default)
@@ -376,8 +371,6 @@ $(function() {
             startCollapsed = true;
             buildHTML();
         }
-
-        Cookies.set('cookieCollapsed', startCollapsed, { expires: 365, path: '' });
     });
 
 
@@ -457,6 +450,15 @@ $(function() {
         return snippet;
     }
 
+    // If Org = uom, return Melb Uni embed code
+    function uomSnippet(i) {
+        var snippet = `<img src="${img_src}" style="width:100%" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
+<figcaption style="font-size: 0.9em; opacity: 0.5; text-align: right">
+    <small><a href="${img_orig}" target="_blank">Image</a> by <a href="${user_url}" target="_blank">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>, <a href="${licence_url}" target="_blank">${licence}</a>, added on ${today}</small>
+</figcaption>`;
+        return snippet;
+    }
+
     // Text only snippet
     function textSnippet() {
         var snippet = `<small class="text-muted"><a href="${img_orig}" target="_blank">${img_name}</a> by <a href="${user_url}" target="_blank">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>, <a href="${licence_url}" target="_blank">${licence}</a>, added on ${today}</small>`;
@@ -472,6 +474,8 @@ $(function() {
                     licence = "Licence";
                 }
                 snippet = mpSnippet(index);
+            } else if (org == 'uom') {
+                snippet = uomSnippet(index);
             } else { snippet = embedSnippet(index); }
 
             $(this).html(snippet);
@@ -558,8 +562,6 @@ $(function() {
         console.log("@GB: org = ", org)
         console.log("@GB: width = ", width)
         console.log("@GB: srcOriginal = ", srcOriginal)
-        console.log("@GB: cookieWidth = ", cookieWidth)
-        console.log("@GB: cookieCollapsed = ", cookieCollapsed)
         console.log("@GB: json = ", json)
         console.groupEnd()
     }
