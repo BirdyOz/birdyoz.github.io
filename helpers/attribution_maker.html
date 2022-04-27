@@ -111,76 +111,51 @@
         <div id="embedder">
             <hr class="featurette-divider clearfix" id="right">
 
-            <!-- Start of collapser -->
-            <div id="collapser" class="float-right mb-4"> Show image attribution as:
-                <div id="source-open" class="btn-group btn-group-sm btn-group-toggle start-hidden" data-toggle="buttons">
-                    <label class="btn btn-outline-primary start-hidden active focus"> <input id="start-hidden" type="radio" name="options" autocomplete="off" value="Collapsed"> Collapsed </label>
-                    <label class="btn btn-outline-primary start-shown"> <input id="start-shown" type="radio" name="options" autocomplete="off" value="Shown"> Always visible </label>
-                </div>
-            </div>
-            <!-- End of image collapser -->
-
             <div class="clearfix container-fluid"></div>
-
-            <!-- Start of image resizer -->
-            <div class="float-right mb-4"> Relative size of floated images: <div id="resizer" class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-outline-primary col-6"> <input id="col-6" type="radio" name="options" id="option1" autocomplete="off" value="50%"> 50% </label>
-                    <label class="btn btn-outline-primary col-5 active focus"> <input id="col-5" type="radio" name="options" id="option2" autocomplete="off" value="42%"> 42% </label>
-                    <label class="btn btn-outline-primary col-4"> <input id="col-4" type="radio" name="options" id="option3" autocomplete="off" value="33%"> 33% </label>
-                    <label class="btn btn-outline-primary col-3"> <input id="col-3" type="radio" name="options" id="option4" autocomplete="off" value="25%"> 25% </label>
-                    <label class="btn btn-outline-primary col-2"> <input id="col-2" type="radio" name="options" id="option5" autocomplete="off" value="17%"> 17% </label>
+            <div class="d-inline-block mr-2">
+                <div class="small">Layout style: (Some features only available under Bootstrap)</div>
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-outline-primary btn-sm active">
+                        <input type="radio" name="options" id="bootstrap" checked> Bootstrap 4+ (Moodle)
+                    </label>
+                    <label class="btn btn-outline-primary btn-sm">
+                        <input type="radio" name="options" id="vanilla"> Inline CSS (Canvas/others)
+                    </label>
                 </div>
             </div>
-            <!-- End of image resizer -->
+            <div class="float-right">
 
+                <!-- Start of collapser -->
+                <div id="collapser" class="d-inline-block mr-2">
+                    <div class="small">Image attribution: </div>
+                    <div id="source-open" class="btn-group btn-group-toggle start-hidden" data-toggle="buttons">
+                        <label class="btn btn-sm btn-outline-primary start-hidden active">
+                            <input id="start-hidden" type="radio" name="options" autocomplete="off" value="Collapsed" checked> Collapsed </label>
+                        <label class="btn btn-sm btn-outline-primary start-shown">
+                            <input id="start-shown" type="radio" name="options" autocomplete="off" value="Shown"> Shown </label>
+                    </div>
+                </div>
+                <!-- End of image collapser -->
+
+                <!-- Start of image resizer -->
+                <div id="resizer" class="d-inline-block mr-2">
+                    <div class="small">Relative size of floated images: </div>
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-sm btn-outline-primary col-6">
+                            <input id="col-6" type="radio" name="options" autocomplete="off" value="50%"> 50% </label>
+                        <label class="btn btn-sm btn-outline-primary col-5 active">
+                            <input id="col-5" type="radio" name="options" autocomplete="off" value="42%" checked> 42% </label>
+                        <label class="btn btn-sm btn-outline-primary col-4">
+                            <input id="col-4" type="radio" name="options" autocomplete="off" value="33%"> 33% </label>
+                        <label class="btn btn-sm btn-outline-primary col-3">
+                            <input id="col-3" type="radio" name="options" autocomplete="off" value="25%"> 25% </label>
+                        <label class="btn btn-sm btn-outline-primary col-2">
+                            <input id="col-2" type="radio" name="options" autocomplete="off" value="17%"> 17% </label>
+                    </div>
+                </div>
+                <!-- End of image resizer -->
+            </div>
             <div class="clearfix container-fluid"></div>
-            <hr>
-            <div class="d-inline-block mr-2">
-                <div class="small">Style: </div>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-outline-primary btn-sm active">
-                        <input type="radio" name="options" id="bootstrap" checked> Bootstrap <br>(Moodle)
-                    </label>
-                    <label class="btn btn-outline-primary btn-sm">
-                        <input type="radio" name="options" id="vanilla"> Inline CSS <br>(Canvas/others)
-                    </label>
-                </div>
-            </div>
-            <div class="d-inline-block mr-2">
-                <div class="small">Image attribution: </div>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-outline-primary btn-sm active">
-                        <input type="radio" name="options" id="collapsed" checked> Collapsed
-                    </label>
-                    <label class="btn btn-outline-primary btn-sm">
-                        <input type="radio" name="options" id="shown"> Shown
-                    </label>
-                </div>
-            </div>
-
-            <div class="d-inline-block mr-2">
-                <div class="small">Relative size of floated image: </div>
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-outline-primary btn-sm active">
-                        <input type="radio" name="options" id="option1" checked> 50%
-                    </label>
-                    <label class="btn btn-outline-primary btn-sm">
-                        <input type="radio" name="options" id="option2"> 42%
-                    </label>
-                    <label class="btn btn-outline-primary btn-sm">
-                        <input type="radio" name="options" id="option2"> 42%
-                    </label>
-                    <label class="btn btn-outline-primary btn-sm">
-                        <input type="radio" name="options" id="option2"> 33%
-                    </label>
-                    <label class="btn btn-outline-primary btn-sm">
-                        <input type="radio" name="options" id="option2"> 25%
-                    </label>
-                    <label class="btn btn-outline-primary btn-sm">
-                        <input type="radio" name="options" id="option2"> 17%
-                    </label>
-                </div>
-            </div>
             <hr>
             <div class="clearfix">
                 <div class="maker-copy maker-floated maker-fr">
