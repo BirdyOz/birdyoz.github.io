@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-04-29 11:12:14
+ * @Last Modified time: 2022-05-02 15:14:35
  */
 
 $(function() {
@@ -357,7 +357,7 @@ $(function() {
         selected_id = $("input[name='options']:checked").attr('id');
         selected_val = $("input[name='options']:checked").attr('value');
 
-        if (org == 'uom') {
+        if (org === 'uom' || layout ==='vanilla') {
             $('.maker-floated>figure').css("width", selected_val)
         } else {
             $('.maker-floated>figure').removeClass(width);
