@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-04-26 15:36:49
+ * @Last Modified time: 2022-04-29 11:12:14
  */
 
 $(function() {
@@ -28,7 +28,8 @@ $(function() {
     let width = "col-5"; // Default width for floated images
     let percent = "42%"; // Default percent for floated images
     let json = ""; // JSON Object returned by API call
-    let srcOriginal = "" // Original image SRC (High Res);
+    let srcOriginal = ""; // Original image SRC (High Res);
+    let layout = "bootstrap"; // Preferred layout engine
 
 
     // Flickr licences
@@ -86,31 +87,38 @@ $(function() {
             console.log("@GB: yt_id = ", yt_id);
             yt_maker = "https://birdyoz.github.io/helpers/youtube_embedder.html?yt_video_id=" + yt_id;
             console.log("@GB: yt_maker = ", yt_maker);
-            window.location.href = yt_maker;
+            x = yt_maker;
         }
 
         // Detect organisation.
         // Allows for different attribution 'recipes' for different organsiations (eg MP).
         org = url.searchParams.get("org");
+        layout = url.searchParams.get("layout");
 
 
-        $('.maker-copy *').each(function(index) {
-            if (org == 'uom') {
-                $(this).removeAttr('class');
-            } else {
-                $(this).removeAttr('style');
-            }
-        })
 
-        // If I am Melb Poly or University of Melb, do not allow attribution to be collpased.
-        if (org === 'mp' || org === 'uom') {
+        // If I am Melb Poly, UoM or Vanilla, do not allow attribution to be collpased.
+        if (org === 'mp' || org === 'uom' || layout === 'vanilla') {
             startCollapsed = false;
-            $('#collapser').hide();
+            $('#collapser').addClass("d-none");
+            $('#collapser').removeClass("d-inline-block");
         }
 
-        if (org === 'uom') {
-            console.log("@GB: org = ", org);
-            $('#overlay-container').hide();
+        // If I am Melb Poly or UoM, take away layout buttins
+        if (org === 'mp' || org === 'uom') {
+            startCollapsed = false;
+            $('#layout').addClass("d-none");
+            $('#layout').removeClass("d-inline-block");
+        }
+
+        // Toggle between BS4 or Vanilla
+        if (org === 'uom' || layout === 'vanilla') {
+            layout = 'vanilla';
+            $('#vanilla').attr('checked', 'checked').trigger("click");
+            $('.maker-copy figure,.maker-copy img').removeAttr('class');
+        } else {
+            $('#bootstrap').attr('checked', 'checked').trigger("click");
+            $('.maker-copy figure,.maker-copy img').removeAttr('style');
         }
 
     } else {
@@ -360,7 +368,7 @@ $(function() {
         percent = selected_val;
     });
 
-    // Change whether attribution is visible or collapsed (collapsed by default)
+    // Change whether attribution is shown or collapsed (collapsed by default)
     $('#source-open').change(function() {
         selected_val = $("input[name='options']:checked").attr('value');
 
@@ -371,6 +379,14 @@ $(function() {
             startCollapsed = true;
             buildHTML();
         }
+    });
+
+    // Toggle bettwen BS4+ and inline CSS
+    $('#layout').change(function() {
+        layout = $("input[name='options']:checked").attr('value');
+        console.log("@GB: layout = ", layout);
+        url.searchParams.set('layout', layout);
+        window.location.href = url
     });
 
 
@@ -451,7 +467,7 @@ $(function() {
     }
 
     // If Org = uom, return Melb Uni embed code
-    function uomSnippet(i) {
+    function vanillaSnippet(i) {
         var snippet = `<img src="${img_src}" style="width:100%" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
 <figcaption style="font-size: 0.9em; opacity: 0.5; text-align: right">
     <small><a href="${img_orig}" target="_blank">Image</a> by <a href="${user_url}" target="_blank">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>, <a href="${licence_url}" target="_blank">${licence}</a>, added on ${today}</small>
@@ -474,8 +490,8 @@ $(function() {
                     licence = "Licence";
                 }
                 snippet = mpSnippet(index);
-            } else if (org == 'uom') {
-                snippet = uomSnippet(index);
+            } else if (layout == 'vanilla') {
+                snippet = vanillaSnippet(index);
             } else { snippet = embedSnippet(index); }
 
             $(this).html(snippet);
@@ -563,6 +579,7 @@ $(function() {
         console.log("@GB: width = ", width)
         console.log("@GB: srcOriginal = ", srcOriginal)
         console.log("@GB: json = ", json)
+        console.log("@GB: layout = ", layout)
         console.groupEnd()
     }
 
