@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-05-02 15:28:27
+ * @Last Modified time: 2022-05-05 15:04:15
  */
 
 $(function() {
@@ -87,7 +87,7 @@ $(function() {
             console.log("@GB: yt_id = ", yt_id);
             yt_maker = "https://birdyoz.github.io/helpers/youtube_embedder.html?yt_video_id=" + yt_id;
             console.log("@GB: yt_maker = ", yt_maker);
-            x = yt_maker;
+            window.location.href = yt_maker;
         }
 
         // Detect organisation.
