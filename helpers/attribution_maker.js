@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-06-06 11:10:55
+ * @Last Modified time: 2022-06-06 12:31:08
  */
 
 $(function() {
@@ -143,7 +143,6 @@ $(function() {
         newkey = "STJMT3JlREVmUWlWQUtFUTBEOHZfVXM4clUtNUloRlFDbWNsUnZ5RzFYdw=="
         if (org === "us") {
             key = newkey
-            console.log("@GB: 06.06.22 - key = ", key);
         }
         // API call
         uri = "https://api.unsplash.com/photos/" + id + "?client_id=" + atob(decodeURIComponent(key));
@@ -688,7 +687,6 @@ $(function() {
         const response = await fetch(endpoint);
         const response_json = await response.json();
         console.log("@GB: response_json = ", response_json);
-        console.log("@GB: response.statusText = ", response.statusText);
         if (!response.ok) {
             throw Error(response.statusText)}
         console.log('Track download success')
