@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-06-06 12:31:08
+ * @Last Modified time: 2022-06-06 12:37:54
  */
 
 $(function() {
@@ -159,7 +159,6 @@ $(function() {
                 img_src = download_lge;
                 download_sml = img_src.replace("&w=1440", "&w=720");
                 download_location = json.links.download_location + "&client_id=" + atob(decodeURIComponent(key));
-                console.log("@GB: download_location = ", download_location);
                 buildHTML();
                 logger(json);
             });
