@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-05-05 15:04:15
+ * @Last Modified time: 2022-06-06 11:10:55
  */
 
 $(function() {
@@ -17,6 +17,7 @@ $(function() {
     let img_src = ""; // src of image to be displayed in page
     let download_sml = ""; // Small image 720px wide
     let download_lge = ""; // Large image 1440px wide
+    let download_location = ""; // For Unsplash, to trigger download enpoint
     let alt = ""; // alternative text
     let user = ""; //username
     let user_url = ""; //URL to user profile
@@ -139,22 +140,30 @@ $(function() {
         licence = "Free to use";
         licence_url = "https://unsplash.com/license";
         key = "MzM2YjUyN2IyZTE4ZDA0NTA0NTgyMGI3ODA2MmI5NWM4MjUzNzYzMTEzMjZiMmEwOGY5YjkzZWVmN2VmYzA3Yg%3D%3D";
+        newkey = "STJMT3JlREVmUWlWQUtFUTBEOHZfVXM4clUtNUloRlFDbWNsUnZ5RzFYdw=="
+        if (org === "us") {
+            key = newkey
+            console.log("@GB: 06.06.22 - key = ", key);
+        }
         // API call
         uri = "https://api.unsplash.com/photos/" + id + "?client_id=" + atob(decodeURIComponent(key));
 
         // API call
-        $.getJSON(uri, function(json) {
-            img_src = json.urls.regular;
-            user = json.user.username;
-            user_url = json.user.links.html;
-            title = json.description;
-            alt = json.alt_description;
-            download_lge = img_src.replace("&w=1080", "&w=1440");
-            img_src = download_lge;
-            download_sml = img_src.replace("&w=1440", "&w=720");
-            buildHTML();
-            logger(json);
-        });
+        $.getJSON(uri, function() {})
+            .done(function(json) {
+                img_src = json.urls.regular;
+                user = json.user.username;
+                user_url = json.user.links.html;
+                title = json.description;
+                alt = json.alt_description;
+                download_lge = img_src.replace("&w=1080", "&w=1440");
+                img_src = download_lge;
+                download_sml = img_src.replace("&w=1440", "&w=720");
+                download_location = json.links.download_location + "&client_id=" + atob(decodeURIComponent(key));
+                console.log("@GB: download_location = ", download_location);
+                buildHTML();
+                logger(json);
+            });
     }
 
     // If I am Pexels
@@ -214,6 +223,9 @@ $(function() {
                 download_lge = img_src; // Large image 1280px wide
                 buildHTML();
                 logger(json);
+            })
+            .fail(function() {
+                console.log(json);
             });
     }
 
@@ -357,7 +369,7 @@ $(function() {
         selected_id = $("input[name='options']:checked").attr('id');
         selected_val = $("input[name='options']:checked").attr('value');
 
-        if (org === 'uom' || layout ==='vanilla') {
+        if (org === 'uom' || layout === 'vanilla') {
             $('.maker-floated>figure').css("width", selected_val)
         } else {
             $('.maker-floated>figure').removeClass(width);
@@ -429,6 +441,11 @@ $(function() {
         }
         if (title == "img-cropped") {
             src = $(".maker-cropped img").attr("src");
+        }
+
+        if (org === "us" && site === "Unsplash") {
+            console.log("@GB: downloading from: ", site);
+            sendTrackDownload(download_location);
         }
 
         // Send to Downloader
@@ -666,4 +683,14 @@ $(function() {
             .replace(/\s+/g, separator);
     };
 
+    // Track Unsplash downloads
+    async function sendTrackDownload(endpoint) {
+        const response = await fetch(endpoint);
+        const response_json = await response.json();
+        console.log("@GB: response_json = ", response_json);
+        console.log("@GB: response.statusText = ", response.statusText);
+        if (!response.ok) {
+            throw Error(response.statusText)}
+        console.log('Track download success')
+    }
 });
