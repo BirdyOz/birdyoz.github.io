@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-06-06 12:37:54
+ * @Last Modified time: 2022-06-07 09:08:47
  */
 
 $(function() {
@@ -136,7 +136,7 @@ $(function() {
         n = img_orig.lastIndexOf('/');
         id = img_orig.substring(n + 1);
 
-        site_url = "https://unsplash.com";
+        site_url = "https://unsplash.com/?utm_source=image_attribution_maker_by_birdyoz&utm_medium=referral";
         licence = "Free to use";
         licence_url = "https://unsplash.com/license";
         key = "MzM2YjUyN2IyZTE4ZDA0NTA0NTgyMGI3ODA2MmI5NWM4MjUzNzYzMTEzMjZiMmEwOGY5YjkzZWVmN2VmYzA3Yg%3D%3D";
@@ -152,7 +152,7 @@ $(function() {
             .done(function(json) {
                 img_src = json.urls.regular;
                 user = json.user.username;
-                user_url = json.user.links.html;
+                user_url = json.user.links.html + "?utm_source=image_attribution_maker_by_birdyoz&utm_medium=referral";
                 title = json.description;
                 alt = json.alt_description;
                 download_lge = img_src.replace("&w=1080", "&w=1440");
