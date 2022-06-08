@@ -2,11 +2,11 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @First Created:   2022-01-20 09:56:47
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-01-20 11:30:15
+ * @Last Modified time: 2022-06-07 09:05:30
  */
 
 
-let url = 'https://birdyoz.github.io/helpers/attribution_maker?addr=' + encodeURIComponent(document.location.href);
+let url = 'https://birdyoz.github.io/helpers/attribution_maker?org=us&addr=' + encodeURIComponent(document.location.href);
 if (document.location.href.includes('shutterstock.com')) {
     const json = document.querySelector('script[type="application/json"]').innerHTML;
     const obj = JSON.parse(json);
@@ -31,4 +31,4 @@ if (document.location.href.includes('shutterstock.com')) {
     url = url + url_suffix;
     console.log("@GB: url = ", url);
 }
-// window.open(url, '_blank')
+window.open(url, '_blank')

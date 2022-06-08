@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-06-07 09:08:47
+ * @Last Modified time: 2022-06-08 09:58:42
  */
 
 $(function() {
@@ -139,11 +139,8 @@ $(function() {
         site_url = "https://unsplash.com/?utm_source=image_attribution_maker_by_birdyoz&utm_medium=referral";
         licence = "Free to use";
         licence_url = "https://unsplash.com/license";
-        key = "MzM2YjUyN2IyZTE4ZDA0NTA0NTgyMGI3ODA2MmI5NWM4MjUzNzYzMTEzMjZiMmEwOGY5YjkzZWVmN2VmYzA3Yg%3D%3D";
-        newkey = "STJMT3JlREVmUWlWQUtFUTBEOHZfVXM4clUtNUloRlFDbWNsUnZ5RzFYdw=="
-        if (org === "us") {
-            key = newkey
-        }
+        // oldkey = "MzM2YjUyN2IyZTE4ZDA0NTA0NTgyMGI3ODA2MmI5NWM4MjUzNzYzMTEzMjZiMmEwOGY5YjkzZWVmN2VmYzA3Yg%3D%3D";
+        key = "STJMT3JlREVmUWlWQUtFUTBEOHZfVXM4clUtNUloRlFDbWNsUnZ5RzFYdw=="
         // API call
         uri = "https://api.unsplash.com/photos/" + id + "?client_id=" + atob(decodeURIComponent(key));
 
@@ -441,7 +438,7 @@ $(function() {
             src = $(".maker-cropped img").attr("src");
         }
 
-        if (org === "us" && site === "Unsplash") {
+        if (site === "Unsplash") {
             console.log("@GB: downloading from: ", site);
             sendTrackDownload(download_location);
         }
