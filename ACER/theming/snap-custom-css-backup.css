@@ -1,8 +1,8 @@
 /*
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2020-01-14 11:17:23
-* @Last Modified by:   BirdyOz
-* @Last Modified time: 2022-06-20 10:51:51
+* @Last Modified by:   Greg Bird
+* @Last Modified time: 2020-07-30 15:27:02
 */
 
 
@@ -164,18 +164,18 @@ div[data-flexitour="backdrop"] {
 }
 
 
-/*Snap on M3.8 books display fix- when inside a book, hide the book description from top*/
-body#page-mod-book-view #region-main #intro {
-   display: none;
-}
+  /*Snap on M3.8 books display fix- when inside a book, hide the book description from top*/
+  body#page-mod-book-view #region-main #intro {
+     display: none;
+  }
 
-/* Fix display bug when editing books, where editing controls overlay text*/
-body#page-mod-book-view.editing .book_toc .d-flex {
-  display: block !important;
-}
-body#page-mod-book-view.editing .book_toc .text-truncate {
-  white-space: normal;
-}
+  /* Fix display bug when editing books, where editing controls overlay text*/
+  body#page-mod-book-view.editing .book_toc .d-flex {
+    display: block !important;
+  }
+  body#page-mod-book-view.editing .book_toc .text-truncate {
+    white-space: normal;
+  }
 
 
 #page-login-index .snap-login {
@@ -200,15 +200,6 @@ body#page-mod-book-view.editing .book_toc .text-truncate {
     margin-left: 1.5em;
     text-indent: -1.5em;
 }
-
-/*Ensure Zoom iframe size is not too small*/
-
-iframe#contentframe {
-    min-height: 600px !important;
-}
-
-
-
 
 
 /* ==========================================================================
