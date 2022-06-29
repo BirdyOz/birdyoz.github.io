@@ -33,24 +33,22 @@
                 <li class="nav-item"> <a class="nav-link" href="#cropped">Cropped</a> </li>
                 <li class="nav-item"> <a class="nav-link" href="#text">Text Only</a> </li>
             </ul>
-
         </div>
-
     </nav>
 
-        <br>
-        <div class="alert alert-warning d-block clearfix mt-4 small">Did you know, that the attribution maker now also works for YouTube videos? Just visit your chosen YouTube video then click on <strong>'Attribution Maker +'</strong> </div>
+    <br>
+    <div class="alert alert-warning d-block clearfix mt-4 small">Did you know, that the attribution maker now also works for YouTube videos? Just visit your chosen YouTube video then click on <strong>'Attribution Maker +'</strong> </div>
     <div class="clearfix"></div>
     <!-- Marketing messaging and featurettes ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
-    <div class="container marketing" style="margin-top: 60px">
+    <div class="container marketing" style="margin-top: 80px">
 
         <h1 class="display-5">Image embedder &amp; attribution maker <small>(+ YouTube embedder)</small></h1>
         <h2>for <a href="https://unsplash.com/" target="_blank">Unsplash</a>, <a href="https://www.pexels.com/" target="_blank">Pexels</a>, <a href="https://commons.wikimedia.org/wiki/Main_Page" target="_blank">Wikimedia Commons</a>, <a href="https://pixabay.com/" target="_blank">Pixabay</a> and <a href="https://www.flickr.com/search/?license=2%2C3%2C4%2C5%2C6%2C9" target="_blank">Flickr CC</a><br>
             <span class="text-muted small">(Also works with <a href="https://www.shutterstock.com/" target="_Blank">Shutterstock</a>, if you have a paid subscription).</span>
         </h2>
         <p class="lead pt-2">A Bookmarklet to create HTML snippets to embed your selected image, with proper attribution. This can then be pasted into Moodle, or any website that includes Bootstrap 4+.</p>
-        <p>For those sites NOT running Bootstrap (such as Canvas LMS) a new "Inline CSS" option is now available.  This option has fewer features but will work on any website.</p>
+        <p>For those sites NOT running Bootstrap (such as Canvas LMS) a new "Inline CSS" option is now available. This option has fewer features but will work on any website.</p>
 
         <div class="firsttime-warning alert alert-danger collapse">
             <h3>First time user?</h3>
@@ -114,7 +112,7 @@
         </div>
         <!-- Three columns of text below the carousel -->
         <!-- /.row -->
-        <div class="sitenav clearfix container-fluid w-100">
+        <div id="am-images" class="sitenav clearfix container-fluid w-100">
             <div id="layout" class="d-inline-block mr-2">
                 <div class="small">Layout style: (Some features only available under Bootstrap)</div>
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
@@ -157,146 +155,170 @@
                 </div>
                 <!-- End of image resizer -->
             </div>
-        </div>
-        <!-- START THE FEATURETTES -->
-        <div id="embedder">
-            <hr class="featurette-divider clearfix" id="right">
-            <div class="clearfix container-fluid">
-                <div class="maker-copy maker-floated maker-fr">
-<!-- Start of Image Embed - Float Right (Embed code by @BirdyOz) -->
-<figure class="figure border rounded p-1 bg-light text-right float-right col-5 ml-4" style="margin: 0 0 1rem 1rem; width: 42%; float: right;">
-    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid" style="width: 100%;">
-</figure>
-<!-- End of Image Embed - Float Right -->
-                </div>
-                <h2 class="featurette-heading">Float Right (Image to the right of text)</h2>
-                <p class="lead">Image will occupy <strong class="percent">42%</strong> of the available space.
-                    <br> The image will resize and the text will reflow as you resize the browser.</p>
-                <p>The following placeholder text is included to show the relationship between the image and text.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <button id="maker-fr" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-sml"> <i class="fa fa-download"></i>
-                    Download small image
-                </a>
-            </div>
-            <hr class="featurette-divider clearfix" id="left">
-            <div class="clearfix">
-                <div class="maker-copy maker-floated maker-fl">
-<!-- Start of Image Embed - Float Left (Embed code by @BirdyOz) -->
-<figure class="figure border rounded p-1 bg-light text-right float-left col-5 mr-4" style="margin: 0 1rem 1rem 0; width: 42%; float: left;">
-    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid">
-</figure>
-<!-- End of Image Embed - Float Left -->
-                </div>
-                <h2 class="featurette-heading">Float Left (Image to the left of text)</h2>
-                <p class="lead">Image will occupy <strong class="percent">42%</strong> of the available space.
-                    <br> The image will resize and the text will reflow as you resize the browser.</p>
-                <p>The following placeholder text is included to show the relationship between the image and text.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <button id="maker-fl" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-sml"> <i class="fa fa-download"></i>
-                    Download small image
-                </a>
-            </div>
-            <hr class="featurette-divider clearfix" id="large">
-            <div class="clearfix">
-                <h2 class="featurette-heading">Full width (Image above or below text)</h2>
-                <p class="lead">Image will occupy 100% of the available space</p>
-                <div class="clearfix">
-                    <div class="maker-copy maker-lg">
-<!-- Start of Image Embed - Full width (Embed code by @BirdyOz) -->
-<figure class="figure border rounded p-1 bg-light text-right w-100" style="margin: 0; width: 100%; clear: both;">
-    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100">
-</figure>
-<!-- End of Image Embed - Full width -->
+
+            <!-- START THE FEATURETTES -->
+            <div id="embedder">
+                <hr class="featurette-divider clearfix" id="right">
+                <div class="clearfix container-fluid">
+                    <div class="maker-copy maker-floated maker-fr">
+                        <!-- Start of Image Embed - Float Right (Embed code by @BirdyOz) -->
+                        <figure class="figure border rounded p-1 bg-light text-right float-right col-5 ml-4" style="margin: 0 0 1rem 1rem; width: 42%; float: right;">
+                            <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid" style="width: 100%;">
+                        </figure>
+                        <!-- End of Image Embed - Float Right -->
                     </div>
-                    <button id="maker-lg" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
+                    <h2 class="featurette-heading">Float Right (Image to the right of text)</h2>
+                    <p class="lead">Image will occupy <strong class="percent">42%</strong> of the available space.
+                        <br> The image will resize and the text will reflow as you resize the browser.</p>
+                    <p>The following placeholder text is included to show the relationship between the image and text.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <button id="maker-fr" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-sml"> <i class="fa fa-download"></i>
+                        Download small image
+                    </a>
+                </div>
+                <hr class="featurette-divider clearfix" id="left">
+                <div class="clearfix">
+                    <div class="maker-copy maker-floated maker-fl">
+                        <!-- Start of Image Embed - Float Left (Embed code by @BirdyOz) -->
+                        <figure class="figure border rounded p-1 bg-light text-right float-left col-5 mr-4" style="margin: 0 1rem 1rem 0; width: 42%; float: left;">
+                            <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid">
+                        </figure>
+                        <!-- End of Image Embed - Float Left -->
+                    </div>
+                    <h2 class="featurette-heading">Float Left (Image to the left of text)</h2>
+                    <p class="lead">Image will occupy <strong class="percent">42%</strong> of the available space.
+                        <br> The image will resize and the text will reflow as you resize the browser.</p>
+                    <p>The following placeholder text is included to show the relationship between the image and text.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <button id="maker-fl" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-sml"> <i class="fa fa-download"></i>
+                        Download small image
+                    </a>
+                </div>
+                <hr class="featurette-divider clearfix" id="large">
+                <div class="clearfix">
+                    <h2 class="featurette-heading">Full width (Image above or below text)</h2>
+                    <p class="lead">Image will occupy 100% of the available space</p>
+                    <div class="clearfix">
+                        <div class="maker-copy maker-lg">
+                            <!-- Start of Image Embed - Full width (Embed code by @BirdyOz) -->
+                            <figure class="figure border rounded p-1 bg-light text-right w-100" style="margin: 0; width: 100%; clear: both;">
+                                <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100">
+                            </figure>
+                            <!-- End of Image Embed - Full width -->
+                        </div>
+                        <button id="maker-lg" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
+                            Download large image
+                        </a>
+                    </div>
+                    <hr class="featurette-divider clearfix" id="overlay">
+                    <div class="clearfix" id="overlay-container">
+                        <h2 class="featurette-heading">Full width, with text overlay (Custom text overlay)</h2>
+                        <p class="lead">Image will occupy 100% of the available space. Text overlay can be edited by you, after embedding</p>
+                        <div class="maker-copy maker-ov">
+                            <!-- Start of Image Embed - Full width, with text overlay (Embed code by @BirdyOz) -->
+                            <div class="overlay" style="position: relative;">
+                                <figure class="figure border rounded p-1 bg-light text-right w-100">
+                                    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100"> </figure>
+                                <div class="text-overlay" style="text-align: center; color: white !important; text-shadow: 2px 2px 4px #000000; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%">
+                                    <p style="font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) )) !important; line-height: calc( 20px + (32 - 16) * ( 80vw / (1000 - 400) )) !important;">Text overlay goes here</p>
+                                    <p style="font-size: calc( 12px + (24 - 16) * ( 60vw / (1000 - 400) )) !important; line-height: calc( 10px + (20 - 10) * ( 80vw / (1000 - 400) )) !important;">Optional byline or citation goes here. Delete if not required.</p>
+                                </div>
+                            </div>
+                            <!-- End of Embed code - Full width, with text overlay -->
+                        </div>
+                    </div>
+                    <button id="maker-ov" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
                         Download large image
                     </a>
                 </div>
-                <hr class="featurette-divider clearfix" id="overlay">
-                <div class="clearfix" id="overlay-container">
-                    <h2 class="featurette-heading">Full width, with text overlay (Custom text overlay)</h2>
-                    <p class="lead">Image will occupy 100% of the available space. Text overlay can be edited by you, after embedding</p>
-                    <div class="maker-copy maker-ov">
-<!-- Start of Image Embed - Full width, with text overlay (Embed code by @BirdyOz) -->
-<div class="overlay" style="position: relative;">
-    <figure class="figure border rounded p-1 bg-light text-right w-100">
-        <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100"> </figure>
-    <div class="text-overlay" style="text-align: center; color: white !important; text-shadow: 2px 2px 4px #000000; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%">
-        <p style="font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) )) !important; line-height: calc( 20px + (32 - 16) * ( 80vw / (1000 - 400) )) !important;">Text overlay goes here</p>
-        <p style="font-size: calc( 12px + (24 - 16) * ( 60vw / (1000 - 400) )) !important; line-height: calc( 10px + (20 - 10) * ( 80vw / (1000 - 400) )) !important;">Optional byline or citation goes here. Delete if not required.</p>
-    </div>
-</div>
-<!-- End of Embed code - Full width, with text overlay -->
+                <hr class="featurette-divider clearfix" id="cropped">
+                <div class="cropper">
+                    <div class="clearfix">
+                        <h2 class="featurette-heading">Cropped</h2>
+                        <p class="lead">Use this to dynamically resize and crop an image. You can then download your cropped image, lower</p>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-9">
+                                    <h4>Original</h4>
+                                    <img id="rcrop" src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Original+image+will+go+here" class="img-responsive img-fluid">
+
+                                </div>
+                                <div class="col-3">
+                                    <h4>Live preview</h4>
+                                    <div id="custom-preview-wrapper"></div>
+                                    <form class="form small text-right text-muted">
+                                        <label for="width">width: </label> <input id="width" type="text"><br>
+                                        <label for="height">height: </label> <input id="height" type="text">
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cropped -->
+                        <h4>Cropped image</h4>
+                        <div class="clearfix">
+                            <div class="maker-copy maker-cropped">
+                                <!-- Start of Image Embed - Cropped (Embed code by @BirdyOz) -->
+                                <figure class="figure border rounded p-1 bg-light text-right w-100" style="margin: 0; width: 100%; clear: both;">
+                                    <img id="image-cropped" src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Cropped+image+will+go+here" class="img-responsive img-fluid w-100">
+                                </figure>
+                                <!-- End of Image Embed - Cropped -->
+                            </div>
+                        </div>
+                        <button id="maker-cropped" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-cropped"> <i class="fa fa-download"></i>
+                            Download cropped image
+                        </a>
                     </div>
                 </div>
-                <button id="maker-ov" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
-                    Download large image
-                </a>
-            </div>
-        <hr class="featurette-divider clearfix" id="cropped">
-        <div class="cropper">
-            <div class="clearfix">
-                <h2 class="featurette-heading">Cropped</h2>
-                <p class="lead">Use this to dynamically resize and crop an image. You can then download your cropped image, lower</p>
-
-                <div class="container">
-                    <div class="row">
-                        <div class="col-9">
-                            <h4>Original</h4>
-                            <img id="rcrop" src="https://images.pexels.com/photos/10358193/pexels-photo-10358193.jpeg?auto=compress&cs=tinysrgb&w=1440" class="img-responsive img-fluid">
-
-                        </div>
-                        <div class="col-3">
-                            <h4>Live preview</h4>
-                            <div id="custom-preview-wrapper"></div>
-                            <form class="form small text-right text-muted">
-                                <label for="width">width: </label> <input id="width" type="text"><br>
-                                <label for="height">height: </label> <input id="height" type="text">
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Cropped -->
-                <h4>Cropped image</h4>
+                <hr class="featurette-divider clearfix" id="text">
                 <div class="clearfix">
-                    <div class="maker-copy maker-cropped">
-<!-- Start of Image Embed - Cropped (Embed code by @BirdyOz) -->
-<figure class="figure border rounded p-1 bg-light text-right w-100" style="margin: 0; width: 100%; clear: both;">
-    <img id="image-cropped" src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Cropped+image+will+go+here" class="img-responsive img-fluid w-100">
-</figure>
-<!-- End of Image Embed - Cropped -->
+                    <h2 class="featurette-heading">Text only</h2>
+                    <p class="lead">Use this option to copy the attribution statement ONLY. This is useful if you are using the image outside of Moodle (eg, in a PowerPoint Presentation), but still need to attribute the image</p>
+                    <div class="clearfix">
+                        <div class="mb-4">
+                            <div class="maker-copy maker-txt">
+                                <!-- Start of Image attribution - text only (Embed code by @BirdyOz) -->
+                                <div id="attribution">
+                                    Attribution statement goes here
+                                </div>
+                                <!-- End of Image attribution - text only -->
+                            </div>
+                        </div>
+                        <button id="maker-txt" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
+                            Download large image
+                        </a>
                     </div>
+                    <!-- /END THE FEATURETTES -->
+                    <!-- FOOTER -->
                 </div>
-                <button id="maker-cropped" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-cropped"> <i class="fa fa-download"></i>
-                    Download cropped image
-                </a>
             </div>
         </div>
-        <hr class="featurette-divider clearfix" id="text">
-        <div class="clearfix">
-            <h2 class="featurette-heading">Text only</h2>
-            <p class="lead">Use this option to copy the attribution statement ONLY. This is useful if you are using the image outside of Moodle (eg, in a PowerPoint Presentation), but still need to attribute the image</p>
-            <div class="clearfix">
-                <div class="mb-4">
-                    <div class="maker-copy maker-txt">
-<!-- Start of Image attribution - text only (Embed code by @BirdyOz) -->
-<div id="attribution">
-    Attribution statement goes here
-</div>
-<!-- End of Image attribution - text only -->
-                    </div>
-                </div>
-                <button id="maker-txt" class="btn btn-outline-primary"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
-                    Download large image
-                </a>
-            </div>
-            <!-- /END THE FEATURETTES -->
-            <!-- FOOTER -->
-        </div>
-    </div></div>
+        <div id="am-video" class="sitenav clearfix container-fluid w-100">
 
+            <!-- Start of Video box -->
+            <div class="clearfix container-fluid"></div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> Image embedder and attribution maker ( Unsplash, Pexels, Wikimedia Commons, Pixabay &amp; Flickr CC) (12:55)</h4>
+                    <p class="yt-desc">This tool allows you to select images from a range of 'free to use' and Creative Commons image sites ( Unsplash, Pexels, Wikimedia Commons, Pixabay, and Flickr CC) and: - Create embed code for your chosen image - Build an attribution statement, back to the image, author, site, and license - Choose from a range of different onscreen layouts - Create text overlays over your chosen image - Crop the image to a different size or dimension - Download the appropriately resized image, for upload into Moodle, or any other platform that uses Bootstrap You can get the attribution maker from: https://birdyoz.github.io/helpers/attribution_maker.html Make sure you follow the first-time instructions, as shown in the video</p>
+                    <div class="embed-responsive embed-responsive-4by3"> <iframe class="embed-responsive-item vjs-tech" src="https://www.youtube.com/embed/r5LxGkEL5bk?rel=0" allowfullscreen=""></iframe> </div>
+                    <div class="text-right">
+                        <small class="text-muted small fw-lighter">
+                            <!-- Start of Show/Hide interface, ID = LEbkdsB8OMg-2 -->
+                            <a class="source-btn text-muted" data-toggle="collapse" href="#show-LEbkdsB8OMg-2" role="button" aria-expanded="false" aria-controls="show-LEbkdsB8OMg-2">▽ Show attribution</a>
+                            <div class="source collapse m-0 p-0" id="show-LEbkdsB8OMg-2">
+                                <a href="https://youtu.be/r5LxGkEL5bk" target="_blank">Video</a> by <a href="https://youtu.be/r5LxGkEL5bk" target="_blank">Greg Bird</a> on <a href="https://www.youtube.com/c/BirdyOz" target="_blank">YouTube</a>. <a href="https://www.youtube.com/static?template=terms&gl=AU" target="_blank">Terms of Service</a>. Added 29/06/2022 </div>
+                            <!-- End of Show/Hide interface, ID = LEbkdsB8OMg-2 -->
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <!-- End of video box -->
+
+        </div>
+    </div>
     <hr class="featurette-divider clearfix" id="large">
-    <footer class="page-footer">
+    <footer class="page-footer p-3">
         <p class="float-right"><a href="#">Back to top</a></p>
         <p>'Attribution maker' by Greg Bird (@BirdyOz) | <a href="https://twitter.com/BirdyOz" target="_blank">Twitter</a> | <a href="https://www.linkedin.com/in/birdyoz/" target="_blank">LinkedIn</a> | <a href="https://www.youtube.com/BirdyOz" target="_blank">YouTube</a> | <a href="mailto:greg.bird.oz@gmail.com">email</a></p>
     </footer>
@@ -308,7 +330,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js" integrity="sha256-0H3Nuz3aug3afVbUlsu12Puxva3CP4EhJtPExqs54Vg=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.3/moment.min.js" crossorigin="anonymous"></script>
     <script src="rcrop/dist/rcrop.min.js"></script>
+
     <script src="attribution_maker.js"></script>
 
 </body>

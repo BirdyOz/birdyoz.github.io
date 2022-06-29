@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-06-08 09:58:42
+ * @Last Modified time: 2022-06-29 16:02:22
  */
 
 $(function() {
@@ -23,7 +23,8 @@ $(function() {
     let user_url = ""; //URL to user profile
     let licence = ""; // Licence type, eg "Free to use|Public Domain|CC-BY" etc.
     let licence_url = ""; // Link to licence
-    let title = null; //If tyhe image has a title, then this will be used
+    let title = null; // The image/video title
+    let description = null; //For YT videos
     let startCollapsed = true; // Default to collapsed view
     let org = null; // to cater for organisation specific changes
     let width = "col-5"; // Default width for floated images
@@ -31,6 +32,7 @@ $(function() {
     let json = ""; // JSON Object returned by API call
     let srcOriginal = ""; // Original image SRC (High Res);
     let layout = "bootstrap"; // Preferred layout engine
+    let timecode = "00:00:00";
 
 
     // Flickr licences
@@ -80,16 +82,11 @@ $(function() {
         if (img_orig.includes('shutterstock.com')) {
             site = "Shutterstock";
         }
+        // Determine whether image or video.   Hide other display
         if (img_orig.includes('youtube.com')) {
-            site = "youtube";
-            yt_url = new URL(img_orig);
-            console.log("@GB: yt_url = ", yt_url);
-            yt_id = yt_url.searchParams.get("v");
-            console.log("@GB: yt_id = ", yt_id);
-            yt_maker = "https://birdyoz.github.io/helpers/youtube_embedder.html?yt_video_id=" + yt_id;
-            console.log("@GB: yt_maker = ", yt_maker);
-            window.location.href = yt_maker;
-        }
+            site = "YouTube";
+            $('#am-images').hide();
+        } else { $('#am-video').hide() }
 
         // Detect organisation.
         // Allows for different attribution 'recipes' for different organsiations (eg MP).
@@ -359,6 +356,84 @@ $(function() {
         logger();
     }
 
+    // If YouTube
+
+    if (site == "YouTube") {
+        yt_url = new URL(img_orig);
+        console.log("@GB: yt_url = ", yt_url);
+        id = yt_url.searchParams.get("v");
+        console.log("@GB: id = ", id);
+
+        site_url = "https://www.youtube.com";
+        licence = "Terms";
+        licence_url = "https://www.youtube.com/static?template=terms&gl=AU";
+        key = "QUl6YVN5QmxCcEFUTzF0Z0hOM3FyUGUwWlQ5aGFFMW5UQmxRYVU0"
+        // API call
+        uri = "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatus%2Cplayer&id=" + id + "&key=" + atob(decodeURIComponent(key));
+        console.log("@GB: uri = ", uri);
+
+        // API call
+        $.getJSON(uri, function() {})
+            .done(function(json) {
+                console.log("@GB: json = ", json);
+                let vid = json.items[0].snippet;
+                title = vid.title;
+                console.log("@GB: title = ", title);
+                if (vid.description.length > 0) {
+                    description = vid.description;
+                }
+                console.log("@GB: description = ", description);
+                // Is embedding allowed?
+                let embeddable = json.items[0].status.embeddable;
+                console.log("@GB: embeddable = ", embeddable);
+                // if (popup == "true") {
+                //     console.log("@GB: popup==\"true\" detected");
+                //     embeddable = false
+                // }
+                console.log("@GB: embeddable = ", embeddable);
+
+                // Extract dimenssion from embed code.  Establish ratio.
+                let embedcode = json.items[0].player.embedHtml;
+                console.log("@GB: embedcode = ", embedcode);
+                let embed_width = $(embedcode).attr("width");
+                console.log("@GB: embed_width = ", embed_width);
+                let embed_height = $(embedcode).attr("height");
+                console.log("@GB: embed_height = ", embed_height);
+                let ratio = embed_width / embed_height;
+                console.log("@GB: ratio = ", ratio);
+                let aspect = "";
+                if (ratio == 1) {
+                    aspect = "1by1"
+                } else if (ratio > 2.3) {
+                    aspect = "21by9"
+                } else if (ratio > 1.7) {
+                    aspect = "16by9"
+                } else {
+                    aspect = "4by3"
+                }
+                console.log("@GB: aspect = ", aspect);
+                let duration = json.items[0].contentDetails.duration;
+                console.log("@GB: duration = ", duration);
+                let secs = moment.duration(duration).asSeconds();
+                console.log("@GB: secs = ", secs);
+                // if less than 1hr
+                if (secs < 3600) {
+                    timecode = moment(secs * 1000).format("mm:ss");
+                } else {
+                    timecode = moment.utc(secs * 1000).format("h:mm:ss");
+                }
+
+                console.log("@GB: timecode = ", timecode);
+                user = json.items[0].snippet.channelTitle;
+                console.log("@GB: user = ", user);
+                user_url = "https://www.youtube.com/channel/" + json.items[0].snippet.channelId;
+                console.log("@GB: user_url = ", user_url);
+                snippet = ytSnippet();
+                console.log("@GB: snippet = ", snippet);
+                $('#am-video').html(snippet);
+            });
+    }
+
     // Change relative image size for floated images
     $('#resizer').change(function() {
         selected_id = $("input[name='options']:checked").attr('id');
@@ -399,10 +474,10 @@ $(function() {
 
     $('#embedder button').click(function(event) {
         event.preventDefault();
-        var btn = $(this);
-        var closest = btn.prev('.maker-copy');
-        var id = "." + btn.attr('id');
-        var paste = $(id).html();
+        let btn = $(this);
+        let closest = btn.prev('.maker-copy');
+        let id = "." + btn.attr('id');
+        let paste = $(id).html();
 
         // If Cropped, replace image in embed code with dummy image
         if (id == ".maker-cropped") {
@@ -455,7 +530,7 @@ $(function() {
 
     // Return appropriate Embed Code snippet
     function embedSnippet(i) {
-        var snippet = `<img src="${img_src}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
+        let snippet = `<img src="${img_src}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
 <figcaption class="figure-caption text-muted small fw-lighter">
     <small>${startCollapsed ? `
         <!-- Start of Show/Hide interface, ID = ${id}-${i} -->
@@ -471,7 +546,7 @@ $(function() {
 
     // If Org = MP, return Melb Poly embed code
     function mpSnippet(i) {
-        var snippet = `<img src="${img_src}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
+        let snippet = `<img src="${img_src}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
 <figcaption class="figure-caption text-muted small fw-lighter">
     <small><a href="${img_orig}" target="_blank">Image</a> by <a href="${user_url}" target="_blank">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>, <a href="${licence_url}" target="_blank">${licence}</a>, added on ${today}</small>
 </figcaption>`;
@@ -480,7 +555,7 @@ $(function() {
 
     // If Org = uom, return Melb Uni embed code
     function vanillaSnippet(i) {
-        var snippet = `<img src="${img_src}" style="width:100%" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
+        let snippet = `<img src="${img_src}" style="width:100%" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
 <figcaption style="font-size: 0.9em; opacity: 0.5; text-align: right">
     <small><a href="${img_orig}" target="_blank">Image</a> by <a href="${user_url}" target="_blank">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>, <a href="${licence_url}" target="_blank">${licence}</a>, added on ${today}</small>
 </figcaption>`;
@@ -489,7 +564,31 @@ $(function() {
 
     // Text only snippet
     function textSnippet() {
-        var snippet = `<small class="text-muted"><a href="${img_orig}" target="_blank">${img_name}</a> by <a href="${user_url}" target="_blank">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>, <a href="${licence_url}" target="_blank">${licence}</a>, added on ${today}</small>`;
+        let snippet = `<small class="text-muted"><a href="${img_orig}" target="_blank">${img_name}</a> by <a href="${user_url}" target="_blank">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>, <a href="${licence_url}" target="_blank">${licence}</a>, added on ${today}</small>`;
+        return snippet;
+    }
+
+    // YouTube snippet
+    function ytSnippet() {
+        let snippet = `<!-- Start of Video box -->
+<div class="clearfix container-fluid"></div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> ${title} (<span class="timecode">${timecode}</span>)</h4>
+        <p class="yt-desc">${description!==null ? `${description}` : ''}</p>
+        <div class="embed-responsive embed-responsive-4by3"> <iframe class="embed-responsive-item vjs-tech" src="https://www.youtube.com/embed/${id}?rel=0" allowfullscreen=""></iframe> </div>
+        <div class="text-right">
+            <small class="text-muted small fw-lighter">
+                <!-- Start of Show/Hide interface, ID = ${id} -->
+                <a class="source-btn text-muted" data-toggle="collapse" href="#show-${id}" role="button" aria-expanded="false" aria-controls="show-${id}">▽ Show attribution</a>
+                <div class="source collapse m-0 p-0" id="show-${id}">
+                    <a href="https://youtu.be/${id}" target="_blank">Video</a> by <a href="${user_url}">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>. <a href="${licence_url}" target="_blank">${licence}</a>. Added ${today} </div>
+                <!-- End of Show/Hide interface, ID = ${id} -->
+            </small>
+        </div>
+    </div>
+</div>
+<!-- End of video box -->`;
         return snippet;
     }
 
@@ -516,7 +615,7 @@ $(function() {
 
         // Invoke rcrop (image cropper)
         // Set defaults
-        var $img = $('#rcrop'),
+        let $img = $('#rcrop'),
             $update = $('#update'),
             inputs = {
                 x: $('#x'),
@@ -525,8 +624,8 @@ $(function() {
                 height: $('#height')
             },
             fill = function() {
-                var values = $img.rcrop('getValues');
-                for (var coord in inputs) {
+                let values = $img.rcrop('getValues');
+                for (let coord in inputs) {
                     inputs[coord].val(values[coord]);
                 }
             }
@@ -547,7 +646,7 @@ $(function() {
         // Update cropped image on change
         $('#rcrop').on('rcrop-changed rcrop-ready', function() {
             srcOriginal = $(this).rcrop('getDataURL');
-            var srcResized = $(this).rcrop('getDataURL', 50, 50);
+            let srcResized = $(this).rcrop('getDataURL', 50, 50);
             $(".maker-cropped img").attr("src", srcOriginal);
             fill()
         });
@@ -558,12 +657,13 @@ $(function() {
         })
     }
 
+
     // Return today's date in dd/mm/yyyy format
     function todaysDate() {
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
+        let today = new Date();
+        let dd = String(today.getDate()).padStart(2, '0');
+        let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        let yyyy = today.getFullYear();
         today = dd + '/' + mm + '/' + yyyy;
         return today;
     }
@@ -597,15 +697,15 @@ $(function() {
 
     // Copy to clipboard for dumb browsers
     function fallbackCopyTextToClipboard(text) {
-        var textArea = document.createElement("textarea");
+        let textArea = document.createElement("textarea");
         textArea.value = text;
         document.body.appendChild(textArea);
         textArea.focus();
         textArea.select();
 
         try {
-            var successful = document.execCommand('copy');
-            var msg = successful ? 'successful' : 'unsuccessful';
+            let successful = document.execCommand('copy');
+            let msg = successful ? 'successful' : 'unsuccessful';
 
         } catch (err) {
 
@@ -631,21 +731,21 @@ $(function() {
     // Dynamically create an offscreen canvas area, load the chosen image,
     // then create a file from the Canvas content
     function downloader(name, content) {
-        var image = new Image();
+        let image = new Image();
         image.crossOrigin = "anonymous";
         image.src = content;
         // get file name - you might need to modify this if your image url doesn't contain a file extension otherwise you can set the file name manually
-        var fileName = image.src.split(/(\\|\/)/g).pop();
+        let fileName = image.src.split(/(\\|\/)/g).pop();
         image.onload = function() {
-            var canvas = document.createElement('canvas');
+            let canvas = document.createElement('canvas');
             canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
             canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
             console.log("@GB: canvas.width = ", canvas.width);
             canvas.getContext('2d').drawImage(this, 0, 0);
-            var blob;
+            let blob;
             blob = canvas.toDataURL("image/jpeg");
 
-            var link = document.createElement('a');
+            let link = document.createElement('a');
             link.style = 'position: fixed; left -10000px;';
             link.href = blob;
 
@@ -684,7 +784,8 @@ $(function() {
         const response_json = await response.json();
         console.log("@GB: response_json = ", response_json);
         if (!response.ok) {
-            throw Error(response.statusText)}
+            throw Error(response.statusText)
+        }
         console.log('Track download success')
     }
 });
