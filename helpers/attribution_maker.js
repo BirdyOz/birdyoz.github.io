@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-06-29 16:02:22
+ * @Last Modified time: 2022-07-01 16:27:23
  */
 
 $(function() {
@@ -32,8 +32,10 @@ $(function() {
     let json = ""; // JSON Object returned by API call
     let srcOriginal = ""; // Original image SRC (High Res);
     let layout = "bootstrap"; // Preferred layout engine
+    let player;
     let timecode = "00:00:00";
-
+    let yt_desc = "";
+    let currTime = "0";
 
     // Flickr licences
     let flickr_licences = {
@@ -380,12 +382,12 @@ $(function() {
                 title = vid.title;
                 console.log("@GB: title = ", title);
                 if (vid.description.length > 0) {
-                    description = vid.description;
+                    yt_desc = vid.description;
                 }
-                console.log("@GB: description = ", description);
+                console.log("@GB: description = ", yt_desc);
                 // Is embedding allowed?
                 let embeddable = json.items[0].status.embeddable;
-                console.log("@GB: embeddable = ", embeddable);
+                console.log("@GB: embeddable = ", yt_desc);
                 // if (popup == "true") {
                 //     console.log("@GB: popup==\"true\" detected");
                 //     embeddable = false
@@ -431,6 +433,37 @@ $(function() {
                 snippet = ytSnippet();
                 console.log("@GB: snippet = ", snippet);
                 $('#am-video').html(snippet);
+
+
+
+                function onYouTubeIframeAPIReady() {
+                    player = new YT.Player('yt-placeholder', {
+                        height: '100%',
+                        width: '100%',
+                        videoId: id,
+                        events: {
+                            'onReady': onPlayerReady,
+                            'onStateChange': onPlayerStateChange
+                        }
+                    });
+                }
+
+                function onPlayerReady(event) {
+                    console.log("@GB: onPlayerReady");
+                }
+
+
+                function onPlayerStateChange(event) {
+
+                    setInterval(function() {
+                        if (event.data == YT.PlayerState.PLAYING && !YT.PlayerState.ENDED) {
+                            currTime = Math.floor(player.getCurrentTime());
+                            $('#yt-current').val(currTime);
+                        }
+                    }, 100)
+
+                }
+                onYouTubeIframeAPIReady();
             });
     }
 
@@ -528,6 +561,15 @@ $(function() {
         event.preventDefault();
     });
 
+    $('#button-yt-start').click(function(event) {
+        $('#yt-start').val(currTime);
+        player.setOption( {"startSeconds": 55});
+    });
+
+    $('#button-yt-end').click(function(event) {
+        $('#yt-end').val(currTime);
+    });
+
     // Return appropriate Embed Code snippet
     function embedSnippet(i) {
         let snippet = `<img src="${img_src}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
@@ -575,8 +617,10 @@ $(function() {
 <div class="card">
     <div class="card-body">
         <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> ${title} (<span class="timecode">${timecode}</span>)</h4>
-        <p class="yt-desc">${description!==null ? `${description}` : ''}</p>
-        <div class="embed-responsive embed-responsive-4by3"> <iframe class="embed-responsive-item vjs-tech" src="https://www.youtube.com/embed/${id}?rel=0" allowfullscreen=""></iframe> </div>
+        <p class="yt-desc">${yt_desc!==null ? `${yt_desc}` : ''}</p>
+        <div class="embed-responsive embed-responsive-4by3">
+            <div  id="yt-placeholder"></div>
+        </div>
         <div class="text-right">
             <small class="text-muted small fw-lighter">
                 <!-- Start of Show/Hide interface, ID = ${id} -->
@@ -657,6 +701,18 @@ $(function() {
         })
     }
 
+
+    $("#display-yt-description").change(function() {
+        if (this.checked) {
+            console.log("@GB: checked = checked");
+            //Do stuff
+            $('.yt-desc').html(yt_desc)
+        } else {
+            console.log("@GB: checked = unchecked");
+            $('.yt-desc').html("")
+
+        }
+    });
 
     // Return today's date in dd/mm/yyyy format
     function todaysDate() {
