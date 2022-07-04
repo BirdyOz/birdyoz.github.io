@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-07-01 16:27:23
+ * @Last Modified time: 2022-07-05 08:54:15
  */
 
 $(function() {
@@ -33,8 +33,10 @@ $(function() {
     let srcOriginal = ""; // Original image SRC (High Res);
     let layout = "bootstrap"; // Preferred layout engine
     let player;
+    let duration = 0;
     let timecode = "00:00:00";
     let yt_desc = "";
+    let yt_playtime = 0;
     let currTime = "0";
 
     // Flickr licences
@@ -414,17 +416,10 @@ $(function() {
                     aspect = "4by3"
                 }
                 console.log("@GB: aspect = ", aspect);
-                let duration = json.items[0].contentDetails.duration;
-                console.log("@GB: duration = ", duration);
-                let secs = moment.duration(duration).asSeconds();
-                console.log("@GB: secs = ", secs);
-                // if less than 1hr
-                if (secs < 3600) {
-                    timecode = moment(secs * 1000).format("mm:ss");
-                } else {
-                    timecode = moment.utc(secs * 1000).format("h:mm:ss");
-                }
-
+                yt_playtime = json.items[0].contentDetails.duration;
+                console.log("@GB: yt_playtime = ", yt_playtime);
+                duration = moment.duration(yt_playtime).asSeconds();
+                timecode = getTimeCode(duration);
                 console.log("@GB: timecode = ", timecode);
                 user = json.items[0].snippet.channelTitle;
                 console.log("@GB: user = ", user);
@@ -432,37 +427,9 @@ $(function() {
                 console.log("@GB: user_url = ", user_url);
                 snippet = ytSnippet();
                 console.log("@GB: snippet = ", snippet);
-                $('#am-video').html(snippet);
+                $('#am-yt-embed').html(snippet);
 
 
-
-                function onYouTubeIframeAPIReady() {
-                    player = new YT.Player('yt-placeholder', {
-                        height: '100%',
-                        width: '100%',
-                        videoId: id,
-                        events: {
-                            'onReady': onPlayerReady,
-                            'onStateChange': onPlayerStateChange
-                        }
-                    });
-                }
-
-                function onPlayerReady(event) {
-                    console.log("@GB: onPlayerReady");
-                }
-
-
-                function onPlayerStateChange(event) {
-
-                    setInterval(function() {
-                        if (event.data == YT.PlayerState.PLAYING && !YT.PlayerState.ENDED) {
-                            currTime = Math.floor(player.getCurrentTime());
-                            $('#yt-current').val(currTime);
-                        }
-                    }, 100)
-
-                }
                 onYouTubeIframeAPIReady();
             });
     }
@@ -505,11 +472,11 @@ $(function() {
     });
 
 
-    $('#embedder button').click(function(event) {
+    $('button.embed').click(function(event) {
         event.preventDefault();
         let btn = $(this);
-        let closest = btn.prev('.maker-copy');
         let id = "." + btn.attr('id');
+        console.log("@GB: id = ", id);
         let paste = $(id).html();
 
         // If Cropped, replace image in embed code with dummy image
@@ -563,12 +530,35 @@ $(function() {
 
     $('#button-yt-start').click(function(event) {
         $('#yt-start').val(currTime);
-        player.setOption( {"startSeconds": 55});
+        player.setOption({ "startSeconds": 55 });
     });
 
     $('#button-yt-end').click(function(event) {
         $('#yt-end').val(currTime);
     });
+
+    $("#yt-embed-update").click(function() {
+        let params = "";
+        let newPlayTime = yt_playtime;
+        let startAt = $('#yt-start').val();
+        let endAt = $('#yt-end').val();
+        if (endAt > 0 && endAt < duration) {
+            newPlayTime = endAt;
+            params = params + "&end=" + endAt;
+        }
+        if (startAt > 0 && startAt < duration) {
+            newPlayTime -= startAt;
+            params = params + "&start=" + startAt;
+        }
+
+        if (newPlayTime < duration) {
+            let embed_src = $('iframe').attr('src').split("&")[0];
+            $('iframe').attr('src', embed_src + params);
+            console.log("@GB: embed_src = ", embed_src);
+            newTimecode = getTimeCode(newPlayTime);
+            $('span.timecode').html(newTimecode)
+        }
+    })
 
     // Return appropriate Embed Code snippet
     function embedSnippet(i) {
@@ -702,6 +692,34 @@ $(function() {
     }
 
 
+
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('yt-placeholder', {
+            height: '100%',
+            width: '100%',
+            videoId: id,
+            events: {
+                'onReady': onPlayerReady,
+                'onStateChange': onPlayerStateChange
+            }
+        });
+    }
+
+    function onPlayerReady(event) {
+        console.log("@GB: onPlayerReady");
+    }
+
+
+    function onPlayerStateChange(event) {
+
+        setInterval(function() {
+            if (event.data == YT.PlayerState.PLAYING && !YT.PlayerState.ENDED) {
+                currTime = Math.floor(player.getCurrentTime());
+                $('#yt-current').val(currTime);
+            }
+        }, 100)
+
+    }
     $("#display-yt-description").change(function() {
         if (this.checked) {
             console.log("@GB: checked = checked");
@@ -713,6 +731,8 @@ $(function() {
 
         }
     });
+
+
 
     // Return today's date in dd/mm/yyyy format
     function todaysDate() {
@@ -783,6 +803,16 @@ $(function() {
         });
     }
 
+    function getTimeCode(secs) {
+        console.log("@GB: secs = ", secs);
+        // if less than 1hr
+        if (secs < 3600) {
+            tc = moment(secs * 1000).format("mm:ss");
+        } else {
+            tc = moment.utc(secs * 1000).format("h:mm:ss");
+        }
+        return tc
+    }
     // Download appropriately sized image.
     // Dynamically create an offscreen canvas area, load the chosen image,
     // then create a file from the Canvas content
