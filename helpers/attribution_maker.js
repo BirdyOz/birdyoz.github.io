@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-07-05 11:01:17
+ * @Last Modified time: 2022-07-05 15:23:27
  */
 
 $(function() {
@@ -609,7 +609,7 @@ $(function() {
         <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> ${title} (<span class="timecode">${timecode}</span>)</h4>
         <p class="yt-desc">${yt_desc!==null ? `${yt_desc}` : ''}</p>
         <div class="embed-responsive embed-responsive-4by3">
-            <div  id="yt-placeholder"></div>
+            <div id="yt-placeholder" class="embed-responsive-item vjs-tech"></div>
         </div>
         <div class="text-right">
             <small class="text-muted small fw-lighter">
