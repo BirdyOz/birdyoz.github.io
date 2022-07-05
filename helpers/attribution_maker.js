@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-07-05 16:03:14
+ * @Last Modified time: 2022-07-05 17:50:06
  */
 
 $(function() {
@@ -552,11 +552,16 @@ $(function() {
         }
 
         if (newPlayTime < duration) {
-            let embed_src = $('iframe#yt-placeholder').attr('src').split("&")[0];
-            $('iframe#yt-placeholder').attr('src', embed_src + params);
-            console.log("@GB: embed_src = ", embed_src);
+            // let embed_src = $('iframe#yt-placeholder').attr('src').split("&")[0];
+            // $('iframe#yt-placeholder').attr('src', embed_src + params);
+            // console.log("@GB: embed_src = ", embed_src);
             newTimecode = getTimeCode(newPlayTime);
-            $('span.timecode').html(newTimecode)
+            $('span.timecode').html(newTimecode);
+            player.loadVideoById({
+                videoId: id,
+                startSeconds: startAt,
+                endSeconds: endAt
+            })
         }
     })
 
@@ -697,6 +702,10 @@ $(function() {
             height: '100%',
             width: '100%',
             videoId: id,
+            playerVars: {
+                'modestbranding': 1,
+                'rel': 0,
+            },
             events: {
                 'onReady': onPlayerReady,
                 'onStateChange': onPlayerStateChange
