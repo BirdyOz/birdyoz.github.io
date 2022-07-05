@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-07-05 08:54:15
+ * @Last Modified time: 2022-07-05 11:01:17
  */
 
 $(function() {
@@ -615,8 +615,7 @@ $(function() {
             <small class="text-muted small fw-lighter">
                 <!-- Start of Show/Hide interface, ID = ${id} -->
                 <a class="source-btn text-muted" data-toggle="collapse" href="#show-${id}" role="button" aria-expanded="false" aria-controls="show-${id}">▽ Show attribution</a>
-                <div class="source collapse m-0 p-0" id="show-${id}">
-                    <a href="https://youtu.be/${id}" target="_blank">Video</a> by <a href="${user_url}">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>. <a href="${licence_url}" target="_blank">${licence}</a>. Added ${today} </div>
+                <div class="source collapse m-0 p-0" id="show-${id}">Video by <a href="${user_url}">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>. <a href="${licence_url}" target="_blank">${licence}</a>. Added ${today} </div>
                 <!-- End of Show/Hide interface, ID = ${id} -->
             </small>
         </div>
