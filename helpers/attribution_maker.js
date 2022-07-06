@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-07-06 16:57:28
+ * @Last Modified time: 2022-07-07 09:49:31
  */
 
 $(function() {
@@ -646,6 +646,9 @@ $(function() {
     // Build images into interface
     function buildHTML() {
         $('.maker-copy figure').each(function(index) {
+            if (alt==null) {
+                alt="";
+            }
             if (org == 'mp') {
                 // Use Melb Poly's attribution rules
                 if (site != "Wikimedia Commons") {
