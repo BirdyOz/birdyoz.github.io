@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-07-05 17:50:06
+ * @Last Modified time: 2022-07-06 16:57:28
  */
 
 $(function() {
@@ -489,9 +489,13 @@ $(function() {
             paste = paste.replace(img_src, "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+downloaded+Pixabay+image");
         }
         console.log("@GB: Copied HTML = ", paste);
-        copyTextToClipboard(paste);
+        if (id == ".maker-rtf") {
+            copyAsRtf(paste);
+        } else {
+            copyTextToClipboard(paste);
+        }
         btn.toggleClass('btn-outline-primary btn-success');
-        btn.html('<i class="fa fa-check" aria-hidden="true"></i> Done! Embed code copied to clipboard');
+        btn.html('<i class="fa fa-check" aria-hidden="true"></i> Done! Copied to clipboard');
         window.setTimeout(function() {
             btn.html('<i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code');
             // btn.removeClass('btn-danger');
@@ -605,6 +609,15 @@ $(function() {
         return snippet;
     }
 
+    // Text only snippet
+    function rtfSnippet() {
+        let snippet = `<figure><img src="${img_src}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
+<figcaption>
+    <div style="font-size: 8px; color:gray; text-align: right;"><a href="${img_orig}" target="_blank">Image</a> by <a href="${user_url}" target="_blank">${user}</a> on <a href="${site_url}" target="_blank">${site}</a>, <a href="${licence_url}" target="_blank">${licence}</a>, added on ${today}</div>
+</figcaption></figure>`;
+        return snippet;
+    }
+
     // YouTube snippet
     function ytSnippet() {
         let snippet = `<!-- Start of Video box -->
@@ -648,6 +661,7 @@ $(function() {
             // Set Cropped and Text only alternateives
             $("#rcrop").attr("src", img_src);
             $(".maker-txt").html(textSnippet());
+            $(".maker-rtf").html(rtfSnippet());
             $("#resizer ." + width).button("toggle");
         });
 
@@ -810,6 +824,17 @@ $(function() {
 
         });
     }
+
+    function copyAsRtf(str) {
+        function listener(e) {
+            e.clipboardData.setData("text/html", str);
+            e.clipboardData.setData("text/plain", str);
+            e.preventDefault();
+        }
+        document.addEventListener("copy", listener);
+        document.execCommand("copy");
+        document.removeEventListener("copy", listener);
+    };
 
     function getTimeCode(secs) {
         console.log("@GB: secs = ", secs);
