@@ -2,16 +2,94 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-07-07 15:37:57
+ * @Last Modified time: 2022-07-14 09:51:46
  */
 
 $(function() {
 
+    // Set Global vars
+    let globals = {
+        today: todaysDate(),
+        image: {
+            name: "Photo", //Default resource type
+            orig: "",
+            small: "",
+            alt: "",
+            title: null,
+            download: {
+                large: "",
+                small: "",
+                endpoint: "" //For Unsplash, to trigger download enpoint
+            }
+        },
+        video: {
+            timecode: "00:00:00",
+            duration: 0,
+            playtime: 0,
+            current: 0,
+            embeddable: true,
+            params: ""
+        },
+        attribution: {
+            username: "",
+            userUrl: "",
+            licence: "",
+            licenceUrl: ""
+        },
+        prefs: {
+            org: null,
+            width: "col-5",
+            percent: "42%",
+            layout: "bootstrap"
+        },
+        supported: [{
+            name: "Unsplash",
+            baseurl: "unsplash.com",
+            type: "Photo",
+            siteurl: "https://unsplash.com/?utm_source=image_attribution_maker_by_birdyoz&utm_medium=referral",
+            licence: "Free to use",
+            licenceurl: "https://unsplash.com/license"
+        }, {
+            name: "Pixabay",
+            baseurl: "pixabay.com",
+            type: "Image",
+            siteurl: "https://pixabay.com/",
+            licence: "Free to use",
+            licenceurl: "https://pixabay.com/service/license/"
+        }, {
+            name: "Pexels",
+            baseurl: "pexels.com",
+            type: "Photo",
+            siteurl: "https://pexels.com/",
+            licence: "Free to use",
+            licenceurl: "https://www.pexels.com/license/"
+        }, {
+            name: "Wikimedia Commons",
+            baseurl: "wikimedia.org",
+            type: "Image",
+            siteurl: "https://commons.wikimedia.org/",
+            licence: "",
+            licenceurl: ""
+        }, {
+            name: "Shutterstock",
+            baseurl: "shutterstock.com",
+            type: "Photo",
+            siteurl: "https://www.shutterstock.com",
+            licence: "Used under licence with shutterstock.com",
+            licenceurl: "https://www.shutterstock.com/license"
+        }, {
+            name: "YouTube",
+            baseurl: "youtube.com",
+            type: "Video",
+            siteurl: "https://commons.wikimedia.org/",
+            licence: "Terms of Use",
+            licenceurl: ""
+        }]
+    }
+
+    console.log("@GB: globals = ", globals);
+
     // Get current date string
-    const today = todaysDate();
-    let site = ""; // Image site
-    let siteUrl = ""; // Primary site URL
-    let id = ""; // Image ID
     let imgName = "Photo"; // Image name.   Defualt to "Photo"
     let imgOrig = ""; // Link to original image
     let imgSmall = ""; // src of image to be displayed in page
@@ -63,34 +141,19 @@ $(function() {
         // Get image address
         url = new URL(url_string);
         imgOrig = url.searchParams.get("addr");
-        console.log("@GB: imgOrig = ", imgOrig);
+
+        globals.site = globals.supported.find(item => imgOrig.includes(item.baseurl));
+        console.log("@GB: globals = ", globals);
 
 
-        // Detect site
-        if (imgOrig.includes('unsplash.com')) {
-            site = "Unsplash";
-        }
-        if (imgOrig.includes('pixabay.com')) {
-            site = "Pixabay";
-            $('.pixabay-warning').show();
-        }
-        if (imgOrig.includes('wikimedia.org')) {
-            site = "Wikimedia Commons";
-        }
-        if (imgOrig.includes('pexels.com')) {
-            site = "Pexels";
-        }
-        if (imgOrig.includes('flickr.com')) {
-            site = "Flickr";
-        }
-        if (imgOrig.includes('shutterstock.com')) {
-            site = "Shutterstock";
-        }
+
         // Determine whether image or video.   Hide other display
-        if (imgOrig.includes('youtube.com')) {
+        if (globals.site.name == "YouTube") {
+            $('#am-images').hide()
             site = "YouTube";
-            $('#am-images').hide();
-        } else { $('#am-video').hide() }
+        } else {
+            $('#am-video').hide()
+        }
 
         // Detect organisation.
         // Allows for different attribution 'recipes' for different organsiations (eg MP).
@@ -137,7 +200,7 @@ $(function() {
      */
 
     // If I am Unsplash
-    if (site == "Unsplash") {
+    if (globals.site.name == "Unsplash") {
 
         // Get image ID
         n = imgOrig.lastIndexOf('/');
@@ -169,7 +232,7 @@ $(function() {
     }
 
     // If I am Pexels
-    if (site == "Pexels") {
+    if (globals.site.name == "Pexels") {
 
         // Get image ID
         re = /[0-9]+/gi;
@@ -203,7 +266,9 @@ $(function() {
     }
 
     // If I am Pixabay
-    if (site == "Pixabay") {
+    if (globals.site.name == "Pixabay") {
+
+        $('.pixabay-warning').show();
         // Get image ID
         re = /[0-9]+/gi;
         id = re.exec(imgOrig)[0];
@@ -232,7 +297,7 @@ $(function() {
     }
 
     // If I am Flickr
-    if (site == "Flickr") {
+    if (globals.site.name == "Flickr") {
 
         // Get image ID
         re = /\/([0-9]+)\//gi;
@@ -293,7 +358,7 @@ $(function() {
     }
 
     // If I am Wikimedia
-    if (site == "Wikimedia Commons") {
+    if (globals.site.name == "Wikimedia Commons") {
 
         // Get image ID
         n = imgOrig.lastIndexOf('/');
@@ -340,7 +405,7 @@ $(function() {
     // If I am Shutterstock
     // Until API is opened, get values from URL params
 
-    if (site == "Shutterstock") {
+    if (globals.site.name == "Shutterstock") {
         if (url.searchParams.get("id") == null) {
             $('.bookmarklet-warning').show();
             return false;
@@ -368,11 +433,9 @@ $(function() {
 
     // If YouTube
 
-    if (site == "YouTube") {
+    if (globals.site.name == "YouTube") {
         ytUrl = new URL(imgOrig);
-        console.log("@GB: ytUrl = ", ytUrl);
         id = ytUrl.searchParams.get("v");
-        console.log("@GB: id = ", id);
 
         siteUrl = "https://www.youtube.com";
         licence = "Terms";
@@ -380,7 +443,6 @@ $(function() {
         key = "QUl6YVN5QmxCcEFUTzF0Z0hOM3FyUGUwWlQ5aGFFMW5UQmxRYVU0"
         // API call
         uri = "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatus%2Cplayer&id=" + id + "&key=" + atob(decodeURIComponent(key));
-        console.log("@GB: uri = ", uri);
 
         // API call
         $.getJSON(uri, function() {})
@@ -388,29 +450,18 @@ $(function() {
                 console.log("@GB: json = ", json);
                 let vid = json.items[0].snippet;
                 title = vid.title;
-                console.log("@GB: title = ", title);
                 if (vid.description.length > 0) {
                     ytDuration = vid.description;
                 }
-                console.log("@GB: description = ", ytDuration);
                 // Is embedding allowed?
                 let embeddable = json.items[0].status.embeddable;
-                console.log("@GB: embeddable = ", ytDuration);
-                // if (popup == "true") {
-                //     console.log("@GB: popup==\"true\" detected");
-                //     embeddable = false
-                // }
                 console.log("@GB: embeddable = ", embeddable);
 
                 // Extract dimenssion from embed code.  Establish ratio.
                 let embedcode = json.items[0].player.embedHtml;
-                console.log("@GB: embedcode = ", embedcode);
                 let embed_width = $(embedcode).attr("width");
-                console.log("@GB: embed_width = ", embed_width);
                 let embed_height = $(embedcode).attr("height");
-                console.log("@GB: embed_height = ", embed_height);
                 let ratio = embed_width / embed_height;
-                console.log("@GB: ratio = ", ratio);
                 let aspect = "";
                 if (ratio == 1) {
                     aspect = "1by1"
@@ -421,21 +472,15 @@ $(function() {
                 } else {
                     aspect = "4by3"
                 }
-                console.log("@GB: aspect = ", aspect);
                 ytPlayTime = json.items[0].contentDetails.duration;
-                console.log("@GB: ytPlayTime = ", ytPlayTime);
                 duration = moment.duration(ytPlayTime).asSeconds();
                 ytTimeCode = getytTimeCode(duration);
-                console.log("@GB: ytTimeCode = ", ytTimeCode);
                 user = json.items[0].snippet.channelTitle;
-                console.log("@GB: user = ", user);
                 userUrl = "https://www.youtube.com/channel/" + json.items[0].snippet.channelId;
-                console.log("@GB: userUrl = ", userUrl);
                 snippet = ytSnippet();
-                console.log("@GB: snippet = ", snippet);
                 $('#am-yt-embed').html(snippet);
 
-
+                // Invoke YT API
                 onYouTubeIframeAPIReady();
             });
     }
@@ -479,7 +524,6 @@ $(function() {
     // Toggle bettwen BS4+ and inline CSS
     $('#layout').change(function() {
         layout = $("input[name='options']:checked").attr('value');
-        console.log("@GB: layout = ", layout);
         url.searchParams.set('layout', layout);
         window.location.href = url
     });
@@ -489,7 +533,6 @@ $(function() {
         event.preventDefault();
         let btn = $(this);
         let id = "." + btn.attr('id');
-        console.log("@GB: id = ", id);
         let paste = $(id).html();
 
         // If Cropped, replace image in embed code with dummy image
@@ -498,15 +541,13 @@ $(function() {
         }
 
         // If Pixabay, replace image in embed code with dummy image
-        if (site == "Pixabay") {
+        if (globals.site.name == "Pixabay") {
             paste = paste.replace(imgSmall, "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+downloaded+Pixabay+image");
         }
         // If Pixabay, replace image in embed code with dummy image
-        if (site == "YouTube") {
-            console.log("@GB: site = ", site);
-            paste = paste.replace("widgetid=1","widgetid=1" + ytParams);
+        if (globals.site.name == "YouTube") {
+            paste = paste.replace("widgetid=1", "widgetid=1" + ytParams);
         }
-        console.log("@GB: Copied HTML = ", paste);
         if (id == ".maker-rtf") {
             copyAsRtf(paste);
         } else {
@@ -535,8 +576,7 @@ $(function() {
             src = $(".maker-cropped img").attr("src");
         }
 
-        if (site === "Unsplash") {
-            console.log("@GB: downloading from: ", site);
+        if (globals.site.name === "Unsplash") {
             sendTrackDownload(downloadLocation);
         }
 
@@ -600,8 +640,8 @@ $(function() {
         <!-- Start of Show/Hide interface, ID = ${id}-${i} -->
         <a class="source-btn text-muted" data-toggle="collapse" href="#show-${id}-${i}" role="button" aria-expanded="false" aria-controls="show-${id}-${i}">&#9661; Show attribution</a>
         <div class="source collapse m-0 p-0" id="show-${id}-${i}">` : ''}
-        <a href="${imgOrig}" target="_blank">${imgName}</a> by <a href="${userUrl}" target="_blank">${user}</a> on <a href="${siteUrl}" target="_blank">${site}</a>
-            <br><a href="${licenceUrl}" target="_blank">${licence}</a>. Added ${today} ${startCollapsed ? `</div>
+        <a href="${globals.site.type}" target="_blank">${imgName}</a> by <a href="${userUrl}" target="_blank">${user}</a> on <a href="${siteUrl}" target="_blank">${globals.site.name}</a>
+            <br><a href="${globals.site.licenceurl}" target="_blank">${globals.site.licence}</a>. Added ${globals.today} ${startCollapsed ? `</div>
         <!-- End of Show/Hide interface, ID = ${id}-${i} -->` : ''}
     </small>
 </figcaption>`;
@@ -612,7 +652,7 @@ $(function() {
     function mpSnippet(i) {
         let snippet = `<img src="${imgSmall}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
 <figcaption class="figure-caption text-muted small fw-lighter">
-    <small><a href="${imgOrig}" target="_blank">Image</a> by <a href="${userUrl}" target="_blank">${user}</a> on <a href="${siteUrl}" target="_blank">${site}</a>, <a href="${licenceUrl}" target="_blank">${licence}</a>, added on ${today}</small>
+    <small><a href="${globals.site.type}" target="_blank">Image</a> by <a href="${userUrl}" target="_blank">${user}</a> on <a href="${siteUrl}" target="_blank">${globals.site.name}</a>, <a href="${globals.site.licenceurl}" target="_blank">${globals.site.licence}</a>, added on ${globals.today}</small>
 </figcaption>`;
         return snippet;
     }
@@ -621,14 +661,14 @@ $(function() {
     function vanillaSnippet(i) {
         let snippet = `<img src="${imgSmall}" style="width:100%" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
 <figcaption style="font-size: 0.9em; opacity: 0.5; text-align: right">
-    <small><a href="${imgOrig}" target="_blank">Image</a> by <a href="${userUrl}" target="_blank">${user}</a> on <a href="${siteUrl}" target="_blank">${site}</a>, <a href="${licenceUrl}" target="_blank">${licence}</a>, added on ${today}</small>
+    <small><a href="${globals.site.type}" target="_blank">Image</a> by <a href="${userUrl}" target="_blank">${user}</a> on <a href="${siteUrl}" target="_blank">${globals.site.name}</a>, <a href="${globals.site.licenceurl}" target="_blank">${globals.site.licence}</a>, added on ${globals.today}</small>
 </figcaption>`;
         return snippet;
     }
 
     // Text only snippet
     function textSnippet() {
-        let snippet = `<small class="text-muted"><a href="${imgOrig}" target="_blank">${imgName}</a> by <a href="${userUrl}" target="_blank">${user}</a> on <a href="${siteUrl}" target="_blank">${site}</a>, <a href="${licenceUrl}" target="_blank">${licence}</a>, added on ${today}</small>`;
+        let snippet = `<small class="text-muted"><a href="${globals.site.type}" target="_blank">${imgName}</a> by <a href="${userUrl}" target="_blank">${user}</a> on <a href="${siteUrl}" target="_blank">${globals.site.name}</a>, <a href="${globals.site.licenceurl}" target="_blank">${globals.site.licence}</a>, added on ${globals.today}</small>`;
         return snippet;
     }
 
@@ -636,7 +676,7 @@ $(function() {
     function rtfSnippet() {
         let snippet = `<figure><img src="${imgSmall}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
 <figcaption>
-    <div style="font-size: 8pt; color:gray; background-color:white"><a href="${imgOrig}" target="_blank">Image</a> by <a href="${userUrl}" target="_blank">${user}</a> on <a href="${siteUrl}" target="_blank">${site}</a>, <a href="${licenceUrl}" target="_blank">${licence}</a>, added on ${today}</div>
+    <div style="font-size: 8pt; color:gray; background-color:white"><a href="${globals.site.type}" target="_blank">Image</a> by <a href="${userUrl}" target="_blank">${user}</a> on <a href="${siteUrl}" target="_blank">${globals.site.name}</a>, <a href="${globals.site.licenceurl}" target="_blank">${globals.site.licence}</a>, added on ${globals.today}</div>
 </figcaption></figure>`;
         return snippet;
     }
@@ -656,7 +696,7 @@ $(function() {
             <small class="text-muted small fw-lighter">
                 <!-- Start of Show/Hide interface, ID = ${id} -->
                 <a class="source-btn text-muted" data-toggle="collapse" href="#show-${id}" role="button" aria-expanded="false" aria-controls="show-${id}">▽ Show attribution</a>
-                <div class="source collapse m-0 p-0" id="show-${id}">Video by <a href="${userUrl}">${user}</a> on <a href="${siteUrl}" target="_blank">${site}</a>. <a href="${licenceUrl}" target="_blank">${licence}</a>. Added ${today} </div>
+                <div class="source collapse m-0 p-0" id="show-${id}">Video by <a href="${userUrl}">${user}</a> on <a href="${siteUrl}" target="_blank">${globals.site.name}</a>. <a href="${globals.site.licenceurl}" target="_blank">${globals.site.licence}</a>. Added ${globals.today} </div>
                 <!-- End of Show/Hide interface, ID = ${id} -->
             </small>
         </div>
@@ -676,8 +716,8 @@ $(function() {
     // Build images into interface
     function buildHTML() {
         $('.maker-copy figure').each(function(index) {
-            if (alt==null) {
-                alt="";
+            if (alt == null) {
+                alt = "";
             }
             if (org == 'mp') {
                 // Use Melb Poly's attribution rules
@@ -777,11 +817,9 @@ $(function() {
     }
     $("#display-yt-description").change(function() {
         if (this.checked) {
-            console.log("@GB: checked = checked");
             //Do stuff
             $('.yt-desc').html(ytDuration)
         } else {
-            console.log("@GB: checked = unchecked");
             $('.yt-desc').html("")
 
         }
@@ -870,7 +908,6 @@ $(function() {
     };
 
     function getytTimeCode(secs) {
-        console.log("@GB: secs = ", secs);
         // if less than 1hr
         if (secs < 3600) {
             tc = moment(secs * 1000).format("mm:ss");
@@ -892,7 +929,6 @@ $(function() {
             let canvas = document.createElement('canvas');
             canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
             canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
-            console.log("@GB: canvas.width = ", canvas.width);
             canvas.getContext('2d').drawImage(this, 0, 0);
             let blob;
             blob = canvas.toDataURL("image/jpeg");
@@ -902,7 +938,6 @@ $(function() {
             link.href = blob;
 
             link.download = site + "-" + name + "-" + canvas.width + "x" + canvas.height + ".jpg";
-            console.log("@GB: link.download = ", link.download);
 
 
             document.body.appendChild(link);
@@ -934,10 +969,8 @@ $(function() {
     async function sendTrackDownload(endpoint) {
         const response = await fetch(endpoint);
         const response_json = await response.json();
-        console.log("@GB: response_json = ", response_json);
         if (!response.ok) {
             throw Error(response.statusText)
         }
-        console.log('Track download success')
     }
 });
