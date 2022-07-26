@@ -222,13 +222,21 @@
     <figure class="figure border rounded p-1 bg-light text-right w-100">
         <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100"> </figure>
     <div class="text-overlay" style="text-align: center; color: white !important; text-shadow: 2px 2px 4px #000000; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%">
-        <p style="font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) )) !important; line-height: calc( 20px + (32 - 16) * ( 80vw / (1000 - 400) )) !important;">Text overlay goes here</p>
-        <p style="font-size: calc( 12px + (24 - 16) * ( 60vw / (1000 - 400) )) !important; line-height: calc( 10px + (20 - 10) * ( 80vw / (1000 - 400) )) !important;">Optional byline or citation goes here. Delete if not required.</p>
+        <p id="overlay-text" style="font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) )) !important; line-height: calc( 20px + (32 - 16) * ( 80vw / (1000 - 400) )) !important;">Text overlay goes here</p>
+        <p id="overlay-citation" style="font-size: calc( 12px + (24 - 16) * ( 60vw / (1000 - 400) )) !important; line-height: calc( 10px + (20 - 10) * ( 80vw / (1000 - 400) )) !important;">Optional byline or citation goes here. Delete if not required.</p>
     </div>
 </div>
 <!-- End of Embed code - Full width, with text overlay -->
+
                         </div>
                     </div>
+
+                <div class="input-group input-group-sm mb-1">
+                    <input type="text" id="input-overlay-text" class="form-control" placeholder="Type your text overlay here and see it automatically update above" aria-label="input-overlay-text">
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                    <input type="text" id="input-overlay-citation" class="form-control" placeholder="Optional byline or citation. Clear text if not required" aria-label="input-overlay-citation">
+                </div>
                     <button id="maker-ov" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i>
                         Download large image
                     </a>

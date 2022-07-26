@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-07-26 14:08:09
+ * @Last Modified time: 2022-07-26 14:49:33
  */
 
 $(function() {
@@ -577,6 +577,17 @@ $(function() {
             })
         }
     })
+
+
+    $("#input-overlay-text").on('input', function() {
+        text = $(this).val();
+        $('#overlay-text').html(text)
+    });
+
+    $("#input-overlay-citation").on('input', function() {
+        text = $(this).val();
+        $('#overlay-citation').html(text)
+    });
 
     /**
      *
