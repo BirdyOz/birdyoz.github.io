@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-07-26 13:39:20
+ * @Last Modified time: 2022-07-26 14:08:09
  */
 
 $(function() {
@@ -17,6 +17,7 @@ $(function() {
             name: "Photo", //Default resource type
             orig: "",
             preview: "",
+            cropped: "",
             alt: "",
             download: {
                 large: "",
@@ -488,7 +489,8 @@ $(function() {
 
         // If Cropped, replace image in embed code with dummy image
         if (id == ".maker-cropped") {
-            paste = paste.replace(am.image.preview, "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+cropped+image");
+            paste = paste.replace(am.image.cropped, "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+cropped+image");
+            console.log("@GB: paste = ", paste);
         }
 
         // If Pixabay, replace image in embed code with dummy image
@@ -518,19 +520,14 @@ $(function() {
     $('a.download').click(function(event) {
         /* Act on the event */
         btn = $(this);
-        console.log("@GB: btn = ", btn);
         title = btn.attr("title");
-        console.log("@GB: title = ", title);
         src = am.image.download.large;
-        console.log("@GB: src = ", src);
         if (title == "img-sml") {
             src = am.image.download.small;
         }
         if (title == "img-cropped") {
             src = $(".maker-cropped img").attr("src");
-            console.log("@GB: cropped src = ", src);
         }
-        console.log("@GB: src = ", src);
         if (am.site.name === "Unsplash") {
             sendTrackDownload(am.image.download.endpoint);
         }
@@ -732,6 +729,7 @@ $(function() {
             srcOriginal = $(this).rcrop('getDataURL');
             let srcResized = $(this).rcrop('getDataURL', 50, 50);
             $(".maker-cropped img").attr("src", srcOriginal);
+            am.image.cropped = srcOriginal;
             fill()
         });
 
