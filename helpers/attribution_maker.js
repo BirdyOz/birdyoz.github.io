@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-07-26 13:16:06
+ * @Last Modified time: 2022-07-26 13:39:20
  */
 
 $(function() {
@@ -34,9 +34,7 @@ $(function() {
         },
         attribution: {
             username: "",
-            userUrl: "",
-            licence: "",
-            licenceUrl: ""
+            userUrl: ""
         },
         prefs: {
             org: null,
@@ -369,8 +367,8 @@ $(function() {
         am.title = url.searchParams.get("title");
         am.image.preview = url.searchParams.get("preview");
         id = url.searchParams.get("id");
-        am.attribution.licence = "Used under licence with shutterstock.com";
-        am.attribution.licenceUrl = "https://www.shutterstock.com/license";
+        am.site.licence = "Used under licence with shutterstock.com";
+        am.site.licenceUrl = "https://www.shutterstock.com/license";
         siteUrl = "https://www.shutterstock.com";
 
         // Hide download buttons and cropper, as these make no sense for SS
@@ -390,8 +388,8 @@ $(function() {
         id = ytUrl.searchParams.get("v");
 
         siteUrl = "https://www.youtube.com";
-        am.attribution.licence = "Terms";
-        am.attribution.licenceUrl = "https://www.youtube.com/static?template=terms&gl=AU";
+        am.site.licence = "Terms";
+        am.site.licenceUrl = "https://www.youtube.com/static?template=terms&gl=AU";
         key = "QUl6YVN5QmxCcEFUTzF0Z0hOM3FyUGUwWlQ5aGFFMW5UQmxRYVU0"
         // API call
         uri = "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatus%2Cplayer&id=" + id + "&key=" + atob(decodeURIComponent(key));
@@ -684,7 +682,7 @@ $(function() {
             if (am.prefs.org == 'mp') {
                 // Use Melb Poly's attribution rules
                 if (am.site != "Wikimedia Commons") {
-                    am.attribution.licence = "Licence";
+                    am.site.licence = "Licence";
                 }
                 snippet = mpSnippet(index);
             } else if (am.prefs.layout == 'vanilla') {
