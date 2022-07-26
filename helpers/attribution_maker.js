@@ -2,20 +2,22 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-07-14 09:51:46
+ * @Last Modified time: 2022-07-26 13:16:06
  */
 
 $(function() {
 
     // Set Global vars
-    let globals = {
+    let am = {
+        url: "",
+        id: "",
+        title: null,
         today: todaysDate(),
         image: {
             name: "Photo", //Default resource type
             orig: "",
-            small: "",
+            preview: "",
             alt: "",
-            title: null,
             download: {
                 large: "",
                 small: "",
@@ -26,8 +28,8 @@ $(function() {
             timecode: "00:00:00",
             duration: 0,
             playtime: 0,
-            current: 0,
             embeddable: true,
+            description: "",
             params: ""
         },
         attribution: {
@@ -38,85 +40,65 @@ $(function() {
         },
         prefs: {
             org: null,
-            width: "col-5",
+            cols: "col-5",
             percent: "42%",
+            collapsed: true,
             layout: "bootstrap"
-        },
-        supported: [{
-            name: "Unsplash",
-            baseurl: "unsplash.com",
-            type: "Photo",
-            siteurl: "https://unsplash.com/?utm_source=image_attribution_maker_by_birdyoz&utm_medium=referral",
-            licence: "Free to use",
-            licenceurl: "https://unsplash.com/license"
-        }, {
-            name: "Pixabay",
-            baseurl: "pixabay.com",
-            type: "Image",
-            siteurl: "https://pixabay.com/",
-            licence: "Free to use",
-            licenceurl: "https://pixabay.com/service/license/"
-        }, {
-            name: "Pexels",
-            baseurl: "pexels.com",
-            type: "Photo",
-            siteurl: "https://pexels.com/",
-            licence: "Free to use",
-            licenceurl: "https://www.pexels.com/license/"
-        }, {
-            name: "Wikimedia Commons",
-            baseurl: "wikimedia.org",
-            type: "Image",
-            siteurl: "https://commons.wikimedia.org/",
-            licence: "",
-            licenceurl: ""
-        }, {
-            name: "Shutterstock",
-            baseurl: "shutterstock.com",
-            type: "Photo",
-            siteurl: "https://www.shutterstock.com",
-            licence: "Used under licence with shutterstock.com",
-            licenceurl: "https://www.shutterstock.com/license"
-        }, {
-            name: "YouTube",
-            baseurl: "youtube.com",
-            type: "Video",
-            siteurl: "https://commons.wikimedia.org/",
-            licence: "Terms of Use",
-            licenceurl: ""
-        }]
+        }
     }
 
-    console.log("@GB: globals = ", globals);
+    // Supported sites
+    const supported = [{
+        name: "Unsplash",
+        baseurl: "unsplash.com",
+        type: "Photo",
+        siteurl: "https://unsplash.com/?utm_source=image_attribution_maker_by_birdyoz&utm_medium=referral",
+        licence: "Free to use",
+        licenceurl: "https://unsplash.com/license"
+    }, {
+        name: "Pixabay",
+        baseurl: "pixabay.com",
+        type: "Image",
+        siteurl: "https://pixabay.com/",
+        licence: "Free to use",
+        licenceurl: "https://pixabay.com/service/license/"
+    }, {
+        name: "Pexels",
+        baseurl: "pexels.com",
+        type: "Photo",
+        siteurl: "https://pexels.com/",
+        licence: "Free to use",
+        licenceurl: "https://www.pexels.com/license/"
+    }, {
+        name: "Wikimedia Commons",
+        baseurl: "wikimedia.org",
+        type: "Image",
+        siteurl: "https://commons.wikimedia.org/",
+        licence: "",
+        licenceurl: ""
+    }, {
+        name: "Shutterstock",
+        baseurl: "shutterstock.com",
+        type: "Photo",
+        siteurl: "https://www.shutterstock.com",
+        licence: "Used under licence with shutterstock.com",
+        licenceurl: "https://www.shutterstock.com/license"
+    }, {
+        name: "YouTube",
+        baseurl: "youtube.com",
+        type: "Video",
+        siteurl: "https://commons.wikimedia.org/",
+        licence: "Terms of Use",
+        licenceurl: ""
+    }, {
+        name: "Flickr CC",
+        baseurl: "flickr.com",
+        type: "Photo",
+        siteurl: "https://www.flickr.com/search/?license=2%2C3%2C4%2C5%2C6%2C9",
+        licence: "",
+        licenceurl: ""
+    }]
 
-    // Get current date string
-    let imgName = "Photo"; // Image name.   Defualt to "Photo"
-    let imgOrig = ""; // Link to original image
-    let imgSmall = ""; // src of image to be displayed in page
-    let downloadSmall = ""; // Small image 720px wide
-    let downloadLarge = ""; // Large image 1440px wide
-    let downloadLocation = ""; // For Unsplash, to trigger download enpoint
-    let alt = ""; // alternative text
-    let user = ""; //username
-    let userUrl = ""; //URL to user profile
-    let licence = ""; // Licence type, eg "Free to use|Public Domain|CC-BY" etc.
-    let licenceUrl = ""; // Link to licence
-    let title = null; // The image/video title
-    let description = null; //For YT videos
-    let startCollapsed = true; // Default to collapsed view
-    let org = null; // to cater for organisation specific changes
-    let width = "col-5"; // Default width for floated images
-    let percent = "42%"; // Default percent for floated images
-    let json = ""; // JSON Object returned by API call
-    let srcOriginal = ""; // Original image SRC (High Res);
-    let layout = "bootstrap"; // Preferred layout engine
-    let player; // YouTube player API
-    // let duration = 0;
-    let ytTimeCode = "00:00:00";
-    let ytDuration = "";
-    let ytPlayTime = 0;
-    let ytCurrTime = "0";
-    let ytParams = "";
     // Flickr licences
     const flickr_licences = {
         "license": [
@@ -134,21 +116,22 @@ $(function() {
     }
 
 
+    let player; // YouTube player API
+
+
     // Get URL parameters
     url_string = window.location.href;
     if (url_string.indexOf("?") > 0) {
 
         // Get image address
         url = new URL(url_string);
-        imgOrig = url.searchParams.get("addr");
-
-        globals.site = globals.supported.find(item => imgOrig.includes(item.baseurl));
-        console.log("@GB: globals = ", globals);
+        am.url = url.searchParams.get("addr");
+        am.site = supported.find(item => am.url.includes(item.baseurl));
 
 
 
         // Determine whether image or video.   Hide other display
-        if (globals.site.name == "YouTube") {
+        if (am.site.name == "YouTube") {
             $('#am-images').hide()
             site = "YouTube";
         } else {
@@ -157,28 +140,21 @@ $(function() {
 
         // Detect organisation.
         // Allows for different attribution 'recipes' for different organsiations (eg MP).
-        org = url.searchParams.get("org");
-        layout = url.searchParams.get("layout");
+        am.prefs.org = url.searchParams.get("org");
+        am.prefs.layout = url.searchParams.get("layout");
 
 
 
         // If I am Melb Poly, UoM or Vanilla, do not allow attribution to be collpased.
-        if (org === 'mp' || org === 'uom' || layout === 'vanilla') {
-            startCollapsed = false;
+        if (am.prefs.org === 'mp' || am.prefs.layout === 'vanilla') {
+            am.prefs.collapsed = false;
             $('#collapser').addClass("d-none");
             $('#collapser').removeClass("d-inline-block");
         }
 
-        // If I am Melb Poly or UoM, take away layout buttins
-        if (org === 'mp' || org === 'uom') {
-            startCollapsed = false;
-            $('#layout').addClass("d-none");
-            $('#layout').removeClass("d-inline-block");
-        }
 
         // Toggle between BS4 or Vanilla
-        if (org === 'uom' || layout === 'vanilla') {
-            layout = 'vanilla';
+        if (am.prefs.layout === 'vanilla') {
             $('#vanilla').attr('checked', 'checked').trigger("click");
             $('.maker-copy figure,.maker-copy img').removeAttr('class');
         } else {
@@ -193,56 +169,45 @@ $(function() {
         $('#collapseExample').show();
     }
 
-    /**
-     *
-     * API calls
-     *
-     */
+
 
     // If I am Unsplash
-    if (globals.site.name == "Unsplash") {
+    if (am.site.name == "Unsplash") {
 
         // Get image ID
-        n = imgOrig.lastIndexOf('/');
-        id = imgOrig.substring(n + 1);
-
-        siteUrl = "https://unsplash.com/?utm_source=image_attribution_maker_by_birdyoz&utm_medium=referral";
-        licence = "Free to use";
-        licenceUrl = "https://unsplash.com/license";
+        n = am.url.lastIndexOf('/');
+        am.id = am.url.substring(n + 1);
         // oldkey = "MzM2YjUyN2IyZTE4ZDA0NTA0NTgyMGI3ODA2MmI5NWM4MjUzNzYzMTEzMjZiMmEwOGY5YjkzZWVmN2VmYzA3Yg%3D%3D";
         key = "STJMT3JlREVmUWlWQUtFUTBEOHZfVXM4clUtNUloRlFDbWNsUnZ5RzFYdw=="
         // API call
-        uri = "https://api.unsplash.com/photos/" + id + "?client_id=" + atob(decodeURIComponent(key));
+        uri = "https://api.unsplash.com/photos/" + am.id + "?client_id=" + atob(decodeURIComponent(key));
 
         // API call
         $.getJSON(uri, function() {})
             .done(function(json) {
-                imgSmall = json.urls.regular;
-                user = json.user.username;
-                userUrl = json.user.links.html + "?utm_source=image_attribution_maker_by_birdyoz&utm_medium=referral";
-                title = json.description;
-                alt = json.alt_description;
-                downloadLarge = imgSmall.replace("&w=1080", "&w=1440");
-                imgSmall = downloadLarge;
-                downloadSmall = imgSmall.replace("&w=1440", "&w=720");
-                downloadLocation = json.links.downloadLocation + "&client_id=" + atob(decodeURIComponent(key));
+                console.log("@GB: json = ", json);
+                am.image.preview = json.urls.regular;
+                am.attribution.username = json.user.username;
+                am.attribution.userUrl = json.user.links.html + "?utm_source=image_attribution_maker_by_birdyoz&utm_medium=referral";
+                am.title = json.description;
+                am.image.alt = json.alt_description;
+                am.image.download.large = am.image.preview.replace("&w=1080", "&w=1440");
+                am.image.preview = am.image.download.large;
+                am.image.download.small = am.image.preview.replace("&w=1440", "&w=720");
+                am.image.download.endpoint = json.links.download_location + "&client_id=" + atob(decodeURIComponent(key));
                 buildHTML();
-                logger(json);
             });
     }
 
     // If I am Pexels
-    if (globals.site.name == "Pexels") {
+    if (am.site.name == "Pexels") {
 
         // Get image ID
         re = /[0-9]+/gi;
-        id = re.exec(imgOrig)[0];
+        am.id = re.exec(am.url)[0];
 
-        siteUrl = "https://pexels.com/";
-        licence = "Free to use";
-        licenceUrl = "https://www.pexels.com/license/";
         key = "NTYzNDkyYWQ2ZjkxNzAwMDAxMDAwMDAxYmZlZmZkMDc3YmFmNDU0ZGFiMjlkNjMwMGJkZjc0MGQ%3D";
-        uri = "https://api.pexels.com/v1/photos/" + id;
+        uri = "https://api.pexels.com/v1/photos/" + am.id;
 
         // API call.   Using $.ajax as paxels requires authentication headers
         $.ajax({
@@ -250,46 +215,41 @@ $(function() {
             dataType: 'json',
             headers: { 'Authorization': atob(decodeURIComponent(key)) },
             success: function(json) {
-                imgSmall = json.src.original;
-                imgSmall = imgSmall + "?auto=compress&cs=tinysrgb&w=1440";
-                user = json.photographer;
-                userUrl = json.photographerUrl;
+                console.log("@GB: json = ", json);
+                am.image.preview = json.src.original;
+                am.image.preview = am.image.preview + "?auto=compress&cs=tinysrgb&w=1440";
+                am.attribution.username = json.photographer;
+                am.attribution.userUrl = json.photographer_url;
                 alt = json.url.split("/")[4].split("-");
                 alt.pop();
-                alt = alt.join(" ");
-                downloadSmall = imgSmall + "?auto=compress&cs=tinysrgb&w=720";
-                downloadLarge = imgSmall;
+                am.image.alt = alt.join(" ");
+                am.image.download.small = am.image.preview + "?auto=compress&cs=tinysrgb&w=720";
+                am.image.download.large = am.image.preview;
                 buildHTML();
-                logger(json);
             }
         });
     }
 
     // If I am Pixabay
-    if (globals.site.name == "Pixabay") {
+    if (am.site.name == "Pixabay") {
 
         $('.pixabay-warning').show();
         // Get image ID
         re = /[0-9]+/gi;
-        id = re.exec(imgOrig)[0];
+        am.id = re.exec(am.url)[0];
 
-        siteUrl = "https://pixabay.com/";
-        licence = "Free to use";
-        licenceUrl = "https://pixabay.com/service/license/";
         key = "MTE0NDUtN2MzZTMxNzNkNmY5YTYwNDdlNjQ1ODNjYQ%3D%3D";
-        uri = "https://pixabay.com/api/?key=" + atob(decodeURIComponent(key)) + "&id=" + id;
+        uri = "https://pixabay.com/api/?key=" + atob(decodeURIComponent(key)) + "&id=" + am.id;
 
         $.getJSON(uri, function() {})
             .done(function(json) {
-                imgSmall = json.hits[0].largeImageURL;
-                user = json.hits[0].user;
-                userUrl = "https://pixabay.com/users/" + user;
-                alt = json.hits[0].tags;
-                imgName = "Image";
-                downloadSmall = json.hits[0].webformatURL; // Small image 640px wide
-                downloadLarge = imgSmall; // Large image 1280px wide
+                am.image.preview = json.hits[0].largeImageURL;
+                am.attribution.username = json.hits[0].user;
+                am.attribution.userUrl = "https://pixabay.com/users/" + am.attribution.username;
+                am.image.alt = json.hits[0].tags;
+                am.image.download.small = json.hits[0].webformatURL; // Small image 640px wide
+                am.image.download.large = am.image.preview; // Large image 1280px wide
                 buildHTML();
-                logger(json);
             })
             .fail(function() {
                 console.log(json);
@@ -297,20 +257,20 @@ $(function() {
     }
 
     // If I am Flickr
-    if (globals.site.name == "Flickr") {
+    if (am.site.name == "Flickr CC") {
 
         // Get image ID
         re = /\/([0-9]+)\//gi;
-        id = re.exec(imgOrig)[1];
+        am.id = re.exec(am.url)[1];
 
-        siteUrl = "https://www.flickr.com/";
         key = "MmJjNjJmYzJkYzRhYWVjMGZiMGQ1NjY0MGMzYThhMjA=";
-        info_uri = "https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=" + atob(decodeURIComponent(key)) + "&photo_id=" + id + "&format=json&&nojsoncallback=1";
-        sizes_uri = "https://www.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=" + atob(decodeURIComponent(key)) + "&photo_id=" + id + "&format=json&&nojsoncallback=1";
+        info_uri = "https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=" + atob(decodeURIComponent(key)) + "&photo_id=" + am.id + "&format=json&&nojsoncallback=1";
+        sizes_uri = "https://www.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=" + atob(decodeURIComponent(key)) + "&photo_id=" + am.id + "&format=json&&nojsoncallback=1";
 
 
         $.getJSON(info_uri, function() {})
             .done(function(json) {
+                console.log("@GB: json = ", json);
                 let lic = json.photo.license;
                 // Image is copyrighted
                 if (lic == 0) {
@@ -319,38 +279,32 @@ $(function() {
                 }
                 // Image is CC or PD and image use is allowed
                 else {
-                    licence = flickr_licences.license.find(item => item.id == lic).short;
-                    licenceUrl = flickr_licences.license.find(item => item.id == lic).url;
-                    user = json.photo.owner.realname;
-                    userUrl = "https://www.flickr.com/photos/" + json.photo.owner.nsid;
-                    alt = json.photo.title._content;
+                    am.site.licence = flickr_licences.license.find(item => item.id == lic).short;
+                    am.site.licenceurl = flickr_licences.license.find(item => item.id == lic).url;
+
+                    am.attribution.username = json.photo.owner.username;
+                    am.attribution.userUrl = "https://www.flickr.com/photos/" + json.photo.owner.nsid;
+                    am.image.alt = json.photo.title._content;
                     title = json.photo.description._content;
-                    title = stripHTML(title);
+                    am.title = stripHTML(title);
                     // get image sizes
                     $.getJSON(sizes_uri, function() {})
                         .done(function(json2) {
-                            imgSmall = json2.sizes.size.find(item => item.label == "Original").source;
+                            console.log("@GB: json2 = ", json2);
+                            am.image.preview = json2.sizes.size.find(item => item.label == "Original").source;
                             let orig_width = json2.sizes.size.find(item => item.label == "Original").width;
                             // Check if image is large enough to resize
                             if (orig_width >= 800) {
-                                downloadSmall = json2.sizes.size.find(item => item.label == "Medium 800").source
-                            } else { downloadSmall = imgSmall };
+                                am.image.download.small = json2.sizes.size.find(item => item.label == "Medium 800").source
+                            } else { am.imagedownload.small = am.image.preview };
 
                             if (orig_width >= 1600) {
-                                downloadLarge = json2.sizes.size.find(item => item.label == "Large 1600").source
-                                imgSmall = downloadLarge
-                            } else { downloadLarge = imgSmall };
-
+                                am.image.download.large = json2.sizes.size.find(item => item.label == "Large 1600").source
+                                am.image.preview = am.image.download.large
+                            } else { am.image.download.large = am.image.preview };
                             buildHTML();
-                            // Merge back into one JSON object, for logger
-                            $.extend(json, json2);
-                            logger(json);
                         })
                 }
-                //     downloadSmall = json.hits[0].webformatURL; // Small image 640px wide
-                //     downloadLarge = imgSmall; // Large image 1280px wide
-                //     buildHTML();
-
             })
             .fail(function() {
                 console.log("error");
@@ -358,67 +312,65 @@ $(function() {
     }
 
     // If I am Wikimedia
-    if (globals.site.name == "Wikimedia Commons") {
+    if (am.site.name == "Wikimedia Commons") {
 
         // Get image ID
-        n = imgOrig.lastIndexOf('/');
-        id = imgOrig.substring(n + 1);
+        n = am.url.lastIndexOf('/');
+        id = am.url.substring(n + 1);
 
         if (!id.includes('File:')) {
             id = "File:" + id;
         }
-        siteUrl = "https://commons.wikimedia.org/";
         uri = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=imageinfo&list=&meta=&iiprop=timestamp%7Cuser%7Cextmetadata%7Curl%7Cuserid&iilimit=1&iiurlwidth=720&origin=*&titles=" + id;
 
         $.getJSON(uri, function() {})
             .done(function(data) {
                 json = data.query.pages[-1];
-                imgSmall = json.imageinfo[0].thumburl;
-                user = json.imageinfo[0].user;
-                userUrl = "https://commons.wikimedia.org/wiki/User:" + user.replace(" ", "_");
-                alt = json.imageinfo[0].extmetadata.ObjectName.value;
-                imgName = "Image";
-
-                downloadLarge = downloadSmall = imgSmall; // Small image 720px wide
+                console.log("@GB: json = ", json);
+                am.id = json.imageinfo[0].descriptionshorturl.split("=")[1];
+                am.image.preview = json.imageinfo[0].thumburl;
+                am.image.orig = json.imageinfo[0].descriptionshorturl;
+                am.attribution.username = json.imageinfo[0].user;
+                am.attribution.userUrl = "https://commons.wikimedia.org/wiki/User:" + am.attribution.username.replace(" ", "_");
+                am.image.alt = json.imageinfo[0].extmetadata.ObjectName.value;
+                am.image.download.large = am.image.download.small = am.image.preview; // Small image 720px wide
 
                 if (json.imageinfo[0].thumbwidth >= 720) {
-                    downloadLarge = json.imageinfo[0].responsiveUrls[2]; // Large image 1440px wide
-                    imgSmall = downloadLarge;
+                    am.image.download.large = json.imageinfo[0].responsiveUrls[2]; // Large image 1440px wide
+                    am.image.preview = am.image.download.large;
                 }
 
-                licence = json.imageinfo[0].extmetadata.LicenseShortName.value;
+                am.site.licence = json.imageinfo[0].extmetadata.LicenseShortName.value;
 
                 // Exception for public domain images
                 try {
-                    licenceUrl = json.imageinfo[0].extmetadata.LicenseUrl.value;
+                    am.site.licenceurl = json.imageinfo[0].extmetadata.LicenseUrl.value;
                 } catch (error) {
                     console.error("Error: " + error);
-                    licenceUrl = "https://en.wikipedia.org/wiki/Public_domain";
+                    am.site.licenceurl = "https://en.wikipedia.org/wiki/Public_domain";
                 }
 
                 id = id.slugify();
                 buildHTML();
-                logger(json);
             });
     }
 
     // If I am Shutterstock
     // Until API is opened, get values from URL params
 
-    if (globals.site.name == "Shutterstock") {
+    if (am.site.name == "Shutterstock") {
         if (url.searchParams.get("id") == null) {
             $('.bookmarklet-warning').show();
             return false;
         }
-        user = url.searchParams.get("user");
-        userUrl = url.searchParams.get("userUrl");
-        user = url.searchParams.get("user");
-        alt = url.searchParams.get("alt");
-        title = url.searchParams.get("title");
-        imgSmall = url.searchParams.get("imgSmall");
+        am.attribution.username = url.searchParams.get("user");
+        am.attribution.userUrl = url.searchParams.get("userUrl");
+        am.image.alt = url.searchParams.get("alt");
+        am.title = url.searchParams.get("title");
+        am.image.preview = url.searchParams.get("preview");
         id = url.searchParams.get("id");
-        licence = "Used under licence with shutterstock.com";
-        licenceUrl = "https://www.shutterstock.com/license";
+        am.attribution.licence = "Used under licence with shutterstock.com";
+        am.attribution.licenceUrl = "https://www.shutterstock.com/license";
         siteUrl = "https://www.shutterstock.com";
 
         // Hide download buttons and cropper, as these make no sense for SS
@@ -433,13 +385,13 @@ $(function() {
 
     // If YouTube
 
-    if (globals.site.name == "YouTube") {
-        ytUrl = new URL(imgOrig);
+    if (am.site.name == "YouTube") {
+        ytUrl = new URL(am.url);
         id = ytUrl.searchParams.get("v");
 
         siteUrl = "https://www.youtube.com";
-        licence = "Terms";
-        licenceUrl = "https://www.youtube.com/static?template=terms&gl=AU";
+        am.attribution.licence = "Terms";
+        am.attribution.licenceUrl = "https://www.youtube.com/static?template=terms&gl=AU";
         key = "QUl6YVN5QmxCcEFUTzF0Z0hOM3FyUGUwWlQ5aGFFMW5UQmxRYVU0"
         // API call
         uri = "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatus%2Cplayer&id=" + id + "&key=" + atob(decodeURIComponent(key));
@@ -449,9 +401,9 @@ $(function() {
             .done(function(json) {
                 console.log("@GB: json = ", json);
                 let vid = json.items[0].snippet;
-                title = vid.title;
+                am.title = vid.title;
                 if (vid.description.length > 0) {
-                    ytDuration = vid.description;
+                    am.video.description = vid.description;
                 }
                 // Is embedding allowed?
                 let embeddable = json.items[0].status.embeddable;
@@ -473,10 +425,10 @@ $(function() {
                     aspect = "4by3"
                 }
                 ytPlayTime = json.items[0].contentDetails.duration;
-                duration = moment.duration(ytPlayTime).asSeconds();
-                ytTimeCode = getytTimeCode(duration);
-                user = json.items[0].snippet.channelTitle;
-                userUrl = "https://www.youtube.com/channel/" + json.items[0].snippet.channelId;
+                am.video.duration = moment.duration(ytPlayTime).asSeconds();
+                am.video.timecode = getTimecode(am.video.duration);
+                am.attribution.username = json.items[0].snippet.channelTitle;
+                am.attribution.userUrl = "https://www.youtube.com/channel/" + json.items[0].snippet.channelId;
                 snippet = ytSnippet();
                 $('#am-yt-embed').html(snippet);
 
@@ -497,15 +449,16 @@ $(function() {
         selected_id = $("input[name='options']:checked").attr('id');
         selected_val = $("input[name='options']:checked").attr('value');
 
-        if (org === 'uom' || layout === 'vanilla') {
+        if (am.prefs.org === 'uom' || am.prefs.layout === 'vanilla') {
             $('.maker-floated>figure').css("width", selected_val)
         } else {
-            $('.maker-floated>figure').removeClass(width);
+            $('.maker-floated>figure').removeClass(am.prefs.cols);
             $('.maker-floated>figure').addClass(selected_id);
         }
         $('.percent').text(selected_val);
-        width = selected_id;
-        percent = selected_val;
+        am.prefs.cols = selected_id;
+        am.prefs.percent = selected_val;
+
     });
 
     // Change whether attribution is shown or collapsed (collapsed by default)
@@ -513,18 +466,18 @@ $(function() {
         selected_val = $("input[name='options']:checked").attr('value');
 
         if (selected_val == "Shown") {
-            startCollapsed = false;
+            am.prefs.collapsed = false;
             buildHTML();
         } else {
-            startCollapsed = true;
+            am.prefs.collapsed = true;
             buildHTML();
         }
     });
 
     // Toggle bettwen BS4+ and inline CSS
     $('#layout').change(function() {
-        layout = $("input[name='options']:checked").attr('value');
-        url.searchParams.set('layout', layout);
+        am.prefs.layout = $("input[name='options']:checked").attr('value');
+        url.searchParams.set('layout', am.prefs.layout);
         window.location.href = url
     });
 
@@ -537,16 +490,16 @@ $(function() {
 
         // If Cropped, replace image in embed code with dummy image
         if (id == ".maker-cropped") {
-            paste = paste.replace(srcOriginal, "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+cropped+image");
+            paste = paste.replace(am.image.preview, "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+cropped+image");
         }
 
         // If Pixabay, replace image in embed code with dummy image
-        if (globals.site.name == "Pixabay") {
-            paste = paste.replace(imgSmall, "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+downloaded+Pixabay+image");
+        if (am.site.name == "Pixabay") {
+            paste = paste.replace(am.image.preview, "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+downloaded+Pixabay+image");
         }
         // If Pixabay, replace image in embed code with dummy image
-        if (globals.site.name == "YouTube") {
-            paste = paste.replace("widgetid=1", "widgetid=1" + ytParams);
+        if (am.site.name == "YouTube") {
+            paste = paste.replace("widgetid=1", "widgetid=1" + am.video.params);
         }
         if (id == ".maker-rtf") {
             copyAsRtf(paste);
@@ -567,21 +520,25 @@ $(function() {
     $('a.download').click(function(event) {
         /* Act on the event */
         btn = $(this);
+        console.log("@GB: btn = ", btn);
         title = btn.attr("title");
-        src = downloadLarge;
+        console.log("@GB: title = ", title);
+        src = am.image.download.large;
+        console.log("@GB: src = ", src);
         if (title == "img-sml") {
-            src = downloadSmall;
+            src = am.image.download.small;
         }
         if (title == "img-cropped") {
             src = $(".maker-cropped img").attr("src");
+            console.log("@GB: cropped src = ", src);
         }
-
-        if (globals.site.name === "Unsplash") {
-            sendTrackDownload(downloadLocation);
+        console.log("@GB: src = ", src);
+        if (am.site.name === "Unsplash") {
+            sendTrackDownload(am.image.download.endpoint);
         }
 
         // Send to Downloader
-        downloader(id, src);
+        downloader(am.id, src);
 
         btn.toggleClass('btn-outline-primary btn-success');
         btn.html('<i class="fa fa-check" aria-hidden="true"></i> Done! Image downloaded');
@@ -600,24 +557,24 @@ $(function() {
     });
 
     $("#yt-embed-update").click(function() {
-        let newPlayTime = ytPlayTime;
+        let newPlayTime = am.video.duration;
         let startAt = $('#yt-start').val();
         let endAt = $('#yt-end').val();
-        if (endAt > 0 && endAt < duration) {
+        if (endAt > 0 && endAt < am.video.duration) {
             newPlayTime = endAt;
-            ytParams = ytParams + "&amp;end=" + endAt;
+            am.video.params = am.video.params + "&amp;end=" + endAt;
         }
-        if (startAt > 0 && startAt < duration) {
+        if (startAt > 0 && startAt < am.video.duration) {
             newPlayTime -= startAt;
-            ytParams = ytParams + "&amp;start=" + startAt;
+            am.video.params = am.video.params + "&amp;start=" + startAt;
         }
-        console.log("@GB: ytParams = ", ytParams);
-        if (newPlayTime < duration) {
+        console.log("@GB: am.video.params = ", am.video.params);
+        if (newPlayTime < am.video.duration) {
             // let embedSmall = $('iframe#yt-placeholder').attr('src').split("&")[0];
             // $('iframe#yt-placeholder').attr('src', embedSmall + params);
             // console.log("@GB: embedSmall = ", embedSmall);
-            newytTimeCode = getytTimeCode(newPlayTime);
-            $('span.ytTimeCode').html(newytTimeCode);
+            newTimecode = getTimecode(newPlayTime);
+            $('span.timecode').html(newTimecode);
             player.loadVideoById({
                 videoId: id,
                 startSeconds: startAt,
@@ -634,49 +591,52 @@ $(function() {
 
     // Return appropriate Embed Code snippet
     function embedSnippet(i) {
-        let snippet = `<img src="${imgSmall}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
+        let snippet = `<img src="${am.image.preview}" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${am.title!==null ? ` title="${am.title}"` : ''}>
 <figcaption class="figure-caption text-muted small fw-lighter">
-    <small>${startCollapsed ? `
-        <!-- Start of Show/Hide interface, ID = ${id}-${i} -->
-        <a class="source-btn text-muted" data-toggle="collapse" href="#show-${id}-${i}" role="button" aria-expanded="false" aria-controls="show-${id}-${i}">&#9661; Show attribution</a>
-        <div class="source collapse m-0 p-0" id="show-${id}-${i}">` : ''}
-        <a href="${globals.site.type}" target="_blank">${imgName}</a> by <a href="${userUrl}" target="_blank">${user}</a> on <a href="${siteUrl}" target="_blank">${globals.site.name}</a>
-            <br><a href="${globals.site.licenceurl}" target="_blank">${globals.site.licence}</a>. Added ${globals.today} ${startCollapsed ? `</div>
-        <!-- End of Show/Hide interface, ID = ${id}-${i} -->` : ''}
+    <small>${am.prefs.collapsed ? `
+        <!-- Start of Show/Hide interface, ID = ${am.id}-${i} -->
+        <a class="source-btn text-muted" data-toggle="collapse" href="#show-${am.id}-${i}" role="button" aria-expanded="false" aria-controls="show-${am.id}-${i}">&#9661; Show attribution</a>
+        <div class="source collapse m-0 p-0" id="show-${am.id}-${i}">` : ''}
+        <a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>
+            <br><a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} ${am.prefs.collapsed ? `</div>
+        <!-- End of Show/Hide interface, ID = ${am.id}-${i} -->` : ''}
     </small>
-</figcaption>`;
+</figcaption>
+`;
         return snippet;
     }
 
-    // If Org = MP, return Melb Poly embed code
+    // If am.prefs.Org = MP, return Melb Poly embed code
     function mpSnippet(i) {
-        let snippet = `<img src="${imgSmall}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
+        let snippet = `<img src="${am.image.preview}" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${am.title!==null ? ` title="${am.title}"` : ''}>
 <figcaption class="figure-caption text-muted small fw-lighter">
-    <small><a href="${globals.site.type}" target="_blank">Image</a> by <a href="${userUrl}" target="_blank">${user}</a> on <a href="${siteUrl}" target="_blank">${globals.site.name}</a>, <a href="${globals.site.licenceurl}" target="_blank">${globals.site.licence}</a>, added on ${globals.today}</small>
-</figcaption>`;
+    <small><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
+</figcaption>
+`;
         return snippet;
     }
 
-    // If Org = uom, return Melb Uni embed code
+    // If am.prefs.Org = uom, return Melb Uni embed code
     function vanillaSnippet(i) {
-        let snippet = `<img src="${imgSmall}" style="width:100%" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
+        let snippet = `<img src="${am.image.preview}" style="width:100%" alt="${am.image.alt}"${am.title!==null ? ` title="${am.title}"` : ''}>
 <figcaption style="font-size: 0.9em; opacity: 0.5; text-align: right">
-    <small><a href="${globals.site.type}" target="_blank">Image</a> by <a href="${userUrl}" target="_blank">${user}</a> on <a href="${siteUrl}" target="_blank">${globals.site.name}</a>, <a href="${globals.site.licenceurl}" target="_blank">${globals.site.licence}</a>, added on ${globals.today}</small>
-</figcaption>`;
+    <small><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
+</figcaption>
+`;
         return snippet;
     }
 
     // Text only snippet
     function textSnippet() {
-        let snippet = `<small class="text-muted"><a href="${globals.site.type}" target="_blank">${imgName}</a> by <a href="${userUrl}" target="_blank">${user}</a> on <a href="${siteUrl}" target="_blank">${globals.site.name}</a>, <a href="${globals.site.licenceurl}" target="_blank">${globals.site.licence}</a>, added on ${globals.today}</small>`;
+        let snippet = `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>`;
         return snippet;
     }
 
     // Text only snippet
     function rtfSnippet() {
-        let snippet = `<figure><img src="${imgSmall}" class="img-responsive img-fluid w-100" alt="${alt}"${title!==null ? ` title="${title}"` : ''}>
+        let snippet = `<figure><img src="${am.image.preview}" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${am.title!==null ? ` title="${am.title}"` : ''}>
 <figcaption>
-    <div style="font-size: 8pt; color:gray; background-color:white"><a href="${globals.site.type}" target="_blank">Image</a> by <a href="${userUrl}" target="_blank">${user}</a> on <a href="${siteUrl}" target="_blank">${globals.site.name}</a>, <a href="${globals.site.licenceurl}" target="_blank">${globals.site.licence}</a>, added on ${globals.today}</div>
+    <div style="font-size: 8pt; color:gray; background-color:white"><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</div>
 </figcaption></figure>`;
         return snippet;
     }
@@ -687,17 +647,17 @@ $(function() {
 <div class="clearfix container-fluid"></div>
 <div class="card">
     <div class="card-body">
-        <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> ${title} (<span class="ytTimeCode">${ytTimeCode}</span>)</h4>
-        <p class="yt-desc">${ytDuration!==null ? `${ytDuration}` : ''}</p>
+        <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h4>
+        <p class="yt-desc">${am.video.description}</p>
         <div class="embed-responsive embed-responsive-4by3">
             <div id="yt-placeholder" class="embed-responsive-item vjs-tech"></div>
         </div>
         <div class="text-right">
             <small class="text-muted small fw-lighter">
-                <!-- Start of Show/Hide interface, ID = ${id} -->
-                <a class="source-btn text-muted" data-toggle="collapse" href="#show-${id}" role="button" aria-expanded="false" aria-controls="show-${id}">▽ Show attribution</a>
-                <div class="source collapse m-0 p-0" id="show-${id}">Video by <a href="${userUrl}">${user}</a> on <a href="${siteUrl}" target="_blank">${globals.site.name}</a>. <a href="${globals.site.licenceurl}" target="_blank">${globals.site.licence}</a>. Added ${globals.today} </div>
-                <!-- End of Show/Hide interface, ID = ${id} -->
+                <!-- Start of Show/Hide interface, ID = ${am.id} -->
+                <a class="source-btn text-muted" data-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
+                <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} </div>
+                <!-- End of Show/Hide interface, ID = ${am.id} -->
             </small>
         </div>
     </div>
@@ -715,27 +675,28 @@ $(function() {
 
     // Build images into interface
     function buildHTML() {
+
+        console.log("@GB: AM+ variables = ", am);
         $('.maker-copy figure').each(function(index) {
-            if (alt == null) {
-                alt = "";
+            if (am.image.alt == null) {
+                am.image.alt = "";
             }
-            if (org == 'mp') {
+            if (am.prefs.org == 'mp') {
                 // Use Melb Poly's attribution rules
-                if (site != "Wikimedia Commons") {
-                    licence = "Licence";
+                if (am.site != "Wikimedia Commons") {
+                    am.attribution.licence = "Licence";
                 }
                 snippet = mpSnippet(index);
-            } else if (layout == 'vanilla') {
+            } else if (am.prefs.layout == 'vanilla') {
                 snippet = vanillaSnippet(index);
             } else { snippet = embedSnippet(index); }
-
             $(this).html(snippet);
 
             // Set Cropped and Text only alternateives
-            $("#rcrop").attr("src", imgSmall);
+            $("#rcrop").attr("src", am.image.preview);
             $(".maker-txt").html(textSnippet());
             $(".maker-rtf").html(rtfSnippet());
-            $("#resizer ." + width).button("toggle");
+            $("#resizer ." + am.prefs.cols).button("toggle");
         });
 
         // Invoke rcrop (image cropper)
@@ -818,7 +779,7 @@ $(function() {
     $("#display-yt-description").change(function() {
         if (this.checked) {
             //Do stuff
-            $('.yt-desc').html(ytDuration)
+            $('.yt-desc').html(am.video.description)
         } else {
             $('.yt-desc').html("")
 
@@ -839,29 +800,7 @@ $(function() {
 
     // log all console messages
     function logger(json) {
-        console.groupCollapsed('@GB: Attribution maker values')
-        console.log("@GB: today = ", today)
-        console.log("@GB: site = ", site)
-        console.log("@GB: siteUrl = ", siteUrl)
-        console.log("@GB: id = ", id)
-        console.log("@GB: imgName = ", imgName)
-        console.log("@GB: imgOrig = ", imgOrig)
-        console.log("@GB: imgSmall = ", imgSmall)
-        console.log("@GB: downloadSmall = ", downloadSmall)
-        console.log("@GB: downloadLarge = ", downloadLarge)
-        console.log("@GB: alt = ", alt)
-        console.log("@GB: user = ", user)
-        console.log("@GB: userUrl = ", userUrl)
-        console.log("@GB: licence = ", licence)
-        console.log("@GB: licenceUrl = ", licenceUrl)
-        console.log("@GB: title = ", title)
-        console.log("@GB: startCollapsed = ", startCollapsed)
-        console.log("@GB: org = ", org)
-        console.log("@GB: width = ", width)
-        console.log("@GB: srcOriginal = ", srcOriginal)
-        console.log("@GB: json = ", json)
-        console.log("@GB: layout = ", layout)
-        console.groupEnd()
+        console.log("@GB: json = ", json);
     }
 
     // Copy to clipboard for dumb browsers
@@ -907,7 +846,7 @@ $(function() {
         document.removeEventListener("copy", listener);
     };
 
-    function getytTimeCode(secs) {
+    function getTimecode(secs) {
         // if less than 1hr
         if (secs < 3600) {
             tc = moment(secs * 1000).format("mm:ss");
@@ -929,6 +868,7 @@ $(function() {
             let canvas = document.createElement('canvas');
             canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
             canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
+            console.log("@GB: canvas.width = ", canvas.width);
             canvas.getContext('2d').drawImage(this, 0, 0);
             let blob;
             blob = canvas.toDataURL("image/jpeg");
@@ -937,7 +877,8 @@ $(function() {
             link.style = 'position: fixed; left -10000px;';
             link.href = blob;
 
-            link.download = site + "-" + name + "-" + canvas.width + "x" + canvas.height + ".jpg";
+            link.download = am.site.name + "-" + am.id + "-" + canvas.width + "x" + canvas.height + ".jpg";
+            console.log("@GB: link.download = ", link.download);
 
 
             document.body.appendChild(link);
@@ -945,7 +886,6 @@ $(function() {
             document.body.removeChild(link);
         };
     }
-
     // Sanitise text to remove HTML markup.
     function stripHTML(str) {
         str = $.parseHTML(str); // Convert str to DOM
@@ -973,4 +913,7 @@ $(function() {
             throw Error(response.statusText)
         }
     }
+
+
+
 });
