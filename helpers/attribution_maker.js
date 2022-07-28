@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-07-28 11:45:09
+ * @Last Modified time: 2022-07-28 17:19:56
  */
 
 $(function() {
@@ -149,6 +149,7 @@ $(function() {
             am.prefs.collapsed = false;
             $('#collapser').addClass("d-none");
             $('#collapser').removeClass("d-inline-block");
+            $('.bootstrap-only').hide();
         }
 
 
