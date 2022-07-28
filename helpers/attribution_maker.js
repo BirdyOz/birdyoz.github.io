@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-07-26 14:49:33
+ * @Last Modified time: 2022-07-28 11:45:09
  */
 
 $(function() {
@@ -579,15 +579,13 @@ $(function() {
     })
 
 
-    $("#input-overlay-text").on('input', function() {
+    $("input.text-input").on('input', function() {
+        id = $(this).attr('id');
+        target = "#"+id.replace("input-","");
         text = $(this).val();
-        $('#overlay-text').html(text)
+        $(target).html(text)
     });
 
-    $("#input-overlay-citation").on('input', function() {
-        text = $(this).val();
-        $('#overlay-citation').html(text)
-    });
 
     /**
      *
