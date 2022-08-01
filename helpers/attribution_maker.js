@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-08-01 14:58:52
+ * @Last Modified time: 2022-08-01 16:28:21
  */
 
 $(function() {
@@ -588,7 +588,7 @@ $(function() {
             newTimecode = getTimecode(newPlayTime);
             $('span.timecode').html(newTimecode);
             player.loadVideoById({
-                videoId: id,
+                videoId: am.id,
                 startSeconds: startAt,
                 endSeconds: endAt
             })
