@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-07-28 17:19:56
+ * @Last Modified time: 2022-08-01 14:05:07
  */
 
 $(function() {
@@ -31,7 +31,8 @@ $(function() {
             playtime: 0,
             embeddable: true,
             description: "",
-            params: ""
+            params: "",
+            thumb: ""
         },
         attribution: {
             username: "",
@@ -132,7 +133,9 @@ $(function() {
         // Determine whether image or video.   Hide other display
         if (am.site.name == "YouTube") {
             $('#am-images').hide()
-            site = "YouTube";
+            if (url.searchParams.get("embeddable") == "false") {
+                am.video.embeddable = false
+            }
         } else {
             $('#am-video').hide()
         }
@@ -387,14 +390,14 @@ $(function() {
 
     if (am.site.name == "YouTube") {
         ytUrl = new URL(am.url);
-        id = ytUrl.searchParams.get("v");
+        am.id = ytUrl.searchParams.get("v");
 
         siteUrl = "https://www.youtube.com";
         am.site.licence = "Terms";
         am.site.licenceUrl = "https://www.youtube.com/static?template=terms&gl=AU";
         key = "QUl6YVN5QmxCcEFUTzF0Z0hOM3FyUGUwWlQ5aGFFMW5UQmxRYVU0"
         // API call
-        uri = "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatus%2Cplayer&id=" + id + "&key=" + atob(decodeURIComponent(key));
+        uri = "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatus%2Cplayer&id=" + am.id + "&key=" + atob(decodeURIComponent(key));
 
         // API call
         $.getJSON(uri, function() {})
@@ -406,8 +409,9 @@ $(function() {
                     am.video.description = vid.description;
                 }
                 // Is embedding allowed?
-                let embeddable = json.items[0].status.embeddable;
-                console.log("@GB: embeddable = ", embeddable);
+                if (am.video.embeddable === true) {
+                    am.video.embeddable = json.items[0].status.embeddable
+                };
 
                 // Extract dimenssion from embed code.  Establish ratio.
                 let embedcode = json.items[0].player.embedHtml;
@@ -429,8 +433,20 @@ $(function() {
                 am.video.timecode = getTimecode(am.video.duration);
                 am.attribution.username = json.items[0].snippet.channelTitle;
                 am.attribution.userUrl = "https://www.youtube.com/channel/" + json.items[0].snippet.channelId;
-                snippet = ytSnippet();
+                // Can I be embedded?
+                if (am.video.embeddable) {
+                    snippet = ytSnippet();
+                } else {
+                    am.video.thumb = json.items[0].snippet.thumbnails.standard.url;
+                    if (json.items[0].snippet.thumbnails.hasOwnProperty('maxres')) {
+                        am.video.thumb = json.items[0].snippet.thumbnails.maxres.url;
+                    }
+                    $('#yt-settings .yt-placeholder-msg').html("<p class='alert alert-danger'>Your chosen video does not allow for embedding.   A placeholder has been created, that includes a thumbnail for the video, and a link back to YouTube.</p>")
+                    snippet = ytPlaceholderSnippet();
+                }
+
                 $('#am-yt-embed').html(snippet);
+                console.log("@GB: am = ", am);
 
                 // Invoke YT API
                 onYouTubeIframeAPIReady();
@@ -582,7 +598,7 @@ $(function() {
 
     $("input.text-input").on('input', function() {
         id = $(this).attr('id');
-        target = "#"+id.replace("input-","");
+        target = "#" + id.replace("input-", "");
         text = $(this).val();
         $(target).html(text)
     });
@@ -648,7 +664,7 @@ $(function() {
 
     // YouTube snippet
     function ytSnippet() {
-        let snippet = `<!-- Start of Video box -->
+        let snippet = `<!-- Start of YouTube video box -->
 <div class="clearfix container-fluid"></div>
 <div class="card">
     <div class="card-body">
@@ -667,7 +683,41 @@ $(function() {
         </div>
     </div>
 </div>
-<!-- End of video box -->`;
+<!-- End of YouTube video box -->`;
+        return snippet;
+    }
+
+    // YouTube placeholder
+    function ytPlaceholderSnippet() {
+        let snippet = `<!-- Start of YouTube Placeholder, for YT videos that don't allow embedding (Embed code by @BirdyOz) -->
+<div class="clearfix container-fluid"></div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h4>
+        <p class="yt-desc">${am.video.description}</p>
+
+        <div class="maker-overlay" style="position: relative;">
+            <a href="https://youtu.be/${am.id}" target="_blank" style="color: white  !important">\n'
+                <figure class="figure border rounded w-100"><img src="${am.video.thumb}" alt="YouTube video placeholder" class="w-100">
+                </figure>
+                <div class="text-overlay" style="text-align: center; color: white !important; text-shadow: 2px 2px 4px #000000; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%">
+                    <p id="overlay-text" style="font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) )) !important; line-height: calc( 20px + (32 - 16) * ( 80vw / (1000 - 400) )) !important;"><i class="fa fa-play-circle-o"></i> View video</p>
+                    <p id="overlay-citation" style="font-size: calc( 12px + (24 - 16) * ( 60vw / (1000 - 400) )) !important; line-height: calc( 10px + (20 - 10) * ( 80vw / (1000 - 400) )) !important;">(Opens in new tab)</p>
+                </div>
+            </a>
+        </div>
+
+        <div class="text-right">
+            <small class="text-muted small fw-lighter">
+                <!-- Start of Show/Hide interface, ID = ${am.id} -->
+                <a class="source-btn text-muted" data-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
+                <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} </div>
+                <!-- End of Show/Hide interface, ID = ${am.id} -->
+            </small>
+        </div>
+    </div>
+</div>
+<!-- End of YouTube Placeholder -->`;
         return snippet;
     }
 
