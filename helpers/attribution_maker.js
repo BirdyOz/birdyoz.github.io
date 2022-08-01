@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-08-01 14:05:07
+ * @Last Modified time: 2022-08-01 14:58:52
  */
 
 $(function() {
@@ -805,7 +805,7 @@ $(function() {
         player = new YT.Player('yt-placeholder', {
             height: '100%',
             width: '100%',
-            videoId: id,
+            videoId: am.id,
             playerVars: {
                 'modestbranding': 1,
                 'rel': 0,
