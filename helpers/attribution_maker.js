@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-08-01 16:58:42
+ * @Last Modified time: 2022-08-08 14:47:54
  */
 
 $(function() {
@@ -367,11 +367,11 @@ $(function() {
             return false;
         }
         am.attribution.username = url.searchParams.get("user");
-        am.attribution.userUrl = url.searchParams.get("userUrl");
+        am.attribution.userUrl = url.searchParams.get("user_url");
         am.image.alt = url.searchParams.get("alt");
         am.title = url.searchParams.get("title");
-        am.image.preview = url.searchParams.get("preview");
-        id = url.searchParams.get("id");
+        am.image.preview = url.searchParams.get("img_src");
+        am.id = url.searchParams.get("id");
         am.site.licence = "Used under licence with shutterstock.com";
         am.site.licenceUrl = "https://www.shutterstock.com/license";
         siteUrl = "https://www.shutterstock.com";
