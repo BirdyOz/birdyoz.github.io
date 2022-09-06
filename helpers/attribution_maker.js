@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-08-08 14:47:54
+ * @Last Modified time: 2022-09-06 16:17:38
  */
 
 $(function() {
@@ -87,9 +87,9 @@ $(function() {
         name: "YouTube",
         baseurl: "youtube.com",
         type: "Video",
-        siteurl: "https://commons.wikimedia.org/",
-        licence: "Terms of Use",
-        licenceurl: ""
+        siteurl: "https://youtube.com",
+        licence: "Terms",
+        licenceurl: "https://www.youtube.com/static?template=terms&gl=AU"
     }, {
         name: "Flickr CC",
         baseurl: "flickr.com",
