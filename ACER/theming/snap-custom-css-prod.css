@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2020-01-14 11:17:23
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2022-06-20 11:22:49
+* @Last Modified time: 2022-07-12 09:34:41
 */
 
 
@@ -222,8 +222,10 @@ iframe#contentframe {
     min-height: 600px !important;
 }
 
-
-
+/*Remove bullet points from nav lists (horizontal tabs, vertical tabs etc)*/
+ul.nav {
+    list-style: none !important;
+}
 
 
 /* ==========================================================================

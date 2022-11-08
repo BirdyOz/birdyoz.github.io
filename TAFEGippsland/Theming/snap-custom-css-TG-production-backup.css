@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2021-02-04 13:58:29
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2022-07-22 14:10:55
+* @Last Modified time: 2022-03-16 09:58:31
 */
 
 /* ==========================================================================
@@ -234,8 +234,6 @@ body#page-mod-book-view #region-main #intro {
     display: none;
 }
 
-/* Suppress alert in choice activity - 'The results of this activity will not be published after you answer.' */
-#page-mod-choice-view .alert.alert-info.alert-block {display: none;}
 
 
 /* ==========================================================================
