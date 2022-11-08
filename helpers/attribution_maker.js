@@ -1,8 +1,8 @@
 /*
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
- * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-09-06 16:17:38
+ * @Last Modified by:   gbird
+ * @Last Modified time: 2022-11-09 10:08:31
  */
 
 $(function() {
@@ -32,7 +32,9 @@ $(function() {
             embeddable: true,
             description: "",
             params: "",
-            thumb: ""
+            thumb: "",
+            aspect: "16/9",
+            ratio: 56.25
         },
         attribution: {
             username: "",
@@ -410,23 +412,29 @@ $(function() {
                 }
                 // Is embedding allowed?
                 if (am.video.embeddable === true) {
-                    am.video.embeddable = json.items[0].status.embeddable
-                };
+                    am.video.embeddable = json.items[0].status.embeddable;
+                }
 
-                // Extract dimenssion from embed code.  Establish ratio.
-                let embedcode = json.items[0].player.embedHtml;
-                let embed_width = $(embedcode).attr("width");
-                let embed_height = $(embedcode).attr("height");
-                let ratio = embed_width / embed_height;
-                let aspect = "";
-                if (ratio == 1) {
-                    aspect = "1by1"
-                } else if (ratio > 2.3) {
-                    aspect = "21by9"
-                } else if (ratio > 1.7) {
-                    aspect = "16by9"
+                // Establish ratio.
+
+                if (json.items[0].snippet.thumbnails.maxres) {
+                    embed_width = json.items[0].snippet.thumbnails.maxres.width;
+                    embed_height = json.items[0].snippet.thumbnails.maxres.height;
                 } else {
-                    aspect = "4by3"
+                    embedcode = json.items[0].player.embedHtml;
+                    embed_width = $(embedcode).attr("width");
+                    embed_height = $(embedcode).attr("height");
+                }
+                ratio = embed_width / embed_height;
+                am.video.ratio = embed_height / embed_width * 100;
+                if (ratio == 1) {
+                    am.video.aspect = "1by1";
+                } else if (ratio > 2.3) {
+                    am.video.aspect = "21by9";
+                } else if (ratio > 1.7) {
+                    am.video.aspect = "16by9";
+                } else {
+                    am.video.aspect = "4by3";
                 }
                 ytPlayTime = json.items[0].contentDetails.duration;
                 am.video.duration = moment.duration(ytPlayTime).asSeconds();
@@ -582,9 +590,6 @@ $(function() {
         }
         console.log("@GB: am.video.params = ", am.video.params);
         if (newPlayTime < am.video.duration) {
-            // let embedSmall = $('iframe#yt-placeholder').attr('src').split("&")[0];
-            // $('iframe#yt-placeholder').attr('src', embedSmall + params);
-            // console.log("@GB: embedSmall = ", embedSmall);
             newTimecode = getTimecode(newPlayTime);
             $('span.timecode').html(newTimecode);
             player.loadVideoById({
@@ -664,6 +669,31 @@ $(function() {
 
     // YouTube snippet
     function ytSnippet() {
+        let snippet = `<!-- Start of YouTube video box -->
+<div class="clearfix container-fluid"></div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h4>
+        <p class="yt-desc">${am.video.description}</p>
+        <div class="embed-responsive embed-responsive-${am.video.aspect}">
+            <div id="yt-placeholder" class="embed-responsive-item vjs-tech"></div>
+        </div>
+        <div class="text-right">
+            <small class="text-muted small fw-lighter">
+                <!-- Start of Show/Hide interface, ID = ${am.id} -->
+                <a class="source-btn text-muted" data-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
+                <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} </div>
+                <!-- End of Show/Hide interface, ID = ${am.id} -->
+            </small>
+        </div>
+    </div>
+</div>
+<!-- End of YouTube video box -->`;
+        return snippet;
+    }
+
+    // YouTube snippet
+    function uomytSnippet() {
         let snippet = `<!-- Start of YouTube video box -->
 <div class="clearfix container-fluid"></div>
 <div class="card">
