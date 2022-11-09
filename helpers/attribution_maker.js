@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   gbird
- * @Last Modified time: 2022-11-09 10:08:31
+ * @Last Modified time: 2022-11-09 13:35:39
  */
 
 $(function() {
@@ -34,7 +34,8 @@ $(function() {
             params: "",
             thumb: "",
             aspect: "16/9",
-            ratio: 56.25
+            ratio: 56.25,
+            published: ""
         },
         attribution: {
             username: "",
@@ -115,7 +116,8 @@ $(function() {
             { "id": 9, "name": "Public Domain Dedication (CC0)", "short": "CC0", "url": "https://creativecommons.org/publicdomain/zero/1.0/" },
             { "id": 10, "name": "Public Domain Mark", "short": "Public Domain", "url": "https://creativecommons.org/publicdomain/mark/1.0/" }
         ]
-    }
+    };
+
 
 
     let player; // YouTube player API
@@ -150,7 +152,7 @@ $(function() {
 
 
         // If I am Melb Poly, UoM or Vanilla, do not allow attribution to be collpased.
-        if (am.prefs.org === 'mp' || am.prefs.layout === 'vanilla') {
+        if (am.prefs.org === 'mp' || am.prefs.org === 'uom' || am.prefs.layout === 'vanilla') {
             am.prefs.collapsed = false;
             $('#collapser').addClass("d-none");
             $('#collapser').removeClass("d-inline-block");
@@ -183,7 +185,7 @@ $(function() {
         n = am.url.lastIndexOf('/');
         am.id = am.url.substring(n + 1);
         // oldkey = "MzM2YjUyN2IyZTE4ZDA0NTA0NTgyMGI3ODA2MmI5NWM4MjUzNzYzMTEzMjZiMmEwOGY5YjkzZWVmN2VmYzA3Yg%3D%3D";
-        key = "STJMT3JlREVmUWlWQUtFUTBEOHZfVXM4clUtNUloRlFDbWNsUnZ5RzFYdw=="
+        key = "STJMT3JlREVmUWlWQUtFUTBEOHZfVXM4clUtNUloRlFDbWNsUnZ5RzFYdw==";
         // API call
         uri = "https://api.unsplash.com/photos/" + am.id + "?client_id=" + atob(decodeURIComponent(key));
 
@@ -405,8 +407,13 @@ $(function() {
         $.getJSON(uri, function() {})
             .done(function(json) {
                 console.log("@GB: json = ", json);
-                let vid = json.items[0].snippet;
+                vid = json.items[0].snippet;
                 am.title = vid.title;
+
+                // Get published date
+                published = vid.publishedAt;
+                date = new Date(published);
+                am.video.published = `${date.getFullYear()}, ${date.toLocaleString('default', { month: 'long' })} ${date.getDay()}`;
                 if (vid.description.length > 0) {
                     am.video.description = vid.description;
                 }
@@ -418,8 +425,8 @@ $(function() {
                 // Establish ratio.
 
                 if (json.items[0].snippet.thumbnails.maxres) {
-                    embed_width = json.items[0].snippet.thumbnails.maxres.width;
-                    embed_height = json.items[0].snippet.thumbnails.maxres.height;
+                    embed_width = vid.thumbnails.maxres.width;
+                    embed_height = vid.thumbnails.maxres.height;
                 } else {
                     embedcode = json.items[0].player.embedHtml;
                     embed_width = $(embedcode).attr("width");
@@ -443,7 +450,12 @@ $(function() {
                 am.attribution.userUrl = "https://www.youtube.com/channel/" + json.items[0].snippet.channelId;
                 // Can I be embedded?
                 if (am.video.embeddable) {
-                    snippet = ytSnippet();
+                    if (am.prefs.org === "uom") {
+                        snippet = uomytSnippet();
+                        console.log("@GB: snippet = ", snippet);
+                    } else {
+                        snippet = ytSnippet();
+                    }
                 } else {
                     am.video.thumb = json.items[0].snippet.thumbnails.standard.url;
                     if (json.items[0].snippet.thumbnails.hasOwnProperty('maxres')) {
@@ -569,7 +581,7 @@ $(function() {
 
     $('#button-yt-start').click(function(event) {
         $('#yt-start').val(ytCurrTime);
-        player.setOption({ "startSeconds": 55 });
+        // player.setOption({ "startSeconds": 55 });
     });
 
     $('#button-yt-end').click(function(event) {
@@ -694,26 +706,14 @@ $(function() {
 
     // YouTube snippet
     function uomytSnippet() {
-        let snippet = `<!-- Start of YouTube video box -->
-<div class="clearfix container-fluid"></div>
-<div class="card">
-    <div class="card-body">
-        <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h4>
-        <p class="yt-desc">${am.video.description}</p>
-        <div class="embed-responsive embed-responsive-4by3">
-            <div id="yt-placeholder" class="embed-responsive-item vjs-tech"></div>
-        </div>
-        <div class="text-right">
-            <small class="text-muted small fw-lighter">
-                <!-- Start of Show/Hide interface, ID = ${am.id} -->
-                <a class="source-btn text-muted" data-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
-                <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} </div>
-                <!-- End of Show/Hide interface, ID = ${am.id} -->
-            </small>
-        </div>
+        let snippet = `<div class="uom-ui-border-box uom-ui-add-border-radius" style="border-color:  #22765f; clear: both">
+    <h3 style="color:  #22765f;"><i class="fab fa-youtube fa-fw"></i> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h3>
+    <p class="yt-desc">${am.video.description}</p>
+    <div style="position: relative; padding-bottom: ${am.video.ratio}%;">
+        <div id="yt-placeholder" class="vjs-tech" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
     </div>
-</div>
-<!-- End of YouTube video box -->`;
+    <div style="text-align: right;"><small>${am.attribution.username} (${am.video.published}). <em>${am.title}</em> [Video]. YouTube. https://www.youtube.com/watch?v=${am.id}</small></div>
+</div>`;
         return snippet;
     }
 
