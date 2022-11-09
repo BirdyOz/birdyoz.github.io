@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   gbird
- * @Last Modified time: 2022-11-09 13:35:39
+ * @Last Modified time: 2022-11-09 14:38:21
  */
 
 $(function() {
@@ -149,10 +149,10 @@ $(function() {
         am.prefs.org = url.searchParams.get("org");
         am.prefs.layout = url.searchParams.get("layout");
 
-
+        if (am.prefs.org === 'uom'){am.prefs.layout = 'vanilla'}
 
         // If I am Melb Poly, UoM or Vanilla, do not allow attribution to be collpased.
-        if (am.prefs.org === 'mp' || am.prefs.org === 'uom' || am.prefs.layout === 'vanilla') {
+        if (am.prefs.org === 'mp'  || am.prefs.layout === 'vanilla') {
             am.prefs.collapsed = false;
             $('#collapser').addClass("d-none");
             $('#collapser').removeClass("d-inline-block");
@@ -161,7 +161,7 @@ $(function() {
 
 
         // Toggle between BS4 or Vanilla
-        if (am.prefs.layout === 'vanilla') {
+        if (am.prefs.layout === 'vanilla' || am.prefs.org === 'uom') {
             $('#vanilla').attr('checked', 'checked').trigger("click");
             $('.maker-copy figure,.maker-copy img').removeAttr('class');
         } else {
