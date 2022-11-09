@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   gbird
- * @Last Modified time: 2022-11-09 14:42:20
+ * @Last Modified time: 2022-11-09 14:59:04
  */
 
 $(function() {
@@ -151,7 +151,7 @@ $(function() {
 
         if (am.prefs.org === 'uom') {
             am.prefs.layout = 'vanilla';
-            $('*layout').hide();
+            $('#layout').hide();
             $('#overlay-container').hide();
         }
 
