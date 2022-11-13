@@ -1,8 +1,8 @@
 /*
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
- * @Last Modified by:   gbird
- * @Last Modified time: 2022-11-09 14:59:04
+ * @Last Modified by:   BirdyOz
+ * @Last Modified time: 2022-11-14 08:56:27
  */
 
 $(function() {
@@ -122,6 +122,7 @@ $(function() {
 
     let player; // YouTube player API
 
+    $('#uom-bookmark').hide();
 
     // Get URL parameters
     url_string = window.location.href;
@@ -130,6 +131,7 @@ $(function() {
         // Get image address
         url = new URL(url_string);
         am.url = url.searchParams.get("addr");
+        console.log("@GB: am.url = ", am.url);
         am.site = supported.find(item => am.url.includes(item.baseurl));
 
 
@@ -153,6 +155,9 @@ $(function() {
             am.prefs.layout = 'vanilla';
             $('#layout').hide();
             $('#overlay-container').hide();
+             // Show UoM bookmarklet
+            $('#uom-bookmark').show();
+            $('#am-bookmark').hide();
         }
 
         // If I am Melb Poly, UoM or Vanilla, do not allow attribution to be collpased.
