@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-05-16 13:23:22
+ * @Last Modified time: 2023-05-16 13:32:36
  */
 
 /*jshint esversion: 8 */
@@ -698,23 +698,30 @@ $(function () {
     return snippet;
   }
 
-  // If am.prefs.Org = MP, return Melb Poly embed code
-  function mpSnippet(i) {
-    let snippet = `<img src="${am.image.preview}" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${am.title !== null ? ` title="${am.title}"` : ""}>
-<figcaption class="figure-caption text-muted small fw-lighter">
-    <small><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
-</figcaption>
-`;
-    return snippet;
-  }
 
   // If am.prefs.Org = uom, return Melb Uni embed code
   function vanillaSnippet(i) {
     let snippet = `<img src="${am.image.preview}" style="width:100%" alt="${am.image.alt}"${am.title !== null ? ` title="${am.title}"` : ""}>
 <figcaption style="font-size: 0.9em; color:#666; text-align: right">
-  <details><summary style = 'font-size: 0.8em'>Show attribution</summary>
+  ${am.prefs.collapsed
+        ? `<details><summary style = 'font-size: 0.8em'>Show attribution</summary>`:""
+    }
     <small><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
+  ${am.prefs.collapsed
+        ? `</details>`:""
+    }
   </details>
+</figcaption>
+`;
+    return snippet;
+  }
+
+
+  // If am.prefs.Org = MP, return Melb Poly embed code
+  function mpSnippet(i) {
+    let snippet = `<img src="${am.image.preview}" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${am.title !== null ? ` title="${am.title}"` : ""}>
+<figcaption class="figure-caption text-muted small fw-lighter">
+    <small><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
 </figcaption>
 `;
     return snippet;
