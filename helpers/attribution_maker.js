@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2022-11-14 08:56:27
+ * @Last Modified time: 2023-05-16 13:23:22
  */
 
 /*jshint esversion: 8 */
@@ -208,7 +208,7 @@ $(function () {
     if (am.prefs.org === "uom") {
       am.prefs.layout = "vanilla";
       $("#bootstrap").addClass("invisible");
-      $("#overlay-container").hide();
+      // $("#overlay-container").hide();
       // Show UoM bookmarklet
       $("#uom-bookmark").show();
       $("#am-bookmark").hide();
@@ -216,9 +216,9 @@ $(function () {
 
     // If I am Melb Poly, UoM or Vanilla, do not allow attribution to be collpased.
     if (am.prefs.org === "mp" || am.prefs.layout === "vanilla") {
-      am.prefs.collapsed = false;
-      $("#collapser").addClass("d-none");
-      $("#collapser").removeClass("d-inline-block");
+      // am.prefs.collapsed = false;
+      // $("#collapser").addClass("d-none");
+      // $("#collapser").removeClass("d-inline-block");
       $(".bootstrap-only").hide();
     }
 
@@ -711,8 +711,10 @@ $(function () {
   // If am.prefs.Org = uom, return Melb Uni embed code
   function vanillaSnippet(i) {
     let snippet = `<img src="${am.image.preview}" style="width:100%" alt="${am.image.alt}"${am.title !== null ? ` title="${am.title}"` : ""}>
-<figcaption style="font-size: 0.9em; opacity: 0.5; text-align: right">
+<figcaption style="font-size: 0.9em; color:#666; text-align: right">
+  <details><summary style = 'font-size: 0.8em'>Show attribution</summary>
     <small><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
+  </details>
 </figcaption>
 `;
     return snippet;

@@ -2,8 +2,9 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2020-01-14 11:17:23
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2022-07-12 09:34:41
+* @Last Modified time: 2023-05-11 14:35:09
 */
+
 
 
 /* ==========================================================================
@@ -22,29 +23,18 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 /* ==========================================================================
-   FRONTPAGE
+   LOGIN Screen (/login/index.php)
    ========================================================================== */
+
+/*Not logged in */
+#page-login-index.notloggedin .snap-login-row {
+    background-color: rgba(255, 255, 255, .9)
+}
 
 /*Not logged in - hide search box*/
 #page-site-index.notloggedin .search-input-wrapper {
     display: none;
 }
-
-/*Logged in - hide search box*/
-#page-site-index:not(.notloggedin) .sitetopic {
-    display: none;
-}
-
-
-/* ==========================================================================
-   LOGIN Screen (/login/index.php)
-   ========================================================================== */
-
-/*Not logged in - hide search box*/
-#page-login-index.notloggedin .snap-login-row {
-    background-color: rgba(255, 255, 255, .9)
-}
-
 
 
 
@@ -77,7 +67,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: black;
 }
 
-/* Current marker */
+/* Current marker - Add a 'you are here' icon */
 #snap-course-wrapper #chapters li.snap-visible-section .chapter-title:before {
     font-family: FontAwesome;
     content: "\f0da";
@@ -91,7 +81,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #666;
 }
 
-/* Conditional marker */
+/* Conditional marker - show lock symbol */
 #snap-course-wrapper #chapters li.conditional .chapter-title:before {
     font-family: FontAwesome;
     color: #666;
@@ -108,9 +98,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: maroon !important;
 }
 
-
-
-/* Hidden marker */
+/* Hidden marker - show closed eyeball symbol */
 #snap-course-wrapper #chapters li.draft .chapter-title:before,
 .snap-draft-tag:before,
 .coursecard-body .published-status:before {
@@ -138,8 +126,38 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 
 /* ==========================================================================
-   ICON REPLACEMENTS
+   VIEWPORT OVERRIDES FOR DIFFERENT RESPONSIVE SIZES
    ========================================================================== */
+
+
+/* GIVEN SIZE OR LARGER */
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) { ... }
+
+/*Medium devices (tablets, 768px and up)*/
+/*@media (min-width: 768px) { ... }*/
+
+/*Large devices (desktops, 992px and up)*/
+/*@media (min-width: 992px) { ... }*/
+
+/*Extra large devices (large desktops, 1200px and up)*/
+/*@media (min-width: 1200px) { ... }*/
+
+
+
+/* GIVEN SIZE OR SMALLER */
+/*Extra small devices (portrait phones, less than 576px)*/
+/* @media (max-width: 575.98px) { ... }*/
+
+/*Small devices (landscape phones, less than 768px)*/
+/* @media (max-width: 767.98px) { ... }*/
+
+/*Medium devices (tablets, less than 992px)*/
+/*@media (max-width: 991.98px) { ... }*/
+
+/*Large devices (desktops, less than 1200px)*/
+/*@media (max-width: 1199.98px) { ... }*/
+
 
 
 /* ==========================================================================
@@ -232,7 +250,7 @@ ul.nav {
    CPP CUSTOMISATIONS - THEME OVERRIDES
    ========================================================================== */
 
-
+/* CUSTOM BANER, DESIGN AND LAYOUT FOR CPP (courses in Category 925) */
 
 .category-925 a#snap-home {
     background-image: url('https://www.certifiedprincipal.org/assets/images/dest/cpp/cpp-logo.svg') !important;
