@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7CMJQYBRMJ"></script>
+    <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-7CMJQYBRMJ'); </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="#">
+    <meta name="author" content="#">
+    <title>@BirdyOz: Button experiments</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css" integrity="sha512-q3eWabyZPc1XTCmF+8/LuE1ozpg5xxn7iO89yfSOd5/oKvyqLngoNGsx8jq92Y8eXJ/IRxQbEC+FGSYxtk2oiw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="rcrop/dist/rcrop.min.css" media="screen" rel="stylesheet" type="text/css">
+    <script src="https://www.youtube.com/iframe_api"></script>
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="col-auto mr-auto">
+                <small>Layout style: (Some features only for Bootstrap) </small><br>
+                <div id="prefs-layout" class="btn-group btn-group-sm" role="group" aria-label="Layout">
+                    <button type="button" data-attribute-prefs='{"layout": "bootstrap"}' id="layout-bootstrap" class="btn btn-outline-primary">Bootstrap</button>
+                    <button type="button" data-attribute-prefs='{"layout": "inline"}' id="layout-inline" class="btn btn-outline-primary">Inline CSS</button>
+                </div>
+            </div>
+            <div class="col-auto">
+                <small>Attribution: </small><br>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Attribution">
+                    <button type="button" data-attribute-prefs='{"attribution": "collapsed"}' id="attribution-collapsed" class="btn btn-outline-primary">Collapsed</button>
+                    <button type="button" data-attribute-prefs='{"attribution": "shown"}' id="attribution-shown" class="btn btn-outline-primary">Shown</button>
+                </div>
+            </div>
+            <div class="col-auto">
+                <small>Relative size: </small><br>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Relative size">
+                    <button type="button" data-attribute-prefs='{"percent":50,"cols":"col-6"}' id="percent-50" class="btn btn-outline-primary">50%</button>
+                    <button type="button" data-attribute-prefs='{"percent":42,"cols":"col-5"}' id="percent-42" class="btn btn-outline-primary">42%</button>
+                    <button type="button" data-attribute-prefs='{"percent":33,"cols":"col-4"}' id="percent-33" class="btn btn-outline-primary">33%</button>
+                    <button type="button" data-attribute-prefs='{"percent":25,"cols":"col-3"}' id="percent-25" class="btn btn-outline-primary">25%</button>
+                    <button type="button" data-attribute-prefs='{"percent":17,"cols":"col-2"}' id="percent-17" class="btn btn-outline-primary">17%</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <!-- /.container -->
+    <!-- Bootstrap core JavaScript ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js" integrity="sha256-0H3Nuz3aug3afVbUlsu12Puxva3CP4EhJtPExqs54Vg=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.3/moment.min.js" crossorigin="anonymous"></script>
+    <script>
+    $(document).ready(function() {
+        // Set default prefs
+        let prefs = {
+            org: "all",
+            percent: 42,
+            cols: "col-5",
+            attribution: "shown",
+            layout: "bootstrap"
+        };
+        // Get/set localstorage prefs
+        if ("Attribution-Maker-Prefs" in localStorage) {
+            prefs = JSON.parse(localStorage.getItem('Attribution-Maker-Prefs'));
+            console.log("@GB: prefs = ", prefs);
+        } else {
+            localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(prefs));
+        }
+        // Capture menu changes
+        $('.btn').on('click', function() {
+            $(this).siblings('button').removeClass('active');
+            $(this).addClass('active');
+            id = this.id;
+            keyval = id.split("-");
+            key = keyval[0];
+            val = keyval[1];
+            prefs[key] = val;
+            localPrefs = JSON.parse($(this).attr('data-attribute-prefs'));
+            console.log("@GB: localPrefs = ", localPrefs);
+            prefs = Object.assign(prefs, localPrefs);
+            console.log("@GB: Merged prefs = ", prefs);
+            localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(prefs));
+        });
+        $.each(prefs, function(key, value) {
+            target = `#${key}-${value}`;
+            console.log("@GB: target = ", target);
+            $(target).addClass('active');
+        });
+    });
+    </script>
+</body>
+
+</html>
