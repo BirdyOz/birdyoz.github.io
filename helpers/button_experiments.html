@@ -25,25 +25,25 @@
             <div class="col-auto mr-auto">
                 <small>Layout style: (Some features only for Bootstrap) </small><br>
                 <div id="prefs-layout" class="btn-group btn-group-sm" role="group" aria-label="Layout">
-                    <button type="button" data-attribute-prefs='{"layout": "bootstrap"}' id="layout-bootstrap" class="btn btn-outline-primary">Bootstrap</button>
-                    <button type="button" data-attribute-prefs='{"layout": "inline"}' id="layout-inline" class="btn btn-outline-primary">Inline CSS</button>
+                    <button type="button" data-prefs='{"layout": "bootstrap"}' id="layout-bootstrap" class="btn btn-outline-primary">Bootstrap</button>
+                    <button type="button" data-prefs='{"layout": "inline"}' id="layout-inline" class="btn btn-outline-primary">Inline CSS</button>
                 </div>
             </div>
             <div class="col-auto">
                 <small>Attribution: </small><br>
                 <div class="btn-group btn-group-sm" role="group" aria-label="Attribution">
-                    <button type="button" data-attribute-prefs='{"attribution": "collapsed"}' id="attribution-collapsed" class="btn btn-outline-primary">Collapsed</button>
-                    <button type="button" data-attribute-prefs='{"attribution": "shown"}' id="attribution-shown" class="btn btn-outline-primary">Shown</button>
+                    <button type="button" data-prefs='{"collapsed": true}' id="collapsed-true" class="btn btn-outline-primary">Collapsed</button>
+                    <button type="button" data-prefs='{"collapsed": false}' id="collapsed-false" class="btn btn-outline-primary">Shown</button>
                 </div>
             </div>
             <div class="col-auto">
                 <small>Relative size: </small><br>
                 <div class="btn-group btn-group-sm" role="group" aria-label="Relative size">
-                    <button type="button" data-attribute-prefs='{"percent":50,"cols":"col-6"}' id="percent-50" class="btn btn-outline-primary">50%</button>
-                    <button type="button" data-attribute-prefs='{"percent":42,"cols":"col-5"}' id="percent-42" class="btn btn-outline-primary">42%</button>
-                    <button type="button" data-attribute-prefs='{"percent":33,"cols":"col-4"}' id="percent-33" class="btn btn-outline-primary">33%</button>
-                    <button type="button" data-attribute-prefs='{"percent":25,"cols":"col-3"}' id="percent-25" class="btn btn-outline-primary">25%</button>
-                    <button type="button" data-attribute-prefs='{"percent":17,"cols":"col-2"}' id="percent-17" class="btn btn-outline-primary">17%</button>
+                    <button type="button" data-prefs='{"percent":50,"cols":"col-6"}' id="percent-50" class="btn btn-outline-primary">50%</button>
+                    <button type="button" data-prefs='{"percent":42,"cols":"col-5"}' id="percent-42" class="btn btn-outline-primary">42%</button>
+                    <button type="button" data-prefs='{"percent":33,"cols":"col-4"}' id="percent-33" class="btn btn-outline-primary">33%</button>
+                    <button type="button" data-prefs='{"percent":25,"cols":"col-3"}' id="percent-25" class="btn btn-outline-primary">25%</button>
+                    <button type="button" data-prefs='{"percent":17,"cols":"col-2"}' id="percent-17" class="btn btn-outline-primary">17%</button>
                 </div>
             </div>
         </div>
@@ -58,40 +58,83 @@
     <script src="https://cdn.jsdelivr.net/npm/moment@2.29.3/moment.min.js" crossorigin="anonymous"></script>
     <script>
     $(document).ready(function() {
+        let am = {
+            url: "",
+            id: "",
+            title: null,
+            today: "",
+            image: {
+                name: "Photo", //Default resource type
+                orig: "",
+                preview: "",
+                cropped: "",
+                alt: "",
+                download: {
+                    large: "",
+                    small: "",
+                    endpoint: "" //For Unsplash, to trigger download enpoint
+                }
+            },
+            video: {
+                timecode: "00:00:00",
+                duration: 0,
+                playtime: 0,
+                embeddable: true,
+                description: "",
+                params: "",
+                thumb: "",
+                aspect: "16/9",
+                ratio: 56.25,
+                published: ""
+            },
+            attribution: {
+                username: "",
+                userUrl: ""
+            },
+            prefs: {
+                org: null,
+                cols: "col-5",
+                percent: 42,
+                collapsed: true,
+                layout: "bootstrap",
+                date: ""
+            }
+        };
         // Set default prefs
         let prefs = {
             org: "all",
             percent: 42,
             cols: "col-5",
-            attribution: "shown",
-            layout: "bootstrap"
+            collapsed: true,
+            layout: "bootstrap",
+            date: ""
         };
+        am.prefs.date = new Date().toString();
+        console.log("@GB: am = ", am);
         // Get/set localstorage prefs
         if ("Attribution-Maker-Prefs" in localStorage) {
-            prefs = JSON.parse(localStorage.getItem('Attribution-Maker-Prefs'));
-            console.log("@GB: prefs = ", prefs);
-        } else {
-            localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(prefs));
+            am.prefs = JSON.parse(localStorage.getItem('Attribution-Maker-Prefs'));
+            console.log("@GB: LocalStorage prefs = ", prefs);
         }
         // Capture menu changes
         $('.btn').on('click', function() {
             $(this).siblings('button').removeClass('active');
             $(this).addClass('active');
-            id = this.id;
-            keyval = id.split("-");
-            key = keyval[0];
-            val = keyval[1];
-            prefs[key] = val;
-            localPrefs = JSON.parse($(this).attr('data-attribute-prefs'));
-            console.log("@GB: localPrefs = ", localPrefs);
-            prefs = Object.assign(prefs, localPrefs);
-            console.log("@GB: Merged prefs = ", prefs);
-            localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(prefs));
+            // Get button prefs
+            localPrefs = JSON.parse($(this).attr('data-prefs'));
+            // Merge with prefs
+            am.prefs = Object.assign(am.prefs, localPrefs);
+            console.log("@GB: am = ", am);
+            am.prefs.date = new Date().toString();
+            // Set localStorage
+            localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(am.prefs));
         });
-        $.each(prefs, function(key, value) {
-            target = `#${key}-${value}`;
-            console.log("@GB: target = ", target);
-            $(target).addClass('active');
+        $.each(am.prefs, function(key, value) {
+            if ("date" !== key) {
+                target = `#${key}-${value}`;
+                console.log("@GB: target = ", target);
+                $(target).addClass('active');
+            }
         });
     });
     </script>
