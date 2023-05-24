@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-05-23 10:30:03
+ * @Last Modified time: 2023-05-24 15:54:28
  */
 
 /*jshint esversion: 8 */
@@ -48,7 +48,7 @@ $(function() {
             percent: "42",
             collapsed: true,
             layout: "bootstrap",
-            classes: ["border","bg-light","shadow"]
+            classes: []
         },
     };
 
@@ -200,7 +200,6 @@ $(function() {
         // Detect organisation.
         // Allows for different attribution 'recipes' for different organsiations (eg MP).
         am.prefs.org = url.searchParams.get("org");
-        am.prefs.layout = url.searchParams.get("layout");
 
         if (am.prefs.org === "uom") {
             am.prefs.layout = "vanilla";
@@ -536,11 +535,10 @@ $(function() {
         am.prefs = Object.assign(am.prefs, localPrefs);
         am.prefs.date = new Date().toString();
 
+        // if I change layout, refresh the page, otherwise BuildHTML
+
         // Set localStorage
         localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(am.prefs));
-
-
-        // if i change layout, refresh the page, otherwise BuildHTML
 
         if (this.id.includes("layout-")) {
             window.location.href = url;
@@ -548,19 +546,19 @@ $(function() {
     });
 
     // Capture preference changes
-    $('#update-prefs input').change(function(){
-
-        console.log("@GB: this = ", this);
+    $('#update-prefs input').change(function() {
 
         // Get button prefs
-        localPrefs = JSON.parse($(this).attr('data-prefs'));
-
-        // // Merge with am.prefs
-        // am.prefs = Object.assign(am.prefs, localPrefs);
-        // am.prefs.date = new Date().toString();
-
-        // // Set localStorage
-        // localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(am.prefs));
+        localPrefs = $(this).attr('data-prefs');
+        console.log("@GB: localPrefs = ", localPrefs);
+        if (this.checked) {
+            am.prefs.classes.push(localPrefs);
+        } else {
+            am.prefs.classes = am.prefs.classes.filter(f => f !== localPrefs);
+        }
+        // Set localStorage
+        localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(am.prefs));
+        buildHTML();
 
     });
 
@@ -819,14 +817,20 @@ $(function() {
 
     // Build images into interface
     function buildHTML() {
-       console.log("@GB: am.prefs = ", am.prefs);
         // Set active buttons, based on am.prefs
         $.each(am.prefs, function(key, value) {
             // Exclude date to avoid JS error
-            if ("date" !== key) {
+            if (key !== "date") {
                 target = `#${key}-${value}`;
+                console.log("@GB: target = ", target);
                 $(target).addClass('active');
             }
+        });
+        // Set active buttons, based on am.prefs.classes
+        $.each(am.prefs.classes, function(key, value) {
+            target = `#prefs-${value}`;
+            console.log("@GB: target = ", target);
+            $(target).prop('checked', true);
         });
 
 
@@ -839,10 +843,10 @@ $(function() {
             $('.bootstrap-only').hide();
             snippet = vanillaSnippet;
         } else {
-            // remove BS4, remove styles
+            // For BS4, remove styles
             $(".maker-copy figure,.maker-copy img").removeAttr("style");
-            $(".maker-floated>figure").removeClass("col-6 col-5 col-4 col-3 col-2")
-                .addClass(am.prefs.cols);
+            $(".maker-floated>figure").removeClass("col-6 col-5 col-4 col-3 col-2").addClass(am.prefs.cols);
+            $(".rounded").removeClass("border shadow bg-light").addClass(am.prefs.classes.join(" "));
             snippet = embedSnippet;
 
         }
@@ -899,6 +903,9 @@ $(function() {
             $img.rcrop("resize", inputs.width.val(), inputs.height.val(), inputs.x.val(), inputs.y.val());
             fill();
         });
+
+        // Set localStorage
+        localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(am.prefs));
     }
 
     function onYouTubeIframeAPIReady() {
