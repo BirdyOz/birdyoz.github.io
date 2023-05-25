@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-05-24 15:54:28
+ * @Last Modified time: 2023-05-25 15:54:59
  */
 
 /*jshint esversion: 8 */
@@ -48,7 +48,7 @@ $(function() {
             percent: "42",
             collapsed: true,
             layout: "bootstrap",
-            classes: []
+            classes: ["border", "bg-light"]
         },
     };
 
@@ -520,6 +520,22 @@ $(function() {
         am.prefs = JSON.parse(localStorage.getItem('Attribution-Maker-Prefs'));
     }
 
+    // Set active buttons, based on am.prefs
+    $.each(am.prefs, function(key, value) {
+        // Exclude date to avoid JS error
+        if (key !== "date") {
+            target = `#${key}-${value}`;
+            console.log("@GB: target = ", target);
+            $(target).addClass('active');
+        }
+    });
+    // Set active buttons, based on am.prefs.classes
+    $.each(am.prefs.classes, function(key, value) {
+        target = `#prefs-${value}`;
+        console.log("@GB: Radio button target = ", target);
+        $(target).prop('checked', true);
+    });
+
     // Capture preference changes
     $('#update-prefs .btn').on('click', function() {
 
@@ -817,21 +833,6 @@ $(function() {
 
     // Build images into interface
     function buildHTML() {
-        // Set active buttons, based on am.prefs
-        $.each(am.prefs, function(key, value) {
-            // Exclude date to avoid JS error
-            if (key !== "date") {
-                target = `#${key}-${value}`;
-                console.log("@GB: target = ", target);
-                $(target).addClass('active');
-            }
-        });
-        // Set active buttons, based on am.prefs.classes
-        $.each(am.prefs.classes, function(key, value) {
-            target = `#prefs-${value}`;
-            console.log("@GB: target = ", target);
-            $(target).prop('checked', true);
-        });
 
 
         // Toggle between BS4 or Vanilla
