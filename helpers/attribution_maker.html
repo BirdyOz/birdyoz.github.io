@@ -44,7 +44,7 @@
         </div>
     </nav>
     <br>
-    <div class="alert alert-warning d-block clearfix mt-4 small">Did you know, that the Attribution Maker now also works for YouTube videos? Just visit your chosen YouTube video then click on <strong>'Attribution Maker +'</strong> </div>
+    <div class="alert alert-warning d-block clearfix mt-4 small">The Attribution Maker+ now remembers your last setting and will use these as the default, the next time you use it.</div>
     <div class="clearfix"></div>
     <!-- Marketing messaging and featurettes ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
@@ -116,38 +116,48 @@
         <div id="am-images" class="sitenav clearfix container-fluid w-100">
 
             <hr>
-
-
-            <div class="bg-light p-3 border">
-                <div id="layout" class="d-inline-block mr-2">
-                    <div class="small">Layout style: (Some features only available under Bootstrap)</div>
-                    <div class="btn-group btn-group-toggle" data-toggle="buttons"> <label class="btn btn-outline-primary btn-sm"> <input type="radio" name="options" id="bootstrap" value="bootstrap"> Bootstrap 4+ (Moodle) </label> <label class="btn btn-outline-primary btn-sm"> <input type="radio" name="options" id="vanilla" value="vanilla"> Inline CSS (Canvas/others) </label> </div>
+            <div id="update-prefs" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="col-auto mr-auto">
+                    <small>Layout style: (Some features only for Bootstrap) </small><br>
+                    <div id="prefs-layout" class="btn-group btn-group-sm" role="group" aria-label="Layout">
+                        <button type="button" data-prefs='{"layout": "bootstrap"}' id="layout-bootstrap" class="btn btn-outline-primary">Bootstrap</button>
+                        <button type="button" data-prefs='{"layout": "vanilla"}' id="layout-vanilla" class="btn btn-outline-primary">Inline CSS</button>
+                    </div>
                 </div>
-                <div class="float-right">
-
-                    <!-- Start of collapser -->
-                    <div id="collapser" class="d-inline-block mr-2">
-                        <div class="small">Image attribution: </div>
-                        <div id="source-open" class="btn-group btn-group-toggle start-hidden" data-toggle="buttons"> <label class="btn btn-sm btn-outline-primary start-hidden"> <input id="start-hidden" type="radio" name="options" autocomplete="off" value="Collapsed" checked> Collapsed </label> <label class="btn btn-sm btn-outline-primary start-shown"> <input id="start-shown" type="radio" name="options" autocomplete="off" value="Shown"> Shown </label> </div>
+                <div class="col-auto">
+                    <small>Attribution: </small><br>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Attribution">
+                        <button type="button" data-prefs='{"collapsed": true}' id="collapsed-true" class="btn btn-outline-primary">Collapsed</button>
+                        <button type="button" data-prefs='{"collapsed": false}' id="collapsed-false" class="btn btn-outline-primary">Shown</button>
                     </div>
-                    <!-- End of image collapser -->
-
-                    <!-- Start of image resizer -->
-                    <div id="resizer" class="d-inline-block mr-2">
-                        <div class="small">Relative size of floated images: </div>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons"> <label class="btn btn-sm btn-outline-primary col-6"> <input id="col-6" type="radio" name="options" autocomplete="off" value="50%"> 50% </label> <label class="btn btn-sm btn-outline-primary col-5"> <input id="col-5" type="radio" name="options" autocomplete="off" value="42%" checked> 42% </label> <label class="btn btn-sm btn-outline-primary col-4"> <input id="col-4" type="radio" name="options" autocomplete="off" value="33%"> 33% </label> <label class="btn btn-sm btn-outline-primary col-3"> <input id="col-3" type="radio" name="options" autocomplete="off" value="25%"> 25% </label> <label class="btn btn-sm btn-outline-primary col-2"> <input id="col-2" type="radio" name="options" autocomplete="off" value="17%"> 17% </label> </div>
+                </div>
+                <div class="col-auto">
+                    <small>Relative size: </small><br>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Relative size">
+                        <button type="button" data-prefs='{"percent":50,"cols":"col-6"}' id="percent-50" class="btn btn-outline-primary">50%</button>
+                        <button type="button" data-prefs='{"percent":42,"cols":"col-5"}' id="percent-42" class="btn btn-outline-primary">42%</button>
+                        <button type="button" data-prefs='{"percent":33,"cols":"col-4"}' id="percent-33" class="btn btn-outline-primary">33%</button>
+                        <button type="button" data-prefs='{"percent":25,"cols":"col-3"}' id="percent-25" class="btn btn-outline-primary">25%</button>
+                        <button type="button" data-prefs='{"percent":17,"cols":"col-2"}' id="percent-17" class="btn btn-outline-primary">17%</button>
                     </div>
-                    <!-- End of image resizer -->
-
+                </div>
+                <div class="col-auto bootstrap-only">
+                    <div class="custom-control custom-switch small">
+                        <input type="checkbox" class="custom-control-input" data-prefs='border' id="prefs-border" > <label class="custom-control-label" for="prefs-border">Border</label> </div>
+                    <div class="custom-control custom-switch small">
+                        <input type="checkbox" class="custom-control-input" data-prefs='bg-light' id="prefs-bg-light"> <label class="custom-control-label" for="prefs-bg-light">Background</label> </div>
+                    <div class="custom-control custom-switch small">
+                        <input type="checkbox" class="custom-control-input" data-prefs='shadow' id="prefs-shadow"> <label class="custom-control-label" for="prefs-shadow">Shadow</label> </div>
                 </div>
             </div>
+
             <!-- START THE FEATURETTES -->
             <!-- .maker-fr -->
             <hr class="featurette-divider clearfix" id="right">
             <div class="clearfix container-fluid">
                 <div class="maker-copy maker-floated maker-fr">
 <!-- Start of Image Embed - Float Right (Embed code by @BirdyOz) -->
-<figure class="figure border rounded p-1 bg-light text-right float-right col-5 ml-4" style="margin: 0 0 1rem 1rem; width: 42%; float: right;">
+<figure class="figure rounded p-1 text-right float-right col-5 ml-4" style="margin: 0 0 1rem 1rem; width: 42%; float: right;">
     <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid" style="width: 100%;">
 </figure>
 <!-- End of Image Embed - Float Right -->
@@ -165,7 +175,7 @@
             <div class="clearfix">
                 <div class="maker-copy maker-floated maker-fl">
 <!-- Start of Image Embed - Float Left (Embed code by @BirdyOz) -->
-<figure class="figure border rounded p-1 bg-light text-right float-left col-5 mr-4" style="margin: 0 1rem 1rem 0; width: 42%; float: left;">
+<figure class="figure rounded p-1 text-right float-left col-5 mr-4" style="margin: 0 1rem 1rem 0; width: 42%; float: left;">
     <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid">
 </figure>
 <!-- End of Image Embed - Float Left -->
@@ -186,7 +196,7 @@
                 <div class="clearfix">
                     <div class="maker-copy maker-lg">
 <!-- Start of Image Embed - Full width (Embed code by @BirdyOz) -->
-<figure class="figure border rounded p-1 bg-light text-right w-100" style="margin: 0; width: 100%; clear: both;">
+<figure class="figure rounded p-1 text-right w-100" style="margin: 0; width: 100%; clear: both;">
     <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100">
 </figure>
 <!-- End of Image Embed - Full width -->
@@ -202,7 +212,7 @@
                 <p class="lead">Image and quotation are in a card that occupies 80% of the screen. The quote and attribution are customisable, by using the input fields below the image</p>
                 <div class="maker-copy maker-quote">
 <!-- Start of Image Embed - Image Card, with Quote and attribution (Embed code by @BirdyOz) -->
-<div class="card col-10 p-0 shadow rounded mt-4 mb-4 mr-auto ml-auto">
+<div class="card col-10 p-0 rounded mt-4 mb-4 mr-auto ml-auto">
     <figure class="figure p-0 text-right w-100 p-1">
         <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100">
     </figure>
@@ -225,7 +235,7 @@
                 <p class="lead">Image and quotation are side-by-side in a card that occupies 100% of the screen. The quote and attribution are customisable, by using the input fields below the image</p>
                 <div class="maker-copy maker-quote-sxs">
 <!-- Start of Image Embed - Side-By-Side Image Card, with Quote and attribution (Embed code by @BirdyOz) -->
-<div class="card w-100 shadow rounded mt-4 mb-4">
+<div class="card w-100 rounded mt-4 mb-4">
     <div class="container-fluid m-0 p-0">
         <div class="row">
             <div class="col-lg">
@@ -265,7 +275,7 @@
                 <p>These cards tend to be a bit 'shout-ey' so use them sparingly.</p>
                 <div class="maker-copy maker-hero">
 <!-- Start of Image Embed - Image Card, with 'Hero text' (Embed code by @BirdyOz) -->
-<div class="card col-10 p-0 shadow rounded mt-4 mb-2 mr-auto ml-auto">
+<div class="card col-10 p-0 rounded mt-4 mb-2 mr-auto ml-auto">
     <figure class="figure p-0 text-right w-100 p-1">
         <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100"> </figure>
     <div class="card-body">
@@ -282,7 +292,7 @@
                 <p class="lead">Image and hero text are side-by-side in a card that occupies 100% of the screen. The text is customisable, by using the input fields below the image</p>
                 <div class="maker-copy maker-hero-sxs">
 <!-- Start of Image Embed - Side-By-Side Image Card, with 'Hero text' (Embed code by @BirdyOz) -->
-<div class="card w-100 shadow rounded mt-4 mb-4">
+<div class="card w-100 rounded mt-4 mb-4">
     <div class="container-fluid m-0 p-0">
         <div class="row">
             <div class="col-lg">
@@ -313,7 +323,7 @@
                 <div class="maker-copy maker-ov">
 <!-- Start of Image Embed - Full width, with text overlay (Embed code by @BirdyOz) -->
 <div class="maker-overlay" style="position: relative;">
-    <figure class="figure border rounded p-1 bg-light text-right w-100">
+    <figure class="figure p-1 text-right w-100 rounded">
         <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100">
     </figure>
     <div class="text-overlay" style="text-align: center; color: white !important; text-shadow: 2px 2px 4px #000000; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%">
@@ -351,7 +361,7 @@
                     <div class="clearfix">
                         <div class="maker-copy maker-cropped">
 <!-- Start of Image Embed - Cropped (Embed code by @BirdyOz) -->
-<figure class="figure border rounded p-1 bg-light text-right w-100" style="margin: 0; width: 100%; clear: both;">
+<figure class="figure p-1 text-right w-100 rounded" style="margin: 0; width: 100%; clear: both;">
     <img id="image-cropped" src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Cropped+image+will+go+here" class="img-responsive img-fluid w-100">
 </figure>
 <!-- End of Image Embed - Cropped -->
