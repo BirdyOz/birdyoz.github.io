@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-05-25 16:01:25
+ * @Last Modified time: 2023-05-26 16:22:29
  */
 
 /*jshint esversion: 8 */
@@ -49,7 +49,7 @@ $(function() {
             collapsed: true,
             layout: "bootstrap",
             classes: ["border", "bg-light"]
-        },
+        }
     };
 
     // Supported sites
@@ -200,22 +200,13 @@ $(function() {
         // Detect organisation.
         // Allows for different attribution 'recipes' for different organsiations (eg MP).
         am.prefs.org = url.searchParams.get("org");
+        url.searchParams.delete("org");
+        console.log("@GB: url = ", url);
 
-        if (am.prefs.org === "uom") {
-            am.prefs.layout = "vanilla";
-            $("#bootstrap").addClass("invisible");
-            // $("#overlay-container").hide();
-            // Show UoM bookmarklet
-            $("#uom-bookmark").show();
-            $("#am-bookmark").hide();
-        }
 
         // If I am Melb Poly, UoM or Vanilla, do not allow attribution to be collpased.
-        if (am.prefs.org === "mp" || am.prefs.layout === "vanilla") {
-            // am.prefs.collapsed = false;
-            // $("#collapser").addClass("d-none");
-            // $("#collapser").removeClass("d-inline-block");
-            $(".bootstrap-only").hide();
+        if (am.prefs.org === "uom") {
+          am.prefs.layout = "vanilla";
         }
 
 
@@ -553,13 +544,16 @@ $(function() {
 
         // if I change layout, refresh the page, otherwise BuildHTML
 
-        // Set localStorage
-        localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(am.prefs));
 
         if (this.id.includes("layout-")) {
+            am.prefs.org = null;
             window.location.href = url;
         } else { buildHTML(); }
+
+        // Set localStorage
+        localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(am.prefs));
     });
+
 
     // Capture preference changes
     $('#update-prefs input').change(function() {
@@ -577,6 +571,15 @@ $(function() {
         buildHTML();
 
     });
+
+    // Reset prefs button
+    $('#prefs-reset').on('click', function() {
+        localStorage.clear();
+        window.location.href = url;
+    });
+
+
+
 
     $("button.embed").click(function(event) {
         event.preventDefault();
@@ -837,7 +840,6 @@ $(function() {
 
         // Toggle between BS4 or Vanilla
         if (am.prefs.layout === "vanilla" || am.prefs.org === "uom") {
-
             // For vanilla, remove BS classes
             $(".maker-copy figure,.maker-copy img").removeAttr("class");
             $(".maker-floated > figure").css("width", `${am.prefs.percent}%`);
@@ -849,7 +851,6 @@ $(function() {
             $(".maker-floated>figure").removeClass("col-6 col-5 col-4 col-3 col-2").addClass(am.prefs.cols);
             $(".rounded").removeClass("border shadow bg-light").addClass(am.prefs.classes.join(" "));
             snippet = embedSnippet;
-
         }
 
         //
@@ -905,8 +906,6 @@ $(function() {
             fill();
         });
 
-        // Set localStorage
-        localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(am.prefs));
     }
 
     function onYouTubeIframeAPIReady() {
