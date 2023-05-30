@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-05-26 16:22:29
+ * @Last Modified time: 2023-05-30 12:52:43
  */
 
 /*jshint esversion: 8 */
@@ -48,7 +48,12 @@ $(function() {
             percent: "42",
             collapsed: true,
             layout: "bootstrap",
-            classes: ["border", "bg-light"]
+            classes: ["border"],
+            styles: {
+                "border": "1px solid #dee2e6",
+                "padding": "2px",
+                "border-radius": "0.25rem"
+            }
         }
     };
 
@@ -206,7 +211,7 @@ $(function() {
 
         // If I am Melb Poly, UoM or Vanilla, do not allow attribution to be collpased.
         if (am.prefs.org === "uom") {
-          am.prefs.layout = "vanilla";
+            am.prefs.layout = "vanilla";
         }
 
 
@@ -514,7 +519,7 @@ $(function() {
     // Set active buttons, based on am.prefs
     $.each(am.prefs, function(key, value) {
         // Exclude date to avoid JS error
-        if (key !== "date") {
+        if (['collapsed', 'cols', 'percent', 'layout'].includes(key)) {
             target = `#${key}-${value}`;
             console.log("@GB: target = ", target);
             $(target).addClass('active');
@@ -548,6 +553,7 @@ $(function() {
         if (this.id.includes("layout-")) {
             am.prefs.org = null;
             window.location.href = url;
+            console.log("@GB: window.location.href = ", window.location.href);
         } else { buildHTML(); }
 
         // Set localStorage
@@ -559,12 +565,17 @@ $(function() {
     $('#update-prefs input').change(function() {
 
         // Get button prefs
-        localPrefs = $(this).attr('data-prefs');
-        console.log("@GB: localPrefs = ", localPrefs);
+        localClasses = $(this).attr('data-prefs-classes');
+        localStyles = JSON.parse($(this).attr('data-prefs-styles'));
+        console.log("@GB: localStyles = ", localStyles);
         if (this.checked) {
-            am.prefs.classes.push(localPrefs);
+            am.prefs.classes.push(localClasses);
+            am.prefs.styles = Object.assign(am.prefs.styles, localStyles);
         } else {
-            am.prefs.classes = am.prefs.classes.filter(f => f !== localPrefs);
+            am.prefs.classes = am.prefs.classes.filter(f => f !== localClasses);
+            $.each(localStyles, function(key, data) {
+                delete am.prefs.styles[key];
+            });
         }
         // Set localStorage
         localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(am.prefs));
@@ -688,7 +699,7 @@ $(function() {
      */
 
     // Return appropriate Embed Code snippet
-    function embedSnippet(i) {
+    function bootstrapSnippet(i) {
         let snippet = `<img src="${am.image.preview}" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${am.title !== null ? ` title="${am.title}"` : ""}>
 <figcaption class="figure-caption text-muted small fw-lighter">
     <small>${
@@ -843,6 +854,10 @@ $(function() {
             // For vanilla, remove BS classes
             $(".maker-copy figure,.maker-copy img").removeAttr("class");
             $(".maker-floated > figure").css("width", `${am.prefs.percent}%`);
+            // Remove border, bg and shadow, before addding back waht is stored in prefs
+            $("figure").css({ "border": "", "box-shadow": "", "background-color": "" });
+            console.log("@GB: In Build HTML - am.prefs.styles = ", am.prefs.styles);
+            $("figure").css(am.prefs.styles);
             $('.bootstrap-only').hide();
             snippet = vanillaSnippet;
         } else {
@@ -850,7 +865,7 @@ $(function() {
             $(".maker-copy figure,.maker-copy img").removeAttr("style");
             $(".maker-floated>figure").removeClass("col-6 col-5 col-4 col-3 col-2").addClass(am.prefs.cols);
             $(".rounded").removeClass("border shadow bg-light").addClass(am.prefs.classes.join(" "));
-            snippet = embedSnippet;
+            snippet = bootstrapSnippet;
         }
 
         //
