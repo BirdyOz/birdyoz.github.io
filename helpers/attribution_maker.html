@@ -44,7 +44,7 @@
         </div>
     </nav>
     <br>
-    <div class="alert alert-warning d-block clearfix mt-4 small">The Attribution Maker+ now remembers your last setting and will use these as the default, the next time you use it.   <span class="float-right">Not working properly? <a id="prefs-reset" class="text-dark" href="#">Reset my preferences</a></span></div>
+    <div class="alert alert-warning d-block clearfix mt-4 small">The Attribution Maker+ now remembers your last setting and will use these as the default, the next time you use it.</div>
     <div class="clearfix"></div>
     <!-- Marketing messaging and featurettes ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
@@ -115,14 +115,16 @@
         <!-- #am-images -->
         <div id="am-images" class="sitenav clearfix container-fluid w-100">
 
+
             <hr>
             <div id="update-prefs" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="col-auto mr-auto">
-                    <small>Layout style: (Some features only for Bootstrap) </small><br>
+                    <small>Layout style: (Some features only for Bootstrap) <a href="#" class="text-danger" data-toggle="tooltip"  data-placement="right" data-html="true" title="Boostrap should be used for Moodle or any other site that uses Bootstrap 4. <br><br> For everywhere else (including Canvas), use inline">*</a></small><br>
                     <div id="prefs-layout" class="btn-group btn-group-sm" role="group" aria-label="Layout">
                         <button type="button" data-prefs='{"layout": "bootstrap"}' id="layout-bootstrap" class="btn btn-outline-primary">Bootstrap</button>
                         <button type="button" data-prefs='{"layout": "vanilla"}' id="layout-vanilla" class="btn btn-outline-primary">Inline CSS</button>
                     </div>
+                    <div class="text-muted mt-1"><small>Not working properly? <a id="prefs-reset" class="text-dark" href="#">Reset my preferences</a></small></div>
                 </div>
                 <div class="col-auto">
                     <small>Attribution: </small><br>
@@ -147,7 +149,7 @@
                     <div class="custom-control custom-switch small">
                         <input type="checkbox" class="custom-control-input" data-prefs-classes="bg-light" data-prefs-styles='{"background-color": "#f8f9fa"}' id="prefs-bg-light"> <label class="custom-control-label" for="prefs-bg-light">Background</label> </div>
                     <div class="custom-control custom-switch small">
-                        <input type="checkbox" class="custom-control-input" data-prefs-classes="shadow" data-prefs-styles='{"box-shadow": "0 .5rem 1rem rgba(0,0,0,.15)"}' id="prefs-shadow"> <label class="custom-control-label" for="prefs-shadow">Shadow</label> </div>
+                        <input type="checkbox" class="custom-control-input" data-prefs-classes="shadow" data-prefs-styles='{"box-shadow": "0 .5rem 1rem rgba(0,0,0,.15)"}' id="prefs-shadow"> <label class="custom-control-label" for="prefs-shadow">Shadow <a href="#" class="text-danger" data-toggle="tooltip"  data-placement="left" data-html="true" title="Not advised for Canvas.  It will strip out the shadow when you save the page.">*</a></label> </div>
                 </div>
             </div>
 

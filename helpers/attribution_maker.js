@@ -2,13 +2,16 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-05-30 12:52:43
+ * @Last Modified time: 2023-05-30 16:34:14
  */
 
 /*jshint esversion: 8 */
 
 $(function() {
     // Set Global vars
+
+    $('[data-toggle="tooltip"]').tooltip();
+
     let am = {
         url: "",
         id: "",
@@ -54,6 +57,9 @@ $(function() {
                 "padding": "2px",
                 "border-radius": "0.25rem"
             }
+        },
+        history: {
+
         }
     };
 
@@ -206,7 +212,6 @@ $(function() {
         // Allows for different attribution 'recipes' for different organsiations (eg MP).
         am.prefs.org = url.searchParams.get("org");
         url.searchParams.delete("org");
-        console.log("@GB: url = ", url);
 
 
         // If I am Melb Poly, UoM or Vanilla, do not allow attribution to be collpased.
@@ -489,7 +494,6 @@ $(function() {
             if (am.video.embeddable) {
                 if (am.prefs.org === "uom") {
                     snippet = uomytSnippet();
-                    console.log("@GB: snippet = ", snippet);
                 } else {
                     snippet = ytSnippet();
                 }
@@ -503,7 +507,6 @@ $(function() {
             }
 
             $("#am-yt-embed").html(snippet);
-            console.log("@GB: am = ", am);
 
             // Invoke YT API
             onYouTubeIframeAPIReady();
@@ -521,14 +524,12 @@ $(function() {
         // Exclude date to avoid JS error
         if (['collapsed', 'cols', 'percent', 'layout'].includes(key)) {
             target = `#${key}-${value}`;
-            console.log("@GB: target = ", target);
             $(target).addClass('active');
         }
     });
     // Set active buttons, based on am.prefs.classes
     $.each(am.prefs.classes, function(key, value) {
         target = `#prefs-${value}`;
-        console.log("@GB: Radio button target = ", target);
         $(target).prop('checked', true);
     });
 
@@ -538,7 +539,6 @@ $(function() {
         // Toggle other buttons
         $(this).siblings('button').removeClass('active');
         $(this).addClass('active');
-        console.log("@GB: this = ", this);
 
         // Get button prefs
         localPrefs = JSON.parse($(this).attr('data-prefs'));
@@ -553,7 +553,6 @@ $(function() {
         if (this.id.includes("layout-")) {
             am.prefs.org = null;
             window.location.href = url;
-            console.log("@GB: window.location.href = ", window.location.href);
         } else { buildHTML(); }
 
         // Set localStorage
@@ -567,7 +566,6 @@ $(function() {
         // Get button prefs
         localClasses = $(this).attr('data-prefs-classes');
         localStyles = JSON.parse($(this).attr('data-prefs-styles'));
-        console.log("@GB: localStyles = ", localStyles);
         if (this.checked) {
             am.prefs.classes.push(localClasses);
             am.prefs.styles = Object.assign(am.prefs.styles, localStyles);
@@ -601,7 +599,6 @@ $(function() {
         // If Cropped, replace image in embed code with dummy image
         if (id == ".maker-cropped") {
             paste = paste.replace(am.image.cropped, "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+cropped+image");
-            console.log("@GB: paste = ", paste);
         }
 
         // If Pixabay, replace image in embed code with dummy image
@@ -673,7 +670,6 @@ $(function() {
             newPlayTime -= startAt;
             am.video.params = am.video.params + "&amp;start=" + startAt;
         }
-        console.log("@GB: am.video.params = ", am.video.params);
         if (newPlayTime < am.video.duration) {
             newTimecode = getTimecode(newPlayTime);
             $("span.timecode").html(newTimecode);
@@ -848,7 +844,7 @@ $(function() {
     // Build images into interface
     function buildHTML() {
 
-
+        console.log("@GB: am = ", am);
         // Toggle between BS4 or Vanilla
         if (am.prefs.layout === "vanilla" || am.prefs.org === "uom") {
             // For vanilla, remove BS classes
@@ -856,7 +852,6 @@ $(function() {
             $(".maker-floated > figure").css("width", `${am.prefs.percent}%`);
             // Remove border, bg and shadow, before addding back waht is stored in prefs
             $("figure").css({ "border": "", "box-shadow": "", "background-color": "" });
-            console.log("@GB: In Build HTML - am.prefs.styles = ", am.prefs.styles);
             $("figure").css(am.prefs.styles);
             $('.bootstrap-only').hide();
             snippet = vanillaSnippet;
