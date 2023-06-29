@@ -1,0 +1,170 @@
+<!-- sort table -->
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" />
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.2/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.2/js/dataTables.bootstrap4.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $.noConflict();
+    // Defaults - Sort first column asc, 10 per page, filter is on
+    $("table.sortable").DataTable({});
+
+    // INVOKE THE reattemptQuiz() SCRIPT
+    const applyReattemptQuiz = false; // Set this to 'false' if you want to turn off Reattempt Quiz functionality
+
+    // Only run reattemptQuiz() if I am in a quiz and applyReattemptQuiz = true
+    if (applyReattemptQuiz && document.location.href.includes("mod/quiz")) {
+      reattemptQuiz();
+    }
+  });
+
+  // RE-ATTEMPT QUIZ JAVASCRIPT HACK
+  // HIDES CORRECTLY ANSWERED QUESTIONS FROM STUDENTS ON SUBSEQUENT ATTEMPTS
+  function reattemptQuiz() {
+    console.log("@GB: 'reattemptQuiz' script invoked");
+
+    // Only apply to 2023 and beyond
+    // Pull apart course title to grab the 2 digit year (eg. 2023 or ID23)
+    const regex = /(?:ID|20)(\d\d)\)/;
+    const courseTitle = $('.breadcrumb-nav a[href*="/course/view.php"')[0].text;
+    const year = 2000 + Number(courseTitle.match(regex)[1]);
+    console.log('@GB year: ', year)
+
+    // Establish whether student or teacher.  Do I have an admin cog?
+    const role = $("#admin-menu-trigger").length ? "teacher" : "student";
+    console.log('@GB role: ', role)
+
+    // Only invoke script If role is student and year is 2023 or greater
+    if (role == "student" && year >=2023) {
+
+      // CLEAR MEMORY UPON CONFIRMING SUBMIT ALL AND FINISH
+      if ($("body#page-mod-quiz-summary").length) {
+        $(document).click(function (event) {
+          var finalclear = event.target.value;
+          if (finalclear == "Submit all and finish") {
+            sessionStorage.clear();
+          }
+        });
+      }
+
+      // VIEW QUIZ PAGE
+      if ($("body#page-mod-quiz-view").length) {
+        console.log("@GB: I am inside a quiz");
+
+        // If reattempt button is visible
+        if ($("button:contains(Re-attempt quiz)").length) {
+          sessionStorage.setItem("reattempt", "reattempt");
+          //  check f I have read the results of the previous attempt and heve these stored in the session
+          var mfcondition1 = sessionStorage.getItem("reviewread") !== "reviewread";
+          // If false, force them to review, before they can re-attempt, so as to store the results
+          if (mfcondition1) {
+            $("button:contains(Re-attempt quiz)").text("Review your last attempt");
+            $("button:contains(Review your last attempt)").css("background-color", "#ef3e45");
+            $("button:contains(Review your last attempt)").css("color", "#fff");
+            $("button:contains(Review your last attempt)")
+              .off("click")
+              .on("click", function (e) {
+                url_lastreview = $(".quizattemptsummary tr:last td:last a").attr("href") + "&showall=1";
+                window.location.replace(url_lastreview);
+                e.preventDefault();
+              });
+          }
+        }
+      }
+      // Review page(s).  Store attempt locally is session variables,
+      // so correct items can be hidden from reattempt
+      if ($("body#page-mod-quiz-review").length) {
+        console.log("@GB: I am reviewing a quiz");
+        var noofquestions = String($(".que").length);
+        sessionStorage.setItem("noofquestions", noofquestions);
+        let correctCount = 0;
+        $(".que").each(function (i) {
+          if ($(this).hasClass("description")) {
+            return true;
+          } else {
+            var x = "correctornot" + $(this).find(".qno").text();
+            var mfmarktext = $(this).find(".grade").text();
+            var mfreg1 = /(?<=Mark)(.*)(?=out)/;
+            var mfreg2 = /(?<=of)(.*)/;
+            var mf1 = mfreg1.exec(mfmarktext);
+            var mf2 = mfreg2.exec(mfmarktext);
+            var mfmark = parseFloat(mf1[0]);
+            var mfout = parseFloat(mf2[0]);
+            if (mfmark == mfout) {
+              sessionStorage.setItem(x, "correct");
+              correctCount++;
+            }
+            var y = "comment" + $(this).find(".qno").text();
+            var mfcomment = $(this).find(".comment").wrap("<div/>").parent().html();
+            sessionStorage.setItem(y, mfcomment);
+          }
+        });
+        sessionStorage.setItem("reviewread", "reviewread");
+        sessionStorage.setItem("reattempt", "reattempt");
+        sessionStorage.setItem("correctcount", correctCount);
+        console.log("@GB correctcount", correctCount);
+      } // end
+      // (RE-)ATTEMPT PAGE(S)
+      if ($("body#page-mod-quiz-attempt").length) {
+        console.log("@GB: Session Storage:", sessionStorage);
+        if (sessionStorage.getItem("reattempt") == "reattempt") {
+          // Add statement to the top of the resubmission page
+
+          let cc = sessionStorage.getItem("correctcount");
+          let tc = sessionStorage.getItem("noofquestions");
+
+          if (cc > 0) {
+            $("form#responseform").prepend(
+              `<div class="clearfix container-fluid"></div>
+            <div class="card mt-1 mb-1">
+                <div class="card-body">
+                    <h4 class="card-title text-danger"><i aria-hidden="true" class="fa fa-exclamation-triangle"></i> You are re-attempting this quiz</h4>
+                    <p><strong>${cc} out of ${tc}</strong> were correct on your previous attempt(s).</p>
+                    <div class="alert alert-warning" role="alert">
+                        <p>We have hidden correct questions and answers, so that you can concentrate on the questions that you need to resubmit.</p>
+                    </div>
+                </div>
+            </div>`
+            );
+          }
+          $(".que").each(function () {
+            if ($(this).hasClass("description")) {
+              return true;
+            } else {
+              var x = "correctornot" + $(this).find(".qno").text();
+              if (sessionStorage.getItem(x) == "correct") {
+                $(this).hide();
+              }
+              var y = "comment" + $(this).find(".qno").text();
+              if (sessionStorage.getItem(y) != "undefined") {
+                $(this).find(".formulation").before(sessionStorage.getItem(y));
+                $(this).find(".comment").removeClass("clearfix");
+              }
+            }
+          });
+        }
+      }
+    }
+  } // end if
+</script>
+
+<meta name="moodle-validation" content="02feb7c5f4f0db0dfc3e7e14ba406d7b" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Z9BZDWFDR9"></script>
+<script>
+   window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Z9BZDWFDR9');
+</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NMG3HVC');</script>
+<!-- End Google Tag Manager -->

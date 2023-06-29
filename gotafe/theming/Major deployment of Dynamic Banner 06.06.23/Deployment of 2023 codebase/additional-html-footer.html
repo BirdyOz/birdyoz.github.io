@@ -1,0 +1,142 @@
+<!-- Invoke Dynamic banner 2023 -->
+<script src="https://gotafe.trainingvc.com.au/pluginfile.php/1/tool_themeassets/assets/0/snap-dynamic-banner-2023.js"></script>
+
+<!-- Recite Me : -->
+<style>
+#reciteme-button {
+ /* Button Styling and Placement */
+ background: #00344c;
+ width: 65px;
+ height: 65px;
+ bottom: 14px;
+ right: 14px;
+
+ position: fixed;
+ border-radius: 50%;
+ z-index: 100;
+ cursor: pointer;
+}
+
+@media (max-width: 991.98px) {
+ #reciteme-button {
+ bottom: 80px;
+ }
+}
+
+
+#reciteme-button:hover {
+ /* Hover Color */
+ background: #e9322e;
+}
+
+#reciteme-button img {
+ /** Button Image Size */
+ width: 45px;
+ height: 45px;
+
+ position: absolute;
+ top: 50%;
+ left: 50%;
+ transform: translate(-50%, -50%);
+}
+</style>
+<script>
+    var serviceUrl = "//api.reciteme.com/asset/js?key=";
+    var serviceKey = "c039953112dab039667ac5b489894e1428c7fbea";
+    var buttonSrc = 'https://gotafe.trainingvc.com.au/pluginfile.php/1/tool_themeassets/assets/0/reciteme_button.png';
+    var options = { "Tracker": {
+        "Ga": {
+            "enabled": true,
+            "trackerName": "G-Z9BZDWFDR9"
+        }
+    }
+}
+    var autoLoad = false;
+    var enableFragment = "#reciteEnable";
+    var loaded = [], frag = !1; window.location.hash === enableFragment && (frag = !0); function loadScript(c, b) { var a = document.createElement("script"); a.type = "text/javascript"; a.readyState ? a.onreadystatechange = function () { if ("loaded" == a.readyState || "complete" == a.readyState) a.onreadystatechange = null, void 0 != b && b() } : void 0 != b && (a.onload = function () { b() }); a.src = c; document.getElementsByTagName("head")[0].appendChild(a) } function _rc(c) { c += "="; for (var b = document.cookie.split(";"), a = 0; a < b.length; a++) { for (var d = b[a]; " " == d.charAt(0);)d = d.substring(1, d.length); if (0 == d.indexOf(c)) return d.substring(c.length, d.length) } return null } function loadService(c) { for (var b = serviceUrl + serviceKey, a = 0; a < loaded.length; a++)if (loaded[a] == b) return; loaded.push(b); loadScript(serviceUrl + serviceKey, function () { "function" === typeof _reciteLoaded && _reciteLoaded(); "function" == typeof c && c(); Recite.load(options); Recite.Event.subscribe("Recite:load", function () { Recite.enable() }) }) } "true" == _rc("Recite.Persist") && loadService(); if (autoLoad && "false" != _rc("Recite.Persist") || frag) document.addEventListener ? document.addEventListener("DOMContentLoaded", function (c) { loadService() }) : loadService();
+
+    // Floating Button:
+    function _reciteLoaded() {
+        if (reciteMeButton && reciteMeButton.parentNode) {
+            reciteMeButton.parentNode.removeChild(reciteMeButton); 
+        }
+    }
+
+    var reciteMeButton;
+    function _createReciteButton() {
+        var buttonParentSelector = 'body';
+        var buttonContainer = document.createElement("div");
+        var buttonImage = document.createElement("img");
+        var buttonAlt = "Recite Me accessibility and Language Support";
+        var buttonTitle = "Launch Recite Me";
+
+        buttonContainer.setAttribute('id', 'reciteme-button');
+        buttonContainer.setAttribute('alt', buttonAlt);
+        buttonContainer.setAttribute('title', buttonTitle);
+        buttonImage.setAttribute('alt', buttonAlt);
+        buttonImage.setAttribute('title', buttonTitle);
+        buttonImage.setAttribute('src', buttonSrc);
+        buttonContainer.appendChild(buttonImage);
+        var buttonParent = document.querySelector(buttonParentSelector);
+        buttonParent.appendChild(buttonContainer);
+        buttonContainer.addEventListener("click", function () {
+            loadService();
+            return false;
+        });
+        reciteMeButton = buttonContainer;
+    }
+    _createReciteButton();
+</script>
+
+<!-- Kaltura ---To add all of this, in the site administration menu, go to appearance -> additional html and paste the following snippet in the "before body is closed" area : -->
+
+<script>
+var urlParams = new URLSearchParams(window.location.search);
+var courseId = urlParams.get("id");
+var mmUrl = "/local/mymedia/mymedia.php";
+var mmText = "My Media";
+var cmUrl = "/local/kalturamediagallery/index.php?courseid="+courseId;
+var cmText = "Media Gallery";
+var kIcon = "https://cfvod.kaltura.com/p/2249861/sp/224986100/thumbnail/entry_id/1_b0stc92t/def_height/480/def_width/640/version/100001/type/1";
+
+function createKalturaLink(q,l,t,os){
+    // Init Open LMS Suggested Fix
+    var li = document.createElement("li");
+    // End Open LMS Suggested Fix
+var a = document.createElement("a");
+a.id=q;
+a.href=l;
+if (os){
+a.insertAdjacentElement("afterbegin", os);
+}
+a.appendChild(document.createTextNode(t));
+    // Init Open LMS Suggested Fix
+    li.appendChild(a);
+    return li;
+    // End Open LMS Suggested Fix
+return a;
+}
+
+function createKalturaIcon(){
+var a = document.createElement("IMG");
+a.src=kIcon;
+a.setAttribute("class", "svg-icon");
+a.setAttribute("role", "presentation");
+return a;
+}
+
+
+//create course dashboard Link
+var courseTools = document.getElementById("coursetools-list");
+if(courseTools){
+var cmLink = createKalturaLink("ct-kaltura",cmUrl,cmText,createKalturaIcon());
+courseTools.insertAdjacentElement("beforeend",cmLink);
+}
+
+</script>
+
+
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NMG3HVC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->

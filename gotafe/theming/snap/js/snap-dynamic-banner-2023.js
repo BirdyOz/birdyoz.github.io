@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @First Created:   2017-03-31 13:08:18
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-05-31 14:06:29
+ * @Last Modified time: 2023-06-01 09:55:50
  */
 
 
@@ -78,7 +78,7 @@ function BuildBanner() {
             // Extract year
             year_text = details_array[details_array.length - 1];
             // Update Page Headings to prepend year.  Add as a bootstrap panel
-            $('#page-mast>h1').before("<div id =\"gotafe-banner-year\" class=\"card ml-2 rounded float-right text-center\"> <div class=\"card-body p-1\">" + year_text + "<\/div>");
+            $('#page-mast>h1').before("<div id =\"gotafe-banner-year\" class=\"card border-white text-white bg-dark ml-2 mb-1 float-right text-center\"> <div class=\"card-body p-1\">" + year_text + "<\/div>");
             // Add 'Year' class to #page-header.
             var year_class = "gotafe-year-" + slugify(year_text);
             $('body').addClass(year_class);
@@ -133,21 +133,24 @@ function BuildBanner() {
             // Is this subject 'In Development'?
             if (year_text.substring(0, 2) === "ID") {
                 // Add footer to 'Year' panel
-                $('#gotafe-banner-year').prepend("<div class=\"card-heading bg-danger\">In Development<\/div>");
+                $('#gotafe-banner-year').prepend("<div class=\"card-header\">In Development<\/div>");
+                $('#gotafe-banner-year').toggleClass('bg-danger','bg-dark');
             }
             // Is this subject 'Learning Development'?
             if (year_text.substring(0, 2) === "LD") {
                 // Add footer to 'Year' panel
-                $('#gotafe-banner-year').prepend("<div class=\"card-heading bg-danger\">Learning Development<\/div>");
+                $('#gotafe-banner-year').prepend("<div class=\"card-header\">Learning Development<\/div>");
+                $('#gotafe-banner-year').toggleClass('bg-success','bg-dark');
             }
             // Is this subject 'Staff Sandpit'?
             if (year_text.substring(0, 2) === "SP") {
                 // Add footer to 'Year' panel
-                $('#gotafe-banner-year').prepend("<div class=\"card-heading bg-danger\">Staff Sandpit<\/div>");
+                $('#gotafe-banner-year').prepend("<div class=\"card-header\">Staff Sandpit<\/div>");
+                $('#gotafe-banner-year').toggleClass('bg-info','bg-dark');
             }
             // If I am a master copy
             if (year_text.toLowerCase().includes("master copy")) {
-                $('#gotafe-banner-year').addClass('bg-danger');
+                $('#gotafe-banner-year').toggleClass('bg-danger','bg-dark');
             }
         }
     }
