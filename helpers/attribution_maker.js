@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-06-30 13:07:57
+ * @Last Modified time: 2023-06-30 15:55:50
  */
 
 /*jshint esversion: 8 */
@@ -547,7 +547,7 @@ $(function() {
 
         // Merge with am.prefs
         am.prefs = Object.assign(am.prefs, localPrefs);
-        am.prefs.date = new Date().toString();
+        am.prefs.date = new Date().toLocaleString();
 
         // if I change layout, refresh the page, otherwise BuildHTML
 
@@ -921,7 +921,6 @@ $(function() {
     }
 
     function buildHistory() {
-        console.log("@GB: buildHistory invoked");
 
         // Get localstorage prefs if available
         if ("Attribution-Maker-History" in localStorage) {
@@ -931,19 +930,21 @@ $(function() {
         // If it is already in my history, remove the older version
         const i = am.history.findIndex(e => e.url === am.url);
         if (i > -1) {
-            console.log("@GB: I've seen this image before = ", i);
+            $('#history-collapser').show();
             am.history.splice(i, 1);
+        } else {
+            $('#history-collapser').hide();
         }
 
-        am.history.unshift({ "url": am.url, "preview": am.image.preview, "time": new Date().toString() });
-        console.log("@GB: am.history = ", am.history);
+        am.history.unshift({ "url": am.url, "preview": am.image.preview, "time": new Date().toLocaleString() });
 
         // There is more than one image in my history
         if (am.history.length > 1) {
+            $('#image-history').before("<h3>Recent images</h3>");
             $.each(am.history, function(i, img) {
-                let card = `<div class="card">
-    <a href="${img.url}">
-        <img class="card-img img-thumbnail" src="${img.preview}" alt="Card image"></a>
+                let card = `<div class="card text-center">
+    <a href="${url.pathname}?addr=${encodeURIComponent(img.url)}">
+        <img class="card-img" src="${img.preview}" alt=""></a>
     <small class="text-muted">${img.time}</small>
 </div>`;
                 $('#image-history').append(card);
