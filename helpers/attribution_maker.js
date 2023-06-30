@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-05-30 16:34:14
+ * @Last Modified time: 2023-06-30 13:07:57
  */
 
 /*jshint esversion: 8 */
@@ -58,9 +58,7 @@ $(function() {
                 "border-radius": "0.25rem"
             }
         },
-        history: {
-
-        }
+        history: []
     };
 
     // Supported sites
@@ -250,6 +248,7 @@ $(function() {
             am.image.download.small = am.image.preview.replace("&w=1440", "&w=720");
             am.image.download.endpoint = json.links.download_location + "&client_id=" + atob(decodeURIComponent(key));
             buildHTML();
+            buildHistory();
         });
     }
 
@@ -279,6 +278,7 @@ $(function() {
                 am.image.download.small = am.image.preview + "?auto=compress&cs=tinysrgb&w=720";
                 am.image.download.large = am.image.preview;
                 buildHTML();
+                buildHistory();
             },
         });
     }
@@ -302,6 +302,7 @@ $(function() {
                 am.image.download.small = json.hits[0].webformatURL; // Small image 640px wide
                 am.image.download.large = am.image.preview; // Large image 1280px wide
                 buildHTML();
+                buildHistory();
             })
             .fail(function() {
                 console.log(json);
@@ -356,6 +357,7 @@ $(function() {
                             am.image.download.large = am.image.preview;
                         }
                         buildHTML();
+                        buildHistory();
                     });
                 }
             })
@@ -403,6 +405,7 @@ $(function() {
 
             id = id.slugify();
             buildHTML();
+            buildHistory();
         });
     }
 
@@ -430,7 +433,6 @@ $(function() {
 
         $(".shutterstock-warning").show();
         buildHTML();
-        logger();
     }
 
     // If YouTube
@@ -916,6 +918,42 @@ $(function() {
             fill();
         });
 
+    }
+
+    function buildHistory() {
+        console.log("@GB: buildHistory invoked");
+
+        // Get localstorage prefs if available
+        if ("Attribution-Maker-History" in localStorage) {
+            am.history = JSON.parse(localStorage.getItem('Attribution-Maker-History'));
+        }
+
+        // If it is already in my history, remove the older version
+        const i = am.history.findIndex(e => e.url === am.url);
+        if (i > -1) {
+            console.log("@GB: I've seen this image before = ", i);
+            am.history.splice(i, 1);
+        }
+
+        am.history.unshift({ "url": am.url, "preview": am.image.preview, "time": new Date().toString() });
+        console.log("@GB: am.history = ", am.history);
+
+        // There is more than one image in my history
+        if (am.history.length > 1) {
+            $.each(am.history, function(i, img) {
+                let card = `<div class="card">
+    <a href="${img.url}">
+        <img class="card-img img-thumbnail" src="${img.preview}" alt="Card image"></a>
+    <small class="text-muted">${img.time}</small>
+</div>`;
+                $('#image-history').append(card);
+            });
+
+        }
+
+
+        // Set localStorage
+        localStorage.setItem('Attribution-Maker-History', JSON.stringify(am.history));
     }
 
     function onYouTubeIframeAPIReady() {
