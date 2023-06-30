@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-06-30 16:04:07
+ * @Last Modified time: 2023-06-30 16:20:14
  */
 
 /*jshint esversion: 8 */
@@ -936,7 +936,8 @@ $(function() {
         am.history.unshift({ "url": am.url, "preview": am.image.preview, "time": new Date().toLocaleString() });
 
         // There is more than one image in my history
-        if (am.history.length > 1) {
+        // NB temporarily set to zero
+        if (am.history.length > 0) {
             $('#image-history').before("<h3>Recent images</h3>");
             $.each(am.history, function(i, img) {
                 let card = `<div class="card text-center">
