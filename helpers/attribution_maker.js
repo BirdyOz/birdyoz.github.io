@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-06-30 15:55:50
+ * @Last Modified time: 2023-06-30 16:04:07
  */
 
 /*jshint esversion: 8 */
@@ -930,10 +930,7 @@ $(function() {
         // If it is already in my history, remove the older version
         const i = am.history.findIndex(e => e.url === am.url);
         if (i > -1) {
-            $('#history-collapser').show();
             am.history.splice(i, 1);
-        } else {
-            $('#history-collapser').hide();
         }
 
         am.history.unshift({ "url": am.url, "preview": am.image.preview, "time": new Date().toLocaleString() });
