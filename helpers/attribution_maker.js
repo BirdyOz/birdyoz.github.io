@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-06-30 16:20:14
+ * @Last Modified time: 2023-07-03 11:34:32
  */
 
 /*jshint esversion: 8 */
@@ -440,6 +440,7 @@ $(function() {
     if (am.site.name == "YouTube") {
         ytUrl = new URL(am.url);
         am.id = ytUrl.searchParams.get("v");
+        am.url = "https://www.youtube.com/watch?v=" + am.id;
 
         siteUrl = "https://www.youtube.com";
         am.site.licence = "Terms";
@@ -453,6 +454,8 @@ $(function() {
             console.log("@GB: json = ", json);
             vid = json.items[0].snippet;
             am.title = vid.title;
+
+            am.image.preview = vid.thumbnails.standard.url;
 
             // Get published date
             published = vid.publishedAt;
@@ -509,9 +512,11 @@ $(function() {
             }
 
             $("#am-yt-embed").html(snippet);
+            console.log("@GB: am = ", am);
 
             // Invoke YT API
             onYouTubeIframeAPIReady();
+            buildHistory();
         });
     }
 
@@ -933,14 +938,18 @@ $(function() {
             am.history.splice(i, 1);
         }
 
+
         am.history.unshift({ "url": am.url, "preview": am.image.preview, "time": new Date().toLocaleString() });
+
+
+
 
         // There is more than one image in my history
         // NB temporarily set to zero
         if (am.history.length > 0) {
-            $('#image-history').before("<h3>Recent images</h3>");
+            $('#image-history').before("<h3> Your recent history <span class=\"text-muted\">(Click to re-use)</span> </h3>");
             $.each(am.history, function(i, img) {
-                let card = `<div class="card text-center">
+                let card = `<div class="card text-center${img.url.includes('youtube')? " border-danger":""}">
     <a href="${url.pathname}?addr=${encodeURIComponent(img.url)}">
         <img class="card-img" src="${img.preview}" alt=""></a>
     <small class="text-muted">${img.time}</small>
