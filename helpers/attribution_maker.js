@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-07-03 11:34:32
+ * @Last Modified time: 2023-07-05 13:51:29
  */
 
 /*jshint esversion: 8 */
@@ -949,12 +949,10 @@ $(function() {
         if (am.history.length > 0) {
             $('#image-history').before("<h3> Your recent history <span class=\"text-muted\">(Click to re-use)</span> </h3>");
             $.each(am.history, function(i, img) {
-                let card = `<div class="card text-center${img.url.includes('youtube')? " border-danger":""}">
-    <a href="${url.pathname}?addr=${encodeURIComponent(img.url)}">
-        <img class="card-img" src="${img.preview}" alt=""></a>
-    <small class="text-muted">${img.time}</small>
-</div>`;
-                $('#image-history').append(card);
+                if (i < 50) {
+                    let card = `<div class="card text-center${img.url.includes('youtube')? " border-danger":""}"> <a href="${url.pathname}?addr=${encodeURIComponent(img.url)}"> <img class="card-img" src="${img.preview}" alt=""></a> <small class="text-muted">${i+1}: ${img.time}</small> </div>`;
+                    $('#image-history').append(card);
+                };
             });
 
         }
