@@ -27,9 +27,15 @@
         padding: 1em;
         margin: 1em 0;
     }
-    .card-columns {
-            column-count: 6;
-          }
+    .square {
+    width: 100%;
+    padding-bottom: 100%;
+    background-size: cover;
+    background-position: center;
+    }
+    .history-date {
+        font-size: 0.7em;
+    }
    </style>
 </head>
 
@@ -90,8 +96,9 @@
 
         <div class="collapse" id="collapseHistory">
             <hr>
-
-            <div id="image-history" class="card-columns"></div>
+            <div class="container">
+                <div id="image-history" class="row no-gutters"></div>
+            </div>
         </div>
         <div class="pixabay-warning alert alert-danger collapse">
             <h3>Important note - Pixabay previews expire in 24hrs</h3>
