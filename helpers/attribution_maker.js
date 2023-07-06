@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-07-05 13:51:29
+ * @Last Modified time: 2023-07-06 11:25:43
  */
 
 /*jshint esversion: 8 */
@@ -47,7 +47,7 @@ $(function() {
         },
         prefs: {
             org: null,
-            cols: "col-5",
+            cols: "col-md-5",
             percent: "42",
             collapsed: true,
             layout: "bootstrap",
@@ -852,6 +852,10 @@ $(function() {
     function buildHTML() {
 
         console.log("@GB: am = ", am);
+
+        // Set percentage text
+        $('.percent').text(`${am.prefs.percent}%`)
+
         // Toggle between BS4 or Vanilla
         if (am.prefs.layout === "vanilla" || am.prefs.org === "uom") {
             // For vanilla, remove BS classes
@@ -865,10 +869,11 @@ $(function() {
         } else {
             // For BS4, remove styles
             $(".maker-copy figure,.maker-copy img").removeAttr("style");
-            $(".maker-floated>figure").removeClass("col-6 col-5 col-4 col-3 col-2").addClass(am.prefs.cols);
+            $(".maker-floated>figure").removeClass("col-md-6 col-md-5 col-md-4 col-md-3 col-md-2").addClass(am.prefs.cols);
             $(".rounded").removeClass("border shadow bg-light").addClass(am.prefs.classes.join(" "));
             snippet = bootstrapSnippet;
         }
+
 
         //
         $(".maker-copy figure").each(function(index) {
