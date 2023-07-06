@@ -28,10 +28,20 @@
         margin: 1em 0;
     }
     .square {
-    width: 100%;
-    padding-bottom: 100%;
-    background-size: cover;
-    background-position: center;
+        width: 100%;
+        position: relative;
+        padding-bottom: 100%;
+        background-size: cover;
+        background-position: center;
+    }
+    .square .fa {
+      position: absolute;
+      bottom: 30%;
+      left: 0;
+      right: 0;
+      text-shadow: 2px 2px 5px black;
+      color: white;
+      font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) ));
     }
     .history-date {
         font-size: 0.7em;

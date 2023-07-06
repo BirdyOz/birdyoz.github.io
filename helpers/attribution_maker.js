@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-07-06 16:01:02
+ * @Last Modified time: 2023-07-07 09:13:36
  */
 
 /*jshint esversion: 8 */
@@ -955,7 +955,7 @@ $(function() {
             $('#image-history').before("<h3> Your recent history <span class=\"text-muted\">(Click to re-use)</span> </h3>");
             $.each(am.history, function(i, img) {
                 if (i < 50) {
-                    let card = `<div class="col-2"><div class="card m-1 text-center${img.url.includes('youtube')? " border-danger":""}"> <a href="${url.pathname}?addr=${encodeURIComponent(img.url)}"> <div class="square" style="background-image: url('${img.preview}')"></div></a> <small class="text-muted history-date">${i+1}: ${img.time}</small> </div> </div>`;
+                    let card = `<div class="col-2"><div class="card m-1 text-center"> <a href="${url.pathname}?addr=${encodeURIComponent(img.url)}"> <div class="square" style="background-image: url('${img.preview}')">${img.url.includes('youtube')? "<i class=\"fa fa-play-circle-o\"></i>":""}</div></a> <small class="text-muted history-date">${i+1}: ${img.time}</small> </div> </div>`;
                     $('#image-history').append(card);
                 };
             });
