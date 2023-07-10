@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-07-07 09:27:08
+ * @Last Modified time: 2023-07-10 13:30:42
  */
 
 /*jshint esversion: 8 */
@@ -188,6 +188,11 @@ $(function() {
     let player; // YouTube player API
 
 
+    // Get localstorage prefs if available
+    if ("Attribution-Maker-Prefs" in localStorage) {
+        am.prefs = JSON.parse(localStorage.getItem('Attribution-Maker-Prefs'));
+    }
+
     // Get URL parameters
     url_string = window.location.href;
     if (url_string.indexOf("?") > 0) {
@@ -217,7 +222,8 @@ $(function() {
             am.prefs.layout = "vanilla";
         }
 
-
+        // Set localStorage
+        localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(am.prefs));
     } else {
         // No URL parameters exist.   Show first time warning
         console.log("@GB: No parameters");
@@ -521,10 +527,6 @@ $(function() {
     }
 
 
-    // Get localstorage prefs if available
-    if ("Attribution-Maker-Prefs" in localStorage) {
-        am.prefs = JSON.parse(localStorage.getItem('Attribution-Maker-Prefs'));
-    }
 
     // Set active buttons, based on am.prefs
     $.each(am.prefs, function(key, value) {
