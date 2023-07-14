@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-07-14 10:51:22
+ * @Last Modified time: 2023-07-14 14:07:42
  */
 
 /*jshint esversion: 8 */
@@ -60,6 +60,9 @@ $(function() {
         },
         history: []
     };
+
+    // Number of history items to display
+    const maxlength = 24;
 
     // Supported sites
     const supported = [{
@@ -700,6 +703,7 @@ $(function() {
         $(target).html(text);
     });
 
+
     /**
      *
      * Snippets
@@ -946,10 +950,10 @@ $(function() {
             fill();
         });
 
-    }
+    };
+
 
     function buildHistory() {
-
         // Get localstorage prefs if available
         if ("Attribution-Maker-History" in localStorage) {
             am.history = JSON.parse(localStorage.getItem('Attribution-Maker-History'));
@@ -961,29 +965,38 @@ $(function() {
             am.history.splice(i, 1);
         }
 
-
         am.history.unshift({ "url": am.url, "preview": am.image.preview, "time": new Date().toLocaleString() });
-
-
 
 
         // There is more than one image in my history
         // NB temporarily set to zero
-        if (am.history.length > 0) {
-            $('#image-history').before("<h3> Your recent history <span class=\"text-muted\">(Click to re-use)</span> </h3>");
-            $.each(am.history, function(i, img) {
-                if (i < 50) {
-                    let card = `<div class="col-2"><div class="card m-1 text-center"> <a class="stretched-link" href="${url.pathname}?addr=${encodeURIComponent(img.url)}"> <div class="square" style="background-image: url('${img.preview}')">${img.url.includes('youtube')? "<i class=\"fa fa-play-circle-o\"></i>":""}</div></a> <small class="text-muted history-date">${i+1}: ${img.time}</small> </div> </div>`;
-                    $('#image-history').append(card);
-                };
-            });
+        $('#image-history').before(`<h3>Your recent history <span class=\"text-muted\">(${am.history.length} items)</span></h3>`);
+        buildHistoryItems(am.history.slice(0,maxlength));
+        if (am.history.length > maxlength) {
+            $('#showfullhistory').html(`Show full history (${am.history.length - maxlength} more items).`);
 
-        }
-
-
+        } else {$('#showfullhistory').hide();}
         // Set localStorage
         localStorage.setItem('Attribution-Maker-History', JSON.stringify(am.history));
     }
+
+
+    function buildHistoryItems(arr) {
+        $.each(arr, function(i, img) {
+            let card = `<div class="col-2"><div class="card m-1 text-center"> <a class="stretched-link" href="${url.pathname}?addr=${encodeURIComponent(img.url)}"> <div class="square" style="background-image: url('${img.preview}')">${img.url.includes('youtube')? "<i class=\"fa fa-play-circle-o\"></i>":""}</div></a> <small class="text-muted history-date">${img.time}</small> </div> </div>`;
+            $('#image-history').append(card);
+        });
+    }
+
+
+    $('#showfullhistory').click(function(event) {
+        console.log("@GB: showfullhistory clicked");
+        $('#now-showing').hide();
+        buildHistoryItems(am.history.slice(maxlength));
+        $('#showfullhistory').hide()
+        return false;
+    });
+
 
     function onYouTubeIframeAPIReady() {
         player = new YT.Player("yt-placeholder", {
