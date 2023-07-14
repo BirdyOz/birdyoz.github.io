@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-07-10 13:30:42
+ * @Last Modified time: 2023-07-14 10:51:22
  */
 
 /*jshint esversion: 8 */
@@ -204,6 +204,8 @@ $(function() {
         // Determine whether image or video.   Hide other display
         if (am.site.name == "YouTube") {
             $("#am-images").hide();
+            $("#resizer").hide();
+            $("#decoration").hide();
             if (url.searchParams.get("embeddable") == "false") {
                 am.video.embeddable = false;
             }
@@ -505,6 +507,8 @@ $(function() {
             if (am.video.embeddable) {
                 if (am.prefs.org === "uom") {
                     snippet = uomytSnippet();
+                } else if (am.prefs.layout === "vanilla") {
+                    snippet = vanillaYTSnippet();
                 } else {
                     snippet = ytSnippet();
                 }
@@ -518,7 +522,6 @@ $(function() {
             }
 
             $("#am-yt-embed").html(snippet);
-            console.log("@GB: am = ", am);
 
             // Invoke YT API
             onYouTubeIframeAPIReady();
@@ -559,7 +562,7 @@ $(function() {
         // if I change layout, refresh the page, otherwise BuildHTML
 
 
-        if (this.id.includes("layout-")) {
+        if (this.id.includes("layout-") || am.site.name == "YouTube") {
             am.prefs.org = null;
             window.location.href = url;
         } else { buildHTML(); }
@@ -806,6 +809,19 @@ $(function() {
         <div id="yt-placeholder" class="vjs-tech" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
     </div>
     <div style="text-align: right;"><small>${am.attribution.username} (${am.video.published}). <em>${am.title}</em> [Video]. YouTube. https://www.youtube.com/watch?v=${am.id}</small></div>
+</div>`;
+        return snippet;
+    }
+
+    // Vanilla YT snippet
+    function vanillaYTSnippet() {
+        let snippet = `<div style="border: 1px solid lightgrey; clear: both; padding: 1em; border-radius: 0.5em; margin:0">
+    <h4 style="color:#DC3545;"><span style="border: 2px solid; border-radius:30%; margin:0; padding: 0 0.4em; font-size: 0.7em">⏵</span> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h4>
+    <p class="yt-desc">${am.video.description}</p>
+    <div style="position: relative; padding-bottom: ${am.video.ratio}%;">
+        <div id="yt-placeholder" class="vjs-tech" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+    </div>
+    <div style="text-align: right;"><small>${am.prefs.collapsed?`<details><summary>Show attribution</summary>`:""}Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today}${am.prefs.collapsed?`</details>`:""}</small></div>
 </div>`;
         return snippet;
     }

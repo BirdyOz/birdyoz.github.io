@@ -87,8 +87,6 @@
                 <ol>
                     <li id="am-bookmark"><strong>Drag</strong> the following bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Blet%20uri%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Fattribution_maker%3Faddr%3D'%20%2B%20encodeURIComponent(document.location.href)%3B%0Aif%20(document.location.href.includes('shutterstock.com'))%20%7B%0A%20%20%20%20const%20json%20%3D%20document.querySelector('script%5Btype%3D%22application%2Fjson%22%5D').innerHTML%3B%0A%20%20%20%20const%20obj%20%3D%20JSON.parse(json)%3B%0A%20%20%20%20const%20asset%20%3D%20obj.props.pageProps.asset%3B%0A%20%20%20%20const%20id%20%3D%20asset.id%3B%0A%20%20%20%20const%20img_orig%20%3D%20asset.link%3B%0A%20%20%20%20const%20alt%20%3D%20asset.alt%3B%0A%20%20%20%20const%20title%20%3D%20asset.title%3B%0A%20%20%20%20const%20img_src%20%3D%20asset.displays%5B%221500W%22%5D.src%3B%0A%20%20%20%20const%20user%20%3D%20asset.contributor.publicInformation.displayName%3B%0A%20%20%20%20const%20user_url%20%3D%20asset.contributor.publicInformation.portfolioUrl%3B%0A%20%20%20%20let%20url_suffix%20%3D%20%22%26id%3D%22%2BencodeURIComponent(id)%2B%22%26img_orig%3D%22%2BencodeURIComponent(img_orig)%2B%22%26alt%3D%22%2BencodeURIComponent(alt)%2B%22%26title%3D%22%2BencodeURIComponent(title)%2B%22%26img_src%3D%22%2BencodeURIComponent(img_src)%2B%22%26user%3D%22%2BencodeURIComponent(user)%2B%22%26user_url%3D%22%2BencodeURIComponent(user_url)%3B%0A%20%20%20%20uri%20%3D%20uri%20%2B%20url_suffix%3B%0A%7D%0Awindow.open(uri%2C%20'_blank')%7D)()%3B">Attribution maker +</a>
                         <br>(Note: Make sure you drag the link onto your browser bookmarks. Clicking will just bring you back to here)</li>
-                    <li id="uom-bookmark"><strong>Drag</strong> the following UoM bookmarklet into your browers bookmark bar: <a class="bookmarklet" href="javascript:(function()%7Blet%20uri%20%3D%20'https%3A%2F%2Fbirdyoz.github.io%2Fhelpers%2Fattribution_maker%3Forg%3Duom%26addr%3D'%20%2B%20encodeURIComponent(document.location.href)%3B%0Aif%20(document.location.href.includes('shutterstock.com'))%20%7B%0A%20%20%20%20const%20json%20%3D%20document.querySelector('script%5Btype%3D%22application%2Fjson%22%5D').innerHTML%3B%0A%20%20%20%20const%20obj%20%3D%20JSON.parse(json)%3B%0A%20%20%20%20const%20asset%20%3D%20obj.props.pageProps.asset%3B%0A%20%20%20%20const%20id%20%3D%20asset.id%3B%0A%20%20%20%20const%20img_orig%20%3D%20asset.link%3B%0A%20%20%20%20const%20alt%20%3D%20asset.alt%3B%0A%20%20%20%20const%20title%20%3D%20asset.title%3B%0A%20%20%20%20const%20img_src%20%3D%20asset.displays%5B%221500W%22%5D.src%3B%0A%20%20%20%20const%20user%20%3D%20asset.contributor.publicInformation.displayName%3B%0A%20%20%20%20const%20user_url%20%3D%20asset.contributor.publicInformation.portfolioUrl%3B%0A%20%20%20%20let%20url_suffix%20%3D%20%22%26id%3D%22%2BencodeURIComponent(id)%2B%22%26img_orig%3D%22%2BencodeURIComponent(img_orig)%2B%22%26alt%3D%22%2BencodeURIComponent(alt)%2B%22%26title%3D%22%2BencodeURIComponent(title)%2B%22%26img_src%3D%22%2BencodeURIComponent(img_src)%2B%22%26user%3D%22%2BencodeURIComponent(user)%2B%22%26user_url%3D%22%2BencodeURIComponent(user_url)%3B%0A%20%20%20%20uri%20%3D%20uri%20%2B%20url_suffix%3B%0A%7D%0Awindow.open(uri%2C%20'_blank')%7D)()%3B">UoM Attribution maker +</a>
-                        <br>(Note: Make sure you drag the link onto your browser bookmarks. Clicking will just bring you back to here)</li>
                     <li>Vist any of the supported sites, listed above</li>
                     <li>Click on the 'Attribution maker' in your bookmarks</li>
                     <li>You will be returned to this page, but now your selected image will be displayed below</li>
@@ -140,12 +138,7 @@
             <p>To update your bookmarklet, follow the "First time" instructions above.</p>
         </div>
         <!-- Three columns of text below the carousel -->
-
-        <!-- #am-images -->
-        <div id="am-images" class="sitenav clearfix container-fluid w-100">
-
-
-            <hr>
+        <hr>
             <div id="update-prefs" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                 <div class="col-auto mr-auto">
                     <small>Layout style: (Some features only for Bootstrap) <a href="#" class="text-danger" data-toggle="tooltip"  data-placement="right" data-html="true" title="Boostrap should be used for Moodle or any other site that uses Bootstrap 4. <br><br> For everywhere else (including Canvas), use inline">*</a></small><br>
@@ -162,7 +155,7 @@
                         <button type="button" data-prefs='{"collapsed": false}' id="collapsed-false" class="btn btn-outline-primary">Shown</button>
                     </div>
                 </div>
-                <div class="col-auto">
+                <div class="col-auto" id="resizer">
                     <small>Relative size: </small><br>
                     <div class="btn-group btn-group-sm" role="group" aria-label="Relative size">
                         <button type="button" data-prefs='{"percent":50,"cols":"col-md-6"}' id="percent-50" class="btn btn-outline-primary">50%</button>
@@ -172,7 +165,7 @@
                         <button type="button" data-prefs='{"percent":17,"cols":"col-md-2"}' id="percent-17" class="btn btn-outline-primary">17%</button>
                     </div>
                 </div>
-                <div class="col-auto">
+                <div class="col-auto" id="decoration">
                     <div class="custom-control custom-switch small">
                         <input type="checkbox" class="custom-control-input" data-prefs-classes="border" data-prefs-styles='{"border": "1px solid #dee2e6", "border-radius": "0.25rem"}' id="prefs-border" > <label class="custom-control-label" for="prefs-border">Border</label> </div>
                     <div class="custom-control custom-switch small">
@@ -181,9 +174,16 @@
                         <input type="checkbox" class="custom-control-input" data-prefs-classes="shadow" data-prefs-styles='{"box-shadow": "0 .5rem 1rem rgba(0,0,0,.15)"}' id="prefs-shadow"> <label class="custom-control-label" for="prefs-shadow">Shadow <a href="#" class="text-danger" data-toggle="tooltip"  data-placement="left" data-html="true" title="Not advised for Canvas.  It will strip out the shadow when you save the page.">*</a></label> </div>
                 </div>
             </div>
+
+            <hr class="featurette-divider clearfix" id="right">
+
+        <!-- #am-images -->
+        <div id="am-images" class="sitenav clearfix container-fluid w-100">
+
+
+
             <!-- START THE FEATURETTES -->
             <!-- .maker-fr -->
-            <hr class="featurette-divider clearfix" id="right">
             <div class="clearfix container-fluid">
                 <div class="maker-copy maker-floated maker-fr">
 <!-- Start of Image Embed - Float Right (Embed code by @BirdyOz) -->
@@ -438,7 +438,6 @@
         <!-- #am-video -->
         <div id="am-video" class="sitenav clearfix container-fluid w-100">
 
-            <hr>
 
             <h2 class="featurette-heading">Responsive YouTube video embed </h2>
             <p class="lead">This provides dynamic YouTube embed code, complete with title, optional description, playtime and attribution. This video is responsive and will always fit 100% of it's container</p>
