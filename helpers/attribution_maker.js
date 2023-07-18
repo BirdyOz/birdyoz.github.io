@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-07-14 14:07:42
+ * @Last Modified time: 2023-07-18 16:37:29
  */
 
 /*jshint esversion: 8 */
@@ -466,7 +466,8 @@ $(function() {
             vid = json.items[0].snippet;
             am.title = vid.title;
 
-            am.image.preview = vid.thumbnails.standard.url;
+            // Find the largest thumbnail image
+            am.image.preview = Object.values(vid.thumbnails).sort((a,b) => a.width - b.width).reverse()[0].url;
 
             // Get published date
             published = vid.publishedAt;
@@ -525,6 +526,7 @@ $(function() {
             }
 
             $("#am-yt-embed").html(snippet);
+            console.log("YouTube am = ", am);
 
             // Invoke YT API
             onYouTubeIframeAPIReady();
@@ -965,17 +967,29 @@ $(function() {
             am.history.splice(i, 1);
         }
 
-        am.history.unshift({ "url": am.url, "preview": am.image.preview, "time": new Date().toLocaleString() });
+        // Add current item to history
+        am.history.unshift({
+            "url": am.url,
+            "preview": am.image.preview,
+            "alt": am.image.alt,
+            "time": new Date().toLocaleString(),
+            "attribution": `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>`,
+            "site": am.site.name
+        });
+
+        // Define a new object that only contains images
+        const imgs = am.history.filter(f => f.site !== "YouTube" && f.attribution)
+        console.log("@GB: imgs = ", imgs);
 
 
         // There is more than one image in my history
         // NB temporarily set to zero
         $('#image-history').before(`<h3>Your recent history <span class=\"text-muted\">(${am.history.length} items)</span></h3>`);
-        buildHistoryItems(am.history.slice(0,maxlength));
+        buildHistoryItems(am.history.slice(0, maxlength));
         if (am.history.length > maxlength) {
             $('#showfullhistory').html(`Show full history (${am.history.length - maxlength} more items).`);
 
-        } else {$('#showfullhistory').hide();}
+        } else { $('#showfullhistory').hide(); }
         // Set localStorage
         localStorage.setItem('Attribution-Maker-History', JSON.stringify(am.history));
     }
@@ -1150,6 +1164,7 @@ $(function() {
     async function sendTrackDownload(endpoint) {
         const response = await fetch(endpoint);
         const response_json = await response.json();
+        console.log("@GB: response_json = ", response_json);
         if (!response.ok) {
             throw Error(response.statusText);
         }
