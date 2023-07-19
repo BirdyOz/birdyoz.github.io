@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-07-18 16:37:29
+ * @Last Modified time: 2023-07-19 15:24:22
  */
 
 /*jshint esversion: 8 */
@@ -189,7 +189,7 @@ $(function() {
     };
 
     let player; // YouTube player API
-
+    let imgHistory = []; // Invoke image history array
 
     // Get localstorage prefs if available
     if ("Attribution-Maker-Prefs" in localStorage) {
@@ -467,7 +467,7 @@ $(function() {
             am.title = vid.title;
 
             // Find the largest thumbnail image
-            am.image.preview = Object.values(vid.thumbnails).sort((a,b) => a.width - b.width).reverse()[0].url;
+            am.image.preview = Object.values(vid.thumbnails).sort((a, b) => a.width - b.width).reverse()[0].url;
 
             // Get published date
             published = vid.publishedAt;
@@ -596,12 +596,28 @@ $(function() {
         localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(am.prefs));
         buildHTML();
 
+
     });
 
     // Reset prefs button
     $('#prefs-reset').on('click', function() {
         localStorage.clear();
         window.location.href = url;
+    });
+
+
+
+    // Capture Tiles changes
+    $('#tile-image-count').change(function() {
+
+        // Get button prefs
+        imageCount = $(this).val();
+        buildTiles(imageCount)
+    });
+
+    // Toggle tiles display between two or three columns
+    $('#two-three-columns').on('click', function() {
+        $('#tiles-wrapper').toggleClass("row-cols-md-3 row-cols-md-2")
     });
 
 
@@ -736,6 +752,45 @@ $(function() {
 `;
         return snippet;
     }
+
+    // Return appropriate Embed Code snippet
+    function tilesSnippet(i) {
+        let snippet = `
+    <!-- Start of Tile = ${i+1} -->
+    <div class="col mb-4">
+        <div class="card h-100 rounded ${am.prefs.classes.join(" ")}">
+            <figure>
+              <img src="${imgHistory[i].preview}" class="card-img-top" alt="${imgHistory[i].alt}">
+              <figcaption class="figure-caption text-muted text-right small fw-lighter mr-1">
+              ${
+          am.prefs.collapsed
+            ? `
+            <!-- Start of Show/Hide interface, ID = Tiles-${i} -->
+            <a class="source-btn text-muted small" data-toggle="collapse" href="#show-tiles-${i}" role="button" aria-expanded="false" aria-controls="show-tiles-${i}">&#9661; Show attribution</a>
+            <div class="source collapse m-0 p-0" id="show-tiles-${i}">`
+            : ""
+        }
+                ${imgHistory[i].attribution}
+                ${
+          am.prefs.collapsed
+            ? `</div>
+            <!-- End of Show/Hide interface, ID = Tiles-${i} -->`
+            : ""
+        }
+              </figcaption>
+          </figure>
+          <div class="card-body pt-0">
+            <h5 class="card-title">Card ${i+1} heading</h5>
+            <p class="card-text">Card ${i+1} content goes here.</p>
+          </div>
+        </div>
+    </div>
+    <!-- End of Tile = ${i+1} -->
+
+`;
+        return snippet;
+    }
+
 
 
     // If am.prefs.Org = uom, return Melb Uni embed code
@@ -904,6 +959,7 @@ $(function() {
             $(this).html(snippet(index));
         });
 
+        buildTiles();
         // Set Cropped and Text only alternateives
         $("#rcrop").attr("src", am.image.preview);
         $(".maker-txt").html(textSnippet());
@@ -955,6 +1011,30 @@ $(function() {
     };
 
 
+    // Return appropriate Embed Code snippet
+    function buildTiles(i = imgHistory.length) {
+
+        if (i==2) {
+            $('#tiles-wrapper').removeClass("row-cols-md-3").addClass("row-cols-md-2")
+        }
+
+        // Set slider length to length of image history (12 max)
+        $('#tile-image-count').attr("max", imgHistory.length < 12 ? imgHistory.length : 12);
+        $('#tile-image-count').attr("value", imgHistory.length < 12 ? imgHistory.length : 12);
+
+        // When invoked, clear out any existing tiles:
+        $('#tiles-wrapper').html("");
+
+        for (var n = 0; n < i; n++) {
+            console.log("@GB: n = ", n);
+            $('#tiles-wrapper').append(tilesSnippet(n));
+        }
+
+    }
+
+
+
+
     function buildHistory() {
         // Get localstorage prefs if available
         if ("Attribution-Maker-History" in localStorage) {
@@ -978,9 +1058,10 @@ $(function() {
         });
 
         // Define a new object that only contains images
-        const imgs = am.history.filter(f => f.site !== "YouTube" && f.attribution)
-        console.log("@GB: imgs = ", imgs);
+        imgHistory = am.history.filter(f => f.site !== "YouTube" && f.attribution)
 
+        console.log("@GB: imgHistory = ", imgHistory);
+        buildTiles();
 
         // There is more than one image in my history
         // NB temporarily set to zero
