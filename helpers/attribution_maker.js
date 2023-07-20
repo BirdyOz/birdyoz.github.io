@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-07-19 15:24:22
+ * @Last Modified time: 2023-07-20 15:56:36
  */
 
 /*jshint esversion: 8 */
@@ -190,6 +190,7 @@ $(function() {
 
     let player; // YouTube player API
     let imgHistory = []; // Invoke image history array
+    let displayCarouselText = true;
 
     // Get localstorage prefs if available
     if ("Attribution-Maker-Prefs" in localStorage) {
@@ -612,12 +613,26 @@ $(function() {
 
         // Get button prefs
         imageCount = $(this).val();
-        buildTiles(imageCount)
+        buildTiles(imageCount);
+    });
+
+    // Capture Carousel changes
+    $('#carousel-image-count').change(function() {
+
+        // Get button prefs
+        imageCount = $(this).val();
+        buildCarousel(imageCount);
     });
 
     // Toggle tiles display between two or three columns
     $('#two-three-columns').on('click', function() {
         $('#tiles-wrapper').toggleClass("row-cols-md-3 row-cols-md-2")
+    });
+
+    // Toggle tiles display between two or three columns
+    $('#carousel-text').on('click', function() {
+        displayCarouselText = displayCarouselText ? false : true
+        buildCarousel($('#carousel-image-count').val());
     });
 
 
@@ -791,6 +806,20 @@ $(function() {
         return snippet;
     }
 
+    // Return appropriate Embed Code snippet
+    function carouselSnippet(i) {
+        let snippet = `
+    <div class="carousel-item">
+      <img src="${imgHistory[i].preview}" class="d-block w-100" alt="${imgHistory[i].alt}">
+      ${displayCarouselText?`<div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.4);">
+              <h4 class="text-white">Card ${i+1} heading</h4>
+              <p>Card ${i+1} content goes here.</p>
+            </div>`:""}
+    </div>
+`;
+        return snippet;
+    }
+
 
 
     // If am.prefs.Org = uom, return Melb Uni embed code
@@ -960,6 +989,7 @@ $(function() {
         });
 
         buildTiles();
+        buildCarousel();
         // Set Cropped and Text only alternateives
         $("#rcrop").attr("src", am.image.preview);
         $(".maker-txt").html(textSnippet());
@@ -1014,7 +1044,8 @@ $(function() {
     // Return appropriate Embed Code snippet
     function buildTiles(i = imgHistory.length) {
 
-        if (i==2) {
+        $('#tile-image-number').text(i);
+        if (i == 2) {
             $('#tiles-wrapper').removeClass("row-cols-md-3").addClass("row-cols-md-2")
         }
 
@@ -1026,8 +1057,33 @@ $(function() {
         $('#tiles-wrapper').html("");
 
         for (var n = 0; n < i; n++) {
-            console.log("@GB: n = ", n);
             $('#tiles-wrapper').append(tilesSnippet(n));
+        }
+
+    }
+    // Return appropriate Embed Code snippet
+    function buildCarousel(i = imgHistory.length, displayText = true) {
+
+        $('#carousel-image-number').text(i);
+
+        // Set slider length to length of image history (12 max)
+        $('#carousel-image-count').attr("max", imgHistory.length < 12 ? imgHistory.length : 12);
+        $('#carousel-image-count').attr("value", imgHistory.length < 12 ? imgHistory.length : 12);
+
+        // When invoked, clear out any existing tiles:
+        $('.carousel-indicators').html("");
+        $('.carousel-inner').html("");
+        $('#carousel-attribution').html("");
+
+        for (var n = 0; n < i; n++) {
+            $('.carousel-indicators').append(`<li data-target="#carousel-history" data-slide-to="${n}"></li>`);
+            $('.carousel-inner').append(carouselSnippet(n));
+            $('#carousel-attribution').append(`<small>${n+1}:</small> ${imgHistory[n].attribution}<br>`);
+
+            if (n == 0) {
+                $('.carousel-indicators li').first().addClass("active");
+                $('.carousel-item').first().addClass("active");
+            }
         }
 
     }
@@ -1062,6 +1118,10 @@ $(function() {
 
         console.log("@GB: imgHistory = ", imgHistory);
         buildTiles();
+        buildCarousel();
+        if (imgHistory.length < 2 || am.prefs.layout == "vanilla") {
+            $('#experimental').hide()
+        }
 
         // There is more than one image in my history
         // NB temporarily set to zero
