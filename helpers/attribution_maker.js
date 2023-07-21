@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-07-20 15:56:36
+ * @Last Modified time: 2023-07-21 10:02:18
  */
 
 /*jshint esversion: 8 */
@@ -616,6 +616,14 @@ $(function() {
         buildTiles(imageCount);
     });
 
+    // Capture Tiles changes
+    $('#tile-bg-image-count').change(function() {
+
+        // Get button prefs
+        imageCount = $(this).val();
+        buildBgTiles(imageCount);
+    });
+
     // Capture Carousel changes
     $('#carousel-image-count').change(function() {
 
@@ -627,6 +635,11 @@ $(function() {
     // Toggle tiles display between two or three columns
     $('#two-three-columns').on('click', function() {
         $('#tiles-wrapper').toggleClass("row-cols-md-3 row-cols-md-2")
+    });
+
+    // Toggle tiles display between two or three columns
+    $('#bg-two-three-columns').on('click', function() {
+        $('#tiles-bg-wrapper').toggleClass("row-cols-md-3 row-cols-md-2")
     });
 
     // Toggle tiles display between two or three columns
@@ -776,6 +789,43 @@ $(function() {
         <div class="card h-100 rounded ${am.prefs.classes.join(" ")}">
             <figure>
               <img src="${imgHistory[i].preview}" class="card-img-top" alt="${imgHistory[i].alt}">
+              <figcaption class="figure-caption text-muted text-right small fw-lighter mr-1">
+              ${
+          am.prefs.collapsed
+            ? `
+            <!-- Start of Show/Hide interface, ID = Tiles-${i} -->
+            <a class="source-btn text-muted small" data-toggle="collapse" href="#show-tiles-${i}" role="button" aria-expanded="false" aria-controls="show-tiles-${i}">&#9661; Show attribution</a>
+            <div class="source collapse m-0 p-0" id="show-tiles-${i}">`
+            : ""
+        }
+                ${imgHistory[i].attribution}
+                ${
+          am.prefs.collapsed
+            ? `</div>
+            <!-- End of Show/Hide interface, ID = Tiles-${i} -->`
+            : ""
+        }
+              </figcaption>
+          </figure>
+          <div class="card-body pt-0">
+            <h5 class="card-title">Card ${i+1} heading</h5>
+            <p class="card-text">Card ${i+1} content goes here.</p>
+          </div>
+        </div>
+    </div>
+    <!-- End of Tile = ${i+1} -->
+
+`;
+        return snippet;
+    }
+// Return appropriate Embed Code snippet
+    function tilesBgSnippet(i) {
+        let snippet = `
+    <!-- Start of Tile = ${i+1} -->
+    <div class="col mb-4">
+        <div class="card h-100 rounded ${am.prefs.classes.join(" ")}">
+            <figure>
+              <div style="background-image: url('${imgHistory[i].preview}'); width: 100%; padding-bottom: 60%; background-size: cover; background-position: center;"></div>
               <figcaption class="figure-caption text-muted text-right small fw-lighter mr-1">
               ${
           am.prefs.collapsed
@@ -988,8 +1038,10 @@ $(function() {
             $(this).html(snippet(index));
         });
 
-        buildTiles();
         buildCarousel();
+        buildTiles();
+        buildBgTiles();
+
         // Set Cropped and Text only alternateives
         $("#rcrop").attr("src", am.image.preview);
         $(".maker-txt").html(textSnippet());
@@ -1062,6 +1114,26 @@ $(function() {
 
     }
     // Return appropriate Embed Code snippet
+    function buildBgTiles(i = imgHistory.length) {
+
+        $('#tile-bg-image-number').text(i);
+        if (i == 2) {
+            $('#tiles-bg-wrapper').removeClass("row-cols-md-3").addClass("row-cols-md-2")
+        }
+
+        // Set slider length to length of image history (12 max)
+        $('#tile-bg-image-count').attr("max", imgHistory.length < 12 ? imgHistory.length : 12);
+        $('#tile-bg-image-count').attr("value", imgHistory.length < 12 ? imgHistory.length : 12);
+
+        // When invoked, clear out any existing tiles:
+        $('#tiles-bg-wrapper').html("");
+
+        for (var n = 0; n < i; n++) {
+            $('#tiles-bg-wrapper').append(tilesBgSnippet(n));
+        }
+
+    }
+    // Return appropriate Embed Code snippet
     function buildCarousel(i = imgHistory.length, displayText = true) {
 
         $('#carousel-image-number').text(i);
@@ -1117,8 +1189,10 @@ $(function() {
         imgHistory = am.history.filter(f => f.site !== "YouTube" && f.attribution)
 
         console.log("@GB: imgHistory = ", imgHistory);
-        buildTiles();
+
         buildCarousel();
+        buildTiles();
+        buildBgTiles();
         if (imgHistory.length < 2 || am.prefs.layout == "vanilla") {
             $('#experimental').hide()
         }

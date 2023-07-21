@@ -27,6 +27,7 @@
         padding: 1em;
         margin: 1em 0;
     }
+
     .square {
         width: 100%;
         position: relative;
@@ -35,20 +36,21 @@
         background-position: center;
     }
 
+    /*.square {width: 100%; position: relative; padding-bottom: 100%; background-size: contain; background-position: center; background-repeat: no-repeat; }*/
     .square .fa {
-      position: absolute;
-      bottom: 30%;
-      left: 0;
-      right: 0;
-      text-shadow: 2px 2px 5px black;
-      color: white;
-      font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) ));
+        position: absolute;
+        bottom: 30%;
+        left: 0;
+        right: 0;
+        text-shadow: 2px 2px 5px black;
+        color: white;
+        font-size: calc(12px + (40 - 16) * (80vw / (1000 - 400)));
     }
 
     .history-date {
         font-size: 0.7em;
     }
-   </style>
+    </style>
 </head>
 
 <body>
@@ -72,7 +74,8 @@
     <div class="container" style="margin-top: 40px">
         <h1> Image/YouTube Embedder &amp; Attribution Maker </h1>
         <h2 class="display-6 text">for <a href="https://unsplash.com/" target="_blank">Unsplash</a>, <a href="https://www.pexels.com/" target="_blank">Pexels</a>, <a href="https://commons.wikimedia.org/wiki/Main_Page" target="_blank">Wikimedia Commons</a>, <a href="https://pixabay.com/" target="_blank">Pixabay</a>, <a href="https://www.flickr.com/search/?license=2%2C3%2C4%2C5%2C6%2C9" target="_blank">Flickr CC</a> &amp; <a href="https://www.youtube.com/" target="_blank">YouTube</a>
-            <br> <small class="text-muted">(Also works with <a href="https://www.shutterstock.com/" target="_blank" target="_Blank">Shutterstock</a>, if you have a paid subscription).</small> </h2>
+            <br>
+            <small class="text-muted">(Also works with <a href="https://www.shutterstock.com/" target="_blank" target="_Blank">Shutterstock</a>, if you have a paid subscription).</small> </h2>
         <p class="lead pt-2">A Bookmarklet to create HTML snippets to embed your selected Image or YouTube video, with proper attribution. This can then be pasted into Moodle, or any website that includes Bootstrap 4+.</p>
         <p>For those sites NOT running Bootstrap (such as Canvas LMS) a new "Inline CSS" option is now available. This option has fewer features but will work on any website.</p>
         <div class="firsttime-warning alert alert-danger collapse">
@@ -80,7 +83,6 @@
             <p>Follow the instuctions below. Watch the video for step-by-step instructions. </p>
         </div>
         <p> <button class="btn btn-outline-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"> First time? Click here for setup instructions. </button> <button id="history-collapser" class="btn btn-outline-primary btn-sm float-right" type="button" data-toggle="collapse" data-target="#collapseHistory" aria-expanded="false" aria-controls="collapseHistory"> Browse your history </button> </p>
-
         <div class="collapse" id="collapseExample">
             <div class="card card-body">
                 <h2>First time user?</h2>
@@ -103,13 +105,12 @@
 
             </div>
         </div>
-
         <div class="collapse" id="collapseHistory">
-            <hr>
-            <div class="container">
-                <div id="image-history" class="row no-gutters"></div>
 
-                <a href="#" id="showfullhistory" class="btn btn-outline-danger btn-block mx-auto">Show full history (Warning! may be slow)</a>
+            <hr>
+
+            <div class="container">
+                <div id="image-history" class="row no-gutters"></div> <a href="#" id="showfullhistory" class="btn btn-outline-danger btn-block mx-auto">Show full history (Warning! may be slow)</a>
             </div>
         </div>
         <div class="pixabay-warning alert alert-danger collapse">
@@ -140,87 +141,81 @@
             <p>To update your bookmarklet, follow the "First time" instructions above.</p>
         </div>
         <!-- Three columns of text below the carousel -->
+
         <hr>
-            <div id="update-prefs" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                <div class="col-auto mr-auto">
-                    <small>Layout style: (Some features only for Bootstrap) <a href="#" class="text-danger" data-toggle="tooltip"  data-placement="right" data-html="true" title="Boostrap should be used for Moodle or any other site that uses Bootstrap 4. <br><br> For everywhere else (including Canvas), use inline">*</a></small><br>
-                    <div id="prefs-layout" class="btn-group btn-group-sm" role="group" aria-label="Layout">
-                        <button type="button" data-prefs='{"layout": "bootstrap"}' id="layout-bootstrap" class="btn btn-outline-primary">Bootstrap</button>
-                        <button type="button" data-prefs='{"layout": "vanilla"}' id="layout-vanilla" class="btn btn-outline-primary">Inline CSS</button>
-                    </div>
-                    <div class="text-muted mt-1"><small>Not working properly? <a id="prefs-reset" class="text-dark" href="#">Reset my preferences</a></small></div>
-                </div>
-                <div class="col-auto">
-                    <small>Attribution: </small><br>
-                    <div class="btn-group btn-group-sm" role="group" aria-label="Attribution">
-                        <button type="button" data-prefs='{"collapsed": true}' id="collapsed-true" class="btn btn-outline-primary">Collapsed</button>
-                        <button type="button" data-prefs='{"collapsed": false}' id="collapsed-false" class="btn btn-outline-primary">Shown</button>
-                    </div>
-                </div>
-                <div class="col-auto" id="resizer">
-                    <small>Relative size: </small><br>
-                    <div class="btn-group btn-group-sm" role="group" aria-label="Relative size">
-                        <button type="button" data-prefs='{"percent":50,"cols":"col-md-6"}' id="percent-50" class="btn btn-outline-primary">50%</button>
-                        <button type="button" data-prefs='{"percent":42,"cols":"col-md-5"}' id="percent-42" class="btn btn-outline-primary">42%</button>
-                        <button type="button" data-prefs='{"percent":33,"cols":"col-md-4"}' id="percent-33" class="btn btn-outline-primary">33%</button>
-                        <button type="button" data-prefs='{"percent":25,"cols":"col-md-3"}' id="percent-25" class="btn btn-outline-primary">25%</button>
-                        <button type="button" data-prefs='{"percent":17,"cols":"col-md-2"}' id="percent-17" class="btn btn-outline-primary">17%</button>
-                    </div>
-                </div>
-                <div class="col-auto" id="decoration">
-                    <div class="custom-control custom-switch small">
-                        <input type="checkbox" class="custom-control-input" data-prefs-classes="border" data-prefs-styles='{"border": "1px solid #dee2e6", "border-radius": "0.25rem"}' id="prefs-border" > <label class="custom-control-label" for="prefs-border">Border</label> </div>
-                    <div class="custom-control custom-switch small">
-                        <input type="checkbox" class="custom-control-input" data-prefs-classes="bg-light" data-prefs-styles='{"background-color": "#f8f9fa"}' id="prefs-bg-light"> <label class="custom-control-label" for="prefs-bg-light">Background</label> </div>
-                    <div class="custom-control custom-switch small">
-                        <input type="checkbox" class="custom-control-input" data-prefs-classes="shadow" data-prefs-styles='{"box-shadow": "0 .5rem 1rem rgba(0,0,0,.15)"}' id="prefs-shadow"> <label class="custom-control-label" for="prefs-shadow">Shadow <a href="#" class="text-danger" data-toggle="tooltip"  data-placement="left" data-html="true" title="Not advised for Canvas.  It will strip out the shadow when you save the page.">*</a></label> </div>
-                </div>
+
+        <div id="update-prefs" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="col-auto mr-auto">
+                <small>Layout style: (Some features only for Bootstrap) <a href="#" class="text-danger" data-toggle="tooltip" data-placement="right" data-html="true" title="Boostrap should be used for Moodle or any other site that uses Bootstrap 4.
+<br>
+<br> For everywhere else (including Canvas), use inline">*</a></small>
+                <br>
+                <div id="prefs-layout" class="btn-group btn-group-sm" role="group" aria-label="Layout"> <button type="button" data-prefs='{"layout": "bootstrap"}' id="layout-bootstrap" class="btn btn-outline-primary">Bootstrap</button> <button type="button" data-prefs='{"layout": "vanilla"}' id="layout-vanilla" class="btn btn-outline-primary">Inline CSS</button> </div>
+                <div class="text-muted mt-1">
+                    <small>Not working properly? <a id="prefs-reset" class="text-dark" href="#">Reset my preferences</a></small></div>
             </div>
-
-            <hr class="featurette-divider clearfix" id="right">
-
+            <div class="col-auto">
+                <small>Attribution: </small>
+                <br>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Attribution"> <button type="button" data-prefs='{"collapsed": true}' id="collapsed-true" class="btn btn-outline-primary">Collapsed</button> <button type="button" data-prefs='{"collapsed": false}' id="collapsed-false" class="btn btn-outline-primary">Shown</button> </div>
+            </div>
+            <div class="col-auto" id="resizer">
+                <small>Relative size: </small>
+                <br>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Relative size"> <button type="button" data-prefs='{"percent":50,"cols":"col-md-6"}' id="percent-50" class="btn btn-outline-primary">50%</button> <button type="button" data-prefs='{"percent":42,"cols":"col-md-5"}' id="percent-42" class="btn btn-outline-primary">42%</button> <button type="button" data-prefs='{"percent":33,"cols":"col-md-4"}' id="percent-33" class="btn btn-outline-primary">33%</button> <button type="button" data-prefs='{"percent":25,"cols":"col-md-3"}' id="percent-25" class="btn btn-outline-primary">25%</button> <button type="button" data-prefs='{"percent":17,"cols":"col-md-2"}' id="percent-17" class="btn btn-outline-primary">17%</button> </div>
+            </div>
+            <div class="col-auto" id="decoration">
+                <div class="custom-control custom-switch small"> <input type="checkbox" class="custom-control-input" data-prefs-classes="border" data-prefs-styles='{"border": "1px solid #dee2e6", "border-radius": "0.25rem"}' id="prefs-border"> <label class="custom-control-label" for="prefs-border">Border</label> </div>
+                <div class="custom-control custom-switch small"> <input type="checkbox" class="custom-control-input" data-prefs-classes="bg-light" data-prefs-styles='{"background-color": "#f8f9fa"}' id="prefs-bg-light"> <label class="custom-control-label" for="prefs-bg-light">Background</label> </div>
+                <div class="custom-control custom-switch small"> <input type="checkbox" class="custom-control-input" data-prefs-classes="shadow" data-prefs-styles='{"box-shadow": "0 .5rem 1rem rgba(0,0,0,.15)"}' id="prefs-shadow"> <label class="custom-control-label" for="prefs-shadow">Shadow <a href="#" class="text-danger" data-toggle="tooltip" data-placement="left" data-html="true" title="Not advised for Canvas.  It will strip out the shadow when you save the page.">*</a></label> </div>
+            </div>
+        </div>
+        <hr class="featurette-divider clearfix" id="right">
         <!-- #am-images -->
         <div id="am-images" class="sitenav clearfix container-fluid w-100">
-
-
-
             <!-- START THE FEATURETTES -->
             <!-- .maker-fr -->
             <div class="clearfix container-fluid">
                 <div class="maker-copy maker-floated maker-fr">
+
 <!-- Start of Image Embed - Float Right (Embed code by @BirdyOz) -->
 <figure class="figure rounded p-1 text-right float-md-right col-md-5 ml-md-4" style="margin: 0 0 1rem 1rem; width: 42%; float: right;">
-    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid" style="width: 100%;">
-</figure>
+    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid" style="width: 100%;"> </figure>
 <!-- End of Image Embed - Float Right -->
+
                 </div>
-                <h2 class="featurette-heading">Float Right <small class="text-muted">(Image to the right of text)</small></h2>
-                <p class="lead">Image will occupy <strong class="percent font-weight-bolder text-primary">42%</strong> of the available space, on larger screens <small class="text-muted">(760px and above)</small>.  </p>
-                <p class="lead">On smaller screens, the image will become 100% wide <small class="text-muted">(Bootstrap Only)</small>.</p>
+                <h2 class="featurette-heading">Float Right
+                    <small class="text-muted">(Image to the right of text)</small></h2>
+                <p class="lead">Image will occupy <strong class="percent font-weight-bolder text-primary">42%</strong> of the available space, on larger screens
+                    <small class="text-muted">(760px and above)</small>. </p>
+                <p class="lead">On smaller screens, the image will become 100% wide
+                    <small class="text-muted">(Bootstrap Only)</small>.</p>
                 <p>The following placeholder text is included to show the relationship between the image and text. The image will resize and the text will reflow as you resize the browser.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <button id="maker-fr" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-sml"> <i class="fa fa-download"></i> Download small image </a>
             </div>
             <!-- /.maker-fr -->
-
             <!-- .maker-fl -->
             <hr class="featurette-divider clearfix" id="left">
             <div class="clearfix">
                 <div class="maker-copy maker-floated maker-fl">
+
 <!-- Start of Image Embed - Float Left (Embed code by @BirdyOz) -->
 <figure class="figure rounded p-1 text-right float-md-left col-md-5 mr-md-4" style="margin: 0 1rem 1rem 0; width: 42%; float: left;">
-    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid">
-</figure>
+    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid"> </figure>
 <!-- End of Image Embed - Float Left -->
+
                 </div>
-                <h2 class="featurette-heading">Float Left <small class="text-muted">(Image to the left of text)</small></h2>
-                <p class="lead">Image will occupy <strong class="percent font-weight-bolder text-primary">42%</strong> of the available space, on larger screens <small class="text-muted">(760px and above)</small>.  </p>
-                <p class="lead">On smaller screens, the image will become 100% wide <small class="text-muted">(Bootstrap Only)</small>.</p>
+                <h2 class="featurette-heading">Float Left
+                    <small class="text-muted">(Image to the left of text)</small></h2>
+                <p class="lead">Image will occupy <strong class="percent font-weight-bolder text-primary">42%</strong> of the available space, on larger screens
+                    <small class="text-muted">(760px and above)</small>. </p>
+                <p class="lead">On smaller screens, the image will become 100% wide
+                    <small class="text-muted">(Bootstrap Only)</small>.</p>
                 <p>The following placeholder text is included to show the relationship between the image and text. The image will resize and the text will reflow as you resize the browser.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p> <button id="maker-fl" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-sml"> <i class="fa fa-download"></i> Download small image </a>
             </div>
             <!-- .maker-fl -->
-
             <!-- .maker-lg -->
             <hr class="featurette-divider clearfix" id="large">
             <div class="clearfix">
@@ -228,85 +223,90 @@
                 <p class="lead">Image will occupy 100% of the available space</p>
                 <div class="clearfix">
                     <div class="maker-copy maker-lg">
+
 <!-- Start of Image Embed - Full width (Embed code by @BirdyOz) -->
 <figure class="figure rounded p-1 text-right w-100" style="margin: 0; width: 100%; clear: both;">
-    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100">
-</figure>
+    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100"> </figure>
 <!-- End of Image Embed - Full width -->
+
                     </div> <button id="maker-lg" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i> Download large image </a>
                 </div>
             </div>
             <!-- /.maker-lg -->
-
             <!-- .quote  -->
             <hr class="featurette-divider clearfix" id="quote">
             <div class="clearfix bootstrap-only" id="quote-container">
                 <h2 class="featurette-heading">Image Card, with Quote and Attribution</h2>
                 <p class="lead">Image and quotation are in a card that occupies 80% of the screen. The quote and attribution are customisable, by using the input fields below the image</p>
                 <div class="maker-copy maker-quote">
+
 <!-- Start of Image Embed - Image Card, with Quote and attribution (Embed code by @BirdyOz) -->
 <div class="card col-10 p-0 rounded mt-4 mb-4 mr-auto ml-auto">
     <figure class="figure p-0 text-right w-100 p-1">
-        <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100">
-    </figure>
+        <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100"> </figure>
     <div class="card-body">
+
         <!-- Start of Fancy Blockquotes --> <i aria-hidden="true" class="fa fa-fw fa-2x fa-quote-left fa-pull-left font-italic" style="color:#ddd"></i>
         <blockquote class="blockquote border-0">
             <p id="quote-text" class="lead" style="font-size: 1.6rem;">We cannot solve our problems with the same thinking we used when we created them.</p>
             <div id="quote-attribution" class="blockquote-footer text-right"> Albert Einstein </div>
         </blockquote> <i aria-hidden="true" class="fa fa-fw fa-2x fa-quote-right fa-pull-right font-italic" style="color:#ddd"></i>
         <!-- End of Fancy Blockquotes -->
+
     </div>
 </div>
 <!-- End of Embed code - Image Card, with Quote and attribution  -->
+
                 </div>
                 <div class="input-group input-group-sm mb-1"> <input type="text" id="input-quote-text" class="form-control text-input" placeholder="Type or paste your quote here and see it automatically update above" aria-label="input-overlay-text"> </div>
                 <div class="input-group input-group-sm mb-3"> <input type="text" id="input-quote-attribution" class="form-control text-input" placeholder="Type your attribution here." aria-label="input-overlay-citation"> </div> <button id="maker-quote" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i> Download large image </a>
+
                 <hr>
+
                 <!-- .maker-quote-sxs -->
                 <h3 class="featurette-heading">Side-by-side alternative</h3>
                 <p class="lead">Image and quotation are side-by-side in a card that occupies 100% of the screen. The quote and attribution are customisable, by using the input fields below the image</p>
                 <div class="maker-copy maker-quote-sxs">
+
 <!-- Start of Image Embed - Side-By-Side Image Card, with Quote and attribution (Embed code by @BirdyOz) -->
 <div class="card w-100 rounded mt-4 mb-4">
     <div class="container-fluid m-0 p-0">
         <div class="row">
             <div class="col-lg">
                 <div class="card-body align-items-center h-100 d-flex justify-content-center">
+
                     <!-- Start of Fancy Blockquotes -->
                     <blockquote class="blockquote border-0"><i aria-hidden="true" class="fa fa-fw fa-2x fa-quote-left font-italic" style="color:#ddd"></i>
                         <p id="quote-sxs-text" class="lead" style="font-size: 1.6rem;">We cannot solve our problems with the same thinking we used when we created them.</p>
-                        <div id="quote-sxs-attribution" class="blockquote-footer text-right"> Albert Einstein </div>
-                        <i aria-hidden="true" class="fa fa-fw fa-2x fa-quote-right fa-pull-right font-italic" style="color:#ddd"></i>
+                        <div id="quote-sxs-attribution" class="blockquote-footer text-right"> Albert Einstein </div> <i aria-hidden="true" class="fa fa-fw fa-2x fa-quote-right fa-pull-right font-italic" style="color:#ddd"></i>
                     </blockquote>
                     <!-- End of Fancy Blockquotes -->
+
                 </div>
             </div>
             <div class="col-lg">
                 <figure class="figure m-0 p-1 text-right w-100">
-                    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100">
-                </figure>
+                    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100"> </figure>
             </div>
         </div>
     </div>
 </div>
 <!-- End of Embed code - Side-By-Side Image Card, with Quote and attribution  -->
+
                 </div>
                 <div class="input-group input-group-sm mb-1"> <input type="text" id="input-quote-sxs-text" class="form-control text-input" placeholder="Type or paste your quote here and see it automatically update above" aria-label="input-overlay-text"> </div>
                 <div class="input-group input-group-sm mb-3"> <input type="text" id="input-quote-sxs-attribution" class="form-control text-input" placeholder="Type your attribution here." aria-label="input-overlay-citation"> </div> <button id="maker-quote-sxs" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i> Download large image </a>
                 <!-- .maker-quote-sxs -->
-
             </div>
             <!-- /.quote  -->
-
             <!-- .maker-hero -->
             <hr class="featurette-divider clearfix" id="hero">
-
             <div class="clearfix bootstrap-only" id="hero-container">
                 <h2 class="featurette-heading">Image Card, with 'Hero text'</h2>
                 <p class="lead">Image and text are in a card that occupies 80% of the screen. The text is customisable, by using the input fields below the box</p>
                 <p>These cards tend to be a bit 'shout-ey' so use them sparingly.</p>
                 <div class="maker-copy maker-hero">
+
 <!-- Start of Image Embed - Image Card, with 'Hero text' (Embed code by @BirdyOz) -->
 <div class="card col-10 p-0 rounded mt-4 mb-2 mr-auto ml-auto">
     <figure class="figure p-0 text-right w-100 p-1">
@@ -317,13 +317,17 @@
     </div>
 </div>
 <!-- End of Embed code - Image Card, with 'Hero text'  -->
+
                 </div>
                 <div class="input-group input-group-sm mt-4 mb-1"> <input type="text" id="input-hero-heading" class="form-control text-input" placeholder="Type or paste your heading here and see it automatically update above.  Clear if no heading is required" aria-label="input-overlay-text"> </div>
                 <div class="input-group input-group-sm mb-3"> <input type="text" id="input-hero-body" class="form-control text-input" placeholder="Type or paste your 'Hero Text' here." aria-label="input-overlay-citation"> </div> <button id="maker-hero" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i> Download large image </a>
+
                 <hr>
+
                 <h3 class="featurette-heading">Side-by-side alternative</h3>
                 <p class="lead">Image and hero text are side-by-side in a card that occupies 100% of the screen. The text is customisable, by using the input fields below the image</p>
                 <div class="maker-copy maker-hero-sxs">
+
 <!-- Start of Image Embed - Side-By-Side Image Card, with 'Hero text' (Embed code by @BirdyOz) -->
 <div class="card w-100 rounded mt-4 mb-4">
     <div class="container-fluid m-0 p-0">
@@ -336,41 +340,39 @@
             </div>
             <div class="col-lg">
                 <figure class="figure m-0 p-1 text-right w-100">
-                    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100">
-                </figure>
+                    <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100"> </figure>
             </div>
         </div>
     </div>
 </div>
 <!-- End of Embed code - Side-By-Side Image Card, with 'Hero text'  -->
+
                 </div>
                 <div class="input-group input-group-sm mb-1"> <input type="text" id="input-hero-sxs-heading" class="form-control text-input" placeholder="Type or paste your heading here and see it automatically update above.  Clear if no heading is required" aria-label="input-overlay-text"> </div>
                 <div class="input-group input-group-sm mb-3"> <input type="text" id="input-hero-sxs-body" class="form-control text-input" placeholder="Type or paste your 'Hero Text' here." aria-label="input-overlay-citation"> </div> <button id="maker-hero-sxs" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i> Download large image </a>
             </div>
             <!-- /.maker-hero -->
-
             <hr class="featurette-divider clearfix" id="overlay">
             <div class="clearfix" id="overlay-container">
                 <h2 class="featurette-heading">Full width, with text overlay (Custom text overlay)</h2>
                 <p class="lead">Image will occupy 100% of the available space. The text overlay and byline are customisable, by using the input fields below the image. </p>
                 <div class="maker-copy maker-ov">
+
 <!-- Start of Image Embed - Full width, with text overlay (Embed code by @BirdyOz) -->
 <div class="maker-overlay" style="position: relative;">
     <figure class="figure p-1 text-right w-100 rounded">
-        <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100">
-    </figure>
+        <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Loading+image" class="img-responsive img-fluid w-100"> </figure>
     <div class="text-overlay" style="text-align: center; color: white !important; text-shadow: 2px 2px 4px #000000; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%">
         <p id="overlay-text" style="font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) )) !important; line-height: calc( 20px + (32 - 16) * ( 80vw / (1000 - 400) )) !important;">Text overlay goes here</p>
         <p id="overlay-citation" style="font-size: calc( 12px + (24 - 16) * ( 60vw / (1000 - 400) )) !important; line-height: calc( 10px + (20 - 10) * ( 80vw / (1000 - 400) )) !important;">Optional byline or citation goes here. Delete if not required.</p>
     </div>
 </div>
 <!-- End of Embed code - Full width, with text overlay -->
+
                 </div>
-
-            <div class="input-group input-group-sm mb-1"> <input type="text" id="input-overlay-text" class="form-control text-input" placeholder="Type your text overlay here and see it automatically update above" aria-label="input-overlay-text"> </div>
-            <div class="input-group input-group-sm mb-3"> <input type="text" id="input-overlay-citation" class="form-control text-input" placeholder="Optional byline or citation. Clear text if not required" aria-label="input-overlay-citation"> </div> <button id="maker-ov" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i> Download large image </a>
+                <div class="input-group input-group-sm mb-1"> <input type="text" id="input-overlay-text" class="form-control text-input" placeholder="Type your text overlay here and see it automatically update above" aria-label="input-overlay-text"> </div>
+                <div class="input-group input-group-sm mb-3"> <input type="text" id="input-overlay-citation" class="form-control text-input" placeholder="Optional byline or citation. Clear text if not required" aria-label="input-overlay-citation"> </div> <button id="maker-ov" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i> Download large image </a>
             </div>
-
             <hr class="featurette-divider clearfix" id="cropped">
             <div class="cropper">
                 <div class="clearfix">
@@ -394,11 +396,12 @@
                     <h4>Cropped image</h4>
                     <div class="clearfix">
                         <div class="maker-copy maker-cropped">
+
 <!-- Start of Image Embed - Cropped (Embed code by @BirdyOz) -->
 <figure class="figure p-1 text-right w-100 rounded" style="margin: 0; width: 100%; clear: both;">
-    <img id="image-cropped" src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Cropped+image+will+go+here" class="img-responsive img-fluid w-100">
-</figure>
+    <img id="image-cropped" src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Cropped+image+will+go+here" class="img-responsive img-fluid w-100"> </figure>
 <!-- End of Image Embed - Cropped -->
+
                         </div>
                     </div> <button id="maker-cropped" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-cropped"> <i class="fa fa-download"></i> Download cropped image </a>
                 </div>
@@ -410,9 +413,11 @@
                 <div class="clearfix">
                     <div class="mb-4">
                         <div class="maker-copy maker-txt">
-                            <!-- Start of Image attribution - text only (Embed code by @BirdyOz) -->
-                            <div id="attribution"> Attribution statement goes here </div>
-                            <!-- End of Image attribution - text only -->
+
+<!-- Start of Image attribution - text only (Embed code by @BirdyOz) -->
+<div id="attribution"> Attribution statement goes here </div>
+<!-- End of Image attribution - text only -->
+
                         </div>
                     </div> <button id="maker-txt" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button><a class="btn btn-outline-primary download" href="" title="img-lge"> <i class="fa fa-download"></i> Download large image </a>
                 </div>
@@ -422,13 +427,14 @@
                     <p class="lead">Use this option to copy the the image and its attribution directly into Word, PowerPoint or any application that supports Rich Text Format (RTF) content. </p>
                     <div class="clearfix">
                         <div class="maker-copy maker-rtf">
+
 <!-- Start of Rich Text attribution - text only (Embed code by @BirdyOz) -->
 <div id="rtf">
     <figure>
-        <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=RTF+image+will+go+here" class="img-responsive img-fluid w-100">
-    </figure>
+        <img src="https://dummyimage.com/1440x760/b094b0/e3b1e3&text=RTF+image+will+go+here" class="img-responsive img-fluid w-100"> </figure>
 </div>
 <!-- End of Rich Text attribution - text only -->
+
                         </div> <button id="maker-rtf" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy as RTF</button>
                     </div>
                     <!-- /END THE FEATURETTES -->
@@ -436,102 +442,134 @@
                 </div>
             </div>
             <!-- .maker-tiles -->
-            <div id="experimental" class="border border-danger mt-4 p-2">
-            <div class="clearfix bootstrap-only" id="tiles">
+            <div id="experimental" class="border border-danger mt-4 p-4 rounded clearfix bootstrap-only">
                 <h1 class="text-danger">Advanced features only (experimental)</h1>
-                            <!-- .maker-carousel -->
-            <hr class="featurette-divider clearfix" id="carousel">
-            <div class="clearfix">
-                <h2 class="featurette-heading">Carousel (Built from your image history)</h2>
-                <p class="lead">Up to 12 Images will be arranged in an image carousel, according to your recent image history (newest first).</p>
-                <p>For best results, images should be in landscape format, with the same or similar dimensions</p>
+                <p class="lead">Each of the folllowing layouts combine multiple images into the one display. These images are drawn from your recent history (newest first).</p>
+                <p class="lead">Up to 12 images will be used. You can drag the slider at the top to set the number of images.</p>
 
-            <div id="carousel-prefs" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                <div class="col-auto"><label  class="" for="carousel-image-count"><small>Drag to change # of images in carousel</small></label></div>
-                <div class="col">
-                    <div id="carousel-settings" class="form-group"><input type="range" class="custom-range" step="1" min="2" max="6"  id="carousel-image-count">
-                    </div>
-                </div>
-                <div class="col-auto">
-                    <p id="carousel-image-number" class="border px-2 rounded">12</p>
-                </div>
-                <div class="col-auto">
-                    <div class="btn-group btn-group-sm" role="group" aria-label="Columns">
-                        <button type="button" id="carousel-text" class="btn btn-outline-primary">Toggle text overlay</button>
-                    </div>
-                </div>
-            </div>
-                <div class="clearfix">
-                    <div class="maker-copy maker-carousel">
+                <!-- Start of Success alert -->
+                <div class="alert alert-warning" role="alert"> For best results, images should be in landscape format, with the same or similar dimensions </div>
+                <!-- End of success alert -->
+
+                <!-- .maker-carousel -->
+                <div class="clearfix container-fluid"></div>
+
+                <!-- Start of Horizontal tabs, ID = qo0W89, date = 2023-07-17 -->
+                <ul class="nav nav-pills mb-0" id="htabs-qo0W89" role="tablist">
+                    <li class="nav-item"><a class="nav-link active show" id="htabs-1-qo0W89-tab" data-toggle="pill" href="#htabs-1-qo0W89" role="tab" aria-controls="htabs-1-qo0W89" aria-selected="true">Carousel</a></li>
+                    <li class="nav-item"><a class="nav-link" id="htabs-2-qo0W89-tab" data-toggle="pill" href="#htabs-2-qo0W89" role="tab" aria-controls="htabs-2-qo0W89" aria-selected="false">Tiles</a></li>
+                    <li class="nav-item"><a class="nav-link" id="htabs-3-qo0W89-tab" data-toggle="pill" href="#htabs-3-qo0W89" role="tab" aria-controls="htabs-3-qo0W89" aria-selected="false">Tiles (as background images)</a></li>
+                </ul>
+                <div class="tab-content card" id="pills-tabContent">
+
+                    <!-- Start of Item 1 -->
+                    <div class="tab-pane p-3 fade active show" id="htabs-1-qo0W89" role="tabpanel" aria-labelledby="htabs-1-qo0W89">
+                        <h4>Carousel</h4>
+                        <div id="carousel-prefs" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="col-auto"><label for="carousel-image-count">
+                                    <small>Drag to change # of images in carousel</small></label></div>
+                            <div class="col">
+                                <div id="carousel-settings" class="form-group"><input type="range" class="custom-range" step="1" min="2" max="6" id="carousel-image-count"> </div>
+                            </div>
+                            <div class="col-auto">
+                                <p id="carousel-image-number" class="border px-2 rounded">12</p>
+                            </div>
+                            <div class="col-auto">
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Columns"> <button type="button" id="carousel-text" class="btn btn-outline-primary">Toggle text overlay</button> </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="maker-copy maker-carousel">
+
 <!-- Start of Image Embed - carousel (Embed code by @BirdyOz) -->
 <div id="carousel-history" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-  </ol>
-  <div class="carousel-inner">
-
-  </div>
-  <button class="carousel-control-prev" type="button" data-target="#carousel-history" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-target="#carousel-history" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </button>
+    <ol class="carousel-indicators"> </ol>
+    <div class="carousel-inner"> </div> <button class="carousel-control-prev" type="button" data-target="#carousel-history" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </button> <button class="carousel-control-next" type="button" data-target="#carousel-history" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </button>
 </div>
 <figcaption class="figure-caption text-muted small fw-lighter text-right">
-    <!-- Start of Show/Hide interface, ID = carousel-attribution -->
-    <a class="source-btn text-muted" data-toggle="collapse" href="#show-carousel-attribution" role="button" aria-expanded="false" aria-controls="show-carousel-attribution"><small>▽ Show attributions</small></a>
-    <div class="source collapse m-0 p-0" id="show-carousel-attribution">
-    <p id="carousel-attribution" class="text-right">
-    </p>
 
+    <!-- Start of Show/Hide interface, ID = carousel-attribution --> <a class="source-btn text-muted" data-toggle="collapse" href="#show-carousel-attribution" role="button" aria-expanded="false" aria-controls="show-carousel-attribution">
+        <small>▽ Show attributions</small></a>
+    <div class="source collapse m-0 p-0" id="show-carousel-attribution">
+        <p id="carousel-attribution" class="text-right"> </p>
     </div>
     <!-- End of Show/Hide interface, ID = carousel-attribution -->
+
 </figcaption>
 <!-- End of Image Embed - carousel -->
-                    </div> <button id="maker-carousel" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
-                </div>
-            </div>
-            <!-- /.maker-carousel -->
-                <hr class="featurette-divider clearfix">
-                <h2 class="featurette-heading">Tiles (Built from your image history)</h2>
-                <p class="lead">Up to 12 Images will be arranged in tiles, according to your recent image history (newest first).</p>
-                <p>For best results, images should be in landscape format, with the same or similar dimensions</p>
 
-                <div id="tiles-prefs" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-                <div class="col-auto"><label  class="" for="tile-image-count"><small>Drag to change # of tiles</small></label></div>
-                <div class="col">
-                    <div id="tile-settings" class="form-group"><input type="range" class="custom-range" step="1" min="2" max="6"  id="tile-image-count">
+                            </div> <button id="maker-carousel" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
+                        </div>
+                        <!-- /.maker-carousel -->
                     </div>
-                </div>
-                <div class="col-auto">
-                    <p id="tile-image-number" class="border px-2 rounded">12</p>
-                </div>
-                <div class="col-auto">
-                    <div class="btn-group btn-group-sm" role="group" aria-label="Columns">
-                        <button type="button" id="two-three-columns" class="btn btn-outline-primary">Toggle between 2 or 3 columns</button>
-                    </div>
-                </div>
-                </div>
-                <div class="clearfix">
-                    <div class="maker-copy maker-tiles">
+                    <!-- End of Item 1 -->
+
+                    <!-- Start of Item 2 -->
+                    <div class="tab-pane p-3 fade" id="htabs-2-qo0W89" role="tabpanel" aria-labelledby="htabs-2-qo0W89">
+                        <h4>Tiles</h4>
+                        <div id="tiles-prefs" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="col-auto"><label for="tile-image-count">
+                                    <small>Drag to change # of tiles</small></label></div>
+                            <div class="col">
+                                <div id="tile-settings" class="form-group"><input type="range" class="custom-range" step="1" min="2" max="6" id="tile-image-count"> </div>
+                            </div>
+                            <div class="col-auto">
+                                <p id="tile-image-number" class="border px-2 rounded">12</p>
+                            </div>
+                            <div class="col-auto">
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Columns"> <button type="button" id="two-three-columns" class="btn btn-outline-primary">Toggle between 2 or 3 columns</button> </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="maker-copy maker-tiles">
+
 <!-- Start of Image Embed - Tiles (Embed code by @BirdyOz) -->
-<div id="tiles-wrapper" class="row row-cols-1 row-cols-md-3">
-</div>
+<div id="tiles-wrapper" class="row row-cols-1 row-cols-md-3"> </div>
 <!-- End of Image Embed - Tiles -->
-                    </div> <button id="maker-tiles" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
+
+                            </div> <button id="maker-tiles" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
+                        </div>
+                    </div>
+                    <!-- End of Item 2 -->
+
+                    <!-- Start of Item 3 -->
+                    <div class="tab-pane p-3 fade" id="htabs-3-qo0W89" role="tabpanel" aria-labelledby="htabs-3-qo0W89">
+                        <h4>Tiles (as background images)</h4>
+                        <p>Setting the tiles with backround images has the advantage that each tile is exactly the same height, with the image being cropped to fit. This ensures a more even dispay, but the tradeoff is the HTML is more complicated and it is much more difficult to swap out the images, later (eg, in Moodle</p>
+                        <p><strong>Only recommended for experienced developers.</strong></p>
+                        <div id="tiles-bg-prefs" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="col-auto"><label for="tile-bg-image-count">
+                                    <small>Drag to change # of tiles</small></label></div>
+                            <div class="col">
+                                <div id="tile-bg-settings" class="form-group"><input type="range" class="custom-range" step="1" min="2" max="6" id="tile-bg-image-count"> </div>
+                            </div>
+                            <div class="col-auto">
+                                <p id="tile-bg-image-number" class="border px-2 rounded">12</p>
+                            </div>
+                            <div class="col-auto">
+                                <div class="btn-group btn-group-sm" role="group" aria-label="Columns"> <button type="button" id="bg-two-three-columns" class="btn btn-outline-primary">Toggle between 2 or 3 columns</button> </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="maker-copy maker-bg-tiles">
+
+<!-- Start of Image Embed - Tiles with BG image (Embed code by @BirdyOz) -->
+<div id="tiles-bg-wrapper" class="row row-cols-1 row-cols-md-3"> </div>
+<!-- End of Image Embed - Tiles with BG image-->
+
+                            </div> <button id="maker-bg-tiles" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
+                        </div>
+                    </div>
+                    <!-- End of Item 3 -->
+
                 </div>
+                <!-- End of Horizontal tabs, ID = qo0W89, date = 2023-07-17 -->
+
             </div>
-            <!-- /.maker-tiles -->
-</div>
         </div>
         <!-- /#am-images -->
-
         <!-- #am-video -->
         <div id="am-video" class="sitenav clearfix container-fluid w-100">
-
-
             <h2 class="featurette-heading">Responsive YouTube video embed </h2>
             <p class="lead">This provides dynamic YouTube embed code, complete with title, optional description, playtime and attribution. This video is responsive and will always fit 100% of it's container</p>
             <div class="container">
@@ -567,7 +605,6 @@
             </div>
         </div>
         <!-- /#am-video -->
-
         <hr class="featurette-divider clearfix">
         <footer class="page-footer p-3">
             <p class="float-right"><a href="#">Back to top</a></p>
