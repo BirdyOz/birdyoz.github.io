@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-07-21 10:02:18
+ * @Last Modified time: 2023-07-21 16:05:53
  */
 
 /*jshint esversion: 8 */
@@ -190,6 +190,7 @@ $(function() {
 
     let player; // YouTube player API
     let imgHistory = []; // Invoke image history array
+    let chosenImages = []; // Invoke image history array
     let displayCarouselText = true;
 
     // Get localstorage prefs if available
@@ -788,7 +789,7 @@ $(function() {
     <div class="col mb-4">
         <div class="card h-100 rounded ${am.prefs.classes.join(" ")}">
             <figure>
-              <img src="${imgHistory[i].preview}" class="card-img-top" alt="${imgHistory[i].alt}">
+              <img src="${chosenImages[i].preview}" class="card-img-top" alt="${chosenImages[i].alt}">
               <figcaption class="figure-caption text-muted text-right small fw-lighter mr-1">
               ${
           am.prefs.collapsed
@@ -798,7 +799,7 @@ $(function() {
             <div class="source collapse m-0 p-0" id="show-tiles-${i}">`
             : ""
         }
-                ${imgHistory[i].attribution}
+                ${chosenImages[i].attribution}
                 ${
           am.prefs.collapsed
             ? `</div>
@@ -818,14 +819,14 @@ $(function() {
 `;
         return snippet;
     }
-// Return appropriate Embed Code snippet
+    // Return appropriate Embed Code snippet
     function tilesBgSnippet(i) {
         let snippet = `
     <!-- Start of Tile = ${i+1} -->
     <div class="col mb-4">
         <div class="card h-100 rounded ${am.prefs.classes.join(" ")}">
             <figure>
-              <div style="background-image: url('${imgHistory[i].preview}'); width: 100%; padding-bottom: 60%; background-size: cover; background-position: center;"></div>
+              <div style="background-image: url('${chosenImages[i].preview}'); width: 100%; padding-bottom: 60%; background-size: cover; background-position: center;"></div>
               <figcaption class="figure-caption text-muted text-right small fw-lighter mr-1">
               ${
           am.prefs.collapsed
@@ -835,7 +836,7 @@ $(function() {
             <div class="source collapse m-0 p-0" id="show-tiles-${i}">`
             : ""
         }
-                ${imgHistory[i].attribution}
+                ${chosenImages[i].attribution}
                 ${
           am.prefs.collapsed
             ? `</div>
@@ -860,7 +861,7 @@ $(function() {
     function carouselSnippet(i) {
         let snippet = `
     <div class="carousel-item">
-      <img src="${imgHistory[i].preview}" class="d-block w-100" alt="${imgHistory[i].alt}">
+      <img src="${chosenImages[i].preview}" class="d-block w-100" alt="${chosenImages[i].alt}">
       ${displayCarouselText?`<div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.4);">
               <h4 class="text-white">Card ${i+1} heading</h4>
               <p>Card ${i+1} content goes here.</p>
@@ -1094,7 +1095,7 @@ $(function() {
 
 
     // Return appropriate Embed Code snippet
-    function buildTiles(i = imgHistory.length) {
+    function buildTiles(i = chosenImages.length) {
 
         $('#tile-image-number').text(i);
         if (i == 2) {
@@ -1102,8 +1103,8 @@ $(function() {
         }
 
         // Set slider length to length of image history (12 max)
-        $('#tile-image-count').attr("max", imgHistory.length < 12 ? imgHistory.length : 12);
-        $('#tile-image-count').attr("value", imgHistory.length < 12 ? imgHistory.length : 12);
+        $('#tile-image-count').attr("max", chosenImages.length);
+        $('#tile-image-count').attr("value", chosenImages.length);
 
         // When invoked, clear out any existing tiles:
         $('#tiles-wrapper').html("");
@@ -1114,7 +1115,7 @@ $(function() {
 
     }
     // Return appropriate Embed Code snippet
-    function buildBgTiles(i = imgHistory.length) {
+    function buildBgTiles(i = chosenImages.length) {
 
         $('#tile-bg-image-number').text(i);
         if (i == 2) {
@@ -1122,8 +1123,8 @@ $(function() {
         }
 
         // Set slider length to length of image history (12 max)
-        $('#tile-bg-image-count').attr("max", imgHistory.length < 12 ? imgHistory.length : 12);
-        $('#tile-bg-image-count').attr("value", imgHistory.length < 12 ? imgHistory.length : 12);
+        $('#tile-bg-image-count').attr("max", chosenImages.length);
+        $('#tile-bg-image-count').attr("value", chosenImages.length);
 
         // When invoked, clear out any existing tiles:
         $('#tiles-bg-wrapper').html("");
@@ -1134,13 +1135,14 @@ $(function() {
 
     }
     // Return appropriate Embed Code snippet
-    function buildCarousel(i = imgHistory.length, displayText = true) {
+    function buildCarousel(i = chosenImages.length, displayText = true) {
 
-        $('#carousel-image-number').text(i);
+
+        $('#carousel-image-number').text(i < 12 ? i : 12);
 
         // Set slider length to length of image history (12 max)
-        $('#carousel-image-count').attr("max", imgHistory.length < 12 ? imgHistory.length : 12);
-        $('#carousel-image-count').attr("value", imgHistory.length < 12 ? imgHistory.length : 12);
+        $('#carousel-image-count').attr("max", chosenImages.length);
+        $('#carousel-image-count').attr("value", chosenImages.length);
 
         // When invoked, clear out any existing tiles:
         $('.carousel-indicators').html("");
@@ -1150,7 +1152,7 @@ $(function() {
         for (var n = 0; n < i; n++) {
             $('.carousel-indicators').append(`<li data-target="#carousel-history" data-slide-to="${n}"></li>`);
             $('.carousel-inner').append(carouselSnippet(n));
-            $('#carousel-attribution').append(`<small>${n+1}:</small> ${imgHistory[n].attribution}<br>`);
+            $('#carousel-attribution').append(`<small>${n+1}:</small> ${chosenImages[n].attribution}<br>`);
 
             if (n == 0) {
                 $('.carousel-indicators li').first().addClass("active");
@@ -1187,12 +1189,8 @@ $(function() {
 
         // Define a new object that only contains images
         imgHistory = am.history.filter(f => f.site !== "YouTube" && f.attribution)
+        chosenImages = imgHistory.slice(0,11);
 
-        console.log("@GB: imgHistory = ", imgHistory);
-
-        buildCarousel();
-        buildTiles();
-        buildBgTiles();
         if (imgHistory.length < 2 || am.prefs.layout == "vanilla") {
             $('#experimental').hide()
         }
@@ -1201,12 +1199,17 @@ $(function() {
         // NB temporarily set to zero
         $('#image-history').before(`<h3>Your recent history <span class=\"text-muted\">(${am.history.length} items)</span></h3>`);
         buildHistoryItems(am.history.slice(0, maxlength));
+        buildModalItems(imgHistory);
         if (am.history.length > maxlength) {
             $('#showfullhistory').html(`Show full history (${am.history.length - maxlength} more items).`);
 
         } else { $('#showfullhistory').hide(); }
         // Set localStorage
         localStorage.setItem('Attribution-Maker-History', JSON.stringify(am.history));
+
+        buildCarousel();
+        buildTiles();
+        buildBgTiles();
     }
 
 
@@ -1218,12 +1221,41 @@ $(function() {
     }
 
 
+
+
     $('#showfullhistory').click(function(event) {
         console.log("@GB: showfullhistory clicked");
         $('#now-showing').hide();
         buildHistoryItems(am.history.slice(maxlength));
-        $('#showfullhistory').hide()
+        $('#showfullhistory').hide();
         return false;
+    });
+
+    function buildModalItems(arr) {
+        $.each(arr, function(i, img) {
+            let card = `<div class="col-2"><div class="m-1 card p-1 bg-light"><div class="card square modal-item" style="background-image: url('${img.preview}')" data-prefs="${encodeURIComponent(JSON.stringify(img))}"></div><div class="d-none">${JSON.stringify(img)}</div></div>`;
+            $('.modal-body').append(card);
+        });
+    }
+
+    $('#launch-modal').click(function(event) {
+        chosenImages = [];
+    });
+
+    $("#exampleModal").on('click', '.modal-item', function() {
+        var selected = JSON.parse(decodeURIComponent($(this).attr('data-prefs')));
+        $(this).parent().toggleClass('bg-light bg-primary');
+        if ($(this).parent().hasClass('bg-primary')) {
+            chosenImages.push(selected);
+        } else {
+            chosenImages = chosenImages.filter(f => f.url !== selected.url);
+        }
+    });
+
+    $("#exampleModal").on('click', '#chosen', function() {
+        buildCarousel();
+        buildTiles();
+        buildBgTiles();
     });
 
 
