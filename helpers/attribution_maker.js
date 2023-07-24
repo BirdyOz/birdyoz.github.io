@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-07-24 10:24:05
+ * @Last Modified time: 2023-07-24 13:05:17
  */
 
 /*jshint esversion: 8 */
@@ -192,6 +192,7 @@ $(function() {
 
 
 
+
     // Get localstorage prefs if available
     if ("Attribution-Maker-Prefs" in localStorage) {
         am.prefs = JSON.parse(localStorage.getItem('Attribution-Maker-Prefs'));
@@ -230,6 +231,7 @@ $(function() {
 
         // Set localStorage
         localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(am.prefs));
+
     } else {
         // No URL parameters exist.   Show first time warning
         console.log("@GB: No parameters");
@@ -242,9 +244,8 @@ $(function() {
         // Get image ID
         n = am.url.lastIndexOf("/");
         am.id = am.url.substring(n + 1);
-        // oldkey = "MzM2YjUyN2IyZTE4ZDA0NTA0NTgyMGI3ODA2MmI5NWM4MjUzNzYzMTEzMjZiMmEwOGY5YjkzZWVmN2VmYzA3Yg%3D%3D";
         key = "STJMT3JlREVmUWlWQUtFUTBEOHZfVXM4clUtNUloRlFDbWNsUnZ5RzFYdw==";
-        // API call
+        // API endpoint
         uri = "https://api.unsplash.com/photos/" + am.id + "?client_id=" + atob(decodeURIComponent(key));
 
         // API call
@@ -273,7 +274,7 @@ $(function() {
         key = "NTYzNDkyYWQ2ZjkxNzAwMDAxMDAwMDAxYmZlZmZkMDc3YmFmNDU0ZGFiMjlkNjMwMGJkZjc0MGQ%3D";
         uri = "https://api.pexels.com/v1/photos/" + am.id;
 
-        // API call.   Using $.ajax as paxels requires authentication headers
+        // API call.   Using $.ajax, as Pexels requires authentication headers
         $.ajax({
             url: uri,
             dataType: "json",
@@ -307,6 +308,7 @@ $(function() {
 
         $.getJSON(uri, function() {})
             .done(function(json) {
+                console.log("@GB: json = ", json);
                 am.image.preview = json.hits[0].largeImageURL;
                 am.attribution.username = json.hits[0].user;
                 am.attribution.userUrl = "https://pixabay.com/users/" + am.attribution.username;
@@ -317,7 +319,8 @@ $(function() {
                 buildHistory();
             })
             .fail(function() {
-                console.log(json);
+
+                console.log("@GB: json = ", json);
             });
     }
 
@@ -458,7 +461,8 @@ $(function() {
         am.site.licence = "Terms";
         am.site.licenceUrl = "https://www.youtube.com/static?template=terms&gl=AU";
         key = "QUl6YVN5QmxCcEFUTzF0Z0hOM3FyUGUwWlQ5aGFFMW5UQmxRYVU0";
-        // API call
+
+        // API endpoint
         uri = "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatus%2Cplayer&id=" + am.id + "&key=" + atob(decodeURIComponent(key));
 
         // API call
@@ -477,6 +481,7 @@ $(function() {
             if (vid.description.length > 0) {
                 am.video.description = vid.description;
             }
+
             // Is embedding allowed?
             if (am.video.embeddable === true) {
                 am.video.embeddable = json.items[0].status.embeddable;
@@ -494,6 +499,9 @@ $(function() {
             }
             ratio = embed_width / embed_height;
             am.video.ratio = (embed_height / embed_width) * 100;
+
+
+            // Establish video aspect ratio
             if (ratio == 1) {
                 am.video.aspect = "1by1";
             } else if (ratio > 2.3) {
@@ -503,12 +511,14 @@ $(function() {
             } else {
                 am.video.aspect = "4by3";
             }
+
             ytPlayTime = json.items[0].contentDetails.duration;
             am.video.duration = moment.duration(ytPlayTime).asSeconds();
             am.video.timecode = getTimecode(am.video.duration);
             am.attribution.username = json.items[0].snippet.channelTitle;
             am.attribution.userUrl = "https://www.youtube.com/channel/" + json.items[0].snippet.channelId;
-            // Can I be embedded?
+
+            // Can I be embedded?  If so, establish the correct snippet
             if (am.video.embeddable) {
                 if (am.prefs.org === "uom") {
                     snippet = uomytSnippet();
@@ -535,6 +545,12 @@ $(function() {
         });
     }
 
+    /**
+     *
+     * User preference buttons and inputs
+     *
+     */
+
 
 
     // Set active buttons, based on am.prefs
@@ -545,13 +561,14 @@ $(function() {
             $(target).addClass('active');
         }
     });
+
     // Set active buttons, based on am.prefs.classes
     $.each(am.prefs.classes, function(key, value) {
         target = `#prefs-${value}`;
         $(target).prop('checked', true);
     });
 
-    // Capture preference changes
+    // Capture preference changes - buttons
     $('#update-prefs .btn').on('click', function() {
 
         // Toggle other buttons
@@ -566,8 +583,6 @@ $(function() {
         am.prefs.date = new Date().toLocaleString();
 
         // if I change layout, refresh the page, otherwise BuildHTML
-
-
         if (this.id.includes("layout-") || am.site.name == "YouTube") {
             am.prefs.org = null;
             window.location.href = url;
@@ -578,7 +593,7 @@ $(function() {
     });
 
 
-    // Capture preference changes
+    // Capture preference changes - inputs
     $('#update-prefs input').change(function() {
 
         // Get button prefs
@@ -602,7 +617,7 @@ $(function() {
 
     // Reset prefs button
     $('#prefs-reset').on('click', function() {
-        localStorage.clear();
+        localStorage.removeItem('Attribution-Maker-Prefs');
         window.location.href = url;
     });
 
@@ -616,12 +631,28 @@ $(function() {
         buildTiles(imageCount);
     });
 
-    // Capture Tiles changes
+    // Toggle tiles display between two or three columns
+    $('#two-three-columns').on('click', function() {
+        $('#tiles-wrapper').toggleClass("row-cols-md-3 row-cols-md-2")
+    });
+
+    // Toggle tiles display between two or three columns
+    $('#carousel-text').on('click', function() {
+        displayCarouselText = displayCarouselText ? false : true
+        buildCarousel($('#carousel-image-count').val());
+    });
+
+    // Capture BG Tiles changes
     $('#tile-bg-image-count').change(function() {
 
         // Get button prefs
         imageCount = $(this).val();
         buildBgTiles(imageCount);
+    });
+
+    // Toggle tiles display between two or three columns
+    $('#bg-two-three-columns').on('click', function() {
+        $('#tiles-bg-wrapper').toggleClass("row-cols-md-3 row-cols-md-2")
     });
 
     // Capture Carousel changes
@@ -632,33 +663,15 @@ $(function() {
         buildCarousel(imageCount);
     });
 
-    // Toggle tiles display between two or three columns
-    $('#two-three-columns').on('click', function() {
-        $('#tiles-wrapper').toggleClass("row-cols-md-3 row-cols-md-2")
-    });
-
-    // Toggle tiles display between two or three columns
-    $('#bg-two-three-columns').on('click', function() {
-        $('#tiles-bg-wrapper').toggleClass("row-cols-md-3 row-cols-md-2")
-    });
-
-    // Toggle tiles display between two or three columns
-    $('#carousel-text').on('click', function() {
-        displayCarouselText = displayCarouselText ? false : true
-        buildCarousel($('#carousel-image-count').val());
-    });
-
-
-
-
+    // Copy embed code to clipboard
     $("button.embed").click(function(event) {
         event.preventDefault();
         let btn = $(this);
-        let id = "." + btn.attr("id");
-        let paste = $(id).html();
+        let target = "." + btn.attr("id");
+        let paste = $(target).html();
 
         // If Cropped, replace image in embed code with dummy image
-        if (id == ".maker-cropped") {
+        if (target == ".maker-cropped") {
             paste = paste.replace(am.image.cropped, "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+cropped+image");
         }
 
@@ -666,17 +679,24 @@ $(function() {
         if (am.site.name == "Pixabay") {
             paste = paste.replace(am.image.preview, "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+downloaded+Pixabay+image");
         }
-        // If Pixabay, replace image in embed code with dummy image
+
+        // If YouTube, update iframe with video parameters
         if (am.site.name == "YouTube") {
             paste = paste.replace("widgetid=1", "widgetid=1" + am.video.params);
         }
-        if (id == ".maker-rtf") {
+
+
+        // If RTF, copy to clipboard differently
+        if (target == ".maker-rtf") {
             copyAsRtf(paste);
         } else {
             copyTextToClipboard(paste);
         }
+
         btn.toggleClass("btn-outline-primary btn-success");
         btn.html('<i class="fa fa-check" aria-hidden="true"></i> Done! Copied to clipboard');
+
+        // after 3 secs, rest button to original
         window.setTimeout(function() {
             btn.html('<i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code');
             // btn.removeClass('btn-danger');
@@ -712,7 +732,6 @@ $(function() {
 
     $("#button-yt-start").click(function(event) {
         $("#yt-start").val(ytCurrTime);
-        // player.setOption({ "startSeconds": 55 });
     });
 
     $("#button-yt-end").click(function(event) {
@@ -750,255 +769,7 @@ $(function() {
     });
 
 
-    /**
-     *
-     * Snippets
-     *
-     */
 
-    // Return appropriate Embed Code snippet
-    function bootstrapSnippet(i) {
-        let snippet = `<img src="${am.image.preview}" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${am.title !== null ? ` title="${am.title}"` : ""}>
-<figcaption class="figure-caption text-muted small fw-lighter">
-    <small>${
-      am.prefs.collapsed
-        ? `
-        <!-- Start of Show/Hide interface, ID = ${am.id}-${i} -->
-        <a class="source-btn text-muted" data-toggle="collapse" href="#show-${am.id}-${i}" role="button" aria-expanded="false" aria-controls="show-${am.id}-${i}">&#9661; Show attribution</a>
-        <div class="source collapse m-0 p-0" id="show-${am.id}-${i}">`
-        : ""
-    }
-        <a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>
-            <br><a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} ${
-      am.prefs.collapsed
-        ? `</div>
-        <!-- End of Show/Hide interface, ID = ${am.id}-${i} -->`
-        : ""
-    }
-    </small>
-</figcaption>
-`;
-        return snippet;
-    }
-
-    // Return appropriate Embed Code snippet
-    function tilesSnippet(i) {
-        let snippet = `
-    <!-- Start of Tile = ${i+1} -->
-    <div class="col mb-4">
-        <div class="card h-100 rounded ${am.prefs.classes.join(" ")}">
-            <figure>
-              <img src="${chosenImages[i].preview}" class="card-img-top" alt="${chosenImages[i].alt}">
-              <figcaption class="figure-caption text-muted text-right small fw-lighter mr-1">
-              ${
-          am.prefs.collapsed
-            ? `
-            <!-- Start of Show/Hide interface, ID = Tiles-${i} -->
-            <a class="source-btn text-muted small" data-toggle="collapse" href="#show-tiles-${i}" role="button" aria-expanded="false" aria-controls="show-tiles-${i}">&#9661; Show attribution</a>
-            <div class="source collapse m-0 p-0" id="show-tiles-${i}">`
-            : ""
-        }
-                ${chosenImages[i].attribution}
-                ${
-          am.prefs.collapsed
-            ? `</div>
-            <!-- End of Show/Hide interface, ID = Tiles-${i} -->`
-            : ""
-        }
-              </figcaption>
-          </figure>
-          <div class="card-body pt-0">
-            <h5 class="card-title">Card ${i+1} heading</h5>
-            <p class="card-text">Card ${i+1} content goes here.</p>
-          </div>
-        </div>
-    </div>
-    <!-- End of Tile = ${i+1} -->
-
-`;
-        return snippet;
-    }
-    // Return appropriate Embed Code snippet
-    function tilesBgSnippet(i) {
-        let snippet = `
-    <!-- Start of Tile = ${i+1} -->
-    <div class="col mb-4">
-        <div class="card h-100 rounded ${am.prefs.classes.join(" ")}">
-            <figure>
-              <div style="background-image: url('${chosenImages[i].preview}'); width: 100%; padding-bottom: 60%; background-size: cover; background-position: center;"></div>
-              <figcaption class="figure-caption text-muted text-right small fw-lighter mr-1">
-              ${
-          am.prefs.collapsed
-            ? `
-            <!-- Start of Show/Hide interface, ID = Tiles-${i} -->
-            <a class="source-btn text-muted small" data-toggle="collapse" href="#show-tiles-${i}" role="button" aria-expanded="false" aria-controls="show-tiles-${i}">&#9661; Show attribution</a>
-            <div class="source collapse m-0 p-0" id="show-tiles-${i}">`
-            : ""
-        }
-                ${chosenImages[i].attribution}
-                ${
-          am.prefs.collapsed
-            ? `</div>
-            <!-- End of Show/Hide interface, ID = Tiles-${i} -->`
-            : ""
-        }
-              </figcaption>
-          </figure>
-          <div class="card-body pt-0">
-            <h5 class="card-title">Card ${i+1} heading</h5>
-            <p class="card-text">Card ${i+1} content goes here.</p>
-          </div>
-        </div>
-    </div>
-    <!-- End of Tile = ${i+1} -->
-
-`;
-        return snippet;
-    }
-
-    // Return appropriate Embed Code snippet
-    function carouselSnippet(i) {
-        let snippet = `
-    <div class="carousel-item">
-      <img src="${chosenImages[i].preview}" class="d-block w-100" alt="${chosenImages[i].alt}">
-      ${displayCarouselText?`<div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.4);">
-              <h4 class="text-white">Card ${i+1} heading</h4>
-              <p>Card ${i+1} content goes here.</p>
-            </div>`:""}
-    </div>
-`;
-        return snippet;
-    }
-
-
-
-    // If am.prefs.Org = uom, return Melb Uni embed code
-    function vanillaSnippet(i) {
-        let snippet = `<img src="${am.image.preview}" style="width:100%" alt="${am.image.alt}"${am.title !== null ? ` title="${am.title}"` : ""}>
-<figcaption style="font-size: 0.9em; color:#666; text-align: right">
-  ${am.prefs.collapsed
-        ? `<details><summary style = 'font-size: 0.8em'>Show attribution</summary>`:""
-    }
-    <small><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
-  ${am.prefs.collapsed
-        ? `</details>`:""
-    }
-  </details>
-</figcaption>
-`;
-        return snippet;
-    }
-
-
-    // If am.prefs.Org = MP, return Melb Poly embed code
-    function mpSnippet(i) {
-        let snippet = `<img src="${am.image.preview}" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${am.title !== null ? ` title="${am.title}"` : ""}>
-<figcaption class="figure-caption text-muted small fw-lighter">
-    <small><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
-</figcaption>
-`;
-        return snippet;
-    }
-
-    // Text only snippet
-    function textSnippet() {
-        let snippet = `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>`;
-        return snippet;
-    }
-
-    // Text only snippet
-    function rtfSnippet() {
-        let snippet = `<figure><img src="${am.image.preview}" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${am.title !== null ? ` title="${am.title}"` : ""}>
-<figcaption>
-    <div style="font-size: 8pt; color:gray; background-color:white"><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</div>
-</figcaption></figure>`;
-        return snippet;
-    }
-
-    // YouTube snippet
-    function ytSnippet() {
-        let snippet = `<!-- Start of YouTube video box -->
-<div class="clearfix container-fluid"></div>
-<div class="card">
-    <div class="card-body">
-        <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h4>
-        <p class="yt-desc">${am.video.description}</p>
-        <div class="embed-responsive embed-responsive-${am.video.aspect}">
-            <div id="yt-placeholder" class="embed-responsive-item vjs-tech"></div>
-        </div>
-        <div class="text-right">
-            <small class="text-muted small fw-lighter">
-                <!-- Start of Show/Hide interface, ID = ${am.id} -->
-                <a class="source-btn text-muted" data-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
-                <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} </div>
-                <!-- End of Show/Hide interface, ID = ${am.id} -->
-            </small>
-        </div>
-    </div>
-</div>
-<!-- End of YouTube video box -->`;
-        return snippet;
-    }
-
-    // YouTube snippet
-    function uomytSnippet() {
-        let snippet = `<div class="uom-ui-border-box uom-ui-add-border-radius" style="border-color:  #22765f; clear: both">
-    <h3 style="color:  #22765f;"><i class="fab fa-youtube fa-fw"></i> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h3>
-    <p class="yt-desc">${am.video.description}</p>
-    <div style="position: relative; padding-bottom: ${am.video.ratio}%;">
-        <div id="yt-placeholder" class="vjs-tech" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
-    </div>
-    <div style="text-align: right;"><small>${am.attribution.username} (${am.video.published}). <em>${am.title}</em> [Video]. YouTube. https://www.youtube.com/watch?v=${am.id}</small></div>
-</div>`;
-        return snippet;
-    }
-
-    // Vanilla YT snippet
-    function vanillaYTSnippet() {
-        let snippet = `<div style="border: 1px solid lightgrey; clear: both; padding: 1em; border-radius: 0.5em; margin:0">
-    <h4 style="color:#DC3545;"><span style="border: 2px solid; border-radius:30%; margin:0; padding: 0 0.4em; font-size: 0.7em">⏵</span> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h4>
-    <p class="yt-desc">${am.video.description}</p>
-    <div style="position: relative; padding-bottom: ${am.video.ratio}%;">
-        <div id="yt-placeholder" class="vjs-tech" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
-    </div>
-    <div style="text-align: right;"><small>${am.prefs.collapsed?`<details><summary>Show attribution</summary>`:""}Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today}${am.prefs.collapsed?`</details>`:""}</small></div>
-</div>`;
-        return snippet;
-    }
-
-    // YouTube placeholder
-    function ytPlaceholderSnippet() {
-        let snippet = `<!-- Start of YouTube Placeholder, for YT videos that don't allow embedding (Embed code by @BirdyOz) -->
-<div class="clearfix container-fluid"></div>
-<div class="card">
-    <div class="card-body">
-        <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h4>
-        <p class="yt-desc">${am.video.description}</p>
-
-        <div class="maker-overlay" style="position: relative;">
-            <a href="https://youtu.be/${am.id}" target="_blank" style="color: white  !important">\n'
-                <figure class="figure border rounded w-100"><img src="${am.video.thumb}" alt="YouTube video placeholder" class="w-100">
-                </figure>
-                <div class="text-overlay" style="text-align: center; color: white !important; text-shadow: 2px 2px 4px #000000; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%">
-                    <p id="overlay-text" style="font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) )) !important; line-height: calc( 20px + (32 - 16) * ( 80vw / (1000 - 400) )) !important;"><i class="fa fa-play-circle-o"></i> View video</p>
-                    <p id="overlay-citation" style="font-size: calc( 12px + (24 - 16) * ( 60vw / (1000 - 400) )) !important; line-height: calc( 10px + (20 - 10) * ( 80vw / (1000 - 400) )) !important;">(Opens in new tab)</p>
-                </div>
-            </a>
-        </div>
-
-        <div class="text-right">
-            <small class="text-muted small fw-lighter">
-                <!-- Start of Show/Hide interface, ID = ${am.id} -->
-                <a class="source-btn text-muted" data-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
-                <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} </div>
-                <!-- End of Show/Hide interface, ID = ${am.id} -->
-            </small>
-        </div>
-    </div>
-</div>
-<!-- End of YouTube Placeholder -->`;
-        return snippet;
-    }
 
     /**
      *
@@ -1011,7 +782,7 @@ $(function() {
 
         console.log("@GB: am = ", am);
 
-        // Set percentage text
+        // Set percentage width text, for floated images
         $('.percent').text(`${am.prefs.percent}%`)
 
         // Toggle between BS4 or Vanilla
@@ -1032,20 +803,21 @@ $(function() {
             snippet = bootstrapSnippet;
         }
 
-
         //
         $(".maker-copy figure").each(function(index) {
             $(this).html(snippet(index));
         });
 
-        buildCarousel();
-        buildTiles();
-        buildBgTiles();
-
         // Set Cropped and Text only alternateives
         $("#rcrop").attr("src", am.image.preview);
         $(".maker-txt").html(textSnippet());
         $(".maker-rtf").html(rtfSnippet());
+
+
+        // Build multi-image displays from history
+        buildCarousel();
+        buildTiles();
+        buildBgTiles();
 
         // Invoke rcrop (image cropper)
         // Set defaults
@@ -1093,7 +865,7 @@ $(function() {
     };
 
 
-    // Return appropriate Embed Code snippet
+    // Build multi-image Tiles display, from history
     function buildTiles(i = chosenImages.length) {
 
         $('#tile-image-number').text(i);
@@ -1101,7 +873,7 @@ $(function() {
             $('#tiles-wrapper').removeClass("row-cols-md-3").addClass("row-cols-md-2")
         }
 
-        // Set slider length to length of image history (12 max)
+        // Set slider length to length of image history
         $('#tile-image-count').attr("max", chosenImages.length);
         $('#tile-image-count').attr("value", chosenImages.length);
 
@@ -1113,7 +885,8 @@ $(function() {
         }
 
     }
-    // Return appropriate Embed Code snippet
+
+    // Build multi-image Tiles display (as background images), from history
     function buildBgTiles(i = chosenImages.length) {
 
         $('#tile-bg-image-number').text(i);
@@ -1121,7 +894,7 @@ $(function() {
             $('#tiles-bg-wrapper').removeClass("row-cols-md-3").addClass("row-cols-md-2")
         }
 
-        // Set slider length to length of image history (12 max)
+        // Set slider length to length of image history
         $('#tile-bg-image-count').attr("max", chosenImages.length);
         $('#tile-bg-image-count').attr("value", chosenImages.length);
 
@@ -1133,13 +906,13 @@ $(function() {
         }
 
     }
-    // Return appropriate Embed Code snippet
+
+    // Build multi-image Carousel, from history
     function buildCarousel(i = chosenImages.length, displayText = true) {
 
+        $('#carousel-image-number').text(i);
 
-        $('#carousel-image-number').text(i < 12 ? i : 12);
-
-        // Set slider length to length of image history (12 max)
+        // Set slider length to length of image history
         $('#carousel-image-count').attr("max", chosenImages.length);
         $('#carousel-image-count').attr("value", chosenImages.length);
 
@@ -1163,7 +936,7 @@ $(function() {
 
 
 
-
+    // Build image history
     function buildHistory() {
         // Get localstorage prefs if available
         if ("Attribution-Maker-History" in localStorage) {
@@ -1186,16 +959,8 @@ $(function() {
             "site": am.site.name
         });
 
-        // Define a new object that only contains images
-        imgHistory = am.history.filter(f => f.site !== "YouTube" && f.attribution)
-        chosenImages = imgHistory.slice(0,11);
 
-        if (imgHistory.length < 2 || am.prefs.layout == "vanilla") {
-            $('#experimental').hide()
-        }
-
-        // There is more than one image in my history
-        // NB temporarily set to zero
+        // Build history display
         $('#image-history').before(`<h3>Your recent history <span class=\"text-muted\">(${am.history.length} items)</span></h3>`);
         buildHistoryItems(am.history.slice(0, maxlength));
         if (am.history.length > maxlength) {
@@ -1205,12 +970,26 @@ $(function() {
         // Set localStorage
         localStorage.setItem('Attribution-Maker-History', JSON.stringify(am.history));
 
+
+        // Prepare for experimental, multi-image displays
+        // Define a new object that only contains images. Exclude YT or any images without an attribution
+
+        imgHistory = am.history.filter(f => f.site !== "YouTube" && f.attribution)
+        chosenImages = imgHistory.slice(0, 11);
+
+        // Only show exeprimental section if there are two images or more, and layout is BS
+        if (imgHistory.length < 2 || am.prefs.layout == "vanilla") {
+            $('#experimental').hide()
+        }
+
+        // Build expermintal multi-image displays
         buildCarousel();
         buildTiles();
         buildBgTiles();
     }
 
 
+    // Build each history item
     function buildHistoryItems(arr) {
         $.each(arr, function(i, img) {
             let card = `<div class="col-2"><div class="card m-1 text-center"> <a class="stretched-link" href="${url.pathname}?addr=${encodeURIComponent(img.url)}"> <div class="square" style="background-image: url('${img.preview}')">${img.url.includes('youtube')? "<i class=\"fa fa-play-circle-o\"></i>":""}</div></a> <small class="text-muted history-date">${img.time}</small> </div> </div>`;
@@ -1218,17 +997,15 @@ $(function() {
         });
     }
 
-
-
-
+    // Show full history.
     $('#showfullhistory').click(function(event) {
-        console.log("@GB: showfullhistory clicked");
         $('#now-showing').hide();
         buildHistoryItems(am.history.slice(maxlength));
         $('#showfullhistory').hide();
         return false;
     });
 
+    // Build modal history images
     function buildModalItems(arr) {
         // Clear out Modal HTML before building
         $('.modal-images').html("");
@@ -1240,14 +1017,22 @@ $(function() {
         });
     }
 
+    // Launch modal
     $('#launch-modal').click(function(event) {
         chosenImages = [];
         buildModalItems(imgHistory);
     });
 
-    $("#exampleModal").on('click', '.modal-item', function() {
-        var selected = JSON.parse(decodeURIComponent($(this).attr('data-prefs')));
+    // Capture selections in image chooser
+    $("#image-chooser").on('click', '.modal-item', function() {
+
+        // Get data attributes from selected image and turn back into a JSON object
+        let selected = JSON.parse(decodeURIComponent($(this).attr('data-prefs')));
+
+        // Highlight selected images
         $(this).parent().toggleClass('bg-light bg-primary');
+
+        // If selected, push into chosenImages array, else remove from array
         if ($(this).parent().hasClass('bg-primary')) {
             chosenImages.push(selected);
         } else {
@@ -1255,13 +1040,14 @@ $(function() {
         }
     });
 
-    $("#exampleModal").on('click', '#chosen', function() {
+    // "Use my chosen images" button.   Rebuilt multi-image displays
+    $("#image-chooser").on('click', '#chosen', function() {
         buildCarousel();
         buildTiles();
         buildBgTiles();
     });
 
-
+    // YouTube API
     function onYouTubeIframeAPIReady() {
         player = new YT.Player("yt-placeholder", {
             height: "100%",
@@ -1278,18 +1064,23 @@ $(function() {
         });
     }
 
+    // Listen for YT player
     function onPlayerReady(event) {
         console.log("@GB: onPlayerReady");
     }
 
+    // Capture changes to YT player
     function onPlayerStateChange(event) {
         setInterval(function() {
             if (event.data == YT.PlayerState.PLAYING && !YT.PlayerState.ENDED) {
+                // Get current playtime
                 ytCurrTime = Math.floor(player.getCurrentTime());
                 $("#yt-current").val(ytCurrTime);
             }
         }, 100);
     }
+
+    // Toggle the YouTube description on/off
     $("#display-yt-description").change(function() {
         if (this.checked) {
             //Do stuff
@@ -1309,10 +1100,7 @@ $(function() {
         return today;
     }
 
-    // log all console messages
-    function logger(json) {
-        console.log("@GB: json = ", json);
-    }
+
 
     // Copy to clipboard for dumb browsers
     function fallbackCopyTextToClipboard(text) {
@@ -1342,6 +1130,7 @@ $(function() {
         );
     }
 
+    // Copy as RTF
     function copyAsRtf(str) {
         function listener(e) {
             e.clipboardData.setData("text/html", str);
@@ -1353,6 +1142,7 @@ $(function() {
         document.removeEventListener("copy", listener);
     }
 
+    // Get YT video timecode
     function getTimecode(secs) {
         // if less than 1hr
         if (secs < 3600) {
@@ -1362,9 +1152,9 @@ $(function() {
         }
         return tc;
     }
+
     // Download appropriately sized image.
-    // Dynamically create an offscreen canvas area, load the chosen image,
-    // then create a file from the Canvas content
+    // Dynamically create an offscreen canvas area, load the chosen image, then create a file from the Canvas content
     function downloader(name, content) {
         let image = new Image();
         image.crossOrigin = "anonymous";
@@ -1375,7 +1165,6 @@ $(function() {
             let canvas = document.createElement("canvas");
             canvas.width = this.naturalWidth; // or 'width' if you want a special/scaled size
             canvas.height = this.naturalHeight; // or 'height' if you want a special/scaled size
-            console.log("@GB: canvas.width = ", canvas.width);
             canvas.getContext("2d").drawImage(this, 0, 0);
             let blob;
             blob = canvas.toDataURL("image/jpeg");
@@ -1385,13 +1174,13 @@ $(function() {
             link.href = blob;
 
             link.download = am.site.name + "-" + am.id + "-" + canvas.width + "x" + canvas.height + ".jpg";
-            console.log("@GB: link.download = ", link.download);
 
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
         };
     }
+
     // Sanitise text to remove HTML markup.
     function stripHTML(str) {
         str = $.parseHTML(str); // Convert str to DOM
@@ -1414,9 +1203,265 @@ $(function() {
     async function sendTrackDownload(endpoint) {
         const response = await fetch(endpoint);
         const response_json = await response.json();
-        console.log("@GB: response_json = ", response_json);
         if (!response.ok) {
             throw Error(response.statusText);
         }
     }
+
+    /**
+     *
+     * SNIPPETS
+     *
+     */
+
+
+    // Return Bootstrap snippet
+    function bootstrapSnippet(i) {
+        let snippet = `
+    <img src="${am.image.preview}" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${am.title !== null ? ` title="${am.title}"` : ""}>
+    <figcaption class="figure-caption text-muted small fw-lighter">
+        <small>${
+          am.prefs.collapsed
+            ? `
+            <!-- Start of Show/Hide interface, ID = ${am.id}-${i} -->
+            <a class="source-btn text-muted" data-toggle="collapse" href="#show-${am.id}-${i}" role="button" aria-expanded="false" aria-controls="show-${am.id}-${i}">&#9661; Show attribution</a>
+            <div class="source collapse m-0 p-0" id="show-${am.id}-${i}">`
+            : ""
+        }
+            <a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>
+                <br><a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} ${
+          am.prefs.collapsed
+            ? `</div>
+            <!-- End of Show/Hide interface, ID = ${am.id}-${i} -->`
+            : ""
+        }
+        </small>
+    </figcaption>
+`;
+        return snippet;
+    }
+
+    // Return appropriate Tiles Snippet
+    function tilesSnippet(i) {
+        let snippet = `
+    <!-- Start of Tile = ${i+1} -->
+    <div class="col mb-4">
+        <div class="card h-100 rounded ${am.prefs.classes.join(" ")}">
+            <figure>
+              <img src="${chosenImages[i].preview}" class="card-img-top" alt="${chosenImages[i].alt}">
+              <figcaption class="figure-caption text-muted text-right small fw-lighter mr-1">
+              ${
+          am.prefs.collapsed
+            ? `
+            <!-- Start of Show/Hide interface, ID = Tiles-${i} -->
+            <a class="source-btn text-muted small" data-toggle="collapse" href="#show-tiles-${i}" role="button" aria-expanded="false" aria-controls="show-tiles-${i}">&#9661; Show attribution</a>
+            <div class="source collapse m-0 p-0" id="show-tiles-${i}">`
+            : ""
+        }
+                ${chosenImages[i].attribution}
+                ${
+          am.prefs.collapsed
+            ? `</div>
+            <!-- End of Show/Hide interface, ID = Tiles-${i} -->`
+            : ""
+        }
+              </figcaption>
+          </figure>
+          <div class="card-body pt-0">
+            <h5 class="card-title">Card ${i+1} heading</h5>
+            <p class="card-text">Card ${i+1} content goes here.</p>
+          </div>
+        </div>
+    </div>
+    <!-- End of Tile = ${i+1} -->
+    `;
+        return snippet;
+    }
+    // Return appropriate FReturn tiles snippet with BG images
+    function tilesBgSnippet(i) {
+        let snippet = `
+    <!-- Start of Tile, with BG image = ${i+1} -->
+    <div class="col mb-4">
+        <div class="card h-100 rounded ${am.prefs.classes.join(" ")}">
+            <figure>
+              <div style="background-image: url('${chosenImages[i].preview}'); width: 100%; padding-bottom: 60%; background-size: cover; background-position: center;"></div>
+              <figcaption class="figure-caption text-muted text-right small fw-lighter mr-1">
+              ${
+          am.prefs.collapsed
+            ? `
+            <!-- Start of Show/Hide interface, ID = Tiles-${i} -->
+            <a class="source-btn text-muted small" data-toggle="collapse" href="#show-tiles-${i}" role="button" aria-expanded="false" aria-controls="show-tiles-${i}">&#9661; Show attribution</a>
+            <div class="source collapse m-0 p-0" id="show-tiles-${i}">`
+            : ""
+        }
+                ${chosenImages[i].attribution}
+                ${
+          am.prefs.collapsed
+            ? `</div>
+            <!-- End of Show/Hide interface, ID = Tiles-${i} -->`
+            : ""
+        }
+              </figcaption>
+          </figure>
+          <div class="card-body pt-0">
+            <h5 class="card-title">Card ${i+1} heading</h5>
+            <p class="card-text">Card ${i+1} content goes here.</p>
+          </div>
+        </div>
+    </div>
+    <!-- End of Tile = ${i+1} -->
+
+    `;
+        return snippet;
+    }
+
+    // Return appropriate Embed Code snippet
+    function carouselSnippet(i) {
+        let snippet = `
+    <div class="carousel-item">
+      <img src="${chosenImages[i].preview}" class="d-block w-100" alt="${chosenImages[i].alt}">
+      ${displayCarouselText?`<div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.4);">
+              <h4 class="text-white">Card ${i+1} heading</h4>
+              <p>Card ${i+1} content goes here.</p>
+            </div>`:""}
+    </div>
+    `;
+        return snippet;
+    }
+
+    // If am.prefs.Org = uom, return Melb Uni embed code
+    function vanillaSnippet(i) {
+        let snippet = `
+    <img src="${am.image.preview}" style="width:100%" alt="${am.image.alt}"${am.title !== null ? ` title="${am.title}"` : ""}>
+    <figcaption style="font-size: 0.9em; color:#666; text-align: right">
+      ${am.prefs.collapsed
+            ? `<details><summary style = 'font-size: 0.8em'>Show attribution</summary>`:""
+        }
+        <small><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
+      ${am.prefs.collapsed
+            ? `</details>`:""
+        }
+      </details>
+    </figcaption>
+    `;
+        return snippet;
+    }
+
+
+    // If am.prefs.Org = MP, return Melb Poly embed code
+    function mpSnippet(i) {
+        let snippet = `
+    <img src="${am.image.preview}" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${am.title !== null ? ` title="${am.title}"` : ""}>
+    <figcaption class="figure-caption text-muted small fw-lighter">
+        <small><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
+    </figcaption>
+    `;
+        return snippet;
+    }
+
+    // Text only snippet
+    function textSnippet() {
+        let snippet = `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>`;
+        return snippet;
+    }
+
+    // Text only snippet
+    function rtfSnippet() {
+        let snippet = `
+    <figure><img src="${am.image.preview}" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${am.title !== null ? ` title="${am.title}"` : ""}>
+    <figcaption>
+        <div style="font-size: 8pt; color:gray; background-color:white"><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</div>
+    </figcaption></figure>`;
+        return snippet;
+    }
+
+    // YouTube snippet
+    function ytSnippet() {
+        let snippet = `
+    <!-- Start of YouTube video box -->
+    <div class="clearfix container-fluid"></div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h4>
+            <p class="yt-desc">${am.video.description}</p>
+            <div class="embed-responsive embed-responsive-${am.video.aspect}">
+                <div id="yt-placeholder" class="embed-responsive-item vjs-tech"></div>
+            </div>
+            <div class="text-right">
+                <small class="text-muted small fw-lighter">
+                    <!-- Start of Show/Hide interface, ID = ${am.id} -->
+                    <a class="source-btn text-muted" data-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
+                    <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} </div>
+                    <!-- End of Show/Hide interface, ID = ${am.id} -->
+                </small>
+            </div>
+        </div>
+    </div>
+    <!-- End of YouTube video box -->`;
+        return snippet;
+    }
+
+    // Melb Uni YouTube snippet
+    function uomytSnippet() {
+        let snippet = `
+    <div class="uom-ui-border-box uom-ui-add-border-radius" style="border-color:  #22765f; clear: both">
+    <h3 style="color:  #22765f;"><i class="fab fa-youtube fa-fw"></i> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h3>
+    <p class="yt-desc">${am.video.description}</p>
+    <div style="position: relative; padding-bottom: ${am.video.ratio}%;">
+        <div id="yt-placeholder" class="vjs-tech" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+    </div>
+    <div style="text-align: right;"><small>${am.attribution.username} (${am.video.published}). <em>${am.title}</em> [Video]. YouTube. https://www.youtube.com/watch?v=${am.id}</small></div>
+    </div>`;
+        return snippet;
+    }
+
+    // Vanilla YT snippet
+    function vanillaYTSnippet() {
+        let snippet = `
+    <div style="border: 1px solid lightgrey; clear: both; padding: 1em; border-radius: 0.5em; margin:0">
+    <h4 style="color:#DC3545;"><span style="border: 2px solid; border-radius:30%; margin:0; padding: 0 0.4em; font-size: 0.7em">⏵</span> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h4>
+    <p class="yt-desc">${am.video.description}</p>
+    <div style="position: relative; padding-bottom: ${am.video.ratio}%;">
+        <div id="yt-placeholder" class="vjs-tech" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
+    </div>
+    <div style="text-align: right;"><small>${am.prefs.collapsed?`<details><summary>Show attribution</summary>`:""}Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today}${am.prefs.collapsed?`</details>`:""}</small></div>
+    </div>`;
+        return snippet;
+    }
+
+    // YouTube placeholder - If YouTube embeds are not allowed
+    function ytPlaceholderSnippet() {
+        let snippet = `
+    <!-- Start of YouTube Placeholder, for YT videos that don't allow embedding (Embed code by @BirdyOz) -->
+    <div class="clearfix container-fluid"></div>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h4>
+            <p class="yt-desc">${am.video.description}</p>
+
+            <div class="maker-overlay" style="position: relative;">
+                <a href="https://youtu.be/${am.id}" target="_blank" style="color: white  !important">\n'
+                    <figure class="figure border rounded w-100"><img src="${am.video.thumb}" alt="YouTube video placeholder" class="w-100">
+                    </figure>
+                    <div class="text-overlay" style="text-align: center; color: white !important; text-shadow: 2px 2px 4px #000000; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%">
+                        <p id="overlay-text" style="font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) )) !important; line-height: calc( 20px + (32 - 16) * ( 80vw / (1000 - 400) )) !important;"><i class="fa fa-play-circle-o"></i> View video</p>
+                        <p id="overlay-citation" style="font-size: calc( 12px + (24 - 16) * ( 60vw / (1000 - 400) )) !important; line-height: calc( 10px + (20 - 10) * ( 80vw / (1000 - 400) )) !important;">(Opens in new tab)</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="text-right">
+                <small class="text-muted small fw-lighter">
+                    <!-- Start of Show/Hide interface, ID = ${am.id} -->
+                    <a class="source-btn text-muted" data-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
+                    <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} </div>
+                    <!-- End of Show/Hide interface, ID = ${am.id} -->
+                </small>
+            </div>
+        </div>
+    </div>
+    <!-- End of YouTube Placeholder -->`;
+        return snippet;
+    }
 });
+

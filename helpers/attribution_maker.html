@@ -449,25 +449,33 @@
             <!-- .maker-tiles -->
             <div id="experimental" class="border border-danger mt-4 p-4 rounded clearfix bootstrap-only">
                 <h1 class="text-danger">Advanced features only (experimental)</h1>
-                <p class="lead">Each of the folllowing layouts combine multiple images into the one display. <br>These images are drawn from your recent history (newest first).
-                </p>
+                <p class="lead">Each of the following layouts combine multiple images into the one display.</p>
+
+                <p>These images are drawn from your recent history (newest first).  Up to 12 images will be used. You can drag the slider at the top to set the number of images.</p>
+
 
                 <!-- Button trigger modal -->
-                <button type="button" id="launch-modal" class="btn btn-primary mb-3" data-toggle="modal" data-target="#exampleModal">
+                <button type="button" id="launch-modal" class="btn btn-primary mb-3" data-toggle="modal" data-target="#image-chooser">
                   Let me choose which images to use.
                 </button>
+                <hr>
+
+                <!-- Start of Success alert -->
+
+
                 <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="image-chooser" tabindex="-1" aria-labelledby="image-chooser-label" aria-hidden="true">
                   <div class="modal-dialog  modal-dialog-centered  modal-xl">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Choose images from your recent history</h5>
+                        <h5 class="modal-title" id="image-chooser-label">Choose images from your recent history</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
-                        <p>Select the images <strong>in the order that you wish them to appear</strong>.   It is recommended that you choose landscape images, of the same or similar dimensions</p>
+                        <p class="lead">Select your chosen images - <strong>in the order that you wish them to appear.</strong></p>
+                        <div class="alert alert-warning" role="alert"> For best results, select images in landscape format, with the same or similar dimensions </div>
                         <div class="modal-images row"></div>
                       </div>
                       <div class="modal-footer">
@@ -479,11 +487,6 @@
                 </div>
 
 
-                <p class="lead">Up to 12 images will be used. You can drag the slider at the top to set the number of images.</p>
-
-
-                <!-- Start of Success alert -->
-                <div class="alert alert-warning" role="alert"> For best results, images should be in landscape format, with the same or similar dimensions </div>
                 <!-- End of success alert -->
                 <!-- .maker-carousel -->
                 <br>
@@ -570,8 +573,13 @@
                     <!-- Start of Item 3 -->
                     <div class="tab-pane p-3 fade" id="htabs-3-qo0W89" role="tabpanel" aria-labelledby="htabs-3-qo0W89">
                         <h4>Tiles (as background images)</h4>
-                        <p>Setting the tiles with backround images has the advantage that each tile is exactly the same height, with the image being cropped to fit. This ensures a more even dispay, but the tradeoff is the HTML is more complicated and it is much more difficult to swap out the images, later (eg, in Moodle</p>
-                        <p><strong>Only recommended for experienced developers.</strong></p>
+                        <p>Setting the tiles with backround images has the advantage that each tile is exactly the same height, with the image being cropped to fit. </p>
+                        <p>This ensures a more even dispay, but the tradeoff is the HTML is more complicated and it is much more difficult to swap out the images, later (eg, in Moodle)</p>
+                        <!-- Start of Warning alert -->
+                        <div class="alert alert-warning" role="alert">
+                            <strong>This option is only recommended for experienced developers.</strong>
+                        </div>
+                        <!-- End of warning alert -->
                         <div id="tiles-bg-prefs" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
                             <div class="col-auto"><label for="tile-bg-image-count">
                                     <small>Drag to change # of tiles</small></label></div>
