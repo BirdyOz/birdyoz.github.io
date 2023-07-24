@@ -2,16 +2,21 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-07-21 16:05:53
+ * @Last Modified time: 2023-07-24 10:24:05
  */
 
 /*jshint esversion: 8 */
 
 $(function() {
-    // Set Global vars
 
-    $('[data-toggle="tooltip"]').tooltip();
+    $('[data-toggle="tooltip"]').tooltip(); // Enable Bootstrap ToolTips
+    const maxlength = 24; // Number of history items to display
+    let player; // YouTube player API
+    let imgHistory = []; // Invoke image history array
+    let chosenImages = []; // Invoke image history array
+    let displayCarouselText = true;
 
+    // Create Attribution Maker JSON object
     let am = {
         url: "",
         id: "",
@@ -60,9 +65,6 @@ $(function() {
         },
         history: []
     };
-
-    // Number of history items to display
-    const maxlength = 24;
 
     // Supported sites
     const supported = [{
@@ -188,10 +190,7 @@ $(function() {
         ],
     };
 
-    let player; // YouTube player API
-    let imgHistory = []; // Invoke image history array
-    let chosenImages = []; // Invoke image history array
-    let displayCarouselText = true;
+
 
     // Get localstorage prefs if available
     if ("Attribution-Maker-Prefs" in localStorage) {
@@ -1199,7 +1198,6 @@ $(function() {
         // NB temporarily set to zero
         $('#image-history').before(`<h3>Your recent history <span class=\"text-muted\">(${am.history.length} items)</span></h3>`);
         buildHistoryItems(am.history.slice(0, maxlength));
-        buildModalItems(imgHistory);
         if (am.history.length > maxlength) {
             $('#showfullhistory').html(`Show full history (${am.history.length - maxlength} more items).`);
 
@@ -1232,14 +1230,19 @@ $(function() {
     });
 
     function buildModalItems(arr) {
+        // Clear out Modal HTML before building
+        $('.modal-images').html("");
+
+        // Build array of images
         $.each(arr, function(i, img) {
             let card = `<div class="col-2"><div class="m-1 card p-1 bg-light"><div class="card square modal-item" style="background-image: url('${img.preview}')" data-prefs="${encodeURIComponent(JSON.stringify(img))}"></div><div class="d-none">${JSON.stringify(img)}</div></div>`;
-            $('.modal-body').append(card);
+            $('.modal-images').append(card);
         });
     }
 
     $('#launch-modal').click(function(event) {
         chosenImages = [];
+        buildModalItems(imgHistory);
     });
 
     $("#exampleModal").on('click', '.modal-item', function() {
