@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-07-24 13:05:17
+ * @Last Modified time: 2023-08-10 16:00:13
  */
 
 /*jshint esversion: 8 */
@@ -1378,26 +1378,26 @@ $(function() {
     // YouTube snippet
     function ytSnippet() {
         let snippet = `
-    <!-- Start of YouTube video box -->
-    <div class="clearfix container-fluid"></div>
-    <div class="card">
-        <div class="card-body">
-            <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h4>
-            <p class="yt-desc">${am.video.description}</p>
-            <div class="embed-responsive embed-responsive-${am.video.aspect}">
-                <div id="yt-placeholder" class="embed-responsive-item vjs-tech"></div>
-            </div>
-            <div class="text-right">
-                <small class="text-muted small fw-lighter">
-                    <!-- Start of Show/Hide interface, ID = ${am.id} -->
-                    <a class="source-btn text-muted" data-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
-                    <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} </div>
-                    <!-- End of Show/Hide interface, ID = ${am.id} -->
-                </small>
-            </div>
+<!-- Start of YouTube video box -->
+<div class="clearfix container-fluid"></div>
+<div class="card">
+    <div class="card-body">
+        <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h4>
+        <p class="yt-desc">${am.video.description}</p>
+        <div class="embed-responsive embed-responsive-${am.video.aspect}">
+            <div id="yt-placeholder" class="embed-responsive-item vjs-tech"></div>
+        </div>
+        <div class="text-right">
+            <small class="text-muted small fw-lighter">
+                <!-- Start of Show/Hide interface, ID = ${am.id} -->
+                <a class="source-btn text-muted" data-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
+                <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} </div>
+                <!-- End of Show/Hide interface, ID = ${am.id} -->
+            </small>
         </div>
     </div>
-    <!-- End of YouTube video box -->`;
+</div>
+<!-- End of YouTube video box -->`;
         return snippet;
     }
 
