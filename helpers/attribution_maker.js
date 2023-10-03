@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-10-03 15:57:51
+ * @Last Modified time: 2023-10-03 16:07:30
  */
 
 /*jshint esversion: 8 */
@@ -974,7 +974,7 @@ $(function() {
         // Prepare for experimental, multi-image displays
         // Define a new object that only contains images. Exclude YT or any images without an attribution
 
-        imgHistory = am.history.filter(f => f.site !== "YouTube" && f.attribution)
+        imgHistory = am.history.filter(f => f.site !== "YouTube" && f.attribution).slice(0,48)
         chosenImages = imgHistory.slice(0, 11);
 
         // Only show exeprimental section if there are two images or more, and layout is BS
