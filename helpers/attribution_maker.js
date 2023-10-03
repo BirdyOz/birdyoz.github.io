@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-08-10 16:00:13
+ * @Last Modified time: 2023-10-03 15:57:51
  */
 
 /*jshint esversion: 8 */
@@ -1380,7 +1380,7 @@ $(function() {
         let snippet = `
 <!-- Start of YouTube video box -->
 <div class="clearfix container-fluid"></div>
-<div class="card">
+<div class="card mt-1 mb-1">
     <div class="card-body">
         <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h4>
         <p class="yt-desc">${am.video.description}</p>
@@ -1434,7 +1434,7 @@ $(function() {
         let snippet = `
     <!-- Start of YouTube Placeholder, for YT videos that don't allow embedding (Embed code by @BirdyOz) -->
     <div class="clearfix container-fluid"></div>
-    <div class="card">
+    <div class="card mt-1 mb-1">
         <div class="card-body">
             <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h4>
             <p class="yt-desc">${am.video.description}</p>
