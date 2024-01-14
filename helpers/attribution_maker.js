@@ -2,13 +2,12 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2023-10-03 16:07:30
+ * @Last Modified time: 2024-01-15 10:17:00
  */
 
 /*jshint esversion: 8 */
 
 $(function() {
-
     $('[data-toggle="tooltip"]').tooltip(); // Enable Bootstrap ToolTips
     const maxlength = 24; // Number of history items to display
     let player; // YouTube player API
@@ -58,12 +57,12 @@ $(function() {
             layout: "bootstrap",
             classes: ["border"],
             styles: {
-                "border": "1px solid #dee2e6",
-                "padding": "2px",
-                "border-radius": "0.25rem"
-            }
+                border: "1px solid #dee2e6",
+                padding: "2px",
+                "border-radius": "0.25rem",
+            },
         },
-        history: []
+        history: [],
     };
 
     // Supported sites
@@ -190,12 +189,9 @@ $(function() {
         ],
     };
 
-
-
-
     // Get localstorage prefs if available
     if ("Attribution-Maker-Prefs" in localStorage) {
-        am.prefs = JSON.parse(localStorage.getItem('Attribution-Maker-Prefs'));
+        am.prefs = JSON.parse(localStorage.getItem("Attribution-Maker-Prefs"));
     }
 
     // Get URL parameters
@@ -223,15 +219,13 @@ $(function() {
         am.prefs.org = url.searchParams.get("org");
         url.searchParams.delete("org");
 
-
         // If I am Melb Poly, UoM or Vanilla, do not allow attribution to be collpased.
         if (am.prefs.org === "uom") {
             am.prefs.layout = "vanilla";
         }
 
         // Set localStorage
-        localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(am.prefs));
-
+        localStorage.setItem("Attribution-Maker-Prefs", JSON.stringify(am.prefs));
     } else {
         // No URL parameters exist.   Show first time warning
         console.log("@GB: No parameters");
@@ -244,22 +238,36 @@ $(function() {
         // Get image ID
         n = am.url.lastIndexOf("/");
         am.id = am.url.substring(n + 1);
+        if (am.id.includes("-")) {
+            am.id = am.id.split("-").pop()
+            console.log("@GB: am.id = ", am.id);
+        }
+
         key = "STJMT3JlREVmUWlWQUtFUTBEOHZfVXM4clUtNUloRlFDbWNsUnZ5RzFYdw==";
         // API endpoint
-        uri = "https://api.unsplash.com/photos/" + am.id + "?client_id=" + atob(decodeURIComponent(key));
+        uri =
+            "https://api.unsplash.com/photos/" +
+            am.id +
+            "?client_id=" +
+            atob(decodeURIComponent(key));
 
         // API call
         $.getJSON(uri, function() {}).done(function(json) {
             console.log("@GB: json = ", json);
             am.image.preview = json.urls.regular;
             am.attribution.username = json.user.username;
-            am.attribution.userUrl = json.user.links.html + "?utm_source=image_attribution_maker_by_birdyoz&utm_medium=referral";
+            am.attribution.userUrl =
+                json.user.links.html +
+                "?utm_source=image_attribution_maker_by_birdyoz&utm_medium=referral";
             am.title = json.description;
             am.image.alt = json.alt_description;
             am.image.download.large = am.image.preview.replace("&w=1080", "&w=1440");
             am.image.preview = am.image.download.large;
             am.image.download.small = am.image.preview.replace("&w=1440", "&w=720");
-            am.image.download.endpoint = json.links.download_location + "&client_id=" + atob(decodeURIComponent(key));
+            am.image.download.endpoint =
+                json.links.download_location +
+                "&client_id=" +
+                atob(decodeURIComponent(key));
             buildHTML();
             buildHistory();
         });
@@ -271,7 +279,8 @@ $(function() {
         re = /[0-9]+/gi;
         am.id = re.exec(am.url)[0];
 
-        key = "NTYzNDkyYWQ2ZjkxNzAwMDAxMDAwMDAxYmZlZmZkMDc3YmFmNDU0ZGFiMjlkNjMwMGJkZjc0MGQ%3D";
+        key =
+            "NTYzNDkyYWQ2ZjkxNzAwMDAxMDAwMDAxYmZlZmZkMDc3YmFmNDU0ZGFiMjlkNjMwMGJkZjc0MGQ%3D";
         uri = "https://api.pexels.com/v1/photos/" + am.id;
 
         // API call.   Using $.ajax, as Pexels requires authentication headers
@@ -282,13 +291,15 @@ $(function() {
             success: function(json) {
                 console.log("@GB: json = ", json);
                 am.image.preview = json.src.original;
-                am.image.preview = am.image.preview + "?auto=compress&cs=tinysrgb&w=1440";
+                am.image.preview =
+                    am.image.preview + "?auto=compress&cs=tinysrgb&w=1440";
                 am.attribution.username = json.photographer;
                 am.attribution.userUrl = json.photographer_url;
                 alt = json.url.split("/")[4].split("-");
                 alt.pop();
                 am.image.alt = alt.join(" ");
-                am.image.download.small = am.image.preview + "?auto=compress&cs=tinysrgb&w=720";
+                am.image.download.small =
+                    am.image.preview + "?auto=compress&cs=tinysrgb&w=720";
                 am.image.download.large = am.image.preview;
                 buildHTML();
                 buildHistory();
@@ -304,14 +315,19 @@ $(function() {
         am.id = re.exec(am.url)[0];
 
         key = "MTE0NDUtN2MzZTMxNzNkNmY5YTYwNDdlNjQ1ODNjYQ%3D%3D";
-        uri = "https://pixabay.com/api/?key=" + atob(decodeURIComponent(key)) + "&id=" + am.id;
+        uri =
+            "https://pixabay.com/api/?key=" +
+            atob(decodeURIComponent(key)) +
+            "&id=" +
+            am.id;
 
         $.getJSON(uri, function() {})
             .done(function(json) {
                 console.log("@GB: json = ", json);
                 am.image.preview = json.hits[0].largeImageURL;
                 am.attribution.username = json.hits[0].user;
-                am.attribution.userUrl = "https://pixabay.com/users/" + am.attribution.username;
+                am.attribution.userUrl =
+                    "https://pixabay.com/users/" + am.attribution.username;
                 am.image.alt = json.hits[0].tags;
                 am.image.download.small = json.hits[0].webformatURL; // Small image 640px wide
                 am.image.download.large = am.image.preview; // Large image 1280px wide
@@ -319,7 +335,6 @@ $(function() {
                 buildHistory();
             })
             .fail(function() {
-
                 console.log("@GB: json = ", json);
             });
     }
@@ -331,8 +346,18 @@ $(function() {
         am.id = re.exec(am.url)[1];
 
         key = "MmJjNjJmYzJkYzRhYWVjMGZiMGQ1NjY0MGMzYThhMjA=";
-        info_uri = "https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=" + atob(decodeURIComponent(key)) + "&photo_id=" + am.id + "&format=json&&nojsoncallback=1";
-        sizes_uri = "https://www.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=" + atob(decodeURIComponent(key)) + "&photo_id=" + am.id + "&format=json&&nojsoncallback=1";
+        info_uri =
+            "https://www.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=" +
+            atob(decodeURIComponent(key)) +
+            "&photo_id=" +
+            am.id +
+            "&format=json&&nojsoncallback=1";
+        sizes_uri =
+            "https://www.flickr.com/services/rest/?method=flickr.photos.getSizes&api_key=" +
+            atob(decodeURIComponent(key)) +
+            "&photo_id=" +
+            am.id +
+            "&format=json&&nojsoncallback=1";
 
         $.getJSON(info_uri, function() {})
             .done(function(json) {
@@ -345,28 +370,41 @@ $(function() {
                 }
                 // Image is CC or PD and image use is allowed
                 else {
-                    am.site.licence = flickr_licences.license.find((item) => item.id == lic).short;
-                    am.site.licenceurl = flickr_licences.license.find((item) => item.id == lic).url;
+                    am.site.licence = flickr_licences.license.find(
+                        (item) => item.id == lic,
+                    ).short;
+                    am.site.licenceurl = flickr_licences.license.find(
+                        (item) => item.id == lic,
+                    ).url;
 
                     am.attribution.username = json.photo.owner.username;
-                    am.attribution.userUrl = "https://www.flickr.com/photos/" + json.photo.owner.nsid;
+                    am.attribution.userUrl =
+                        "https://www.flickr.com/photos/" + json.photo.owner.nsid;
                     am.image.alt = json.photo.title._content;
                     title = json.photo.description._content;
                     am.title = stripHTML(title);
                     // get image sizes
                     $.getJSON(sizes_uri, function() {}).done(function(json2) {
                         console.log("@GB: json2 = ", json2);
-                        am.image.preview = json2.sizes.size.find((item) => item.label == "Original").source;
-                        let orig_width = json2.sizes.size.find((item) => item.label == "Original").width;
+                        am.image.preview = json2.sizes.size.find(
+                            (item) => item.label == "Original",
+                        ).source;
+                        let orig_width = json2.sizes.size.find(
+                            (item) => item.label == "Original",
+                        ).width;
                         // Check if image is large enough to resize
                         if (orig_width >= 800) {
-                            am.image.download.small = json2.sizes.size.find((item) => item.label == "Medium 800").source;
+                            am.image.download.small = json2.sizes.size.find(
+                                (item) => item.label == "Medium 800",
+                            ).source;
                         } else {
                             am.imagedownload.small = am.image.preview;
                         }
 
                         if (orig_width >= 1600) {
-                            am.image.download.large = json2.sizes.size.find((item) => item.label == "Large 1600").source;
+                            am.image.download.large = json2.sizes.size.find(
+                                (item) => item.label == "Large 1600",
+                            ).source;
                             am.image.preview = am.image.download.large;
                         } else {
                             am.image.download.large = am.image.preview;
@@ -390,7 +428,9 @@ $(function() {
         if (!id.includes("File:")) {
             id = "File:" + id;
         }
-        uri = "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=imageinfo&list=&meta=&iiprop=timestamp%7Cuser%7Cextmetadata%7Curl%7Cuserid&iilimit=1&iiurlwidth=720&origin=*&titles=" + id;
+        uri =
+            "https://en.wikipedia.org/w/api.php?action=query&format=json&prop=imageinfo&list=&meta=&iiprop=timestamp%7Cuser%7Cextmetadata%7Curl%7Cuserid&iilimit=1&iiurlwidth=720&origin=*&titles=" +
+            id;
 
         $.getJSON(uri, function() {}).done(function(data) {
             json = data.query.pages[-1];
@@ -399,7 +439,9 @@ $(function() {
             am.image.preview = json.imageinfo[0].thumburl;
             am.image.orig = json.imageinfo[0].descriptionshorturl;
             am.attribution.username = json.imageinfo[0].user;
-            am.attribution.userUrl = "https://commons.wikimedia.org/wiki/User:" + am.attribution.username.replace(" ", "_");
+            am.attribution.userUrl =
+                "https://commons.wikimedia.org/wiki/User:" +
+                am.attribution.username.replace(" ", "_");
             am.image.alt = json.imageinfo[0].extmetadata.ObjectName.value;
             am.image.download.large = am.image.download.small = am.image.preview; // Small image 720px wide
 
@@ -463,7 +505,11 @@ $(function() {
         key = "QUl6YVN5QmxCcEFUTzF0Z0hOM3FyUGUwWlQ5aGFFMW5UQmxRYVU0";
 
         // API endpoint
-        uri = "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatus%2Cplayer&id=" + am.id + "&key=" + atob(decodeURIComponent(key));
+        uri =
+            "https://www.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatus%2Cplayer&id=" +
+            am.id +
+            "&key=" +
+            atob(decodeURIComponent(key));
 
         // API call
         $.getJSON(uri, function() {}).done(function(json) {
@@ -472,12 +518,17 @@ $(function() {
             am.title = vid.title;
 
             // Find the largest thumbnail image
-            am.image.preview = Object.values(vid.thumbnails).sort((a, b) => a.width - b.width).reverse()[0].url;
+            am.image.preview = Object.values(vid.thumbnails)
+                .sort((a, b) => a.width - b.width)
+                .reverse()[0].url;
 
             // Get published date
             published = vid.publishedAt;
             date = new Date(published);
-            am.video.published = `${date.getFullYear()}, ${date.toLocaleString("default", { month: "long" })} ${date.getDay()}`;
+            am.video.published = `${date.getFullYear()}, ${date.toLocaleString(
+        "default",
+        { month: "long" },
+      )} ${date.getDay()}`;
             if (vid.description.length > 0) {
                 am.video.description = vid.description;
             }
@@ -500,7 +551,6 @@ $(function() {
             ratio = embed_width / embed_height;
             am.video.ratio = (embed_height / embed_width) * 100;
 
-
             // Establish video aspect ratio
             if (ratio == 1) {
                 am.video.aspect = "1by1";
@@ -516,7 +566,8 @@ $(function() {
             am.video.duration = moment.duration(ytPlayTime).asSeconds();
             am.video.timecode = getTimecode(am.video.duration);
             am.attribution.username = json.items[0].snippet.channelTitle;
-            am.attribution.userUrl = "https://www.youtube.com/channel/" + json.items[0].snippet.channelId;
+            am.attribution.userUrl =
+                "https://www.youtube.com/channel/" + json.items[0].snippet.channelId;
 
             // Can I be embedded?  If so, establish the correct snippet
             if (am.video.embeddable) {
@@ -532,7 +583,9 @@ $(function() {
                 if (json.items[0].snippet.thumbnails.hasOwnProperty("maxres")) {
                     am.video.thumb = json.items[0].snippet.thumbnails.maxres.url;
                 }
-                $("#yt-settings .yt-placeholder-msg").html("<p class='alert alert-danger'>Your chosen video does not allow for embedding.   A placeholder has been created, that includes a thumbnail for the video, and a link back to YouTube.</p>");
+                $("#yt-settings .yt-placeholder-msg").html(
+                    "<p class='alert alert-danger'>Your chosen video does not allow for embedding.   A placeholder has been created, that includes a thumbnail for the video, and a link back to YouTube.</p>",
+                );
                 snippet = ytPlaceholderSnippet();
             }
 
@@ -551,32 +604,29 @@ $(function() {
      *
      */
 
-
-
     // Set active buttons, based on am.prefs
     $.each(am.prefs, function(key, value) {
         // Exclude date to avoid JS error
-        if (['collapsed', 'cols', 'percent', 'layout'].includes(key)) {
+        if (["collapsed", "cols", "percent", "layout"].includes(key)) {
             target = `#${key}-${value}`;
-            $(target).addClass('active');
+            $(target).addClass("active");
         }
     });
 
     // Set active buttons, based on am.prefs.classes
     $.each(am.prefs.classes, function(key, value) {
         target = `#prefs-${value}`;
-        $(target).prop('checked', true);
+        $(target).prop("checked", true);
     });
 
     // Capture preference changes - buttons
-    $('#update-prefs .btn').on('click', function() {
-
+    $("#update-prefs .btn").on("click", function() {
         // Toggle other buttons
-        $(this).siblings('button').removeClass('active');
-        $(this).addClass('active');
+        $(this).siblings("button").removeClass("active");
+        $(this).addClass("active");
 
         // Get button prefs
-        localPrefs = JSON.parse($(this).attr('data-prefs'));
+        localPrefs = JSON.parse($(this).attr("data-prefs"));
 
         // Merge with am.prefs
         am.prefs = Object.assign(am.prefs, localPrefs);
@@ -586,78 +636,71 @@ $(function() {
         if (this.id.includes("layout-") || am.site.name == "YouTube") {
             am.prefs.org = null;
             window.location.href = url;
-        } else { buildHTML(); }
+        } else {
+            buildHTML();
+        }
 
         // Set localStorage
-        localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(am.prefs));
+        localStorage.setItem("Attribution-Maker-Prefs", JSON.stringify(am.prefs));
     });
 
-
     // Capture preference changes - inputs
-    $('#update-prefs input').change(function() {
-
+    $("#update-prefs input").change(function() {
         // Get button prefs
-        localClasses = $(this).attr('data-prefs-classes');
-        localStyles = JSON.parse($(this).attr('data-prefs-styles'));
+        localClasses = $(this).attr("data-prefs-classes");
+        localStyles = JSON.parse($(this).attr("data-prefs-styles"));
         if (this.checked) {
             am.prefs.classes.push(localClasses);
             am.prefs.styles = Object.assign(am.prefs.styles, localStyles);
         } else {
-            am.prefs.classes = am.prefs.classes.filter(f => f !== localClasses);
+            am.prefs.classes = am.prefs.classes.filter((f) => f !== localClasses);
             $.each(localStyles, function(key, data) {
                 delete am.prefs.styles[key];
             });
         }
         // Set localStorage
-        localStorage.setItem('Attribution-Maker-Prefs', JSON.stringify(am.prefs));
+        localStorage.setItem("Attribution-Maker-Prefs", JSON.stringify(am.prefs));
         buildHTML();
-
-
     });
 
     // Reset prefs button
-    $('#prefs-reset').on('click', function() {
-        localStorage.removeItem('Attribution-Maker-Prefs');
+    $("#prefs-reset").on("click", function() {
+        localStorage.removeItem("Attribution-Maker-Prefs");
         window.location.href = url;
     });
 
-
-
     // Capture Tiles changes
-    $('#tile-image-count').change(function() {
-
+    $("#tile-image-count").change(function() {
         // Get button prefs
         imageCount = $(this).val();
         buildTiles(imageCount);
     });
 
     // Toggle tiles display between two or three columns
-    $('#two-three-columns').on('click', function() {
-        $('#tiles-wrapper').toggleClass("row-cols-md-3 row-cols-md-2")
+    $("#two-three-columns").on("click", function() {
+        $("#tiles-wrapper").toggleClass("row-cols-md-3 row-cols-md-2");
     });
 
     // Toggle tiles display between two or three columns
-    $('#carousel-text').on('click', function() {
-        displayCarouselText = displayCarouselText ? false : true
-        buildCarousel($('#carousel-image-count').val());
+    $("#carousel-text").on("click", function() {
+        displayCarouselText = displayCarouselText ? false : true;
+        buildCarousel($("#carousel-image-count").val());
     });
 
     // Capture BG Tiles changes
-    $('#tile-bg-image-count').change(function() {
-
+    $("#tile-bg-image-count").change(function() {
         // Get button prefs
         imageCount = $(this).val();
         buildBgTiles(imageCount);
     });
 
     // Toggle tiles display between two or three columns
-    $('#bg-two-three-columns').on('click', function() {
-        $('#tiles-bg-wrapper').toggleClass("row-cols-md-3 row-cols-md-2")
+    $("#bg-two-three-columns").on("click", function() {
+        $("#tiles-bg-wrapper").toggleClass("row-cols-md-3 row-cols-md-2");
     });
 
     // Capture Carousel changes
-    $('#carousel-image-count').change(function() {
-
+    $("#carousel-image-count").change(function() {
         // Get button prefs
         imageCount = $(this).val();
         buildCarousel(imageCount);
@@ -672,19 +715,24 @@ $(function() {
 
         // If Cropped, replace image in embed code with dummy image
         if (target == ".maker-cropped") {
-            paste = paste.replace(am.image.cropped, "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+cropped+image");
+            paste = paste.replace(
+                am.image.cropped,
+                "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+cropped+image",
+            );
         }
 
         // If Pixabay, replace image in embed code with dummy image
         if (am.site.name == "Pixabay") {
-            paste = paste.replace(am.image.preview, "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+downloaded+Pixabay+image");
+            paste = paste.replace(
+                am.image.preview,
+                "https://dummyimage.com/1440x760/b094b0/e3b1e3&text=Replace+me+with+downloaded+Pixabay+image",
+            );
         }
 
         // If YouTube, update iframe with video parameters
         if (am.site.name == "YouTube") {
             paste = paste.replace("widgetid=1", "widgetid=1" + am.video.params);
         }
-
 
         // If RTF, copy to clipboard differently
         if (target == ".maker-rtf") {
@@ -694,11 +742,15 @@ $(function() {
         }
 
         btn.toggleClass("btn-outline-primary btn-success");
-        btn.html('<i class="fa fa-check" aria-hidden="true"></i> Done! Copied to clipboard');
+        btn.html(
+            '<i class="fa fa-check" aria-hidden="true"></i> Done! Copied to clipboard',
+        );
 
         // after 3 secs, rest button to original
         window.setTimeout(function() {
-            btn.html('<i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code');
+            btn.html(
+                '<i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code',
+            );
             // btn.removeClass('btn-danger');
             btn.toggleClass("btn-outline-primary btn-success");
         }, 3000);
@@ -724,7 +776,9 @@ $(function() {
         downloader(am.id, src);
 
         btn.toggleClass("btn-outline-primary btn-success");
-        btn.html('<i class="fa fa-check" aria-hidden="true"></i> Done! Image downloaded');
+        btn.html(
+            '<i class="fa fa-check" aria-hidden="true"></i> Done! Image downloaded',
+        );
 
         // Cancel the default action
         event.preventDefault();
@@ -768,9 +822,6 @@ $(function() {
         $(target).html(text);
     });
 
-
-
-
     /**
      *
      * Functions
@@ -779,11 +830,10 @@ $(function() {
 
     // Build images into interface
     function buildHTML() {
-
         console.log("@GB: am = ", am);
 
         // Set percentage width text, for floated images
-        $('.percent').text(`${am.prefs.percent}%`)
+        $(".percent").text(`${am.prefs.percent}%`);
 
         // Toggle between BS4 or Vanilla
         if (am.prefs.layout === "vanilla" || am.prefs.org === "uom") {
@@ -793,13 +843,17 @@ $(function() {
             // Remove border, bg and shadow, before addding back waht is stored in prefs
             $("figure").css({ "border": "", "box-shadow": "", "background-color": "" });
             $("figure").css(am.prefs.styles);
-            $('.bootstrap-only').hide();
+            $(".bootstrap-only").hide();
             snippet = vanillaSnippet;
         } else {
             // For BS4, remove styles
             $(".maker-copy figure,.maker-copy img").removeAttr("style");
-            $(".maker-floated>figure").removeClass("col-md-6 col-md-5 col-md-4 col-md-3 col-md-2").addClass(am.prefs.cols);
-            $(".rounded").removeClass("border shadow bg-light").addClass(am.prefs.classes.join(" "));
+            $(".maker-floated>figure")
+                .removeClass("col-md-6 col-md-5 col-md-4 col-md-3 col-md-2")
+                .addClass(am.prefs.cols);
+            $(".rounded")
+                .removeClass("border shadow bg-light")
+                .addClass(am.prefs.classes.join(" "));
             snippet = bootstrapSnippet;
         }
 
@@ -812,7 +866,6 @@ $(function() {
         $("#rcrop").attr("src", am.image.preview);
         $(".maker-txt").html(textSnippet());
         $(".maker-rtf").html(rtfSnippet());
-
 
         // Build multi-image displays from history
         buildCarousel();
@@ -858,128 +911,142 @@ $(function() {
         });
 
         $update.click(function() {
-            $img.rcrop("resize", inputs.width.val(), inputs.height.val(), inputs.x.val(), inputs.y.val());
+            $img.rcrop(
+                "resize",
+                inputs.width.val(),
+                inputs.height.val(),
+                inputs.x.val(),
+                inputs.y.val(),
+            );
             fill();
         });
-
-    };
-
+    }
 
     // Build multi-image Tiles display, from history
     function buildTiles(i = chosenImages.length) {
-
-        $('#tile-image-number').text(i);
+        $("#tile-image-number").text(i);
         if (i == 2) {
-            $('#tiles-wrapper').removeClass("row-cols-md-3").addClass("row-cols-md-2")
+            $("#tiles-wrapper")
+                .removeClass("row-cols-md-3")
+                .addClass("row-cols-md-2");
         }
 
         // Set slider length to length of image history
-        $('#tile-image-count').attr("max", chosenImages.length);
-        $('#tile-image-count').attr("value", chosenImages.length);
+        $("#tile-image-count").attr("max", chosenImages.length);
+        $("#tile-image-count").attr("value", chosenImages.length);
 
         // When invoked, clear out any existing tiles:
-        $('#tiles-wrapper').html("");
+        $("#tiles-wrapper").html("");
 
         for (var n = 0; n < i; n++) {
-            $('#tiles-wrapper').append(tilesSnippet(n));
+            $("#tiles-wrapper").append(tilesSnippet(n));
         }
-
     }
 
     // Build multi-image Tiles display (as background images), from history
     function buildBgTiles(i = chosenImages.length) {
-
-        $('#tile-bg-image-number').text(i);
+        $("#tile-bg-image-number").text(i);
         if (i == 2) {
-            $('#tiles-bg-wrapper').removeClass("row-cols-md-3").addClass("row-cols-md-2")
+            $("#tiles-bg-wrapper")
+                .removeClass("row-cols-md-3")
+                .addClass("row-cols-md-2");
         }
 
         // Set slider length to length of image history
-        $('#tile-bg-image-count').attr("max", chosenImages.length);
-        $('#tile-bg-image-count').attr("value", chosenImages.length);
+        $("#tile-bg-image-count").attr("max", chosenImages.length);
+        $("#tile-bg-image-count").attr("value", chosenImages.length);
 
         // When invoked, clear out any existing tiles:
-        $('#tiles-bg-wrapper').html("");
+        $("#tiles-bg-wrapper").html("");
 
         for (var n = 0; n < i; n++) {
-            $('#tiles-bg-wrapper').append(tilesBgSnippet(n));
+            $("#tiles-bg-wrapper").append(tilesBgSnippet(n));
         }
-
     }
 
     // Build multi-image Carousel, from history
     function buildCarousel(i = chosenImages.length, displayText = true) {
-
-        $('#carousel-image-number').text(i);
+        $("#carousel-image-number").text(i);
 
         // Set slider length to length of image history
-        $('#carousel-image-count').attr("max", chosenImages.length);
-        $('#carousel-image-count').attr("value", chosenImages.length);
+        $("#carousel-image-count").attr("max", chosenImages.length);
+        $("#carousel-image-count").attr("value", chosenImages.length);
 
         // When invoked, clear out any existing tiles:
-        $('.carousel-indicators').html("");
-        $('.carousel-inner').html("");
-        $('#carousel-attribution').html("");
+        $(".carousel-indicators").html("");
+        $(".carousel-inner").html("");
+        $("#carousel-attribution").html("");
 
         for (var n = 0; n < i; n++) {
-            $('.carousel-indicators').append(`<li data-target="#carousel-history" data-slide-to="${n}"></li>`);
-            $('.carousel-inner').append(carouselSnippet(n));
-            $('#carousel-attribution').append(`<small>${n+1}:</small> ${chosenImages[n].attribution}<br>`);
+            $(".carousel-indicators").append(
+                `<li data-target="#carousel-history" data-slide-to="${n}"></li>`,
+            );
+            $(".carousel-inner").append(carouselSnippet(n));
+            $("#carousel-attribution").append(
+                `<small>${n + 1}:</small> ${chosenImages[n].attribution}<br>`,
+            );
 
             if (n == 0) {
-                $('.carousel-indicators li').first().addClass("active");
-                $('.carousel-item').first().addClass("active");
+                $(".carousel-indicators li").first().addClass("active");
+                $(".carousel-item").first().addClass("active");
             }
         }
-
     }
-
-
 
     // Build image history
     function buildHistory() {
         // Get localstorage prefs if available
         if ("Attribution-Maker-History" in localStorage) {
-            am.history = JSON.parse(localStorage.getItem('Attribution-Maker-History'));
+            am.history = JSON.parse(
+                localStorage.getItem("Attribution-Maker-History"),
+            );
         }
 
         // If it is already in my history, remove the older version
-        const i = am.history.findIndex(e => e.url === am.url);
+        const i = am.history.findIndex((e) => e.url === am.url);
         if (i > -1) {
             am.history.splice(i, 1);
         }
 
         // Add current item to history
         am.history.unshift({
-            "url": am.url,
-            "preview": am.image.preview,
-            "alt": am.image.alt,
-            "time": new Date().toLocaleString(),
-            "attribution": `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>`,
-            "site": am.site.name
+            url: am.url,
+            preview: am.image.preview,
+            alt: am.image.alt,
+            time: new Date().toLocaleString(),
+            attribution: `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>`,
+            site: am.site.name,
         });
 
-
         // Build history display
-        $('#image-history').before(`<h3>Your recent history <span class=\"text-muted\">(${am.history.length} items)</span></h3>`);
+        $("#image-history").before(
+            `<h3>Your recent history <span class=\"text-muted\">(${am.history.length} items)</span></h3>`,
+        );
         buildHistoryItems(am.history.slice(0, maxlength));
         if (am.history.length > maxlength) {
-            $('#showfullhistory').html(`Show full history (${am.history.length - maxlength} more items).`);
-
-        } else { $('#showfullhistory').hide(); }
+            $("#showfullhistory").html(
+                `Show full history (${am.history.length - maxlength} more items).`,
+            );
+        } else {
+            $("#showfullhistory").hide();
+        }
         // Set localStorage
-        localStorage.setItem('Attribution-Maker-History', JSON.stringify(am.history));
-
+        localStorage.setItem(
+            "Attribution-Maker-History",
+            JSON.stringify(am.history),
+        );
 
         // Prepare for experimental, multi-image displays
         // Define a new object that only contains images. Exclude YT or any images without an attribution
 
-        imgHistory = am.history.filter(f => f.site !== "YouTube" && f.attribution).slice(0,48)
+        imgHistory = am.history
+            .filter((f) => f.site !== "YouTube" && f.attribution)
+            .slice(0, 48);
         chosenImages = imgHistory.slice(0, 11);
 
         // Only show exeprimental section if there are two images or more, and layout is BS
         if (imgHistory.length < 2 || am.prefs.layout == "vanilla") {
-            $('#experimental').hide()
+            $("#experimental").hide();
         }
 
         // Build expermintal multi-image displays
@@ -988,60 +1055,72 @@ $(function() {
         buildBgTiles();
     }
 
-
     // Build each history item
     function buildHistoryItems(arr) {
         $.each(arr, function(i, img) {
-            let card = `<div class="col-2"><div class="card m-1 text-center"> <a class="stretched-link" href="${url.pathname}?addr=${encodeURIComponent(img.url)}"> <div class="square" style="background-image: url('${img.preview}')">${img.url.includes('youtube')? "<i class=\"fa fa-play-circle-o\"></i>":""}</div></a> <small class="text-muted history-date">${img.time}</small> </div> </div>`;
-            $('#image-history').append(card);
+            let card = `<div class="col-2"><div class="card m-1 text-center"> <a class="stretched-link" href="${
+        url.pathname
+      }?addr=${encodeURIComponent(
+        img.url,
+      )}"> <div class="square" style="background-image: url('${
+        img.preview
+      }')">${
+        img.url.includes("youtube") ? '<i class="fa fa-play-circle-o"></i>' : ""
+      }</div></a> <small class="text-muted history-date">${
+        img.time
+      }</small> </div> </div>`;
+            $("#image-history").append(card);
         });
     }
 
     // Show full history.
-    $('#showfullhistory').click(function(event) {
-        $('#now-showing').hide();
+    $("#showfullhistory").click(function(event) {
+        $("#now-showing").hide();
         buildHistoryItems(am.history.slice(maxlength));
-        $('#showfullhistory').hide();
+        $("#showfullhistory").hide();
         return false;
     });
 
     // Build modal history images
     function buildModalItems(arr) {
         // Clear out Modal HTML before building
-        $('.modal-images').html("");
+        $(".modal-images").html("");
 
         // Build array of images
         $.each(arr, function(i, img) {
-            let card = `<div class="col-2"><div class="m-1 card p-1 bg-light"><div class="card square modal-item" style="background-image: url('${img.preview}')" data-prefs="${encodeURIComponent(JSON.stringify(img))}"></div><div class="d-none">${JSON.stringify(img)}</div></div>`;
-            $('.modal-images').append(card);
+            let card = `<div class="col-2"><div class="m-1 card p-1 bg-light"><div class="card square modal-item" style="background-image: url('${
+        img.preview
+      }')" data-prefs="${encodeURIComponent(
+        JSON.stringify(img),
+      )}"></div><div class="d-none">${JSON.stringify(img)}</div></div>`;
+            $(".modal-images").append(card);
         });
     }
 
     // Launch modal
-    $('#launch-modal').click(function(event) {
+    $("#launch-modal").click(function(event) {
         chosenImages = [];
         buildModalItems(imgHistory);
     });
 
     // Capture selections in image chooser
-    $("#image-chooser").on('click', '.modal-item', function() {
-
+    $("#image-chooser").on("click", ".modal-item", function() {
         // Get data attributes from selected image and turn back into a JSON object
-        let selected = JSON.parse(decodeURIComponent($(this).attr('data-prefs')));
+        let selected = JSON.parse(decodeURIComponent($(this).attr("data-prefs")));
 
         // Highlight selected images
-        $(this).parent().toggleClass('bg-light bg-primary');
+        $(this).parent().toggleClass("bg-light bg-primary");
 
         // If selected, push into chosenImages array, else remove from array
-        if ($(this).parent().hasClass('bg-primary')) {
+        if ($(this).parent().hasClass("bg-primary")) {
             chosenImages.push(selected);
         } else {
-            chosenImages = chosenImages.filter(f => f.url !== selected.url);
+            chosenImages = chosenImages.filter((f) => f.url !== selected.url);
         }
     });
 
     // "Use my chosen images" button.   Rebuilt multi-image displays
-    $("#image-chooser").on('click', '#chosen', function() {
+    $("#image-chooser").on("click", "#chosen", function() {
         buildCarousel();
         buildTiles();
         buildBgTiles();
@@ -1100,8 +1179,6 @@ $(function() {
         return today;
     }
 
-
-
     // Copy to clipboard for dumb browsers
     function fallbackCopyTextToClipboard(text) {
         let textArea = document.createElement("textarea");
@@ -1126,7 +1203,7 @@ $(function() {
         }
         navigator.clipboard.writeText(text).then(
             function() {},
-            function(err) {}
+            function(err) {},
         );
     }
 
@@ -1173,7 +1250,15 @@ $(function() {
             link.style = "position: fixed; left -10000px;";
             link.href = blob;
 
-            link.download = am.site.name + "-" + am.id + "-" + canvas.width + "x" + canvas.height + ".jpg";
+            link.download =
+                am.site.name +
+                "-" +
+                am.id +
+                "-" +
+                canvas.width +
+                "x" +
+                canvas.height +
+                ".jpg";
 
             document.body.appendChild(link);
             link.click();
@@ -1214,11 +1299,14 @@ $(function() {
      *
      */
 
-
     // Return Bootstrap snippet
     function bootstrapSnippet(i) {
         let snippet = `
-    <img src="${am.image.preview}" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${am.title !== null ? ` title="${am.title}"` : ""}>
+    <img src="${
+      am.image.preview
+    }" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${
+      am.title !== null ? ` title="${am.title}"` : ""
+    } />
     <figcaption class="figure-caption text-muted small fw-lighter">
         <small>${
           am.prefs.collapsed
@@ -1228,13 +1316,21 @@ $(function() {
             <div class="source collapse m-0 p-0" id="show-${am.id}-${i}">`
             : ""
         }
-            <a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>
-                <br><a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} ${
-          am.prefs.collapsed
-            ? `</div>
+            <a href="${am.url}" target="_blank">${
+              am.site.type
+            }</a> by <a href="${am.attribution.userUrl}" target="_blank">${
+              am.attribution.username
+            }</a> on <a href="${am.site.siteurl}" target="_blank">${
+              am.site.name
+            }</a>
+                <br><a href="${am.site.licenceurl}" target="_blank">${
+                  am.site.licence
+                }</a>. Added ${am.today} ${
+                  am.prefs.collapsed
+                    ? `</div>
             <!-- End of Show/Hide interface, ID = ${am.id}-${i} -->`
-            : ""
-        }
+                    : ""
+                }
         </small>
     </figcaption>
 `;
@@ -1244,72 +1340,76 @@ $(function() {
     // Return appropriate Tiles Snippet
     function tilesSnippet(i) {
         let snippet = `
-    <!-- Start of Tile = ${i+1} -->
+    <!-- Start of Tile = ${i + 1} -->
     <div class="col mb-4">
         <div class="card h-100 rounded ${am.prefs.classes.join(" ")}">
             <figure>
-              <img src="${chosenImages[i].preview}" class="card-img-top" alt="${chosenImages[i].alt}">
+              <img src="${chosenImages[i].preview}" class="card-img-top" alt="${
+                chosenImages[i].alt
+              }" />
               <figcaption class="figure-caption text-muted text-right small fw-lighter mr-1">
               ${
-          am.prefs.collapsed
-            ? `
+                am.prefs.collapsed
+                  ? `
             <!-- Start of Show/Hide interface, ID = Tiles-${i} -->
             <a class="source-btn text-muted small" data-toggle="collapse" href="#show-tiles-${i}" role="button" aria-expanded="false" aria-controls="show-tiles-${i}">&#9661; Show attribution</a>
             <div class="source collapse m-0 p-0" id="show-tiles-${i}">`
-            : ""
-        }
+                  : ""
+              }
                 ${chosenImages[i].attribution}
                 ${
-          am.prefs.collapsed
-            ? `</div>
+                  am.prefs.collapsed
+                    ? `</div>
             <!-- End of Show/Hide interface, ID = Tiles-${i} -->`
-            : ""
-        }
+                    : ""
+                }
               </figcaption>
           </figure>
           <div class="card-body pt-0">
-            <h5 class="card-title">Card ${i+1} heading</h5>
-            <p class="card-text">Card ${i+1} content goes here.</p>
+            <h5 class="card-title">Card ${i + 1} heading</h5>
+            <p class="card-text">Card ${i + 1} content goes here.</p>
           </div>
         </div>
     </div>
-    <!-- End of Tile = ${i+1} -->
+    <!-- End of Tile = ${i + 1} -->
     `;
         return snippet;
     }
     // Return appropriate FReturn tiles snippet with BG images
     function tilesBgSnippet(i) {
         let snippet = `
-    <!-- Start of Tile, with BG image = ${i+1} -->
+    <!-- Start of Tile, with BG image = ${i + 1} -->
     <div class="col mb-4">
         <div class="card h-100 rounded ${am.prefs.classes.join(" ")}">
             <figure>
-              <div style="background-image: url('${chosenImages[i].preview}'); width: 100%; padding-bottom: 60%; background-size: cover; background-position: center;"></div>
+              <div style="background-image: url('${
+                chosenImages[i].preview
+              }'); width: 100%; padding-bottom: 60%; background-size: cover; background-position: center;"></div>
               <figcaption class="figure-caption text-muted text-right small fw-lighter mr-1">
               ${
-          am.prefs.collapsed
-            ? `
+                am.prefs.collapsed
+                  ? `
             <!-- Start of Show/Hide interface, ID = Tiles-${i} -->
             <a class="source-btn text-muted small" data-toggle="collapse" href="#show-tiles-${i}" role="button" aria-expanded="false" aria-controls="show-tiles-${i}">&#9661; Show attribution</a>
             <div class="source collapse m-0 p-0" id="show-tiles-${i}">`
-            : ""
-        }
+                  : ""
+              }
                 ${chosenImages[i].attribution}
                 ${
-          am.prefs.collapsed
-            ? `</div>
+                  am.prefs.collapsed
+                    ? `</div>
             <!-- End of Show/Hide interface, ID = Tiles-${i} -->`
-            : ""
-        }
+                    : ""
+                }
               </figcaption>
           </figure>
           <div class="card-body pt-0">
-            <h5 class="card-title">Card ${i+1} heading</h5>
-            <p class="card-text">Card ${i+1} content goes here.</p>
+            <h5 class="card-title">Card ${i + 1} heading</h5>
+            <p class="card-text">Card ${i + 1} content goes here.</p>
           </div>
         </div>
     </div>
-    <!-- End of Tile = ${i+1} -->
+    <!-- End of Tile = ${i + 1} -->
 
     `;
         return snippet;
@@ -1319,11 +1419,17 @@ $(function() {
     function carouselSnippet(i) {
         let snippet = `
     <div class="carousel-item">
-      <img src="${chosenImages[i].preview}" class="d-block w-100" alt="${chosenImages[i].alt}">
-      ${displayCarouselText?`<div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.4);">
-              <h4 class="text-white">Card ${i+1} heading</h4>
-              <p>Card ${i+1} content goes here.</p>
-            </div>`:""}
+      <img src="${chosenImages[i].preview}" class="d-block w-100" alt="${
+        chosenImages[i].alt
+      }" />
+      ${
+        displayCarouselText
+          ? `<div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.4);">
+              <h4 class="text-white">Card ${i + 1} heading</h4>
+              <p>Card ${i + 1} content goes here.</p>
+            </div>`
+          : ""
+      }
     </div>
     `;
         return snippet;
@@ -1332,28 +1438,45 @@ $(function() {
     // If am.prefs.Org = uom, return Melb Uni embed code
     function vanillaSnippet(i) {
         let snippet = `
-    <img src="${am.image.preview}" style="width:100%" alt="${am.image.alt}"${am.title !== null ? ` title="${am.title}"` : ""}>
+    <img src="${am.image.preview}" style="width:100%" alt="${am.image.alt}"${
+      am.title !== null ? ` title="${am.title}"` : ""
+    } />
     <figcaption style="font-size: 0.9em; color:#666; text-align: right">
-      ${am.prefs.collapsed
-            ? `<details><summary style = 'font-size: 0.8em'>Show attribution</summary>`:""
-        }
-        <small><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
-      ${am.prefs.collapsed
-            ? `</details>`:""
-        }
+      ${
+        am.prefs.collapsed
+          ? `<details><summary style = 'font-size: 0.8em'>Show attribution</summary>`
+          : ""
+      }
+        <small><a href="${am.url}" target="_blank">Image</a> by <a href="${
+          am.attribution.userUrl
+        }" target="_blank">${am.attribution.username}</a> on <a href="${
+          am.site.siteurl
+        }" target="_blank">${am.site.name}</a>, <a href="${
+          am.site.licenceurl
+        }" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
+      ${am.prefs.collapsed ? `</details>` : ""}
       </details>
     </figcaption>
     `;
         return snippet;
     }
 
-
     // If am.prefs.Org = MP, return Melb Poly embed code
     function mpSnippet(i) {
         let snippet = `
-    <img src="${am.image.preview}" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${am.title !== null ? ` title="${am.title}"` : ""}>
+    <img src="${
+      am.image.preview
+    }" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${
+      am.title !== null ? ` title="${am.title}"` : ""
+    } />
     <figcaption class="figure-caption text-muted small fw-lighter">
-        <small><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
+        <small><a href="${am.url}" target="_blank">Image</a> by <a href="${
+          am.attribution.userUrl
+        }" target="_blank">${am.attribution.username}</a> on <a href="${
+          am.site.siteurl
+        }" target="_blank">${am.site.name}</a>, <a href="${
+          am.site.licenceurl
+        }" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
     </figcaption>
     `;
         return snippet;
@@ -1368,9 +1491,21 @@ $(function() {
     // Text only snippet
     function rtfSnippet() {
         let snippet = `
-    <figure><img src="${am.image.preview}" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${am.title !== null ? ` title="${am.title}"` : ""}>
+    <figure><img src="${
+      am.image.preview
+    }" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${
+      am.title !== null ? ` title="${am.title}"` : ""
+    } />
     <figcaption>
-        <div style="font-size: 8pt; color:gray; background-color:white"><a href="${am.url}" target="_blank">Image</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</div>
+        <div style="font-size: 8pt; color:gray; background-color:white"><a href="${
+          am.url
+        }" target="_blank">Image</a> by <a href="${
+          am.attribution.userUrl
+        }" target="_blank">${am.attribution.username}</a> on <a href="${
+          am.site.siteurl
+        }" target="_blank">${am.site.name}</a>, <a href="${
+          am.site.licenceurl
+        }" target="_blank">${am.site.licence}</a>, added on ${am.today}</div>
     </figcaption></figure>`;
         return snippet;
     }
@@ -1419,12 +1554,24 @@ $(function() {
     function vanillaYTSnippet() {
         let snippet = `
     <div style="border: 1px solid lightgrey; clear: both; padding: 1em; border-radius: 0.5em; margin:0">
-    <h4 style="color:#DC3545;"><span style="border: 2px solid; border-radius:30%; margin:0; padding: 0 0.4em; font-size: 0.7em">⏵</span> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h4>
+    <h4 style="color:#DC3545;"><span style="border: 2px solid; border-radius:30%; margin:0; padding: 0 0.4em; font-size: 0.7em">⏵</span> ${
+      am.title
+    } (<span class="timecode">${am.video.timecode}</span>)</h4>
     <p class="yt-desc">${am.video.description}</p>
     <div style="position: relative; padding-bottom: ${am.video.ratio}%;">
         <div id="yt-placeholder" class="vjs-tech" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></div>
     </div>
-    <div style="text-align: right;"><small>${am.prefs.collapsed?`<details><summary>Show attribution</summary>`:""}Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today}${am.prefs.collapsed?`</details>`:""}</small></div>
+    <div style="text-align: right;"><small>${
+      am.prefs.collapsed ? `<details><summary>Show attribution</summary>` : ""
+    }Video by <a href="${am.attribution.userUrl}">${
+      am.attribution.username
+    }</a> on <a href="${am.site.siteurl}" target="_blank">${
+      am.site.name
+    }</a>. <a href="${am.site.licenceurl}" target="_blank">${
+      am.site.licence
+    }</a>. Added ${am.today}${
+      am.prefs.collapsed ? `</details>` : ""
+    }</small></div>
     </div>`;
         return snippet;
     }
@@ -1441,7 +1588,7 @@ $(function() {
 
             <div class="maker-overlay" style="position: relative;">
                 <a href="https://youtu.be/${am.id}" target="_blank" style="color: white  !important">\n'
-                    <figure class="figure border rounded w-100"><img src="${am.video.thumb}" alt="YouTube video placeholder" class="w-100">
+                    <figure class="figure border rounded w-100"><img src="${am.video.thumb}" alt="YouTube video placeholder" class="w-100" />
                     </figure>
                     <div class="text-overlay" style="text-align: center; color: white !important; text-shadow: 2px 2px 4px #000000; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 90%">
                         <p id="overlay-text" style="font-size: calc( 12px + (40 - 16) * ( 80vw / (1000 - 400) )) !important; line-height: calc( 20px + (32 - 16) * ( 80vw / (1000 - 400) )) !important;"><i class="fa fa-play-circle-o"></i> View video</p>
@@ -1464,4 +1611,3 @@ $(function() {
         return snippet;
     }
 });
-
