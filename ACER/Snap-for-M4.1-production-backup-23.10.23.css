@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2020-01-14 11:17:23
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2023-10-23 14:44:50
+* @Last Modified time: 2023-10-17 15:22:11
 */
 
 /* ==========================================================================
@@ -203,7 +203,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     }
 }
 
-
 /* ==========================================================================
    DISCUSSION FORA
    ========================================================================== */
@@ -218,18 +217,6 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 
 #page-mod-forum-view table .fit-content {
     width: auto;
-}
-
-/* ==========================================================================
-   GRADING RBRIC
-   ========================================================================== */
-
-/*Set width of rubric to 100%*/
-#page-mod-assign-grader [data-region="grade"] {
-    max-width: 100%;
-}
-#page-mod-assign-grader table#advancedgrading-criteria td {
-    font-size: 0.8em;
 }
 
 /* ==========================================================================

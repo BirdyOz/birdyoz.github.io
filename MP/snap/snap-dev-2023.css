@@ -1,0 +1,2125 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @First Created:   2019-11-04 17:49:21
+* @Last Modified by:   BirdyOz
+* @Last Modified time: 2023-12-14 09:27:06
+*/
+
+/*
+SB - 19/06/2023
+To hide the Program catalogue UAT Environment
+ */
+a#snap-pm-course-catalogue,
+a#snap-pm-program-catalogue,
+a#snap-pm-my-programs {
+    display: none;
+    visibility: hidden;
+}
+
+/*Hide Program catalogue and My programs*/
+#user-action-menu a[href*="snap-pm-program-catalogue"],
+#user-action-menu a[href*="snap-pm-my-programs"] ,
+#user-action-menu a[href*="snap-pm-dashboard"] {
+  display: none !important;
+}
+
+
+/*
+SB - 01/06/2023
+To highlight the UAT Environment*/
+
+.theme-snap #snap-pm-header {
+    background-color: #00bfff !important;
+}
+#mr-nav #snap-header {
+    background: #00bfff;
+}
+
+/*
+SB - 22/06/2023
+To update the contacts footer where there are no profile pictures
+ */
+#snap-course-footer-contacts .snap-media-object .userinitials {
+    font-size: 1.1rem;
+    display: block;
+    float: left;
+    width: 36px;
+    margin: 0.3em 1em 0 0.3em;
+    height: auto;
+    vertical-align: baseline;
+}
+
+/*
+SB - 22/06/2023
+To fix icons not showing in activity picker
+ */
+.activityiconcontainer.content .activityicon:not(.nofilter),
+.activityiconcontainer.content .icon:not(.nofilter) {
+    filter: none;
+}
+
+
+.activityiconcontainer.assessment .activityicon:not(.nofilter),
+.activityiconcontainer.assessment .icon:not(.nofilter) {
+    filter: none;
+}
+
+.activityiconcontainer.communication .activityicon:not(.nofilter),
+.activityiconcontainer.communication .icon:not(.nofilter) {
+    filter: none;
+}
+
+/* ==========================================================================
+   @SB 2023 - CSS Updates
+   Assignment, Quiz, Forum, Checklist
+   ========================================================================== */
+/* Forum Post Page */
+.forum-post-container {
+    background-color: white;
+}
+
+div#intro {
+    background-color: white;
+    padding: 10px !important;
+}
+
+
+/* Assignment Information Page */
+#page-mod-assign-view .assign-intro {
+    background-color: white;
+    padding: 10px !important;
+}
+
+.path-mod div.activity-information {
+    padding-left: 10px;
+}
+
+/* Checklist Update */
+.gradingform_checklist .group .items .item,
+.gradingform_checklist .group .pointstotals {
+    padding: 3px;
+    background-color: white;
+}
+
+.gradingform_checklist .group .description {
+    background-color: white;
+    border-bottom-style: ridge;
+    font-size: larger;
+}
+
+.gradingform_checklist .group .items .item {
+    background-color: white;
+}
+
+
+/* ==========================================================================
+   @GB 2021 - Dropdown Top nav
+   ========================================================================== */
+
+#snap-custom-menu-header .navbar {
+    font-size: 0.9em;
+    border-bottom: 1px solid #fff;
+}
+
+header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-item a {
+    font-weight: 400 !important;
+}
+
+header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-item a.nav-link {
+    height: auto;
+}
+
+header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-item div.dropdown-menu {
+    background-color: rgba(23, 0, 82, .9);
+}
+
+header#mr-nav #snap-custom-menu-header nav.navbar ul.snap-navbar-content li.nav-item .dropdown-toggle {
+    margin-right: 0.2em;
+}
+
+/* ==========================================================================
+   @GB 2021 - Banner - reduced height, reduced font
+   ========================================================================== */
+
+/* Set opaque bg */
+#page-mast h1,
+.breadcrumb-nav {
+    color: white;
+    background-color: rgba(0, 0, 0, .555);
+    display: inline-block;
+    padding: 0.1em;
+    font-size: 2em;
+}
+
+/* style links */
+#page-mast h1 a,
+.breadcrumb a,
+.breadcrumb-nav a {
+    color: white !important;
+    text-shadow: 1px 1px 3px black !important;
+}
+
+.path-course-view .mast-image {
+    min-height: 210px;
+}
+
+/* ==========================================================================
+   @GB 2021 - ToC changes - colours and markers
+   ========================================================================== */
+
+/* Pulse the search bar */
+
+#toc-search-input {
+    box-shadow: 0 0 0 rgba(204, 169, 44, 0.8);
+    animation: pulse 3s;
+    animation-delay: 2s;
+}
+
+/* Increase contract of current section*/
+#snap-course-wrapper #chapters li.snap-visible-section a {
+    font-weight: bold;
+    color: black;
+}
+
+/* Current marker */
+#snap-course-wrapper #chapters li.snap-visible-section .chapter-title:before {
+    font-family: FontAwesome;
+    content: "\f0da";
+    background: none;
+    margin-right: .4em;
+}
+
+/* Increase contract of conditional items*/
+#snap-course-wrapper #chapters li.conditional .published-status {
+    font-weight: bold;
+    color: #b55600;
+}
+
+/* Conditional marker */
+#snap-course-wrapper #chapters li.conditional .chapter-title:before {
+    font-family: FontAwesome;
+    color: #b55600;
+    content: "\f023";
+    background: none;
+    margin-right: .4em;
+}
+
+/* Increase contract of hidden items*/
+#snap-course-wrapper #chapters li.draft .published-status,
+.coursecard-body .snap-draft-tag,
+.coursecard-body .published-status {
+    font-weight: bold;
+    color: maroon !important;
+}
+
+/* Add light yellow stripe behind hidden items to increase attention*/
+.snap-draft-tag,
+.published-status {
+    background-color: rgba(255, 255, 0, .4);
+}
+
+/*Hidden marker*/
+#snap-course-wrapper #chapters li.draft .chapter-title:before,
+.snap-draft-tag:before,
+.coursecard-body .published-status:before {
+    font-family: FontAwesome;
+    color: #333;
+    content: "\f070 ";
+    background: none;
+    margin-right: .4em;
+}
+
+/*remove duplicate eyeball on hidden sections */
+.snap-draft-section.snap-draft-tag:before {
+    content: "";
+}
+
+/* ==========================================================================
+   @GB 2021 - File types. Add Font-awesome icons based on extension
+   ========================================================================== */
+
+/* MS Word */
+
+a[href$=".docx"]:not([href*="readspeaker"])::before,
+a[href$=".doc"]:not([href*="readspeaker"])::before,
+a[href$=".docm"]:not([href*="readspeaker"])::before {
+    font-family: "fontawesome";
+    content: "\f1c2";
+    color: #2A5699;
+    margin-right: 0.2em;
+}
+
+body.snap-resource-card li.snap-resource.snap-mime-document {
+    background-image: url(/pluginfile.php/1/tool_themeassets/assets/0/word.svg);
+    border-top-color: #2A5699;
+
+}
+
+/* Powerpoint */
+
+a[href$=".pptx"]:not([href*="readspeaker"])::before,
+a[href$=".ppt"]:not([href*="readspeaker"])::before,
+li[data-type="ppt"] p.instancename:not([href*="readspeaker"])::before {
+    font-family: "fontawesome";
+    content: "\f1c4";
+    color: #ca4324;
+    margin-right: 0.2em;
+}
+
+body.snap-resource-card li.snap-resource.snap-mime-powerpoint {
+    background-image: url(/pluginfile.php/1/tool_themeassets/assets/0/powerpoint.svg);
+}
+
+/* Excel */
+
+a[href$=".xlsx"]:not([href*="readspeaker"])::before,
+a[href$=".xls"]:not([href*="readspeaker"])::before,
+a[href$=".csv"]:not([href*="readspeaker"])::before {
+    font-family: "fontawesome";
+    content: "\f1c3";
+    color: #1c6d43;
+    margin-right: 0.2em;
+}
+
+body.snap-resource-card li.snap-resource.snap-mime-spreadsheet {
+    background-image: url(/pluginfile.php/1/tool_themeassets/assets/0/excel.svg);
+}
+
+/* PDF */
+
+a[href$=".pdf"]:not([href*="readspeaker"])::before {
+    font-family: "fontawesome";
+    content: "\f1c1";
+    color: #cb0506;
+    margin-right: 0.2em;
+}
+
+body.snap-resource-card li.snap-resource.snap-mime-pdf {
+    background-image: url(/pluginfile.php/1/tool_themeassets/assets/0/PDF_file_icon.svg);
+}
+
+/* TXT */
+
+a[href$=".txt"]:not([href*="readspeaker"])::before {
+    font-family: "fontawesome";
+    content: "\f0f6";
+    color: #222222;
+    margin-right: 0.2em;
+}
+
+/*Zip*/
+
+a[href$=".zip"]::before {
+    font-family: "fontawesome";
+    content: "\f1c6";
+    color: #222222;
+    margin-right: 0.2em;
+}
+
+/*Code files*/
+
+a[href$=".xml"]::before,
+a[href$=".css"]::before,
+a[href$=".js"]::before,
+a[href$=".py"]::before {
+    font-family: "fontawesome";
+    content: "\f1c9";
+    color: #222222;
+    margin-right: 0.2em;
+}
+
+/*Image files*/
+:not(small)>a[href$=".jpg"]::before,
+:not(small)>a[href$=".jpeg"]::before,
+:not(small)>a[href$=".png"]::before,
+:not(small)>a[href$=".bmp"]::before,
+:not(small)>a[href$=".tif"]::before,
+:not(small)>a[href$=".tiff"]::before,
+:not(small)>a[href$=".gif"]::before,
+:not(small)>a[href$=".svg"]::before {
+    font-family: "fontawesome";
+    content: "\f1c5";
+    color: #222222;
+    margin-right: 0.2em;
+}
+
+/*---------
+Activity name autolinking
+---------*/
+a.autolink::before {
+    box-sizing: border-box;
+}
+
+/* Forum */
+
+a.autolink[href*="forum"]:before {
+    content: '';
+    /*background: transparent url(/theme/snap/pix_plugins/mod/forum/icon.svg) no-repeat 50% 50%;*/
+    background: transparent url(/theme/image.php/snap/forum/1687246459/monologo) no-repeat 50% 50%;
+    display: inline-block;
+    background-size: 0.9em 0.9em;
+    height: 0.9em;
+    width: 0.9em;
+    margin-right: 0.2em;
+}
+
+/* Assignment */
+
+a.autolink[href*="assign"]:before {
+    content: '';
+    /*background: transparent url(/theme/snap/pix_plugins/mod/assign/icon.svg) no-repeat 50% 50%;*/
+    background: transparent url(/theme/image.php/snap/assign/1687152461/monologo) no-repeat 50% 50%;
+    display: inline-block;
+    background-size: 0.9em 0.9em;
+    height: 0.9em;
+    width: 0.9em;
+    margin-right: 0.2em;
+}
+
+/* Quiz */
+
+a.autolink[href*="quiz"]:before {
+    content: '';
+    /*background: transparent url(/theme/snap/pix_plugins/mod/quiz/icon.svg) no-repeat 50% 50%;*/
+    background: transparent url(/theme/image.php/snap/quiz/1687301703/monologo) no-repeat 50% 50%;
+    display: inline-block;
+    background-size: 0.9em 0.9em;
+    height: 0.9em;
+    width: 0.9em;
+    margin-right: 0.2em;
+}
+
+/* H5P (hvp) */
+
+a.autolink[href*="hvp"]:before {
+    content: '';
+    background: transparent url(/pluginfile.php/1/tool_themeassets/assets/0/H5P_icon.svg) no-repeat 50% 50%;
+    display: inline-block;
+    background-size: 0.9em 0.9em;
+    height: 0.9em;
+    width: 0.9em;
+    margin-right: 0.2em;
+}
+
+/* Book */
+
+a.autolink[href*="book"]:before {
+    content: '';
+    /*background: transparent url(/theme/snap/pix_plugins/mod/book/icon.svg) no-repeat 50% 50%;*/
+    background: transparent url(/theme/image.php/snap/book/1687301703/monologo) no-repeat 50% 50%;
+    display: inline-block;
+    background-size: 0.9em 0.9em;
+    height: 0.9em;
+    width: 0.9em;
+    margin-right: 0.2em;
+}
+
+/* Page */
+
+a.autolink[href*="page"]:before {
+    content: '';
+    background: transparent url(/theme/image.php/snap/page/1687301703/monologo) no-repeat 50% 50%;
+    display: inline-block;
+    background-size: 0.9em 0.9em;
+    height: 0.9em;
+    width: 0.9em;
+    margin-right: 0.2em;
+}
+
+/* Turnitin (turnitintooltwo) */
+
+a.autolink[href*="turnitintooltwo"]:before {
+    content: '';
+    background: transparent url(/pluginfile.php/1/tool_themeassets/assets/0/turnitin_icon.png) no-repeat 50% 50%;
+    display: inline-block;
+    background-size: 0.9em 0.9em;
+    height: 0.9em;
+    width: 0.9em;
+    margin-right: 0.2em;
+}
+
+/* ==========================================================================
+   @GB 2021 - Assignment submission
+   ========================================================================== */
+
+#id_submissionstatement {
+    transform: scale(3);
+    animation: pulse 2s infinite;
+    margin-bottom: 2em;
+    box-shadow: 0 0 0 rgba(204, 169, 44, 0.8);
+}
+
+#id_submissionstatement:checked {
+    animation: unset;
+}
+
+/* ==========================================================================
+   @SB 2023 - Turnitin Assignment submission
+   ========================================================================== */
+
+input#id_submissionagreement {
+    margin-right: .25rem;
+    transform: scale(3);
+    animation: pulse 2s infinite;
+    margin-bottom: 2em;
+    box-shadow: 0 0 0 rgba(204, 169, 44, 0.8);
+    position: relative;
+    left: 50%;
+}
+
+input#id_submissionstatement:checked {
+    animation: unset;
+}
+
+/*-----
+Put Assessment submission declaration checkbox at the bottom of the page
+-----*/
+.checkbox label {
+    position: relative;
+}
+
+input#id_submissionstatement {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+}
+
+.has-danger .form-control-feedback {
+    text-align: center;
+}
+
+/* ==========================================================================
+   @GB 2021 - Display fixes
+   ========================================================================== */
+
+/* Change nested lists on sections to disc */
+
+/* @GT Added .no-overflow ul for consistency in book pages */
+/* @GT Removed !important causing conflict with ul.dashed */
+/*commented out bullets per https://openlms.zendesk.com/agent/tickets/255434*/
+/*.section ul, .snap-native.modtype_book ol.bookmod-chapters.list-bullets, .no-overflow ul {
+    list-style-type: disc;
+}*/
+/*all padding to conditional items*/
+.snap-conditional-tag ul {
+    padding-left: 3em;
+}
+
+/*Inside Book, Lesson or other tool*/
+#region-main .snap-asset-content ul,
+.book_content ul {
+    margin-left: 1em;
+}
+
+#region-main ol {
+    margin-left: 0;
+}
+
+#region-main ol ol {
+    margin-left: 0;
+    list-style-type: lower-alpha;
+}
+
+#region-main ol ol ol {
+    margin-left: 0;
+    list-style-type: lower-roman;
+}
+
+/*Make links in body content bolder*/
+.no-overflow a:link {
+    font-weight: 500;
+}
+
+/* Make it lighter in <small> (eg image attributions) */
+.no-overflow small a:link {
+    font-weight: 300;
+}
+
+/* @SB: Make standard font size 16pt(= 1rem) */
+#moodle-page {
+    font-size: 1rem;
+}
+
+/* ==========================================================================
+   @GB 2019 - Display fixes
+   ========================================================================== */
+/*Remove outline around focussed elements*/
+.theme-snap a:focus,
+.theme-snap .dropdown-toggle:focus {
+    outline: none;
+}
+
+/*---------
+General
+---------*/
+hr {
+    height: 0em;
+}
+
+/*-----------
+Header / My Courses Menu
+-----------*/
+
+/*-----------
+Header / My Courses Menu
+Changes "My Sites to MY SITES in top right page menu
+-----------*/
+.snap-my-courses-menu {
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+/*-----
+Start of My Sites page elements
+-----*/
+#snap-pm-header {
+    background: url("/pluginfile.php/1/tool_themeassets/assets/0/MP-Logo_Horiz_Reverse.png") no-repeat center left 20px #170052;
+    padding: 1%;
+}
+
+.snap-pm-user {
+    padding-left: 320px;
+    margin-top: 0.7em;
+}
+
+/*-----
+Changes the Profile Picture on My Sites page to better height
+-----*/
+#snap-pm-header .userpicture {
+    width: 50px;
+    height: 50px;
+}
+
+/*-----
+Changes the Profile Name on My Sites page to better height
+-----*/
+.snap-pm-user .h1 {
+    font-size: 170%;
+}
+
+/*-----
+Changes the Quicklinks to Profile/MyAccount/Home etc on My Sites page to better height
+-----*/
+#snap-pm-header-quicklinks {
+    font-size: 90%;
+}
+
+/*-----
+End of My Sites page elements
+-----*/
+
+/*------
+Start: Snap footer - Staff Contacts
+------*/
+#snap-course-footer #snap-course-footer-contacts .snap-media-object {
+    display: inline-block;
+    width: 50%;
+}
+
+@media (min-width: 920px) {
+    #snap-course-footer #snap-course-footer-contacts .snap-media-object {
+        width: 33%;
+    }
+}
+
+@media (min-width: 1280px) {
+    #snap-course-footer #snap-course-footer-contacts .snap-media-object {
+        width: 25%;
+    }
+}
+
+@media (min-width: 1600px) {
+    #snap-course-footer #snap-course-footer-contacts .snap-media-object {
+        width: 20%;
+    }
+}
+
+#snap-course-footer #snap-course-footer-contacts .snap-media-object .snap-media-body {
+    visibility: hidden;
+    height: 50px;
+}
+
+#snap-course-footer #snap-course-footer-contacts .snap-media-object .snap-media-body>a:first-child {
+    visibility: visible;
+    padding-top: 5px;
+    margin-top: 5px;
+    display: flex;
+}
+
+#snap-course-footer-contacts .snap-media-object .userpicture {
+    width: 40px;
+}
+
+#snap-course-footer .col-lg-3.col-md-4 {
+    width: 100%;
+    max-width: 100%;
+    flex: 0 0 100%;
+}
+
+#snap-course-footer .col-lg-9.col-md-8 {
+    display: none;
+}
+
+.snap-media-object.course-footer-update-assign {
+    display: none;
+}
+
+.snap-media-object.course-footer-update-forum {
+    display: none;
+}
+
+/*------
+End: Snap footer - Staff Contacts
+------*/
+
+/*------
+Start: Moodle Footer
+------*/
+#moodle-footer {
+    background-color: #161616;
+}
+
+#moodle-footer .mp-footer-contact .item-title {
+    width: 100%;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    color: #999;
+    display: inline-block;
+    font-size: 100%;
+    background-color: transparent;
+}
+
+#moodle-footer .mp-footer-contact .phone-number .phone {
+    font-size: 160%;
+    font-weight: bold;
+}
+
+#moodle-footer .mp-footer-contact .phone-number .content {
+    font-size: 12px;
+    width: 80%;
+    display: inline-block;
+    text-align: left;
+}
+
+#moodle-footer>.row {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    float: left;
+}
+
+#mrooms-footer {
+    clear: both;
+    width: 100%;
+}
+
+/* .mp-footer-buttons,*/
+.mp-footer-contact {
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.mp-footer-contact .phone-number,
+.mp-footer-contact .address {
+    flex: 1 0 300px;
+}
+
+/* MP Branded Footer elements*/
+div#mrooms-footer {
+    max-width: 100% !important;
+    padding-bottom: 1rem;
+}
+
+.footer .footer__copy {
+    line-height: 1.7;
+    color: #fff;
+    border-top: .2rem solid hsla(0, 0%, 59.2%, .2);
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+}
+
+.footer .footer__copy .footer__copy-inner {
+    display: flex;
+    -webkit-box-orient: horizontal;
+    flex-direction: row-reverse;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.footer .footer__post .footer__post-inner {
+    position: relative;
+}
+
+.footer .footer__post .footer__post-ack {
+    display: block;
+    margin: 0 auto;
+    max-width: 60%;
+    text-align: center;
+}
+
+.footer .footer__copy .footer__copy-logo {
+    width: 12.8rem;
+    margin-bottom: 0;
+}
+
+footer.footer.mp-footer {
+    opacity: .75;
+}
+
+/*------
+Fixing up the main site content
+------*/
+
+.course-content {
+    max-width: 100%;
+}
+
+#region-main {
+    max-width: 100%;
+}
+
+#chooseform .option {
+    zoom: 1.3;
+}
+
+#chooseform .moduletypetitle {
+    zoom: 1.3;
+}
+
+/*-----
+Change dashboard course card backgroup
+If there is a cover image in course then display the cover image.
+If no cover image, then display MP colour.
+-----*/
+#snap-pm-courses .coursecard {
+    background-image: url("/pluginfile.php/1/tool_themeassets/assets/0/course-card-image.png");
+    background-color: #170052 !important;
+}
+
+/*-----
+Change assignment information div width from 66.6667% to 90%;
+min height from 100px to 50px .
+@SB: Conflicting element - Remove
+-----*/
+#page-mod-assign-view .assign-intro {
+    width: 90% min-height: 50px;
+}
+
+/*-----
+Assignment grading summary div
+-----*/
+#page-mod-assign-view .assign-grading-summary {
+    margin-left: 0px;
+    float: left;
+    width: 90%;
+}
+
+/*-----
+Assignment submission div
+-----*/
+#page-mod-assign-view .assign-submission-data {
+    margin-left: 0px;
+    float: left;
+    width: 90%;
+}
+
+/*-----
+Adjust assessment submission summary layout
+-----*/
+.pull-right {
+    margin-top: 0;
+}
+
+#page-mod-assign-view .assign-intro {
+    margin-top: 3px;
+    float: left;
+    width: 100%;
+    min-height: 20px;
+}
+
+#page-mod-assign-view .groupselector {
+    margin-left: 0;
+    margin-right: 0;
+    float: left;
+    width: 100%;
+    min-height: 80px;
+}
+
+/*-----
+ReadSpeaker Adjustments
+-----*/
+.block_readspeaker_embhl {
+    min-height: auto !important;
+    font-size: 1rem;
+}
+
+/*-----
+User tour background
+-----*/
+
+/* User tours - Change background to black with opacity */
+div[data-flexitour="backdrop"] {
+    background-color: black;
+    opacity: .4;
+}
+
+/*-----
+Hide student dashboard in Site Tools
+-----*/
+#snap-student-dashboard {
+    padding: 0em;
+    visibility: hidden;
+    height: 0px;
+}
+
+#coursetools.state-visible {
+    overflow: hidden;
+}
+
+/*-----
+Hide "Recent Activity" on site footer section and site contacts area.
+-----*/
+#snap-course-footer-recent-activity {
+    padding: 0em;
+    visibility: hidden;
+    height: 0px;
+    display: none;
+}
+
+/*-----
+Changes below are for updating in September 2019
+-----*/
+
+/*-----
+Start - Edit box page width change
+-----*/
+.path-mod-assign .snap-form-required fieldset,
+.path-mod-hvp .snap-form-required fieldset,
+.path-grade .snap-form-required fieldset,
+.path-admin-report .snap-form-required fieldset,
+.pagelayout-admin .snap-form-required fieldset,
+#page-course-editsection .snap-form-required fieldset {
+    max-width: 100%;
+    margin: 1em 0;
+}
+
+#region-main textarea {
+    width: 100%;
+}
+
+/*-----
+End - Edit box page width change
+-----*/
+
+/*-----
+Full width Shortname field
+-----*/
+input#id_shortname,
+input#id_fullname {
+    width: 100%;
+}
+
+/*-----
+Start - Hide user notification
+Hides the recent activity on site footer under staff contacts
+----*/
+.theme-snap #user-notifications {
+    display: none;
+}
+
+/*-----
+End - Hide user notification
+----*/
+
+/*-----
+Card height update
+----*/
+body.snap-resource-card li.snap-resource.snap-resource-long {
+    height: 15em;
+}
+
+/*-----
+Attempt to fix subchapter problem
+----*/
+.path-mod-book #id_general .fcontainer .checkbox {
+    display: block !important;
+}
+
+/*-----
+Advanced grading rubric height
+----*/
+.gradingform_rubric .criterion .levels,
+.gradingform_rubric .criterion .levels table,
+.gradingform_rubric .criterion .levels table tbody {
+    height: 100%;
+    width: 100%;
+}
+
+
+/*-------------------------
+Course and category styles
+-------------------------*/
+
+.course-1 #page-header:not(.mast-image) {
+    background-image: url("/pluginfile.php/1/tool_themeassets/assets/0/Z-UAT_background.png");
+}
+
+/*---------
+Top Level MP Category
+---------*/
+.category-320 #page-header:not(.mast-image) {
+    background-image: url("/pluginfile.php/1/tool_themeassets/assets/0/Z-UAT_background.png");
+}
+
+/*---------
+Archive Category
+---------*/
+.category-327 #page-header:not(.mast-image) {
+    background-color: #c5c5c5;
+}
+
+/*---------
+Creative Arts Category
+---------*/
+.category-77 #page-header:not(.mast-image) {
+    background-color: #196a6b;
+}
+
+/*---------
+Business Innovation and Entrepreneurship Category
+---------*/
+.category-118 #page-header:not(.mast-image) {
+    background-color: #329828;
+}
+
+/*---------
+Engineering Design and Construction Category
+---------*/
+.category-121 #page-header:not(.mast-image) {
+    background-color: #6eb4cd;
+}
+
+/*---------
+Food Plant & Animal Industries Category
+---------*/
+.category-311 #page-header:not(.mast-image) {
+    background-color: #00833c;
+}
+
+/*---------
+Foundation and Preparatory Studies Category
+---------*/
+.category-119 #page-header:not(.mast-image) {
+    background-color: #f18903;
+}
+
+/*---------
+Health and Education Category
+---------*/
+.category-312 #page-header:not(.mast-image) {
+    background-color: #863176;
+}
+
+/*---------
+College of Education and Leadership Category
+---------*/
+.category-178 #page-header:not(.mast-image) {
+    background-color: #4286f4;
+}
+
+/*---------
+People and Culture Category
+---------*/
+.category-302 #page-header:not(.mast-image) {
+    background-color: #4286f4;
+}
+
+/*---------
+Information, Communication and Technology Category
+---------*/
+
+.category-112 #page-header:not(.mast-image) {
+    background-image: url("/pluginfile.php/1/tool_themeassets/assets/0/imgpreview.jpeg");
+}
+
+/*---------
+Learning Environments Category
+---------*/
+
+.category-228 #page-header:not(.mast-image) {
+    background-image: url("/pluginfile.php/1/tool_themeassets/assets/0/Pixabay-1430105-1280x718.jpg");
+}
+
+/*---------
+Learning Environments Template Category
+---------*/
+
+.category-227 #page-header:not(.mast-image) {
+    background-image: url("/pluginfile.php/1/tool_themeassets/assets/0/LE_Templates.jpg");
+}
+
+/*---------
+To fix the rubric display
+---------*/
+
+gradingform_rubric .criteria {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+
+/*---------
+To remove whitespace top of from labels GT 10/01/2020
+---------*/
+
+.label .asset-wrapper .snap-header-card {
+    padding-bottom: 0px !important;
+}
+
+.label .activityinstance {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+/*---------
+To fix the rubric display
+---------*/
+.gradingform_rubric .criteria {
+    display: inline-table !important;
+}
+
+#rubric-rubric.gradingform_rubric #rubric-criteria .criterion .description {
+    width: 50% !important;
+}
+
+/*---------
+Hide login button
+---------*/
+.theme-snap #mr-nav a.snap-login-button {
+    visibility: hidden !important;
+}
+
+#mr-nav {
+    position: absolute !important;
+}
+
+/* Fix issue where collapsed accordions cannot be edited in the new ATTO editor
+Expand all collapsed items in the atto edtitor, to expose their content */
+.editor_atto .collapse,
+.book_chapter .collapse {
+    display: block !important;
+    height: auto !important;
+}
+
+/*---------
+Adjust to show front menu - CH
+---------*/
+.collapse.show {
+    display: block;
+    z-index: 9998 !important background-color: #fff;
+}
+
+/*
+ * Restore visiblity of submit buttons in Andresco dialogs.
+ *
+ * (A selector in the Snap theme to hide save & display for resources is not
+ * very specific. So need to use a selector here with higher specificity to
+ * restore visibly.)
+ *
+ **/
+#page-mod-url-mod form.andresco-form-dialog input#id_submitbutton,
+#page-mod-page-mod form.andresco-form-dialog input#id_submitbutton,
+#page-mod-resource-mod form.andresco-form-dialog input#id_submitbutton {
+    display: inline-block;
+}
+
+/*Snap books fix - when inside a book, hide the book description from top*/
+body#page-mod-book-view #region-main #intro {
+    display: none;
+}
+
+.swatch-indigo {
+    color: #fff;
+    background-color: #6610f2;
+}
+
+.swatch-yellow {
+    color: #212529;
+    background-color: #ffc107;
+}
+
+.swatch-teal {
+    color: #fff;
+    background-color: #20c997;
+}
+
+.swatch-cyan {
+    color: #fff;
+    background-color: #17a2b8;
+}
+
+.ddmatch li.matchdrag {
+    height: auto;
+}
+
+/*Snap Atto editor drop down heading menu*/
+.theme-snap .dropdown-menu>li>a:hover,
+.theme-snap .dropdown-menu>li>a:focus {
+    background-color: #efefef !important;
+}
+
+/*
+Start - To hide any video uploaded directly to Moodle
+*/
+
+video[role="application"] {
+    display: none;
+    visibility: hidden;
+}
+
+/*
+End - To hide any video uploaded directly to Moodle
+*/
+
+/* UI elements - text-weblink bg */
+
+.text-weblink h4 {
+    color: rgba(0, 55, 255, 1);
+}
+
+/* UI elements - Set text-pdf */
+.text-pdf h4 {
+    color: #EB0E00;
+}
+
+/* UI elements - Set text-word */
+.text-word h4 {
+    color: #0054BC;
+}
+
+/* UI elements - Set text-excel */
+.text-excel h4 {
+    color: #107C41;
+}
+
+/* UI elements - Set text-ppt */
+.text-ppt h4 {
+    color: #C33C1C;
+}
+
+/* UI elements - Set text-think */
+.text-think h4 {
+    color: #078725;
+}
+
+/* UI elements - Set text-read */
+.text-read h4 {
+    color: #008390;
+}
+
+/* UI elements - Set text-discuss */
+.text-discuss h4 {
+    color: #947200;
+}
+
+/* UI elements - Set think-box */
+.think-box h4 {
+    color: #078725;
+}
+
+/* UI elements - Set read-box */
+.read-box h4 {
+    color: #008390;
+}
+
+/* UI elements - Set discuss-box */
+.discuss-box h4 {
+    color: #947200;
+}
+
+/* UI elements - Set reflect-box */
+.reflect-box h4 {
+    color: purple !important;
+}
+
+/* UI elements - Set links in eBooks to bold*/
+/*.box.py-3.generalbox.book_content a:link {
+    font-weight: bold;
+}*/
+
+span.chaptername {
+    font-weight: normal !important;
+}
+
+/* UI elements - For advanced grading checklist*/
+.gradingform_checklist {
+    max-width: 100% !important;
+}
+
+.gradingform_checklist .group .items .item .definition {
+    width: 75%;
+}
+
+div#checklist-groups .odd {
+    background-color: lightgrey;
+}
+
+div#checklist-groups .item-wrapper {
+    padding: 5px;
+}
+
+div#advancedgrading-groups {
+    width: max-content;
+}
+
+#pagemod-content-container>* {
+    width: 100%;
+}
+
+/* UI elements - For Unorder list dash*/
+ul.dashed {
+    list-style-type: none;
+}
+
+ul.dashed>li {
+    text-indent: -20px;
+}
+
+ul.dashed>li::before {
+    content: "-";
+    text-indent: -20px;
+    padding: 5px;
+}
+
+/*Add external link icon to all links with class external links*/
+a.external-link::after {
+    font-family: FontAwesome;
+    content: "\f08e";
+    padding-left: 0.2em;
+}
+
+/* increase Book and Page titles to 1.25em same as h5 heading (small) */
+li.page h3.snap-asset-link,
+li.book h3.snap-asset-link {
+    font-size: 1.25em !important;
+}
+
+/* Decrease the space between Page title and description from 1em to 0em */
+li.page p.instancename {
+    margin-bottom: 0em;
+}
+
+/*Update the checklist advanced grading and descriptions*/
+.gradingform_checklist .group .description {
+    width: 100%;
+    padding-bottom: .5em;
+    font-size: large;
+}
+
+.gradingform_checklist .group .items .item .definition .remark {
+    width: 90%;
+}
+
+/*---------------------------------------------------------
+Change background colour to off white to reduce eye strain
+-----------------------------------------------------------*/
+
+/* set background colour */
+
+#snap-header,
+/* Top nav*/
+main#moodle-page,
+/* Left nav*/
+section#region-main
+/* Main content*/
+
+    {
+    background-color: rgb(248, 248, 248);
+}
+
+/* Set background colour for: create new activity button, Drag & drop zone to white to contrast background colour */
+.section-modchooser-link,
+.snap-dropzone,
+.summary {
+    background-color: white !important;
+}
+
+.label .asset-wrapper {
+    padding-top: 0px !important;
+}
+
+.label {
+    padding-top: 0px !important;
+}
+
+.book,
+.page {
+    padding-top: 0.5em !important;
+}
+
+.summary .no-overflow {
+    padding-top: 0.5em !important;
+    padding-bottom: 0.25em !important;
+}
+
+.section li.snap-activity {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+/* force padding to match topic summary and activity cards */
+.label,
+.summary,
+.book,
+.page {
+    padding-left: 1em !important;
+    padding-right: 1em !important;
+}
+
+/* retain white background for content within books */
+/* Add border to match TOC */
+.book_content .no-overflow {
+    background-color: white !important;
+    padding: 1em;
+    border: solid 1px #DFDFDF;
+    border-radius: 0.5rem;
+
+}
+
+/* remove ul style from ui elements */
+.book_content .no-overflow ul.nav.nav-pills,
+.snap-asset-content .no-overflow ul.nav.nav-pills {
+    list-style-type: none !important;
+}
+
+/* reduce line height in topic summary to match body (label etc)*/
+.path-course-view .section .summary p {
+    margin-bottom: 1em !important;
+}
+
+/* force border in card within topic summary */
+.summary .card {
+    border: 1px solid rgba(0, 0, 0, .125) !important;
+    padding: 10px !important;
+}
+
+/* temporary fix for bootstrap grids */
+.atto_bsgrid.container-fluid .row div[class^="col-md-"] {
+    word-break: inherit;
+}
+
+/*hide label header in student view (to be reviewed - GT)*/
+/*
+.label:not(.snap-can-edit) .snap-header-card, .page .snap-header-card, .book .snap-header-card, .book p.snap-resource-card-fadeout, .page p.snap-resource-card-fadeout {
+display:none;
+}*/
+
+body:not(.pagelayout-course) #moodle-footer {
+    margin-top: 0em;
+}
+
+#region-main {
+    padding-bottom: 1.5em;
+}
+
+#local-joulegrader-assign23-files-inline video {
+    display: none !important;
+    visibility: hidden;
+}
+
+/* remove text wrap to allow 3 digit additional course contacts */
+.coursecard-contacts a.coursecard-contacts-more {
+    word-wrap: normal;
+    overflow-wrap: normal;
+}
+
+/* re-style user profile page buttons for a darker background image */
+#page-user-profile .page-context-header .header-button-group .btn {
+    color: white;
+    border-color: #433173;
+    background-color: #170052;
+}
+
+#page-user-profile .page-context-header .header-button-group .btn:hover {
+    color: white;
+    border-color: white;
+    background-color: #170052;
+    outline: 3px auto #433173;
+}
+
+/* ==========================================================================
+   @GB 2021 - Mobile specific changes
+   ========================================================================== */
+
+@media (max-width: 1001px) {
+
+    /* Tweak Snap PM on smaller devices.  Swap MP logo for "logo only" */
+    #snap-pm-header {
+        background: url("/pluginfile.php/1/tool_themeassets/assets/0/MP-small-reverse.png") no-repeat center left 20px #170052 !important;
+    }
+
+    .snap-pm-user {
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        padding-left: 110px !important;
+        font-size: .9em;
+    }
+
+    /*Reduce banner size on smaller devices*/
+    #page-header {
+        padding-top: 4em;
+    }
+
+    .path-course-view .mast-image {
+        min-height: 150px;
+    }
+}
+
+@media (max-width: 992px) {
+
+    /*Site wide nav in footer on smaller devices*/
+    footer#moodle-footer div#snap-custom-menu-footer nav.navbar li.nav-item {
+        background-color: #170052;
+        border: 1px solid white;
+    }
+
+    /* Fix sub-items so they are not truncated */
+    footer#moodle-footer div#snap-custom-menu-footer nav.navbar ul.snap-navbar-content li.nav-item a.dropdown-item {
+        max-width: auto;
+        overflow: visible;
+    }
+
+}
+
+/* Remove border around breadcrumbs on smaller devices */
+@media (max-width: 767.98px) {
+    .breadcrumb:not(:empty) {
+        border: none;
+    }
+}
+
+/*Pulse the TOC hamburger menu*/
+
+#toc-mobile-menu-toggle {
+    box-shadow: 0 0 0 rgba(204, 169, 44, 0.8);
+    animation: pulse 2s infinite;
+}
+
+#toc-mobile-menu-toggle:hover {
+    animation: none;
+}
+
+/* Define pulsing animation */
+
+@keyframes pulse {
+    0% {
+        -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.8);
+        box-shadow: 0 0 0 0 rgba(204, 169, 44, 0.8);
+    }
+
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+        box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+    }
+
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+        box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+    }
+}
+
+
+/* Need to validate if this is still required*/
+/* TESTING BKI ACCORDION CODE Temp workaround */
+
+.exatto-acc-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, .03);
+    border-bottom: 1px solid rgba(0, 0, 0, .125);
+    display: inline-block;
+}
+
+.exatto-acc-content {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+
+.exatto-acc-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: 0;
+}
+
+.exatto-acc-card .collapse:not(.show) {
+    display: block !important;
+}
+
+/* add 10px to card custom class*/
+.padd10px {
+    padding: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* END - TESTING BKI ACCORDION CODE Temp workaround */
+
+
+
+
+/* Remove reset popups on this page links */
+.contentinfo:not(#moodle-footer) .usertour,
+#moodle-footer #page-footer~.usertour {
+    display: none !important;
+}
+
+/*---------- START ---4.1 - Enhancements/fixes -----*/
+
+/* Centre video player on screen - Chris Higgs, 01/06/23 */
+.kaltura-player-container {
+    text-align: center !important;
+}
+
+
+/* ---START-----Lti Activities---------------- */
+/*set Zoom lti top border to Zoom blue */
+li.snap-asset.modtype_lti:has(img[src*="zoom"]) {
+    border-top-color: #2D8CFF !important;
+}
+
+/*set studiosity lti top border to studiosity yellow */
+li.snap-asset.modtype_lti:has(img[src*="studiosity"]) {
+    border-top-color: #000000 !important;
+}
+
+/*#E3E720 studiosity yellow*/
+/*#000000 black*/
+
+/*set iris lti top border to iris orange */
+li.snap-asset.modtype_lti:has(img[src*="irisinvigilation"]) {
+    border-top-color: #EE7421 !important;
+}
+
+/*#103A71 iris blue*/
+/*#EE7421 iris orange*/
+
+/*set all Lti activity icons to transparent background*/
+.section li.snap-asset.modtype_lti .activityiconcontainer {
+    background-color: transparent !important;
+}
+
+/* ---END-----Lti Activities---------------- */
+
+/* ---START-----H5P Plugin - HVP Activity---------------- */
+/*set HVP activity icons to black background on site/course page*/
+.section li.snap-activity.modtype_hvp .activityiconcontainer {
+    background-color: #000000 !important;
+}
+
+/*--- Replace HVP icon on site/course page*/
+.activityiconcontainer.hvp img.iconlarge.activityicon {
+    content: url(/pluginfile.php/1/tool_themeassets/assets/0/HVP_H5P_Icon.png);
+}
+
+/* --- Replace HVP icon within activity picker ----*/
+.modicon_hvp img.icon.activityicon {
+    content: url(/pluginfile.php/1/tool_themeassets/assets/0/HVP_H5P_Icon.png);
+}
+
+/* --- Replace Top border color for HVP activity ----*/
+.section li.snap-asset.modtype_hvp {
+    border-top-color: #170052;
+}
+
+/* --- Replace HVP icon on activity edit page ----*/
+div[role="main"] h2 img.icon.iconlarge[src*="hvp"] {
+    content: url(/pluginfile.php/1/tool_themeassets/assets/0/HVP_H5P_Icon.png);
+}
+
+/* --- Replace HVP icon on Edit Gradebook page ----*/
+a.gradeitemheader img.icon.itemicon[alt="Interactive Content"] {
+    content: url(/pluginfile.php/1/tool_themeassets/assets/0/HVP_H5P_Icon.png);
+}
+
+/* --- Replace HVP icon on progress block ----*/
+.progressEventInfo a[href*="hvp"] img {
+    content: url(/pluginfile.php/1/tool_themeassets/assets/0/HVP_H5P_Icon.png);
+}
+
+/* --- Replace HVP icon on home page timeline ----*/
+.activityiconcontainer img[src*="image.php/snap/hvp"] {
+    content: url(/pluginfile.php/1/tool_themeassets/assets/0/HVP_H5P_Icon.png);
+}
+
+/* --- Replace HVP icon on Activity completion report ----*/
+table#completion-progress th.completion-header a[href*="hvp"] .modicon img.icon {
+    content: url(/pluginfile.php/1/tool_themeassets/assets/0/HVP_H5P_Icon.png);
+}
+
+/* ---END-----H5P Plugin - HVP Activity---------------- */
+
+
+
+
+
+
+/* --- Activity Completion Report: set expired completion date to red ----*/
+.completion-expired {
+    color: red;
+}
+
+
+
+
+/*-----START ------- File dropzone --------*/
+/*----- Replace image --------*/
+.snap-dropzone-label .activityiconcontainer img {
+    content: url(/pluginfile.php/1/tool_themeassets/assets/0/folderdropzone_reverse.svg);
+    height: 30px;
+    width: 30px;
+}
+
+/*----- Set background and padding --------*/
+.theme-snap .snap-dropzone .activityiconcontainer {
+    background-color: transparent;
+    padding: 0.25px;
+}
+
+/*----- remove filter --------*/
+.theme-snap .snap-dropzone .activityiconcontainer img.activityicon {
+    filter: none;
+}
+
+/*-----END ------- File dropzone --------*/
+
+/*-----START ------- PDF Annotator buttons  --------*/
+/* ----Replace LH button image ----*/
+button[title="Collapse grade panel"].active img.icon,
+button[title="Collapse grade panel"]:hover img.icon {
+    content: url(/pluginfile.php/1/tool_themeassets/assets/0/layout-expand-left-Selected.png);
+}
+
+/* ----Replace middle button image ----*/
+button[title="Restore default layout"].active img.icon,
+button[title="Restore default layout"]:hover img.icon {
+    content: url(/pluginfile.php/1/tool_themeassets/assets/0/layout-default-Selected.png);
+}
+
+/* ----Replace RH button image ----*/
+button[title="Collapse review panel"].active img.icon,
+button[title="Collapse review panel"]:hover img.icon {
+    content: url(/pluginfile.php/1/tool_themeassets/assets/0/layout-expand-right-Selected.png);
+}
+
+/*-----END ------- PDF Annotator buttons  --------*/
+
+
+/*---Remove additional margin from Activity Settings menu items---*/
+form.mform .snap-form-advanced fieldset,
+form.mform fieldset.clearfix {
+    margin-bottom: 0rem !important;
+}
+
+
+
+/*---START Style gradebook menu dropdown to appear as a button ----*/
+
+
+/*----style all dropdowns on all gradebook pages to look like a button-----*/
+.navitem .dropdown .dropdown-toggle {
+    border: 1.11111111px solid #170052;
+    color: #170052;
+}
+
+/*----set dropdowns from single view gradebook page only to min-height 3rem-----*/
+.navitem.order-1 .tertiary-navigation-selector .dropdown.select-menu .dropdown-toggle,
+.order-2 .search-widget.d-flex.dropdown .dropdown-toggle,
+.order-3 .search-widget.d-flex.dropdown .dropdown-toggle {
+    min-height: 3rem;
+}
+
+/*----- Set hover and expanded -----*/
+.navitem .dropdown .dropdown-toggle:hover,
+.navitem .dropdown .dropdown-toggle[aria-expanded="true"] {
+    background-color: #170052;
+    border-color: #170052;
+    color: #fff !important;
+    outline: 3px auto #170052;
+}
+
+/*--- Add left padding reduce right-padding of text within button---*/
+.tertiary-navigation .btn.dropdown-toggle .pr-3 {
+    padding-left: 0.25em;
+    padding-right: 0.5em !important;
+}
+
+
+/*--- Add space after caret---*/
+.tertiary-navigation .dropdown-toggle::after {
+    Margin-right: 0.5rem;
+}
+
+.tertiary-navigation .dropdown-toggle {
+    padding-right: 0rem;
+}
+
+/*---END Style gradebook menu dropdown to appear as a button ----*/
+
+
+
+
+
+
+/*Fix for screen jitter when adding a new question*/
+body.lockscroll {
+    overflow: auto;
+}
+
+/*-------Book fixes------------*/
+
+
+
+/* Within Moodle books - reduce the space and general 'busy-ness' above the content  */
+
+/* Books - Reduce book heading size */
+#page-mod-book-view h2 {
+    font-size: 1.325em
+}
+
+/* Books - Make the completion tracking less 'shouty'   Reduce vertical spacing */
+#page-mod-book-view .activity-header {
+    padding: 0em;
+    font-size: 0.8em;
+    /* background-color: white;*/
+}
+
+
+/* Books - Reduce the left and right padding to give more space to ToC items */
+#page-mod-book-view #moodle-blocks {
+    padding: 0 1%;
+}
+
+
+/*----Style the print link to look like a button -----*/
+#page-mod-book-view #moodle-blocks .block_book_toc a[href*="/mod/book/tool/print/index"] {
+    color: #170052;
+    border-color: #170052;
+    background-color: transparent;
+    border: 1px solid #170052;
+    border-radius: 0.25rem;
+    transition: all 0.4s ease-in-out;
+    padding: 0.375rem 0.75rem;
+    margin-left: 1rem;
+}
+
+/*----Style the print link to look like a button on hover-----*/
+#page-mod-book-view #moodle-blocks .block_book_toc a[href*="/mod/book/tool/print/index"]:hover {
+    background-color: #170052;
+    border-color: #170052;
+    color: #fff;
+    outline: 3px auto #170052;
+    text-decoration: none;
+}
+
+/* -----Add icon to button-----*/
+#page-mod-book-view #moodle-blocks .block_book_toc a[href*="/mod/book/tool/print/index"]::before {
+    font-family: FontAwesome;
+    content: "\f02f";
+    padding-right: 0.25em;
+}
+
+/* -----reduce padding from left of book T.O.C-----*/
+#page-mod-book-view #moodle-blocks .block_book_toc {
+    padding-left: 0.1rem;
+}
+
+/* ----clear any floats within book content */
+#page-mod-book-view .book_content {
+    width: 100%;
+    clear: both;
+}
+
+/* ----Books reduce whitespace around content ----*/
+#region-main {
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+/* -----Reduce the area or readspeaker button -----*/
+#region-main .rsbtn {
+    width: fit-content;
+}
+
+/* -----Reduce whitespace around activity hreader -----*/
+#page-mod-book-view .activity-header {
+    float: left;
+    width: fit-content;
+    margin-bottom: 0px;
+}
+
+
+
+/* -----Reduce whitespace around completion info -----*/
+.path-mod .activity-information .completion-info {
+    padding-top: 0.75rem;
+    padding-bottom: 0px;
+    border-bottom: 0px solid transparent;
+    padding-right: 1em;
+    padding-bottom: 0.5rem;
+}
+
+
+
+/* -----Reduce whitespace from top of book content -----*/
+#region-main .py-3 {
+    padding-top: 0px !important;
+}
+
+/*----- Move book editing button back to RHS and further up to eliminate whitespace ---*/
+#page-mod-book-view .snap-page-heading-button {
+    text-align: right;
+    width: fit-content;
+    float: right;
+    margin-top: -30px;
+}
+
+
+/* Books - Move completion badge up */
+#page-mod-book-view .automatic-completion-conditions {
+    margin-top: -0.5em;
+}
+
+/*--- Set Book TOC and Content width ratios for different screen sizes ---*/
+@media (min-width: 1600px) {
+    #page-mod-book-view #region-main {
+        width: 80%;
+    }
+
+    #page-mod-book-view #moodle-blocks {
+        width: 20%;
+    }
+}
+
+@media (min-width: 1366px) and (max-width: 1600px) {
+    #page-mod-book-view #region-main {
+        width: 75%;
+    }
+
+    #page-mod-book-view #moodle-blocks {
+        width: 25%;
+    }
+}
+
+/*-----on smaller screens move TOC down and set TOC and content to full width----*/
+@media (min-width: 501px) and (max-width: 768px) {
+    #page-mod-book-view #region-main {
+        width: 100%;
+        float: none;
+    }
+
+    #page-mod-book-view #moodle-blocks {
+        width: 100%;
+        float: none;
+         Margin-left: 1em;
+        Margin-right:1em;
+    }
+
+   #page-mod-book-view #moodle-blocks .block.card {
+      width: 95%;
+      float: none;
+      Margin-left: 1em;
+      Margin-right:1em;
+   }
+
+    .book_content {
+        font-size: 1rem;
+    }
+}
+
+/*----Reduce padding---*/
+#region-main .row {
+    padding-bottom: 0.25rem;
+}
+
+
+
+
+
+
+/* --- START --- Gradebook Hidden indicator (not working with quizzes) --- */
+/*Add eye icon to indicate hidden category from student gradebook view*/
+tr.hidden-category-from-student-gradebook td.c4 .dropdown a[aria-label="Edit"]::before {
+    font-family: FontAwesome;
+    content: "\f070";
+    padding-right: 0.2em;
+}
+
+/*Add eye icon to indicate hidden item from student gradebook view*/
+tr.hidden-item-from-student-gradebook td.c3 .dropdown a[aria-label="Edit"]::before {
+    font-family: FontAwesome;
+    content: "\f070";
+    padding-right: 0.2em;
+}
+
+/*Add eye icon to indicate hidden categoryitem (category total)  from student gradebook view*/
+tr.hidden-categoryitem-from-student-gradebook td.c3 .dropdown a[aria-label="Edit"]::before {
+    font-family: FontAwesome;
+    content: "\f070";
+    padding-right: 0.2em;
+}
+
+/*Add eye icon to indicate hidden item (category total)  from student gradebook view*/
+tr.item.dimmed_text td.c3 .dropdown a[aria-label="Edit"]::before {
+    font-family: FontAwesome;
+    content: "\f070";
+    padding-right: 0.2em;
+}
+
+
+
+
+/*Add labels to indicate hidden item from student gradebook view*/
+
+/*Category*/
+tr.hidden-category-from-student-gradebook td.c1 h4::after {
+    font-family: Roboto;
+    content: "Category hidden from student gradebook view";
+    white-space: pre;
+    margin-left: 0.9em;
+    background-color: rgba(255, 255, 0, .4);
+    color: maroon;
+    Padding: 0.15em;
+    font-size: 0.8em;
+}
+
+/*Item*/
+tr.item.hidden-item-from-student-gradebook td.c0 a.gradeitemheader::after,
+tr.item.dimmed_text td.c0 a.gradeitemheader::after {
+    font-family: Roboto;
+    content: "Item hidden from student gradebook view ";
+    white-space: pre;
+    margin-left: 1em;
+    pointer-events: none !important;
+    background-color: rgba(255, 255, 0, .4);
+    color: maroon;
+    Padding: 0.15em;
+    font-size: 0.8em;
+}
+
+/*Category total*/
+tr.categoryitem.dimmed_text td.c0 .gradeitemdescription::after {
+    font-family: Roboto;
+    content: "Category total hidden from student gradebook view ";
+    white-space: pre;
+    margin-left: 0.9em;
+    background-color: rgba(255, 255, 0, .4);
+    color: maroon;
+    Padding: 0.15em;
+    font-size: 0.8em;
+}
+
+
+/*Site total*/
+tr.courseitem.dimmed_text td.c0 .gradeitemdescription::after {
+    font-family: Roboto;
+    content: "Site total hidden from student gradebook view ";
+    white-space: pre;
+    margin-left: 1em;
+    background-color: rgba(255, 255, 0, .4);
+    color: maroon;
+    Padding: 0.15em;
+    font-size: 0.8em;
+}
+
+/*set margin of book and page to match activities on main course page -----*/
+li.book.modtype_book,
+li.page.modtype_page {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+
+/*Hide Assignment description from Advanced grading set up page*/
+#page-grade-grading-form-guide-edit .activity-header,
+#page-grade-grading-form-rubric-edit .activity-header,
+#page-grade-grading-form-checklist-edit .activity-header {
+    display: none;
+}
+
+
+/* - --- FIX for activity icons not appearing ----*/
+.activityiconcontainer.assessment .icon:not(.nofilter) {
+    filter: none;
+}
+
+
+/*----- Set activity icons to tranparent background and resize to accomodate the transparent background -----*/
+.path-my .block-timeline .activityiconcontainer,
+.path-my .block_recentlyaccesseditems .activityiconcontainer {
+    background-color: transparent;
+    height: 50px;
+    width: 50px;
+}
+
+
+form[action="editbulkcompletion.php"] a[href*="/mod/hvp/view"] img.activityicon {
+    content: url(/pluginfile.php/1/tool_themeassets/assets/0/HVP_H5P_Icon.png);
+}
+
+form[action="editdefaultcompletion.php"] input[aria-label*="Interactive Content"]+img.activityicon {
+    content: url(/pluginfile.php/1/tool_themeassets/assets/0/HVP_H5P_Icon.png);
+}
+
+.forumpost .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15.3px;
+    margin-left: -15.3px;
+}
+
+
+
+
+
+.section p + ul {
+   margin-top: -0.75em !important;
+}
+
+.section ul, .section .activityinstance .contentwithoutlink ul {
+   margin-bottom: 1em;
+}
+
+
+
+
+#snap-header .snap-my-courses-link {
+font-weight: 500;
+}
+
+#page-header #page-mast .page-header-headings h1.h2 {
+font-weight: 500;
+}

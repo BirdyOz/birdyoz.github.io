@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @First Created:   2017-03-31 13:08:18
  * @Last Modified by:   gbird
- * @Last Modified time: 2023-06-09 15:49:13
+ * @Last Modified time: 2023-07-13 09:46:24
  */
 
 
@@ -143,13 +143,23 @@ function BuildBanner() {
             }
             // Is this subject 'Staff Sandpit'?
             if (year_text.substring(0, 2) === "SP") {
-                $('#gotafe-banner-year .card-body').text("Staff Sandpit");
+                $('#gotafe-banner-year .card-body').text("Sandpit");
                 $('#gotafe-banner-year').toggleClass('bg-info bg-dark');
             }
             // Is this subject 'Not Required'?
             if (year_text.substring(0, 2) === "NR") {
                 $('#gotafe-banner-year .card-body').text("Not required");
                 $('#gotafe-banner-year').toggleClass('bg-danger gotafe-not-required bg-dark');
+            }
+            // Is this subject 'External Developers'?
+            if (year_text.substring(0, 2) === "ED") {
+                $('#gotafe-banner-year .card-body').text("External Developers");
+                $('#gotafe-banner-year').toggleClass('bg-danger gotafe-external-developers bg-dark');
+            }
+            // Is this subject 'Third Party Resources'?
+            if (year_text.substring(0, 2) === "3P") {
+                $('#gotafe-banner-year .card-body').text("Third Party Resources");
+                $('#gotafe-banner-year').toggleClass('bg-danger gotafe-third-party-resources bg-dark');
             }
             // If I am a master copy
             if (year_text.toLowerCase().includes("master copy")) {

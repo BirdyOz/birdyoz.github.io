@@ -1,0 +1,85 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @First Created:   2023-07-10 10:48:34
+* @Last Modified by:   BirdyOz
+* @Last Modified time: 2023-07-13 08:46:49
+*/
+
+/* ==========================================================================
+   DISPLAY FIXES - M4.1
+   ========================================================================== */
+
+
+/*----------  Moodle Books  ----------*/
+
+/* Books - Reduce book heading size */
+#page-mod-book-view h2 {
+    font-size: 1.2em
+}
+
+/* Books - Make the completion tracking less 'shouty'   Reduce vertical spacing */
+#page-mod-book-view .activity-header {
+    padding: 0em;
+    font-size: 0.8em;
+    background-color: white;
+}
+
+/* Books - Move completion badge up */
+#page-mod-book-view .automatic-completion-conditions {
+    margin-top: -1.3em;
+}
+
+/* Books - Align 'Turn editing on' right (again) */
+#page-mod-book-view .snap-page-heading-button {
+    text-align: right;
+}
+
+/* Books - reduce button size */
+#page-mod-book-view .snap-page-heading-button .btn {
+    font-size: 0.8em;
+}
+
+/* Books - Shift TOC down so it better aligns with page content */
+#page-mod-book-view .block_book_toc {
+    font-size: 0.9em;
+}
+
+/* Books - Reduce the left and right padding to give more space to ToC items */
+#page-mod-book-view #moodle-blocks {
+    padding: 0 2%;
+}
+
+/* Books - Ensure that you clear any floats within book content */
+#page-mod-book-view .book_content {
+    width: 100%;
+    clear: both;
+}
+
+
+/*======================================
+=            External links            =
+======================================*/
+
+
+
+/* Add external link marker to URL tools that open in new window */
+li.modtype_url a.mod-link[onclick]:before {
+    font-family: FontAwesome;
+    content:"\f08e";
+    position: absolute;
+    right: 1em;
+}
+
+/* Establish relative positioning */
+li.modtype_url a.mod-link[onclick] p {
+    color: #0a6164;
+    position: relative;
+}
+
+#page-content a[target="_blank"]:after {
+    font-family: FontAwesome;
+    content:"\f08e";
+    padding: 0 0.5em;
+}
+
+
