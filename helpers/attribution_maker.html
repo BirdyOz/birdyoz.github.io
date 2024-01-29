@@ -135,6 +135,12 @@
             <p>This service will not allow you to breach this licence restriction. Please choose a different image</p>
             <p>You can <a href="https://www.flickr.com/search/?license=2%2C3%2C4%2C5%2C6%2C9" target="_blank">search Flickr for Creative Commons licenced images</a>, or use one of the other image services listed above</p>
         </div>
+        <div class="unsplash-warning alert alert-danger collapse">
+            <h3>Your chosen image is from Unsplash+
+</h3>
+            <p><strong><a href="https://unsplash.com/plus"> Unsplash+ images</a></strong>  require an annual subscription and must be paid for.  If you choose to pay for such images, Unsplash+ will provide the appropraite attribution for you.</p>
+            <p>This service will not allow you to breach this licence restriction. Please choose a different image.  You can filter your Unsplash images for <strong>Licence = free</strong>, or use one of the other image services listed above.</p>
+        </div>
         <div class="shutterstock-warning alert alert-danger collapse">
             <h3>You must have a commercial subscription with shutterstock, to use this image.</h3>
             <p>Shutterstock images are commercially licenced and there is a cost associated with this image.</p>
@@ -499,6 +505,7 @@
                     <li class="nav-item"><a class="nav-link active show" id="htabs-1-qo0W89-tab" data-toggle="pill" href="#htabs-1-qo0W89" role="tab" aria-controls="htabs-1-qo0W89" aria-selected="true">Carousel</a></li>
                     <li class="nav-item"><a class="nav-link" id="htabs-2-qo0W89-tab" data-toggle="pill" href="#htabs-2-qo0W89" role="tab" aria-controls="htabs-2-qo0W89" aria-selected="false">Tiles</a></li>
                     <li class="nav-item"><a class="nav-link" id="htabs-3-qo0W89-tab" data-toggle="pill" href="#htabs-3-qo0W89" role="tab" aria-controls="htabs-3-qo0W89" aria-selected="false">Tiles (as background images)</a></li>
+                    <li class="nav-item"><a class="nav-link" id="htabs-4-qo0W89-tab" data-toggle="pill" href="#htabs-4-qo0W89" role="tab" aria-controls="htabs-4-qo0W89" aria-selected="false">Image wall</a></li>
                 </ul>
                 <div class="tab-content card" id="pills-tabContent">
 
@@ -603,6 +610,34 @@
 <!-- End of Image Embed - Tiles with BG image-->
 
                             </div> <button id="maker-bg-tiles" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
+                        </div>
+                    </div>
+                    <!-- End of Item 3 -->
+
+
+                    <!-- Start of Item 4 -->
+                    <div class="tab-pane p-3 fade" id="htabs-4-qo0W89" role="tabpanel" aria-labelledby="htabs-4-qo0W89">
+                        <h4>Image wall</h4>
+                        <p>Images are displayed in three columns, in a masonry pattern.  This can be useful if you have images of different dimensions (eg. a mix of landscape and portrait)</p>
+                        <p>You may need to play with the order of images, in order to get a layout that looks pleasing.   Use the 'Let me choose which images to use' feature and select the images in the order that you want them displayed (down the columns, then across)</p>
+                        <div id="tiles-bg-prefs" class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="col-auto"><label for="image-wall-image-count">
+                                    <small>Drag to change # of images</small></label></div>
+                            <div class="col">
+                                <div id="image-wall-settings" class="form-group"><input type="range" class="custom-range" step="1" min="2" max="6" id="image-wall-image-count"> </div>
+                            </div>
+                            <div class="col-auto">
+                                <p id="image-wall-image-number" class="border px-2 rounded">12</p>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                            <div class="maker-copy maker-image-wall">
+
+<!-- Start of Image Embed - Tiles with BG image (Embed code by @BirdyOz) -->
+<div id="image-wall-wrapper" class="card-columns"> </div>
+<!-- End of Image Embed - Tiles with BG image-->
+
+                            </div> <button id="maker-image-wall" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
                         </div>
                     </div>
                     <!-- End of Item 3 -->

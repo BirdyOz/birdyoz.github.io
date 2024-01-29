@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2024-01-15 10:17:00
+ * @Last Modified time: 2024-01-29 14:43:24
  */
 
 /*jshint esversion: 8 */
@@ -255,21 +255,26 @@ $(function() {
         $.getJSON(uri, function() {}).done(function(json) {
             console.log("@GB: json = ", json);
             am.image.preview = json.urls.regular;
-            am.attribution.username = json.user.username;
-            am.attribution.userUrl =
-                json.user.links.html +
-                "?utm_source=image_attribution_maker_by_birdyoz&utm_medium=referral";
-            am.title = json.description;
-            am.image.alt = json.alt_description;
-            am.image.download.large = am.image.preview.replace("&w=1080", "&w=1440");
-            am.image.preview = am.image.download.large;
-            am.image.download.small = am.image.preview.replace("&w=1440", "&w=720");
-            am.image.download.endpoint =
-                json.links.download_location +
-                "&client_id=" +
-                atob(decodeURIComponent(key));
-            buildHTML();
-            buildHistory();
+            if (am.image.preview.includes('plus.unsplash.com')) {
+                console.log("@GB: am.image.preview = ", am.image.preview);
+                $(".unsplash-warning").show();
+            } else {
+                am.attribution.username = json.user.username;
+                am.attribution.userUrl =
+                    json.user.links.html +
+                    "?utm_source=image_attribution_maker_by_birdyoz&utm_medium=referral";
+                am.title = json.description;
+                am.image.alt = json.alt_description;
+                am.image.download.large = am.image.preview.replace("&w=1080", "&w=1440");
+                am.image.preview = am.image.download.large;
+                am.image.download.small = am.image.preview.replace("&w=1440", "&w=720");
+                am.image.download.endpoint =
+                    json.links.download_location +
+                    "&client_id=" +
+                    atob(decodeURIComponent(key));
+                buildHTML();
+                buildHistory();
+            }
         });
     }
 
@@ -706,6 +711,13 @@ $(function() {
         buildCarousel(imageCount);
     });
 
+    // Capture Carousel changes
+    $("#image-wall-image-count").change(function() {
+        // Get button prefs
+        imageCount = $(this).val();
+        buildImageWall(imageCount);
+    });
+
     // Copy embed code to clipboard
     $("button.embed").click(function(event) {
         event.preventDefault();
@@ -871,6 +883,7 @@ $(function() {
         buildCarousel();
         buildTiles();
         buildBgTiles();
+        buildImageWall();
 
         // Invoke rcrop (image cropper)
         // Set defaults
@@ -964,6 +977,22 @@ $(function() {
         }
     }
 
+    // Build Image wall, from history
+    function buildImageWall(i = chosenImages.length) {
+        $("#image-wall-image-number").text(i);
+
+        // Set slider length to length of image history
+        $("#image-wall-image-count").attr("max", chosenImages.length);
+        $("#image-wall-image-count").attr("value", chosenImages.length);
+
+        // When invoked, clear out any existing tiles:
+        $("#image-wall-wrapper").html("");
+
+        for (var n = 0; n < i; n++) {
+            $("#image-wall-wrapper").append(imageWallSnippet(n));
+        }
+    }
+
     // Build multi-image Carousel, from history
     function buildCarousel(i = chosenImages.length, displayText = true) {
         $("#carousel-image-number").text(i);
@@ -1053,6 +1082,7 @@ $(function() {
         buildCarousel();
         buildTiles();
         buildBgTiles();
+        buildImageWall();
     }
 
     // Build each history item
@@ -1124,6 +1154,7 @@ $(function() {
         buildCarousel();
         buildTiles();
         buildBgTiles();
+        buildImageWall();
     });
 
     // YouTube API
@@ -1431,6 +1462,40 @@ $(function() {
           : ""
       }
     </div>
+    `;
+        return snippet;
+    }
+
+    // Return appropriate Embed Code snippet
+    function imageWallSnippet(i) {
+        let snippet = `
+    <!-- Start of Image-wall item ${i + 1} -->
+    <div class="card m-0 border-0">
+        <figure class="m-0">
+            <img src="${chosenImages[i].preview}" class="card-img-top" alt="${
+                chosenImages[i].alt
+              }" />
+              <figcaption class="figure-caption text-muted text-right small fw-lighter mr-1">
+              ${
+                am.prefs.collapsed
+                  ? `
+            <!-- Start of Show/Hide interface, ID = image-wall-${i} -->
+            <a class="source-btn text-muted small" data-toggle="collapse" href="#show-image-wall-${i}" role="button" aria-expanded="false" aria-controls="show-image-wall-${i}">&#9661; Show attribution</a>
+            <div class="source collapse m-0 p-0" id="show-image-wall-${i}">`
+                  : ""
+              }
+                ${chosenImages[i].attribution}
+                ${
+                  am.prefs.collapsed
+                    ? `</div>
+            <!-- End of Show/Hide interface, ID = image-wall-${i} -->`
+                    : ""
+                }
+              </figcaption>
+          </figure>
+        </div>
+    </div>
+    <!-- End of Image-wall item ${i + 1} -->
     `;
         return snippet;
     }
