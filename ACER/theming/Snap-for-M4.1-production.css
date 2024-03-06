@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2020-01-14 11:17:23
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2023-10-23 14:44:50
+* @Last Modified time: 2024-02-06 16:46:00
 */
 
 /* ==========================================================================
@@ -229,6 +229,21 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     max-width: 100%;
 }
 #page-mod-assign-grader table#advancedgrading-criteria td {
+    font-size: 0.8em;
+}
+
+/* ==========================================================================
+   CONFIGURABLE REPORTS
+   ========================================================================== */
+
+#page-blocks-configurable_reports-viewreport #region-main {
+    max-width: 100%;
+    margin: 5px;
+    padding: 0;
+}
+
+#page-blocks-configurable_reports-viewreport #reporttable {
+    width: 100% !important;
     font-size: 0.8em;
 }
 
