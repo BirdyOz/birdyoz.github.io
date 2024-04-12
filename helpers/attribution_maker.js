@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2024-01-29 14:43:24
+ * @Last Modified time: 2024-04-12 12:32:32
  */
 
 /*jshint esversion: 8 */
@@ -1163,6 +1163,7 @@ $(function() {
             height: "100%",
             width: "100%",
             videoId: am.id,
+            referrerPolicy: "strict-origin-when-cross-origin",
             playerVars: {
                 modestbranding: 1,
                 rel: 0,
