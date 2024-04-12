@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2024-04-12 12:32:32
+ * @Last Modified time: 2024-04-12 12:46:37
  */
 
 /*jshint esversion: 8 */
@@ -1163,7 +1163,6 @@ $(function() {
             height: "100%",
             width: "100%",
             videoId: am.id,
-            referrerPolicy: "strict-origin-when-cross-origin",
             playerVars: {
                 modestbranding: 1,
                 rel: 0,
@@ -1586,7 +1585,7 @@ $(function() {
         <h4 class="text-danger yt-title"><i class="fa fa-play-circle-o"></i> ${am.title} (<span class="timecode">${am.video.timecode}</span>)</h4>
         <p class="yt-desc">${am.video.description}</p>
         <div class="embed-responsive embed-responsive-${am.video.aspect}">
-            <div id="yt-placeholder" class="embed-responsive-item vjs-tech"></div>
+            <div id="yt-placeholder" class="embed-responsive-item vjs-tech" referrerpolicy="strict-origin-when-cross-origin"></div>
         </div>
         <div class="text-right">
             <small class="text-muted small fw-lighter">
