@@ -504,7 +504,7 @@
                 <ul class="nav nav-pills mb-0" id="htabs-qo0W89" role="tablist">
                     <li class="nav-item"><a class="nav-link active show" id="htabs-1-qo0W89-tab" data-toggle="pill" href="#htabs-1-qo0W89" role="tab" aria-controls="htabs-1-qo0W89" aria-selected="true">Carousel</a></li>
                     <li class="nav-item"><a class="nav-link" id="htabs-2-qo0W89-tab" data-toggle="pill" href="#htabs-2-qo0W89" role="tab" aria-controls="htabs-2-qo0W89" aria-selected="false">Tiles</a></li>
-                    <li class="nav-item"><a class="nav-link" id="htabs-3-qo0W89-tab" data-toggle="pill" href="#htabs-3-qo0W89" role="tab" aria-controls="htabs-3-qo0W89" aria-selected="false">Tiles (as background images)</a></li>
+                    <li class="nav-item"><a class="nav-link" id="htabs-3-qo0W89-tab" data-toggle="pill" href="#htabs-3-qo0W89" role="tab" aria-controls="htabs-3-qo0W89" aria-selected="false">Tiles (as Cover  images)</a></li>
                     <li class="nav-item"><a class="nav-link" id="htabs-4-qo0W89-tab" data-toggle="pill" href="#htabs-4-qo0W89" role="tab" aria-controls="htabs-4-qo0W89" aria-selected="false">Image wall</a></li>
                 </ul>
                 <div class="tab-content card" id="pills-tabContent">
@@ -571,7 +571,7 @@
                             <div class="maker-copy maker-tiles">
 
 <!-- Start of Image Embed - Tiles (Embed code by @BirdyOz) -->
-<div id="tiles-wrapper" class="row row-cols-1 row-cols-md-3"> </div>
+<div id="tiles-wrapper" class="row row-cols-1 row-cols-md-2 row-cols-lg-3"> </div>
 <!-- End of Image Embed - Tiles -->
 
                             </div> <button id="maker-tiles" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>
@@ -581,9 +581,9 @@
 
                     <!-- Start of Item 3 -->
                     <div class="tab-pane p-3 fade" id="htabs-3-qo0W89" role="tabpanel" aria-labelledby="htabs-3-qo0W89">
-                        <h4>Tiles (as background images)</h4>
-                        <p>Setting the tiles with backround images has the advantage that each tile is exactly the same height, with the image being cropped to fit. </p>
-                        <p>This ensures a more even dispay, but the tradeoff is the HTML is more complicated and it is much more difficult to swap out the images, later (eg, in Moodle)</p>
+                        <h4>Tiles (as Cover images)</h4>
+                        <p>Setting the tiles with Cover images has the advantage that each tile is 'cropped' to exactly the same aspect-ratio (16:9), focussed on the center of the image. This way, if you have images of different aspect ratios (eg. landscape, portrait, square) they are all displayed the same.</p>
+                        <p>This ensures a more uniform layout, but the tradeoff is the HTML is more complicated and it is much more you need to be more careful when you swap out images (eg, in Moodle)</p>
                         <!-- Start of Warning alert -->
                         <div class="alert alert-warning" role="alert">
                             <strong>This option is only recommended for experienced developers.</strong>
@@ -606,7 +606,7 @@
                             <div class="maker-copy maker-bg-tiles">
 
 <!-- Start of Image Embed - Tiles with BG image (Embed code by @BirdyOz) -->
-<div id="tiles-bg-wrapper" class="row row-cols-1 row-cols-md-3"> </div>
+<div id="tiles-bg-wrapper" class="row row-cols-1 row-cols-md-2 row-cols-lg-3"> </div>
 <!-- End of Image Embed - Tiles with BG image-->
 
                             </div> <button id="maker-bg-tiles" class="btn btn-outline-primary embed"><i class="fa fa-clipboard" aria-hidden="true"></i> Copy embed code</button>

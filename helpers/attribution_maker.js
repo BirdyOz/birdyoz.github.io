@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2024-04-12 12:46:37
+ * @Last Modified time: 2024-06-07 14:04:32
  */
 
 /*jshint esversion: 8 */
@@ -683,7 +683,7 @@ $(function() {
 
     // Toggle tiles display between two or three columns
     $("#two-three-columns").on("click", function() {
-        $("#tiles-wrapper").toggleClass("row-cols-md-3 row-cols-md-2");
+        $("#tiles-wrapper").toggleClass("row-cols-lg-3 row-cols-lg-2");
     });
 
     // Toggle tiles display between two or three columns
@@ -1372,7 +1372,7 @@ $(function() {
     function tilesSnippet(i) {
         let snippet = `
     <!-- Start of Tile = ${i + 1} -->
-    <div class="col mb-4">
+    <div class="col p-1">
         <div class="card h-100 rounded ${am.prefs.classes.join(" ")}">
             <figure>
               <img src="${chosenImages[i].preview}" class="card-img-top" alt="${
@@ -1406,16 +1406,17 @@ $(function() {
     `;
         return snippet;
     }
-    // Return appropriate FReturn tiles snippet with BG images
+    // Return appropriate Return tiles snippet with BG images
     function tilesBgSnippet(i) {
         let snippet = `
     <!-- Start of Tile, with BG image = ${i + 1} -->
-    <div class="col mb-4">
+    <div class="col p-1">
         <div class="card h-100 rounded ${am.prefs.classes.join(" ")}">
             <figure>
-              <div style="background-image: url('${
-                chosenImages[i].preview
-              }'); width: 100%; padding-bottom: 60%; background-size: cover; background-position: center;"></div>
+              <div class="wrapper" style="position: relative; padding-top: 56.25%; ">
+                  <img style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" src="${chosenImages[i].preview}" class="card-img-top" alt="${
+                    chosenImages[i].alt}" />
+              </div>
               <figcaption class="figure-caption text-muted text-right small fw-lighter mr-1">
               ${
                 am.prefs.collapsed
