@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2024-07-10 13:38:06
+ * @Last Modified time: 2024-07-19 09:27:42
  */
 
 /*jshint esversion: 8 */
@@ -507,6 +507,7 @@ $(function () {
 
     $(".shutterstock-warning").show();
     buildHTML();
+    buildHistory();
   }
 
   // If YouTube
