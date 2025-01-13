@@ -26,7 +26,6 @@
                 <li class="nav-item"> <a class="nav-link" href="#tables">Tables</a> </li>
                 <li class="nav-item"> <a class="nav-link" href="#cards">Cards</a> </li>
                 <li class="nav-item"> <a class="nav-link" href="#other">More UI's</a> </li>
-                <li class="nav-item"> <a class="nav-link" href="#modals">Modals</a> </li>
                 <li class="nav-item"> <a class="nav-link" href="#attribution">Attribution</a> </li>
             </ul>
         </div> <button class="btn btn-outline-light" href="#navCollapse" target="#navCollapse" type="button" data-toggle="collapse" data-target="#navCollapse" aria-expanded="false" aria-controls="collapseExample"> Want more helpers? </button>
@@ -723,40 +722,7 @@
 
         <hr>
 
-        <h2 id="modals">Modals</h2>
-        <h4>View larger image</h4>
-        <p>This UI element requires some hand coding. You will need to manually edit the image sources for the sm ller and larger image.</p>
-        <p>These can both point to the same image, as they will be dynamically resized to suit.</p>
-<div class="copythis">
 
-    <!-- Start of View larger image -->
-
-    <!-- Start of smaller image-->
-    <div class="float-right" style="float: right; width: 30%; max-width: 320px; min-width: 200px; margin:0 10px 10px 20px !important"> <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            <!-- Change smaller image here -->
-            <img src="https://source.unsplash.com/qqd8APhaOg4" class="img-responsive img-fluid">
-            <br>Click to view larger image</a> </div>
-    <!-- End of smaller image-->
-
-    <!-- Start of larger image-->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header"> <button type="button" class="close" data-dismiss="modal" aria-label="Close">×</button> </div>
-                <div class="modal-body">
-                    <!-- Change larger image here -->
-                    <img src="https://source.unsplash.com/qqd8APhaOg4" class="img-responsive img-fluid" style="width: 100%;"> </div>
-            </div>
-        </div>
-    </div>
-    <!-- End of larger image-->
-
-    <!-- End of view larger image -->
-
-</div>
-        <div class="clearfix container-fluid"></div>
-
-        <hr>
 
         <h2 id="cards">Card Groups</h2>
         <p>Card Group acheive an accessible "table-like" layout of content into columns. These columns are linearised on smaller format devices</p>
@@ -921,6 +887,67 @@
 
     </div>
     <!-- End of Card Group.-->
+
+</div>
+
+<div class="copythis">
+
+
+<!-- Start of Grid-2x-Rainbow, 24/09/24 13:12:38 -->
+<div class="clearfix container-fluid"></div>
+<div class="clearfix w-100 row row-cols-1 row-cols-md-2 m-1">
+    <!-- Start of Grid item (1 of 4) -->
+    <div class="col mb-4">
+        <div class="card bg-primary h-100 clearfix">
+            <div class="card-header">
+                <h4 class="card-title gb-bs-header text-white">Heading for Card 1</h4>
+            </div>
+            <div class="card-body gb-bs-content text-white">
+                <p>Content for Card 1</p>
+            </div>
+        </div>
+    </div>
+    <!-- End of Grid item (1 of 4) -->
+    <!-- Start of Grid item (2 of 4) -->
+    <div class="col mb-4">
+        <div class="card bg-info h-100 clearfix">
+            <div class="card-header">
+                <h4 class="card-title gb-bs-header text-white">Heading for Card 2</h4>
+            </div>
+            <div class="card-body gb-bs-content text-white">
+                <p>Content for Card 2</p>
+            </div>
+        </div>
+    </div>
+    <!-- End of Grid item (2 of 4) -->
+    <!-- Start of Grid item (3 of 4) -->
+    <div class="col mb-4">
+        <div class="card bg-success h-100 clearfix">
+            <div class="card-header">
+                <h4 class="card-title gb-bs-header text-white">Heading for Card 3</h4>
+            </div>
+            <div class="card-body gb-bs-content text-white">
+                <p>Content for Card 3</p>
+            </div>
+        </div>
+    </div>
+    <!-- End of Grid item (3 of 4) -->
+    <!-- Start of Grid item (4 of 4) -->
+    <div class="col mb-4">
+        <div class="card bg-danger h-100 clearfix">
+            <div class="card-header">
+                <h4 class="card-title gb-bs-header text-white">Heading for Card 4</h4>
+            </div>
+            <div class="card-body gb-bs-content text-white">
+                <p>Content for Card 4</p>
+            </div>
+        </div>
+    </div>
+    <!-- End of Grid item (4 of 4) -->
+</div>
+<!-- End of Grid-2x-Rainbow, 24/09/24 13:12:38 -->
+
+
 
 </div>
         <div class="clearfix container-fluid"></div>
