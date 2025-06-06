@@ -1,0 +1,54 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @First Created:   2025-03-21 09:22:03
+* @Last Modified by:   BirdyOz
+* @Last Modified time: 2025-03-21 09:56:54
+*/
+
+
+
+
+/* ==========================================================================
+   SITE WIDE
+   ========================================================================== */
+
+
+/* Increase max width */
+
+@media (min-width: 768px) {
+    .pagelayout-standard #page.drawers .main-inner, body.limitedwidth #page.drawers .main-inner {
+        max-width: 1200px;
+    }
+}
+
+/* Change headings to Poppins font */
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Poppins', 'Roboto', 'Arial', sans-serif;
+}
+
+
+/* ==========================================================================
+   Grid format
+   ========================================================================== */
+
+.format-grid .grid-completion {
+    border-color: white;
+}
+
+.format-grid .grid-completion.grid-completion-colour-low {
+    background-color: #5f3663;
+    color: white;
+}
+
+
+/* ==========================================================================
+   POST-FIXES TO UI ELEMENTS
+   ========================================================================== */
+
+
+/* Open collapsed accordions etc in the ATTO editor to make for easier editing */
+
+.editor_atto .collapse {
+    display: block !important;
+    height: auto  !important;
+}
