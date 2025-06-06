@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2024-07-10 13:38:06
+ * @Last Modified time: 2025-06-06 13:47:01
  */
 
 /*jshint esversion: 8 */
@@ -1020,7 +1020,7 @@ $(function () {
 
     for (var n = 0; n < i; n++) {
       $(".carousel-indicators").append(
-        `<li data-target="#carousel-history" data-slide-to="${n}"></li>`,
+        `<li data-target="#carousel-history" data-bs-target="#carousel-history" data-slide-to="${n}"></li>`,
       );
       $(".carousel-inner").append(carouselSnippet(n));
       $("#carousel-attribution").append(
@@ -1355,7 +1355,7 @@ $(function () {
           am.prefs.collapsed
             ? `
             <!-- Start of Show/Hide interface, ID = ${am.id}-${i} -->
-            <a class="source-btn text-muted" data-toggle="collapse" href="#show-${am.id}-${i}" role="button" aria-expanded="false" aria-controls="show-${am.id}-${i}">&#9661; Show attribution</a>
+            <a class="source-btn text-muted" data-toggle="collapse" data-bs-toggle="collapse" href="#show-${am.id}-${i}" role="button" aria-expanded="false" aria-controls="show-${am.id}-${i}">&#9661; Show attribution</a>
             <div class="source collapse m-0 p-0" id="show-${am.id}-${i}">`
             : ""
         }
@@ -1395,7 +1395,7 @@ $(function () {
                 am.prefs.collapsed
                   ? `
             <!-- Start of Show/Hide interface, ID = Tiles-${i} -->
-            <a class="source-btn text-muted small" data-toggle="collapse" href="#show-tiles-${i}" role="button" aria-expanded="false" aria-controls="show-tiles-${i}">&#9661; Show attribution</a>
+            <a class="source-btn text-muted small" data-toggle="collapse" data-bs-toggle="collapse" href="#show-tiles-${i}" role="button" aria-expanded="false" aria-controls="show-tiles-${i}">&#9661; Show attribution</a>
             <div class="source collapse m-0 p-0" id="show-tiles-${i}">`
                   : ""
               }
@@ -1435,7 +1435,7 @@ $(function () {
                 am.prefs.collapsed
                   ? `
             <!-- Start of Show/Hide interface, ID = Tiles-${i} -->
-            <a class="source-btn text-muted small" data-toggle="collapse" href="#show-tiles-${i}" role="button" aria-expanded="false" aria-controls="show-tiles-${i}">&#9661; Show attribution</a>
+            <a class="source-btn text-muted small" data-toggle="collapse" data-bs-toggle="collapse" href="#show-tiles-${i}" role="button" aria-expanded="false" aria-controls="show-tiles-${i}">&#9661; Show attribution</a>
             <div class="source collapse m-0 p-0" id="show-tiles-${i}">`
                   : ""
               }
@@ -1494,7 +1494,7 @@ $(function () {
                 am.prefs.collapsed
                   ? `
             <!-- Start of Show/Hide interface, ID = image-wall-${i} -->
-            <a class="source-btn text-muted small" data-toggle="collapse" href="#show-image-wall-${i}" role="button" aria-expanded="false" aria-controls="show-image-wall-${i}">&#9661; Show attribution</a>
+            <a class="source-btn text-muted small" data-toggle="collapse" data-bs-toggle="collapse" href="#show-image-wall-${i}" role="button" aria-expanded="false" aria-controls="show-image-wall-${i}">&#9661; Show attribution</a>
             <div class="source collapse m-0 p-0" id="show-image-wall-${i}">`
                   : ""
               }
@@ -1604,7 +1604,7 @@ $(function () {
         <div class="text-right">
             <small class="text-muted small fw-lighter">
                 <!-- Start of Show/Hide interface, ID = ${am.id} -->
-                <a class="source-btn text-muted" data-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
+                <a class="source-btn text-muted" data-toggle="collapse" data-bs-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
                 <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} </div>
                 <!-- End of Show/Hide interface, ID = ${am.id} -->
             </small>
@@ -1679,7 +1679,7 @@ $(function () {
             <div class="text-right">
                 <small class="text-muted small fw-lighter">
                     <!-- Start of Show/Hide interface, ID = ${am.id} -->
-                    <a class="source-btn text-muted" data-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
+                    <a class="source-btn text-muted" data-toggle="collapse" data-bs-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
                     <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} </div>
                     <!-- End of Show/Hide interface, ID = ${am.id} -->
                 </small>
