@@ -2,7 +2,7 @@
 * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
 * @First Created:   2025-03-21 09:22:03
 * @Last Modified by:   BirdyOz
-* @Last Modified time: 2025-03-21 09:56:54
+* @Last Modified time: 2025-07-03 13:38:08
 */
 
 
@@ -51,4 +51,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .editor_atto .collapse {
     display: block !important;
     height: auto  !important;
+}
+
+
+/*Remove topic turning navigation from the top of the screen (leaving the bottom)*/
+.course-content .single-section > .section-navigation.gd-selection-selector-container:first-child {
+    display: none;
 }
