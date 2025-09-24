@@ -1,0 +1,242 @@
+/*
+* @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
+* @First created:   2025-09-19 12:42:37
+* @Last Modified by:   BirdyOz
+* @Last Modified time: 2025-09-24 14:43:56
+*/
+
+
+/* ==========================================================================
+       SITE WIDE AND TOP NAV
+       ========================================================================== */
+
+/* Change headings to Poppins font */
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Poppins', 'Roboto', 'Arial', sans-serif;
+}
+
+/*Snap header had become massive. Reduce to an acceptable size*/
+header #snap-home {
+    height: 50px !important;
+}
+
+@media (min-width: 992px) {
+    .theme-snap #snap-header {
+        height: 70px;
+        border-bottom: 1px solid lightgrey
+    }
+}
+
+
+/* Correct alignment of Snap RH menu systems */
+#snap-header .pull-right.js-only.row, #snap-header .pull-right.js-only#course-category-listings, #snap-header .float-end.js-only.row, #snap-header .float-end.js-only#course-category-listings {
+    margin-top: 0em;
+}
+
+
+/* ==========================================================================
+   BANNER
+   ========================================================================== */
+
+/*Fix banner resize issue in Snap 4.5.  Banner image had become massive and does not scale to viewport*/
+@media (min-width: 992px) {
+    #page-header {
+        padding-top: 30px;
+        margin-top: 70px !important;
+        background-position: center center;
+        background-size: 100% auto !important;
+    }
+}
+
+/*Increase contrast of course headings against lighter BG's*/
+#page-header.mast-image h1 {
+    font-size: 2rem !important;
+    color: #fff;
+    text-shadow: 2px 2px black;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.3em 0.2em;
+    display: inline-block;
+}
+
+/*Fix 'cramped display' of breadcrumbs nav*/
+.breadcrumb-nav {
+    padding-top: 2px
+}
+
+/* ==========================================================================
+   LOGIN Screen (/login/index.php)
+   ========================================================================== */
+
+/*Remove backgropund of LH content */
+#page-login-index .page-stylish-login, #page-login-index.notloggedin .snap-login-row {
+    background: rgba(255, 255, 255, 0);
+}
+
+#page-login-index #base-login, #page-login-index #snap-login-help {
+    background-color: white;
+}
+
+/*Hide search box for non-logged in users*/
+#page-login-index.notloggedin .simplesearchform {
+    display: none;
+}
+
+/* Hide top bar on login screen */
+#page-login-index.notloggedin #mr-nav {
+    display: none;
+}
+
+
+/* Redesign 'Forgot password?' button.  It is not differntiated from the login button */
+#page-login-index.layout-login a[href$="/login/forgot_password.php"] {
+    width: auto;
+    padding-right: 0;
+    display: inline-block;
+    float: right;
+}
+
+#page-login-index.layout-login br {
+    display: none;
+}
+
+#page-login-index.layout-login a[href$="/login/forgot_password.php"] span {
+    font-size: 1em;
+}
+
+#page-login-index.notloggedin #loginbtn {
+    font-size: 1em;
+    padding-right: 3em;
+    padding-left: 3em;
+}
+
+/* ==========================================================================
+   LH NAVIGATION - COLOURS AND MARKERS
+   ========================================================================== */
+
+
+/* Visible section marker */
+#course-toc .snap-visible-section {
+    padding-left: 0 !important;
+}
+
+#course-toc .snap-visible-section .chapter-title{
+    color: white !important;
+}
+
+/* Increase contract of conditional items*/
+#snap-course-wrapper #chapters li.conditional .published-status {
+    font-weight: 500;
+    color: #666;
+}
+
+/* Conditional marker */
+#snap-course-wrapper #chapters li.conditional .chapter-title:before {
+    font-family: FontAwesome;
+    color: #666;
+    content: "\f023";
+    background: none;
+    margin-right: .4em;
+}
+
+/* Increase contract of hidden items*/
+#snap-course-wrapper #chapters li.draft .published-status,
+.coursecard-body .snap-draft-tag,
+.coursecard-body .published-status {
+    font-weight: 500;
+    color: maroon !important;
+}
+
+/* Hidden marker */
+#snap-course-wrapper #chapters li.draft .chapter-title:before,
+.snap-draft-tag:before,
+.coursecard-body .published-status:before {
+    font-family: FontAwesome;
+    color: #333;
+    content: "\f070 ";
+    background: none;
+    margin-right: .4em;
+}
+
+/* ==========================================================================
+   BOOKS
+   ========================================================================== */
+
+/* Hide book description when inside a book */
+#page-mod-book-view .activity-description {
+    display: none
+}
+
+/* Make the completion tracking less 'shouty'   Reduce vertical spacing */
+#page-mod-book-view .activity-header {
+    padding: 0em;
+    font-size: 0.8em;
+    background-color: white;
+}
+
+/* Move completion badge up */
+#page-mod-book-view .automatic-completion-conditions {
+    margin-top: -1.3em;
+}
+
+/* Shift TOC down so it better aligns with page content */
+#page-mod-book-view .block_book_toc {
+    font-size: 0.9em;
+}
+
+/* Ensure that you clear any floats within book content */
+#page-mod-book-view .book_content {
+    width: 100%;
+    clear: both;
+}
+
+/* Better align print book button */
+#page-mod-book-view a[href^="/mod/book/tool/print/index.php"] {
+    padding-left: 1em
+}
+
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+
+
+/* Reduce font size of course contacts */
+#snap-course-footer-contacts .snap-media-object h3 {
+    font-size: 0.7em;
+}
+
+#snap-course-footer-contacts small a {
+    font-size: 0.8em;
+}
+
+/* On larger screens, make contact list two columns */
+@media (min-width: 1280px) {
+    #snap-course-footer-contacts {
+        column-count: 2;
+    }
+
+    #snap-course-footer-contacts h5 {
+        column-span: all;
+        clear: both;
+    }
+}
+
+footer#moodle-footer {
+    margin-right: 0px;
+}
+
+
+/* ==========================================================================
+   DISPLAY FIXES
+   ========================================================================== */
+
+/* Fix quiz question display in Snap 4.5 */
+.que {
+display : block !important;
+}
+
+/* Fix H5P filters resulting in grey on grey */
+.hvp, .hvp *, .modicon_hvp, .modicon_hvp * {
+    filter: unset !important;
+}
