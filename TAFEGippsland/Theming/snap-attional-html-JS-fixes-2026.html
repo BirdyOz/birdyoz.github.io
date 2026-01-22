@@ -1,0 +1,81 @@
+<script type="text/javascript">
+
+// YOUTUBE 153 error fix
+// Added by greg Bird 26.11.25
+// Addresses issue where YT embeds that lack referrerpolicy="strict-origin-when-cross-origin"
+// fail with a 153 error
+
+// Find all YT embeds
+document.querySelectorAll('iframe[src*="youtube.com/embed/"]').forEach(function(iframe) {
+    // If they lack a 'referrer policy' add it in, then dynamically refresh the iframe
+    if (iframe.getAttribute('referrerpolicy') !== 'strict-origin-when-cross-origin') {
+        iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        var currentSrc = iframe.getAttribute('src');
+        iframe.setAttribute('src', currentSrc); // rewriting the src refreshes the iframe
+    }
+});
+
+// Reinstate view all submissions button to grading interface
+$(function () {
+    if ($('#page-mod-assign-view').length &&
+        new URLSearchParams(window.location.search).has('id') &&
+        $('.navitem').length) {
+        $('.navitem').first().prepend(
+            '<a class="btn btn-secondary mr-1" href="/mod/assign/view.php?id=' +
+            new URLSearchParams(window.location.search).get('id') +
+            '&action=grading">View all submissions</a>'
+        );
+    }
+});
+
+// BOOK PREVIEW FIX
+// Added by Greg Bird, on request from Julie Day - 01.04.22
+// TG fix for root relative links
+// To correct the fact that TG have their Moodle root directory set as:
+// '/moodle/', not '/'
+
+
+// Major update 01.04.22 - Print book link is added asynchronously and is not available when the page initialises.
+// There is a delay between when the button exists and the book/chapter is fully loaded,
+// esp. if it includes embedded content such as YouTube video
+// If somone clicks on this link before it is fully loaded,
+// the script did not have a chance to run yet and so the link would still be broken
+// For this reason, a 'wait' function has been added, that checks every 100MS whether the print book link exists
+
+
+// If I am in a book
+if (window.location.href.indexOf("mod/book/view.php") != -1) {
+
+    // Define print book button
+    const print_book = 'a[href^="/mod/book/tool/print/"]';
+    console.log("@GB: print_book = ", print_book);
+
+    // Wait for button to load (Check every 100ms, timeout after 10 secs)
+    waitForElementToDisplay(print_book, function() {
+
+        // Now that the button exists, we can change it's url
+        let el = document.querySelector(print_book);
+        console.log("@GB: el = ", el);
+        let href = el.href.replace('/mod/', '/moodle/mod/');
+        console.log("@GB: href = ", href);
+        el.setAttribute('href', href);
+    }, 100, 10000);
+
+    // Wait function
+    function waitForElementToDisplay(selector, callback, checkFrequencyInMs, timeoutInMs) {
+        var startTimeInMs = Date.now();
+        (function loopSearch() {
+            if (document.querySelector(selector) != null) {
+                callback();
+                return;
+            } else {
+                setTimeout(function() {
+                    if (timeoutInMs && Date.now() - startTimeInMs > timeoutInMs)
+                        return;
+                    loopSearch();
+                }, checkFrequencyInMs);
+            }
+        })();
+    }
+}
+</script>
