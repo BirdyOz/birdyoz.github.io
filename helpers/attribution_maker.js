@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2025-06-06 13:47:01
+ * @Last Modified time: 2026-03-17 13:08:16
  */
 
 /*jshint esversion: 8 */
@@ -519,7 +519,7 @@ $(function () {
     siteUrl = "https://www.youtube.com";
     am.site.licence = "Terms";
     am.site.licenceUrl = "https://www.youtube.com/static?template=terms&gl=AU";
-    key = "QUl6YVN5QmxCcEFUTzF0Z0hOM3FyUGUwWlQ5aGFFMW5UQmxRYVU0";
+    key = "QUl6YVN5RHF4VnE2c3NBcWF6bXpjWVRiNEJxV3J6MkdiTU1ha3Fr";
 
     // API endpoint
     uri =
@@ -1055,7 +1055,7 @@ $(function () {
       preview: am.image.preview,
       alt: am.image.alt,
       time: new Date().toLocaleString(),
-      attribution: `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>`,
+      attribution: `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today}</small>`,
       site: am.site.name,
     });
 
@@ -1347,7 +1347,7 @@ $(function () {
     let snippet = `
     <img src="${
       am.image.preview
-    }" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${
+    }" class="img-responsive img-fluid w-100" alt="${am.image.alt}" data-image-id="${am.id}"${
       am.title !== null ? ` title="${am.title}"` : ""
     } />
     <figcaption class="figure-caption text-muted small fw-lighter">
@@ -1368,7 +1368,7 @@ $(function () {
             }</a>
                 <br><a href="${am.site.licenceurl}" target="_blank">${
                   am.site.licence
-                }</a>. Added ${am.today} ${
+                }</a>. Reproduced with permission on ${am.today} ${
                   am.prefs.collapsed
                     ? `</div>
             <!-- End of Show/Hide interface, ID = ${am.id}-${i} -->`
@@ -1517,7 +1517,7 @@ $(function () {
   // If am.prefs.Org = uom, return Melb Uni embed code
   function vanillaSnippet(i) {
     let snippet = `
-    <img src="${am.image.preview}" style="width:100%" alt="${am.image.alt}"${
+    <img src="${am.image.preview}" style="width:100%" alt="${am.image.alt}" data-image-id="${am.id}"${
       am.title !== null ? ` title="${am.title}"` : ""
     } />
     <figcaption style="font-size: 0.9em; color:#666; text-align: right">
@@ -1532,7 +1532,7 @@ $(function () {
           am.site.siteurl
         }" target="_blank">${am.site.name}</a>, <a href="${
           am.site.licenceurl
-        }" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
+        }" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today}</small>
       ${am.prefs.collapsed ? `</details>` : ""}
       </details>
     </figcaption>
@@ -1545,7 +1545,7 @@ $(function () {
     let snippet = `
     <img src="${
       am.image.preview
-    }" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${
+    }" class="img-responsive img-fluid w-100" alt="${am.image.alt}" data-image-id="${am.id}"${
       am.title !== null ? ` title="${am.title}"` : ""
     } />
     <figcaption class="figure-caption text-muted small fw-lighter">
@@ -1555,7 +1555,7 @@ $(function () {
           am.site.siteurl
         }" target="_blank">${am.site.name}</a>, <a href="${
           am.site.licenceurl
-        }" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>
+        }" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today}</small>
     </figcaption>
     `;
     return snippet;
@@ -1563,7 +1563,7 @@ $(function () {
 
   // Text only snippet
   function textSnippet() {
-    let snippet = `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>, added on ${am.today}</small>`;
+    let snippet = `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today}</small>`;
     return snippet;
   }
 
@@ -1572,7 +1572,7 @@ $(function () {
     let snippet = `
     <figure><img src="${
       am.image.preview
-    }" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${
+    }" class="img-responsive img-fluid w-100" alt="${am.image.alt}" data-image-id="${am.id}"${
       am.title !== null ? ` title="${am.title}"` : ""
     } />
     <figcaption>
@@ -1584,7 +1584,7 @@ $(function () {
           am.site.siteurl
         }" target="_blank">${am.site.name}</a>, <a href="${
           am.site.licenceurl
-        }" target="_blank">${am.site.licence}</a>, added on ${am.today}</div>
+        }" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today}</div>
     </figcaption></figure>`;
     return snippet;
   }
@@ -1605,7 +1605,7 @@ $(function () {
             <small class="text-muted small fw-lighter">
                 <!-- Start of Show/Hide interface, ID = ${am.id} -->
                 <a class="source-btn text-muted" data-toggle="collapse" data-bs-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
-                <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} </div>
+                <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today} </div>
                 <!-- End of Show/Hide interface, ID = ${am.id} -->
             </small>
         </div>
@@ -1648,7 +1648,7 @@ $(function () {
       am.site.name
     }</a>. <a href="${am.site.licenceurl}" target="_blank">${
       am.site.licence
-    }</a>. Added ${am.today}${
+    }</a>. Reproduced with permission on ${am.today}${
       am.prefs.collapsed ? `</details>` : ""
     }</small></div>
     </div>`;
@@ -1680,7 +1680,7 @@ $(function () {
                 <small class="text-muted small fw-lighter">
                     <!-- Start of Show/Hide interface, ID = ${am.id} -->
                     <a class="source-btn text-muted" data-toggle="collapse" data-bs-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
-                    <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Added ${am.today} </div>
+                    <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today} </div>
                     <!-- End of Show/Hide interface, ID = ${am.id} -->
                 </small>
             </div>
