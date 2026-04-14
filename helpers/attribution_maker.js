@@ -1087,7 +1087,7 @@ $(function () {
       preview: am.image.preview,
       alt: am.image.alt,
       time: new Date().toLocaleString(),
-      attribution: `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today}</small>`,
+      attribution: `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> ${imageSiteAttribution()}, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today}</small>`,
       site: am.site.name,
     });
 
@@ -1375,6 +1375,14 @@ $(function () {
    */
 
   // Return Bootstrap snippet
+  function imageSiteAttribution() {
+    if (am.site.name == "Openverse" && am.site.source && am.site.sourceurl) {
+      return `on <a href="${am.site.sourceurl}" target="_blank">${am.site.source}</a>, via <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>`;
+    }
+    return `on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>`;
+  }
+
+  // Return Bootstrap snippet
   function bootstrapSnippet(i) {
     let snippet = `
     <img src="${
@@ -1395,9 +1403,7 @@ $(function () {
               am.site.type
             }</a> by <a href="${am.attribution.userUrl}" target="_blank">${
               am.attribution.username
-            }</a> on <a href="${am.site.siteurl}" target="_blank">${
-              am.site.name
-            }</a>
+            }</a> ${imageSiteAttribution()}
                 <br><a href="${am.site.licenceurl}" target="_blank">${
                   am.site.licence
                 }</a>. Reproduced with permission on ${am.today} ${
@@ -1560,9 +1566,7 @@ $(function () {
       }
         <small><a href="${am.url}" target="_blank">Image</a> by <a href="${
           am.attribution.userUrl
-        }" target="_blank">${am.attribution.username}</a> on <a href="${
-          am.site.siteurl
-        }" target="_blank">${am.site.name}</a>, <a href="${
+        }" target="_blank">${am.attribution.username}</a> ${imageSiteAttribution()}, <a href="${
           am.site.licenceurl
         }" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today}</small>
       ${am.prefs.collapsed ? `</details>` : ""}
@@ -1583,9 +1587,7 @@ $(function () {
     <figcaption class="figure-caption text-muted small fw-lighter">
         <small><a href="${am.url}" target="_blank">Image</a> by <a href="${
           am.attribution.userUrl
-        }" target="_blank">${am.attribution.username}</a> on <a href="${
-          am.site.siteurl
-        }" target="_blank">${am.site.name}</a>, <a href="${
+        }" target="_blank">${am.attribution.username}</a> ${imageSiteAttribution()}, <a href="${
           am.site.licenceurl
         }" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today}</small>
     </figcaption>
@@ -1595,7 +1597,7 @@ $(function () {
 
   // Text only snippet
   function textSnippet() {
-    let snippet = `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today}</small>`;
+    let snippet = `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> ${imageSiteAttribution()}, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today}</small>`;
     return snippet;
   }
 
@@ -1612,9 +1614,7 @@ $(function () {
           am.url
         }" target="_blank">Image</a> by <a href="${
           am.attribution.userUrl
-        }" target="_blank">${am.attribution.username}</a> on <a href="${
-          am.site.siteurl
-        }" target="_blank">${am.site.name}</a>, <a href="${
+        }" target="_blank">${am.attribution.username}</a> ${imageSiteAttribution()}, <a href="${
           am.site.licenceurl
         }" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today}</div>
     </figcaption></figure>`;
