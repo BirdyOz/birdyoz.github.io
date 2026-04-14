@@ -93,6 +93,14 @@ $(function () {
       licenceurl: "https://www.pexels.com/license/",
     },
     {
+      name: "Openverse",
+      baseurl: "openverse.org",
+      type: "Image",
+      siteurl: "https://openverse.org/",
+      licence: "",
+      licenceurl: "",
+    },
+    {
       name: "Wikimedia Commons",
       baseurl: "wikimedia.org",
       type: "Image",
@@ -478,6 +486,49 @@ $(function () {
       }
 
       id = id.slugify();
+      buildHTML();
+      buildHistory();
+    });
+  }
+
+  // If I am Openverse
+  if (am.site.name == "Openverse") {
+    re =
+      /[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/;
+    match = am.url.match(re);
+
+    if (!match) {
+      console.log("@GB: Could not extract Openverse ID");
+      return false;
+    }
+
+    am.id = match[0];
+    uri = "https://api.openverse.engineering/v1/images/" + am.id + "/";
+
+    $.getJSON(uri, function () {}).done(function (json) {
+      console.log("@GB: json = ", json);
+      am.image.preview = json.thumbnail || json.url;
+      am.image.orig = json.foreign_landing_url || json.detail_url || am.url;
+      am.url = am.image.orig;
+      am.attribution.username = json.creator || "Unknown creator";
+      am.attribution.userUrl = json.creator_url || json.detail_url || "https://openverse.org/";
+      am.image.alt = json.title || "";
+      am.title = json.title || "";
+
+      licence = json.license || "";
+      version = json.license_version || "";
+      if (licence.toLowerCase() == "cc0") {
+        am.site.licence = "CC0";
+      } else if (licence.length > 0) {
+        am.site.licence = "CC " + licence.replace(/-/g, " ").toUpperCase();
+      } else {
+        am.site.licence = "Open licence";
+      }
+      if (version.length > 0 && am.site.licence != "CC0") {
+        am.site.licence = am.site.licence + " " + version;
+      }
+      am.site.licenceurl = json.license_url || json.detail_url || "https://openverse.org/";
+
       buildHTML();
       buildHistory();
     });
