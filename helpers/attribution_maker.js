@@ -493,45 +493,26 @@ $(function () {
 
   // If I am Openverse
   if (am.site.name == "Openverse") {
-    re =
-      /[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/;
-    match = am.url.match(re);
-
-    if (!match) {
-      console.log("@GB: Could not extract Openverse ID");
+    if (url.searchParams.get("id") == null) {
+      $(".bookmarklet-warning").show();
       return false;
     }
 
-    am.id = match[0];
-    uri = "https://api.openverse.engineering/v1/images/" + am.id + "/";
+    am.attribution.username = url.searchParams.get("user");
+    am.attribution.userUrl = url.searchParams.get("user_url");
+    am.image.alt = url.searchParams.get("alt");
+    am.title = url.searchParams.get("title");
+    am.image.preview = url.searchParams.get("img_src");
+    am.image.orig = url.searchParams.get("img_orig");
+    am.url = am.image.orig;
+    am.id = url.searchParams.get("id");
+    am.site.licence = url.searchParams.get("licence");
+    am.site.licenceurl = url.searchParams.get("licence_url");
+    am.site.source = url.searchParams.get("source");
+    am.site.sourceurl = url.searchParams.get("source_url");
 
-    $.getJSON(uri, function () {}).done(function (json) {
-      console.log("@GB: json = ", json);
-      am.image.preview = json.thumbnail || json.url;
-      am.image.orig = json.foreign_landing_url || json.detail_url || am.url;
-      am.url = am.image.orig;
-      am.attribution.username = json.creator || "Unknown creator";
-      am.attribution.userUrl = json.creator_url || json.detail_url || "https://openverse.org/";
-      am.image.alt = json.title || "";
-      am.title = json.title || "";
-
-      licence = json.license || "";
-      version = json.license_version || "";
-      if (licence.toLowerCase() == "cc0") {
-        am.site.licence = "CC0";
-      } else if (licence.length > 0) {
-        am.site.licence = "CC " + licence.replace(/-/g, " ").toUpperCase();
-      } else {
-        am.site.licence = "Open licence";
-      }
-      if (version.length > 0 && am.site.licence != "CC0") {
-        am.site.licence = am.site.licence + " " + version;
-      }
-      am.site.licenceurl = json.license_url || json.detail_url || "https://openverse.org/";
-
-      buildHTML();
-      buildHistory();
-    });
+    buildHTML();
+    buildHistory();
   }
 
   // If I am Shutterstock
