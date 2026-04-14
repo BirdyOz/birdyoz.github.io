@@ -509,7 +509,8 @@ $(function () {
     am.site.licence = url.searchParams.get("licence");
     am.site.licenceurl = url.searchParams.get("licence_url");
     am.site.source = url.searchParams.get("source");
-    am.site.sourceurl = url.searchParams.get("source_url");
+    am.site.siteurl = am.site.siteurl.replace(/\/$/, "");
+    am.site.sourceurl = url.searchParams.get("source_url").replace(/\/$/, "");
 
     buildHTML();
     buildHistory();
