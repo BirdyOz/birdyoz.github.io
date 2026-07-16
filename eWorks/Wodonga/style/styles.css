@@ -1,0 +1,32 @@
+/* hide non printable items media query*/
+@media print {
+    .btn, button, #reload {
+        display: none;
+    }
+    a,a.visited,a:hover,a:active,a:focus {
+        text-decoration: none;
+    }
+    /*disable links in print*/
+    a[href]:after {
+        content: none !important;
+    }
+    .table-warning {
+        background-color: #ffeeba !important;
+    }
+    .table-warning td, .table-warning th {
+        background-color: #ffeeba !important;
+        /*force print setting through webkit*/
+        
+    }
+
+    .table-warning p{
+        color: #000000 !important;
+        font-weight: bold;
+        background-color: #ffeeba !important;
+    }
+    * {
+        -webkit-print-color-adjust: exact !important;   /* Chrome, Safari 6 – 15.3, Edge */
+        color-adjust: exact !important;                 /* Firefox 48 – 96 */
+        print-color-adjust: exact !important;           /* Firefox 97+, Safari 15.4+ */
+    }
+}

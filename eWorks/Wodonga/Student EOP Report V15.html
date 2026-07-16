@@ -1,0 +1,922 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Student Evidence of Participation Report</title>
+  <!-- Libs -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <!-- Assets -->
+  <link rel="stylesheet" href="style/styles.css" />
+  <script src="data/en.js"></script>
+  <script src="data/my.js"></script>
+  <script>
+    var userId, courseId;
+    var completionData, courseContent, moduleNames = [];
+    var finalAssign = { cmid: null, instance: null, name: "" };
+
+    // identity + course info
+    var moodleUsername = "";
+    var firstname = "",
+      lastname = "",
+      userFullName = "",
+      courseFullName = "",
+      courseShortname = "",
+      unitCode = "";
+
+    /* ---------------- Helpers ---------------- */
+    function getUrlParamsFrom(locationLike) {
+      const usp = new URLSearchParams(locationLike.search);
+      return { id: usp.get("id"), course: usp.get("course") };
+    }
+    function getUrlParams() {
+      const cur = getUrlParamsFrom(window.location);
+      if (cur.id && cur.course) return cur;
+      try {
+        if (document.referrer) {
+          const refUrl = new URL(document.referrer);
+          if (refUrl.origin === window.location.origin) {
+            const ref = getUrlParamsFrom(refUrl);
+            if (ref.id && ref.course) return ref;
+          }
+        }
+      } catch (e) { }
+      return { id: null, course: null };
+    }
+    function siteBase() {
+      try {
+        // Derive Moodle base from dm, e.g.:
+        //   https://host[/moodle]/webservice/rest/server.php  -> https://host[/moodle]
+        var u = new URL(typeof dm !== "undefined" ? dm : "", window.location.href);
+        var path = u.pathname || "";
+        var idx = path.toLowerCase().indexOf("/webservice/");
+        var basePath = idx !== -1 ? path.substring(0, idx) : "";
+        // Ensure no trailing slash (callers append their own)
+        return (u.origin + basePath).replace(/\/$/, "");
+      } catch (e) {
+        // Fallback if dm is unavailable/malformed
+        return window.location.origin;
+      }
+    }
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, (m) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[
+        m
+      ])
+      );
+    }
+    function getTime(UNIX_timestamp) {
+      var a = new Date(UNIX_timestamp * 1000);
+      var months = [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12"
+      ];
+      var year = a.getFullYear(),
+        month = months[a.getMonth()],
+        date = a.getDate();
+      return (date < 10 ? "0" : "") + date + "/" + month + "/" + year;
+    }
+
+    // Strip HTML to plain text
+    function htmlToText(html) {
+      if (!html) return "";
+      var s = String(html)
+        .replace(/<\s*br\s*\/?>/gi, "\n")
+        .replace(/<\/\s*p\s*>/gi, "\n")
+        .replace(/<\s*li\s*>/gi, "- ")
+        .replace(/<\/\s*li\s*>/gi, "\n");
+      var d = document.createElement("div");
+      d.innerHTML = s;
+      return (d.textContent || d.innerText || "").replace(/\s+\n/g, "\n").trim();
+    }
+
+    function buildActivityUrl(item) {
+      // Prefer constructing from cmid so the link uses the dm-derived base
+      if (item && item.modtype && item.cmid) {
+        return (
+          siteBase() +
+          "/mod/" +
+          encodeURIComponent(item.modtype) +
+          "/view.php?id=" +
+          encodeURIComponent(item.cmid)
+        );
+      }
+      // Fallback to provided URL (should already be from the same site)
+      if (item && item.url) return item.url;
+      return "";
+    }
+    // Build the grader link for an assignment cmid
+    function buildAssignGraderUrl(cmid, uid) {
+      return (
+        siteBase() +
+        "/mod/assign/view.php?id=" +
+        encodeURIComponent(cmid) +
+        "&rownum=0&action=grader&userid=" +
+        encodeURIComponent(uid)
+      );
+    }
+
+    // Find module details by cmid from moduleNames
+    function findModuleByCmid(cmid) {
+      for (var i = 0; i < moduleNames.length; i++) {
+        if (Number(moduleNames[i][1]) === Number(cmid)) {
+          return {
+            name: moduleNames[i][0],
+            cmid: moduleNames[i][1],
+            modplural: moduleNames[i][2],
+            url: moduleNames[i][3],
+            modtype: moduleNames[i][4],
+            instance: moduleNames[i][5]
+          };
+        }
+      }
+      return null;
+    }
+
+    // Normalise
+    function norm(s) {
+      return String(s || "").trim().toLowerCase();
+    }
+
+    // Names that indicate the unit-final item
+    var FINAL_NAMES = [
+      "unit final result",
+      "final unit result",
+      "assessment summary",
+      "unit summary",
+      "unit grade",
+      "unit final grade",
+      "final unit grade"
+    ];
+    function isFinalSummaryName(name) {
+      return FINAL_NAMES.indexOf(norm(name)) !== -1;
+    }
+    function isAssessmentListName(name) {
+      var n = norm(name);
+      return n.indexOf("assessment") !== -1 && FINAL_NAMES.indexOf(n) === -1;
+    }
+
+    // Map any grade text to "Satisfactory" | "Competent" | "-"
+    function mapToSatComp(gradeformatted, gradefordisplay, grade) {
+      var raw =
+        gradeformatted != null && gradeformatted !== ""
+          ? gradeformatted
+          : gradefordisplay != null && gradefordisplay !== ""
+            ? gradefordisplay
+            : grade != null
+              ? grade
+              : "";
+      var t = htmlToText(raw).toLowerCase();
+
+      if (
+        t.includes("not yet") ||
+        t.includes("unsatisfactory") ||
+        t.includes("nyc") ||
+        t.includes("nys") ||
+        t.includes("not competent")
+      ) {
+        return "-";
+      }
+      if (t.includes("competent")) return "Competent";
+      if (t.includes("satisfactory")) return "Satisfactory";
+      return "-";
+    }
+
+    // Unify grade item shapes (flattened vs grades[0])
+    function slotFromGradeItem(gi) {
+      if (!gi) return null;
+
+      if (Array.isArray(gi.grades) && gi.grades.length) {
+        var g = gi.grades[0];
+        return {
+          gradeformatted:
+            g.gradeformatted || g.gradefordisplay || g.grade || "",
+          gradefordisplay: g.gradefordisplay || "",
+          grade: g.grade || "",
+          feedback:
+            g.feedbackhtml ||
+            g.feedbackformatted ||
+            g.feedback ||
+            g.feedbacktext ||
+            "",
+          dategraded:
+            g.dategraded || g.gradedate || g.gradedategraded || g.timemodified || 0,
+          graderid: g.graderid || g.usermodified || g.grader || null,
+          cmid: gi.cmid || null,
+          module: gi.itemmodule || ""
+        };
+      } else {
+        return {
+          gradeformatted:
+            gi.gradeformatted || gi.gradefordisplay || gi.graderaw || "",
+          gradefordisplay: gi.gradefordisplay || "",
+          grade: gi.graderaw || "",
+          feedback:
+            gi.feedbackhtml || gi.feedbackformatted || gi.feedback || "",
+          dategraded:
+            gi.gradedategraded || gi.gradedatesubmitted || gi.timegraded || 0,
+          graderid: gi.graderid || gi.usermodified || null,
+          cmid: gi.cmid || null,
+          module: gi.itemmodule || ""
+        };
+      }
+    }
+
+    // Best grade item match for a row
+    function findGradeItemFor(modtype, instance, cmid, name, gradeitems) {
+      var mt = norm(modtype);
+      var nm = norm(name);
+      var inst = instance != null && instance !== "" ? Number(instance) : null;
+      var cm = cmid != null && cmid !== "" ? Number(cmid) : null;
+
+      function giNorm(gi) {
+        return {
+          module: norm(gi.itemmodule),
+          inst:
+            gi.iteminstance != null && gi.iteminstance !== ""
+              ? Number(gi.iteminstance)
+              : null,
+          cmid:
+            gi.cmid != null && gi.cmid !== "" ? Number(gi.cmid) : null,
+          name: norm(gi.itemname)
+        };
+      }
+
+      var hit = gradeitems.find(function (g) {
+        var x = giNorm(g);
+        return inst != null && x.module === mt && x.inst === inst;
+      });
+      if (hit) return hit;
+
+      hit = gradeitems.find(function (g) {
+        var x = giNorm(g);
+        return cm != null && x.module === mt && x.cmid === cm;
+      });
+      if (hit) return hit;
+
+      hit = gradeitems.find(function (g) {
+        var x = giNorm(g);
+        return inst != null && x.inst === inst;
+      });
+      if (hit) return hit;
+
+      hit = gradeitems.find(function (g) {
+        var x = giNorm(g);
+        return cm != null && x.cmid === cm;
+      });
+      if (hit) return hit;
+
+      hit = gradeitems.find(function (g) {
+        var x = giNorm(g);
+        return nm && x.name === nm && x.module === mt;
+      });
+      if (hit) return hit;
+
+      hit = gradeitems.find(function (g) {
+        var x = giNorm(g);
+        return nm && x.name === nm;
+      });
+      return hit || null;
+    }
+
+    function fetchAssessorFromAssign(assignId) {
+      if (!assignId) return $.Deferred().resolve().promise();
+      return $.ajax({
+        method: "POST",
+        url: dm,
+        data: {
+          wstoken: dc(sl, ec),
+          moodlewsrestformat: "json",
+          wsfunction: "mod_assign_get_grades",
+          "assignmentids[0]": assignId,
+          since: 0
+        }
+      }).done(function (payload) {
+        try {
+          const as = payload && payload.assignments && payload.assignments[0];
+          if (!as || !Array.isArray(as.grades)) return;
+          const g = as.grades.find(function (x) {
+            return Number(x.userid) === Number(userId);
+          });
+          if (!g) return;
+          const graderId = g.grader;
+          if (graderId && graderId > 0) {
+            fetchUserByIdGeneric(graderId).done(function (u) {
+              var name = "";
+              if (u && u[0]) {
+                name =
+                  ((u[0].firstname || "") + " " + (u[0].lastname || "")).trim() ||
+                  u[0].fullname ||
+                  "";
+              }
+              if (name) {
+                $("#unit-assessor-name").html(
+                  "<b>Assessor:<br></b> " + escapeHtml(name)
+                );
+              }
+            });
+          }
+        } catch (e) { }
+      });
+    }
+
+    // Fetch grades + final result/comments + assessor.
+    // Returns a promise that resolves after the assessor lookup (if any) too.
+    function fetchFinalUnitGradeAndAssessor(finalAssignRef) {
+      var doneAll = $.Deferred();
+
+      $.ajax({
+        method: "POST",
+        url: dm,
+        data: {
+          wstoken: dc(sl, ec),
+          moodlewsrestformat: "json",
+          wsfunction: "gradereport_user_get_grade_items",
+          courseid: courseId,
+          userid: userId
+        }
+      })
+        .done(function (payload) {
+          const ug = payload && payload.usergrades && payload.usergrades[0];
+          const gis = (ug && ug.gradeitems) || [];
+
+          // Fill Assessments results
+          $("#assessments tr[data-row='ass']").each(function () {
+            const $row = $(this);
+            const modtype = ($row.attr("data-itemmodule") || "").toString();
+            const instance = $row.attr("data-assign-instance") || "";
+            const cmid = $row.attr("data-cmid") || "";
+            const name = $row.attr("data-name") || "";
+            const resultCellId = $row.attr("data-result-cell-id");
+
+            const gi = findGradeItemFor(modtype, instance, cmid, name, gis);
+            var out = "-";
+            if (gi) {
+              const slot = slotFromGradeItem(gi);
+              out = mapToSatComp(
+                slot.gradeformatted,
+                slot.gradefordisplay,
+                slot.grade
+              );
+            }
+            $("#" + resultCellId).text(out);
+          });
+
+          // Final unit result + feedback (and link to the final grade)
+          const byName = gis.find(function (g) {
+            return FINAL_NAMES.indexOf(norm(g.itemname)) !== -1;
+          });
+
+          let finalItem = null;
+          if (finalAssignRef && finalAssignRef.instance) {
+            finalItem = gis.find(function (g) {
+              return Number(g.iteminstance) === Number(finalAssignRef.instance);
+            });
+          }
+          if (!finalItem) finalItem = byName || null;
+
+          var finalResultText = "-";
+          var feedbackText = "-";
+          var gradedDate = 0;
+          var finalLink = "";
+
+          if (finalItem) {
+            const slot = slotFromGradeItem(finalItem);
+            finalResultText = mapToSatComp(
+              slot.gradeformatted,
+              slot.gradefordisplay,
+              slot.grade
+            );
+            gradedDate = Number(slot.dategraded || 0);
+            if (slot.feedback) {
+              const plain = htmlToText(slot.feedback);
+              if (plain) feedbackText = plain;
+            }
+            // link to the Unit Final Grade (grader link if assignment)
+            if (
+              (slot.module || "").toLowerCase() === "assign" &&
+              (slot.cmid || finalAssignRef.cmid)
+            ) {
+              finalLink = buildAssignGraderUrl(
+                slot.cmid || finalAssignRef.cmid,
+                userId
+              );
+            }
+          }
+
+          var resultHtml = escapeHtml(finalResultText);
+          if (
+            finalLink &&
+            (finalResultText === "Competent" ||
+              finalResultText === "Satisfactory")
+          ) {
+            resultHtml =
+              "<a target='_blank' rel='noopener noreferrer' href='" +
+              finalLink +
+              "'>" +
+              escapeHtml(finalResultText) +
+              "</a>";
+          }
+
+          $("#unit-final-grade-result").html(
+            "<b>Final Unit Result:<br></b> " + resultHtml
+          );
+          $("#unit-final-comments").html(
+            "<b>Comments:<br></b> " + escapeHtml(feedbackText)
+          );
+
+          if (gradedDate > 0) {
+            $("#completion-date").html("<b>Date:<br></b> " + getTime(gradedDate));
+          }
+
+          // Assessor via mod_assign_get_grades
+          var assessorAssignId = null;
+          if (finalAssignRef && finalAssignRef.instance) {
+            assessorAssignId = finalAssignRef.instance;
+          } else if (
+            finalItem &&
+            String(finalItem.itemmodule).toLowerCase() === "assign" &&
+            finalItem.iteminstance
+          ) {
+            assessorAssignId = finalItem.iteminstance;
+          } else if (
+            byName &&
+            String(byName.itemmodule).toLowerCase() === "assign" &&
+            byName.iteminstance
+          ) {
+            assessorAssignId = byName.iteminstance;
+          }
+
+          var assessorPromise = assessorAssignId
+            ? fetchAssessorFromAssign(assessorAssignId)
+            : $.Deferred().resolve().promise();
+
+          assessorPromise.always(function () {
+            doneAll.resolve();
+          });
+        })
+        .fail(function () {
+          $("#unit-final-grade-result").html("<b>Final Unit Result:</b> -");
+          $("#unit-final-comments").html("<b>Comments:</b> -");
+          doneAll.resolve();
+        });
+
+      return doneAll.promise();
+    }
+
+    function fetchUserByIdGeneric(uid) {
+      // core_user_get_users_by_field: request only the specific user
+      return $.ajax({
+        method: "POST",
+        url: dm,
+        data: {
+          wstoken: dc(sl, ec),
+          moodlewsrestformat: "json",
+          wsfunction: "core_user_get_users_by_field",
+          field: "id",
+          "values[0]": uid
+        }
+      });
+    }
+
+    /* ------------- Web service calls ------------- */
+    function fetchUserById() {
+      return $.ajax({
+        method: "POST",
+        url: dm,
+        data: {
+          wstoken: dc(sl, ec),
+          moodlewsrestformat: "json",
+          wsfunction: "core_user_get_users_by_field",
+          field: "id",
+          "values[0]": userId
+        }
+      });
+    }
+    function fetchUserFullNameViaGrades() {
+      return $.ajax({
+        method: "POST",
+        url: dm,
+        data: {
+          wstoken: dc(sl, ec),
+          moodlewsrestformat: "json",
+          wsfunction: "gradereport_user_get_grade_items",
+          courseid: courseId,
+          userid: userId
+        }
+      });
+    }
+    function fetchCourseById() {
+      return $.ajax({
+        method: "POST",
+        url: dm,
+        data: {
+          wstoken: dc(sl, ec),
+          moodlewsrestformat: "json",
+          wsfunction: "core_course_get_courses_by_field",
+          field: "id",
+          value: courseId
+        }
+      });
+    }
+
+    /* ---------------- Boot ---------------- */
+    $(document).ready(function () {
+      const params = getUrlParams();
+      userId = params.id;
+      courseId = params.course;
+
+      if (!userId || !courseId) {
+        $("#main-content").prepend(
+          "<div class='alert alert-danger'>No user id or course id in URL</div>"
+        );
+        return;
+      }
+
+      // Placeholders
+      $("#userdetail").html(
+        "<div><b>Student Name:</b> <em>Loading…</em></div>" +
+        "<div><b>Student Number:</b> <em>Loading…</em></div>" +
+        "<div><b>Unit Code:</b> <em>Loading…</em></div>" +
+        "<div><b>Unit Name:</b> <em>Loading…</em></div>"
+      );
+
+      $.when(fetchUserById(), fetchCourseById())
+        .done(function (userRes, courseRes) {
+          const users = userRes[0];
+          let haveNames = false;
+
+          if (
+            Array.isArray(users) &&
+            users.length > 0 &&
+            (users[0].firstname || users[0].lastname)
+          ) {
+            moodleUsername = users[0].username || "";
+            firstname = users[0].firstname || "";
+            lastname = users[0].lastname || "";
+            userFullName = (firstname + " " + lastname).trim();
+            haveNames = !!userFullName;
+          }
+
+          try {
+            const coursePayload = courseRes[0];
+            if (
+              coursePayload &&
+              Array.isArray(coursePayload.courses) &&
+              coursePayload.courses.length > 0
+            ) {
+              const c0 = coursePayload.courses[0];
+              courseFullName = c0.fullname || "";
+              courseShortname = c0.shortname || "";
+              unitCode = (courseShortname.split("_")[0] || "").trim();
+            }
+          } catch (e) { }
+
+          const proceed = function () {
+            const base = siteBase();
+            const profileUrl =
+              base + "/user/profile.php?id=" + encodeURIComponent(userId);
+            const courseUrl =
+              base + "/course/view.php?id=" + encodeURIComponent(courseId);
+
+            const safeFullName = escapeHtml(
+              userFullName || "User " + userId
+            );
+            const safeStudentNumber = escapeHtml(moodleUsername || "");
+            const safeCourse = escapeHtml(
+              courseFullName || "Course " + courseId
+            );
+            const safeUnitCode = escapeHtml(unitCode || "");
+
+            $("#userdetail").html(
+              "<div><b>Student Name:</b> " +
+              "<a target='_blank' rel='noopener noreferrer' href='" +
+              profileUrl +
+              "'>" +
+              safeFullName +
+              "</a>" +
+              "</div>" +
+              "<div><b>Student Number:</b> " +
+              (safeStudentNumber || "N/A") +
+              "</div>" +
+              "<div><b>Unit Code:</b> " +
+              (safeUnitCode || "N/A") +
+              "</div>" +
+              "<div><b>Unit Name:</b> " +
+              "<a target='_blank' rel='noopener noreferrer' href='" +
+              courseUrl +
+              "'>" +
+              safeCourse +
+              "</a>" +
+              "</div>"
+            );
+            // Also set Report Source link to course
+            $("#reportSource").html(
+              "<a target='_blank' rel='noopener noreferrer' href='" +
+              courseUrl +
+              "'>" +
+              courseUrl +
+              "</a>"
+            );
+
+            document.title = "EoP – " + safeFullName + " – " + safeCourse;
+          };
+
+          if (!haveNames) {
+            fetchUserFullNameViaGrades()
+              .done(function (grades) {
+                const ug =
+                  grades && grades.usergrades && grades.usergrades[0];
+                if (ug && ug.userfullname) userFullName = ug.userfullname;
+              })
+              .always(proceed);
+          } else {
+            proceed();
+          }
+        })
+        .always(function () {
+          getCourseContents();
+        })
+        .fail(function () {
+          getCourseContents();
+        });
+    });
+
+    /* ------------- Data pipeline ------------- */
+    function getCourseContents() {
+      $.ajax({
+        method: "POST",
+        url: dm,
+        data: {
+          wstoken: dc(sl, ec),
+          moodlewsrestformat: "json",
+          wsfunction: "core_course_get_contents",
+          courseid: courseId
+        }
+      })
+        .done(function (msg) {
+          courseContent = msg;
+          moduleNames = [];
+          for (var i = 0; i < courseContent.length; i++) {
+            if (!courseContent[i].modules) continue;
+            for (var j = 0; j < courseContent[i].modules.length; j++) {
+              var m = courseContent[i].modules[j];
+              moduleNames.push([
+                m.name, // 0: display name
+                m.id, // 1: cmid
+                m.modplural, // 2: plural label
+                m.url || "", // 3: direct URL
+                m.modname || "", // 4: module type
+                m.instance || null // 5: module instance id
+              ]);
+            }
+          }
+          getCompletions();
+        })
+        .fail(function () {
+          alert("Error loading course contents");
+        });
+    }
+
+    function getCompletions() {
+      $.ajax({
+        method: "POST",
+        url: dm,
+        data: {
+          wstoken: dc(sl, ec),
+          moodlewsrestformat: "json",
+          wsfunction: "core_completion_get_activities_completion_status",
+          courseid: courseId,
+          userid: userId
+        }
+      })
+        .done(function (msg) {
+          $("#details").css("display");
+          completionData = (msg && msg.statuses) ? msg.statuses : [];
+
+          // Attach module names + urls + types
+          for (var i = 0; i < completionData.length; i++) {
+            for (var j = 0; j < moduleNames.length; j++) {
+              if (completionData[i].cmid == moduleNames[j][1]) {
+                completionData[i].modname = moduleNames[j][0];
+                completionData[i].modplural = moduleNames[j][2];
+                completionData[i].url = moduleNames[j][3];
+                completionData[i].modtype = moduleNames[j][4];
+                break;
+              }
+            }
+          }
+
+          var firstCompletion = 0,
+            completionObject = "Nothing Completed",
+            finalUnitCompletionDate = "N/A";
+
+          for (var k = 0; k < completionData.length; k++) {
+            var c = completionData[k];
+            if (c.timecompleted > 0 && c.modplural != "Labels") {
+              var m = findModuleByCmid(c.cmid) || {};
+              var link;
+              // For assessments (assign), use the grader link
+              if (isAssessmentListName(c.modname)) {
+                link =
+                  (m.modtype || c.modtype) === "assign"
+                    ? buildAssignGraderUrl(c.cmid, userId)
+                    : buildActivityUrl(c);
+              } else {
+                link = buildActivityUrl(c);
+              }
+
+              var safeName = escapeHtml(c.modname || "(Unnamed item)");
+              var linkedName = link
+                ? "<a href='" +
+                link +
+                "' target='_blank' rel='noopener noreferrer'>" +
+                safeName +
+                "</a>"
+                : safeName;
+
+              if (isFinalSummaryName(c.modname)) {
+                // Track final/summary artefact (not shown in tables)
+                finalUnitCompletionDate = getTime(c.timecompleted);
+                finalAssign.cmid = c.cmid;
+                finalAssign.name = c.modname || "";
+                if (m && m.instance != null) finalAssign.instance = m.instance;
+              } else if (isAssessmentListName(c.modname)) {
+                // Move to "Assessments" table
+                var key = (m.modtype || c.modtype || "cm").toLowerCase() +
+                  "-" +
+                  String(m.instance || c.cmid);
+                var resultCellId = "ass-result-" + key;
+                $("#assessments").append(
+                  "<tr data-row='ass' id='ass-row-" +
+                  key +
+                  "' data-itemmodule='" +
+                  escapeHtml(m.modtype || c.modtype || "cm") +
+                  "' data-assign-instance='" +
+                  escapeHtml(m.instance || "") +
+                  "' data-cmid='" +
+                  String(c.cmid) +
+                  "' data-name='" +
+                  escapeHtml(c.modname || "") +
+                  "' data-result-cell-id='" +
+                  resultCellId +
+                  "'>" +
+                  "<td class='activity-cell'>" +
+                  linkedName +
+                  "</td>" +
+                  "<td>" +
+                  getTime(c.timecompleted) +
+                  "</td>" +
+                  "<td id='" +
+                  resultCellId +
+                  "'>-</td>" +
+                  "</tr>"
+                );
+              } else {
+                // Initial learning activity table
+                $("#details").append(
+                  "<tr>" +
+                  "<td class='activity-cell'>" +
+                  linkedName +
+                  "</td>" +
+                  "<td>" +
+                  getTime(c.timecompleted) +
+                  "</td>" +
+                  "</tr>"
+                );
+              }
+            }
+
+            // track earliest completed (excluding specific names)
+            if (
+              c.timecompleted > 0 &&
+              (firstCompletion === 0 || c.timecompleted < firstCompletion)
+            ) {
+              var nm = (c.modname || "").toLowerCase();
+              if (
+                nm.indexOf("learning program") === -1 &&
+                nm.indexOf("student declaration") === -1
+              ) {
+                firstCompletion = c.timecompleted;
+                completionObject = c.modname;
+              }
+            }
+          }
+
+          if (firstCompletion > 0) {
+            $("#startdate").html(
+              "<b>First Unit Engagement:</b> " +
+              escapeHtml(completionObject || "") +
+              " : " +
+              getTime(firstCompletion) +
+              "<p>"
+            );
+          }
+          if (finalUnitCompletionDate !== "N/A") {
+            $("#completion-date").html("<b>Date:</b> " + finalUnitCompletionDate);
+          }
+
+          // Fetch grades/result + assessor; when finished, stamp the report date
+          fetchFinalUnitGradeAndAssessor(finalAssign).always(function () {
+            const now = new Date();
+            const dateString =
+              now.getDate().toString().padStart(2, "0") +
+              "/" +
+              (now.getMonth() + 1).toString().padStart(2, "0") +
+              "/" +
+              now.getFullYear();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById("reportDate").textContent =
+              dateString + " " + timeString;
+          });
+        })
+        .fail(function () {
+          alert("Error loading completion data");
+        });
+    }
+  </script>
+</head>
+
+<body>
+  <div id="main-content" style="margin: 30px;">
+    <p>
+      Report Date: <span id="reportDate"></span>
+    </p>
+    <p>
+      Report Source: <span id="reportSource"></span>
+    </p>
+    <h2>
+      <img src="images/wiot.jpg" alt="" />
+      Student Evidence of Participation Report
+    </h2>
+    <div style="
+          width: calc(100vw - 105px);
+          margin-top: 20px;
+          border: 1px solid #dee2e6;
+          border-radius: 10px;
+          overflow: auto;
+        ">
+      <table class="table w-100">
+        <tr>
+          <td>
+            <div id="userdetail"></div>
+            <div id="startdate"></div>
+          </td>
+        </tr>
+      </table>
+
+      <h5 style="padding-left: 15px;">Initial Learning Activity</h5>
+      <table id="details" class="table w-100">
+        <tr>
+          <td style="width: 60%;"><b>Activity Name</b></td>
+          <td style="width: 40%;"><b>Activity Completion Date</b></td>
+        </tr>
+      </table>
+
+      <h5 style="padding-left: 15px;">Assessments</h5>
+      <table id="assessments" class="table w-100">
+        <tr>
+          <td style="width: 60%;"><b>Assessment Name</b></td>
+          <td style="width: 20%;"><b>Completion Date</b></td>
+          <td style="width: 20%;"><b>Result</b></td>
+        </tr>
+      </table>
+
+      <table id="unit_summary_details" class="table w-100">
+        <tr>
+          <td style="width: 60%;">
+            <div style="width: 50%;" id="unit-final-comments"></div>
+          </td>
+          <td style="width: 40%;">
+            <div id="unit-final-grade-result"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div id="unit-assessor-name"></div>
+          </td>
+          <td>
+            <div id="completion-date"></div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <p style="text-align: center;">Version 12.5</p>
+</body>
+
+</html>

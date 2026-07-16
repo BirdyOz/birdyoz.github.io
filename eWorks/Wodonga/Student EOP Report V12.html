@@ -1,0 +1,438 @@
+<!doctype html> 
+<html>
+<head>
+<meta charset="utf-8">
+<title>Student Evidence of Participation Report</title>
+
+<!-- Libs --> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Assets -->
+<link rel="stylesheet" href="style/styles.css">
+<script src="data/en.js"></script> 
+<script src="data/my.js"></script> 
+<script>
+var userId, courseId;
+var completionData, courseContent, moduleNames = [];
+
+// identity + course info
+var moodleUsername = "";
+var firstname = "", lastname = "", userFullName = "", courseFullName = "";
+
+/* ---------------- Helpers ---------------- */
+function getUrlParamsFrom(locationLike) {
+  const usp = new URLSearchParams(locationLike.search);
+  return { id: usp.get('id'), course: usp.get('course') };
+}
+function getUrlParams() {
+  const cur = getUrlParamsFrom(window.location);
+  if (cur.id && cur.course) return cur;
+  try {
+    if (document.referrer) {
+      const refUrl = new URL(document.referrer);
+      if (refUrl.origin === window.location.origin) {
+        const ref = getUrlParamsFrom(refUrl);
+        if (ref.id && ref.course) return ref;
+      }
+    }
+  } catch(e) {}
+  return { id: null, course: null };
+}
+function siteBase() { return window.location.origin; }
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, m =>
+    ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]
+  );
+}
+function getTime(UNIX_timestamp){
+  var a = new Date(UNIX_timestamp * 1000);
+  var months = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+  var year = a.getFullYear(), month = months[a.getMonth()], date = a.getDate();
+  var hour = a.getHours(), min = a.getMinutes(); if (min<10) min = "0"+min;
+  return (date<10?'0':'') + date + '/' + month + '/' + year;
+}
+
+function showDateTime() {
+  const now = new Date();
+  const dateString = now.getDate().toString().padStart(2, '0') + '/' +
+                     (now.getMonth() + 1).toString().padStart(2, '0') + '/' +
+                     now.getFullYear();
+  const timeString = now.toLocaleTimeString();
+  document.getElementById("reportDate").textContent = dateString + " " + timeString;
+}
+
+/* Build a robust URL for a module (prefer API url; fallback to /mod/{type}/view.php?id={cmid}) */
+function buildActivityUrl(item){
+  if (item && item.url) return item.url;
+  if (item && item.modtype && item.cmid) {
+    return siteBase() + "/mod/" + encodeURIComponent(item.modtype) +
+           "/view.php?id=" + encodeURIComponent(item.cmid);
+  }
+  return "";
+}
+/* ---------- Grades → Unit summary (assessor, grade, comments) ---------- */
+function fetchFinalUnitGradeAndAssessor() {
+  return $.ajax({
+    method: "POST",
+    url: dm,
+    data: {
+      wstoken: dc(sl,ec),
+      moodlewsrestformat: 'json',
+      wsfunction: 'gradereport_user_get_grade_items',
+      courseid: courseId,
+      userid: userId
+    }
+  }).done(function(payload){
+    try {
+      const ug = payload && payload.usergrades && payload.usergrades[0];
+      if (!ug || !Array.isArray(ug.gradeitems)) return;
+
+      // Locate the target assignment grade item
+      const targetNames = ["unit grade","unit final result","assessment summary"];
+      const item = ug.gradeitems.find(g =>
+        (g.itemmodule === "assign") &&
+        (g.itemname && targetNames.indexOf(String(g.itemname).toLowerCase()) !== -1)
+      ) || ug.gradeitems.find(g => g.itemmodule === "assign"); // fallback to any assign
+
+      if (!item || !Array.isArray(item.grades) || !item.grades[0]) return;
+
+      const g0 = item.grades[0];
+
+      // --- Grade result ---
+      const gradeResult = g0.gradeformatted || g0.grade || "";
+      if (gradeResult) {
+        $("#unit-final-grade-result").html("<b>Final Unit Grade:</b> " + escapeHtml(gradeResult));
+      }
+
+      // --- Comments / feedback ---
+      // g0.feedback can be HTML; if you prefer plain text use escapeHtml(g0.feedback)
+      if (g0.feedback) {
+        $("#unit-final-comments").html("<b>Assessor Comments:</b> " + g0.feedback);
+      }
+
+      // --- Completion date (from grade if present) ---
+      if (g0.dategraded && Number(g0.dategraded) > 0) {
+        $("#completion-date").html("<b>Unit Completion Date:</b> " + getTime(Number(g0.dategraded)));
+      }
+
+      // --- Assessor (grader) name detection & fallback chain ---
+      // Common fields exposed by gradereport_user_get_grade_items for the grader vary by version.
+      // We’ll try several, then fall back to a lookup if we have an id.
+      const possibleName =
+        g0.graderfullname || g0.markerfullname || g0.gradername ||
+        (g0.graderfirstname && g0.graderlastname ? (g0.graderfirstname + " " + g0.graderlastname) : "");
+
+      if (possibleName) {
+        $("#unit-assessor-name").html("<b>Assessor:</b> " + escapeHtml(possibleName));
+      } else if (g0.graderid || g0.usermodified) {
+        // Fallback: fetch the user by id if the service exposes a grader id
+        const graderId = g0.graderid || g0.usermodified;
+        fetchUserByIdGeneric(graderId).done(function(u){
+          const name = (u && u[0]) ? ((u[0].firstname||"") + " " + (u[0].lastname||"")).trim() : "";
+          if (name) {
+            $("#unit-assessor-name").html("<b>Assessor:</b> " + escapeHtml(name));
+          }
+        });
+      }
+    } catch(e) {
+      // swallow; keep page rendering
+      // console.warn("Final grade parse error", e);
+    }
+  });
+}
+
+function fetchUserByIdGeneric(uid){
+  return $.ajax({
+    method: "POST",
+    url: dm,
+    data: {
+      wstoken: dc(sl,ec),
+      moodlewsrestformat: 'json',
+      wsfunction: 'core_user_get_users_by_field',
+      field: 'id',
+      'values[0]': uid
+    }
+  });
+}
+
+	
+	
+/* ------------- Web service calls ------------- */
+function fetchUserById() {
+  return $.ajax({
+    method: "POST",
+    url: dm,
+    data: {
+      wstoken: dc(sl,ec),
+      moodlewsrestformat: 'json',
+      wsfunction: 'core_user_get_users_by_field',
+      field: 'id',
+      'values[0]': userId
+    }
+  });
+}
+function fetchUserFullNameViaGrades() {
+  return $.ajax({
+    method: "POST",
+    url: dm,
+    data: {
+      wstoken: dc(sl,ec),
+      moodlewsrestformat: 'json',
+      wsfunction: 'gradereport_user_get_grade_items',
+      courseid: courseId,
+      userid: userId
+    }
+  });
+}
+function fetchCourseById() {
+  return $.ajax({
+    method: "POST",
+    url: dm,
+    data: {
+      wstoken: dc(sl,ec),
+      moodlewsrestformat: 'json',
+      wsfunction: 'core_course_get_courses_by_field',
+      field: 'id',
+      value: courseId
+    }
+  });
+}
+
+/* ---------------- Boot ---------------- */
+$(document).ready(function () {
+  const params = getUrlParams();
+  userId   = params.id;
+  courseId = params.course;
+  showDateTime();
+  if (!userId || !courseId) {
+    $("#main-content").prepend("<div class='alert alert-danger'>No user id or course id in URL</div>");
+    return;
+  }
+
+  // Placeholders
+  $("#userdetail").html(
+    "<div><b>Student Name:</b> <em>Loading…</em></div>" +
+    "<div><b>Student Number:</b> <em>Loading…</em></div>" +
+    "<div><b>Unit Name:</b> <em>Loading…</em></div>"
+  );
+
+  $.when(fetchUserById(), fetchCourseById())
+    .done(function(userRes, courseRes){
+      const users = userRes[0]; let haveNames = false;
+
+      if (Array.isArray(users) && users.length > 0 && (users[0].firstname || users[0].lastname)) {
+        moodleUsername = users[0].username || "";
+        firstname      = users[0].firstname || "";
+        lastname       = users[0].lastname  || "";
+        userFullName   = (firstname + " " + lastname).trim();
+        haveNames      = !!userFullName;
+      }
+
+      try {
+        const coursePayload = courseRes[0];
+        if (coursePayload && Array.isArray(coursePayload.courses) && coursePayload.courses.length > 0) {
+          courseFullName = coursePayload.courses[0].fullname || "";
+        }
+      } catch(e) {}
+
+      const proceed = function() {
+        const base = siteBase();
+        const profileUrl = base + "/user/profile.php?id=" + encodeURIComponent(userId);
+        const courseUrl  = base + "/course/view.php?id=" + encodeURIComponent(courseId);
+
+        const safeFullName      = escapeHtml(userFullName || ("User " + userId));
+        const safeStudentNumber = escapeHtml(moodleUsername || "");
+        const safeCourse        = escapeHtml(courseFullName || ("Course " + courseId));
+
+        $("#userdetail").html(
+          "<div><b>Student Name:</b> " +
+            "<a target='_blank' rel='noopener noreferrer' href='" + profileUrl + "'>" + safeFullName + "</a>" +
+          "</div>" +
+          "<div><b>Student Number:</b> " + (safeStudentNumber || "N/A") + "</div>" +
+          "<div><b>Unit Name:</b> " +
+            "<a target='_blank' rel='noopener noreferrer' href='" + courseUrl + "'>" + safeCourse + "</a>" +
+          "</div>"
+        );
+        document.title = "EoP – " + safeFullName + " – " + safeCourse;
+      };
+
+      if (!haveNames) {
+        fetchUserFullNameViaGrades()
+          .done(function(grades){
+            const ug = grades && grades.usergrades && grades.usergrades[0];
+            if (ug && ug.userfullname) userFullName = ug.userfullname;
+          })
+          .always(proceed);
+      } else {
+        proceed();
+      }
+    })
+    .always(function(){
+      getCourseContents();
+    })
+    .fail(function(){
+      getCourseContents();
+    });
+});
+
+/* ------------- Data pipeline ------------- */
+function getCourseContents(){
+  $.ajax({
+    method: "POST",
+    url: dm,
+    data: {
+      wstoken: dc(sl,ec),
+      moodlewsrestformat: 'json',
+      wsfunction: 'core_course_get_contents',
+      courseid: courseId
+    }
+  })
+  .done(function(msg) {
+    courseContent = msg; moduleNames = [];
+    for (var i=0; i<courseContent.length; i++){
+      if (!courseContent[i].modules) continue;
+      for (var j=0; j<courseContent[i].modules.length; j++){
+        var m = courseContent[i].modules[j];
+        moduleNames.push([
+          m.name,                // 0: display name
+          m.id,                  // 1: cmid
+          m.modplural,           // 2: plural label
+          m.url || "",           // 3: direct URL (if provided)
+          m.modname || ""        // 4: module type (assign, quiz, etc.) for fallback URL
+        ]);
+      }
+    }
+    getCompletions();
+  })
+  .fail(function() {
+    alert("Error loading course contents");
+  });
+}
+
+function getCompletions(){
+  $.ajax({
+    method: "POST",
+    url: dm,
+    data: {
+      wstoken: dc(sl,ec),
+      moodlewsrestformat: 'json',
+      wsfunction: 'core_completion_get_activities_completion_status',
+      courseid: courseId,
+      userid: userId
+    }
+	fetchFinalUnitGradeAndAssessor();
+  })
+  .done(function(msg) {
+    $("#details").css("display");
+    completionData = (msg && msg.statuses) ? msg.statuses : [];
+
+    // Attach module names + urls + types
+    for (var i=0; i<completionData.length; i++){
+      for (var j=0; j<moduleNames.length; j++){
+        if (completionData[i].cmid == moduleNames[j][1]){
+          completionData[i].modname   = moduleNames[j][0]; // display name
+          completionData[i].modplural = moduleNames[j][2];
+          completionData[i].url       = moduleNames[j][3];
+          completionData[i].modtype   = moduleNames[j][4];
+          break;
+        }
+      }
+    }
+
+    var firstCompletion = 0,
+        completionObject = "Nothing Completed",
+        finalUnitCompletionDate = "N/A";
+
+    for (var k=0; k<completionData.length; k++){
+      var c = completionData[k];
+      if (c.timecompleted > 0 && c.modplural != "Labels"){
+        var link = buildActivityUrl(c);
+        var safeName = escapeHtml(c.modname || "(Unnamed item)");
+        var linkedName = link
+          ? "<a href='" + link + "' target='_blank' rel='noopener noreferrer'>" + safeName + "</a>"
+          : safeName;
+
+        if ((c.modname == "Unit Grade" || c.modname == "Unit Final Result" || c.modname == "Assessment Summary") && c.modplural == "Assignments"){
+          $("#details").append(
+            "<tr style='background-color:#CCFFCC'>" +
+              "<td class='activity-cell'><b>" + linkedName + "</b></td>" +
+              "<td style='display:none;'>" + String(c.cmid) + "</td>" +
+              "<td>"+getTime(c.timecompleted)+"</td>" +
+            "</tr>"
+          );
+          finalUnitCompletionDate = getTime(c.timecompleted);
+        } else {
+          $("#details").append(
+            "<tr>" +
+              "<td class='activity-cell'>" + linkedName + "</td>" +
+              "<td style='display:none;'>" + String(c.cmid) + "</td>" +
+              "<td>"+getTime(c.timecompleted)+"</td>" +
+            "</tr>"
+          );
+        }
+      }
+
+      // track earliest completed (excluding specific names)
+      if ((c.timecompleted > 0 && (firstCompletion === 0 || c.timecompleted < firstCompletion))) {
+        var nm = (c.modname || "").toLowerCase();
+        if (nm.indexOf("learning program") === -1 && nm.indexOf("student declaration") === -1){
+          firstCompletion = c.timecompleted;
+          completionObject = c.modname;
+        }
+      }
+    }
+
+    if (firstCompletion > 0){
+      $("#startdate").html("<b>First Unit Engagement:</b> " + escapeHtml(completionObject || "") + " : " + getTime(firstCompletion) + "<p>");
+    }
+    if (finalUnitCompletionDate !== "N/A"){
+      $("#completion-date").html("<b>Unit Completion Date:</b> " + finalUnitCompletionDate + "");
+    }
+  })
+  .fail(function() {
+    alert("Error loading completion data");
+  });
+}
+</script>
+</head>
+
+<body>
+<div id="main-content" style="margin:30px;">
+  <p>Report Date: <span id="reportDate"></span></p>
+  <p>Report Source:</p>
+  <h2><img src="images/wiot.jpg" alt="" /> Student Evidence of Participation Report</h2>
+  <div style="width: calc(100vw - 105px); margin-top:20px; border: 1px solid #dee2e6; border-radius: 10px; overflow: auto;">
+    <table class="table w-100">
+      <tr>
+        <td><div id="userdetail"></div>
+          <div id="startdate"></div>
+          <!--<div id="completion-date"></div></td>-->
+		  </td>
+		</tr>
+    </table>
+    <table id="details" style="min-width:1000px;" class="table w-100">
+      <tr>
+		<td><b>Activity Name</b></td>
+        <td><b>Activity Completion</b></td>
+      </tr>
+    </table>
+    <table id="unit_summary_details" style="min-width:1000px;" class="table w-100">
+      <tr>
+        <td><div id="unit-final-comments"></div></td>
+		<td><div id="unit-final-grade-result"></div></td>
+      </tr>
+      <tr>
+      <td><div id="unit-assessor-name"></div></td>
+	  <td><div id="completion-date"></div></td>
+      </tr>
+    </table>
+  </div>
+</div>
+	Version 11.6
+</body>
+</html>
+

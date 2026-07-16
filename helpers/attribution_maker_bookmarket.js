@@ -35,19 +35,51 @@ if (document.location.href.includes('shutterstock.com')) {
 // so gather the attribution metadata from the current Openverse page instead.
 
 if (document.location.href.includes('openverse.org')) {
+    const main = document.querySelector('main') || document;
     const pickMeta = (name, attr = "property") =>
         document.querySelector(`meta[${attr}="${name}"]`)?.content || "";
-    const externalLinks = [...document.querySelectorAll('a[href^="http"]')];
+    const prettifyHost = (href) => {
+        try {
+            const hostname = new URL(href).hostname.replace(/^www\./, '').split('.')[0] || '';
+            return hostname.charAt(0).toUpperCase() + hostname.slice(1);
+        } catch (e) {
+            return "";
+        }
+    };
+    const ignoredLinkText = [
+        'Skip to content',
+        'About',
+        'Licenses',
+        'Sources',
+        'Search help',
+        'Get involved',
+        'API',
+        'Terms',
+        'Privacy',
+        'Feedback',
+        'Back to results',
+        'Open form',
+        'DMCA form',
+    ];
+    const externalLinks = [...main.querySelectorAll('a[href^="http"]')];
     const imageLink = externalLinks.find((a) => a.textContent.trim() === 'Get this image');
     const licenceLink = externalLinks.find((a) =>
-        a.href.includes('creativecommons.org/licenses/') &&
-        a.textContent.trim().startsWith('CC ')
+        (
+            a.href.includes('creativecommons.org/licenses/') ||
+            a.href.includes('creativecommons.org/publicdomain/')
+        ) &&
+        (
+            a.textContent.trim().startsWith('CC ') ||
+            a.textContent.trim().toLowerCase().includes('public domain')
+        )
     );
-    const sourceLink = externalLinks.find((a) =>
-        ['Flickr', 'Wikimedia', 'Wikimedia Commons'].includes(a.textContent.trim()) &&
+    const imageOrigin = imageLink ? new URL(imageLink.href).origin : '';
+    const explicitSourceLink = externalLinks.find((a) =>
         !a.href.includes('openverse.org') &&
-        !a.href.includes('/photos/')
+        !a.href.includes('creativecommons.org') &&
+        a.href.replace(/\/$/, '') === imageOrigin.replace(/\/$/, '')
     );
+    const sourceLink = explicitSourceLink || (imageOrigin ? { href: imageOrigin, textContent: prettifyHost(imageOrigin) } : null);
     const sourceHost = sourceLink ? new URL(sourceLink.href).hostname.replace(/^www\./, '') : '';
     const creatorLink = externalLinks.find((a) => {
         const text = a.textContent.trim();
@@ -57,6 +89,7 @@ if (document.location.href.includes('openverse.org')) {
         } catch (e) {}
         return (
             text.length > 0 &&
+            !ignoredLinkText.includes(text) &&
             text !== 'Get this image' &&
             text !== (sourceLink?.textContent.trim() || '') &&
             text !== (licenceLink?.textContent.trim() || '') &&
@@ -69,14 +102,26 @@ if (document.location.href.includes('openverse.org')) {
 
     const id = (document.location.pathname.match(/[0-9a-fA-F-]{36}/) || [''])[0];
     const img_orig = imageLink?.href || document.location.href;
-    const alt = pickMeta('og:title');
-    const title = pickMeta('og:title');
-    const img_src = pickMeta('og:image');
-    const user = creatorLink?.textContent.trim() || "";
+    const title = main.querySelector('h1')?.textContent.trim() || pickMeta('og:title').replace(/\s*\|\s*Openverse$/, '');
+    const alt = title;
+    const pageImages = [...main.querySelectorAll('img[src]')]
+        .map((img) => ({
+            src: img.currentSrc || img.src,
+            score: (img.naturalWidth || 0) * (img.naturalHeight || 0),
+        }))
+        .filter((img) =>
+            img.src.startsWith('http') &&
+            !img.src.includes('openverse-default.jpg') &&
+            !img.src.includes('/logo') &&
+            !img.src.includes('/icon')
+        )
+        .sort((a, b) => b.score - a.score);
+    const img_src = pageImages[0]?.src || pickMeta('og:image');
+    const user = creatorLink?.textContent.trim() || "Unknown creator";
     const user_url = creatorLink?.href || "";
     const licence = licenceLink?.textContent.trim() || "";
     const licence_url = licenceLink?.href || "";
-    const source = sourceLink?.textContent.trim() || "";
+    const source = sourceLink?.textContent.trim() || prettifyHost(img_orig);
     const source_url = sourceLink?.href || "";
 
     let url_suffix =
