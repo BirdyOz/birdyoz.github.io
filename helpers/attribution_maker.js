@@ -2,7 +2,7 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2026-03-17 13:08:16
+ * @Last Modified time: 2026-07-20
  */
 
 /*jshint esversion: 8 */
@@ -1088,7 +1088,8 @@ $(function () {
       preview: am.image.preview,
       alt: am.image.alt,
       time: new Date().toLocaleString(),
-      attribution: `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> ${imageSiteAttribution()}, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today}</small>`,
+      attribution: `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> ${imageSiteAttribution()}, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${attributionDateMarkup(am.today)}</small>`,
+      metadata: currentImageAttributionMetadata(),
       site: am.site.name,
     });
 
@@ -1245,14 +1246,93 @@ $(function () {
     }
   });
 
-  // Return today's date in dd/mm/yyyy format
+  // Return today's date as an ISO 8601 local calendar date.
   function todaysDate() {
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, "0");
     let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
     let yyyy = today.getFullYear();
-    today = dd + "/" + mm + "/" + yyyy;
-    return today;
+    return yyyy + "-" + mm + "-" + dd;
+  }
+
+  // Return an unambiguous reader-facing date with a machine-readable value.
+  function attributionDateMarkup(isoDate) {
+    const match = String(isoDate || "").match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (!match) {
+      return escapeHtmlAttribute(isoDate);
+    }
+
+    const monthNames = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+    const displayDate = `${Number(match[3])} ${
+      monthNames[Number(match[2]) - 1]
+    } ${match[1]}`;
+    return `<time datetime="${escapeHtmlAttribute(
+      isoDate,
+    )}">${displayDate}</time>`;
+  }
+
+  // Escape provider metadata before inserting it into HTML attributes.
+  function escapeHtmlAttribute(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/"/g, "&quot;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  // Capture the minimum provider record needed to recover image attribution.
+  function currentImageAttributionMetadata() {
+    const providerKeys = {
+      "Flickr CC": "flickr",
+      "Wikimedia Commons": "wikimedia",
+    };
+    const providerKey =
+      providerKeys[am.site.name] || am.site.name.slugify();
+
+    return {
+      attribution: `${providerKey}:${am.id}`,
+      creator: am.attribution.username,
+      creatorUrl: am.attribution.userUrl,
+      license: am.site.licence,
+      licenseUrl: am.site.licenceurl,
+      reproducedDate: am.today,
+      sourceUrl: am.url,
+    };
+  }
+
+  // Keep recovery metadata on the image itself, never on its attribution div.
+  function imageAttributionDataAttributes(metadata) {
+    if (!metadata) {
+      return "";
+    }
+
+    return [
+      ["data-gb-attribution", metadata.attribution],
+      ["data-gb-creator", metadata.creator],
+      ["data-gb-creator-url", metadata.creatorUrl],
+      ["data-gb-license", metadata.license],
+      ["data-gb-license-url", metadata.licenseUrl],
+      ["data-gb-reproduced-date", metadata.reproducedDate],
+      ["data-gb-source-url", metadata.sourceUrl],
+    ]
+      .map(
+        ([name, value]) =>
+          ` ${name}="${escapeHtmlAttribute(value)}"`,
+      )
+      .join("");
   }
 
   // Copy to clipboard for dumb browsers
@@ -1388,7 +1468,9 @@ $(function () {
     let snippet = `
     <img src="${
       am.image.preview
-    }" class="img-responsive img-fluid w-100" alt="${am.image.alt}" data-image-id="${am.id}"${
+    }" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${imageAttributionDataAttributes(
+      currentImageAttributionMetadata(),
+    )}${
       am.title !== null ? ` title="${am.title}"` : ""
     } />
     <figcaption class="figure-caption text-muted small fw-lighter">
@@ -1407,7 +1489,9 @@ $(function () {
             }</a> ${imageSiteAttribution()}
                 <br><a href="${am.site.licenceurl}" target="_blank">${
                   am.site.licence
-                }</a>. Reproduced with permission on ${am.today} ${
+                }</a>. Reproduced with permission on ${attributionDateMarkup(
+                  am.today,
+                )} ${
                   am.prefs.collapsed
                     ? `</div>
             <!-- End of Show/Hide interface, ID = ${am.id}-${i} -->`
@@ -1428,7 +1512,7 @@ $(function () {
             <figure>
               <img src="${chosenImages[i].preview}" class="card-img-top" alt="${
                 chosenImages[i].alt
-              }" />
+              }"${imageAttributionDataAttributes(chosenImages[i].metadata)} />
               <figcaption class="figure-caption text-muted text-right small fw-lighter mr-1">
               ${
                 am.prefs.collapsed
@@ -1467,7 +1551,9 @@ $(function () {
               <div class="wrapper" style="position: relative; padding-top: 56.25%; ">
                   <img style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;" src="${chosenImages[i].preview}" class="card-img-top" alt="${
                     chosenImages[i].alt
-                  }" />
+                  }"${imageAttributionDataAttributes(
+                    chosenImages[i].metadata,
+                  )} />
               </div>
               <figcaption class="figure-caption text-muted text-right small fw-lighter mr-1">
               ${
@@ -1505,7 +1591,7 @@ $(function () {
     <div class="carousel-item">
       <img src="${chosenImages[i].preview}" class="d-block w-100" alt="${
         chosenImages[i].alt
-      }" />
+      }"${imageAttributionDataAttributes(chosenImages[i].metadata)} />
       ${
         displayCarouselText
           ? `<div class="carousel-caption d-none d-md-block" style="background: rgba(0, 0, 0, 0.4);">
@@ -1527,7 +1613,7 @@ $(function () {
         <figure class="m-0">
             <img src="${chosenImages[i].preview}" class="card-img-top" alt="${
               chosenImages[i].alt
-            }" />
+            }"${imageAttributionDataAttributes(chosenImages[i].metadata)} />
               <figcaption class="figure-caption text-muted text-right small fw-lighter mr-1">
               ${
                 am.prefs.collapsed
@@ -1556,7 +1642,9 @@ $(function () {
   // If am.prefs.Org = uom, return Melb Uni embed code
   function vanillaSnippet(i) {
     let snippet = `
-    <img src="${am.image.preview}" style="width:100%" alt="${am.image.alt}" data-image-id="${am.id}"${
+    <img src="${am.image.preview}" style="width:100%" alt="${am.image.alt}"${imageAttributionDataAttributes(
+      currentImageAttributionMetadata(),
+    )}${
       am.title !== null ? ` title="${am.title}"` : ""
     } />
     <figcaption style="font-size: 0.9em; color:#666; text-align: right">
@@ -1569,7 +1657,9 @@ $(function () {
           am.attribution.userUrl
         }" target="_blank">${am.attribution.username}</a> ${imageSiteAttribution()}, <a href="${
           am.site.licenceurl
-        }" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today}</small>
+        }" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${attributionDateMarkup(
+          am.today,
+        )}</small>
       ${am.prefs.collapsed ? `</details>` : ""}
       </details>
     </figcaption>
@@ -1582,7 +1672,9 @@ $(function () {
     let snippet = `
     <img src="${
       am.image.preview
-    }" class="img-responsive img-fluid w-100" alt="${am.image.alt}" data-image-id="${am.id}"${
+    }" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${imageAttributionDataAttributes(
+      currentImageAttributionMetadata(),
+    )}${
       am.title !== null ? ` title="${am.title}"` : ""
     } />
     <figcaption class="figure-caption text-muted small fw-lighter">
@@ -1590,7 +1682,9 @@ $(function () {
           am.attribution.userUrl
         }" target="_blank">${am.attribution.username}</a> ${imageSiteAttribution()}, <a href="${
           am.site.licenceurl
-        }" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today}</small>
+        }" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${attributionDateMarkup(
+          am.today,
+        )}</small>
     </figcaption>
     `;
     return snippet;
@@ -1598,7 +1692,7 @@ $(function () {
 
   // Text only snippet
   function textSnippet() {
-    let snippet = `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> ${imageSiteAttribution()}, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today}</small>`;
+    let snippet = `<small class="text-muted"><a href="${am.url}" target="_blank">${am.site.type}</a> by <a href="${am.attribution.userUrl}" target="_blank">${am.attribution.username}</a> ${imageSiteAttribution()}, <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${attributionDateMarkup(am.today)}</small>`;
     return snippet;
   }
 
@@ -1607,7 +1701,9 @@ $(function () {
     let snippet = `
     <figure><img src="${
       am.image.preview
-    }" class="img-responsive img-fluid w-100" alt="${am.image.alt}" data-image-id="${am.id}"${
+    }" class="img-responsive img-fluid w-100" alt="${am.image.alt}"${imageAttributionDataAttributes(
+      currentImageAttributionMetadata(),
+    )}${
       am.title !== null ? ` title="${am.title}"` : ""
     } />
     <figcaption>
@@ -1617,7 +1713,9 @@ $(function () {
           am.attribution.userUrl
         }" target="_blank">${am.attribution.username}</a> ${imageSiteAttribution()}, <a href="${
           am.site.licenceurl
-        }" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today}</div>
+        }" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${attributionDateMarkup(
+          am.today,
+        )}</div>
     </figcaption></figure>`;
     return snippet;
   }
@@ -1638,7 +1736,7 @@ $(function () {
             <small class="text-muted small fw-lighter">
                 <!-- Start of Show/Hide interface, ID = ${am.id} -->
                 <a class="source-btn text-muted" data-toggle="collapse" data-bs-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
-                <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today} </div>
+                <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${attributionDateMarkup(am.today)} </div>
                 <!-- End of Show/Hide interface, ID = ${am.id} -->
             </small>
         </div>
@@ -1681,7 +1779,7 @@ $(function () {
       am.site.name
     }</a>. <a href="${am.site.licenceurl}" target="_blank">${
       am.site.licence
-    }</a>. Reproduced with permission on ${am.today}${
+    }</a>. Reproduced with permission on ${attributionDateMarkup(am.today)}${
       am.prefs.collapsed ? `</details>` : ""
     }</small></div>
     </div>`;
@@ -1713,7 +1811,7 @@ $(function () {
                 <small class="text-muted small fw-lighter">
                     <!-- Start of Show/Hide interface, ID = ${am.id} -->
                     <a class="source-btn text-muted" data-toggle="collapse" data-bs-toggle="collapse" href="#show-${am.id}" role="button" aria-expanded="false" aria-controls="show-${am.id}">▽ Show attribution</a>
-                    <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${am.today} </div>
+                    <div class="source collapse m-0 p-0" id="show-${am.id}">Video by <a href="${am.attribution.userUrl}">${am.attribution.username}</a> on <a href="${am.site.siteurl}" target="_blank">${am.site.name}</a>. <a href="${am.site.licenceurl}" target="_blank">${am.site.licence}</a>. Reproduced with permission on ${attributionDateMarkup(am.today)} </div>
                     <!-- End of Show/Hide interface, ID = ${am.id} -->
                 </small>
             </div>
