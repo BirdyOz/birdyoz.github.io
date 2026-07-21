@@ -2,10 +2,16 @@
  * @Author: Greg Bird (@BirdyOz, greg.bird.oz@gmail.com)
  * @Date:   2018-05-10 10:37:58
  * @Last Modified by:   BirdyOz
- * @Last Modified time: 2026-07-20
+ * @Last Modified time: 2026-07-21
  */
 
 /*jshint esversion: 8 */
+
+const ATTRIBUTION_MAKER_VERSION = "20260721";
+console.info(
+  `[Attribution Maker] JS version ${ATTRIBUTION_MAKER_VERSION}`,
+  document.currentScript ? document.currentScript.src : "",
+);
 
 $(function () {
   $('[data-toggle="tooltip"]').tooltip(); // Enable Bootstrap ToolTips
@@ -485,7 +491,7 @@ $(function () {
         am.site.licenceurl = "https://en.wikipedia.org/wiki/Public_domain";
       }
 
-      id = id.slugify();
+      id = slugify(id);
       buildHTML();
       buildHistory();
     });
@@ -1300,7 +1306,7 @@ $(function () {
       "Wikimedia Commons": "wikimedia",
     };
     const providerKey =
-      providerKeys[am.site.name] || am.site.name.slugify();
+      providerKeys[am.site.name] || slugify(am.site.name);
 
     return {
       attribution: `${providerKey}:${am.id}`,
@@ -1429,16 +1435,16 @@ $(function () {
     return str;
   }
 
-  // Sanitise text to remove special chars. Sluggify output.
-  String.prototype.slugify = function (separator = "-") {
-    return this.toString()
+  // Sanitise text to remove special chars. Slugify output.
+  function slugify(value, separator = "-") {
+    return String(value)
       .normalize("NFD") // split an accented letter in the base letter and the acent
       .replace(/[\u0300-\u036f]/g, "") // remove all previously split accents
       .toLowerCase()
       .trim()
       .replace(/[^a-z0-9 ]/g, separator) // remove all chars not letters, numbers and spaces (to be replaced)
       .replace(/\s+/g, separator);
-  };
+  }
 
   // Track Unsplash downloads
   async function sendTrackDownload(endpoint) {
